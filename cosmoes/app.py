@@ -1,7 +1,7 @@
 """cosmoes.org: the official homes of the OES specifications. One FastAPI app, one Cloud Run service, eight hosts, routed
 by the Host header:
 
-    cosmoes.org             the index of the four specifications; /robots.txt, /sitemap.xml, /manifest.json (all of it)
+    cosmoes.org             the index of the four specifications; /robots.txt, /sitemap.xml, /manifest.json (all of it), /health
     macro.cosmoes.org       MacroCOSM OES          /  (short)   /atem   /fabula   /manifest.json   /docs.css
     thym.cosmoes.org        Thym                   the same
     ascribe.cosmoes.org     Ascribe                the same
@@ -142,8 +142,10 @@ def create_app(specs_folder: Path | str | None = None) -> FastAPI:
     def get(path: str):
         return app.api_route(path, methods=['GET', 'HEAD'], include_in_schema=False)   # FastAPI adds no HEAD by itself
 
+    @get('/health')
     @get('/healthz')
     def healthz():
+        # /health as well: on Cloud Run, Google's front end answers /healthz itself (a 404) and never passes it on.
         return JSONResponse({'ok': True}, headers={'Cache-Control': NO_STORE})
 
     @get('/')

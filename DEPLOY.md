@@ -47,11 +47,13 @@ gcloud run deploy $SERVICE --image $IMAGE --region $REGION \
   --service-account $SA --allow-unauthenticated \
   --cpu 1 --memory 512Mi --concurrency 80 --min-instances 0 --max-instances 3 --timeout 60
 export URL=$(gcloud run services describe $SERVICE --region $REGION --format='value(status.url)')
-curl -s $URL/healthz                                   # {"ok":true}
+curl -s $URL/health                                    # {"ok":true}
 curl -s $URL/ | grep -c 'class="tile"'                 # 4: the run.app address is an unknown host, so it serves the apex
 ```
 
-`--allow-unauthenticated`: it is a public site with nothing to protect.
+`--allow-unauthenticated`: it is a public site with nothing to protect. `/healthz` is not a check here: on Cloud Run,
+Google's front end answers that exact path itself with a 404 and the request never reaches the container (the service
+log shows none), so the health route is `/health`.
 
 ## 4. The domain
 

@@ -204,8 +204,9 @@ def test_the_stylesheets_and_healthz(site):
         r = site.get(host, '/site.css')
         assert r.status_code == 200 and r.headers['content-type'] == 'text/css; charset=utf-8' and '--measure: 64ch' in r.text
         cached(r)
-        r = site.get(host, '/healthz')
-        assert r.status_code == 200 and r.json() == {'ok': True} and r.headers['cache-control'] == 'no-store'
+        for path in ('/healthz', '/health'):          # Cloud Run's front end swallows /healthz; /health gets through
+            r = site.get(host, path)
+            assert r.status_code == 200 and r.json() == {'ok': True} and r.headers['cache-control'] == 'no-store'
 
 
 def test_hsts_only_over_https(export):

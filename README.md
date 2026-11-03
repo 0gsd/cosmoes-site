@@ -16,7 +16,8 @@ section; short: the readable text; fabula: every item as a card), as enough's Do
 
 On a document's host: `/` is the short density (canonical; `/short` is a 301 to it), `/atem`, `/fabula`,
 `/manifest.json` (that document's entry of the export's manifest), `/docs.css` (the export's stylesheet), `/site.css`,
-`/robots.txt` (allow all; it names the host's `/sitemap.xml`), `/healthz`. An unknown host (the `run.app` address, a
+`/robots.txt` (allow all; it names the host's `/sitemap.xml`), `/health` (and `/healthz`, which on Cloud Run
+Google's front end answers itself with a 404 and never passes on). An unknown host (the `run.app` address, a
 local port) serves the apex. Every answer carries `Cache-Control: public, max-age=300` (a 404 and `/healthz`:
 `no-store`), a `Content-Security-Policy` that allows only the site's own stylesheets, and HSTS over HTTPS. No
 JavaScript, no inline styles, no third-party loads, no analytics, no environment variables, no storage.
