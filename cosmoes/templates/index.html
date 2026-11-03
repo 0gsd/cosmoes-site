@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{# The apex (cosmoes.org): the four specifications, a tile each with its host and its three densities. #}
+{% block title %}The OES specifications · cosmoes.org{% endblock %}
+{% block body_class %}index{% endblock %}
+{% block content %}
+<section class="hero" aria-labelledby="h">
+  <h1 id="h">The OES specifications</h1>
+  <p class="lede">The official homes of the OES specifications, as enough ships them. Each has an address of its own and
+  three densities: <b>atem</b>, one line per section; <b>short</b>, the readable text; <b>fabula</b>, every item as a card.</p>
+</section>
+{% if docs %}
+<ul class="tiles">
+  {% for d in docs %}
+  <li class="tile" id="spec-{{ d.slug }}">
+    <p class="kicker"><a href="{{ d.url }}">{{ d.host }}</a>{% if d.version %} · v{{ d.version }}{% endif %}</p>
+    <h2><a href="{{ d.url }}">{{ d.name }}</a></h2>
+    {% if d.lead %}<p class="lead">{{ d.lead }}</p>{% endif %}
+    {% if d.counts %}<p class="counts">{{ d.counts|join(' · ') }}</p>{% endif %}
+    <ul class="links" aria-label="{{ d.name }} at each density">
+      {% for dn in densities %}
+      <li><a href="{{ d.url }}{{ pages[dn].lstrip('/') }}">{{ dn }}</a> {{ titles[dn] }}</li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+<section class="also" aria-labelledby="also-h">
+  <h2 id="also-h">Also in MacroCOSM OES</h2>
+  <p>DocOES, the document form these pages are made from, is section 18.5 of MacroCOSM OES, not a specification of its
+  own; <a href="https://docoes.{{ domain }}/">docoes.{{ domain }}</a> goes there. A MiniCOSM gets a home here once it has
+  a specification of its own; <a href="https://mini.{{ domain }}/">mini.{{ domain }}</a> comes back to this page.</p>
+</section>
+{% else %}
+<p class="none" role="status">Nothing is published here yet.</p>
+{% endif %}
+{% endblock %}

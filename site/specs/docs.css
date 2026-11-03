@@ -1,0 +1,240 @@
+/* DocOES export (enough): the fragments' styles. Everything is scoped under .docoes; the tokens
+   read the host page's variables when it has them. Single column: the host lays out the contents beside
+   the body. */
+.docoes {
+  --dx-ink: var(--ink, #1a1f2b);
+  --dx-ink2: var(--ink2, #4c5566);
+  --dx-ink3: var(--ink3, #606878);
+  --dx-line: var(--line, #d9dde5);
+  --dx-surface: var(--surface, #fff);
+  --dx-surface2: var(--surface-2, #f4f5f8);
+  --dx-blue: var(--blue, #2457d6);
+  --dx-sans: var(--fg-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+  --dx-mono: var(--fg-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace);
+  --dx-r2: var(--r2, 8px);
+  color: var(--dx-ink);
+  font-family: var(--dx-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+.docoes *, .docoes *::before, .docoes *::after { box-sizing: border-box; }
+.docoes .docoes-body { min-width: 0; }
+
+/* the contents */
+.docoes .docoes-contents {
+  border: 1px solid var(--dx-line);
+  border-radius: var(--dx-r2);
+  background: var(--dx-surface);
+  padding: 0.75rem 0.9rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.docoes .docoes-contents ol { list-style: none; margin: 0; padding: 0; }
+.docoes .docoes-contents ol ol { margin: 0.15rem 0 0.35rem 0.9rem; }
+.docoes .docoes-contents li { margin: 0.15rem 0; }
+.docoes .docoes-contents li.lvl2 { font-weight: 600; }
+.docoes .docoes-contents li.lvl3 { font-weight: 400; }
+.docoes .docoes-contents li.lvl2.chapter {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--dx-line);
+}
+.docoes .docoes-contents a { color: var(--dx-ink2); text-decoration: none; }
+.docoes .docoes-contents a:hover { color: var(--dx-blue); text-decoration: underline; }
+
+/* headings and prose */
+.docoes h1, .docoes h2, .docoes h3, .docoes h4, .docoes h5, .docoes h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1.6em 0 0.6em;
+  color: var(--dx-ink);
+  scroll-margin-top: 1rem;
+}
+.docoes h1 { font-size: 2rem; margin-top: 0; padding-bottom: 0.3em; border-bottom: 1px solid var(--dx-line); }
+.docoes h2 { font-size: 1.5rem; padding-bottom: 0.2em; border-bottom: 1px solid var(--dx-line); }
+.docoes h3 { font-size: 1.22rem; }
+.docoes h4 { font-size: 1.06rem; }
+.docoes h5, .docoes h6 { font-size: 1rem; font-style: italic; }
+.docoes p { margin: 0.85em 0; line-height: 1.6; }
+.docoes ul, .docoes ol { margin: 0.7em 0 0.7em 1.4em; padding-left: 0.4em; }
+.docoes li { margin: 0.25em 0; }
+.docoes li > p { margin: 0.35em 0; }
+.docoes strong { font-weight: 700; }
+.docoes em { font-style: italic; }
+.docoes del, .docoes s { color: var(--dx-ink3); }
+.docoes a { color: var(--dx-blue); }
+.docoes blockquote {
+  margin: 1em 0;
+  padding: 0.2em 0.9em;
+  border-left: 3px solid var(--dx-line);
+  color: var(--dx-ink2);
+}
+.docoes hr { border: none; border-top: 1px solid var(--dx-line); margin: 2em 0; }
+.docoes img { max-width: 100%; }
+
+/* code */
+.docoes code {
+  font-family: var(--dx-mono);
+  font-size: 0.88em;
+  background: var(--dx-surface2);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.docoes pre {
+  font-family: var(--dx-mono);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  background: var(--dx-surface2);
+  border: 1px solid var(--dx-line);
+  border-radius: var(--dx-r2);
+  padding: 0.85em 1em;
+  margin: 1em 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+.docoes pre code { background: transparent; padding: 0; border-radius: 0; font-size: inherit; }
+
+/* tables */
+.docoes .docs-table { width: 100%; overflow-x: auto; margin: 1.2em 0; }
+.docoes table { width: 100%; border-collapse: collapse; font-size: 0.88rem; line-height: 1.45; }
+.docoes th, .docoes td {
+  border: 1px solid var(--dx-line);
+  padding: 0.4em 0.7em;
+  text-align: left;
+  vertical-align: top;
+}
+.docoes thead th { background: var(--dx-surface2); font-weight: 700; }
+
+/* the section furniture */
+.docoes .docs-sec { margin: 0; }
+.docoes .docs-chapter-note, .docoes .docs-note, .docoes .docs-fb {
+  color: var(--dx-ink3);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+.docoes .docs-chapter-note { margin: 2.5em 0 -1em; padding-top: 1em; border-top: 2px solid var(--dx-line); }
+.docoes .docs-marks { float: right; margin: -0.3em 0 0.4em 1em; font-size: 0.78rem; color: var(--dx-ink3); }
+.docoes .docs-mark { display: inline-block; margin-left: 0.5em; white-space: nowrap; }
+.docoes a.ref-xref { color: var(--dx-blue); text-decoration: none; }
+.docoes a.ref-xref:hover { text-decoration: underline; }
+.docoes a.ref-xref-num { display: inline-block; min-width: 1.2em; text-align: center; }
+.docoes a.docs-term {
+  color: inherit;
+  text-decoration: underline dotted var(--dx-ink3);
+  text-underline-offset: 0.18em;
+}
+.docoes a.docs-term:hover { color: var(--dx-blue); text-decoration-color: var(--dx-blue); }
+
+/* the glossary */
+.docoes .docs-gloss { margin: 0.6em 0 1.2em; }
+.docoes .docs-gloss dt { font-weight: 700; margin-top: 0.7em; scroll-margin-top: 1rem; }
+.docoes .docs-gloss dd { margin: 0.15em 0 0 1.4em; color: var(--dx-ink2); }
+.docoes .docs-gloss dt:target, .docoes .docs-gloss dt:target + dd { background: var(--dx-surface2); }
+
+/* the atem density */
+.docoes .docs-atem-lead { font-size: 1.1rem; color: var(--dx-ink2); }
+.docoes .docs-outline { list-style: none; margin: 0.5em 0 1.5em; padding: 0; }
+.docoes .docs-outline li { margin: 0; }
+.docoes .docs-outline .docs-ol-row {
+  display: block;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  color: var(--dx-ink);
+  text-decoration: none;
+}
+.docoes .docs-outline a.docs-ol-row:hover { background: var(--dx-surface2); }
+.docoes .docs-outline li.docs-ol-top { margin-top: 0.35em; }
+.docoes .docs-outline li.docs-ol-top > .docs-ol-row .docs-ol-name { font-weight: 600; }
+.docoes .docs-outline li.docs-ol-chapter { margin-top: 1em; padding-top: 0.5em; border-top: 1px solid var(--dx-line); }
+.docoes .docs-outline [data-depth="1"] { padding-left: 1.2em; }
+.docoes .docs-outline [data-depth="2"] { padding-left: 2.4em; }
+.docoes .docs-outline [data-depth="3"] { padding-left: 3.6em; }
+.docoes .docs-outline [data-depth="4"] { padding-left: 4.8em; }
+.docoes .docs-outline [data-depth="5"] { padding-left: 6em; }
+.docoes .docs-ol-num { color: var(--dx-ink3); font-variant-numeric: tabular-nums; margin-right: 0.3em; }
+.docoes .docs-ol-atem, .docoes .docs-r-atem, .docoes .docs-r-sev { color: var(--dx-ink3); }
+.docoes .docs-atem-line { color: var(--dx-ink2); margin-top: -0.3em; }
+.docoes .docs-ref { list-style: none; margin: 0.4em 0 1.2em; padding: 0; }
+.docoes .docs-ref li { margin: 0.3em 0; padding-left: 1.2em; text-indent: -1.2em; }
+.docoes .docs-r-kind {
+  display: inline-block;
+  min-width: 1.6em;
+  font-family: var(--dx-mono);
+  font-size: 0.82em;
+  color: var(--dx-ink3);
+  text-indent: 0;
+}
+.docoes .docs-r-name { font-weight: 600; }
+.docoes a.docs-r-name, .docoes a.docs-r-sub { color: var(--dx-ink); text-decoration: none; }
+.docoes a.docs-r-name:hover, .docoes a.docs-r-sub:hover { color: var(--dx-blue); text-decoration: underline; }
+.docoes .docs-r-sub { font-family: var(--dx-mono); font-size: 0.85em; }
+
+/* the fabula density */
+.docoes .docs-fab-note { color: var(--dx-ink2); }
+.docoes .docs-card {
+  border: 1px solid var(--dx-line);
+  border-radius: var(--dx-r2);
+  background: var(--dx-surface);
+  padding: 0.75em 1em;
+  margin: 0.8em 0;
+  scroll-margin-top: 1rem;
+}
+.docoes .docs-card:target { border-color: var(--dx-blue); box-shadow: 0 0 0 2px var(--dx-surface2); }
+.docoes .docs-card h4 { margin: 0 0 0.3em; font-size: 1rem; }
+.docoes .docs-card-id { font-weight: 400; color: var(--dx-ink2); margin-right: 0.3em; }
+.docoes .docs-card-atem { margin: 0.2em 0 0.6em; color: var(--dx-ink2); }
+.docoes .docs-card-fields {
+  display: grid;
+  grid-template-columns: minmax(6em, max-content) minmax(0, 1fr);
+  gap: 0.2em 0.9em;
+  margin: 0.4em 0;
+  font-size: 0.86rem;
+}
+.docoes .docs-card-fields dt { color: var(--dx-ink3); font-family: var(--dx-mono); font-size: 0.92em; }
+.docoes .docs-card-fields dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.docoes .docs-card-fields code { font-size: 0.92em; }
+.docoes .docs-card-fields a { text-decoration: none; }
+.docoes .docs-card-read { margin: 0.4em 0 0; font-size: 0.88rem; }
+.docoes .docs-card-body { font-size: 0.92rem; }
+.docoes .docs-card pre { margin: 0.6em 0 0.2em; }
+
+@media (max-width: 600px) {
+  .docoes h1 { font-size: 1.6rem; }
+  .docoes h2 { font-size: 1.3rem; }
+  .docoes .docs-marks { float: none; margin: 0 0 0.4em; }
+  .docoes .docs-card-fields { grid-template-columns: minmax(0, 1fr); }
+  .docoes .docs-card-fields dd { margin-bottom: 0.3em; }
+}
+
+/* --standalone pages only (the site never serves them) */
+body.docoes-page {
+  margin: 0;
+  background: var(--surface-2, #f4f5f8);
+  color: var(--ink, #1a1f2b);
+  font-family: var(--fg-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+}
+body.docoes-page > .docoes-head, body.docoes-page > .docoes, body.docoes-page > .docoes-foot {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem 16px;
+}
+body.docoes-page > .docoes { background: var(--surface, #fff); border-radius: var(--r2, 8px); padding: 1.5rem 16px; }
+.docoes-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.docoes-head .docoes-doc { margin: 0; font-weight: 600; }
+.docoes-densities { display: flex; gap: 0.25rem; }
+.docoes-densities a {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--line, #d9dde5);
+  border-radius: 999px;
+  color: var(--ink2, #4c5566);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.docoes-densities a[aria-current="page"] {
+  background: var(--ink, #1a1f2b);
+  border-color: var(--ink, #1a1f2b);
+  color: #fff;
+}
+.docoes-foot { color: var(--ink3, #606878); font-size: 0.85rem; }

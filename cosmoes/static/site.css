@@ -1,0 +1,83 @@
+/* cosmoes.org: the site's own look. Neutral: system sans, one light theme, a 64ch measure for prose. The export's
+   docs.css reads these tokens (--ink, --line, --surface…) for the fragments; this file lays the fragment out: the
+   contents beside the body from 1100px up, one column below. No other stylesheet, no script. */
+:root {
+  --ink: #1a1f2b;
+  --ink2: #4c5566;
+  --ink3: #606878;
+  --line: #d9dde5;
+  --surface: #fff;
+  --surface-2: #f4f5f8;
+  --blue: #2457d6;
+  --fg-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fg-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --r2: 8px;
+  --measure: 64ch;
+}
+html { background: var(--surface-2); }
+body { margin: 0; color: var(--ink); font-family: var(--fg-sans); font-size: 1rem; line-height: 1.6; }
+a { color: var(--blue); }
+a:hover { color: var(--ink); }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 10; padding: 8px 12px; background: var(--surface); }
+.skip:focus { left: 16px; }
+
+/* the header: the wordmark, the four hosts, the density switch on a document */
+.head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; padding: 12px 16px;
+  background: var(--surface); border-bottom: 1px solid var(--line); }
+.wordmark { font-weight: 700; font-size: 1.1rem; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
+nav.hosts ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+nav.hosts a { display: inline-block; padding: 4px 0; font-size: 0.95rem; color: var(--ink2); text-decoration: none;
+  border-bottom: 2px solid transparent; }
+nav.hosts a:hover { color: var(--ink); }
+nav.hosts a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--ink); }
+nav.densities { display: inline-flex; margin-left: auto; border: 1px solid var(--line); border-radius: var(--r2);
+  background: var(--surface); overflow: hidden; }
+nav.densities a { padding: 6px 14px; font-size: 0.9rem; font-weight: 600; color: var(--ink2); text-decoration: none; }
+nav.densities a + a { border-left: 1px solid var(--line); }
+nav.densities a:hover { color: var(--ink); background: var(--surface-2); }
+nav.densities a[aria-current="page"] { background: var(--ink); color: #fff; }
+
+main { max-width: 1240px; margin: 0 auto; padding: 24px 16px 48px; }
+.kicker { margin: 0 0 12px; font-size: 0.85rem; color: var(--ink3); }
+.kicker a { color: inherit; }
+.foot { max-width: 1240px; margin: 0 auto; padding: 0 16px 32px; font-size: 0.85rem; color: var(--ink3); }
+.foot p { margin: 0 0 4px; max-width: 84ch; }
+
+/* the index */
+.hero h1 { margin: 0 0 8px; font-size: 2rem; line-height: 1.2; }
+.lede { margin: 0 0 24px; max-width: var(--measure); font-size: 1.08rem; color: var(--ink2); }
+ul.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+li.tile { padding: 20px 24px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r2); }
+li.tile .kicker { margin-bottom: 6px; }
+li.tile h2 { margin: 0 0 8px; font-size: 1.4rem; line-height: 1.25; }
+li.tile h2 a { color: var(--ink); text-decoration: none; }
+li.tile h2 a:hover { text-decoration: underline; }
+.lead { margin: 0 0 8px; color: var(--ink2); }
+.counts { margin: 0 0 12px; font-size: 0.85rem; color: var(--ink3); }
+ul.links { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; color: var(--ink2); }
+ul.links a { display: inline-block; min-width: 4.5em; font-weight: 700; }
+.also { margin-top: 32px; max-width: var(--measure); }
+.also h2 { font-size: 1.15rem; margin: 0 0 6px; }
+.also p { margin: 0; color: var(--ink2); }
+.none { color: var(--ink3); }
+
+/* a document: the fragment in a panel, its prose at the measure, tables and code at the full width */
+body.doc .docoes { min-width: 0; padding: 24px 32px 32px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r2); }
+body.doc .docoes-short .docs-sec > p, body.doc .docoes-short .docs-sec > ul, body.doc .docoes-short .docs-sec > ol,
+body.doc .docoes-short .docs-sec > blockquote, body.doc .docoes-atem .docs-atem-lead, body.doc .docoes-fabula .docs-fab-note {
+  max-width: var(--measure); }
+@media (min-width: 1100px) {
+  body.doc .docoes { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 32px; align-items: start; }
+  body.doc .docoes-contents { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto; margin: 0; }
+  body.doc .docoes-body { min-width: 0; }
+}
+@media (max-width: 720px) {
+  .head { gap: 8px 16px; }
+  nav.densities { margin-left: 0; }
+  main { padding: 16px 16px 40px; }
+  .hero h1 { font-size: 1.6rem; }
+  ul.tiles { grid-template-columns: minmax(0, 1fr); }
+  li.tile { padding: 16px; }
+  body.doc .docoes { padding: 16px; }
+}

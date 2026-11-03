@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{# One specification at one density on its own host: the density switch in the header, the export's fragment as it is
+   (`|safe`: cosmoes/specs.py checked its sha256 and that it carries no script, style or event attribute). The fragment
+   brings its own <h1>, contents and ids; its look is /docs.css (the export's), its two columns /site.css's. #}
+{% block title %}{{ doc.name }} ({{ density }}) · {{ host }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="/docs.css">{% endblock %}
+{% block body_class %}doc density-{{ density }}{% endblock %}
+{% block switch %}
+  <nav class="densities" aria-label="Density">
+    {% for d in densities %}
+    <a href="{{ pages[d] }}" title="{{ titles[d] }}"{% if d == density %} aria-current="page"{% endif %}>{{ d }}</a>
+    {% endfor %}
+  </nav>
+{% endblock %}
+{% block content %}
+<p class="kicker">{{ host }} · specification{% if doc.version %} · v{{ doc.version }}{% endif %} · {{ titles[density] }}</p>
+{{ fragment|safe }}
+{% endblock %}

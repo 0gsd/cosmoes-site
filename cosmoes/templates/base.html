@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}cosmoes.org{% endblock %}</title>
+{% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+{% if description %}<meta name="description" content="{{ description }}">{% endif %}
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/site.css">
+{% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip" href="#main">Skip to the page</a>
+<header class="head">
+  <a class="wordmark" href="{{ apex }}">cosmoes.org</a>
+  <nav class="hosts" aria-label="The specifications"><ul>
+    {% for h in hosts %}
+    <li><a href="{{ h.url }}"{% if h.current %} aria-current="page"{% endif %}>{{ h.label }}</a></li>
+    {% endfor %}
+  </ul></nav>
+  {% block switch %}{% endblock %}
+</header>
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">
+  {% if meta %}<p>From {{ meta.from }}{% if meta.commit %} ({{ meta.commit }}){% endif %}{% if meta.exported %}, exported {{ meta.exported|date_text }}{% endif %}.</p>{% endif %}
+  <p>MacroCOSM OES, Thym and Ascribe are Apache-2.0 (enough); Comprise OES 1 is Comprise's own text, © Graham Smith.</p>
+</footer>
+</body>
+</html>

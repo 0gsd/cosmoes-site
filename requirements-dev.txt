@@ -1,0 +1,4 @@
+# Tests: the runtime pins plus pytest and httpx (FastAPI's TestClient runs on it).
+-r requirements.txt
+pytest==9.1.1
+httpx==0.28.1

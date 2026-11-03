@@ -1,0 +1,189 @@
+{
+  "format": "docoes-export/1",
+  "exported": "2026-11-02T23:53:58Z",
+  "by": "enough/0.5.1",
+  "source": {
+    "commit": "2ddc7ce",
+    "dirty": true
+  },
+  "css": "docs.css",
+  "pages": {
+    "short": "/",
+    "atem": "/atem",
+    "fabula": "/fabula"
+  },
+  "standalone": false,
+  "documents": [
+    {
+      "slug": "macrocosm-oes",
+      "name": "MacroCOSM OES",
+      "version": "0.0.2",
+      "lang": "en",
+      "id": "doc/macrocosm-oes",
+      "oes": "doc/1",
+      "lead": "MacroCOSM OES is the shared grammar every MiniCOSM is written in",
+      "source": {
+        "path": "docs/MACROCOSM_OES.md",
+        "sha256": "24321ad5a5499a3717700d62856a1bb945119d06af1e1512f497b05dc91d9f2e"
+      },
+      "chapters": [
+        {
+          "id": "S:chapter/comprise-oes",
+          "name": "Comprise OES 1",
+          "source": "oes/comprise-oes.md",
+          "commit": "fbe5b08",
+          "sha256": "2c578c9c04dec2184be8fe827d81a2ce5880d4ae93782f897b71739a214a5a21",
+          "prefix": "comprise",
+          "version": "1"
+        },
+        {
+          "id": "S:chapter/comprise-paradigm-map",
+          "name": "OES: the paradigm map",
+          "source": "oes/README.md",
+          "commit": "fbe5b08",
+          "sha256": "0a3a52762c908f0cebd67a16032acf6f2671b551947f1eeedcbbda8f8b8b661d",
+          "prefix": "comprise-map",
+          "version": "1"
+        }
+      ],
+      "counts": {
+        "sections": 220,
+        "terms": 68,
+        "examples": 8,
+        "decisions": 46,
+        "reference": 256
+      },
+      "files": {
+        "short": {
+          "path": "macrocosm-oes/short.html",
+          "sha256": "d3f20e9dfa7df80b06bd69e803b00b84461b4c442c3b39b23981e347cf7a64d9",
+          "bytes": 610803
+        },
+        "atem": {
+          "path": "macrocosm-oes/atem.html",
+          "sha256": "0b52d59f5a06c481f98f9218aaa72266efd0904a5498cdcf80ecdc73b556ac77",
+          "bytes": 111294
+        },
+        "fabula": {
+          "path": "macrocosm-oes/fabula.html",
+          "sha256": "4c5adedc1b9699318aa9d3cafcfca38cab2d041264ac74d37a31d279a23488c6",
+          "bytes": 832801
+        }
+      }
+    },
+    {
+      "slug": "thym",
+      "name": "Thym 0",
+      "version": "0",
+      "lang": "en",
+      "id": "doc/thym",
+      "oes": "doc/1",
+      "lead": "Version 0 of the language, written 2026-11-01 for enough 0.5.0",
+      "source": {
+        "path": "docs/THYM.md",
+        "sha256": "67b93f1810629af648a9e9ca74aab6793e5d2e4676373fac23e123f6a579bb2f"
+      },
+      "chapters": [],
+      "counts": {
+        "sections": 83,
+        "terms": 12,
+        "examples": 1,
+        "decisions": 18,
+        "reference": 0
+      },
+      "files": {
+        "short": {
+          "path": "thym/short.html",
+          "sha256": "c7e4cfa6fd42a840c9ee9097e364f69994d753f084a7158f80f40cd050f0cf7f",
+          "bytes": 155368
+        },
+        "atem": {
+          "path": "thym/atem.html",
+          "sha256": "6d1719a37981bbdc4dcb173dd869df53440f2490dd101884bac4ee10fd51315c",
+          "bytes": 25008
+        },
+        "fabula": {
+          "path": "thym/fabula.html",
+          "sha256": "4c3593bd868bb4750631d8539e726ad80289d460ba1706ec87240be3368fc8f2",
+          "bytes": 128004
+        }
+      }
+    },
+    {
+      "slug": "ascribe",
+      "name": "Ascribe OES 1",
+      "version": "1",
+      "lang": "en",
+      "id": "doc/ascribe",
+      "oes": "doc/1",
+      "lead": "Ascribe is the MiniCOSM for a person's holograph",
+      "source": {
+        "path": "docs/ASCRIBE.md",
+        "sha256": "53933b3101d464ccd708c5071e4b6f54fdb2f8af8d8d97445c4e27ce656388e9"
+      },
+      "chapters": [],
+      "counts": {
+        "sections": 27,
+        "terms": 5,
+        "examples": 1,
+        "decisions": 11,
+        "reference": 0
+      },
+      "files": {
+        "short": {
+          "path": "ascribe/short.html",
+          "sha256": "4bdcd3477089d0ee98d2e36a575d9eb67370236a948d0feec1e3f5c87c3bad4a",
+          "bytes": 45725
+        },
+        "atem": {
+          "path": "ascribe/atem.html",
+          "sha256": "9afe5253db5c6a8c5b4a5d8c1d2464f368c7777b4c90a01f3702ab6a4d1eeb9f",
+          "bytes": 8734
+        },
+        "fabula": {
+          "path": "ascribe/fabula.html",
+          "sha256": "09f91d13c4167b275f5128b758c9a809032e374f3bfa4b33e1ee801cba4d92ae",
+          "bytes": 48130
+        }
+      }
+    },
+    {
+      "slug": "comprise-oes",
+      "name": "Comprise OES 1",
+      "version": "1",
+      "lang": "en",
+      "id": "doc/comprise-oes",
+      "oes": "doc/1",
+      "lead": "The code in core/ is the reference reader and writer",
+      "source": {
+        "path": "defaults/cosm/chapters/comprise-oes.md",
+        "sha256": "2c578c9c04dec2184be8fe827d81a2ce5880d4ae93782f897b71739a214a5a21"
+      },
+      "chapters": [],
+      "counts": {
+        "sections": 96,
+        "terms": 14,
+        "examples": 0,
+        "decisions": 19,
+        "reference": 0
+      },
+      "files": {
+        "short": {
+          "path": "comprise-oes/short.html",
+          "sha256": "aec6af1c324bb59aad381a0f80ce11cbfd469b921470f558e0b856b67e087018",
+          "bytes": 184857
+        },
+        "atem": {
+          "path": "comprise-oes/atem.html",
+          "sha256": "4c60e24cc3ec4dfb847da10ccb2a94c2a1f512b0ec68f3c8e4aa1328fc28de09",
+          "bytes": 28033
+        },
+        "fabula": {
+          "path": "comprise-oes/fabula.html",
+          "sha256": "29e980f8e239b1c25fff3441622ee29d8578088a462dbac6eae13f585b38b54b",
+          "bytes": 152505
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3420 @@
+<article class="docoes docoes-short" data-doc="comprise-oes" data-density="short" data-lang="en">
+<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-contents">Contents</a></li><li class="lvl2"><a href="#docs-how-to-read-this">How to read this</a></li><li class="lvl2"><a href="#docs-sec-1">1. The map</a></li><li class="lvl2"><a href="#docs-sec-2">2. The volume</a><ol><li class="lvl3"><a href="#docs-sec-2-1">2.1 Layout</a></li><li class="lvl3"><a href="#docs-sec-2-2">2.2 The catalog:</a></li><li class="lvl3"><a href="#docs-sec-2-3">2.3 The declaration:</a></li><li class="lvl3"><a href="#docs-sec-2-4">2.4 Module files</a></li><li class="lvl3"><a href="#docs-sec-2-5">2.5 Reading a file</a></li><li class="lvl3"><a href="#docs-sec-2-6">2.6 E: people are never in a file</a></li><li class="lvl3"><a href="#docs-sec-2-7">2.7 Other folders</a></li><li class="lvl3"><a href="#docs-sec-2-8">2.8 The local database</a></li></ol></li><li class="lvl2"><a href="#docs-sec-3">3. Concerns and relationships</a><ol><li class="lvl3"><a href="#docs-sec-3-1">3.1 Concerns (atoms)</a></li><li class="lvl3"><a href="#docs-sec-3-2">3.2 Relationships (bonds)</a></li><li class="lvl3"><a href="#docs-sec-3-3">3.3 Outside organizations (stubs)</a></li><li class="lvl3"><a href="#docs-sec-3-4">3.4 Groups</a></li><li class="lvl3"><a href="#docs-sec-3-5">3.5 Vendor-published atoms</a></li></ol></li><li class="lvl2"><a href="#docs-sec-4">4. The envelope</a><ol><li class="lvl3"><a href="#docs-sec-4-1">4.1 P is different</a></li><li class="lvl3"><a href="#docs-sec-4-2">4.2 Visibility</a></li><li class="lvl3"><a href="#docs-sec-4-3">4.3 Provenance</a></li></ol></li><li class="lvl2"><a href="#docs-sec-5">5. The eight modules</a><ol><li class="lvl3"><a href="#docs-chapter-c-corporation">Chapter C · Corporation</a></li><li class="lvl3"><a href="#docs-chapter-o-organizations">Chapter O · Organizations</a></li><li class="lvl3"><a href="#docs-chapter-m-markets">Chapter M · Markets</a></li><li class="lvl3"><a href="#docs-chapter-p-products-the-product-tree">Chapter P · Products: the product tree</a></li><li class="lvl3"><a href="#docs-chapter-r-representations-and-reflections">Chapter R · Representations and reflections</a></li><li class="lvl3"><a href="#docs-chapter-i-inventories">Chapter I · Inventories</a></li><li class="lvl3"><a href="#docs-chapter-s-stacks">Chapter S · Stacks</a></li><li class="lvl3"><a href="#docs-chapter-e-employees">Chapter E · Employees</a></li></ol></li><li class="lvl2"><a href="#docs-sec-6">6. Paths</a><ol><li class="lvl3"><a href="#docs-sec-6-1">6.1 Properties</a></li><li class="lvl3"><a href="#docs-sec-6-2">6.2 Grammar</a></li><li class="lvl3"><a href="#docs-sec-6-3">6.3 From an id to a path, and back</a></li><li class="lvl3"><a href="#docs-sec-6-4">6.4 Edge cases, settled</a></li><li class="lvl3"><a href="#docs-sec-6-5">6.5 Where paths are accepted</a></li><li class="lvl3"><a href="#docs-sec-6-6">6.6 Scope and safety</a></li><li class="lvl3"><a href="#docs-sec-6-7">6.7 Examples</a></li></ol></li><li class="lvl2"><a href="#docs-sec-7">7. References</a><ol><li class="lvl3"><a href="#docs-sec-7-1">7.1 Forms</a></li><li class="lvl3"><a href="#docs-sec-7-2">7.2 Where references are checked</a></li><li class="lvl3"><a href="#docs-sec-7-3">7.3 Resolution</a></li><li class="lvl3"><a href="#docs-sec-7-4">7.4 Scope</a></li><li class="lvl3"><a href="#docs-sec-7-5">7.5 Named relations</a></li></ol></li><li class="lvl2"><a href="#docs-sec-8">8. Open questions</a></li><li class="lvl2"><a href="#docs-sec-9">9. Checks</a><ol><li class="lvl3"><a href="#docs-sec-9-1">9.1 What runs</a></li><li class="lvl3"><a href="#docs-sec-9-2">9.2 The envelope's checks</a></li><li class="lvl3"><a href="#docs-sec-9-3">9.3 The fourteen rules</a></li><li class="lvl3"><a href="#docs-sec-9-4">9.4 The verdict</a></li></ol></li><li class="lvl2"><a href="#docs-sec-10">10. Versions</a></li><li class="lvl2"><a href="#docs-sec-11">11. The private/public split</a><ol><li class="lvl3"><a href="#docs-sec-11-1">11.1 The private side</a></li><li class="lvl3"><a href="#docs-sec-11-2">11.2 Renderings for an audience</a></li><li class="lvl3"><a href="#docs-sec-11-3">11.3 The isotype: a view, default-deny</a></li></ol></li><li class="lvl2"><a href="#docs-sec-12">12. Renderers</a></li><li class="lvl2"><a href="#docs-sec-13">13. Conformance</a><ol><li class="lvl3"><a href="#docs-sec-13-1">13.1 A reader must</a></li><li class="lvl3"><a href="#docs-sec-13-2">13.2 A writer must</a></li><li class="lvl3"><a href="#docs-sec-13-3">13.3 What the checks verify, and what they do not</a></li><li class="lvl3"><a href="#docs-sec-13-4">13.4 Where the code wins</a></li></ol></li><li class="lvl2"><a href="#docs-sec-14">14. Decisions in this version</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
+<div class="docoes-body">
+<section class="docs-sec" data-key="S:section/root" data-scope="">
+<h1 id="docs-comprise-oes-1">Comprise OES 1</h1>
+<p><em>The specification of Comprise OES, version 1: the MiniCOSM for companies. Written 2026-10-20 for phase 10 (decision
+Q54, slice 30b). It replaces COSM 0.3, the earlier spec of the product tree (now history), as the description of the
+format; COSM 0.3's product tree is chapter P below, whole. Read <code>oes/README.md</code> first for where this sits; <code>MO.md</code>, in
+the repository, says why.</em></p>
+<p><strong>Status.</strong> Normative. The code in <code>core/</code> is the reference reader and writer. Where this text and the code disagree,
+<strong>the code wins</strong>, and the text is corrected; every disagreement known today is marked <em>code wins</em> where it occurs and
+collected in chapter <a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a> and <a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>. <em>Not built</em> marks what is mapped and not yet in the code.</p>
+<p><strong>The format does not change.</strong> A Comprise OES file is a <code>.cosm</code> file: the COSM YAML subset (<a class="ref-xref" href="#docs-sec-2-5">section 2.5</a>) and, for
+sketches, the one-line shorthand (<a class="ref-xref" href="#docs-p-6-the-sketch-shorthand">P.6</a>), exactly as Holotypes were written before this version. Version 1 names the
+format and maps it; it adds one line to the catalog (<a class="ref-xref" href="#docs-sec-2-3">section 2.3</a>) and one way to address things (<a class="ref-xref" href="#docs-sec-6">section 6</a>). Every
+Holotype made so far is a Comprise OES 1 Holotype as it stands.</p>
+</section>
+<section class="docs-sec" data-key="S:section/contents" data-scope="">
+<h2 id="docs-contents" data-toc="2">Contents</h2>
+<ol>
+<li>The map: a file system that is also a relational database</li>
+<li>The volume</li>
+<li><a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">Concerns</a> and <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a></li>
+<li>The envelope</li>
+<li>The eight modules</li>
+<li>Paths</li>
+<li>References</li>
+<li><a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">Open questions</a></li>
+<li><a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">Checks</a></li>
+<li>Versions</li>
+<li>The private/public split</li>
+<li><a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">Renderers</a></li>
+<li>Conformance</li>
+<li>Decisions in this version</li>
+</ol>
+</section>
+<section class="docs-sec" data-key="S:section/how-to-read-this" data-scope="">
+<h2 id="docs-how-to-read-this" data-toc="2">How to read this</h2>
+<p><strong>Words.</strong> The words a person reads on screen come first (they are <code>MO.md</code>'s). Where the spec must be exact, the model's
+own term follows in parentheses, because it is the one the files, the ids and the command line use. <em>Details</em>, in the
+table below, is the disclosure on a page that shows ids, files and paths.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Here</th>
+<th>The model's term</th>
+<th>In the files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a></td>
+<td>atom</td>
+<td><code>atom/&lt;slug&gt;</code>, <code>atoms/&lt;slug&gt;/</code></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a></td>
+<td>bond</td>
+<td><code>C:bond/&lt;slug&gt;</code></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a></td>
+<td>stub</td>
+<td><code>C:counterparty/&lt;slug&gt;</code></td>
+</tr>
+<tr>
+<td>item</td>
+<td>node</td>
+<td><code>&lt;Module&gt;:&lt;kind&gt;/&lt;slug&gt;</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td>type</td>
+<td><code>type:</code></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a></td>
+<td>pending</td>
+<td><code>{pending: &quot;…&quot;}</code></td>
+</tr>
+<tr>
+<td>checks</td>
+<td>lint, equilibrium rules</td>
+<td><code>python -m core lint</code></td>
+</tr>
+<tr>
+<td>saved version, signed version</td>
+<td>snapshot, attestation</td>
+<td><code>snapshots/&lt;stamp&gt;/</code></td>
+</tr>
+<tr>
+<td>the local database</td>
+<td>store</td>
+<td><code>store.sqlite</code></td>
+</tr>
+<tr>
+<td>export for agents</td>
+<td>pack</td>
+<td><code>CONTEXT.md</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Must and may.</strong> <em>Must</em> is a rule a conforming reader or writer keeps. <em>May</em> is a permission. <em>Should</em> is advice the
+checks do not enforce.</p>
+<p><strong>Sources.</strong> <code>core/schema.py</code> (kinds, references, closed lists, the id grammar), <code>core/model.py</code> (loading and
+resolution), <code>core/paths.py</code> (paths), <code>core/lint.py</code> (the envelope and the fourteen rules), the vendored <code>cosm.py</code>
+(chapter P's checks), <code>core/isotype.py</code> (the public projection), <code>plan/comprise-model.md</code> (the model, draft 1), and
+COSM 0.3 (decision Q29; the full COSM 0.2 and 0.3 text survives in <code>plan/cosm/cosm-spec.md</code>, and the vendored
+<code>references/cosm-spec.md</code> is now a pointer to this spec that keeps only the nine aspects' sections the app reads). The
+machine-readable form of everything here that a program needs is <code>oes/comprise-oes.manifest.cosm</code>.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/1" data-scope="">
+<h2 id="docs-sec-1" data-toc="2">1. The map</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A Holotype is a file system that is also a relational database. Every part of Comprise OES has a place in both.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Comprise OES</th>
+<th>As a file system</th>
+<th>As a relational database</th>
+<th>On screen</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Holotype</td>
+<td>a volume: one folder, <code>holotype.cosm</code> at its root</td>
+<td>a database</td>
+<td>Holotype</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>holotype.cosm</code></td>
+<td>the volume label and superblock</td>
+<td>the catalog: the MiniCOSM and version, the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a>, the sources</td>
+<td>(Details)</td>
+<td>2.2</td>
+</tr>
+<tr>
+<td>concern (<em>atom</em>)</td>
+<td>a top-level folder, <code>atoms/&lt;slug&gt;/</code></td>
+<td>a schema</td>
+<td>concern</td>
+<td>3.1</td>
+</tr>
+<tr>
+<td>module (C … E)</td>
+<td>a folder per letter</td>
+<td>a <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">group</a> of tables</td>
+<td>module</td>
+<td>5</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> (<em>type</em>)</td>
+<td>a <code>.cosm</code> file (or several) holding that kind's <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a></td>
+<td>a table</td>
+<td>kind</td>
+<td>5</td>
+</tr>
+<tr>
+<td>item (<em>node</em>)</td>
+<td>an entry, addressed by its path</td>
+<td>a row; its id is the primary key</td>
+<td>item</td>
+<td>4</td>
+</tr>
+<tr>
+<td>field</td>
+<td>an attribute</td>
+<td>a column</td>
+<td>field</td>
+<td>4, 6.4.6</td>
+</tr>
+<tr>
+<td>the envelope (owner, status, visibility, provenance)</td>
+<td>the entry's metadata: owner, permissions, origin</td>
+<td>system columns every table has</td>
+<td>responsible role, who can see it, source</td>
+<td>4</td>
+</tr>
+<tr>
+<td>reference (<code>P:offering/x</code> in a field)</td>
+<td>a link</td>
+<td>a foreign key</td>
+<td>a link to the item</td>
+<td>7</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> (<em>bond</em>)</td>
+<td>a link between two concerns' folders, with its own attributes</td>
+<td>a join row with columns (bases, dates, sources)</td>
+<td>relationship</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a> (<em>stub</em>)</td>
+<td>a mount point for something outside the volume</td>
+<td>a foreign table</td>
+<td>outside organization</td>
+<td>3.3</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> (<em>pending</em>)</td>
+<td>a placeholder entry, with who must fill it</td>
+<td>NULL with a reason and an owner</td>
+<td>open question</td>
+<td>8</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (lint, the fourteen rules)</td>
+<td><code>fsck</code>, the file system check</td>
+<td>constraints</td>
+<td>checks</td>
+<td>9</td>
+</tr>
+<tr>
+<td>saved version (<em>snapshot</em>)</td>
+<td>a snapshot of the volume</td>
+<td>a point-in-time copy</td>
+<td>saved version</td>
+<td>10</td>
+</tr>
+<tr>
+<td>signed version (<em>attestation</em>)</td>
+<td>a signed snapshot</td>
+<td>a signed checkpoint</td>
+<td>signed version</td>
+<td>10</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a> (<em>store</em>)</td>
+<td>the volume's index (what Spotlight keeps), plus a sealed vault for people</td>
+<td>materialized indexes; the people tables, sealed</td>
+<td>the local database</td>
+<td>2.8</td>
+</tr>
+<tr>
+<td>isotype</td>
+<td>a read-only public mount of a projection</td>
+<td>a view: default-deny, fixed columns</td>
+<td>isotype</td>
+<td>11</td>
+</tr>
+<tr>
+<td>export (<em>pack</em>, <code>CONTEXT.md</code>)</td>
+<td>an archive for one reader</td>
+<td>a dump for one audience</td>
+<td><a class="docs-term" href="#docs-item-t-term-export-for-agents" data-term="T:term/export-for-agents" title="export for agents, called pack in the files">export for agents</a></td>
+<td>12</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">renderer</a></td>
+<td>a viewer</td>
+<td>a report</td>
+<td>the 3D Overview, the Summary, the chapters…</td>
+<td>12</td>
+</tr>
+<tr>
+<td>backup (<em>bundle</em>)</td>
+<td>an encrypted disk image</td>
+<td>an encrypted backup</td>
+<td>backup</td>
+<td>11</td>
+</tr>
+<tr>
+<td>path</td>
+<td>a path</td>
+<td>a qualified key</td>
+<td>(Details)</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>What is real in each reading.</strong> The file system is the Holotype itself: plain text, on the subject's machine,
+canonical. The relational database is real in part. <code>store.sqlite</code> holds a <code>nodes</code> table (one row per item, keyed by
+concern and id, with its envelope columns and the whole item as JSON), an <code>edges</code> table (one row per resolved
+reference: source, field path, target) and a full-text index, all rebuilt from the files by <code>python -m core index</code>;
+and it holds the tables that are canonical and never in a file (the people, feed rows, series, accounts, releases).
+SQL views over the local database, one per kind, are <em>not built</em>: the &quot;table&quot; of a kind is, today, the set of items
+whose id carries that kind.</p>
+<p>The two readings agree because one rule holds: <strong>a path names the same thing a primary key does</strong> (<a class="ref-xref" href="#docs-sec-6">section 6</a>).</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/2" data-scope="">
+<h2 id="docs-sec-2" data-toc="2">2. The volume</h2>
+</section>
+<section class="docs-sec" data-key="S:section/2.1" data-scope="">
+<h3 id="docs-sec-2-1" data-toc="3">2.1 Layout</h3>
+<pre><code>&lt;holotype&gt;/                              the volume
+  holotype.cosm                          the catalog (2.2): `oes: comprise/1`, id, concerns, sources, grants
+  atoms/&lt;concern&gt;/                       one folder per concern declared in the catalog
+    C/ O/ M/ R/ I/ S/   *.cosm           module files (2.4), at any depth under the module's folder
+    P/  brand.cosm nodes.cosm doc.cosm   the product tree (chapter P.7)
+    E/  README  or  none.cosm            people are never in a file (2.6)
+  vendors/&lt;domain&gt;/&lt;slug&gt;/               a vendor-published atom, fetched and verified; read-only (3.5)
+  snapshots/&lt;stamp&gt;/                     saved and signed versions; read-only (10)
+  store.sqlite                           the local database (2.8)
+  people.yaml  people.proposed.yaml      the people file, imported once into the local database
+  feeds/&lt;slug&gt;/runs/  scans/  bindings/  reports/   kept payloads, replay pages, reviewed sources, report definitions
+  logo.svg | logo.png                    optional: replaces the drawn company mark
+</code></pre>
+<p>A module folder's letter is read case-insensitively (<code>p/</code> loads as <code>P/</code>); a writer must write the capital. A folder
+under <code>atoms/</code> that the catalog does not declare is a load error. A declared <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> without a folder is a load error.</p>
+</section>
+<section class="docs-sec" data-key="S:section/2.2" data-scope="">
+<h3 id="docs-sec-2-2" data-toc="3">2.2 The catalog: <code>holotype.cosm</code></h3>
+<p>One YAML mapping. Its keys:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Holds</th>
+<th>Read by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>oes</code></td>
+<td>the declaration: <code>comprise/1</code> (2.3)</td>
+<td>the loader</td>
+</tr>
+<tr>
+<td><code>comprise</code></td>
+<td>legacy: <code>0.1</code> in every Holotype made before phase 10; read as <code>oes: comprise/1</code></td>
+<td>the loader</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>holotype/&lt;slug&gt;</code>; when absent the reader uses <code>holotype/&lt;folder name&gt;</code></td>
+<td>everything</td>
+</tr>
+<tr>
+<td><code>name</code>, <code>summary</code></td>
+<td>the subject's name and one line</td>
+<td>the pages, the export</td>
+</tr>
+<tr>
+<td><code>sample</code></td>
+<td><code>true</code> for a sample (fictional, or public sources only); only the literal <code>true</code> counts</td>
+<td>the pages, the isotype</td>
+</tr>
+<tr>
+<td><code>alignment</code></td>
+<td>who said whose company this is, and how (a claim, never proof)</td>
+<td>standing</td>
+</tr>
+<tr>
+<td><code>atoms</code></td>
+<td>the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a>: a list of <code>atom/&lt;slug&gt;</code> (or <code>{id: atom/&lt;slug&gt;}</code>)</td>
+<td>the loader</td>
+</tr>
+<tr>
+<td><code>perspective</code></td>
+<td>the concern you stand in by default, <code>atom/&lt;slug&gt;</code></td>
+<td>the <a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">renderers</a>, the isotype</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td>every source an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> outside P cites: <code>{id, page, url, supports, date}</code></td>
+<td>the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (<code>source-undeclared</code>)</td>
+</tr>
+<tr>
+<td><code>attestations</code></td>
+<td>the signed versions on record</td>
+<td>versions</td>
+</tr>
+<tr>
+<td><code>grants</code></td>
+<td>scoped, time-limited permissions for an agent to read: <code>net-scan</code>, <code>reflections</code>, <code>system-scan</code>, <code>directory</code>, <code>accounting</code>, <code>mcp</code>, <code>vendor</code></td>
+<td>scans, feeds, rule 9</td>
+</tr>
+<tr>
+<td><code>groups</code></td>
+<td>named sets of concerns (<em>atom <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a></em>), usable as a <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a>'s end</td>
+<td>rule 8</td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td>thresholds for findings, e.g. <code>roles-per-person</code> (default 3)</td>
+<td>rule 13</td>
+</tr>
+<tr>
+<td><code>store-key</code></td>
+<td>where the key that seals the people tables is kept: <code>{keychain: &lt;service&gt;}</code>, a name, never the key</td>
+<td><a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Unknown keys are kept and ignored. A writer must not invent keys the catalog does not list without a version change.</p>
+</section>
+<section class="docs-sec" data-key="S:section/2.3" data-scope="">
+<h3 id="docs-sec-2-3" data-toc="3">2.3 The declaration: <code>oes: comprise/1</code></h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A Holotype says which MiniCOSM it is written in with one line in its catalog:</p>
+<pre><code class="language-yaml">oes: comprise/1
+</code></pre>
+<p>The value is <code>&lt;MiniCOSM&gt;/&lt;version&gt;</code>: the MiniCOSM's name (lowercase), a slash, its major version (an integer).</p>
+<ol>
+<li><strong>Read.</strong> A reader must accept <code>oes: comprise/1</code>.</li>
+<li><strong>Default.</strong> A catalog with no <code>oes:</code> key is read as <code>comprise/1</code>, silently. This covers every Holotype made so far,
+which says <code>comprise: 0.1</code>. The legacy key is read and kept; it is never an error.</li>
+<li><strong>Both.</strong> When a catalog has both, <code>oes:</code> decides and <code>comprise:</code> is ignored.</li>
+<li><strong>Write.</strong> A writer creating a Holotype must write <code>oes: comprise/1</code> as the first line of the catalog. It must not
+rewrite the line of a Holotype it did not create: no migration.</li>
+<li><strong>Refuse.</strong> A catalog declaring a MiniCOSM or a version the reader does not know (<code>oes: industry/1</code>,
+<code>oes: comprise/2</code>), or an <code>oes:</code> with no value, is refused with a plain error naming what it declares and what the
+reader knows. Nothing is loaded from it: the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> report the error and <code>python -m core lint</code> exits 1, the app will
+not register it, and a registered Holotype whose catalog is changed to such a line answers 409 until it is changed
+back.</li>
+</ol>
+<p><em>Status:</em> built (decision Q54, slice 30c). <code>core/model.py</code> reads, defaults and refuses (<code>declaration</code>); <code>core/align.py</code>
+writes the line into every new catalog.</p>
+<p>The P files keep their own header, <code>cosm: 0.3</code> (chapter <a class="ref-xref" href="#docs-p-7-the-files-of-p">P.7</a>). It names the product tree's format, not the MiniCOSM.</p>
+</section>
+<section class="docs-sec" data-key="S:section/2.4" data-scope="">
+<h3 id="docs-sec-2-4" data-toc="3">2.4 Module files</h3>
+<p>A module file is a <code>.cosm</code> file anywhere under <code>atoms/&lt;concern&gt;/&lt;letter&gt;/</code>, at any depth (<code>R/reflections/*.cosm</code> is
+legal). Every such file is one YAML mapping with one of two shapes:</p>
+<pre><code class="language-yaml">nodes:                         # the items, each a mapping with a string id
+  - id: C:charter/articles
+    type: charter
+    …
+</code></pre>
+<pre><code class="language-yaml">module: none                   # this module is empty on purpose
+reason: people are not imported in a public sample; the model records seats, not holders
+</code></pre>
+<ul>
+<li><strong>File names are free.</strong> The convention is one file per family of <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> (<code>C/entity.cosm</code>, <code>C/bonds.cosm</code>,
+<code>M/markets.cosm</code>), and a file may hold <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> of several kinds: Mozilla Foundation's <code>C/entity.cosm</code> holds its
+entity, two charters, a policy, four filings and an event. No id and no path names a file (<a class="ref-xref" href="#docs-sec-6-4-2">section 6.4.2</a>).</li>
+<li><strong>Order.</strong> Files are read in path order, case-insensitively; items keep their file order.</li>
+<li><strong>Duplicates.</strong> An id already loaded in the same module of the same <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> is a load error; the first wins.</li>
+<li><strong><code>module: none</code></strong> must carry a <code>reason</code>. Without one it is a warning, and the reason reads &quot;no reason given&quot;.</li>
+<li><strong>An empty module</strong> (no folder, or a folder with no items) is legal: every concern has all eight modules.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/2.5" data-scope="">
+<h3 id="docs-sec-2-5" data-toc="3">2.5 Reading a file</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<ul>
+<li>UTF-8, with or without a byte-order mark; CRLF and LF read the same.</li>
+<li>YAML 1.2 booleans only: <code>true</code> and <code>false</code>, in lower, title or upper case. <code>yes</code>, <code>no</code>, <code>on</code> and <code>off</code> are strings. (A claim's <code>on:</code> field
+depends on it.)</li>
+<li>The COSM subset: no anchors, no aliases, no tags, no multi-document streams. A writer must not produce them.</li>
+<li>A file that does not parse, or whose top level is not a mapping, is a load error; the rest still loads. The reader
+never stops at the first problem: load problems are collected and reported by the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> as errors.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/2.6" data-scope="">
+<h3 id="docs-sec-2-6" data-toc="3">2.6 E: people are never in a file</h3>
+<p><code>atoms/&lt;concern&gt;/E/</code> holds a <code>README</code> saying where the people are, or a <code>none.cosm</code> with <code>module: none</code> and a reason.
+The people of a <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> live only in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a> (2.8), imported from <code>people.yaml</code>. A Holotype's files hold
+counts and roles, never names. <em>Not checked:</em> the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not refuse an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> written into an E file today; a writer
+must not write one (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/2.7" data-scope="">
+<h3 id="docs-sec-2-7" data-toc="3">2.7 Other folders</h3>
+<p><code>vendors/</code> (3.5) and <code>snapshots/</code> (10) are read-only to the app. <code>feeds/</code>, <code>scans/</code> and <code>bindings/</code> hold what sources
+brought in and what a person reviewed. <code>reports/</code> holds report definitions (<code>&lt;slug&gt;.report.yaml</code>). None of them is part
+of the model; none is read by the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> except where a section says so.</p>
+</section>
+<section class="docs-sec" data-key="S:section/2.8" data-scope="">
+<h3 id="docs-sec-2-8" data-toc="3">2.8 The local database</h3>
+<p><code>store.sqlite</code>, one per Holotype. Two <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> of table:</p>
+<ul>
+<li><strong>Derived</strong> (rebuilt from the files by <code>python -m core index</code>): <code>nodes</code>, <code>edges</code>, <code>nodes_fts</code>.</li>
+<li><strong>Canonical, never in a file:</strong> the people (<code>people_meta</code>, <code>persons</code>, <code>assignments</code>, <code>memberships</code>, <code>credentials</code>,
+<code>access</code>), sealed field by field; <code>series</code>; feed runs, synced SKUs, listings, levels and drift; scan runs, the scan log
+and candidates; logins, invites, tokens, keys (public halves only) and the audit; standing statements and evidence;
+isotype settings and releases.</li>
+</ul>
+<p>No export of a Holotype includes the canonical tables, and no <code>.cosm</code> file ever holds what they hold.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/3" data-scope="">
+<h2 id="docs-sec-3" data-toc="2">3. Concerns and relationships</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+</section>
+<section class="docs-sec" data-key="S:section/3.1" data-scope="">
+<h3 id="docs-sec-3-1" data-toc="3">3.1 Concerns (<em>atoms</em>)</h3>
+<p>A <strong>concern</strong> is one bounded whole, described on its own. It is usually a company: the branded face of a corporation,
+sometimes a sub-brand, sometimes the corporation itself. Its id is <code>atom/&lt;slug&gt;</code>; its folder is <code>atoms/&lt;slug&gt;/</code>; its
+slug is lowercase ASCII letters, digits, dots and hyphens, starting with a letter or digit.</p>
+<p><strong>The test.</strong> A candidate is a concern when it has ownership distinct from the perspective concern's (the concern the
+Holotype is written from, below): outside owners, a partner, a franchisee, a licensee, a public float; or when it has
+its own legal shell and its own offerings. Otherwise:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>It is only</th>
+<th>So it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a legal shell (a payroll vehicle, an IP holding company, a licence holder)</td>
+<td>a <code>C:entity</code> inside a concern</td>
+</tr>
+<tr>
+<td>a brand</td>
+<td>an <code>R:brand</code> scoped to a unit or suite</td>
+</tr>
+<tr>
+<td>a P&amp;L</td>
+<td>a <code>C:finance</code> keyed by a unit or a <code>C:segment</code></td>
+</tr>
+<tr>
+<td>a person</td>
+<td>never a concern: the mark in <code>C:ip</code>, the seat in O, the public identity in <code>R:persona</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Never nest.</strong> No concern contains another. What looks like nesting is a <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> (<code>owns</code>, <code>member-of</code>,
+<code>operates</code>), drawn as a derived tree (3.2). The <strong>perspective</strong> (<code>holotype.cosm perspective:</code>) is the concern a reader
+stands in by default.</p>
+<p>A concern's display name is its anchor entity's name (<code>C:entity</code> with <code>anchor: true</code>), else its brand's name, else its
+id.</p>
+</section>
+<section class="docs-sec" data-key="S:section/3.2" data-scope="">
+<h3 id="docs-sec-3-2" data-toc="3">3.2 Relationships (<em>bonds</em>)</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A <strong>relationship</strong> is a typed, dated, sourced tie between two <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a>, or between a concern and an <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside
+organization</a>, a <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">group</a> or a vendor-published atom. It is an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> of <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> <code>C:bond</code>. Holding structures, licences, supply,
+regulation and franchising are all relationships. The rules named below are the fourteen of <a class="ref-xref" href="#docs-sec-9-3">section 9.3</a>. From
+<code>fixtures/mozilla</code>, a sample built from public sources, abridged:</p>
+<pre><code class="language-yaml">- id: C:bond/foundation-controls-org
+  type: bond
+  name: Foundation controls Mozilla.org
+  kinds: [controls]
+  from: atom/mozilla-foundation
+  to: atom/mozilla-org
+  control: full
+  accounting: consolidated
+  inherits: [principles]
+  status: active
+  visibility: public
+  provenance: {mode: net-scan, sources: ['https://wiki.mozilla.org/Mozilla_org'], confidence: 0.8, state: known}
+</code></pre>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kinds</code></td>
+<td>a non-empty list from the closed list below; a relationship may carry several</td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>from</code>, <code>to</code></td>
+<td>each a concern, a <code>C:counterparty</code>, a vendor-published atom or a declared group</td>
+<td>rule 8</td>
+</tr>
+<tr>
+<td><code>economic</code>, <code>voting</code>, <code>nci</code></td>
+<td>shares from 0 to 1</td>
+<td>error otherwise; an <code>owns</code> without <code>economic</code> is a warning</td>
+</tr>
+<tr>
+<td><code>control</code></td>
+<td><code>full</code> · <code>joint</code> · <code>significant</code> · <code>de-facto</code> · <code>none</code>, with <code>basis:</code> saying why</td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>accounting</code></td>
+<td><code>consolidated</code> · <code>equity</code> · <code>fair-value</code> · <code>cost</code> · <code>none</code></td>
+<td>error otherwise; rule 11</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>items the relationship applies to</td>
+<td>as references</td>
+</tr>
+<tr>
+<td><code>contract</code></td>
+<td>the <code>C:contract</code> behind it</td>
+<td>as a reference</td>
+</tr>
+<tr>
+<td><code>inherits</code></td>
+<td>what flows along it: rules, principles, vocabulary, policies, systems</td>
+<td>not checked</td>
+</tr>
+<tr>
+<td><code>template</code>, <code>instances</code></td>
+<td>a class of relationships (&quot;31 franchisees&quot;)</td>
+<td>rule 14</td>
+</tr>
+<tr>
+<td><code>terms</code>, <code>since</code>, <code>until</code>, <code>status</code></td>
+<td>as the envelope</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Kinds:</strong> owns · controls · licenses · operates · makes-for · distributes-for · supplies · franchises · funds ·
+guarantees · shares-services-with · succeeded · affiliated · competes-with · member-of · hosts · manages · commits ·
+pledges · co-invests · sponsors · leases-to · regulated-by · accredited-by · builds-on · bargains-with ·
+common-control.</p>
+<p><strong>Mirrored.</strong> A relationship between two concerns of the same Holotype is written in both, with the same id, in each
+concern's C module. Rule 8 fails when the copy is missing, and warns when the copies disagree on <code>kinds</code>, <code>from</code> or
+<code>to</code>. A relationship to an outside organization lives only in the concern that names it.</p>
+<p><strong>The derived tree.</strong> Concerns never nest, so the tree a group reads as is computed from the <code>owns</code> relationships every
+time and never stored (<code>python -m core tree</code>): roots are concerns nobody owns that own something; a concern owned two
+ways appears under each owner with the share on each edge and is counted once; a cycle is cut where it closes and said.
+Effective ownership is computed over <code>owns</code>, cycle-safe (rule 11).</p>
+</section>
+<section class="docs-sec" data-key="S:section/3.3" data-scope="">
+<h3 id="docs-sec-3-3" data-toc="3">3.3 Outside organizations (<em>stubs</em>)</h3>
+<p>An <strong>outside organization</strong> is one the Holotype names but does not model: a bank, a platform, a supplier, a former
+company. It is an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> of <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> <code>C:counterparty</code> in the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> that deals with it, and the index of everything that
+names it: <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a>, contracts, channels, feeds, vendors, surfaces.</p>
+<ul>
+<li>It should carry a <code>global-id</code> where one exists (an LEI, a company-registry number, a domain), so two Holotypes that
+name the same outsider name the same thing.</li>
+<li>A platform's terms go in <code>platform-terms</code> (take rate, merchant of record, who owns the customer, payout cadence).</li>
+<li><code>atom:</code> names the concern it is, when it is modelled in this Holotype.</li>
+<li>It can be promoted to a concern without changing any id that points at it.</li>
+</ul>
+<p>In the file-system reading it is a mount point: a named place where something outside the volume would attach.</p>
+</section>
+<section class="docs-sec" data-key="S:section/3.4" data-scope="">
+<h3 id="docs-sec-3-4" data-toc="3">3.4 Groups</h3>
+<p>A <strong>group</strong> (<em>atom group</em>) is a named set of <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> (&quot;the group&quot;, a reporting segment), declared in the catalog's
+<code>groups:</code>. A group may be a <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a>'s end. Its id is free text. <em>Not built:</em> groups as perspectives, rollup scopes
+and Holotype roots, which <code>plan/comprise-model.md</code> describes.</p>
+</section>
+<section class="docs-sec" data-key="S:section/3.5" data-scope="">
+<h3 id="docs-sec-3-5" data-toc="3">3.5 Vendor-published atoms</h3>
+<p>A vendor may publish one of its <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> at <code>https://&lt;domain&gt;/.well-known/comprise/&lt;slug&gt;/</code>: its public files, a
+manifest of hashes, an attestation and the public keys (<code>python -m core publish</code>). A customer fetches it
+(<code>python -m core fetch</code>) into <code>vendors/&lt;domain&gt;/&lt;slug&gt;/</code>, verified file by file; its id is <code>vendor/&lt;domain&gt;/&lt;slug&gt;</code>.</p>
+<ul>
+<li>It is the vendor's, never the customer's: loaded as a separate input, never edited, never linted as the customer's
+(its problems are notes).</li>
+<li>A <code>C:counterparty</code> whose global id matches is <strong>upgraded</strong>: the <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> that pointed at the <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a>
+now point at the vendor id, and the stub stays as each relationship's <code>counterparty</code>.</li>
+<li>A reference to a vendor id that has not been fetched is a warning (<code>vendor-missing</code>), never an error.</li>
+<li>Only the vendor as a whole has an id in the customer's Holotype. Its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> have ids only in the vendor's own Holotype
+(<a class="ref-xref" href="#docs-sec-6-4-5">section 6.4.5</a>).</li>
+</ul>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/4" data-scope="">
+<h2 id="docs-sec-4" data-toc="2">4. The envelope</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
+<p>Every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> carries the same envelope: the system columns of every table. Outside P:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>&lt;Module&gt;:&lt;kind&gt;/&lt;slug&gt;</code>, written bare inside its own <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a></td>
+<td>error unless it parses, names this module, and is not qualified with another concern</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>; must be one of the module's kinds, and equal the id's kind</td>
+<td>error</td>
+</tr>
+<tr>
+<td><code>name</code>, <code>summary</code></td>
+<td>a label and one sentence</td>
+<td>error when missing (<code>identity-min</code>)</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>the responsible role: an <code>O:role/…</code>, never a person; may be an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a></td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>since</code>, <code>until</code></td>
+<td>dates; no <code>until</code> means active</td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>active</code> · <code>dormant</code> · <code>planned</code> · <code>retired</code></td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>visibility</code></td>
+<td><code>public</code> · <code>internal</code> · <code>restricted</code></td>
+<td>error otherwise (4.2)</td>
+</tr>
+<tr>
+<td><code>provenance</code></td>
+<td><code>{mode, sources, confidence, state}</code>, plus <code>synced-from</code>, <code>synced-at</code>, <code>max-age</code> for synced items</td>
+<td>error when missing or malformed (4.3)</td>
+</tr>
+<tr>
+<td><code>pending</code></td>
+<td>an open question about the whole item</td>
+<td><a class="ref-xref" href="#docs-sec-8">section 8</a></td>
+</tr>
+<tr>
+<td><code>links</code></td>
+<td>typed links <code>{rel, to}</code> or ids</td>
+<td>as references</td>
+</tr>
+<tr>
+<td><code>mattering</code></td>
+<td>why it matters, and to whom (chapter <a class="ref-xref" href="#docs-p-3-9-mattering">P.3.9</a>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>Markdown prose</td>
+<td>full-text indexed</td>
+</tr>
+<tr>
+<td><code>at</code></td>
+<td>where it is, as an id; on a filing, an event or a reflection, a date</td>
+<td>as a reference unless a date; <code>site/…</code> is refused (13.4)</td>
+</tr>
+<tr>
+<td><code>attributed-to</code></td>
+<td>the concern something belongs to when it sits in another's books</td>
+<td>as a reference</td>
+</tr>
+<tr>
+<td><code>template</code>, <code>instances</code></td>
+<td>a shell record that stands for many (&quot;store manager × 31,000&quot;)</td>
+<td>rule 14</td>
+</tr>
+<tr>
+<td><code>counterparty</code></td>
+<td>the <code>C:counterparty</code> the item concerns</td>
+<td>as a reference; rule 10</td>
+</tr>
+<tr>
+<td><code>series</code></td>
+<td>pointers to time series in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a></td>
+<td></td>
+</tr>
+<tr>
+<td><code>shared-with</code></td>
+<td>the concern or <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">group</a> a shared item is shared with</td>
+<td>as a reference</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The envelope's reference fields are <code>owner</code>, <code>at</code>, <code>attributed-to</code>, <code>counterparty</code>, <code>shared-with</code> and <code>links</code>. Every
+other field is the kind's own (<a class="ref-xref" href="#docs-sec-5">section 5</a>). Unknown fields are allowed: the model is young, and a reader must keep what
+it does not understand.</p>
+</section>
+<section class="docs-sec" data-key="S:section/4.1" data-scope="">
+<h3 id="docs-sec-4-1" data-toc="3">4.1 P is different</h3>
+<p><a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">Items</a> in P (chapter P) carry COSM's identity instead: <code>confidence</code> and <code>sources</code> at the top level rather than a
+<code>provenance</code> block, <code>owner</code> required (P's <code>identity-min</code>), <code>consensus</code> optional, and <code>kind</code> on the brand. Their sources
+must be declared in the catalog's <code>sources:</code> or a P <code>doc.cosm</code> <code>sources:</code> (a warning otherwise). P's own <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (<a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>)
+check the rest of a P item's identity and its visibility. The envelope's <code>status</code> list and its reference fields are not
+checked on P items; instead every id-like string in a P item that points outside P must resolve (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/4.2" data-scope="">
+<h3 id="docs-sec-4-2" data-toc="3">4.2 Visibility</h3>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Who sees it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code></td>
+<td>everyone; the only value any public rendering (the external export, a published atom, the isotype) may show</td>
+</tr>
+<tr>
+<td><code>internal</code></td>
+<td>every signed-in reader of the Holotype; never a public rendering</td>
+</tr>
+<tr>
+<td><code>restricted</code></td>
+<td>the operator, the Holotype's admins, and the module editors (<em>stewards</em>) of its module in its <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>; nobody else (the command line runs without a session and sees everything)</td>
+</tr>
+<tr>
+<td>absent</td>
+<td>outside P, as <code>internal</code>; in P, by level (chapter <a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A hidden <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is absent, not refused: lists leave it out, its page answers as one that does not exist, <a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">renderers</a> never
+draw it, and a reference to it from a visible item keeps the id but gains no name. An id is an address, not a secret.</p>
+<p>A pointer to an <code>E:person</code> from outside E is legal only in a <code>restricted</code> item (an error otherwise).</p>
+</section>
+<section class="docs-sec" data-key="S:section/4.3" data-scope="">
+<h3 id="docs-sec-4-3" data-toc="3">4.3 Provenance</h3>
+<p>Sources or it didn't happen.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+<th>Checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mode</code></td>
+<td>dialectic · net-scan · system-scan · integration · structured-intake · manual · derived · asserted · archetype · catalogue · directory · accounting</td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td>a non-empty list of source ids declared in the catalog or a P doc</td>
+<td>error when empty; warning when undeclared</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>a number from 0 to 1</td>
+<td>error otherwise</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>known</code> (default) · <code>pending</code> · <code>not-disclosed</code> · <code>stale</code></td>
+<td>error otherwise; <code>stale</code> makes the module unverifiable (rule 9)</td>
+</tr>
+<tr>
+<td><code>synced-from</code></td>
+<td>the <code>I:feed</code> an <code>integration</code> <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> came from</td>
+<td>warning when missing</td>
+</tr>
+<tr>
+<td><code>synced-at</code>, <code>max-age</code></td>
+<td>when it was synced, and how old it may get (<code>30d</code>, <code>12h</code>, <code>2w</code>, <code>3m</code>)</td>
+<td>rule 9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>not-disclosed</code> is a fact, not a question: the subject declined to say.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/5" data-scope="">
+<h2 id="docs-sec-5" data-toc="2">5. The eight modules</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
+<p>Every <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> has the eight modules, C · O · M · P · R · I · S · E. Each is a chapter: its <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>, what each holds, and
+which of its fields are references (checked as references, <a class="ref-xref" href="#docs-sec-7">section 7</a>) or read by a check (<a class="ref-xref" href="#docs-sec-9">section 9</a>). A module may be
+empty, or <code>module: none</code> with a reason.</p>
+<p>The reference fields below are <code>core/schema.py</code>'s, exactly. A dotted field (<code>rows.sku</code>) walks into lists and mappings:
+the <code>sku</code> of every row.</p>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-c-corporation" data-scope="">
+<h3 id="docs-chapter-c-corporation" data-toc="3">Chapter C · Corporation</h3>
+<p><em>The legal body: ownership, contracts, filings, money.</em> The shell, whatever its legal form.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entity</code></td>
+<td>a legal shell. Several per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>; one is the anchor (<code>anchor: true</code>), the corporation behind the brand. <code>form</code>: corporation · llc · llp · partnership · sole-proprietor · nonprofit · cooperative · trust · foundation · public-body · dao · unincorporated · none. <code>roles[]</code>, <code>jurisdiction</code>, <code>global-id</code>, <code>domains</code></td>
+<td><code>natural-person</code> (restricted)</td>
+<td>rule 14</td>
+</tr>
+<tr>
+<td><code>bond</code></td>
+<td>a <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> (3.2)</td>
+<td><code>from</code>, <code>to</code>, <code>contract</code>, <code>scope</code></td>
+<td>kinds, bases; rules 8, 11</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>a share class, note, option or other instrument and its holders</td>
+<td><code>holders.holder</code></td>
+<td>never public</td>
+</tr>
+<tr>
+<td><code>captable</code></td>
+<td>who holds which instruments</td>
+<td><code>instruments</code></td>
+<td>never public</td>
+</tr>
+<tr>
+<td><code>contract</code></td>
+<td>an agreement; <code>scope: template</code> plus instances for a standard form</td>
+<td><code>between</code>, <code>scope</code>, <code>guarantors</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>filing</code></td>
+<td>a return, a registration, an annual report</td>
+<td><code>entity</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>licence</code></td>
+<td>a regulator's permission: scope, geography, what it enables, conditions, cycle</td>
+<td><code>enables</code>, <code>regulator</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>certification</code></td>
+<td>a standard met, and who certified it</td>
+<td><code>issuer</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>charter</code></td>
+<td>articles, bylaws, a trust deed, an operating agreement, a constitution</td>
+<td><code>entity</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>asset</code></td>
+<td>equipment, property, a lease, cash in trust, securities, a fleet, a collection</td>
+<td><code>custodian</code>, <code>used-by</code>, <code>financed-by</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>segment</code></td>
+<td>a reporting rollup: its members are concerns or P <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a></td>
+<td><code>members</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>counterparty</code></td>
+<td>an <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a> (3.3)</td>
+<td><code>atom</code></td>
+<td>rules 8, 10</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td>a local source that rules cite (tip pool, refunds, comps)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td>marks, patents, copyrights, a likeness; <code>co-owners</code></td>
+<td><code>co-owners</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>governance</code></td>
+<td>the board and its committees</td>
+<td><code>elected-by</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>finance</code></td>
+<td>figures for a period, <code>by</code> a concern, unit or segment, on a <code>basis</code></td>
+<td><code>by</code></td>
+<td>rule 11; never public</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>something the concern did; its coverage is an <code>R:reflection</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>aim</code></td>
+<td>what the concern seeks from outside (<code>stance: seeking</code>) or is open to (<code>open</code>), with a <code>kind</code>: customers · partners · suppliers · distribution · technology · talent · capital · other</td>
+<td><code>prompted-by</code></td>
+<td>kind and stance required; <code>horizon</code> a date, a year or a few words</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-o-organizations" data-scope="">
+<h3 id="docs-chapter-o-organizations" data-toc="3">Chapter O · Organizations</h3>
+<p><em>Roles, teams, seats and who decides.</em> People appear in the files only as roles.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>role</code></td>
+<td>a named position with duties, decision rights and an escalation path; <code>pool: true</code> when several people share it; <code>variance</code> for how it behaves. Its slug is often capitalized (<code>O:role/Founder</code>)</td>
+<td><code>governs</code>, <code>escalates-to</code></td>
+<td>rule 5: governs something, owns something, or is a pool</td>
+</tr>
+<tr>
+<td><code>unit</code></td>
+<td>a team or division; <code>twin: P:suite/…</code> when it is also a line of what is sold; <code>covered-by</code> a bargaining contract</td>
+<td><code>twin</code>, <code>covered-by</code>, <code>parent</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>a seat people sit in; <code>reports-to</code> one position, or <code>none</code> for the one at the top; <code>template</code> plus <code>instances</code> for many</td>
+<td><code>roles</code>, <code>primary</code>, <code>reports-to</code>, <code>dotted-to</code>, <code>unit</code></td>
+<td>rules 5, 12 (<code>requires-credential</code>)</td>
+</tr>
+<tr>
+<td><code>chart</code></td>
+<td>an organization chart, from its root</td>
+<td><code>root</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>decision-right</code></td>
+<td>who may decide what</td>
+<td><code>holder</code>, <code>over</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>decision</code></td>
+<td>a vote, a resolution, a consent</td>
+<td><code>by</code>, <code>about</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-m-markets" data-scope="">
+<h3 id="docs-chapter-m-markets" data-toc="3">Chapter M · Markets</h3>
+<p><em>Who it serves, through what, at what price.</em></p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>audience</code></td>
+<td>a kind of people served, funding or supplying: <code>relation[]</code> (customer · supplier · member · investor · voter · donor · student · franchisee · licensee · beneficiary · regulator), <code>side</code> (served · funding · supplying), <code>geography</code></td>
+<td><code>served-by</code></td>
+<td>isotype markets</td>
+</tr>
+<tr>
+<td><code>market</code></td>
+<td>a market by taxonomy (NAICS, NACE, ISIC, GICS, UNSPSC, HS, a product taxonomy, custom): <code>taxonomy</code>, <code>code</code></td>
+<td></td>
+<td>isotype markets</td>
+</tr>
+<tr>
+<td><code>geography</code></td>
+<td>a region served or worked in</td>
+<td></td>
+<td>isotype markets</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>how it sells: <code>counterparty</code> (required), <code>model</code> (sale · revshare · flat-licence · reseller), <code>seller</code> (self · counterparty), <code>tenders[]</code></td>
+<td><code>tenders</code></td>
+<td>rule 10</td>
+</tr>
+<tr>
+<td><code>account</code></td>
+<td>a named revenue-side customer, sponsor or payer; should be restricted</td>
+<td><code>contract</code>, <code>channel</code>, <code>pricebook</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>competitor</code></td>
+<td>a competitor</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>positioning</code></td>
+<td>how a unit places itself</td>
+<td><code>unit</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pricebook</code></td>
+<td>a list or a rate card: <code>kind</code>, <code>set-by</code>, <code>currency</code>, <code>rates[]</code></td>
+<td><code>for</code>, <code>rates.sku</code>, <code>rates.offering</code></td>
+<td>rule 3: a rate must agree with the offering's price</td>
+</tr>
+<tr>
+<td><code>sizing</code></td>
+<td>a market size, with its measure and date</td>
+<td><code>market</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-p-products-the-product-tree" data-scope="">
+<h3 id="docs-chapter-p-products-the-product-tree" data-toc="3">Chapter P · Products: the product tree</h3>
+<p><em>What it offers, and why that matters.</em> Chapter P is COSM 0.3, the product tree, rewritten in Comprise OES's terms.
+Everything normative in COSM 0.3 is kept; what COSM 0.3 described and the code does not do is marked <em>not built</em>
+(<a class="ref-xref" href="#docs-p-11-what-cosm-0-3-described-that-comprise-oes-1">P.11</a>); where its text and the code disagree, the code wins (<a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.1" data-scope="">
+<h4 id="docs-p-1-what-p-describes">P.1 What P describes</h4>
+<p>P describes what a <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> offers as a tree under its <strong>brand</strong>: the whole it sells under one face. Every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> in the
+tree answers the same nine questions (<a class="ref-xref" href="#docs-p-3-the-nine-questions-aspects">P.3</a>). The brand does no work of its own; it is the name for the state its parts
+settle into when their flows balance and their rules agree. The tree points at roles, never at people.</p>
+<p>P describes things that matter to people as the sum of their parts. Three <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> of people are in scope: those who work
+on it (<em>inside</em>), those who have already chosen it (<em>chosen</em>), and those who may one day (<em>prospective</em>). People who
+will never meet it are out of scope on purpose: a model that claimed to matter to them would be marketing.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.2" data-scope="">
+<h4 id="docs-p-2-levels-strata">P.2 Levels (<em>strata</em>)</h4>
+<p>Five levels. An <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> may directly contain anything strictly below it, so a level may be skipped: a brand may hold a
+service directly.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>What it is</th>
+<th>Typically contains</th>
+<th>May not hold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L4</td>
+<td><code>brand</code></td>
+<td>the whole: legal anchor, brand-wide rules, principles, vocabulary and mattering; does no work</td>
+<td>suite, offering; a function that serves every offering</td>
+<td>flow, substrate, economics, affect</td>
+</tr>
+<tr>
+<td>L3</td>
+<td><code>suite</code></td>
+<td>a portfolio of offerings sold or managed together; may nest</td>
+<td>suite, offering; a function that serves its offerings</td>
+<td></td>
+</tr>
+<tr>
+<td>L2</td>
+<td><code>offering</code></td>
+<td>a market-facing promise: audience, contract, price, service level</td>
+<td>function, product, service</td>
+<td></td>
+</tr>
+<tr>
+<td>L1</td>
+<td><code>function</code></td>
+<td>a cluster of units that share infrastructure and a job (make, sell, fulfil, support); may nest</td>
+<td>function, product, service</td>
+<td></td>
+</tr>
+<tr>
+<td>L0</td>
+<td><code>product</code> · <code>service</code></td>
+<td>the unit that does the work: a product is an artifact, a service an activity</td>
+<td>nothing: what is inside goes in <code>substrate</code></td>
+<td>parts</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>P has one more kind, <code>release</code> (<code>P:release/&lt;unit&gt;@&lt;version&gt;</code>: date, channels, build, notes, listings), declared in the
+schema. <em>Code wins:</em> P's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not know the kind, and a <code>P:release</code> item fails them as an unknown kind (<a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a>).</p>
+<p><strong>Invariants</strong>, checked except where marked:</p>
+<ol>
+<li>A direct part sits at a strictly lower level, except that a suite may contain a suite and a function a function
+(<code>strata</code>).</li>
+<li>Containment is acyclic (<code>acyclic</code>).</li>
+<li>Every item reaches the brand through <code>parts</code> (<code>orphan</code>).</li>
+<li>The brand holds no flow, substrate, economics or affect (<code>brand-holds-nothing</code>). It should hold at least one part
+(<em>not checked</em>).</li>
+<li>Products and services hold no parts (<code>strata</code>).</li>
+<li>The level is declared by the kind, never inferred from depth.</li>
+<li>An item has exactly one parent (<code>single-parent</code>). Shared use is <code>feeds</code> or <code>depends-on</code>, never a second parent.</li>
+</ol>
+<p>The lower the level, the more description an item carries; the higher, the more it relates and the less it says.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.3" data-scope="">
+<h4 id="docs-p-3-the-nine-questions-aspects">P.3 The nine questions (<em>aspects</em>)</h4>
+<p>Every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> answers nine questions. A field left out means <em>not yet asked</em>, never <em>none</em>: write <code>none</code> when that is the
+fact. A <code>band</code> is an ordinal the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> defines (<code>small | medium | large</code>), used wherever an exact number would go
+stale or leak.</p>
+<ol>
+<li><strong>identity</strong>: what is it?</li>
+<li><strong>flow</strong>: what does it take in and put out?</li>
+<li><strong>substrate</strong>: what does it run on?</li>
+<li><strong>rules</strong>: what must it, may it, must it not?</li>
+<li><strong>principles</strong>: what is it for, and what does it trade off?</li>
+<li><strong>economics</strong>: what does it cost and earn?</li>
+<li><strong>vocabulary</strong>: what do its words mean here?</li>
+<li><strong>affect</strong>: how is it meant to feel?</li>
+<li><strong>mattering</strong>: to whom does it matter, and why?</li>
+</ol>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.1" data-scope="">
+<h5 id="docs-p-3-1-identity">P.3.1 identity</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>P:&lt;kind&gt;/&lt;slug&gt;</code>; the brand's is <code>P:&lt;slug&gt;</code>, with no <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>. Never renamed; <code>name</code> is for display</td>
+</tr>
+<tr>
+<td><code>name</code>, <code>summary</code></td>
+<td>a label; one sentence</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>brand</code> · <code>suite</code> · <code>offering</code> · <code>function</code> · <code>product</code> · <code>service</code> (and <code>release</code>, see <a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>)</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>the accountable role, <code>O:role/…</code>; required</td>
+</tr>
+<tr>
+<td><code>since</code>, <code>until</code></td>
+<td>lifecycle bounds; no <code>until</code> means active</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>the envelope's; the isotype offers only <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> with no status or <code>active</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>of this description, not of the thing; optional, unused by the code</td>
+</tr>
+<tr>
+<td><code>confidence</code>, <code>consensus</code></td>
+<td>0 to 1: how sure the elicitation was; how much the sources agreed</td>
+</tr>
+<tr>
+<td><code>sources</code></td>
+<td>the sources it came from (4.1)</td>
+</tr>
+<tr>
+<td><code>visibility</code></td>
+<td><code>public</code> · <code>internal</code> · <code>restricted</code>. When absent: <code>public</code> for the brand, suites and offerings; <code>internal</code> for functions; for a product or service, <code>public</code> only when one of its flows touches a market or a channel (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>)</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td>the brand only: <code>company</code> · <code>nonprofit</code> · <code>public-body</code> · <code>project</code> · <code>community</code> · <code>product-line</code> · <code>other</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.2" data-scope="">
+<h5 id="docs-p-3-2-flow">P.3.2 flow</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inputs[]</code></td>
+<td><code>{resource, from, unit, rate?}</code>; <code>from</code> is an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> or an external (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>)</td>
+</tr>
+<tr>
+<td><code>outputs[]</code></td>
+<td><code>{resource, to, unit, rate?}</code></td>
+</tr>
+<tr>
+<td><code>capacity</code></td>
+<td><code>{nominal, peak, unit}</code></td>
+</tr>
+<tr>
+<td><code>latency</code></td>
+<td><code>{target, p99, unit}</code></td>
+</tr>
+<tr>
+<td><code>errors</code></td>
+<td><code>{rate, modes[]}</code></td>
+</tr>
+<tr>
+<td><code>degradation</code></td>
+<td>past capacity: <code>queue</code> · <code>shed</code> · <code>degrade</code> · <code>fail</code></td>
+</tr>
+<tr>
+<td><code>schedule</code></td>
+<td><code>continuous</code> · <code>batch</code> · <code>on-demand</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.3" data-scope="">
+<h5 id="docs-p-3-3-substrate">P.3.3 substrate</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assets[]</code>, <code>platforms[]</code>, <code>tools[]</code></td>
+<td>what it runs on</td>
+</tr>
+<tr>
+<td><code>vendors[]</code></td>
+<td>third parties it cannot run without</td>
+</tr>
+<tr>
+<td><code>roles-required[]</code></td>
+<td><code>{role, load: band}</code></td>
+</tr>
+<tr>
+<td><code>budget</code></td>
+<td>a band</td>
+</tr>
+<tr>
+<td><code>depends-on[]</code></td>
+<td>what it needs to exist, which it neither contains nor consumes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.4" data-scope="">
+<h5 id="docs-p-3-4-rules">P.3.4 rules</h5>
+<p>A rule is written as <code>&quot;&lt;actor&gt; &lt;aim&gt; &lt;object&gt;&quot;</code> under <code>must</code>, <code>may</code> or <code>must-not</code>. The actor is a role (<code>O:role/…</code>),
+the reserved actor <code>all-roles</code>, or an external.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>must</code> · <code>may</code> · <code>must-not</code></td>
+<td>the rule</td>
+</tr>
+<tr>
+<td><code>when</code></td>
+<td>the condition; optional</td>
+</tr>
+<tr>
+<td><code>else</code></td>
+<td>the sanction or fallback; optional for <code>may</code></td>
+</tr>
+<tr>
+<td><code>counts-as</code></td>
+<td>a constitutive rule: <code>&quot;&lt;entity&gt; counts as &lt;function&gt; when &lt;properties&gt;&quot;</code></td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>a statute, a policy, a contract, or <code>local</code></td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>self</code> (default) · <code>descendants</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.5" data-scope="">
+<h5 id="docs-p-3-5-principles">P.3.5 principles</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>purpose</code></td>
+<td>one sentence</td>
+</tr>
+<tr>
+<td><code>value[]</code></td>
+<td><code>{to, proposition}</code>: what it offers, and to which <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> or audience</td>
+</tr>
+<tr>
+<td><code>priorities[]</code></td>
+<td>ordered trade-offs: <code>&quot;accuracy over speed&quot;</code></td>
+</tr>
+<tr>
+<td><code>quality[]</code></td>
+<td><code>{goal, measure}</code></td>
+</tr>
+<tr>
+<td><code>decides[]</code></td>
+<td>what it settles without escalation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.6" data-scope="">
+<h5 id="docs-p-3-6-economics">P.3.6 economics</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>price</code></td>
+<td><code>{model, value?, unit?}</code>; model <code>free</code> · <code>flat</code> · <code>usage</code> · <code>seat</code> · <code>tiered</code> · <code>internal</code>; or <code>none</code></td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td><code>{model, band}</code></td>
+</tr>
+<tr>
+<td><code>margin</code></td>
+<td>a band</td>
+</tr>
+<tr>
+<td><code>settles-with[]</code></td>
+<td><code>{node, basis}</code>: an internal chargeback or revenue share</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every offering has a price, <code>none</code>, or an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> (rule 3).</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.7" data-scope="">
+<h5 id="docs-p-3-7-vocabulary">P.3.7 vocabulary</h5>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>terms[]</code></td>
+<td><code>{term, means, maps-to?, overrides?}</code>; <code>overrides: true</code> declares a deliberate divergence from an inherited word</td>
+</tr>
+<tr>
+<td><code>assumes[]</code></td>
+<td>what it takes for granted</td>
+</tr>
+<tr>
+<td><code>trusts[]</code></td>
+<td><code>{node, for}</code>: what it assumes an upstream <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> has done</td>
+</tr>
+<tr>
+<td><code>boundary[]</code></td>
+<td>what it declines to know about</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.8" data-scope="">
+<h5 id="docs-p-3-8-affect">P.3.8 affect</h5>
+<p>Offerings must declare affect; other <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> may.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>audience</code></td>
+<td>who feels it: an item, an external or an audience</td>
+</tr>
+<tr>
+<td><code>elicits[]</code></td>
+<td><code>{feeling, intensity 0–1, when?}</code></td>
+</tr>
+<tr>
+<td><code>avoids[]</code></td>
+<td>feelings to prevent</td>
+</tr>
+<tr>
+<td><code>probes[]</code></td>
+<td>hooks a simulation can call; default <code>satisfaction</code> · <code>motivation</code> · <code>anticipation</code> · <code>reward</code></td>
+</tr>
+<tr>
+<td><code>tone[]</code></td>
+<td>register words</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.3.9" data-scope="">
+<h5 id="docs-p-3-9-mattering">P.3.9 mattering</h5>
+<p>The aspect the rest exist for. Affect says how an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is meant to feel; mattering says why it counts: what would be
+lost, and by whom, if it stopped tomorrow.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>to-the-whole</code></td>
+<td>one sentence: what the whole loses without it. Required on every item but the brand</td>
+</tr>
+<tr>
+<td><code>weight</code></td>
+<td><code>critical</code> · <code>major</code> · <code>supporting</code> · <code>peripheral</code></td>
+</tr>
+<tr>
+<td><code>inside[]</code></td>
+<td><code>{who, because, stakes?}</code>: the people who work on it; <code>who</code> lists roles</td>
+</tr>
+<tr>
+<td><code>chosen[]</code></td>
+<td><code>{who, because, stakes?}</code>: people who have already chosen it; required on offerings and the brand</td>
+</tr>
+<tr>
+<td><code>prospective[]</code></td>
+<td><code>{who, because, barrier?}</code>: people who may; required on offerings and the brand</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each entry may carry its own <code>confidence</code> and <code>sources</code>, and any entry or field may be an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>. Two people who
+choose the same thing for different reasons are two entries. Mattering does not inherit and does not sum. The question
+that draws it out is always the same: <em>if this stopped tomorrow, who would notice first, and what would they lose?</em></p>
+</section>
+<section class="docs-sec" data-key="S:section/P.4" data-scope="">
+<h4 id="docs-p-4-roles-not-people">P.4 Roles, not people</h4>
+<p>People never appear in P. Names, emails, pronouns and personality words must not be written; the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> flag personal
+pronouns and pairs of capitalized words that look like a name (<a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>). People appear only as roles, <code>O:role/&lt;Slug&gt;</code>, which live in O (chapter O): a name, duties, decision rights, an escalation path,
+the <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> it governs, and <code>variance</code> for behaviour that matters to the business.</p>
+<p>When a person's behaviour matters, it is recorded in one of three systemic forms: <code>variance</code> on the role (execution,
+cadence drift), a rule's threshold and a flow's latency, or divergent vocabulary between items that feed each other.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.5" data-scope="">
+<h4 id="docs-p-5-relations-and-inheritance">P.5 Relations and inheritance</h4>
+</section>
+<section class="docs-sec" data-key="S:section/P.5.1" data-scope="">
+<h5 id="docs-p-5-1-relations">P.5.1 Relations</h5>
+<p>Six relations. None is a separate edge object: each lives in the aspect it belongs to, so an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is self-contained and
+the graph is derived.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Relation</th>
+<th>From → to</th>
+<th>Written in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>part-of</td>
+<td>item → item, strictly downward</td>
+<td><code>parts:</code> on the parent</td>
+</tr>
+<tr>
+<td>feeds</td>
+<td>item → item or external</td>
+<td><code>flow.outputs[].to</code> and <code>flow.inputs[].from</code></td>
+</tr>
+<tr>
+<td>depends-on</td>
+<td>item → item or external</td>
+<td><code>substrate.depends-on</code></td>
+</tr>
+<tr>
+<td>governed-by</td>
+<td>item → role</td>
+<td><code>owner:</code>, and <code>governs:</code> on the role in O</td>
+</tr>
+<tr>
+<td>bound-by</td>
+<td>item ↔ item or external</td>
+<td>a <code>C:contract</code> in chapter C</td>
+</tr>
+<tr>
+<td>maps</td>
+<td>term → term</td>
+<td><code>vocabulary.terms[].maps-to</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>feeds</code> is declared at both ends: the provider says where its output goes, the consumer where its input comes from.
+An edge only one end declares is a warning (<code>flow-mirror</code>), except where either end is a brand, suite, offering or
+function, whose flows are derived from their parts.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.5.2" data-scope="">
+<h5 id="docs-p-5-2-externals">P.5.2 Externals</h5>
+<p>In a Holotype, P declares no externals of its own. <strong>Every reference out of P is an external</strong>, and its <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> is
+derived from what it names:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>A reference to</th>
+<th>Is an external of kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M:audience/…</code>, <code>M:account/…</code>, <code>M:market/…</code></td>
+<td>market</td>
+</tr>
+<tr>
+<td><code>M:channel/…</code></td>
+<td>channel</td>
+</tr>
+<tr>
+<td><code>S:vendor/…</code></td>
+<td>vendor</td>
+</tr>
+<tr>
+<td><code>S:system/…</code>, <code>S:platform/…</code></td>
+<td>platform</td>
+</tr>
+<tr>
+<td><code>C:counterparty/…</code>, a <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, an id in another concern</td>
+<td>partner</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A reference out of P that resolves to nothing is an error (<code>ref-unresolved</code>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.5.3" data-scope="">
+<h5 id="docs-p-5-3-inheritance">P.5.3 Inheritance</h5>
+<p>Three aspects flow down the tree; six do not.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Inherits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rules</td>
+<td>yes, when <code>scope: descendants</code></td>
+</tr>
+<tr>
+<td>principles (<code>priorities</code>)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>vocabulary</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>identity, flow, substrate, economics, affect, mattering</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A child may redefine an inherited word, but must say so with <code>overrides: true</code> (or map it with <code>maps-to</code>); silent
+redefinition of a brand word is an error (<code>override-explicit</code>). A child may add rules and may narrow a <code>may</code>; it must not
+weaken an inherited <code>must</code> or <code>must-not</code> (<em>not checked</em>, <a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a>). The effective <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>, with every inherited line marked with
+the ancestor it came from, is what an item's card shows.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.6" data-scope="">
+<h4 id="docs-p-6-the-sketch-shorthand">P.6 The sketch (shorthand)</h4>
+<p>For whiteboards, interviews and chat. One <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> per line; indentation is containment; the first line is the brand.
+Expanding a sketch writes the canonical YAML with an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> on every aspect the sketch did not fill (<code>python -m core align sketch</code>, which runs cosm.py's <code>expand</code> and adds the Comprise namespaces).</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Mark</th>
+<th>Means</th>
+<th>Lands in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>suite/</code> <code>offering/</code> <code>function/</code> <code>product/</code> <code>service/</code></td>
+<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a></td>
+<td>identity</td>
+</tr>
+<tr>
+<td>indentation</td>
+<td>part-of</td>
+<td><code>parts</code></td>
+</tr>
+<tr>
+<td><code>&gt; target</code></td>
+<td>feeds</td>
+<td><code>flow.outputs</code>, and the target's inputs</td>
+</tr>
+<tr>
+<td><code>~ target</code></td>
+<td>depends-on</td>
+<td><code>substrate</code></td>
+</tr>
+<tr>
+<td><code>@Role</code></td>
+<td>owner</td>
+<td>identity</td>
+</tr>
+<tr>
+<td><code>$49/mo</code> <code>$4/seat</code></td>
+<td>price</td>
+<td>economics</td>
+</tr>
+<tr>
+<td><code>:) feeling</code></td>
+<td>elicits</td>
+<td>affect</td>
+</tr>
+<tr>
+<td><code>! &quot;must …&quot;</code></td>
+<td>a rule</td>
+<td>rules</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre><code class="language-text">meadow @Founder ! &quot;must-not store card numbers&quot;
+  suite/books
+    offering/ledger @Founder $49/mo :) relief, trust
+      function/ingest ~ext/banks
+        service/bank-sync &gt; service/reconcile
+        product/csv-importer &gt; service/reconcile
+      service/reconcile &gt; offering/ledger
+  offering/payroll @Payroll-Owner $4/seat :) fairness
+    service/tip-out &gt; offering/payroll
+offering/ledger &gt; offering/payroll, service/tip-out
+</code></pre>
+<p>A cross-tree edge is written at column zero. Nothing the sketch does not say is guessed.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.7" data-scope="">
+<h4 id="docs-p-7-the-files-of-p">P.7 The files of P</h4>
+<pre><code>atoms/&lt;concern&gt;/P/
+  brand.cosm      cosm: 0.3, then brand: (the L4 item, id P:&lt;slug&gt;)
+  nodes.cosm      nodes: (every other item of the tree)
+  doc.cosm        reading:, history:, findings:, sources: (the document, not the model)
+</code></pre>
+<ul>
+<li><code>cosm: 0.3</code> heads each file. A file without it loads; <code>opi:</code> (the oldest key) is read the same way.</li>
+<li><code>brand:</code> holds the root <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>. A COSM 0.2 <code>firm:</code> block is read as <code>brand:</code>; a writer must write <code>brand:</code>.</li>
+<li><code>reading</code> (how to read the draft: date, author, mode, perspective, note), <code>history</code> (dated events that explain the
+shape), <code>findings</code> (what the structure already shows: check, nodes, finding, proposal) and <code>sources</code> (the P items'
+sources) carry the document. The export renders them; nothing is assembled by hand.</li>
+<li><code>roles:</code>, <code>externals:</code> and <code>contracts:</code> inside P are legacy: still read, never written. Roles live in O, contracts in C,
+externals are derived (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>).</li>
+<li>Ids in P files are namespaced (<code>P:offering/ledger</code>, <code>O:role/Founder</code>); the tooling strips and restores the namespace
+when it hands the tree to cosm.py.</li>
+<li><code>type: firm</code> loads as <code>brand</code>, and <code>type: stack</code> as <code>function</code>, with a note. A writer must write the current <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>.</li>
+<li>P may be <code>module: none</code> with a reason. A <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> whose P has neither a brand nor <code>module: none</code> is an error.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/P.8" data-scope="">
+<h4 id="docs-p-8-drawings">P.8 Drawings</h4>
+<p>Every drawing is a view over the same <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a>, never drawn by hand. The text is canonical; the drawing is derived.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Mermaid shape</th>
+<th>Reads as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brand</td>
+<td><code>id((Name))</code></td>
+<td>the whole</td>
+</tr>
+<tr>
+<td>suite</td>
+<td><code>id{{Name}}</code></td>
+<td>a portfolio</td>
+</tr>
+<tr>
+<td>offering</td>
+<td><code>id([Name])</code></td>
+<td>a promise</td>
+</tr>
+<tr>
+<td>function</td>
+<td><code>id[[Name]]</code></td>
+<td>a cluster</td>
+</tr>
+<tr>
+<td>product</td>
+<td><code>id[Name]</code></td>
+<td>an artifact</td>
+</tr>
+<tr>
+<td>service</td>
+<td><code>id(Name)</code></td>
+<td>an activity</td>
+</tr>
+<tr>
+<td>role</td>
+<td><code>id&gt;Name]</code></td>
+<td>a position</td>
+</tr>
+<tr>
+<td>external</td>
+<td><code>id[/Name/]</code></td>
+<td>a market, channel, vendor or partner</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Relation</th>
+<th>Mermaid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>part-of</td>
+<td>nesting, or <code>---</code> in flat views</td>
+</tr>
+<tr>
+<td>feeds</td>
+<td><code>==&gt;</code>, labelled with the resource</td>
+</tr>
+<tr>
+<td>depends-on</td>
+<td><code>-.-&gt;</code></td>
+</tr>
+<tr>
+<td>governed-by</td>
+<td><code>--o</code>, from the role to the item</td>
+</tr>
+<tr>
+<td>bound-by</td>
+<td><code>&lt;--&gt;</code>, labelled with the contract</td>
+</tr>
+<tr>
+<td>maps</td>
+<td><code>-. maps .-</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Built views (cosm.py <code>render</code>): <code>map</code> (the tree with feeds over it), <code>tree</code>, <code>flow</code>, <code>affect</code>, <code>mattering</code>. <em>Not built:</em>
+<code>substrate</code> and <code>rules</code>. The app draws P in its own <a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">renderers</a> (<a class="ref-xref" href="#docs-sec-12">section 12</a>); the card (<code>card</code>) and the text tree
+(<code>ascii</code>) are cosm.py's.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.9" data-scope="">
+<h4 id="docs-p-9-p-s-checks">P.9 P's checks</h4>
+<p>Two levels. The per-<a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> run on every write; the seven conditions judge the whole tree, and rule 1 (<a class="ref-xref" href="#docs-sec-9">section 9</a>)
+reports them. Severities: an error blocks, a warning is recorded, a note is advice.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Severity</th>
+<th>Fails when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>error</td>
+<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> is not one of P's levels</td>
+</tr>
+<tr>
+<td><code>type-prefix</code></td>
+<td>error</td>
+<td>the id's kind disagrees with <code>type</code> (the brand's id has no kind)</td>
+</tr>
+<tr>
+<td><code>legacy</code></td>
+<td>note</td>
+<td><code>firm</code> or <code>stack</code> was read as <code>brand</code> or <code>function</code></td>
+</tr>
+<tr>
+<td><code>identity-min</code></td>
+<td>error</td>
+<td>id, name, type, summary or owner is missing</td>
+</tr>
+<tr>
+<td><code>visibility</code></td>
+<td>error</td>
+<td>not <code>public</code>, <code>internal</code> or <code>restricted</code></td>
+</tr>
+<tr>
+<td><code>strata</code></td>
+<td>error</td>
+<td>a part is undeclared or not strictly below (suite in suite and function in function allowed); a unit holds parts</td>
+</tr>
+<tr>
+<td><code>role-exists</code></td>
+<td>error</td>
+<td>the owner is not a declared role</td>
+</tr>
+<tr>
+<td><code>brand-holds-nothing</code></td>
+<td>error</td>
+<td>the brand has flow, substrate, economics or affect</td>
+</tr>
+<tr>
+<td><code>flow-ends</code></td>
+<td>error</td>
+<td>an input has no <code>from</code> or an output no <code>to</code></td>
+</tr>
+<tr>
+<td><code>external-exists</code></td>
+<td>error</td>
+<td>a <code>from</code>, <code>to</code> or <code>depends-on</code> names nothing</td>
+</tr>
+<tr>
+<td><code>units</code></td>
+<td>warning</td>
+<td>a rate without a unit</td>
+</tr>
+<tr>
+<td><code>rule-syntax</code></td>
+<td>warning / error</td>
+<td>the actor is not a role, <code>all-roles</code> or an external (warning); a rule has no aim (error)</td>
+</tr>
+<tr>
+<td><code>override-explicit</code></td>
+<td>error</td>
+<td>a brand word is redefined without <code>overrides: true</code> or <code>maps-to</code></td>
+</tr>
+<tr>
+<td><code>affect-on-offerings</code></td>
+<td>warning</td>
+<td>an offering declares no affect</td>
+</tr>
+<tr>
+<td><code>mattering</code></td>
+<td>error</td>
+<td>mattering is not a mapping</td>
+</tr>
+<tr>
+<td><code>mattering-declared</code></td>
+<td>warning</td>
+<td>no mattering, or no <code>to-the-whole</code> (brand exempt)</td>
+</tr>
+<tr>
+<td><code>mattering-weight</code></td>
+<td>error</td>
+<td><code>weight</code> is not one of the four</td>
+</tr>
+<tr>
+<td><code>mattering-refs</code></td>
+<td>error</td>
+<td>a <code>who</code> names no declared role, external or item</td>
+</tr>
+<tr>
+<td><code>mattering-because</code></td>
+<td>warning</td>
+<td>an entry has <code>who</code> but no <code>because</code></td>
+</tr>
+<tr>
+<td><code>mattering-on-offerings</code></td>
+<td>warning</td>
+<td>an offering or the brand lacks inside, chosen or prospective</td>
+</tr>
+<tr>
+<td><code>mattering-inside</code></td>
+<td>note</td>
+<td>an owned item has no <code>inside</code> entry</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>note</td>
+<td><code>confidence</code> or <code>sources</code> missing</td>
+</tr>
+<tr>
+<td><code>no-humans</code></td>
+<td>warning</td>
+<td>a personal pronoun in identity, rules or principles; a singular one in mattering</td>
+</tr>
+<tr>
+<td><code>no-humans?</code></td>
+<td>note</td>
+<td>two capitalized words that could be a person's name</td>
+</tr>
+<tr>
+<td><code>orphan</code>, <code>single-parent</code>, <code>acyclic</code></td>
+<td>error</td>
+<td>containment is broken (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>)</td>
+</tr>
+<tr>
+<td><code>flow-mirror</code></td>
+<td>warning</td>
+<td>a feeds edge only one end declares (<a class="ref-xref" href="#docs-p-5-1-relations">P.5.1</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The seven conditions</strong> (<em>equilibrium</em>). The tree is in equilibrium only when all seven are <code>ok</code>:</p>
+<ol>
+<li><strong>flow-balance.</strong> Every internal input with a rate is supplied, within 10%, by its providers' rated outputs for the
+same resource. No internal flows: <code>ok</code>. Any internal edge whose rate is missing or open: <em>unverifiable</em>.</li>
+<li><strong>rule-consistency.</strong> No <code>must</code> and <code>must-not</code> share an aim.</li>
+<li><strong>closure.</strong> No <code>orphan</code>, <code>external-exists</code>, <code>role-exists</code>, <code>brand-holds-nothing</code> or <code>mattering-refs</code> error.</li>
+<li><strong>vocabulary-closure.</strong> Two items joined by a feeds edge never define the same word differently.</li>
+<li><strong>role-coverage.</strong> Every role of the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> owns an item of the tree, has a <code>governs</code> list, or is a pool.</li>
+<li><strong>affect-declared.</strong> Every offering has an affect audience and at least one feeling.</li>
+<li><strong>mattering-declared.</strong> The brand and every offering name all three constituencies; every other item says what the
+whole loses without it. An <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> makes it <em>unverifiable</em>, not a violation.</li>
+</ol>
+<p>Equilibrium is a property of a description, not a promise about the business. A concern can be in equilibrium and
+losing money. It means the description is closed: nothing dangles, nothing contradicts, nothing points outside without
+saying so.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.10" data-scope="">
+<h4 id="docs-p-10-how-p-renders-for-an-audience">P.10 How P renders for an audience</h4>
+<p>The <strong>internal</strong> rendering holds everything. The <strong>external</strong> rendering keeps the shape of the whole (the brand, the
+suites, the offerings, the public units, the words, the externals, mattering to the chosen and the prospective) and
+drops substrate, costs, margins, settlements, role details, <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a>, findings, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> and every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> that is not
+public by <a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>. The top of the tree looks the same to a customer as to an employee; only the depth differs. The pack,
+a published atom and the isotype's offers all use this rule.</p>
+</section>
+<section class="docs-sec" data-key="S:section/P.11" data-scope="">
+<h4 id="docs-p-11-what-cosm-0-3-described-that-comprise-oes-1">P.11 What COSM 0.3 described that Comprise OES 1 does not build</h4>
+<p>Kept as the map of where P can go. None of it is in the code today.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>COSM 0.3</th>
+<th>State in Comprise OES 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>simulation: units as queues, aggregates by min-cut, role variance as jitter, rule gates, affect probes, scenarios</td>
+<td><em>not built</em></td>
+</tr>
+<tr>
+<td><code>whatif</code>, <code>harmonize</code> (nine <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>), <code>propose</code>, <code>rank</code>, <code>uat</code>, <code>qa</code>, <code>hooks</code></td>
+<td><em>not built</em>; the findings in <code>doc.cosm</code> use harmonize's words</td>
+</tr>
+<tr>
+<td><code>depersonalize</code> (proposing role substitutions)</td>
+<td><em>not built</em>; the <code>no-humans</code> checks find, a person fixes</td>
+</tr>
+<tr>
+<td><code>export</code> to JSON-LD, Turtle, OWL, SHACL, ArchiMate, CSV; <code>import</code></td>
+<td><em>not built</em></td>
+</tr>
+<tr>
+<td><code>save</code>, <code>put</code>, <code>remove</code>, <code>where</code>, <code>upstream</code>, <code>downstream</code>, <code>glossary</code>, <code>capacity</code>, <code>cost</code> as an API</td>
+<td><em>not built</em> as an API; the app's editor writes through the checks</td>
+</tr>
+<tr>
+<td><code>sketch</code> (the tree back as shorthand)</td>
+<td><em>not built</em>; <code>expand</code> is</td>
+</tr>
+<tr>
+<td>the Remote Assistance Protocol (grants, propose mode, the remote queue)</td>
+<td>replaced by Comprise's own: grants in the catalog, proposals a person accepts, the audit (<a class="ref-xref" href="#docs-sec-10">section 10</a>)</td>
+</tr>
+<tr>
+<td>the State Library, <code>history</code>, <code>diff</code>, <code>at</code>, <code>attest</code></td>
+<td>replaced by saved and signed versions (<a class="ref-xref" href="#docs-sec-10">section 10</a>)</td>
+</tr>
+<tr>
+<td>mattering shares, an affect scale, firms within firms, product internals</td>
+<td><a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a> of COSM 0.3; firms within firms are now <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> and <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> (<a class="ref-xref" href="#docs-sec-3">section 3</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/P.12" data-scope="">
+<h4 id="docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12 Where COSM 0.3's text and the code disagree</h4>
+<p>The code wins in every row.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>COSM 0.3's text says</th>
+<th>The code does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>its header: v0.2</td>
+<td>the tree is 0.3 (Q29: the brand, <code>restricted</code>); P files say <code>cosm: 0.3</code>, and so does cosm.py's <code>VERSION</code> (<code>0.3</code>, the line <code>expand</code> writes)</td>
+</tr>
+<tr>
+<td><code>rule-syntax</code> is an error when the actor is not a role</td>
+<td>a warning; an external may also be an actor; only a rule with no aim is an error</td>
+</tr>
+<tr>
+<td><code>no-humans</code> is an error</td>
+<td>a warning (pronouns) and a note (a name-like pair); outside P, a pronoun in name or summary is a warning and a pointer to <code>E:person</code> from an unrestricted <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> an error</td>
+</tr>
+<tr>
+<td><code>term-resolves</code> (warning) and <code>no-weakening</code> (error)</td>
+<td>not checked</td>
+</tr>
+<tr>
+<td><code>role-exists</code> covers rule actors</td>
+<td>covers the owner only</td>
+</tr>
+<tr>
+<td>rule-consistency: a <code>must</code> and a <code>must-not</code> whose <code>when</code> can both hold</td>
+<td>a <code>must</code> and a <code>must-not</code> with the same text</td>
+</tr>
+<tr>
+<td>flow balance within a tolerance the brand sets, default 10%</td>
+<td>always 10%</td>
+</tr>
+<tr>
+<td>the API table counts six equilibrium conditions</td>
+<td>there are seven, in text and code</td>
+</tr>
+<tr>
+<td><code>snapshot</code> is refused unless equilibrium holds</td>
+<td>a saved version is always taken and records the verdict; signing is refused unless the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> allow it (<a class="ref-xref" href="#docs-sec-10">section 10</a>)</td>
+</tr>
+<tr>
+<td>one node per file, or many under <code>nodes:</code></td>
+<td>the convention is <code>brand.cosm</code>, <code>nodes.cosm</code>, <code>doc.cosm</code>; any <code>*.cosm</code> under P is read</td>
+</tr>
+<tr>
+<td>the <code>substrate</code> and <code>rules</code> views</td>
+<td>not built</td>
+</tr>
+<tr>
+<td><code>P:release</code> is a P <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> (<code>plan/comprise-model.md</code>)</td>
+<td>in the schema, but P's checks reject it as an unknown kind</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-r-representations-and-reflections" data-scope="">
+<h3 id="docs-chapter-r-representations-and-reflections" data-toc="3">Chapter R · Representations and reflections</h3>
+<p><em>What it says, and what others say back.</em></p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>surface</code></td>
+<td>where it speaks: a website, a store page, a listing, a profile; <code>kind</code>, <code>url</code></td>
+<td><code>presents</code>, <code>hosted-on</code></td>
+<td>rule 10 for platform surfaces; the isotype's domains come from public <code>kind: website</code> surfaces with no counterparty</td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td>a further brand, scoped to a unit or suite (the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s own brand is P's brand <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>)</td>
+<td><code>scope</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>persona</code></td>
+<td>a sanctioned public identity; its link to a person is restricted</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>claim</code></td>
+<td>something it says: <code>text</code>, <code>about</code>, <code>on</code>, <code>evidence</code> (<code>state</code>: whole · partial · contested · unsupported)</td>
+<td><code>about</code>, <code>on</code>, <code>evidence.by</code></td>
+<td>rule 7</td>
+</tr>
+<tr>
+<td><code>rendering</code></td>
+<td>a document made for an audience from a perspective</td>
+<td><code>audience</code>, <code>perspective</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>reflection</code></td>
+<td>what others say: a review, a rating, coverage, a regulator's finding</td>
+<td><code>about</code>, <code>surface</code></td>
+<td>rule 9 via a reflections grant</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-i-inventories" data-scope="">
+<h3 id="docs-chapter-i-inventories" data-toc="3">Chapter I · Inventories</h3>
+<p><em>What exists, is stocked or is listed.</em></p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feed</code></td>
+<td>a live source (a shop platform, a CSV, rows typed by hand, an MCP source): <code>adapter</code>, <code>schedule</code>, <code>max-age</code>, <code>counterparty</code></td>
+<td><code>system</code>, <code>mapping</code></td>
+<td>rules 9, 10</td>
+</tr>
+<tr>
+<td><code>sku</code></td>
+<td>a stock <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>: <code>kind</code> (finished-good · raw-material · digital · subscription-plan · service-sku · bundle · …), <code>unit</code>, <code>billing</code>, <code>entitles</code></td>
+<td><code>entitles</code>, <code>requires</code>, <code>parent</code>, <code>priced-by</code></td>
+<td>rule 2</td>
+</tr>
+<tr>
+<td><code>mapping</code></td>
+<td>rows from SKUs to P units (<code>maps-to</code> or <code>entitles</code>), and exclusions with reasons</td>
+<td><code>feed</code>, <code>rows.sku</code>, <code>rows.maps-to</code>, <code>rows.entitles</code>, <code>exclusions.sku</code></td>
+<td>rule 2</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>a place stock sits: <code>site</code>, <code>kind</code>, <code>stock-owner</code></td>
+<td><code>stock-owner</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>series</code></td>
+<td>a measure over time on an item (on-hand, available, balance, …); its points may live in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a></td>
+<td><code>of</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>listing</code></td>
+<td>an item listed on a channel, at a release</td>
+<td><code>sku</code>, <code>channel</code>, <code>version</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>a fund's holding</td>
+<td><code>bond</code>, <code>instrument</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>capacity</code></td>
+<td>beds, seats, hours, servers, with occupancy</td>
+<td><code>of</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>usage-stat</code>, <code>order-stat</code></td>
+<td>series that feed P's rates</td>
+<td><code>of</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SKUs a feed brings in live in the local database, not the files; a mapping row may name one (<a class="ref-xref" href="#docs-sec-7-4">section 7.4</a>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-s-stacks" data-scope="">
+<h3 id="docs-chapter-s-stacks" data-toc="3">Chapter S · Stacks</h3>
+<p><em>The systems and vendors it runs on.</em></p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">Kind</a></th>
+<th>Holds</th>
+<th>References</th>
+<th>Also checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>system</code></td>
+<td>a system it runs: <code>category</code>, <code>regulatory-criticality</code></td>
+<td><code>vendor</code>, <code>admin</code>, <code>used-by</code></td>
+<td>rule 4: an owner and a referrer, or it is orphan spend</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>one declared platform from the shipped catalogue of platform shapes</td>
+<td></td>
+<td>rule 10</td>
+</tr>
+<tr>
+<td><code>vendor</code></td>
+<td>a supplier of systems or services</td>
+<td><code>contract</code></td>
+<td>rule 10</td>
+</tr>
+<tr>
+<td><code>integration</code></td>
+<td>data moving between two systems</td>
+<td><code>from</code>, <code>to</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>datastore</code></td>
+<td>where a system keeps data</td>
+<td><code>system</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>account</code></td>
+<td>an account on a system, and who holds it</td>
+<td><code>system</code>, <code>holder</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>codebase</code></td>
+<td>source code, and what it runs</td>
+<td><code>runs</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/chapter-e-employees" data-scope="">
+<h3 id="docs-chapter-e-employees" data-toc="3">Chapter E · Employees</h3>
+<p><em>The people: counted here, never named.</em> Every person with a position, a membership or a credential. E is the only
+module with personal data, and it is never in a file (2.6). Its <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> are tables in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Where</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>person</code></td>
+<td><code>persons</code>, the name and data sealed</td>
+<td></td>
+</tr>
+<tr>
+<td><code>assignment</code></td>
+<td><code>assignments</code>: a person in a position, with a share, dates and the employer</td>
+<td><code>position</code>, <code>employer</code></td>
+</tr>
+<tr>
+<td><code>membership</code></td>
+<td><code>memberships</code>: a person in an audience (member-owner, partner, player)</td>
+<td><code>audience</code></td>
+</tr>
+<tr>
+<td><code>credential</code></td>
+<td><code>credentials</code>: a licence or certification a person holds; issuer, scope and data sealed</td>
+<td></td>
+</tr>
+<tr>
+<td><code>access</code></td>
+<td><code>access</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>intake</code>, <code>continuity</code></td>
+<td>a person's profile, inside <code>persons.data</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>broadcast</code></td>
+<td>declared; <em>not built</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pages show E as counts. Rules 6, 12 and 13 read it from the local database; without it they are unverifiable, unless
+E is <code>module: none</code> (or the database says <code>people: none</code>) with a reason.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/6" data-scope="">
+<h2 id="docs-sec-6" data-toc="2">6. Paths</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 4 places">◂ 4</span></p>
+<p>Every <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, module, <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>, <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> and field has a <strong>path</strong>: its id respelled as a location.</p>
+<pre><code>mozilla-foundation/P/offering/creative-futures      ⇄   atom/mozilla-foundation//P:offering/creative-futures
+</code></pre>
+<p>A path is <code>&lt;concern&gt;/&lt;module&gt;/&lt;kind&gt;/&lt;slug&gt;</code>, with <code>#&lt;field&gt;</code> for a field. The shorter prefixes name the folder
+levels. Paths are accepted beside ids, never instead of them.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.1" data-scope="">
+<h3 id="docs-sec-6-1" data-toc="3">6.1 Properties</h3>
+<ul>
+<li><strong>A respelling.</strong> A path is computed from an id, and an id from a path, with no lookup. Every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> of the six fixtures
+(1,227 items) has a path, and every path turns back into its id.</li>
+<li><strong>Slug-based.</strong> It is built from slugs, which never change when an item is renamed.</li>
+<li><strong>Absolute.</strong> It always starts with the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>. There are no relative paths: a bare id inside a concern becomes a
+path by adding that concern.</li>
+<li><strong>ASCII, and one spelling.</strong> No colon, so it is safe as a file name on Windows; no percent-encoding, no <code>..</code>, no
+leading or trailing slash. A path has exactly one spelling, and a reader refuses any other rather than guessing.</li>
+<li><strong>An address, never a door.</strong> A path never touches the disk by itself. It names a row; it is never joined to a folder
+to open a file.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/6.2" data-scope="">
+<h3 id="docs-sec-6-2" data-toc="3">6.2 Grammar</h3>
+<pre><code>path         = concern-path / vendor-path
+concern-path = concern [ &quot;/&quot; module [ &quot;/&quot; kind [ &quot;/&quot; slug [ &quot;#&quot; field ] ] ] ]
+vendor-path  = &quot;vendor/&quot; domain &quot;/&quot; concern                    ; a vendor-published atom, as a whole
+concern      = alnum *( lower / DIGIT / &quot;.&quot; / &quot;-&quot; )            ; ATOM_RE's slug: [a-z0-9][a-z0-9.-]*
+domain       = concern                                          ; the vendor's domain, lowercase
+module       = &quot;C&quot; / &quot;O&quot; / &quot;M&quot; / &quot;P&quot; / &quot;R&quot; / &quot;I&quot; / &quot;S&quot; / &quot;E&quot;
+kind         = lower *( lower / DIGIT / &quot;-&quot; )                   ; a kind the module declares, or &quot;brand&quot; in P
+slug         = alnumx [ *( alnumx / &quot;.&quot; ) alnumx ]              ; [A-Za-z0-9]([A-Za-z0-9._@-]*[A-Za-z0-9_@-])?
+alnumx       = ALPHA / DIGIT / &quot;_&quot; / &quot;@&quot; / &quot;-&quot;
+field        = key *( &quot;.&quot; key / &quot;[&quot; 1*DIGIT &quot;]&quot; )
+key          = ( ALPHA / DIGIT ) *( ALPHA / DIGIT / &quot;_&quot; / &quot;-&quot; )
+</code></pre>
+<p>A <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> segment must be a kind of that module in the manifest; <code>brand</code> is accepted in P (6.4.1). A field may follow
+only an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>. Segments are case-sensitive: module letters are capitals, kinds and <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> lowercase, slugs as written.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.3" data-scope="">
+<h3 id="docs-sec-6-3" data-toc="3">6.3 From an id to a path, and back</h3>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>The id</th>
+<th>The path</th>
+<th>Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>atom/&lt;concern&gt;</code></td>
+<td><code>&lt;concern&gt;</code></td>
+<td>a <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> (its folder)</td>
+</tr>
+<tr>
+<td>(a concern, a letter)</td>
+<td><code>&lt;concern&gt;/&lt;M&gt;</code></td>
+<td>a module (its folder; a <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">group</a> of tables)</td>
+</tr>
+<tr>
+<td>(a concern, a letter, a <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>)</td>
+<td><code>&lt;concern&gt;/&lt;M&gt;/&lt;kind&gt;</code></td>
+<td>a kind (a table)</td>
+</tr>
+<tr>
+<td><code>&lt;M&gt;:&lt;kind&gt;/&lt;slug&gt;</code> inside <code>&lt;concern&gt;</code></td>
+<td><code>&lt;concern&gt;/&lt;M&gt;/&lt;kind&gt;/&lt;slug&gt;</code></td>
+<td>an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> (a row)</td>
+</tr>
+<tr>
+<td><code>atom/&lt;concern&gt;//&lt;M&gt;:&lt;kind&gt;/&lt;slug&gt;</code></td>
+<td><code>&lt;concern&gt;/&lt;M&gt;/&lt;kind&gt;/&lt;slug&gt;</code></td>
+<td>the same item, from anywhere</td>
+</tr>
+<tr>
+<td><code>P:&lt;slug&gt;</code> inside <code>&lt;concern&gt;</code></td>
+<td><code>&lt;concern&gt;/P/brand/&lt;slug&gt;</code></td>
+<td>P's brand item</td>
+</tr>
+<tr>
+<td>an item and a field path</td>
+<td><code>&lt;item path&gt;#&lt;field&gt;</code></td>
+<td>a field (a cell)</td>
+</tr>
+<tr>
+<td><code>vendor/&lt;domain&gt;/&lt;slug&gt;</code></td>
+<td><code>vendor/&lt;domain&gt;/&lt;slug&gt;</code></td>
+<td>a vendor-published atom</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The module and kind levels have no id today; the path is their only name. The reverse is the same table read right to
+left. The concern of a bare id is the concern whose files hold it.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4" data-scope="">
+<h3 id="docs-sec-6-4" data-toc="3">6.4 Edge cases, settled</h3>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.1" data-scope="">
+<h4 id="docs-sec-6-4-1">6.4.1 P's brand item</h4>
+<p>The brand's id has no <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>: <code>P:&lt;slug&gt;</code>. Its path puts the kind in: <code>&lt;concern&gt;/P/brand/&lt;slug&gt;</code>.</p>
+<pre><code>mozilla-foundation/P/brand/mozilla-foundation    ⇄   P:mozilla-foundation   (in atom/mozilla-foundation)
+mzla/P/brand/thunderbird                         ⇄   P:thunderbird          (in atom/mzla)
+</code></pre>
+<p>This is one-to-one because <code>P:brand/&lt;slug&gt;</code> is never a valid id: the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> require the brand's id to have no kind and
+every other P <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s kind to match its type. <code>&lt;concern&gt;/P/brand</code> is the brand's table, with one row. The brand's slug
+need not equal the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s (<code>mzla</code>'s brand is <code>thunderbird</code>). <code>&lt;concern&gt;/P/&lt;slug&gt;</code> is not a path: the third segment
+is always a kind. <code>R:brand/…</code> is an ordinary R item (<code>mozilla-foundation/R/brand/mozilla-foundation</code>).</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.2" data-scope="">
+<h4 id="docs-sec-6-4-2">6.4.2 Kinds that share a file</h4>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>The <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> level is a table, not a file. <code>mozilla-foundation/C/charter/articles</code> names the charter wherever it is
+written; it happens to be in <code>C/entity.cosm</code>, beside the entity, a policy, filings and an event. Moving an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> to
+another file changes neither its id nor its path. The file is metadata, shown in Details and in messages.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.3" data-scope="">
+<h4 id="docs-sec-6-4-3">6.4.3 Relationships</h4>
+<p>A <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> between two <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> is written in both (3.2), with one id. Each copy has a path in its own concern, and
+both name the same relationship:</p>
+<pre><code>mozilla-foundation/C/bond/foundation-controls-org    the copy in the from concern (cite this one)
+mozilla-org/C/bond/foundation-controls-org           the mirror in the to concern
+</code></pre>
+<p>Cite the copy in the <code>from</code> concern. A relationship to an <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a> has one copy, in the concern that names
+it.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.4" data-scope="">
+<h4 id="docs-sec-6-4-4">6.4.4 Outside organizations</h4>
+<p>An <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a> is an ordinary <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> of C: <code>mozilla-corporation/C/counterparty/google</code>. Its global id is a
+field (<code>#global-id</code>), not a path: a path addresses the volume, never the world.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.5" data-scope="">
+<h4 id="docs-sec-6-4-5">6.4.5 Vendor-published atoms</h4>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A vendor-published atom's path is its id, <code>vendor/&lt;domain&gt;/&lt;slug&gt;</code>, and nothing below it. Its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> have no address in
+the customer's Holotype in Comprise OES 1: they belong to the vendor's own Holotype, where they are an ordinary <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>,
+and the qualified form (6.4.7) addresses them there. <code>vendor/&lt;domain&gt;/&lt;slug&gt;</code> never collides with a concern named
+<code>vendor</code>, because a concern path's second segment is a module letter, a capital, and a domain never is. No fixture holds
+a vendor-published atom, so this section uses placeholders.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.6" data-scope="">
+<h4 id="docs-sec-6-4-6">6.4.6 Fields</h4>
+<p><code>#</code> and a field path name a field of an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>. The field path is the one the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> already write for <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a>:
+keys joined by <code>.</code>, list positions as <code>[n]</code>, counted from zero.</p>
+<pre><code>mozilla-foundation/C/contract/artists-make-technology#terms
+mozilla-foundation/P/offering/mozilla-festival#economics.price
+meadow/P/offering/ledger#flow.outputs[0].to
+mozilla-foundation/C/bond/foundation-licenses-corporation#scope[0]
+</code></pre>
+<p>A field path names a value that is there; a path to a missing field names nothing. An open question on a whole item
+(a <code>pending:</code> key on the item) is addressed by the item's path with no field. A key outside the <code>key</code> rule (one with a
+slash or a space) has no field path. In a URL, <code>#</code> is the fragment: the browser keeps it across the redirect, so
+<code>/h/{key}/at/&lt;path&gt;#&lt;field&gt;</code> opens the item's page. <em>Not built:</em> the page does not yet scroll to or select the field;
+the command line and MCP address fields (6.5).</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.7" data-scope="">
+<h4 id="docs-sec-6-4-7">6.4.7 The qualified form</h4>
+<p>For use outside one install, a path is qualified with the MiniCOSM and the Holotype:</p>
+<pre><code>oes:comprise/&lt;holotype&gt;/&lt;path&gt;
+oes:comprise/mozilla/mozilla-foundation/P/offering/creative-futures
+oes:comprise/meadow/meadow/P/brand/meadow
+oes:comprise/mozilla                                    the Holotype itself
+</code></pre>
+<p><code>&lt;holotype&gt;</code> is the Holotype's id without <code>holotype/</code> (<code>holotype/mozilla</code> → <code>mozilla</code>). The form carries no version:
+a path keeps its meaning across versions of a MiniCOSM, and a change that would alter a path's meaning must be a new
+MiniCOSM. A Holotype's id is unique within one install's registry, not in the world. <em>Not built:</em> a globally unique
+Holotype name (Connect's Holotype id, or an isotype's handle on the Index) and a resolver for qualified paths across
+installs. A qualified path names a private address; it opens nothing to a reader who may not see it.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.4.8" data-scope="">
+<h4 id="docs-sec-6-4-8">6.4.8 Case, characters and what has no path</h4>
+<ul>
+<li>Ids and paths are case-sensitive and keep their case: <code>meadow/O/role/Founder</code>. Two ids that differ only in case are
+two <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a>, and a case-insensitive file system (Windows, macOS by default) would merge them if a writer ever used paths
+as file names. Comprise OES 1 never does; a tool that does must refuse such a pair. <em>Not checked:</em> the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not yet
+warn about ids that differ only in case.</li>
+<li>A slug uses ASCII letters, digits, <code>.</code>, <code>_</code>, <code>@</code> and <code>-</code>, and never ends in <code>.</code> (Windows drops a trailing dot). This is
+the set the tooling already reads in bare P ids, and it holds <code>P:release/&lt;unit&gt;@&lt;version&gt;</code>. No segment is a Windows
+reserved name, alone or before a dot (6.6).</li>
+<li>An id whose slug falls outside that set (one with a slash, a colon, a <code>#</code>, a space or a non-ASCII letter) parses as an
+id but has <strong>no path</strong> in Comprise OES 1. The CLI says so. <em>Not checked:</em> the checks do not yet warn about such ids;
+none exists in any fixture.</li>
+<li>The catalog's own entries (sources, grants, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a>, attestations) have no path in Comprise OES 1.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/6.5" data-scope="">
+<h3 id="docs-sec-6-5" data-toc="3">6.5 Where paths are accepted</h3>
+<p>Beside ids, never instead of them:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the CLI</td>
+<td><code>python -m core path &lt;holotype&gt; &lt;id-or-path&gt;</code> prints the path, the id, what it names, its name, its file and its qualified form; it also takes a qualified path or an id with <code>#&lt;field&gt;</code>, and <code>--atom atom/&lt;slug&gt;</code> says which <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> a bare id is read in. It exits 1 when nothing is there</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td><code>node</code> takes an id or a path (either may end in <code>#&lt;field&gt;</code>) and returns <code>path</code>; <code>context</code>, <code>pending</code> and <code>lint</code> take a concern's path <code>&lt;slug&gt;</code> as their <code>atom</code>; <code>search</code> hits carry <code>path</code>; <code>pending</code> keeps <code>path</code> (the field path, as before) and adds <code>item_path</code> (<code>&lt;item path&gt;#&lt;field&gt;</code>)</td>
+</tr>
+<tr>
+<td>the export</td>
+<td>each <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s heading carries its path after its id, and each <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> its address <code>&lt;item path&gt;#&lt;field&gt;</code></td>
+</tr>
+<tr>
+<td>the app</td>
+<td><code>/h/{key}/at/&lt;path&gt;</code> redirects: a concern to the Overview rooted at it, a module to its chapter, a <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> to the Overview rooted at that table (a kind of P, or a kind with nothing visible in it, to the module's chapter), an item to its page, a vendor-published atom to its page. The item page shows its path in Details, with Copy</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The app's own links stay id-based (<code>/h/{key}/node/&lt;concern&gt;/&lt;id&gt;</code>); <code>/at/</code> is how a path opens. A browser never sends
+<code>#&lt;field&gt;</code> to the server, so <code>/at/</code> opens items and folders, and the CLI and MCP address fields. <code>/at/</code> takes the path
+only, never the qualified form: it already knows the Holotype.</p>
+<p><em>Status:</em> built (slice 30c): <code>core/paths.py</code>, the <code>path</code> command in <code>core/cli.py</code>, <code>core/mcpserver.py</code>, <code>core/pack.py</code>,
+and the <code>/at/</code> route and the item page's Details in <code>app/</code>.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6.6" data-scope="">
+<h3 id="docs-sec-6-6" data-toc="3">6.6 Scope and safety</h3>
+<ul>
+<li>A path to something the reader may not see answers exactly as its id would: the same 404, no name, no link. A path is
+never a way around visibility.</li>
+<li>Refused, never normalized: <code>..</code> and <code>.</code>; an empty segment; a leading slash (an absolute path) or a trailing one;
+percent-encoding, an encoded slash included (the app <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> the path exactly as it was sent); a backslash; whitespace,
+control characters and anything outside ASCII; a colon; a segment ending in a dot; a segment that is a Windows reserved
+name (<code>con</code>, <code>prn</code>, <code>aux</code>, <code>nul</code>, <code>com0</code> to <code>com9</code>, <code>lpt0</code> to <code>lpt9</code>, in any case, wherever it stands), alone or before
+a dot (<code>con.txt</code>, <code>NUL.tar.gz</code>: Windows reserves those too); a second <code>#</code>; a <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> its module does not declare; more
+than four segments.</li>
+<li>A path is resolved against the loaded Holotype, never against the disk.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/6.7" data-scope="">
+<h3 id="docs-sec-6-7" data-toc="3">6.7 Examples</h3>
+<p>Every example in this document resolves on the fixtures; the read-only script that <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> them prints each with its id.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Id</th>
+<th>Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mozilla-foundation</code></td>
+<td><code>atom/mozilla-foundation</code></td>
+<td>a <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a></td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/P</code></td>
+<td>(atom/mozilla-foundation, P)</td>
+<td>its Products module, 33 <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a></td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/P/offering</code></td>
+<td>(atom/mozilla-foundation, P, offering)</td>
+<td>its offerings, 8 items</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/P/offering/creative-futures</code></td>
+<td><code>P:offering/creative-futures</code></td>
+<td>an offering</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/P/brand/mozilla-foundation</code></td>
+<td><code>P:mozilla-foundation</code></td>
+<td>the brand item</td>
+</tr>
+<tr>
+<td><code>mzla/P/brand/thunderbird</code></td>
+<td><code>P:thunderbird</code></td>
+<td>a brand whose slug is not the concern's</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/R/brand/mozilla-foundation</code></td>
+<td><code>R:brand/mozilla-foundation</code></td>
+<td>an R brand</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/C/charter/articles</code></td>
+<td><code>C:charter/articles</code></td>
+<td>a charter, in <code>C/entity.cosm</code></td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/M/geography/operations</code></td>
+<td><code>M:geography/operations</code></td>
+<td>a geography, in <code>M/markets.cosm</code></td>
+</tr>
+<tr>
+<td><code>mozilla-corporation/S/codebase/firefox</code></td>
+<td><code>S:codebase/firefox</code></td>
+<td>a codebase, in <code>S/systems.cosm</code></td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/C/bond/foundation-controls-org</code></td>
+<td><code>C:bond/foundation-controls-org</code></td>
+<td>a <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a>, from end</td>
+</tr>
+<tr>
+<td><code>mozilla-org/C/bond/foundation-controls-org</code></td>
+<td><code>atom/mozilla-org//C:bond/foundation-controls-org</code></td>
+<td>its mirror</td>
+</tr>
+<tr>
+<td><code>mozilla-corporation/C/counterparty/google</code></td>
+<td><code>C:counterparty/google</code></td>
+<td>an <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organization</a></td>
+</tr>
+<tr>
+<td><code>mozilla-org/C/ip/mozilla-trademarks</code></td>
+<td><code>atom/mozilla-org//C:ip/mozilla-trademarks</code></td>
+<td>a mark, as another concern cites it</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/O/role/Executive-Director</code></td>
+<td><code>O:role/Executive-Director</code></td>
+<td>a role (case kept)</td>
+</tr>
+<tr>
+<td><code>mozilla-foundation/P/offering/mozilla-festival#economics.price</code></td>
+<td>(<code>P:offering/mozilla-festival</code>, <code>economics.price</code>)</td>
+<td>an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>'s field</td>
+</tr>
+<tr>
+<td><code>mozilla-ai/E</code></td>
+<td>(atom/mozilla-ai, E)</td>
+<td>a module that is <code>none</code>, with its reason</td>
+</tr>
+<tr>
+<td><code>meadow/P/brand/meadow</code></td>
+<td><code>P:meadow</code></td>
+<td>Meadow's brand</td>
+</tr>
+<tr>
+<td><code>meadow/P/offering/ledger#flow.outputs[0].to</code></td>
+<td>(<code>P:offering/ledger</code>, <code>flow.outputs[0].to</code>)</td>
+<td>a field inside a list</td>
+</tr>
+<tr>
+<td><code>meadow/O/role/Founder</code></td>
+<td><code>O:role/Founder</code></td>
+<td>a role</td>
+</tr>
+<tr>
+<td><code>meadow/C/counterparty/banks</code></td>
+<td><code>C:counterparty/banks</code></td>
+<td>an outside organization</td>
+</tr>
+<tr>
+<td><code>meadow/I/sku/ledger-monthly</code></td>
+<td><code>I:sku/ledger-monthly</code></td>
+<td>a stock item</td>
+</tr>
+<tr>
+<td><code>meadow/E</code></td>
+<td>(atom/meadow, E)</td>
+<td>a module holding only a README</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/7" data-scope="">
+<h2 id="docs-sec-7" data-toc="2">7. References</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
+<p>A reference is an id written in a field: a foreign key.</p>
+</section>
+<section class="docs-sec" data-key="S:section/7.1" data-scope="">
+<h3 id="docs-sec-7-1" data-toc="3">7.1 Forms</h3>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bare</td>
+<td><code>O:role/Founder</code></td>
+<td>an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> in the same <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a></td>
+</tr>
+<tr>
+<td>qualified</td>
+<td><code>atom/mozilla-org//C:ip/mozilla-trademarks</code></td>
+<td>an item in another concern of the Holotype</td>
+</tr>
+<tr>
+<td>a concern</td>
+<td><code>atom/mozilla-org</code></td>
+<td>a concern</td>
+</tr>
+<tr>
+<td>the brand</td>
+<td><code>P:meadow</code></td>
+<td>P's brand item</td>
+</tr>
+<tr>
+<td>a vendor</td>
+<td><code>vendor/&lt;domain&gt;/&lt;slug&gt;</code></td>
+<td>a fetched vendor-published atom</td>
+</tr>
+<tr>
+<td>a typed link</td>
+<td><code>{rel: …, to: &lt;id&gt;}</code></td>
+<td>the <code>to</code> (or <code>id</code>) inside it</td>
+</tr>
+<tr>
+<td>a sentinel</td>
+<td><code>none</code>, <code>self</code></td>
+<td>nothing, on purpose; the concern itself</td>
+</tr>
+<tr>
+<td>an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a></td>
+<td><code>{pending: &quot;…&quot;}</code></td>
+<td>an answer still owed (<a class="ref-xref" href="#docs-sec-8">section 8</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>An item's own id is written bare in its concern's files; an item id that names another concern is an error
+(<code>id-atom</code>). References to items of the same concern are written bare too.</p>
+</section>
+<section class="docs-sec" data-key="S:section/7.2" data-scope="">
+<h3 id="docs-sec-7-2" data-toc="3">7.2 Where references are checked</h3>
+<p>The envelope's reference fields (<a class="ref-xref" href="#docs-sec-4">section 4</a>) and each <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>'s reference fields (<a class="ref-xref" href="#docs-sec-5">section 5</a>) are checked as references:
+each value must be an id string of one of the forms above that resolves, or a sentinel, or an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>. In P every
+string that looks like an id outside P is checked the same way (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>). A path is not a reference: files hold ids.</p>
+</section>
+<section class="docs-sec" data-key="S:section/7.3" data-scope="">
+<h3 id="docs-sec-7-3" data-toc="3">7.3 Resolution</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A bare id resolves in its own <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s module; a qualified id in the named concern; <code>atom/&lt;slug&gt;</code> to the concern;
+<code>vendor/…</code> to the fetched vendor. Anything else resolves to nothing, and that is an error (<code>ref-unresolved</code>), with
+three exceptions:</p>
+<ul>
+<li>a vendor id not yet fetched is a warning (<code>vendor-missing</code>);</li>
+<li>a SKU named by a mapping row, a price-book rate or an exclusion that a feed brought in resolves against <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local
+database</a>; before any feed has been pulled it is a warning (<code>sku-unverified</code>);</li>
+<li>a typed link with neither <code>to</code> nor <code>id</code> is skipped.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/7.4" data-scope="">
+<h3 id="docs-sec-7-4" data-toc="3">7.4 Scope</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A reference to an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> the reader may not see stays as the id with no name (4.2). Resolution never depends on the
+reader; display does.</p>
+</section>
+<section class="docs-sec" data-key="S:section/7.5" data-scope="">
+<h3 id="docs-sec-7-5" data-toc="3">7.5 Named relations</h3>
+<p><code>plan/comprise-model.md</code> names the cross-module relations (owner, holds, serves, sold-through, priced-by, maps-to or
+entitles, listed-on, runs-on, presents, about, bound-by, shared-with, feeds, attributed-to, at, twin, counterparty,
+licensed-by, requires-credential, member-of). In Comprise OES 1 each is a field; the relation's name is the field's,
+and the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> know them only as reference fields. A typed link's <code>rel</code> is free text.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/8" data-scope="">
+<h2 id="docs-sec-8" data-toc="2">8. Open questions</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
+<p>An <strong>open question</strong> (<em>pending</em>) is a value nobody has yet given, written where the value would go:</p>
+<pre><code class="language-yaml">terms: {pending: &quot;funding amount and term are not published&quot;}
+pending: After the 2026 transfer the FAQ says Mozilla.org owns the trademarks; which entity is the licensor now?
+</code></pre>
+<ul>
+<li><strong>Pending beats plausible.</strong> A writer must never guess a value; it writes the question instead.</li>
+<li><strong>Who answers.</strong> The <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s owner; a role answers for itself; otherwise &quot;unassigned&quot;. The <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> list every open
+question with its item, its field path and who can answer it (<code>python -m core pending</code>).</li>
+<li><strong>Its address.</strong> The item's path plus the field path (<code>…/C/contract/artists-make-technology#terms</code>); an open question
+on the whole item is the item's path.</li>
+<li><strong>What it does to the checks.</strong> An open value is never an error. It makes a rule <em>unverifiable</em> where the rule needs
+the value (a price, a rate, a reporting line, a counterparty), and an unverifiable rule refuses signing.</li>
+<li><strong>Not the same as &quot;not disclosed&quot;.</strong> <code>provenance.state: not-disclosed</code> says the subject declined to say: a fact.</li>
+<li><strong>Not the same as &quot;to fill in&quot;.</strong> <em>To fill in</em> counts the details the question bank would still ask about an item,
+its open questions included; an item with nothing left to fill in is <strong>complete</strong>. The three health figures (open
+questions, to fill in, complete) come from one place, <code>core/health.py</code>.</li>
+</ul>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/9" data-scope="">
+<h2 id="docs-sec-9" data-toc="2">9. Checks</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
+<p>The <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (<em>lint</em>) are the constraints of the database, run on the whole Holotype: <code>python -m core lint &lt;dir&gt;</code>. Every
+write the app makes goes through them, and a write that adds an error is undone.</p>
+</section>
+<section class="docs-sec" data-key="S:section/9.1" data-scope="">
+<h3 id="docs-sec-9-1" data-toc="3">9.1 What runs</h3>
+<ol>
+<li><strong>Load problems</strong>: every file that would not parse or did not fit (errors).</li>
+<li><strong>The envelope</strong> on every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> (<a class="ref-xref" href="#docs-sec-4">section 4</a>), and the reference <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (<a class="ref-xref" href="#docs-sec-7">section 7</a>).</li>
+<li><strong>P's checks</strong> per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> (<a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>), reported with a <code>P</code> prefix.</li>
+<li><strong>The fourteen rules</strong> per concern.</li>
+<li><strong>Notes</strong>: each fetched vendor-published atom; items still exactly as an archetype gave them.</li>
+</ol>
+</section>
+<section class="docs-sec" data-key="S:section/9.2" data-scope="">
+<h3 id="docs-sec-9-2" data-toc="3">9.2 The envelope's checks</h3>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Severity</th>
+<th>Fails when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load</code></td>
+<td>error</td>
+<td>a file did not parse, or a declared <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> or an undeclared folder did not fit</td>
+</tr>
+<tr>
+<td><code>id-grammar</code>, <code>id-module</code>, <code>id-atom</code></td>
+<td>error</td>
+<td>an id does not parse, names another module, or is qualified with another concern</td>
+</tr>
+<tr>
+<td><code>type</code>, <code>type-prefix</code></td>
+<td>error</td>
+<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> is not the module's, or disagrees with the id</td>
+</tr>
+<tr>
+<td><code>identity-min</code></td>
+<td>error</td>
+<td>name or summary missing</td>
+</tr>
+<tr>
+<td><code>provenance</code></td>
+<td>error / warning</td>
+<td>missing or malformed (error); <code>integration</code> without <code>synced-from</code> (warning)</td>
+</tr>
+<tr>
+<td><code>source-undeclared</code></td>
+<td>warning</td>
+<td>a source id the catalog and the P docs do not declare</td>
+</tr>
+<tr>
+<td><code>status</code>, <code>visibility</code></td>
+<td>error</td>
+<td>not one of the closed values</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>error</td>
+<td>the owner is not an <code>O:role</code></td>
+</tr>
+<tr>
+<td><code>ref</code>, <code>ref-grammar</code>, <code>ref-unresolved</code></td>
+<td>error</td>
+<td>a reference is not a string, not an id, or names nothing</td>
+</tr>
+<tr>
+<td><code>vendor-missing</code>, <code>sku-unverified</code></td>
+<td>warning</td>
+<td><a class="ref-xref" href="#docs-sec-7-3">section 7.3</a></td>
+</tr>
+<tr>
+<td><code>no-humans</code></td>
+<td>error / warning</td>
+<td>a pointer to <code>E:person</code> from an unrestricted <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> (error); a singular pronoun in name or summary (warning)</td>
+</tr>
+<tr>
+<td><code>bond</code>, <code>bond-mirror</code></td>
+<td>error / warning</td>
+<td><a class="ref-xref" href="#docs-sec-3-2">section 3.2</a></td>
+</tr>
+<tr>
+<td><code>aim</code></td>
+<td>error</td>
+<td>kind or stance missing or outside its list; a malformed horizon</td>
+</tr>
+<tr>
+<td><code>module-none</code></td>
+<td>warning</td>
+<td><code>module: none</code> without a reason</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/9.3" data-scope="">
+<h3 id="docs-sec-9-3" data-toc="3">9.3 The fourteen rules</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>Each rule reports one of: <strong>pass</strong>, <strong>fail</strong>, <strong>unverifiable</strong>, <strong>finding</strong>. The bold titles below are in this
+document's words. The names the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> print (the CLI, the checks page, the export, MCP's <code>lint</code> <code>rules[].name</code>) are the
+manifest's, which keep the model's words where the two differ: rule 1 is <code>product tree in equilibrium</code>, rule 7
+<code>claims about real nodes</code>, rule 8 <code>bonds two-ended and sourced</code>, rule 9 <code>no stale synced nodes</code>. One line each:</p>
+<ol>
+<li><strong>The product tree in equilibrium.</strong> P's seven conditions all <code>ok</code>, and no P error (<code>module: none</code> passes).</li>
+<li><strong>SKUs map to P units.</strong> Every stock <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> maps to at least one P unit, by <code>maps-to</code> or <code>entitles</code>, or is excluded with a reason.</li>
+<li><strong>Offerings priced.</strong> Every offering has a price or <code>none</code>, and every price-book rate agrees with it.</li>
+<li><strong>Systems owned and referred.</strong> Every system has an owner and something that refers to it; otherwise a finding (orphan spend).</li>
+<li><strong>Positions, roles, owners.</strong> Every position reports to a position (one <code>none</code> at most); every role governs or owns something, or is a pool; every owner resolves.</li>
+<li><strong>Employed persons assigned.</strong> Every active person of an employment <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> holds at least one current assignment, to a position that exists.</li>
+<li><strong>Claims about real items.</strong> Every claim is about something that exists, and no claim restates a <code>must-not</code>; partial, contested or unsupported evidence is a finding.</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">Relationships</a> two-ended and sourced.</strong> Both ends are <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a>, <a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">outside organizations</a>, vendors or <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a>; mirrored where both are modelled; with sources.</li>
+<li><strong>No stale synced items.</strong> No item marked stale or past its <code>max-age</code>, no active feed never pulled or overdue, no reflections grant overdue.</li>
+<li><strong>Counterparties resolve.</strong> Every channel, feed, vendor, platform and platform surface names one <code>C:counterparty</code> (a direct channel, or a feed read from a file, by hand or from an MCP source, may say <code>none</code>).</li>
+<li><strong>No double-counted rollups.</strong> Effective ownership over <code>owns</code> is cycle-safe, and no <code>C:finance</code> consolidates a concern held at equity or cost.</li>
+<li><strong>Credentialed positions.</strong> A position that requires a credential is held by someone who holds it.</li>
+<li><strong>Bus factor.</strong> A person holding more roles than the limit (default 3) is a finding.</li>
+<li><strong>Shell records to promote.</strong> A non-anchor entity or a template instance with its own owners or offerings is a finding: promote it to a concern.</li>
+</ol>
+<p>Rules 6, 12 and 13 read <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>; without it they are unverifiable, unless the people are <code>none</code> with a
+reason.</p>
+</section>
+<section class="docs-sec" data-key="S:section/9.4" data-scope="">
+<h3 id="docs-sec-9-4" data-toc="3">9.4 The verdict</h3>
+<ul>
+<li><strong>ok</strong>: no error and no failed rule. This is the exit code.</li>
+<li><strong>ATTEST: allowed</strong>: ok, and no rule unverifiable. Findings never block. This is &quot;can this version be signed?&quot;</li>
+</ul>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/10" data-scope="">
+<h2 id="docs-sec-10" data-toc="2">10. Versions</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
+<ul>
+<li><strong>A saved version</strong> (<em>snapshot</em>) is an immutable copy of the model files at a moment, at <code>snapshots/&lt;stamp&gt;/</code>: the
+catalog, everything under <code>atoms/</code>, the bindings and the fetched vendors; never <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>, the people file,
+feed payloads or scan runs. Its <code>manifest.yaml</code> holds when and by whom, every file's sha256, each <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s content
+hash and <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> count, the export's hash, the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>' verdict, the people counts, the perspective concern's standing,
+and its own hash. Taking one changes nothing and is always allowed.</li>
+<li><strong>The diff</strong> is item by item, between two saved versions or one and now: concerns and items added and removed, items
+changed with the field paths that moved, an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> answered, a value reopened. A reader's hidden items stay out.</li>
+<li><strong>As of.</strong> A saved version opens read-only (<code>as_of</code>), and reports run against it. <code>snapshot timeline</code> is the change
+across all of them.</li>
+<li><strong>A signed version</strong> (<em>attestation</em>) is a saved version the checks allowed, whose files still match their hashes,
+signed by the holders of the roles that govern it: one Ed25519 signature per signer over a canonical statement (the
+Holotype, the stamp, the manifest hash, the export hash, the signer, the roles, the time), in <code>attestation.yaml</code> beside
+it. Signers are person ids, never names. Signing needs a first-party perspective concern. A signed version is a signed
+snapshot; never &quot;legally equivalent&quot; to anything.</li>
+<li><strong>Hashes.</strong> A concern's content hash is the sha256 of its module files in path order. The export's hash moves with
+its content.</li>
+</ul>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/11" data-scope="">
+<h2 id="docs-sec-11" data-toc="2">11. The private/public split</h2>
+<p><strong>The Holotype is private by construction; the isotype is public by construction.</strong> Two formats, not one format with a
+setting.</p>
+</section>
+<section class="docs-sec" data-key="S:section/11.1" data-scope="">
+<h3 id="docs-sec-11-1" data-toc="3">11.1 The private side</h3>
+<ul>
+<li>The files stay on the subject's machine. Nothing leaves unless a person set up where it goes.</li>
+<li>People are only in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>, sealed field by field under a key kept in the keychain: encrypted
+(AES-256-GCM) when the optional <code>cryptography</code> package is present, tamper-evident only (HMAC) without it, and
+plaintext when there is no key at all, which <code>people list</code> says plainly.</li>
+<li>Credentials are in the keychain, never in a file; private keys under the home folder, never in a Holotype.</li>
+<li>A backup (<code>comprise-bundle/0</code>) is encrypted on the machine before it leaves; Comprise Connect stores ciphertext and
+holds no key.</li>
+<li>Inside, visibility (4.2) decides who reads what: <code>restricted</code> <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> reach only their module's editors.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/11.2" data-scope="">
+<h3 id="docs-sec-11-2" data-toc="3">11.2 Renderings for an audience</h3>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Rendering</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the export, <code>internal</code></td>
+<td>everything; people as counts; <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a>, mismatches and <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a></td>
+</tr>
+<tr>
+<td>the export, <code>external</code></td>
+<td>public <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> only; no owners, provenance, open questions, links, places, sharing, costs, roles, mismatches or checks; no E; no C finance, cap tables or instruments; P by <a class="ref-xref" href="#docs-p-10-how-p-renders-for-an-audience">P.10</a></td>
+</tr>
+<tr>
+<td>the export, <code>agent-for-support</code></td>
+<td>the public items of every module, plus all of P and R; no C finance; no E</td>
+</tr>
+<tr>
+<td>a published atom</td>
+<td>the external rule, as files a vendor serves, signed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/11.3" data-scope="">
+<h3 id="docs-sec-11-3" data-toc="3">11.3 The isotype: a view, default-deny</h3>
+<p>The isotype (<code>comprise-isotype/0</code>) is a separate document with a fixed schema, computed from the Holotype by rules, one
+rule per field. It is a view with fixed columns: a field added to the model later never flows into it by itself.</p>
+<pre><code>{isotype, hid, epoch, cadence, sample, identity, shape, offers, seeks, open_to}
+identity:  name, domains, jurisdiction, founded, kind
+shape:     employees (some | none), structure (single | group), markets
+offers[]:  name, summary, kind (suite, offering, function, product, service, audience)
+seeks[], open_to[]:  kind (the aim kinds), summary
+</code></pre>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Derived from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identity.name</code>, <code>kind</code>, <code>founded</code></td>
+<td>the public brand (<a class="ref-xref" href="#docs-p-10-how-p-renders-for-an-audience">P.10</a>), and a public anchor entity for the founded year</td>
+</tr>
+<tr>
+<td><code>identity.jurisdiction</code></td>
+<td>a public anchor entity only</td>
+</tr>
+<tr>
+<td><code>identity.domains</code></td>
+<td>public <code>kind: website</code> surfaces with no counterparty, and a public anchor entity's domains</td>
+</tr>
+<tr>
+<td><code>shape.employees</code></td>
+<td><code>some</code> when the database holds an employed person or a public position is live; <code>none</code> only when E says so in its reason; else absent</td>
+</tr>
+<tr>
+<td><code>shape.structure</code></td>
+<td><code>group</code> when public <code>owns</code>, <code>controls</code> or <code>common-control</code> <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> join <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a>; <code>single</code> when none touches it; else absent</td>
+</tr>
+<tr>
+<td><code>shape.markets</code></td>
+<td>public audiences (at most 12), the regions they and public geographies name, public markets (at most 6)</td>
+</tr>
+<tr>
+<td><code>offers</code></td>
+<td>the live, public suites and offerings of every member (products and services when there are none), at most 50</td>
+</tr>
+<tr>
+<td><code>seeks</code>, <code>open_to</code></td>
+<td>public, live or planned <code>C:aim</code> <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a>, by stance</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The rules that bind it</strong> (decision Q50):</p>
+<ul>
+<li><strong>Assertions, not measurements.</strong> No counts of anything internal; the only number is the founded year.</li>
+<li><strong>Withhold, never falsify.</strong> What is not public is left out and leaves no mark. An offer whose summary holds a
+digit keeps its name and loses the summary; an aim or a market with a digit is left out.</li>
+<li><strong>Verified and stated.</strong> Identity, shape and offers are derived from the Holotype (<em>verified</em>); seeks and open to are
+the company's own words (<em>stated</em>).</li>
+<li><strong>Epochs and bands.</strong> The date is the epoch (<code>2026-Q4</code>, <code>2026-10</code>, <code>2026-W43</code>), never the day of an edit; lists are
+sorted so file order leaks nothing; a banded number moves only after 90 days past the boundary.</li>
+<li><strong>One release per epoch, signed.</strong> Quarterly by default; monthly or weekly by choice. A release needs a first-party
+concern, unless the Holotype is a sample, whose isotype says <code>sample: true</code> and is signed by the install's sample key.</li>
+<li><strong>Opt-indexed.</strong> Nothing is listed on the Index unless the subject released it and chose to list it.</li>
+</ul>
+<p><em>Not built:</em> the dial, more isotype fields a subject may open one at a time, each opt-in and marked verified or stated.</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/12" data-scope="">
+<h2 id="docs-sec-12" data-toc="2">12. Renderers</h2>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>A <strong>renderer</strong> turns a Holotype into another form. Renderers only read. Each applies the reader's scope (4.2): a hidden
+<a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is absent.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Renderer</th>
+<th>Makes</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the 3D Overview</td>
+<td>the scene: a campus with a building per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, its modules as blocks, <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>, items as bricks, fields as stairs</td>
+<td><code>core/overview3d.py</code>, <code>app/static/overview3d/</code></td>
+</tr>
+<tr>
+<td>the circles (V1)</td>
+<td>concerns, modules, kinds and items as circles within circles</td>
+<td><code>core/overview.py</code>, <code>app/static/overview.js</code></td>
+</tr>
+<tr>
+<td>the Field Guide</td>
+<td>the Summary, the eight chapters, the item pages, the questions</td>
+<td><code>app/fieldguide.py</code>, <code>app/fieldpages.py</code></td>
+</tr>
+<tr>
+<td>the text tree</td>
+<td>P as indented text, with the <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> and the derived tree</td>
+<td><code>python -m core ascii</code>, <code>tree</code></td>
+</tr>
+<tr>
+<td>the export</td>
+<td><code>CONTEXT.md</code> for an audience and a scope, with its hash</td>
+<td><code>core/pack.py</code>, <code>python -m core pack</code></td>
+</tr>
+<tr>
+<td>reports</td>
+<td>columns and rows from a definition, as of now or a saved version</td>
+<td><code>core/reports.py</code></td>
+</tr>
+<tr>
+<td>the diff and the timeline</td>
+<td>change between saved versions</td>
+<td><code>core/snapshot.py</code></td>
+</tr>
+<tr>
+<td>the company mark</td>
+<td>an isometric cluster in the module colours, sized by contents</td>
+<td><code>core/mark.py</code></td>
+</tr>
+<tr>
+<td>the published atom</td>
+<td>a concern's public files, signed, for a vendor to serve</td>
+<td><code>core/publish.py</code></td>
+</tr>
+<tr>
+<td>the isotype</td>
+<td>the public projection (11.3)</td>
+<td><code>core/isotype.py</code></td>
+</tr>
+<tr>
+<td>P's card and Mermaid views</td>
+<td>one item's nine aspects; <code>map</code>, <code>tree</code>, <code>flow</code>, <code>affect</code>, <code>mattering</code></td>
+<td>cosm.py, through <code>core/cosm_bridge.py</code></td>
+</tr>
+<tr>
+<td>the deck</td>
+<td>PDF, SVG and HTML pages of a product tree</td>
+<td>the skill's <code>cosm_deck.py</code>; the app does not call it</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Not built:</em> renderers driven by a reader's own style profile; rewritings for beginners, story problems and narrative
+(the text cases of what the trade calls <em>transcreation</em>).</p>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/13" data-scope="">
+<h2 id="docs-sec-13" data-toc="2">13. Conformance</h2>
+</section>
+<section class="docs-sec" data-key="S:section/13.1" data-scope="">
+<h3 id="docs-sec-13-1" data-toc="3">13.1 A reader must</h3>
+<ol>
+<li>Read the catalog; accept <code>oes: comprise/1</code>; read a catalog without <code>oes:</code> as Comprise OES 1; refuse an unknown
+MiniCOSM or version with a plain error (2.3).</li>
+<li>Load every declared <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s eight modules from <code>*.cosm</code> files at any depth, as UTF-8 with an optional BOM, with
+YAML 1.2 booleans, never stopping at the first problem (2.4, 2.5).</li>
+<li>Read P's <code>brand:</code> (and a legacy <code>firm:</code>) with <code>nodes:</code>, and the legacy <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> <code>firm</code> and <code>stack</code> (<a class="ref-xref" href="#docs-p-7-the-files-of-p">P.7</a>).</li>
+<li>Keep unknown fields and unknown catalog keys.</li>
+<li>Resolve references as <a class="ref-xref" href="#docs-sec-7">section 7</a> says; treat a path as a respelling of an id (<a class="ref-xref" href="#docs-sec-6">section 6</a>), resolved against the loaded
+Holotype, never the disk.</li>
+<li>Apply visibility (4.2) before showing anything: a hidden <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is absent, and a reference to it keeps its id and no
+name.</li>
+<li>Never read <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>'s people into anything but counts, outside E's own pages.</li>
+</ol>
+</section>
+<section class="docs-sec" data-key="S:section/13.2" data-scope="">
+<h3 id="docs-sec-13-2" data-toc="3">13.2 A writer must</h3>
+<ol>
+<li>Write <code>oes: comprise/1</code> first in a new catalog, and never rewrite another's (2.3).</li>
+<li>Write only the COSM YAML subset: no anchors, aliases, tags or multiple documents.</li>
+<li>Write ids bare inside their own <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, with the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> equal to <code>type</code>, and the brand as <code>P:&lt;slug&gt;</code>.</li>
+<li>Write <code>brand:</code>, never <code>firm:</code>; roles in O, contracts in C; no <code>externals:</code> in P.</li>
+<li>Never write a person into a file: no names, no <code>E</code> <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a>, people only in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>.</li>
+<li>Write an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>, never a guess. Cite sources for every fact.</li>
+<li>Write nothing a person did not accept: a model, scan, feed or agent only proposes.</li>
+<li>Leave a Holotype's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> no worse: a write that adds an error is undone.</li>
+</ol>
+</section>
+<section class="docs-sec" data-key="S:section/13.3" data-scope="">
+<h3 id="docs-sec-13-3" data-toc="3">13.3 What the checks verify, and what they do not</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p><strong>Verified:</strong> the load, the <code>oes:</code> declaration included (2.3); the id grammar; <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> per module; the envelope's closed
+lists, required fields and provenance; owners are roles; every reference resolves (with the exceptions in 7.3);
+<a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> kinds and bases; aims; P's per-<a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> and seven conditions; the fourteen rules.</p>
+<p><strong>Not verified</strong> (a writer must still keep them):</p>
+<ul>
+<li>that no item is written into an E file;</li>
+<li>that exactly one entity per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> is the anchor, and that the brand holds at least one part;</li>
+<li>that a <code>restricted</code> item's pointer to a person is lawful;</li>
+<li>inherited <code>must</code> and <code>must-not</code> are not weakened (<a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a>);</li>
+<li>that ids differ by more than case, and that every slug is path-safe (6.4.8);</li>
+<li>that an <code>M:account</code> is restricted.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/13.4" data-scope="">
+<h3 id="docs-sec-13-4" data-toc="3">13.4 Where the code wins</h3>
+<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
+<p>Besides chapter <a class="ref-xref" href="#docs-p-12-where-cosm-0-3-s-text-and-the-code-disagree">P.12</a>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Text elsewhere says</th>
+<th>The code does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HELP_CENTER <a class="ref-xref" href="#docs-sec-8">§8</a>: one file per type family under <code>{C,O,M,P,R,I,S}/</code></td>
+<td>reads any <code>*.cosm</code> at any depth under a module folder</td>
+</tr>
+<tr>
+<td><code>plan/comprise-model.md</code> <a class="ref-xref" href="#docs-sec-5">§5</a> lists C's <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> without <code>aim</code></td>
+<td><code>C:aim</code> exists (slice 26a)</td>
+</tr>
+<tr>
+<td><code>plan/comprise-model.md</code> <a class="ref-xref" href="#docs-sec-4">§4</a>: the envelope includes <code>pending, links, mattering, body</code></td>
+<td>the same, plus <code>shared-with</code> as an envelope reference</td>
+</tr>
+<tr>
+<td><code>plan/comprise-model.md</code> <a class="ref-xref" href="#docs-sec-8">§8</a>: E is canonical in the store</td>
+<td>as written; the store's <code>access</code> table also holds team access levels</td>
+</tr>
+<tr>
+<td><code>plan/comprise-model.md</code> <a class="ref-xref" href="#docs-sec-1">§1</a>, <a class="ref-xref" href="#docs-sec-4">§4</a>: any <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> may say <code>at: site/…</code></td>
+<td><code>at</code> must be an id or a date; <code>site/…</code> is a <code>ref-grammar</code> error, because sites are not items yet (<code>I:location</code> keeps <code>site</code> as free text)</td>
+</tr>
+<tr>
+<td>COSM 0.3's API: &quot;ids are the only handles&quot;</td>
+<td>paths are accepted beside ids (<a class="ref-xref" href="#docs-sec-6">section 6</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+</section>
+<section class="docs-sec" data-key="S:section/14" data-scope="">
+<h2 id="docs-sec-14" data-toc="2">14. Decisions in this version</h2>
+<p>Made by the writer of slice 30b, 2026-10-20, without asking, as the brief required. Slice 30c built on them, so a
+change to what a path means now needs a new MiniCOSM (decision 9).</p>
+<ol>
+<li><strong>The spec is one document</strong>, with the product tree as chapter P and the other seven modules as chapters of the same
+shape. COSM 0.3's normative text survives in chapter P; its unbuilt API is a table (<a class="ref-xref" href="#docs-p-11-what-cosm-0-3-described-that-comprise-oes-1">P.11</a>).</li>
+<li><strong>Paths are a pure respelling of ids.</strong> No lookup, no index. Checked: all 1,227 <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> of the six fixtures round-trip.</li>
+<li><strong>The brand's path is <code>&lt;concern&gt;/P/brand/&lt;slug&gt;</code></strong>, mapping to <code>P:&lt;slug&gt;</code>. One-to-one because <code>P:brand/&lt;slug&gt;</code> is
+never a valid id. <code>&lt;concern&gt;/P/&lt;slug&gt;</code> is not a path.</li>
+<li><strong>The <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> level is a table, never a file.</strong> Neither ids nor paths name files; the file is metadata.</li>
+<li><strong>A <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> has one path per copy</strong>, each in its own <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>; cite the copy in the <code>from</code> concern.</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-outside-organization" data-term="T:term/outside-organization" title="one the Holotype names but does not model">Outside organizations</a> are ordinary C items.</strong> Their global id is a field, not part of a path.</li>
+<li><strong>A vendor-published atom is addressed only as a whole</strong>, <code>vendor/&lt;domain&gt;/&lt;slug&gt;</code>, which is also its id. Its items
+are addressed in the vendor's own Holotype by the qualified form. The case of the second segment keeps it apart from
+a concern called <code>vendor</code>.</li>
+<li><strong>Fields use the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>' own field paths</strong> after <code>#</code>: keys by <code>.</code>, list positions by <code>[n]</code> from zero. Fields only
+follow items. An <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> on a whole item is the item's path.</li>
+<li><strong>The qualified form is <code>oes:comprise/&lt;holotype&gt;/&lt;path&gt;</code></strong>, with the Holotype's id slug and no version. A path must
+keep its meaning across versions; a change of meaning is a new MiniCOSM. A globally unique Holotype name is not built.</li>
+<li><strong>Case is kept and significant.</strong> The slug's characters are the ones the tooling already reads (<code>[A-Za-z0-9._@-]</code>,
+no trailing dot). An id outside them has no path; a warning for it, and for ids that differ only in case, is
+proposed and not built (slice 30c did not add it), and not specified as a check here.</li>
+<li><strong>One spelling.</strong> A reader refuses a malformed path rather than normalizing it: no trailing slash, no <code>..</code>, no <code>%</code>.</li>
+<li><strong>The catalog's entries have no path</strong> in version 1 (sources, grants, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a>, attestations).</li>
+<li><strong>When a catalog has both <code>oes:</code> and <code>comprise:</code>, <code>oes:</code> decides.</strong> An unknown version of a known MiniCOSM is refused
+like an unknown MiniCOSM. A new catalog carries the declaration as its first line, so a person or a tool sees it
+without parsing the file.</li>
+<li><strong>P files keep <code>cosm: 0.3</code>.</strong> It is the product tree's format version, read by P's checks, and says nothing about
+the MiniCOSM.</li>
+<li><strong>The manifest is a <code>.cosm</code> file outside every Holotype</strong>, beside this spec. A Holotype names its MiniCOSM by the
+declaration only and never embeds the manifest. The word <em>manifest</em> has two senses in Comprise: this declaration of a
+language, and the hash list of a saved version, a bundle or a published atom. They never meet on screen.</li>
+<li><strong>The manifest's fields per kind are the schema's reference fields, exactly</strong>, plus the fields a check reads. Every
+other field is open, as the schema says. P lists its nine aspects. E's kinds are marked as stored in <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local
+database</a>.</li>
+<li><strong>An absent visibility outside P reads as <code>internal</code></strong>: visible to every signed-in reader, never public. This is
+what the code does; the spec states it.</li>
+<li><strong><code>P:release</code> stays declared and is marked as rejected by P's checks.</strong> The disagreement is listed, not resolved:
+fixing it is a code change (the schema or cosm.py), outside this slice.</li>
+<li><strong>Words.</strong> The spec says concern, item, relationship, open question, outside organization and kind, with the model's
+term in parentheses where exactness needs it. Ids, file names and check names keep the model's words, because they
+are the format.</li>
+</ol>
+</section>
+<section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
+<dl class="docs-gloss"><dt id="docs-item-t-term-attest-allowed">ATTEST: allowed</dt><dd>ok, and no rule unverifiable — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-checks">checks</dt><dd>lint, equilibrium rules — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-concern">concern</dt><dd>one bounded whole, described on its own — <a class="ref-xref" href="#docs-sec-3-1">defined in §3.1 Concerns (atoms)</a></dd><dt id="docs-item-t-term-export-for-agents">export for agents</dt><dd>export for agents, called pack in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-group">group</dt><dd>a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups — <a class="ref-xref" href="#docs-sec-3-4">defined in §3.4 Groups</a></dd><dt id="docs-item-t-term-item">item</dt><dd>item, called node in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-kind">kind</dt><dd>kind, called type in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-ok">ok</dt><dd>no error and no failed rule — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-open-question">open question</dt><dd>a value nobody has yet given, written where the value would go — <a class="ref-xref" href="#docs-sec-8">defined in §8 Open questions</a></dd><dt id="docs-item-t-term-outside-organization">outside organization</dt><dd>one the Holotype names but does not model — <a class="ref-xref" href="#docs-sec-3-3">defined in §3.3 Outside organizations (stubs)</a></dd><dt id="docs-item-t-term-relationship">relationship</dt><dd>a typed, dated, sourced tie between two concerns — <a class="ref-xref" href="#docs-sec-3-2">defined in §3.2 Relationships (bonds)</a></dd><dt id="docs-item-t-term-renderer">renderer</dt><dd>turns a Holotype into another form — <a class="ref-xref" href="#docs-sec-12">defined in §12 Renderers</a></dd><dt id="docs-item-t-term-saved-version-signed-version">saved version, signed version</dt><dd>saved version, signed version, called snapshot, attestation in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-the-local-database">the local database</dt><dd>the local database, called store in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd></dl>
+</section>
+</div>
+</article>
