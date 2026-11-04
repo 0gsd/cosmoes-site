@@ -139,6 +139,9 @@ The two readings agree because one rule holds: **a path names the same thing a p
 A module folder's letter is read case-insensitively (`p/` loads as `P/`); a writer must write the capital. A folder
 under `atoms/` that the catalog does not declare is a load error. A declared concern without a folder is a load error.
 
+A `logo.svg` or `logo.png` in the volume replaces the drawn company mark (section 12). An SVG so supplied is served so
+that no script in it runs: it is only ever a picture.
+
 ### 2.2 The catalog: `holotype.cosm`
 
 One YAML mapping. Its keys:
@@ -161,6 +164,8 @@ One YAML mapping. Its keys:
 | `store-key` | where the key that seals the people tables is kept: `{keychain: <service>}`, a name, never the key | the local database |
 
 Unknown keys are kept and ignored. A writer must not invent keys the catalog does not list without a version change.
+
+A sample holds no person's name anywhere, and every rendering of it is marked *(sample)*.
 
 ### 2.3 The declaration: `oes: comprise/1`
 
@@ -243,7 +248,8 @@ of the model; none is read by the checks except where a section says so.
   and candidates; logins, invites, tokens, keys (public halves only) and the audit; standing statements and evidence;
   isotype settings and releases.
 
-No export of a Holotype includes the canonical tables, and no `.cosm` file ever holds what they hold.
+No export of a Holotype includes the canonical tables, and no `.cosm` file ever holds what they hold. A member of the
+team is named by an account id in the logins, the invites and the audit, never by an email address.
 
 ---
 
@@ -1315,6 +1321,10 @@ reason.
 **The Holotype is private by construction; the isotype is public by construction.** Two formats, not one format with a
 setting.
 
+**Standing** is whether the people keeping a Holotype speak for its subject, and to what proven level: the domain, the
+legal entity, the person acting for it. First-party standing is proven at one of those levels by Comprise Connect; a
+claim in the catalog (`alignment`, 2.2) is never proof; an outsider's standing is third-party (11.4).
+
 ### 11.1 The private side
 
 - The files stay on the subject's machine. Nothing leaves unless a person set up where it goes.
@@ -1371,7 +1381,8 @@ seeks[], open_to[]:  kind (the aim kinds), summary
 - **One release per epoch, signed.** Quarterly by default; monthly or weekly by choice. A release needs a first-party
   concern, unless the Holotype is a sample, whose isotype says `sample: true` and is signed by the install's sample key.
 - **Opt-indexed.** Nothing is listed on the Index as its subject unless the subject released it and chose to list it. An
-  outside chart (11.4) is listed under Outside View, and never as the subject.
+  outside chart (11.4) is listed under Outside View, and never as the subject. Comprise Connect charges fees for what it
+  does, and its terms page states them; a promoted entry on the Index is always labelled as promoted.
 
 **What a release may also carry.** Each of these is optional and the version stays `/0`, so a stored isotype stays
 valid and an older one reads as it always did. Default-deny still holds: anything not named here is refused, never filtered. A text is
@@ -1427,8 +1438,17 @@ contract, and reach one verdict on it.
   (`comprise/chart`), and never the key that signs an isotype, which would link the person to the company in a public document.
 - **A chart can't become an isotype.** It never carries `sample`, is never listed as the subject, and nothing an outsider derives is marked
   verified.
+- **The handle.** A holder's handle is words and digits joined by hyphens, so it never reads as a subject's handle, and
+  names no one. It changes at most once in 90 days; at 365 days Connect replaces it at the holder's next visit; every
+  handle a holder has had stays on their public history page. A line beside a handle saying what Connect has verified of
+  the holder's organization shows only when something was checked, and never names the organization.
+- **The monthly limit.** Connect takes 3, 10 or 30 new charts a month from a holder, by what the holder's organization
+  has proven: 3 with nothing proven, 10 with a proven domain, 30 with the entity or its representative verified. A
+  replacement counts, the same chart sent again does not, and a withdrawal gives none back.
 - **On the Index.** One live chart per holder per subject: a new one replaces it. Agreement is computed by Connect, is never in the document, and
-  counts only closed or banded fields and sets of kinds. Prose is never merged.
+  counts only closed or banded fields and sets of kinds. Prose is never merged. A count says what these holders say, not
+  that the thing is so, and since one person may hold many accounts it can be farmed. Counts stop once the subject picks
+  among its charts or deletes one, and do not come back.
 - **Once the subject lists.** A listing that has proven the domain demotes its charts, computed at read, and the owner chooses what shows.
 
 ### 11.5 The sealed package: a cryptotype
@@ -1447,6 +1467,8 @@ roles:     holotype, projection, program, trace
 - **Two kinds.** *The whole Holotype* is one `holotype` row per model file, at its own path. *A projection* is `projection` (`projection.json`, a
   `comprise-isotype/0` document with its `program` and `trace` digests, unsigned), `program` (`program.thym`, its source) and `trace`
   (`trace.cosm`, the cleaned trace). Nothing else is a package: no local database, no store key, no people file, and no chart key.
+  A reduced copy's record still shows counts: the trace holds the steps and how many items each went through, which can
+  be more than the copy says.
 - **Text.** A file that isn't text, or that YAML would change, goes under a row's `base64`, with `sha256` still over its bytes.
 - **The seal.** The bundle's cipher (`comprise-bundle/0`: AES-256-GCM chunks and an encrypted manifest) under a **fresh data key for the package**,
   never the Holotype's, with one recovery-code keyring entry. The sealed file is a `thym/1` catalog with `encrypted: {cipher: comprise-bundle/0,
@@ -1455,11 +1477,14 @@ roles:     holotype, projection, program, trace
 - **The key** is a recovery code: 24 characters of A-Z and 2-7, shown once and stored nowhere. A lost key is a lost package.
 - **Standing.** Any standing may make one, since it speaks as no one and is not signed. Below first-party its notice says it is research.
 - **Hosting** is the owner's choice per package. Comprise Connect stores the sealed file in parts, zero-access, in a storage area of its own, with a
-  capability it keeps only hashed, and sees its size, its times and its fetches. A withdrawal really removes it.
+  capability it keeps only hashed, and sees its size, its times and its fetches. A withdrawal really removes it, and
+  cannot recall a copy already fetched.
 - **Match tokens** are the one exception to zero access, by the owner's consent: `{about, token}`, `token` being the lowercase hex HMAC-SHA256
   of `about`, a newline and the value's normal form, under a key per package that Connect holds with a hosted copy. `about` is one of `identity.kind`,
   `identity.country`, `shape.employees`, `shape.structure`, `shape.markets`, `offers.kind`, `seeks.kind` and `open_to.kind`, and a value is a closed word or a
-  two-letter country, so Connect can work out what each says. A package handed over directly has none.
+  two-letter country, so Connect can work out what each says. A package handed over directly has none. Someone who found
+  what a package says may write to its owner: the words are plain words Connect holds, not sealed, and only the owner's
+  yes, in the owner's own words, reaches the asker.
 
 ---
 
@@ -1505,6 +1530,7 @@ cases of what the trade calls *transcreation*), are reserved for a later edition
 6. Apply visibility (4.2) before showing anything: a hidden item is absent, and a reference to it keeps its id and no
    name.
 7. Never read the local database's people into anything but counts, outside E's own pages.
+8. Read through another system's tool (an MCP source) and never write through it.
 
 ### 13.2 A writer must
 
@@ -1542,6 +1568,12 @@ Section 13.4 was withdrawn in edition 0.5.4; its content, where it survives, is 
 
 Newest first. An entry records what changed in the text; where an implementation and this text had disagreed, it says
 which was corrected.
+
+**Edition 0.5.4 · 2026-11-03, second revision.** Rules the reference implementation keeps and this text had not stated
+are written in: the logo file served script-free (2.1); a sample's names and mark (2.2); team members named by account
+id (2.8); standing and its proven levels (section 11); fees and promoted entries (11.3); the holder's handle, the
+monthly limit and what agreement counts and never means (11.4); a reduced copy's record, what a withdrawal cannot
+recall, and a finder's words to an owner (11.5); reading, never writing, through another system's tool (13.1).
 
 **Edition 0.5.4 · 2026-11-03.** The canonical edition, published at https://comprise.cosmoes.org/. The name carries no
 number: Comprise OES, describing the `comprise/1` MiniCOSM; the dated introduction gives way to the status line and the

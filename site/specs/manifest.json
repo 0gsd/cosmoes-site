@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-04T03:48:11Z",
+  "exported": "2026-11-04T04:27:47Z",
   "by": "enough/0.5.1",
   "source": {
-    "commit": "c142959",
+    "commit": "e2fb1d2",
     "dirty": true
   },
   "css": "docs.css",
@@ -31,7 +31,7 @@
         "sections": 14,
         "terms": 14,
         "examples": 0,
-        "decisions": 0,
+        "decisions": 2,
         "reference": 0
       },
       "files": {
@@ -47,8 +47,8 @@
         },
         "fabula": {
           "path": "oes/fabula.html",
-          "sha256": "71fdf3976314cb00d3fe6925b3aff46686d406f72ce2883bccb5fc0999f0e48b",
-          "bytes": 29501
+          "sha256": "44009b57428687f05fe36f6663fafb9fbb99ef7d139baa7f8cf44ef88866d91b",
+          "bytes": 33676
         },
         "source": {
           "path": "oes/source.md",
@@ -84,14 +84,14 @@
         "sections": 110,
         "terms": 41,
         "examples": 8,
-        "decisions": 0,
+        "decisions": 38,
         "reference": 256
       },
       "files": {
         "short": {
           "path": "macrocosm-oes/short.html",
-          "sha256": "9eeee1412450443a670b76e591ec6dbd5672f4ac0f5854f9ce0f68afe11cf298",
-          "bytes": 341002
+          "sha256": "1f25996eef06295d4c67bf8e33789d785a49c12a58b5f7799983d3afea55f8a5",
+          "bytes": 340958
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
@@ -100,8 +100,8 @@
         },
         "fabula": {
           "path": "macrocosm-oes/fabula.html",
-          "sha256": "22a3af4832795cbd212b150f16668613ef237e5bb28c9d4ae738678d5885108c",
-          "bytes": 580250
+          "sha256": "51d299dc56bf689cf342eb7a2d0645f7fe049cf48b629e14914961e4fe2ff866",
+          "bytes": 631404
         },
         "source": {
           "path": "macrocosm-oes/source.md",
@@ -139,7 +139,7 @@
         "sections": 83,
         "terms": 12,
         "examples": 1,
-        "decisions": 0,
+        "decisions": 25,
         "reference": 0
       },
       "files": {
@@ -155,8 +155,8 @@
         },
         "fabula": {
           "path": "thym/fabula.html",
-          "sha256": "318ca389366c61ee8145cc4900059e33e9b16a0859ac522e4f72dcb336db0279",
-          "bytes": 110187
+          "sha256": "ed7044ca8c734e64621302379dd7e49b1ea78c7e34936049bed6ccb950ac72f6",
+          "bytes": 139120
         },
         "source": {
           "path": "thym/source.md",
@@ -194,7 +194,7 @@
         "sections": 27,
         "terms": 2,
         "examples": 1,
-        "decisions": 0,
+        "decisions": 12,
         "reference": 0
       },
       "files": {
@@ -210,8 +210,8 @@
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "41b53cf70f3e932a668e6ad3ff35fa9fa0c05e36e90320642ce58139f3dae112",
-          "bytes": 34079
+          "sha256": "8e13be2a221dd52ce832ae641cd824fbefd97e2d19d54a8ef7a342608e9993e5",
+          "bytes": 47507
         },
         "source": {
           "path": "ascribe/source.md",
@@ -242,36 +242,36 @@
       "lead": "Comprise OES is the MiniCOSM for companies",
       "source": {
         "path": "specs/comprise-oes.md",
-        "sha256": "e3b6cc8889ca881a6d862f60836c7457758556415a9bef0d46d2191244851952"
+        "sha256": "fe9181a729117f341c8c1871aa0f97ba32b5f8ba9adea9dc3be33fab8c5265e9"
       },
       "chapters": [],
       "counts": {
         "sections": 99,
-        "terms": 14,
+        "terms": 15,
         "examples": 0,
-        "decisions": 0,
+        "decisions": 20,
         "reference": 0
       },
       "files": {
         "short": {
           "path": "comprise-oes/short.html",
-          "sha256": "1b599e9b4d4f1a5728995e43bca2582b8c31376feaae17725339320c32a15652",
-          "bytes": 192427
+          "sha256": "69889bf440851b261129457bb4b6bfdc0a704f18947f04a6af6683603caacbea",
+          "bytes": 197155
         },
         "atem": {
           "path": "comprise-oes/atem.html",
-          "sha256": "b4ee30762d4a7e5ea941d3fb61a578f49b4e36f686089da3615a6dd6994bd9d7",
-          "bytes": 28650
+          "sha256": "75bfb865eaba55b75805166e6a005ce1be1c2fe193ab29868a0d419df4d44352",
+          "bytes": 28882
         },
         "fabula": {
           "path": "comprise-oes/fabula.html",
-          "sha256": "1a67bb09c3f68114bf539843310603fa0fea9a29bd22a6a55bfa39c73eae1907",
-          "bytes": 131715
+          "sha256": "d3eb36f83e778277de96c18364ded2e352ec8b711cf813073769c5bdb10269be",
+          "bytes": 161810
         },
         "source": {
           "path": "comprise-oes/source.md",
-          "sha256": "e3b6cc8889ca881a6d862f60836c7457758556415a9bef0d46d2191244851952",
-          "bytes": 102770
+          "sha256": "fe9181a729117f341c8c1871aa0f97ba32b5f8ba9adea9dc3be33fab8c5265e9",
+          "bytes": 105684
         }
       },
       "edition": "0.5.4",
