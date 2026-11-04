@@ -2,8 +2,8 @@
   {
     "slug": "oes",
     "file": "oes.md",
-    "name": "OES",
-    "edition": "1",
+    "name": "The OES specifications",
+    "edition": "0.5.4",
     "describes": {},
     "host": "cosmoes.org",
     "revised": "2026-11-03"
@@ -12,9 +12,9 @@
     "slug": "macrocosm-oes",
     "file": "macrocosm-oes.md",
     "name": "MacroCOSM OES",
-    "edition": "0.0.2",
+    "edition": "0.5.4",
     "describes": {
-      "macrocosm": "0.0.2"
+      "macrocosm": "0.5.4"
     },
     "host": "macro.cosmoes.org",
     "revised": "2026-11-03",
@@ -24,7 +24,7 @@
     "slug": "thym",
     "file": "thym.md",
     "name": "Thym",
-    "edition": "0",
+    "edition": "0.5.4",
     "describes": {
       "thym": "1"
     },
@@ -35,7 +35,7 @@
     "slug": "ascribe",
     "file": "ascribe.md",
     "name": "Ascribe",
-    "edition": "1",
+    "edition": "0.5.4",
     "describes": {
       "ascribe": "1"
     },
@@ -46,7 +46,7 @@
     "slug": "comprise-oes",
     "file": "comprise-oes.md",
     "name": "Comprise OES",
-    "edition": "1",
+    "edition": "0.5.4",
     "describes": {
       "comprise": "1"
     },

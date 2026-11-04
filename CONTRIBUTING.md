@@ -1,7 +1,7 @@
 # Contributing
 
 The texts in `specs/` are the canonical editions of the OES specifications: MacroCOSM OES, Thym, Ascribe, Comprise
-OES, and OES, the paradigm map. cosmoes.org serves nothing else, and the applications that carry a copy (enough,
+OES, and *The OES specifications*, the apex text. cosmoes.org serves nothing else, and the applications that carry a copy (enough,
 Comprise, comprise-connect) sync it from here. A change to a text is a change to this folder, nowhere else.
 
 ## Proposing a change to a text
