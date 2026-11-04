@@ -177,7 +177,7 @@ def test_a_name_under_the_domain_that_nothing_claims_is_not_found(site):
         assert '<h1 id="h">Not found</h1>' in r.text
     assert site.get('a.b.cosmoes.org').status_code == 404
     assert site.get('MACRO.cosmoes.org.').status_code == 200                         # case and a trailing dot: the same host
-    assert site.get('other.cosmoes.org', '/health').json() == {'ok': True}
+    assert site.get('other.cosmoes.org', '/health').json()['ok'] is True
 
 
 def test_without_an_apex_text_the_apex_lists_the_homes(tmp_path):
@@ -260,6 +260,24 @@ def test_docoes_and_mini_redirect_whatever_the_path(site, host, to):
 
 # ----------------------------------------------------------------------------- robots, sitemap, manifest, css, healthz
 
+def test_health_says_the_edition_from_the_manifest(site, tmp_path):
+    want = DOCS[APEX_SLUG][1]
+    for host in (APEX, 'thym.cosmoes.org', 'other.cosmoes.org', 'cosmoes-site-abc123-uc.a.run.app'):
+        r = site.get(host, '/health')
+        assert r.status_code == 200 and r.json() == {'ok': True, 'edition': want}, host
+        assert r.headers['cache-control'] == 'no-store'
+    assert site.get(APEX, '/healthz').json() == {'ok': True}
+
+    moved = make_export(tmp_path / 'moved')                   # another edition in the manifest: /health says it, with no code changed
+    manifest = (moved / 'manifest.json').read_text(encoding='utf-8')
+    (moved / 'manifest.json').write_text(manifest.replace(f'"edition": "{want}"', '"edition": "9.8.7"'), encoding='utf-8')
+    assert Site(moved).get(APEX, '/health').json() == {'ok': True, 'edition': '9.8.7'}
+
+    no_apex = Site(make_export(tmp_path / 'no-apex', slugs=tuple(HOSTS.values())))     # no apex text: the first document's
+    assert no_apex.get(APEX, '/health').json()['edition'] == DOCS[tuple(HOSTS.values())[0]][1]
+    assert Site(tmp_path / 'nothing').get(APEX, '/health').json() == {'ok': True, 'edition': None}
+
+
 def test_robots_allows_everything_and_names_the_hosts_sitemap(site):
     for host, own in ((APEX, 'https://cosmoes.org/'), ('thym.cosmoes.org', 'https://thym.cosmoes.org/'),
                       ('whatever.example', 'https://cosmoes.org/')):
@@ -310,7 +328,7 @@ def test_the_stylesheets_and_healthz(site):
         cached(r)
         for path in ('/healthz', '/health'):          # Cloud Run's front end swallows /healthz; /health gets through
             r = site.get(host, path)
-            assert r.status_code == 200 and r.json() == {'ok': True} and r.headers['cache-control'] == 'no-store'
+            assert r.status_code == 200 and r.json()['ok'] is True and r.headers['cache-control'] == 'no-store'
 
 
 def test_hsts_only_over_https(export):

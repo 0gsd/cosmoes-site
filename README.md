@@ -21,10 +21,10 @@ short density (canonical; `/short` is a 301 to it), `/atem`, `/fabula`, `/manife
 the manifest; the whole of it at the apex), the raw files for the applications that sync their copies from here —
 `/raw/source.md` (the text the pages were built from, `text/markdown`), `/raw/short.html`, `/raw/atem.html`,
 `/raw/fabula.html` (the fragments as they are), each with `Access-Control-Allow-Origin: *` — `/docs.css` (the
-export's stylesheet), `/site.css`, `/robots.txt` (allow all; it names the host's `/sitemap.xml`), `/health` (and
-`/healthz`, which on Cloud Run Google's front end answers itself with a 404 and never passes on). A host outside the
+export's stylesheet), `/site.css`, `/robots.txt` (allow all; it names the host's `/sitemap.xml`), `/health` (`{"ok":true,"edition":…}`, the edition from the manifest) and
+`/healthz` (which on Cloud Run Google's front end answers itself with a 404 and never passes on). A host outside the
 domain (the `run.app` address, a local port) serves the apex; a name under the domain that no document claims is not
-found. Every answer carries `Cache-Control: public, max-age=300` (a 404 and `/healthz`: `no-store`), a
+found. Every answer carries `Cache-Control: public, max-age=300` (a 404, `/health` and `/healthz`: `no-store`), a
 `Content-Security-Policy` that allows only the site's own stylesheets, and HSTS over HTTPS. No JavaScript, no inline
 styles, no third-party loads, no analytics, no environment variables, no storage.
 
