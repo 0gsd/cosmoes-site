@@ -1,18 +1,19 @@
 {% extends "base.html" %}
-{# The apex (cosmoes.org): the four specifications, a tile each with its host and its three densities. #}
+{# The apex without an apex text: the specifications that have a host, a tile each with its host and three densities.
+   (With an apex text, doc.html renders it and this list below it.) #}
 {% block title %}The OES specifications · cosmoes.org{% endblock %}
 {% block body_class %}index{% endblock %}
 {% block content %}
 <section class="hero" aria-labelledby="h">
   <h1 id="h">The OES specifications</h1>
-  <p class="lede">The official homes of the OES specifications, as enough ships them. Each has an address of its own and
-  three densities: <b>atem</b>, one line per section; <b>short</b>, the readable text; <b>fabula</b>, every item as a card.</p>
+  <p class="lede">The official homes of the OES specifications. Each has an address of its own and three densities:
+  <b>atem</b>, one line per section; <b>short</b>, the readable text; <b>fabula</b>, every item as a card.</p>
 </section>
 {% if docs %}
 <ul class="tiles">
   {% for d in docs %}
-  <li class="tile" id="spec-{{ d.slug }}">
-    <p class="kicker"><a href="{{ d.url }}">{{ d.host }}</a>{% if d.version %} · v{{ d.version }}{% endif %}</p>
+  <li class="tile" id="home-{{ d.slug }}">
+    <p class="kicker"><a href="{{ d.url }}">{{ d.host }}</a>{% if d.edition %} · edition {{ d.edition }}{% endif %}</p>
     <h2><a href="{{ d.url }}">{{ d.name }}</a></h2>
     {% if d.lead %}<p class="lead">{{ d.lead }}</p>{% endif %}
     {% if d.counts %}<p class="counts">{{ d.counts|join(' · ') }}</p>{% endif %}

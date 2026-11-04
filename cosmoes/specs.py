@@ -1,22 +1,28 @@
-"""The specifications' export (site/specs/): MacroCOSM OES, Thym, Ascribe and Comprise OES 1 as enough's DocOES exports
-them (`python -m enough.docoes export`; enough-dev's docs/thym-landed-X1.md, section 2, is the format), each at three
-densities: atem (one line per section), short (the readable text) and fabula (every item as a card).
+"""The specifications' export (site/specs/): the texts in specs/ as enough's DocOES exports them (`python -m
+enough.docoes export`; enough-dev's docs/thym-landed-X1.md, section 2, is the format), each at three densities: atem
+(one line per section), short (the readable text) and fabula (every item as a card), plus the registry's fields and a
+copy of each source.
 
-The export lives in this repository, written only by scripts/sync_specs.py and committed with the code:
+The export lives in this repository, written only by scripts/build_specs.py and committed with the code:
 
-    site/specs/manifest.json            docoes-export/1: the documents, their versions, counts and files
+    site/specs/manifest.json            docoes-export/1: the documents, their editions, hosts, counts and files
     site/specs/docs.css                 the export's stylesheet: the fragments' look
     site/specs/<slug>/short.html        a fragment: <article class="docoes docoes-short" …>, no script, no style
     site/specs/<slug>/atem.html
     site/specs/<slug>/fabula.html
+    site/specs/<slug>/source.md         the text the fragments were built from, byte for byte (specs/<file>)
+
+Each document's manifest entry carries, beyond what the export writes, what the build adds from specs/specs.json:
+`edition`, `describes` (the format versions the text describes), `host` (the host that serves it; the domain itself
+for the apex text), `revised` (an ISO date), `raw` (the paths of the raw endpoints) and `files.source`.
 
 `Specs(folder)` reads all of it once, on first use, and keeps it: the folder never changes while the site runs. A
 manifest that is missing, not JSON, another format or a standalone export counts as nothing published. A document is
-left out, with a warning, when one of its fragments is missing, differs from the manifest's sha256, or carries
-anything the pages would not include as it is: a script or style element (or another element that loads or submits
-something), a style or event-handler attribute, a javascript: address. The pages include a fragment `|safe`, so this
-is checked here as well as in the export and the sync. (Copied from comprise-connect's connect/macrocosmoes.py and
-trimmed; the site depends on nothing of Connect's.)
+left out, with a warning, when one of its files is missing, differs from the manifest's sha256, or (a fragment)
+carries anything the pages would not include as it is: a script or style element (or another element that loads or
+submits something), a style or event-handler attribute, a javascript: address. The pages include a fragment `|safe`,
+so this is checked here as well as in the export and the build. (Copied from comprise-connect's
+connect/macrocosmoes.py and trimmed; the site depends on nothing of Connect's.)
 """
 from __future__ import annotations
 
@@ -36,11 +42,15 @@ FORMAT = 'docoes-export/1'
 DENSITIES = ('atem', 'short', 'fabula')              # the density switch's order: the shortest first
 TITLES = {'atem': 'one line per section', 'short': 'the readable text', 'fabula': 'every item as a card'}
 PAGES = {'short': '/', 'atem': '/atem', 'fabula': '/fabula'}   # each density's address on its document's host
+SOURCE = 'source'                                    # the fourth file of a document: its markdown
+RAW = {'source': '/raw/source.md', 'short': '/raw/short.html', 'atem': '/raw/atem.html', 'fabula': '/raw/fabula.html'}
 COUNTS = (('sections', 'section'), ('terms', 'term'), ('examples', 'example'), ('decisions', 'decision'),
           ('reference', 'reference item'))
 SLUG_RE = re.compile(r'^[a-z0-9][a-z0-9-]{0,63}$')
 SHA_RE = re.compile(r'^[0-9a-f]{64}$')
 COMMIT_RE = re.compile(r'^[0-9a-f]{4,40}$')
+HOST_RE = re.compile(r'^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$')
+DATE_RE = re.compile(r'^\d{4}-\d\d-\d\d$')
 BANNED_TEXT = ('<script', '<style')                 # anywhere, in any case
 BANNED_TAGS = frozenset({'script', 'style', 'iframe', 'frame', 'object', 'embed', 'base', 'link', 'meta', 'form'})
 URL_ATTRS = frozenset({'href', 'src', 'action', 'formaction', 'xlink:href'})
@@ -86,8 +96,13 @@ def parse_iso(s: str) -> datetime.datetime:
     return t.astimezone(datetime.timezone.utc)
 
 
-def date_text(t: datetime.datetime | None) -> str:
-    """2 Nov 2026."""
+def date_text(t: datetime.datetime | datetime.date | str | None) -> str:
+    """2 Nov 2026, from a datetime, a date or a YYYY-MM-DD string ('' for anything else)."""
+    if isinstance(t, str):
+        try:
+            t = datetime.date.fromisoformat(t)
+        except ValueError:
+            return ''
     return f'{t.day} {t:%b %Y}' if t else ''
 
 
@@ -100,10 +115,10 @@ def _int(v) -> int:
 
 
 class Specs:
-    """The synced export in `folder`, loaded once on first use. `documents` in the manifest's order, `get(slug)`,
-    `page(slug, density)` (the fragment's HTML), `manifest(slug)` (that document's entry as a manifest of its own, or the
-    whole manifest with no slug), `css` (docs.css's text), `meta` (when and from what it was exported; None when
-    nothing is)."""
+    """The built export in `folder`, loaded once on first use. `documents` in the manifest's order, `get(slug)`,
+    `page(slug, density)` (the fragment's HTML), `source(slug)` (the markdown it was built from), `manifest(slug)`
+    (that document's entry as a manifest of its own, or the whole manifest with no slug), `css` (docs.css's text),
+    `meta` (when, from what and by what it was built; None when nothing is)."""
 
     def __init__(self, folder: Path | str):
         self.folder = Path(folder)
@@ -120,10 +135,13 @@ class Specs:
         return self._load()['by_slug'].get(slug)
 
     def page(self, slug: str, density: str) -> str | None:
-        return self._load()['pages'].get((slug, density))
+        return self._load()['pages'].get((slug, density)) if density in DENSITIES else None
+
+    def source(self, slug: str) -> str | None:
+        return self._load()['pages'].get((slug, SOURCE))
 
     def manifest(self, slug: str | None = None) -> dict | None:
-        """The manifest as synced, its `documents` narrowed to `slug` when one is given (None for an unknown one)."""
+        """The manifest as built, its `documents` narrowed to `slug` when one is given (None for an unknown one)."""
         raw = self._load()['raw']
         if raw is None:
             return None
@@ -155,7 +173,7 @@ class Specs:
         try:
             m = json.loads(path.read_text(encoding='utf-8'))
         except FileNotFoundError:
-            log.info('%s: no specs are exported here; the site says nothing is published', path)
+            log.info('%s: no specs are built here; the site says nothing is published', path)
             return out
         except (OSError, ValueError, UnicodeDecodeError) as e:
             log.warning('%s cannot be read (%s): nothing is served', path, e)
@@ -188,6 +206,8 @@ class Specs:
 
     @staticmethod
     def _meta(m: dict) -> dict:
+        """When and by what the export was built: `exported`, `by` (enough/<version>), `enough` (that version),
+        `commit` and `dirty` (this repository's, as the build recorded them)."""
         try:
             exported = parse_iso(m['exported']) if m.get('exported') else None
         except (TypeError, ValueError):
@@ -197,7 +217,6 @@ class Specs:
         commit = _text(source.get('commit'), 40).lower()
         return {'exported': exported, 'by': by,
                 'enough': by.split('/', 1)[1] if by.startswith('enough/') else '',
-                'from': ('enough ' + by.split('/', 1)[1]) if by.startswith('enough/') else (by or 'enough'),
                 'commit': commit if COMMIT_RE.match(commit) else '', 'dirty': source.get('dirty') is True}
 
     def _document(self, d) -> tuple[dict, dict] | None:
@@ -207,29 +226,37 @@ class Specs:
             return None
         files = d.get('files') if isinstance(d.get('files'), dict) else {}
         pages, size = {}, 0
-        for density in DENSITIES:
-            got = self._fragment(slug, density, files.get(density))
+        for which in DENSITIES + (SOURCE,):
+            got = self._file(slug, which, files.get(which))
             if got is None:
                 return None
-            pages[density], size = got[0], size + got[1]
+            pages[which], size = got[0], size + (got[1] if which != SOURCE else 0)
         counts = d.get('counts') if isinstance(d.get('counts'), dict) else {}
-        chapters = [{'name': _text(c.get('name'), 120), 'source': _text(c.get('source'), 200),
-                     'commit': _text(c.get('commit'), 40), 'prefix': _text(c.get('prefix'), 40),
-                     'version': _text(c.get('version'), 40)}
-                    for c in (d.get('chapters') if isinstance(d.get('chapters'), list) else []) if isinstance(c, dict)]
+        host = _text(d.get('host'), 253).lower()
+        revised = _text(d.get('revised'), 10)
+        describes = d.get('describes') if isinstance(d.get('describes'), dict) else {}
+        raw = d.get('raw') if isinstance(d.get('raw'), dict) else {}
+        source = d.get('source') if isinstance(d.get('source'), dict) else {}
         doc = {'slug': slug, 'name': _text(d.get('name'), 120) or slug, 'version': _text(d.get('version'), 40),
+               'edition': _text(d.get('edition'), 40) or _text(d.get('version'), 40),
+               'describes': {_text(k, 40): _text(v, 40) for k, v in describes.items() if _text(k, 40) and _text(v, 40)},
+               'host': host if HOST_RE.match(host) else '',
+               'revised': revised if DATE_RE.match(revised) and date_text(revised) else '',
+               'raw': {k: _text(v, 80) for k, v in raw.items() if k in RAW and _text(v, 80)},
+               'source_path': _text(source.get('path'), 200), 'source_sha256': _text(source.get('sha256'), 64),
                'lang': _text(d.get('lang'), 16) or 'en', 'id': _text(d.get('id'), 120), 'oes': _text(d.get('oes'), 40),
-               'lead': _text(d.get('lead'), 600), 'chapters': chapters, 'bytes': size,
+               'lead': _text(d.get('lead'), 600), 'bytes': size,
                'counts': [count(_int(counts.get(k)), one) for k, one in COUNTS if _int(counts.get(k))]}
         return doc, pages
 
-    def _fragment(self, slug: str, density: str, f) -> tuple[str, int] | None:
-        """One fragment, checked: its HTML and size, or None (logged) when it cannot be served."""
+    def _file(self, slug: str, which: str, f) -> tuple[str, int] | None:
+        """One file of a document, checked: its text and size, or None (logged) when it cannot be served. A fragment
+        is also checked for what the site never includes; the source is markdown, served as text, not included."""
         rel = f.get('path') if isinstance(f, dict) else None
         sha = f.get('sha256').lower() if isinstance(f, dict) and isinstance(f.get('sha256'), str) else ''
         p = PurePosixPath(rel) if isinstance(rel, str) and rel and '\\' not in rel else None
         if p is None or p.is_absolute() or '..' in p.parts or not SHA_RE.match(sha):
-            log.warning('%s: %s has no usable %s file in the manifest; the document is left out', self.folder, slug, density)
+            log.warning('%s: %s has no usable %s file in the manifest; the document is left out', self.folder, slug, which)
             return None
         try:
             raw = self.folder.joinpath(*p.parts).read_bytes()
@@ -240,13 +267,14 @@ class Specs:
             log.warning('%s: %s differs from the manifest (sha256); %s is left out', self.folder, rel, slug)
             return None
         try:
-            html = raw.decode('utf-8')
+            text = raw.decode('utf-8')
         except UnicodeDecodeError:
             log.warning('%s: %s is not UTF-8; %s is left out', self.folder, rel, slug)
             return None
-        bad = unsafe(html)
-        if bad:
-            log.warning('%s: %s carries %s, which the site never includes; %s is left out', self.folder, rel,
-                        ', '.join(sorted(set(bad))), slug)
-            return None
-        return html, len(raw)
+        if which != SOURCE:
+            bad = unsafe(text)
+            if bad:
+                log.warning('%s: %s carries %s, which the site never includes; %s is left out', self.folder, rel,
+                            ', '.join(sorted(set(bad))), slug)
+                return None
+        return text, len(raw)

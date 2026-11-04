@@ -61,6 +61,15 @@ ul.links a { display: inline-block; min-width: 4.5em; font-weight: 700; }
 .also p { margin: 0; color: var(--ink2); }
 .none { color: var(--ink3); }
 
+/* the apex: the list of the homes after the apex text */
+.homes { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.homes h2 { margin: 0 0 8px; font-size: 1.5rem; line-height: 1.25; }
+.homes .lede { margin-bottom: 20px; }
+.homes li.tile h3 { margin: 0 0 8px; font-size: 1.3rem; line-height: 1.25; }
+.homes li.tile h3 a { color: var(--ink); text-decoration: none; }
+.homes li.tile h3 a:hover { text-decoration: underline; }
+.homes p.also { margin-top: 24px; max-width: var(--measure); color: var(--ink2); }
+
 /* a document: the fragment in a panel, its prose at the measure, tables and code at the full width */
 body.doc .docoes { min-width: 0; padding: 24px 32px 32px; background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--r2); }

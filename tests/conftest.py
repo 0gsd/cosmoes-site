@@ -1,6 +1,7 @@
-"""A small export written to the export's format (enough-dev's docs/thym-landed-X1.md, section 2): the four documents the
-hosts serve, three densities each, a manifest with the files' real hashes. Made fresh in a temporary folder for each
-test, so a test may spoil its copy; the real site/specs/ is read only by the integrity tests."""
+"""A small export written to the export's format as scripts/build_specs.py leaves it (enough-dev's
+docs/thym-landed-X1.md, section 2, plus the registry's fields and each source): the five documents the hosts serve
+(the apex text among them), three densities and a source each, a manifest with the files' real hashes. Made fresh in a
+temporary folder for each test, so a test may spoil its copy; the real site/specs/ is read only by the integrity tests."""
 from __future__ import annotations
 
 import hashlib
@@ -16,15 +17,29 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from cosmoes import specs as specs_mod  # noqa: E402
-from cosmoes.app import HOSTS, create_app  # noqa: E402
+from cosmoes.app import create_app  # noqa: E402
 
-DOCS = {'macrocosm-oes': ('MacroCOSM OES', '0.0.2', 'MacroCOSM OES is the shared grammar every MiniCOSM is written in'),
-        'thym': ('Thym 0', '0', 'Version 0 of the language'),
-        'ascribe': ('Ascribe OES 1', '1', "Ascribe is the MiniCOSM for a person's holograph"),
-        'comprise-oes': ('Comprise OES 1', '1', 'The code in core/ is the reference reader and writer')}
-EXPORTED = '2026-11-02T20:00:00Z'
-PROV = 'From enough 0.5.0 (12dfa61), exported 2 Nov 2026.'
+# slug: (name, edition, lead, host), in the manifest's order; the apex text first
+DOCS = {'oes': ('OES', '1', 'What an OES is, and how the specifications relate', 'cosmoes.org'),
+        'macrocosm-oes': ('MacroCOSM OES', '0.0.2', 'MacroCOSM OES is the shared grammar every MiniCOSM is written in', 'macro.cosmoes.org'),
+        'thym': ('Thym', '0', 'Version 0 of the language', 'thym.cosmoes.org'),
+        'ascribe': ('Ascribe', '1', "Ascribe is the MiniCOSM for a person's holograph", 'ascribe.cosmoes.org'),
+        'comprise-oes': ('Comprise OES', '1', 'The code in core/ is the reference reader and writer', 'comprise.cosmoes.org')}
+DESCRIBES = {'oes': {}, 'macrocosm-oes': {'macrocosm': '0.0.2'}, 'thym': {'thym': '1'}, 'ascribe': {'ascribe': '1'},
+             'comprise-oes': {'comprise': '1'}}
+HOSTS = {'macro': 'macrocosm-oes', 'thym': 'thym', 'ascribe': 'ascribe', 'comprise': 'comprise-oes'}   # subdomain: slug
+APEX_SLUG = 'oes'
+REVISED = '2026-11-03'
+EXPORTED = '2026-11-03T20:00:00Z'
+PROV = ('Built from <a href="https://github.com/0gsd/cosmoes-site">cosmoes-site</a> at d2ea035, with uncommitted changes '
+        'by enough 0.5.1 (DocOES), exported 3 Nov 2026.')
+LICENCE = ("The texts are © 2026 Graham Smith, all rights reserved; the canonical editions are these pages. "
+           "The site's code is Apache-2.0.")
 CSS = '.docoes { color: var(--ink, #1a1f2b); }\n'
+
+
+def source_text(slug: str, name: str) -> str:
+    return f'# {name}\n\n<!-- atem: {DOCS[slug][2]} -->\nA **word** of {name}; see section 1.\n\n## 1. One\n\nA word.\n'
 
 
 def fragment(slug: str, density: str, name: str) -> str:
@@ -59,7 +74,7 @@ def make_export(folder: Path, slugs=tuple(DOCS), pages=None, **manifest) -> Path
     (folder / 'docs.css').write_text(CSS, encoding='utf-8')
     docs = []
     for slug in slugs:
-        name, version, lead = DOCS[slug]
+        name, edition, lead, host = DOCS[slug]
         files = {}
         for density in ('short', 'atem', 'fabula'):
             p = folder / slug / f'{density}.html'
@@ -67,10 +82,17 @@ def make_export(folder: Path, slugs=tuple(DOCS), pages=None, **manifest) -> Path
             p.write_text(fragment(slug, density, name), encoding='utf-8')
             raw = p.read_bytes()
             files[density] = {'path': f'{slug}/{density}.html', 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)}
-        docs.append({'slug': slug, 'name': name, 'version': version, 'lang': 'en', 'id': f'doc/{slug}', 'oes': 'doc/1',
-                     'lead': lead, 'source': {'path': f'docs/{slug}.md', 'sha256': '0' * 64}, 'chapters': [],
-                     'counts': {'sections': 1, 'terms': 1, 'examples': 0, 'decisions': 0, 'reference': 0}, 'files': files})
-    m = {'format': specs_mod.FORMAT, 'exported': EXPORTED, 'by': 'enough/0.5.0', 'source': {'commit': '12dfa61', 'dirty': True},
+        src = folder / slug / 'source.md'
+        src.write_text(source_text(slug, name), encoding='utf-8')
+        raw = src.read_bytes()
+        sha = hashlib.sha256(raw).hexdigest()
+        files['source'] = {'path': f'{slug}/source.md', 'sha256': sha, 'bytes': len(raw)}
+        docs.append({'slug': slug, 'name': name, 'version': edition, 'lang': 'en', 'id': f'doc/{slug}', 'oes': 'doc/1',
+                     'lead': lead, 'source': {'path': f'specs/{slug}.md', 'sha256': sha}, 'chapters': [],
+                     'counts': {'sections': 1, 'terms': 1, 'examples': 0, 'decisions': 0, 'reference': 0}, 'files': files,
+                     'edition': edition, 'describes': dict(DESCRIBES[slug]), 'host': host, 'revised': REVISED,
+                     'raw': dict(specs_mod.RAW)})
+    m = {'format': specs_mod.FORMAT, 'exported': EXPORTED, 'by': 'enough/0.5.1', 'source': {'commit': 'd2ea035', 'dirty': True},
          'css': 'docs.css', 'pages': pages or dict(specs_mod.PAGES), 'standalone': False, 'documents': docs, **manifest}
     (folder / 'manifest.json').write_text(json.dumps(m, indent=1), encoding='utf-8')
     return folder
@@ -84,14 +106,15 @@ def rewrite(folder: Path, edit) -> None:
     p.write_text(json.dumps(m), encoding='utf-8')
 
 
-def reseal(folder: Path, slug: str, density: str, html: str) -> None:
-    """Write a fragment and record its sha256 and size, so that only what it holds is under test."""
-    p = folder / slug / f'{density}.html'
-    p.write_text(html, encoding='utf-8')
+def reseal(folder: Path, slug: str, which: str, text: str) -> None:
+    """Write a fragment (or the source: which='source') and record its sha256 and size, so that only what it holds is
+    under test."""
+    p = folder / slug / (f'{which}.html' if which != 'source' else 'source.md')
+    p.write_text(text, encoding='utf-8')
     raw = p.read_bytes()
 
     def edit(m):
-        f = next(d for d in m['documents'] if d['slug'] == slug)['files'][density]
+        f = next(d for d in m['documents'] if d['slug'] == slug)['files'][which]
         f.update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
     rewrite(folder, edit)
 
@@ -134,4 +157,4 @@ def anchors_resolve(html: str) -> int:
 
 
 def host_for(slug: str) -> str:
-    return next(f'{sub}.cosmoes.org' for sub, s in HOSTS.items() if s == slug)
+    return DOCS[slug][3]

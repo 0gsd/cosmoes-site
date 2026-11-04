@@ -1,5 +1,11 @@
 # cosmoes.org — the official homes of the OES specifications (plan, 2026-11-02, revised after the owner's DNS)
 
+*Superseded in part on 2026-11-03 by the OES canon round: the texts now live in `specs/` here, the one place they are
+edited; `scripts/build_specs.py` builds `site/specs/` from them (the sync from enough is gone); the apex serves the
+paradigm map as a document with the list of the four homes; every host has `/raw/*`; MacroCOSM OES is served
+without the Comprise chapters; the licence line reads © Graham Smith, all rights reserved. README.md and
+CONTRIBUTING.md describe what is; this file is the plan it grew from.*
+
 The owner's ask (2026-11-02): the same DocOES-powered views that comprise.company/macrocosmoes carries, published at
 the specs' own addresses. Hosts (the owner dropped the `.mini.` layer when making the DNS):
 **macro.cosmoes.org** (MacroCOSM OES as a whole), **thym.cosmoes.org**, **ascribe.cosmoes.org**,
