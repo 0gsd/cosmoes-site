@@ -47,7 +47,7 @@ gcloud run deploy $SERVICE --image $IMAGE --region $REGION \
   --service-account $SA --allow-unauthenticated \
   --cpu 1 --memory 512Mi --concurrency 80 --min-instances 0 --max-instances 3 --timeout 60
 export URL=$(gcloud run services describe $SERVICE --region $REGION --format='value(status.url)')
-curl -s $URL/health                                    # {"ok":true}
+curl -s $URL/health                                    # {"ok":true,"edition":"0.5.4"}: up, and the edition its manifest says
 curl -s $URL/ | grep -c 'class="tile"'                 # 4: the run.app address is outside the domain, so it serves the apex
 curl -s $URL/raw/source.md | head -1                   # "# The OES specifications": the apex text, raw
 ```

@@ -4,7 +4,7 @@ registry specs/specs.json declares it): the document whose host is the domain it
 whose host is `<sub>.cosmoes.org` is served at that subdomain. Today:
 
     cosmoes.org             OES, the paradigm map, with the list of the four homes on /; /robots.txt, /sitemap.xml,
-                            /manifest.json (all of it), /health
+                            /manifest.json (all of it), /health ({"ok":true,"edition":…}, on every host)
     macro.cosmoes.org       MacroCOSM OES          /  (short)   /atem   /fabula   /manifest.json   /raw/*   /docs.css
     thym.cosmoes.org        Thym                   the same
     ascribe.cosmoes.org     Ascribe                the same
@@ -19,7 +19,7 @@ On every document host, the apex included: `/raw/source.md` (the text the pages 
 `/raw/atem.html`, `/raw/fabula.html` (the fragments as they are), each with `Access-Control-Allow-Origin: *`, for the
 applications that sync their copies from here. The content is the export in site/specs/ (cosmoes/specs.py;
 scripts/build_specs.py writes it). Every page is script-free, with no inline style and no third-party load; every
-answer carries `Cache-Control: public, max-age=300` (a 404 and /healthz: no-store) and, over HTTPS, HSTS. Every name
+answer carries `Cache-Control: public, max-age=300` (a 404, /health and /healthz: no-store) and, over HTTPS, HSTS. Every name
 and edition shown comes from the manifest. No environment, no storage, no secrets.
 """
 from __future__ import annotations
@@ -200,15 +200,26 @@ def create_app(specs_folder: Path | str | None = None) -> FastAPI:
             response.headers.setdefault('Strict-Transport-Security', HSTS)
         return response
 
+    def edition() -> str | None:
+        """The edition the site serves: the apex text's, or the first document's when the export has no apex text; None
+        when nothing is published. Every text moves to a new edition together, so any one of them says it."""
+        docs = specs.documents
+        first = next((d for d in docs if d.get('host') == DOMAIN), docs[0] if docs else None)
+        return first.get('edition') if first else None
+
     # --------------------------------------------------------------------- the routes, on every host
 
     def get(path: str):
         return app.api_route(path, methods=['GET', 'HEAD'], include_in_schema=False)   # FastAPI adds no HEAD by itself
 
     @get('/health')
+    def health():
+        # The check a release reads from the outside (verroes, release.sh verify): up, and at which edition, from the manifest.
+        # /health and not /healthz: on Cloud Run, Google's front end answers /healthz itself (a 404) and never passes it on.
+        return JSONResponse({'ok': True, 'edition': edition()}, headers={'Cache-Control': NO_STORE})
+
     @get('/healthz')
     def healthz():
-        # /health as well: on Cloud Run, Google's front end answers /healthz itself (a 404) and never passes it on.
         return JSONResponse({'ok': True}, headers={'Cache-Control': NO_STORE})
 
     @get('/')
