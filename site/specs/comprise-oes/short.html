@@ -319,6 +319,8 @@ are reserved for a later edition.</p>
 </code></pre>
 <p>A module folder's letter is read case-insensitively (<code>p/</code> loads as <code>P/</code>); a writer must write the capital. A folder
 under <code>atoms/</code> that the catalog does not declare is a load error. A declared <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> without a folder is a load error.</p>
+<p>A <code>logo.svg</code> or <code>logo.png</code> in the volume replaces the drawn company mark (<a class="ref-xref" href="#docs-sec-12">section 12</a>). An SVG so supplied is served so
+that no script in it runs: it is only ever a picture.</p>
 </section>
 <section class="docs-sec" data-key="S:section/2.2" data-scope="">
 <h3 id="docs-sec-2-2" data-toc="3">2.2 The catalog: <code>holotype.cosm</code></h3>
@@ -361,7 +363,7 @@ under <code>atoms/</code> that the catalog does not declare is a load error. A d
 <tr>
 <td><code>alignment</code></td>
 <td>who said whose company this is, and how (a claim, never proof)</td>
-<td>standing</td>
+<td><a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a></td>
 </tr>
 <tr>
 <td><code>atoms</code></td>
@@ -407,6 +409,7 @@ under <code>atoms/</code> that the catalog does not declare is a load error. A d
 </table>
 </div>
 <p>Unknown keys are kept and ignored. A writer must not invent keys the catalog does not list without a version change.</p>
+<p>A sample holds no person's name anywhere, and every rendering of it is marked <em>(sample)</em>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/2.3" data-scope="">
 <h3 id="docs-sec-2-3" data-toc="3">2.3 The declaration: <code>oes: comprise/1</code></h3>
@@ -482,10 +485,11 @@ of the model; none is read by the <a class="docs-term" href="#docs-item-t-term-c
 <li><strong>Derived</strong> (rebuilt from the files by <code>python -m core index</code>): <code>nodes</code>, <code>edges</code>, <code>nodes_fts</code>.</li>
 <li><strong>Canonical, never in a file:</strong> the people (<code>people_meta</code>, <code>persons</code>, <code>assignments</code>, <code>memberships</code>, <code>credentials</code>,
 <code>access</code>), sealed field by field; <code>series</code>; feed runs, synced SKUs, listings, levels and drift; scan runs, the scan log
-and candidates; logins, invites, tokens, keys (public halves only) and the audit; standing statements and evidence;
+and candidates; logins, invites, tokens, keys (public halves only) and the audit; <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> statements and evidence;
 isotype settings and releases.</li>
 </ul>
-<p>No export of a Holotype includes the canonical tables, and no <code>.cosm</code> file ever holds what they hold.</p>
+<p>No export of a Holotype includes the canonical tables, and no <code>.cosm</code> file ever holds what they hold. A member of the
+team is named by an account id in the logins, the invites and the audit, never by an email address.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/3" data-scope="">
@@ -2947,7 +2951,7 @@ reason.</p>
 <li><strong>A saved version</strong> (<em>snapshot</em>) is an immutable copy of the model files at a moment, at <code>snapshots/&lt;stamp&gt;/</code>: the
 catalog, everything under <code>atoms/</code>, the bindings and the fetched vendors; never <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>, the people file,
 feed payloads or scan runs. Its <code>manifest.yaml</code> holds when and by whom, every file's sha256, each <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s content
-hash and <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> count, the export's hash, the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>' verdict, the people counts, the perspective concern's standing,
+hash and <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> count, the export's hash, the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>' verdict, the people counts, the perspective concern's <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a>,
 and its own hash. Taking one changes nothing and is always allowed.</li>
 <li><strong>The diff</strong> is item by item, between two saved versions or one and now: concerns and items added and removed, items
 changed with the field paths that moved, an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a> answered, a value reopened. A reader's hidden items stay out.</li>
@@ -2967,6 +2971,9 @@ its content.</li>
 <h2 id="docs-sec-11" data-toc="2">11. The private/public split</h2>
 <p><strong>The Holotype is private by construction; the isotype is public by construction.</strong> Two formats, not one format with a
 setting.</p>
+<p><strong>Standing</strong> is whether the people keeping a Holotype speak for its subject, and to what proven level: the domain, the
+legal entity, the person acting for it. First-party standing is proven at one of those levels by Comprise Connect; a
+claim in the catalog (<code>alignment</code>, 2.2) is never proof; an outsider's standing is third-party (11.4).</p>
 </section>
 <section class="docs-sec" data-key="S:section/11.1" data-scope="">
 <h3 id="docs-sec-11-1" data-toc="3">11.1 The private side</h3>
@@ -3078,7 +3085,8 @@ sorted so file order leaks nothing; a banded number moves only after 90 days pas
 <li><strong>One release per epoch, signed.</strong> Quarterly by default; monthly or weekly by choice. A release needs a first-party
 concern, unless the Holotype is a sample, whose isotype says <code>sample: true</code> and is signed by the install's sample key.</li>
 <li><strong>Opt-indexed.</strong> Nothing is listed on the Index as its subject unless the subject released it and chose to list it. An
-outside chart (11.4) is listed under Outside View, and never as the subject.</li>
+outside chart (11.4) is listed under Outside View, and never as the subject. Comprise Connect charges fees for what it
+does, and its terms page states them; a promoted entry on the Index is always labelled as promoted.</li>
 </ul>
 <p><strong>What a release may also carry.</strong> Each of these is optional and the version stays <code>/0</code>, so a stored isotype stays
 valid and an older one reads as it always did. Default-deny still holds: anything not named here is refused, never filtered. A text is
@@ -3140,7 +3148,7 @@ digest's digits count nothing.</p>
 <p><strong>The dial: a release is a program's projection.</strong> <code>project</code> calls the rules in the table above, then narrows to what a Thym program
 emitted and withheld, so a program only chooses: it can keep more back, and it can't add a row, word one or ask a model. Three presets ship
 with Comprise: <em>minimal</em>, which reproduces those rules byte for byte; <em>fuller</em>, with <code>told</code> and a word for <code>shape.markets</code>; and <em>house</em>,
-which adds the rest of the table. A subject with first-party standing may write its own program, and a program that breaks a rule is refused,
+which adds the rest of the table. A subject with first-party <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> may write its own program, and a program that breaks a rule is refused,
 with the line. A first release states a market word, and after that it moves only after 90 days past its boundary. The moves are declared
 in a sidecar, <code>comprise.moves.cosm</code>, and never in the manifest; the language a program is written in is Thym
 (https://thym.cosmoes.org/).</p>
@@ -3149,7 +3157,7 @@ later edition.</p>
 </section>
 <section class="docs-sec" data-key="S:section/11.4" data-scope="">
 <h3 id="docs-sec-11-4" data-toc="3">11.4 The outside chart: <code>comprise-paratype/0</code></h3>
-<p>An outsider's isotype of a subject, at third-party standing and never the subject's word. On a screen it is an <em>outside chart</em>, in full.</p>
+<p>An outsider's isotype of a subject, at third-party <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> and never the subject's word. On a screen it is an <em>outside chart</em>, in full.</p>
 <pre><code>{paratype, standing, submitter, of, hid, epoch, program, trace, identity, shape, offers, seeks, open_to}
 optional:  bonds, policies, and the optional keys of items (11.3)
 refused:   isotype, sample, cadence, agreement
@@ -3201,8 +3209,17 @@ contract, and reach one verdict on it.</p>
 (<code>comprise/chart</code>), and never the key that signs an isotype, which would link the person to the company in a public document.</li>
 <li><strong>A chart can't become an isotype.</strong> It never carries <code>sample</code>, is never listed as the subject, and nothing an outsider derives is marked
 verified.</li>
+<li><strong>The handle.</strong> A holder's handle is words and digits joined by hyphens, so it never reads as a subject's handle, and
+names no one. It changes at most once in 90 days; at 365 days Connect replaces it at the holder's next visit; every
+handle a holder has had stays on their public history page. A line beside a handle saying what Connect has verified of
+the holder's organization shows only when something was checked, and never names the organization.</li>
+<li><strong>The monthly limit.</strong> Connect takes 3, 10 or 30 new charts a month from a holder, by what the holder's organization
+has proven: 3 with nothing proven, 10 with a proven domain, 30 with the entity or its representative verified. A
+replacement counts, the same chart sent again does not, and a withdrawal gives none back.</li>
 <li><strong>On the Index.</strong> One live chart per holder per subject: a new one replaces it. Agreement is computed by Connect, is never in the document, and
-counts only closed or banded fields and sets of <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>. Prose is never merged.</li>
+counts only closed or banded fields and sets of <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>. Prose is never merged. A count says what these holders say, not
+that the thing is so, and since one person may hold many accounts it can be farmed. Counts stop once the subject picks
+among its charts or deletes one, and do not come back.</li>
 <li><strong>Once the subject lists.</strong> A listing that has proven the domain demotes its charts, computed at read, and the owner chooses what shows.</li>
 </ul>
 </section>
@@ -3219,19 +3236,24 @@ roles:     holotype, projection, program, trace
 <ul>
 <li><strong>Two <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>.</strong> <em>The whole Holotype</em> is one <code>holotype</code> row per model file, at its own path. <em>A projection</em> is <code>projection</code> (<code>projection.json</code>, a
 <code>comprise-isotype/0</code> document with its <code>program</code> and <code>trace</code> digests, unsigned), <code>program</code> (<code>program.thym</code>, its source) and <code>trace</code>
-(<code>trace.cosm</code>, the cleaned trace). Nothing else is a package: no <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">local database</a>, no store key, no people file, and no chart key.</li>
+(<code>trace.cosm</code>, the cleaned trace). Nothing else is a package: no <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">local database</a>, no store key, no people file, and no chart key.
+A reduced copy's record still shows counts: the trace holds the steps and how many <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> each went through, which can
+be more than the copy says.</li>
 <li><strong>Text.</strong> A file that isn't text, or that YAML would change, goes under a row's <code>base64</code>, with <code>sha256</code> still over its bytes.</li>
 <li><strong>The seal.</strong> The bundle's cipher (<code>comprise-bundle/0</code>: AES-256-GCM chunks and an encrypted manifest) under a <strong>fresh data key for the package</strong>,
 never the Holotype's, with one recovery-code keyring entry. The sealed file is a <code>thym/1</code> catalog with <code>encrypted: {cipher: comprise-bundle/0, aead: a256gcm, key: shown-once, hid, bundle, keyring, manifest, chunks}</code>, its <code>id</code> is <code>thym/&lt;hid&gt;</code>, and <code>hid</code> is a random id of its own. Its manifest
 also holds <code>clear</code>, the sha256 of the file's own bytes with that value taken out, so a byte changed anywhere refuses it.</li>
 <li><strong>The key</strong> is a recovery code: 24 characters of A-Z and 2-7, shown once and stored nowhere. A lost key is a lost package.</li>
-<li><strong>Standing.</strong> Any standing may make one, since it speaks as no one and is not signed. Below first-party its notice says it is research.</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">Standing</a>.</strong> Any standing may make one, since it speaks as no one and is not signed. Below first-party its notice says it is research.</li>
 <li><strong>Hosting</strong> is the owner's choice per package. Comprise Connect stores the sealed file in parts, zero-access, in a storage area of its own, with a
-capability it keeps only hashed, and sees its size, its times and its fetches. A withdrawal really removes it.</li>
+capability it keeps only hashed, and sees its size, its times and its fetches. A withdrawal really removes it, and
+cannot recall a copy already fetched.</li>
 <li><strong>Match tokens</strong> are the one exception to zero access, by the owner's consent: <code>{about, token}</code>, <code>token</code> being the lowercase hex HMAC-SHA256
 of <code>about</code>, a newline and the value's normal form, under a key per package that Connect holds with a hosted copy. <code>about</code> is one of <code>identity.kind</code>,
 <code>identity.country</code>, <code>shape.employees</code>, <code>shape.structure</code>, <code>shape.markets</code>, <code>offers.kind</code>, <code>seeks.kind</code> and <code>open_to.kind</code>, and a value is a closed word or a
-two-letter country, so Connect can work out what each says. A package handed over directly has none.</li>
+two-letter country, so Connect can work out what each says. A package handed over directly has none. Someone who found
+what a package says may write to its owner: the words are plain words Connect holds, not sealed, and only the owner's
+yes, in the owner's own words, reaches the asker.</li>
 </ul>
 <hr />
 </section>
@@ -3328,6 +3350,7 @@ Holotype, never the disk.</li>
 <li>Apply visibility (4.2) before showing anything: a hidden <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> is absent, and a reference to it keeps its id and no
 name.</li>
 <li>Never read <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>'s people into anything but counts, outside E's own pages.</li>
+<li>Read through another system's tool (an MCP source) and never write through it.</li>
 </ol>
 </section>
 <section class="docs-sec" data-key="S:section/13.2" data-scope="">
@@ -3367,6 +3390,11 @@ lists, required fields and provenance; owners are roles; every reference resolve
 <h2 id="docs-sec-14" data-toc="2">14. Changes</h2>
 <p>Newest first. An entry records what changed in the text; where an implementation and this text had disagreed, it says
 which was corrected.</p>
+<p><strong>Edition 0.5.4 · 2026-11-03, second revision.</strong> Rules the reference implementation keeps and this text had not stated
+are written in: the logo file served script-free (2.1); a sample's names and mark (2.2); team members named by account
+id (2.8); <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> and its proven levels (<a class="ref-xref" href="#docs-sec-11">section 11</a>); fees and promoted entries (11.3); the holder's handle, the
+monthly limit and what agreement counts and never means (11.4); a reduced copy's record, what a withdrawal cannot
+recall, and a finder's words to an owner (11.5); reading, never writing, through another system's tool (13.1).</p>
 <p><strong>Edition 0.5.4 · 2026-11-03.</strong> The canonical edition, published at https://comprise.cosmoes.org/. The name carries no
 number: Comprise OES, describing the <code>comprise/1</code> MiniCOSM; the dated introduction gives way to the status line and the
 lead. Comprise, the product, is named as the reference implementation in place of its code, and &quot;the code wins&quot; gives
@@ -3444,7 +3472,7 @@ because they are the format.</li>
 https://comprise.cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
-<dl class="docs-gloss"><dt id="docs-item-t-term-attest-allowed">ATTEST: allowed</dt><dd>ok, and no rule unverifiable — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-checks">checks</dt><dd>lint, equilibrium rules — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-concern">concern</dt><dd>one bounded whole, described on its own — <a class="ref-xref" href="#docs-sec-3-1">defined in §3.1 Concerns (atoms)</a></dd><dt id="docs-item-t-term-export-for-agents">export for agents</dt><dd>export for agents, called pack in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-group">group</dt><dd>a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups — <a class="ref-xref" href="#docs-sec-3-4">defined in §3.4 Groups</a></dd><dt id="docs-item-t-term-item">item</dt><dd>item, called node in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-kind">kind</dt><dd>kind, called type in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-ok">ok</dt><dd>no error and no failed rule — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-open-question">open question</dt><dd>a value nobody has yet given, written where the value would go — <a class="ref-xref" href="#docs-sec-8">defined in §8 Open questions</a></dd><dt id="docs-item-t-term-outside-organization">outside organization</dt><dd>one the Holotype names but does not model — <a class="ref-xref" href="#docs-sec-3-3">defined in §3.3 Outside organizations (stubs)</a></dd><dt id="docs-item-t-term-relationship">relationship</dt><dd>a typed, dated, sourced tie between two concerns — <a class="ref-xref" href="#docs-sec-3-2">defined in §3.2 Relationships (bonds)</a></dd><dt id="docs-item-t-term-renderer">renderer</dt><dd>turns a Holotype into another form — <a class="ref-xref" href="#docs-sec-12">defined in §12 Renderers</a></dd><dt id="docs-item-t-term-saved-version-signed-version">saved version, signed version</dt><dd>saved version, signed version, called snapshot, attestation in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-the-local-database">the local database</dt><dd>the local database, called store in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd></dl>
+<dl class="docs-gloss"><dt id="docs-item-t-term-attest-allowed">ATTEST: allowed</dt><dd>ok, and no rule unverifiable — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-checks">checks</dt><dd>lint, equilibrium rules — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-concern">concern</dt><dd>one bounded whole, described on its own — <a class="ref-xref" href="#docs-sec-3-1">defined in §3.1 Concerns (atoms)</a></dd><dt id="docs-item-t-term-export-for-agents">export for agents</dt><dd>export for agents, called pack in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-group">group</dt><dd>a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups — <a class="ref-xref" href="#docs-sec-3-4">defined in §3.4 Groups</a></dd><dt id="docs-item-t-term-item">item</dt><dd>item, called node in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-kind">kind</dt><dd>kind, called type in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-ok">ok</dt><dd>no error and no failed rule — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 The verdict</a></dd><dt id="docs-item-t-term-open-question">open question</dt><dd>a value nobody has yet given, written where the value would go — <a class="ref-xref" href="#docs-sec-8">defined in §8 Open questions</a></dd><dt id="docs-item-t-term-outside-organization">outside organization</dt><dd>one the Holotype names but does not model — <a class="ref-xref" href="#docs-sec-3-3">defined in §3.3 Outside organizations (stubs)</a></dd><dt id="docs-item-t-term-relationship">relationship</dt><dd>a typed, dated, sourced tie between two concerns — <a class="ref-xref" href="#docs-sec-3-2">defined in §3.2 Relationships (bonds)</a></dd><dt id="docs-item-t-term-renderer">renderer</dt><dd>turns a Holotype into another form — <a class="ref-xref" href="#docs-sec-12">defined in §12 Renderers</a></dd><dt id="docs-item-t-term-saved-version-signed-version">saved version, signed version</dt><dd>saved version, signed version, called snapshot, attestation in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-standing">Standing</dt><dd>whether the people keeping a Holotype speak for its subject, and to what proven level — <a class="ref-xref" href="#docs-sec-11">defined in §11 The private/public split</a></dd><dt id="docs-item-t-term-the-local-database">the local database</dt><dd>the local database, called store in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd></dl>
 </section>
 </div>
 </article>
