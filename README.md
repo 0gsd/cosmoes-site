@@ -6,7 +6,7 @@ fabula: every item as a card), as enough's DocOES exports them:
 
 | host | document |
 |---|---|
-| `cosmoes.org` | OES, the paradigm map, with the list of the four homes on `/`; `/robots.txt`, `/sitemap.xml`, `/manifest.json` (all of it) |
+| `cosmoes.org` | *The OES specifications*, the apex text, with the list of the four homes on `/`; `/robots.txt`, `/sitemap.xml`, `/manifest.json` (all of it) |
 | `macro.cosmoes.org` | MacroCOSM OES (alone: the Comprise texts have their own homes) |
 | `thym.cosmoes.org` | Thym |
 | `ascribe.cosmoes.org` | Ascribe |

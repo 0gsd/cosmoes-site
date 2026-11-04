@@ -49,7 +49,7 @@ gcloud run deploy $SERVICE --image $IMAGE --region $REGION \
 export URL=$(gcloud run services describe $SERVICE --region $REGION --format='value(status.url)')
 curl -s $URL/health                                    # {"ok":true}
 curl -s $URL/ | grep -c 'class="tile"'                 # 4: the run.app address is outside the domain, so it serves the apex
-curl -s $URL/raw/source.md | head -1                   # "# OES: the paradigm map": the apex text, raw
+curl -s $URL/raw/source.md | head -1                   # "# The OES specifications": the apex text, raw
 ```
 
 `--allow-unauthenticated`: it is a public site with nothing to protect. `/healthz` is not a check here: on Cloud Run,

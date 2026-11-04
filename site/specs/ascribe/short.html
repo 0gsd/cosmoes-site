@@ -1,21 +1,24 @@
 <article class="docoes docoes-short" data-doc="ascribe" data-density="short" data-lang="en">
-<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-contents">Contents</a></li><li class="lvl2"><a href="#docs-how-to-read-this">How to read this</a></li><li class="lvl2"><a href="#docs-sec-1">1. Provenance and the name</a></li><li class="lvl2"><a href="#docs-sec-2">2. The model on one page</a></li><li class="lvl2"><a href="#docs-sec-3">3. The design rules</a></li><li class="lvl2"><a href="#docs-sec-4">4. The holograph</a><ol><li class="lvl3"><a href="#docs-sec-4-1">4.1 The volume</a></li><li class="lvl3"><a href="#docs-sec-4-2">4.2 The catalog</a></li><li class="lvl3"><a href="#docs-sec-4-3">4.3 Ids and paths</a></li><li class="lvl3"><a href="#docs-sec-4-4">4.4 An example</a></li></ol></li><li class="lvl2"><a href="#docs-sec-5">5. The ten containers and the forms</a><ol><li class="lvl3"><a href="#docs-sec-5-1">5.1 The containers</a></li><li class="lvl3"><a href="#docs-sec-5-2">5.2 The forms</a></li></ol></li><li class="lvl2"><a href="#docs-sec-6">6. The envelope</a></li><li class="lvl2"><a href="#docs-sec-7">7. Links and relations</a></li><li class="lvl2"><a href="#docs-sec-8">8. The dialectic</a></li><li class="lvl2"><a href="#docs-sec-9">9. Checks</a><ol><li class="lvl3"><a href="#docs-sec-9-1">9.1 The generic checks</a></li><li class="lvl3"><a href="#docs-sec-9-2">9.2 Ascribe's own</a></li><li class="lvl3"><a href="#docs-sec-9-3">9.3 What reads like personal data</a></li></ol></li><li class="lvl2"><a href="#docs-sec-10">10. The private filter</a></li><li class="lvl2"><a href="#docs-sec-11">11. The command line</a></li><li class="lvl2"><a href="#docs-sec-12">12. Projections, by reference</a></li><li class="lvl2"><a href="#docs-sec-13">13. What is not built</a></li><li class="lvl2"><a href="#docs-sec-14">14. Decisions in this version</a></li><li class="lvl2"><a href="#docs-colophon">Colophon</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
+<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-contents">Contents</a></li><li class="lvl2"><a href="#docs-how-to-read-this">How to read this</a></li><li class="lvl2"><a href="#docs-sec-1">1. Provenance and the name</a></li><li class="lvl2"><a href="#docs-sec-2">2. The model on one page</a></li><li class="lvl2"><a href="#docs-sec-3">3. The design rules</a></li><li class="lvl2"><a href="#docs-sec-4">4. The holograph</a><ol><li class="lvl3"><a href="#docs-sec-4-1">4.1 The volume</a></li><li class="lvl3"><a href="#docs-sec-4-2">4.2 The catalog</a></li><li class="lvl3"><a href="#docs-sec-4-3">4.3 Ids and paths</a></li><li class="lvl3"><a href="#docs-sec-4-4">4.4 An example</a></li></ol></li><li class="lvl2"><a href="#docs-sec-5">5. The ten containers and the forms</a><ol><li class="lvl3"><a href="#docs-sec-5-1">5.1 The containers</a></li><li class="lvl3"><a href="#docs-sec-5-2">5.2 The forms</a></li></ol></li><li class="lvl2"><a href="#docs-sec-6">6. The envelope</a></li><li class="lvl2"><a href="#docs-sec-7">7. Links and relations</a></li><li class="lvl2"><a href="#docs-sec-8">8. The dialectic</a></li><li class="lvl2"><a href="#docs-sec-9">9. Checks</a><ol><li class="lvl3"><a href="#docs-sec-9-1">9.1 The generic checks</a></li><li class="lvl3"><a href="#docs-sec-9-2">9.2 Ascribe's own</a></li><li class="lvl3"><a href="#docs-sec-9-3">9.3 What reads like personal data</a></li></ol></li><li class="lvl2"><a href="#docs-sec-10">10. The private filter</a></li><li class="lvl2"><a href="#docs-sec-11">11. The command line</a></li><li class="lvl2"><a href="#docs-sec-12">12. Projections, by reference</a></li><li class="lvl2"><a href="#docs-sec-13">13. Withdrawn</a></li><li class="lvl2"><a href="#docs-sec-14">14. Changes</a></li><li class="lvl2"><a href="#docs-colophon">Colophon</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
-<h1 id="docs-ascribe-oes-1-a-person-described-without-a-name">Ascribe OES 1: a person, described without a name</h1>
-<p><em>Specification of the <code>ascribe/1</code> MiniCOSM · written 2026-11-02 for enough 0.5.0</em></p>
-<p>Ascribe is the MiniCOSM for a person's <strong>holograph</strong>: a description of one self, comprehensive enough that a name is
-unnecessary. It holds what a person is drawn to and turns from, believes, worries about, has lived through, wants to
-know, thinks, feels, can do, understands and longs for, each item anchored to the thing it is about, under a
-pseudonymous handle. It is written in MacroCOSM OES (<code>docs/MACROCOSM_OES.md</code>), whose words (item, kind, volume,
-catalog, module, check, lens, open question) keep their meaning here, and what leaves a holograph leaves by a Thym
-program its holder runs (<code>docs/THYM.md</code>). Comprise describes companies; Ascribe describes people, in the same grammar,
-with the same envelope, so that one set of moves works on both.</p>
-<p><strong>Status.</strong> Normative for <code>ascribe/1</code>. The declaration is the manifest, <code>defaults/cosm/manifests/ascribe.manifest.cosm</code>;
-the reference reader is <code>enough/macrocosm.py</code>, and Ascribe's own checks are <code>enough/ascribe.py</code>. Where this text and the
-code disagree, the code wins and this text is corrected. What enough builds of Ascribe in 0.5.0 is the manifest and the
-reader: a holograph loads, checks and draws in the cosm viewer, and nothing in enough writes one (<a class="ref-xref" href="#docs-sec-13">section 13</a>). A rule the
-owner of enough settled is marked <em>the owner's ruling</em>; the rulings are dated 2026-11-01 and collected in <a class="ref-xref" href="#docs-sec-14">section 14</a>.</p>
+<h1 id="docs-ascribe">Ascribe</h1>
+<p><em>Edition 0.5.4 · revised 2026-11-03 · cosmoes.org home: https://ascribe.cosmoes.org/</em></p>
+<p><em>This edition describes the <code>ascribe/1</code> MiniCOSM: the declaration every holograph carries.</em></p>
+<p>A person, described without a name: Ascribe is the MiniCOSM for a person's <strong>holograph</strong>, a description of one self
+comprehensive enough that a name is unnecessary. It holds what a person is drawn to and turns from, believes, worries
+about, has lived through, wants to know, thinks, feels, can do, understands and longs for, each item anchored to the
+thing it is about, under a pseudonymous handle.</p>
+<p>Ascribe is written in MacroCOSM OES (https://macro.cosmoes.org/), whose words (item, kind, volume, catalog, module,
+check, lens, open question) keep their meaning here, and what leaves a holograph leaves by a Thym program its holder
+runs (https://thym.cosmoes.org/). Comprise describes companies; Ascribe describes people, in the same grammar, with the
+same envelope, so that one set of moves works on both.</p>
+<p><strong>Status.</strong> Normative for <code>ascribe/1</code>. The declaration is the manifest, <code>ascribe.manifest.cosm</code>. The reference
+implementation is enough (https://github.com/0gsd/enough): its MacroCOSM reader loads a holograph and runs the checks
+the manifest selects, its Ascribe module runs Ascribe's own, and its cosm viewer draws the holograph. Where an
+implementation and this text disagree, one of them is in error; the Changes appendix (<a class="ref-xref" href="#docs-sec-14">section 14</a>) records which was
+corrected. A rule marked <em>the owner's ruling</em> was settled by the format's owner rather than derived from the grammar;
+the Changes appendix dates the rulings.</p>
 </section>
 <section class="docs-sec" data-key="S:section/contents" data-scope="">
 <h2 id="docs-contents" data-toc="2">Contents</h2>
@@ -32,8 +35,8 @@ owner of enough settled is marked <em>the owner's ruling</em>; the rulings are d
 <li>The private filter</li>
 <li>The command line</li>
 <li>Projections, by reference</li>
-<li>What is not built</li>
-<li>Decisions in this version</li>
+<li>Withdrawn</li>
+<li>Changes</li>
 </ol>
 <p>Colophon</p>
 </section>
@@ -77,17 +80,17 @@ checks do not enforce.</p>
 <p><em>holo-</em> the whole; <em>iso-</em> an equal, verified; <em>para-</em> beside, by another hand; <em>crypto-</em> hidden, by the owner. There is
 no outsider's graph of a person, ever (the owner's ruling): what one person knows of another is an experience in their
 own holograph.</p>
-<p><strong>Blocks.</strong> A block marked <code>cosm</code> is one complete file that loads through the reference reader and passes the checks
-the manifest selects and Ascribe's own (<code>python -m enough.ascribe lint</code>), with every reference resolving inside it. A
-block marked <code>yaml</code> is a fragment and may point outside itself. A block marked <code>text</code> is a picture or a transcript.</p>
+<p><strong>Blocks.</strong> A block marked <code>cosm</code> is one complete file that loads through a conforming reader and passes the checks the
+manifest selects and Ascribe's own (<a class="ref-xref" href="#docs-sec-9">section 9</a>), with every reference resolving inside it. A block marked <code>yaml</code> is a
+fragment and may point outside itself. A block marked <code>text</code> is a picture or a transcript.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/1" data-scope="">
 <h2 id="docs-sec-1" data-toc="2">1. Provenance and the name</h2>
-<p>The owner's drawings for the 0.5.0 round set two subjects side by side, each with a private whole and public
-projections: Comprise for companies, already built, and Ascribe for people. <code>docs/thym-architecture.md</code> (local) drew its
-first shape, with the modules left to the owner; the owner wrote the list on 2026-11-01, and the manifest landed the
-same evening as <code>ascribe/1</code>. <em>Ascribe OES 1</em> is its name in prose, as <em>Comprise OES 1</em> is Comprise's.</p>
+<p>Ascribe was drawn beside Comprise: two subjects set side by side, each with a private whole and public projections,
+Comprise for companies and Ascribe for people. The architecture drawn for Thym gave Ascribe its first shape, with the
+modules left to the owner, who wrote the list of ten; the manifest followed as <code>ascribe/1</code> (<a class="ref-xref" href="#docs-sec-14">section 14</a>). <em>Ascribe</em> is
+its name in prose, as <em>Comprise OES</em> is Comprise's; <code>ascribe/1</code> is its declaration, as <code>comprise/1</code> is Comprise's.</p>
 <p>To <em>ascribe</em> is to set something down as belonging to someone. A holograph ascribes qualities to a self without saying
 whose self it is.</p>
 <hr />
@@ -98,7 +101,7 @@ whose self it is.</p>
   holograph.cosm                    the self: oes: ascribe/1, id ascribe/&lt;hid&gt;, a handle, pseudonyms, sample
   A/ B/ C/ E/ I/ O/ Q/ S/ U/ Y/     ten containers of the self, one kind of node each
   F/                                the forms the nodes anchor to, the polyforms that combine them, declared relations
-  **/.ascribe-private               a marker: what ingest and transfer leave behind (declared, not built)
+  **/.ascribe-private               a marker: what ingest and transfer leave behind (section 10)
 </code></pre>
 <ul>
 <li>The <strong>holograph</strong> is the volume: a folder whose catalog, <code>holograph.cosm</code>, is the self. It names no one. Its id is a
@@ -174,8 +177,9 @@ folders sit directly beside the catalog.</p>
 </tbody>
 </table>
 </div>
-<p>A node is written in its own module's folder or in the catalog's <code>nodes:</code>; a node elsewhere fails <code>id-module</code>, which
-<code>enough/ascribe.py</code> holds to the folders because the generic reader places module folders only under parts.</p>
+<p>A node is written in its own module's folder or in the catalog's <code>nodes:</code>; a node elsewhere fails <code>id-module</code>, which an
+Ascribe reader holds to the module folders because the generic reader places module folders only under parts
+(<a class="ref-xref" href="#docs-sec-9-1">section 9.1</a>).</p>
 </section>
 <section class="docs-sec" data-key="S:section/4.2" data-scope="">
 <h3 id="docs-sec-4-2" data-toc="3">4.2 The catalog</h3>
@@ -194,7 +198,7 @@ folders sit directly beside the catalog.</p>
 </tr>
 <tr>
 <td><code>macrocosm</code></td>
-<td>reserved (MacroCOSM 5.6)</td>
+<td>reserved (<a href="https://macro.cosmoes.org/">MacroCOSM OES</a>, its section 5.6)</td>
 </tr>
 <tr>
 <td><code>id</code></td>
@@ -237,8 +241,8 @@ no one); an item's <code>name</code> is the item's own. The reader titles a holo
 <code>F:form/celestial-navigation</code>, <code>F:polyform/slow-crafts</code>, <code>F:relation/learned-in</code>. Inside its own volume an id is
 written bare. A path respells an id through the manifest's levels, <code>&lt;module&gt;/&lt;kind&gt;/&lt;slug&gt;#&lt;field&gt;</code>
 (<code>A/affinity/sourdough-baking#strength</code>), and a URI qualifies it, <code>oes:ascribe/&lt;hid&gt;/&lt;path&gt;</code>, the catalog id without
-<code>ascribe/</code> standing for the database. The slug grammar and the refused path forms are MacroCOSM's (MacroCOSM 11.2),
-with the module segment one of <code>A B C E I O Q S U Y F</code>.</p>
+<code>ascribe/</code> standing for the database. The slug grammar and the refused path forms are MacroCOSM's
+(<a href="https://macro.cosmoes.org/">MacroCOSM OES</a>, its section 11.2), with the module segment one of <code>A B C E I O Q S U Y F</code>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/4.4" data-scope="">
 <h3 id="docs-sec-4-4" data-toc="3">4.4 An example</h3>
@@ -288,8 +292,8 @@ nodes:
       - {rel: learned-in, to: E:experience/first-night-crossing}
     provenance: {mode: dialectic, sources: [session-2], confidence: 0.8}
 </code></pre>
-<p>The sample holograph that <code>tests/fixtures/ascribe/sample-self/</code> holds is the same self at full size, in folders: every
-module, twenty-six items, one open question (sea glass, which FEED does not have).</p>
+<p>enough's sample holograph, <code>sample-self</code>, is the same self at full size, in folders: every module, twenty-six items,
+one open question (sea glass, which FEED does not have).</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/5" data-scope="">
@@ -496,7 +500,7 @@ they do in Comprise outside its product tree. Six fields are Ascribe's: <code>fo
 </tr>
 <tr>
 <td><code>made</code></td>
-<td><code>{move, run, step, engine}</code>: the Thym move that made the item, or <code>{move: none}</code> for a hand-made one (THYM.md 5.3)</td>
+<td><code>{move, run, step, engine}</code>: the Thym move that made the item, or <code>{move: none}</code> for a hand-made one (<a href="https://thym.cosmoes.org/">Thym</a>, its section 5.3)</td>
 </tr>
 </tbody>
 </table>
@@ -510,8 +514,8 @@ closed lists.</p>
 </section>
 <section class="docs-sec" data-key="S:section/7" data-scope="">
 <h2 id="docs-sec-7" data-toc="2">7. Links and relations</h2>
-<p>A typed link is <code>{rel, to}</code>, as in MacroCOSM 9.4. Its <code>rel</code> is one of the starter relations or a relation the holograph
-declares:</p>
+<p>A typed link is <code>{rel, to}</code>, as in <a href="https://macro.cosmoes.org/">MacroCOSM OES</a>, its section 9.4. Its <code>rel</code> is one of the
+starter relations or a relation the holograph declares:</p>
 <pre><code class="language-text">is-a  part-of  about  because  before  after  with  against  like  from  toward  see
 </code></pre>
 <p><code>before</code> and <code>after</code> order nodes in time without dates. A declared relation is an <code>F:relation/&lt;slug&gt;</code> with a name and a
@@ -528,8 +532,8 @@ open question. An unresolved reference is an error. A reference never names anot
 <h2 id="docs-sec-8" data-toc="2">8. The dialectic</h2>
 <p>The manifest's <code>dialectic:</code> block holds the opening questions a guided process, or an agent, asks to help a person fill
 a holograph in (the owner's ruling). They are plain words, in no one's voice. What the person says is written as nodes
-with provenance <code>{mode: dialectic, sources: [session-&lt;n&gt;], confidence: &lt;how sure the person is&gt;}</code>. In 0.5.0 the questions
-are all that is built; the process that asks them is a later round.</p>
+with provenance <code>{mode: dialectic, sources: [session-&lt;n&gt;], confidence: &lt;how sure the person is&gt;}</code>. The questions are
+the manifest's; the process that asks them is reserved for a later edition.</p>
 <ul>
 <li><strong>A Affinities.</strong> What do you go back to, again and again? What can you not stand, even when everyone around you loves it? Which place or kind of work feels most like yours? What did you love as a child that you still love?</li>
 <li><strong>B Beliefs.</strong> What do you believe that most people around you do not? What did you once believe and no longer do? What would you hold to even if it cost you something? What do you take on trust?</li>
@@ -552,13 +556,13 @@ are all that is built; the process that asks them is a later round.</p>
 <h3 id="docs-sec-9-1" data-toc="3">9.1 The generic checks</h3>
 <p>The manifest selects <code>load</code> and the envelope checks <code>duplicate-id</code>, <code>id-grammar</code>, <code>id-module</code>, <code>type</code>, <code>type-prefix</code>,
 <code>identity-min</code>, <code>provenance</code>, <code>status</code>, <code>visibility</code>, <code>ref-grammar</code>, <code>ref-unresolved</code>, <code>closed-list</code>, <code>pending-shape</code> and
-<code>catalog-key</code> (MacroCOSM 12.2). <code>enough/ascribe.py</code> holds two of them to what the generic reader cannot read from the
-manifest: <code>id-module</code> to the module folders (<a class="ref-xref" href="#docs-sec-4-1">section 4.1</a>), and <code>catalog-key</code> to the hid, the handle and the shape of
-<code>pseudonyms</code>.</p>
+<code>catalog-key</code> (<a href="https://macro.cosmoes.org/">MacroCOSM OES</a>, its section 12.2). An Ascribe reader holds two of them to what
+the generic reader cannot read from the manifest: <code>id-module</code> to the module folders (<a class="ref-xref" href="#docs-sec-4-1">section 4.1</a>), and <code>catalog-key</code> to
+the hid, the handle and the shape of <code>pseudonyms</code>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/9.2" data-scope="">
 <h3 id="docs-sec-9-2" data-toc="3">9.2 Ascribe's own</h3>
-<p>Run by <code>enough/ascribe.py</code> (<code>lint_holograph</code>) after the generic ones, in one report. A generic reader does not run them.</p>
+<p>An Ascribe reader runs them after the generic ones, in one report. A generic reader does not run them.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -657,7 +661,7 @@ or by a pseudonym you declare.</p>
 <section class="docs-sec" data-key="S:section/10" data-scope="">
 <h2 id="docs-sec-10" data-toc="2">10. The private filter</h2>
 <p>The manifest declares what ingest and transfer leave out of a holograph, the way Canon leaves a Holotype's private side
-behind. The rule is declared and checked; the code that applies it is a later round.</p>
+behind. The rule is declared and checked; the filter that applies it is reserved for a later edition.</p>
 <ul>
 <li><strong>Marker:</strong> <code>.ascribe-private</code>.</li>
 <li><strong>Drops:</strong> every file and folder beside a marker, with everything below them; and every node with <code>visibility: restricted</code>.</li>
@@ -669,12 +673,14 @@ holograph&quot; when the catalog itself is beside a marker. It drops nothing.</p
 </section>
 <section class="docs-sec" data-key="S:section/11" data-scope="">
 <h2 id="docs-sec-11" data-toc="2">11. The command line</h2>
+<p>enough, the reference implementation, offers one command that checks a holograph. It is given here as the example of how
+the checks are run, not as a rule of the format:</p>
 <pre><code class="language-text">python -m enough.ascribe lint &lt;folder | holograph.cosm&gt; [--json]
 </code></pre>
-<p>It loads the holograph through the reference reader, runs the generic checks and Ascribe's own, prints each problem as
-<code>&lt;severity&gt; &lt;check&gt; &lt;item&gt; (&lt;file&gt;): &lt;message&gt;</code>, and ends with one line: <code>ascribe/1: &lt;n&gt; items, &lt;e&gt; errors, &lt;w&gt; warnings, &lt;k&gt; notes, &lt;q&gt; open questions</code>. It exits 0 when there is no error (warnings and notes do not fail it) and 1 otherwise.
-It reads only the folder it is given and writes nothing. No server route, viewer or tool calls it in 0.5.0.</p>
-<p>On the fixtures in <code>tests/fixtures/ascribe/</code>:</p>
+<p>It loads the holograph through enough's MacroCOSM reader, runs the generic checks and Ascribe's own, prints each problem
+as <code>&lt;severity&gt; &lt;check&gt; &lt;item&gt; (&lt;file&gt;): &lt;message&gt;</code>, and ends with one line: <code>ascribe/1: &lt;n&gt; items, &lt;e&gt; errors, &lt;w&gt; warnings, &lt;k&gt; notes, &lt;q&gt; open questions</code>. It exits 0 when there is no error (warnings and notes do not fail it) and 1
+otherwise. It reads only the folder it is given and writes nothing.</p>
+<p>On enough's fixtures:</p>
 <pre><code class="language-text">sample-self                   ascribe/1: 26 items, 0 errors, 0 warnings, 0 notes, 1 open questions      exit 0
 bad/pii                       ascribe/1: 8 items, 0 errors, 7 warnings, 0 notes, 0 open questions       exit 0
 bad/unanchored                ascribe/1: 3 items, 1 errors, 0 warnings, 0 notes, 0 open questions       exit 1
@@ -686,69 +692,69 @@ name, an email address, an id-like run of digits, an <code>employer</code> field
 </section>
 <section class="docs-sec" data-key="S:section/12" data-scope="">
 <h2 id="docs-sec-12" data-toc="2">12. Projections, by reference</h2>
+<p>The projections of a holograph are defined by Thym (https://thym.cosmoes.org/); this section names them and says what
+each is for a person.</p>
 <ul>
-<li>An <strong>isograph</strong> is the holograph projected by a Thym program its holder runs: the dial, for a person (THYM.md 18
-writes the company's). It is discoverable on an index like a profile. <em>Verified</em> means only what an <a class="docs-term" href="#docs-item-t-term-ascribe-connect" data-term="T:term/ascribe-connect" title="the service that would vouch that one real person holds a holograph">Ascribe-Connect</a>
-could check, that one real person holds this key and this graph has one holder; everything else is <em>stated</em>.</li>
-<li>A <strong>cryptograph</strong> is the holograph's sealed share for a chosen party: an encrypted Thym package (THYM.md 15.3), with
-the key shown once and stored nowhere, and, on an index, only consented match tokens, hashes of the characteristics
-the holder chose to make matchable.</li>
+<li>An <strong>isograph</strong> is the holograph projected by a Thym program its holder runs: the dial, for a person
+(<a href="https://thym.cosmoes.org/">Thym</a>, its section 18, writes the company's). It is discoverable on an index like a profile.
+<em>Verified</em> means only what an Ascribe-Connect could check, that one real person holds this key and this graph has one
+holder; everything else is <em>stated</em>.</li>
+<li>A <strong>cryptograph</strong> is the holograph's sealed share for a chosen party: an encrypted Thym package
+(<a href="https://thym.cosmoes.org/">Thym</a>, its section 15.3), with the key shown once and stored nowhere, and, on an index, only
+consented match tokens, hashes of the characteristics the holder chose to make matchable.</li>
 <li>A <strong>holomorph</strong> is the morph measured from what the person writes with Ascribe active, and an <strong>isomorph</strong> is one the
-holder chose to share, released from the holograph by a program as an isograph is (THYM.md 13.4).</li>
+holder chose to share, released from the holograph by a program as an isograph is
+(<a href="https://thym.cosmoes.org/">Thym</a>, its section 13.4).</li>
 <li>There is no paratype of a person: no outsider's graph, ever.</li>
 </ul>
-<p>A later round may bridge Comprise and Ascribe: an employer's <em>seek</em> for a role shaped like an isograph, answered by a
-candidate's isograph, both speaking Thym. Nothing in 0.5.0 builds it; the common envelope makes it possible.</p>
+<p>A bridge between Comprise and Ascribe, an employer's <em>seek</em> for a role shaped like an isograph, answered by a
+candidate's isograph, both speaking Thym, is reserved for a later edition; the common envelope makes it possible.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/13" data-scope="">
-<h2 id="docs-sec-13" data-toc="2">13. What is not built</h2>
-<ul>
-<li><strong>The application module</strong>: the process that asks the dialectic's questions and writes nodes, and any editor for a
-holograph. In 0.5.0 a holograph is written by hand; enough reads it.</li>
-<li><strong>Ascribe-Connect</strong>: the service that would vouch that one real person holds a holograph.</li>
-<li><strong>Isographs on an index</strong>, and the projection programs that make them.</li>
-<li><strong>Consented match tokens</strong>, and an index that serves them.</li>
-<li><strong>The private filter's code</strong>: the rule is declared (<a class="ref-xref" href="#docs-sec-10">section 10</a>) and nothing applies it.</li>
-<li><strong>The bridge to Comprise</strong> (<a class="ref-xref" href="#docs-sec-12">section 12</a>).</li>
-</ul>
-<p>What is built: the manifest, the reader's support (a holograph loads, checks and draws in the cosm viewer, titled by its
-handle, with the lenses <code>self</code>, <code>graph</code> and the generic <code>map</code>; <code>timeline</code> is a table the reader keeps and does not
-draw), <code>enough/ascribe.py</code> and its command, and the fixtures with their tests (<code>tests/test_ascribe.py</code>).</p>
+<h2 id="docs-sec-13" data-toc="2">13. Withdrawn</h2>
+<p><a class="ref-xref" href="#docs-sec-13">Section 13</a> was withdrawn in edition 0.5.4; its content, where it survives, is in the Changes appendix.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/14" data-scope="">
-<h2 id="docs-sec-14" data-toc="2">14. Decisions in this version</h2>
+<h2 id="docs-sec-14" data-toc="2">14. Changes</h2>
+<p><strong>Edition 0.5.4 · 2026-11-03.</strong> The canonical edition at cosmoes.org. The name is <em>Ascribe</em>, without a number; the
+edition is a field of the status line, and the declaration stays <code>ascribe/1</code>. <a class="ref-xref" href="#docs-sec-13">Section 13</a>, &quot;What is not built&quot;, is
+withdrawn: the gaps it listed are stated where they fall, as reserved for a later edition (the process that asks the
+dialectic's questions, <a class="ref-xref" href="#docs-sec-8">section 8</a>; the filter that applies the private marker, <a class="ref-xref" href="#docs-sec-10">section 10</a>; the bridge to Comprise,
+<a class="ref-xref" href="#docs-sec-12">section 12</a>); Ascribe-Connect, isographs on an index and consented match tokens stay named in <a class="ref-xref" href="#docs-sec-12">section 12</a> as what the
+projections are for. <a class="ref-xref" href="#docs-sec-14">Section 14</a>, &quot;Decisions in this version&quot;, becomes this appendix. The reference implementation is
+named, not pathed; MacroCOSM OES and Thym are cited at their cosmoes.org homes; where the text deferred to the code, it
+is normative. No rule of the format, no check and no example changed.</p>
+<p><strong>Edition 1 · 2026-11-02</strong> (published as <em>Ascribe OES 1</em>; its rules settled 2026-11-01). The first edition, declaring
+<code>ascribe/1</code>:</p>
 <ol>
-<li><strong>Ten containers, one kind each</strong> (the owner's ruling): A B C E I O Q S U Y, the kind the singular of the module's
-name and the letter its initial.</li>
-<li><strong>Module F for forms, polyforms and declared relations</strong> (the owner's ruling). Every node anchors to a form.</li>
-<li><strong>The catalog is the self</strong> (the owner's ruling): <code>holograph.cosm</code>, with the module folders beside it; a handle,
-pseudonyms and a sample flag, and no name.</li>
-<li><strong><code>when</code>, with <code>before</code> and <code>after</code></strong> (the owner's ruling): a date, a year or an era word, optional; order without
-dates by the two starter relations.</li>
-<li><strong><code>valence</code> and <code>strength</code></strong> (the owner's ruling): <code>for</code>, <code>against</code> or <code>mixed</code>; a whole number from 1 to 5.</li>
-<li><strong>The dialectic's questions live in the manifest</strong> (the owner's ruling); the process that asks them is later.</li>
-<li><strong>No personal data by schema, lint and filter; the lint warns and never refuses</strong> (the owner's ruling), while the
-schema and the filter still hold.</li>
-<li><strong>Ascribe OES 1 is <code>ascribe/1</code></strong> (the owner's ruling).</li>
+<li><strong>Ten containers, one kind each</strong>: A B C E I O Q S U Y, the kind the singular of the module's name and the letter
+its initial.</li>
+<li><strong>Module F for forms, polyforms and declared relations.</strong> Every node anchors to a form.</li>
+<li><strong>The catalog is the self</strong>: <code>holograph.cosm</code>, with the module folders beside it; a handle, pseudonyms and a sample
+flag, and no name.</li>
+<li><strong><code>when</code>, with <code>before</code> and <code>after</code></strong>: a date, a year or an era word, optional; order without dates by the two
+starter relations.</li>
+<li><strong><code>valence</code> and <code>strength</code></strong>: <code>for</code>, <code>against</code> or <code>mixed</code>; a whole number from 1 to 5.</li>
+<li><strong>The dialectic's questions live in the manifest</strong>; the process that asks them is reserved for a later edition.</li>
+<li><strong>No personal data by schema, lint and filter; the lint warns and never refuses</strong>, while the schema and the filter
+still hold.</li>
+<li><strong>The declaration is <code>ascribe/1</code>.</strong></li>
 <li><strong>Comprise's envelope</strong>, so that one set of Thym moves works on both subjects.</li>
 <li><strong><code>links.starter</code>, not a closed <code>links.rels</code></strong>, so that declared relations pass the generic reader and
 <code>relation-declared</code> closes the list.</li>
-<li><strong>No outsider's graph of a person, ever</strong> (the owner's ruling, <code>docs/thym-architecture.md</code>): crypto- means encrypted,
-and there is no paratype of a person.</li>
+<li><strong>No outsider's graph of a person, ever</strong>: crypto- means encrypted, and there is no paratype of a person.</li>
 </ol>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/colophon" data-scope="">
 <h2 id="docs-colophon" data-toc="2">Colophon</h2>
-<p>Written 2026-11-02 for enough 0.5.0, version 1 of Ascribe OES. The manifest is
-<code>defaults/cosm/manifests/ascribe.manifest.cosm</code>; the checks are <code>enough/ascribe.py</code>; the grammar is
-<code>docs/MACROCOSM_OES.md</code>; the projections are <code>docs/THYM.md</code>. Like the MacroCOSM specification and its manifests, this
-specification is all rights reserved and not covered by enough's Apache License 2.0; see <code>defaults/cosm/NOTICE.md</code>.</p>
+<p>Ascribe — Copyright © 2026 Graham Smith. All rights reserved. The canonical edition is published at
+https://ascribe.cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
-<dl class="docs-gloss"><dt id="docs-item-t-term-a-company-comprise">a company (Comprise)</dt><dd>a company (Comprise), called holotype in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-a-person-ascribe">a person (Ascribe)</dt><dd>a person (Ascribe), called holograph in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-ascribe-connect">Ascribe-Connect</dt><dd>the service that would vouch that one real person holds a holograph — <a class="ref-xref" href="#docs-sec-13">defined in §13 What is not built</a></dd><dt id="docs-item-t-term-the-application-module">The application module</dt><dd>the process that asks the dialectic's questions and writes nodes — <a class="ref-xref" href="#docs-sec-13">defined in §13 What is not built</a></dd><dt id="docs-item-t-term-the-private-filter-s-code">The private filter's code</dt><dd>the rule is declared (section 10) and nothing applies it — <a class="ref-xref" href="#docs-sec-13">defined in §13 What is not built</a></dd></dl>
+<dl class="docs-gloss"><dt id="docs-item-t-term-a-company-comprise">a company (Comprise)</dt><dd>a company (Comprise), called holotype in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-a-person-ascribe">a person (Ascribe)</dt><dd>a person (Ascribe), called holograph in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd></dl>
 </section>
 </div>
 </article>

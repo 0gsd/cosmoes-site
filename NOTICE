@@ -4,8 +4,8 @@ Copyright 2026 Graham Smith
 The site's code (cosmoes/, scripts/, tests/, the Dockerfile) is licensed under the Apache License, Version 2.0
 (LICENSE).
 
-The specifications it serves are not. The texts in specs/ — MacroCOSM OES, Thym, Ascribe, Comprise OES, and OES,
-the paradigm map — and the pages built from them in site/specs/ are
+The specifications it serves are not. The texts in specs/ — MacroCOSM OES, Thym, Ascribe, Comprise OES, and The OES
+specifications — and the pages built from them in site/specs/ are
 
     Copyright (c) 2026 Graham Smith. All rights reserved.
 
