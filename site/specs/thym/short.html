@@ -139,7 +139,6 @@ MiniCOSMs declare (<a class="ref-xref" href="#docs-sec-17-6">section 17.6</a>), 
 </section>
 <section class="docs-sec" data-key="S:section/2" data-scope="">
 <h2 id="docs-sec-2" data-toc="2">2. The model on one page</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <pre><code class="language-text">   author's side                   the three densities                  interpreter's side
    context · graph · morph        fabula · short · atem                 context · graph · morph
         │                               ▲      │                              │
@@ -198,7 +197,6 @@ where it stopped and why.</li>
 </section>
 <section class="docs-sec" data-key="S:section/4.1" data-scope="">
 <h3 id="docs-sec-4-1" data-toc="3">4.1 The file</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>A program file has the extension <code>.thym</code>. It is UTF-8 (a byte-order mark is tolerated), with LF or CRLF newlines. Its
 first line that is neither blank nor a comment is the <strong>version line</strong>, <code>thym 0</code>. After it come <code>use</code> lines and blocks,
 in any order. A comment <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> from <code>--</code> to the end of the line. Blank lines are free. Indentation is free too: the
@@ -370,7 +368,6 @@ keyword, since the writer probably forgot the blank line.</p>
 </section>
 <section class="docs-sec" data-key="S:section/4.5" data-scope="">
 <h3 id="docs-sec-4-5" data-toc="3">4.5 Expressions and modifiers</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>An expression is a move call, a name, a literal, a field read, or an expression in parentheses. A <strong>move call</strong> is the
 move's name, then its operands separated by commas, then its modifiers in the order its signature declares them:</p>
 <pre><code class="language-text">derive story
@@ -541,7 +538,6 @@ binding or user move may take one of these names. A few words are both a keyword
 </section>
 <section class="docs-sec" data-key="S:section/4.8" data-scope="">
 <h3 id="docs-sec-4-8" data-toc="3">4.8 The grammar in full</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <pre><code class="language-text">file      := blank* &quot;thym&quot; INT NEWLINE { use | block }
 use       := &quot;use&quot; URI NEWLINE
 block     := program | move | morph | context
@@ -597,7 +593,6 @@ indentation rules.</p>
 </section>
 <section class="docs-sec" data-key="S:section/5" data-scope="">
 <h2 id="docs-sec-5" data-toc="2">5. Values and types</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/5.1" data-scope="">
 <h3 id="docs-sec-5-1" data-toc="3">5.1 The types</h3>
@@ -675,14 +670,12 @@ carry none.</p>
 </section>
 <section class="docs-sec" data-key="S:section/5.2" data-scope="">
 <h3 id="docs-sec-5-2" data-toc="3">5.2 Densities and what fits where</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>The four densities, <code>text</code>, <code>fabula</code>, <code>short</code> and <code>atem</code>, are types, and each move's signature says which it takes
 (<a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>). A value of one density is never silently read as another: <code>tell story</code>, where <code>story</code> is a <code>text</code>, is a
 type error, and the message gives the fix (&quot;derive it first&quot;).</p>
 </section>
 <section class="docs-sec" data-key="S:section/5.3" data-scope="">
 <h3 id="docs-sec-5-3" data-toc="3">5.3 Provenance</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 <p>Every meaning value a move makes carries the move, its inputs' digests, the <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> (its trace's id), the step and the
 node. Written
 into a <code>.cosm</code>, this becomes the item's envelope provenance plus one field, <code>made</code>, which <code>thym/1</code> lists in its envelope
@@ -696,7 +689,6 @@ treated as hand-made.</p>
 </section>
 <section class="docs-sec" data-key="S:section/5.4" data-scope="">
 <h3 id="docs-sec-5-4" data-toc="3">5.4 Bindings</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p><code>let</code> binds a name once, in the block where it appears. An inner block (the body of an <code>if</code> or a <code>for each</code>) sees the
 names bound before it and may not rebind them. A loop variable is bound for the loop's body. A program's <code>takes</code> names
 are bound for the whole program. A move's parameters are bound for its body, and a move sees no binding of the program
@@ -716,7 +708,6 @@ stand-in with a weaker output, which a <a class="docs-term" href="#docs-item-t-t
 </section>
 <section class="docs-sec" data-key="S:section/6.2" data-scope="">
 <h3 id="docs-sec-6-2" data-toc="3">6.2 Who declares what</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <div class="docs-table">
 <table>
 <thead>
@@ -749,7 +740,6 @@ stand-in with a weaker output, which a <a class="docs-term" href="#docs-item-t-t
 </section>
 <section class="docs-sec" data-key="S:section/6.3" data-scope="">
 <h3 id="docs-sec-6-3" data-toc="3">6.3 The standard moves of version 0</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 <p>Each contract below is the <code>contract:</code> list of the move's declaration; <a class="ref-xref" href="#docs-sec-7-3">section 7.3</a> says what each check holds.</p>
 <div class="docs-table">
 <table>
@@ -946,11 +936,9 @@ refused with the nearest name: &quot;unknown move <code>summarise</code>; did yo
 </section>
 <section class="docs-sec" data-key="S:section/7" data-scope="">
 <h2 id="docs-sec-7" data-toc="2">7. Contracts and the six laws</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/7.1" data-scope="">
 <h3 id="docs-sec-7-1" data-toc="3">7.1 What a contract is</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>A contract is a list of named checks that must hold on a move's output before the output becomes a value. The
 compiler checks the <strong>static</strong> part: it refuses a composition that cannot satisfy a contract, such as a <code>tell</code> whose
 input is a <code>text</code>, or a <code>project … as isotype</code> that emits a bare count. The runtime checks the <strong>dynamic</strong> part on every
@@ -959,7 +947,6 @@ output. A model-backed output that fails is repaired narrowly, retried within it
 </section>
 <section class="docs-sec" data-key="S:section/7.2" data-scope="">
 <h3 id="docs-sec-7-2" data-toc="3">7.2 The six laws</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 <ol>
 <li><strong>Coverage.</strong> A telling says nothing its fabula does not hold.</li>
 <li><strong>Grounding.</strong> Every span exists in its text; every term is in FEED or is a named entity.</li>
@@ -975,7 +962,6 @@ things, no gap in an order that reveals them.</li>
 </section>
 <section class="docs-sec" data-key="S:section/7.3" data-scope="">
 <h3 id="docs-sec-7-3" data-toc="3">7.3 The named checks</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 4 places">◂ 4</span></p>
 <div class="docs-table">
 <table>
 <thead>
@@ -1147,7 +1133,6 @@ things, no gap in an order that reveals them.</li>
 </section>
 <section class="docs-sec" data-key="S:section/7.4" data-scope="">
 <h3 id="docs-sec-7-4" data-toc="3">7.4 <code>assert</code></h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>An <code>assert</code> line adds a check of the program's own. Its condition is evaluated at <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> time with the values at hand, and
 false refuses the run with the message. <code>assert f covers story</code> is the usual one; its step's contract names the check
 the condition uses (<code>covers</code> is <code>coverage</code>). A user move's <code>assert</code> lines become contracts of the move (<a class="ref-xref" href="#docs-sec-8-3">section 8.3</a>).</p>
@@ -1159,7 +1144,6 @@ the condition uses (<code>covers</code> is <code>coverage</code>). A user move's
 </section>
 <section class="docs-sec" data-key="S:section/8.1" data-scope="">
 <h3 id="docs-sec-8-1" data-toc="3">8.1 Choice and loop</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p><code>if … then … else … end</code> chooses. <code>for each … in … where … end</code> goes through the items of a volume or a fabula (in
 <code>told</code> order: by span, then by id), the lines of a short, or the members of a list. <code>where</code> filters before the body
 <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a>. The loop variable is bound for the body. The body may <code>emit</code>, <code>assert</code>, <code>let</code> new names and run moves for their
@@ -1167,7 +1151,6 @@ effect. It may not <code>give</code>: a program gives once, after its loops.</p>
 </section>
 <section class="docs-sec" data-key="S:section/8.2" data-scope="">
 <h3 id="docs-sec-8-2" data-toc="3">8.2 Three ways out</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p><code>give</code> gives the block's value, and every path of a block that <code>gives</code> must reach one. <code>emit</code> adds an item to the
 program's output volume, or, with a slot (<code>emit employees: band …</code>), sets a field the target schema names; only
 <code>project</code> consumes them, so a program that emits and never projects is refused, because the emitted items go nowhere. <code>withhold</code> marks items of a volume as withheld, and <code>project</code> leaves them out without a
@@ -1175,7 +1158,6 @@ mark.</p>
 </section>
 <section class="docs-sec" data-key="S:section/8.3" data-scope="">
 <h3 id="docs-sec-8-3" data-toc="3">8.3 User moves</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>A <code>move</code> block is a named program with parameters. It is called like a standard move, with its operands in parameter
 order. It has a declared signature and inherits the contracts of the moves it uses, and its <code>assert</code> lines become
 contracts of its own. A move may call other moves. A move that calls itself, directly or through another, is refused in
@@ -1222,7 +1204,6 @@ end
 </section>
 <section class="docs-sec" data-key="S:section/9" data-scope="">
 <h2 id="docs-sec-9" data-toc="2">9. Errors: compile, plan, run</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 <div class="docs-table">
 <table>
 <thead>
@@ -1258,7 +1239,6 @@ and the viewer shows it in place of the plan or the outputs. It carries <code>st
 </section>
 <section class="docs-sec" data-key="S:section/10" data-scope="">
 <h2 id="docs-sec-10" data-toc="2">10. Programs as documents</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 5 places">◂ 5</span></p>
 <p>The enumerator reads a <code>.thym</code> file into a <code>thym/1</code> volume of kind <code>program</code> (<a class="ref-xref" href="#docs-sec-17">section 17</a>). Ids name their block: the
 program's name, or <code>&lt;program&gt;.&lt;move&gt;</code> for a move local to a program.</p>
 <ul>
@@ -1293,11 +1273,9 @@ of a program is the one line a listing shows.</p>
 </section>
 <section class="docs-sec" data-key="S:section/11" data-scope="">
 <h2 id="docs-sec-11" data-toc="2">11. The compiler</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/11.1" data-scope="">
 <h3 id="docs-sec-11-1" data-toc="3">11.1 The stages</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <ol>
 <li><strong>Parse</strong> the file into a tree, by recursive descent over the grammar of <a class="ref-xref" href="#docs-sec-4-8">section 4.8</a>. The tree keeps each
 statement's line and source text.</li>
@@ -1338,7 +1316,6 @@ vendorable, as the reader is.</p>
 </section>
 <section class="docs-sec" data-key="S:section/11.3" data-scope="">
 <h3 id="docs-sec-11-3" data-toc="3">11.3 The command line</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <pre><code class="language-text">python -m enough.thym check     &lt;program.thym&gt;                     compile only; prints the refusal or &quot;ok&quot;
 python -m enough.thym plan      &lt;program.thym&gt; &lt;inputs…&gt;           compile and plan; prints the plan's atem and cost
 python -m enough.thym run       &lt;program.thym&gt; &lt;inputs…&gt; [--rules] run; prints the trace's atem; writes outputs
@@ -1354,7 +1331,6 @@ is told the path.</p>
 </section>
 <section class="docs-sec" data-key="S:section/12" data-scope="">
 <h2 id="docs-sec-12" data-toc="2">12. The runtime</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>The runtime is non-traditional in four ways and ordinary in every other. Its values are documents. One of its
 instructions is &quot;ask a mind&quot;, behind a contract. Every <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> leaves a readable account of itself. And programs, <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plans</a> and
 traces are read in the same viewer as everything else.</p>
@@ -1417,7 +1393,6 @@ close.md in 11 s on g40-04, all checks green&quot;.</p>
 </section>
 <section class="docs-sec" data-key="S:section/12.4" data-scope="">
 <h3 id="docs-sec-12-4" data-toc="3">12.4 Replay</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p><code>run --replay &lt;run-id&gt;</code> <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> that run's <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> with the <code>ReplayCoprocessor</code>, over the candidates recorded under the run as
 <code>candidates/&lt;node&gt;[-&lt;k&gt;].&lt;attempt&gt;.cosm</code> (a node that asks more than once records each answer). The outputs must be
 byte-identical to the recorded run's: they carry the recorded run's id in <code>made</code>, and the replay's own trace takes a
@@ -1436,7 +1411,6 @@ was recorded before engine calls were, and replays with the host's live engines.
 </section>
 <section class="docs-sec" data-key="S:section/12.5" data-scope="">
 <h3 id="docs-sec-12-5" data-toc="3">12.5 Budgets and the 16 GB rule</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>A <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> carries the largest prompt it will build. At plan time the runtime asks <code>preflight</code> whether the machine's model
 holds it; on a small machine a program may be refused with the number and the fix, as chat is today. Every node has an
 <code>attempts</code> budget (3 for a model-backed node, 1 otherwise) and an output budget in words (the call's <code>to N words</code>, or
@@ -1444,7 +1418,6 @@ else the machine's). The trace records what each node cost.</p>
 </section>
 <section class="docs-sec" data-key="S:section/12.6" data-scope="">
 <h3 id="docs-sec-12-6" data-toc="3">12.6 Portability</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>No Python-only semantics. No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts:
 bands and scales are integers, and the ratios of <a class="ref-xref" href="#docs-sec-13-3">section 13.3</a> are integers per hundred or per thousand. Digests are
 sha256: a text's over its bytes, a volume's over its catalog file, a file's always over its bytes, and a mapping's
@@ -1456,7 +1429,6 @@ page.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13" data-scope="">
 <h2 id="docs-sec-13" data-toc="2">13. The null morph, the ten scales, morphs</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/13.1" data-scope="">
 <h3 id="docs-sec-13-1" data-toc="3">13.1 The null morph</h3>
@@ -1471,7 +1443,6 @@ fabula does not.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13.2" data-scope="">
 <h3 id="docs-sec-13-2" data-toc="3">13.2 The ten scales</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>Each scale is an integer from 1 to 5. 1 is the null's value on every scale, and 5 the farthest departure. Seven scales
 are statistics, six over the text and <code>analytical-depth</code> over its fabula; three are the model's judgement, with
 examples. Every word a measurement counts is a FEED headword (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</p>
@@ -1553,7 +1524,6 @@ examples. Every word a measurement counts is a FEED headword (<a class="ref-xref
 </section>
 <section class="docs-sec" data-key="S:section/13.3" data-scope="">
 <h3 id="docs-sec-13-3" data-toc="3">13.3 Measurement</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 4 places">◂ 4</span></p>
 <p>Ratios are per hundred or per thousand words, compared as integers. The thresholds are version 0's. The conformance
 suite pins them, and a later version may move them only with a decision recorded in <a class="ref-xref" href="#docs-sec-21">section 21</a>.</p>
 <div class="docs-table">
@@ -1673,7 +1643,6 @@ give the lists per language.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13.4" data-scope="">
 <h3 id="docs-sec-13-4" data-toc="3">13.4 Holomorph and isomorph</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>A <strong>holomorph</strong> is <code>measure t against null of f</code>, for a person's text <code>t</code> with fabula <code>f</code>: each scale's value as a
 departure from the null, with its evidence. It is derived from any text the person writes with Ascribe active, and it
 sharpens over a corpus: a corpus's morph is the scale-wise median of its texts' morphs, and each scale's confidence
@@ -1688,7 +1657,6 @@ person may keep several, one for letters and one for work.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13.5" data-scope="">
 <h3 id="docs-sec-13-5" data-toc="3">13.5 Morph blocks and morph items</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>A morph may be declared by hand in a program file, one scale per line; the unlisted scales sit at 1.</p>
 <pre><code class="language-thym">thym 0
 
@@ -1717,7 +1685,6 @@ end
 </section>
 <section class="docs-sec" data-key="S:section/14" data-scope="">
 <h2 id="docs-sec-14" data-toc="2">14. Readings</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 <p>A <strong>reading</strong> is <code>read f with m in c</code>: a telling of a fabula in the reader's morph (their <a class="docs-term" href="#docs-item-t-term-holomorph" data-term="T:term/holomorph" title="measure t against null of f, for a person's text t with fabula f">holomorph</a>, or an <a class="docs-term" href="#docs-item-t-term-isomorph" data-term="T:term/isomorph" title="a holomorph the owner chose to share">isomorph</a> they
 chose), shaped by the reader's <a class="docs-term" href="#docs-item-t-term-occasional-context" data-term="T:term/occasional-context" title="just-in-time: why this text, for whom, in what medium, at what moment, under what constraints">occasional context</a> and made on the reader's machine. Its contract is <code>morph</code>'s with two
 more checks. It is <strong>labelled</strong>: <code>read_through: &lt;morph name&gt;</code> in the file's front matter, and the reading footer at its
@@ -1735,7 +1702,6 @@ what the author published. A reading of a reading is refused: <code>read</code> 
 </section>
 <section class="docs-sec" data-key="S:section/15" data-scope="">
 <h2 id="docs-sec-15" data-toc="2">15. Packages</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 3 places">◂ 3</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/15.1" data-scope="">
 <h3 id="docs-sec-15-1" data-toc="3">15.1 Folder form</h3>
@@ -1759,7 +1725,6 @@ over a file that differs.</p>
 </section>
 <section class="docs-sec" data-key="S:section/15.2" data-scope="">
 <h3 id="docs-sec-15-2" data-toc="3">15.2 The catalog</h3>
-<p class="docs-marks"><span class="docs-mark" title="1 example">❏ 1</span></p>
 <pre><code class="language-cosm">oes: thym/1
 kind: package
 id: thym/orchard-notes
@@ -1777,7 +1742,6 @@ nodes: []
 </section>
 <section class="docs-sec" data-key="S:section/15.3" data-scope="">
 <h3 id="docs-sec-15-3" data-toc="3">15.3 Single-file and encrypted forms</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p><code>package</code> lands the single-file form, with the folder form <code>&lt;name&gt;.thym/</code> beside it. The <strong>single-file form</strong>,
 <code>&lt;name&gt;.package.cosm</code>, is the same catalog with each file's bytes as a block scalar under
 <code>contents[].text</code>, so that one file travels. The <strong>encrypted form</strong>, <code>&lt;name&gt;.thym.enc</code>, is the single-file form
@@ -1796,7 +1760,6 @@ HKDF), and the file says so; a package sealed with AES-256-GCM opens only where 
 </section>
 <section class="docs-sec" data-key="S:section/15.4" data-scope="">
 <h3 id="docs-sec-15-4" data-toc="3">15.4 The laws of a package</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>The author's text is the package's telling as told: <code>unpack</code> gives it back byte for byte, and what is checked is that
 every span of the fabula resolves into it and that the fabula covers it. Every file's digest is in the catalog
 (<code>digests</code>). The catalog names the program and the trace that made the package. Nothing is in <code>graph.cosm</code> without a
@@ -1809,7 +1772,6 @@ text.</p>
 </section>
 <section class="docs-sec" data-key="S:section/16.1" data-scope="">
 <h3 id="docs-sec-16-1" data-toc="3">16.1 Surrounding context</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>The <strong>surrounding context</strong> is the volume a text sits in: its Canon volume's <code>canon.cosm</code>, the project's catalog, or a
 site's served catalog when a website serves packages. It is read, never written. <code>context of story</code> gives the catalog
 excerpt around the text: its neighbours, the volume's name and scope, and the terms the volume defines. A program may
@@ -1817,7 +1779,6 @@ use it to link terms, to choose a morph the volume prefers, or to tell a text in
 </section>
 <section class="docs-sec" data-key="S:section/16.2" data-scope="">
 <h3 id="docs-sec-16-2" data-toc="3">16.2 Occasional context</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>The <strong>occasional context</strong> is just-in-time: why this text, for whom, in what medium, at what moment, under what
 constraints. It is a <code>thym/1</code> item of kind <code>context</code> with the fields <code>purpose</code>, <code>audience</code>, <code>medium</code>, <code>moment</code>, <code>hurry</code>
 (a bool), <code>words</code> (a budget), <code>minutes</code> (a <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> time), <code>language</code>, and any field a program names. The author's
@@ -1853,7 +1814,6 @@ end
 </section>
 <section class="docs-sec" data-key="S:section/17" data-scope="">
 <h2 id="docs-sec-17" data-toc="2">17. The <code>thym/1</code> MiniCOSM and the <code>moves:</code> block</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 </section>
 <section class="docs-sec" data-key="S:section/17.1" data-scope="">
 <h3 id="docs-sec-17-1" data-toc="3">17.1 The catalog</h3>
@@ -1950,7 +1910,6 @@ status, visibility, provenance, pending, links) and may carry <code>made</code> 
 </section>
 <section class="docs-sec" data-key="S:section/17.3" data-scope="">
 <h3 id="docs-sec-17-3" data-toc="3">17.3 Ids and the fields of each kind</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p><code>&lt;module&gt;:&lt;kind&gt;/&lt;slug&gt;</code>, with the slug grammar of <code>doc/1</code> (dots allowed, so a step can name its program):</p>
 <div class="docs-table">
 <table>
@@ -2044,7 +2003,6 @@ package's files match its catalog), <code>reading-labelled</code>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/17.6" data-scope="">
 <h3 id="docs-sec-17-6" data-toc="3">17.6 The <code>moves:</code> block</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 5 places">◂ 5</span></p>
 <p>Any MiniCOSM's manifest may carry a <code>moves:</code> list. A MiniCOSM whose manifest enough does not edit declares its moves in
 a sidecar <code>&lt;name&gt;.moves.cosm</code> beside the manifest, a mapping <code>{moves-of: &lt;minicosm&gt;/&lt;major&gt;, moves: [...]}</code>; Comprise's
 is <code>comprise.moves.cosm</code>. When both exist, the manifest's list wins and the sidecar is reported. The generic reader
@@ -2101,7 +2059,6 @@ keeps the block as an unknown key; the <a class="docs-term" href="#docs-item-t-t
 </section>
 <section class="docs-sec" data-key="S:section/18" data-scope="">
 <h2 id="docs-sec-18" data-toc="2">18. Projections: the dial as a program</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 2 places">◂ 2</span></p>
 <p>An isotype is a holotype <em>transcoded</em>: <code>project h as isotype</code>, under a program that gives every item a density
 (<code>fabula</code>, <code>short</code>, <code>atem</code>, or withheld) and a marking (<code>verified</code>, <code>stated</code>). The target schema's rules
 (<code>comprise-isotype/0</code>: default-deny, assertions not measurements, withhold never falsify, epochs and bands, verified
@@ -2145,7 +2102,6 @@ the holotype holds people or says it has none, and always fills <code>shape.mark
 </section>
 <section class="docs-sec" data-key="S:section/19" data-scope="">
 <h2 id="docs-sec-19" data-toc="2">19. Agent-free</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 4 places">◂ 4</span></p>
 <p>In agent-free mode the coprocessor is the refusing one: a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> with model-backed nodes is refused at plan time with
 their count and the first one's line (&quot;3 steps ask a model; agent-free is on&quot;). A plan with none <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a>. With <code>--rules</code>,
 each model-backed move that declares a <code>scaffold</code> runs it instead: <code>derive</code> gives the rules twin, <code>atem</code> the labelled
@@ -2205,7 +2161,6 @@ the clock pinned to 2026-11-01T12:00:00Z, so an epoch in a recorded output stays
 </section>
 <section class="docs-sec" data-key="S:section/20.4" data-scope="">
 <h3 id="docs-sec-20-4" data-toc="3">20.4 Where the reference wins</h3>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <p>The reference landed on 2026-11-01 and passed checkpoint A (a real-model <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> that replays) the same night. Two
 <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">readings</a> were corrected on the way and folded into their sections: <code>stance-kept</code> reads a claim across every sentence
 that cites it (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>), and the null telling's <code>register</code> exempts its fabula's own words (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>). When a
@@ -2215,7 +2170,6 @@ until the next version folds it in.</p>
 </section>
 <section class="docs-sec" data-key="S:section/21" data-scope="">
 <h2 id="docs-sec-21" data-toc="2">21. Decisions in this version</h2>
-<p class="docs-marks"><span class="docs-mark" title="mentioned in 1 place">◂ 1</span></p>
 <ol>
 <li><strong><a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> is a full procedural language folded into MacroCOSM.</strong> The OES gains a verb; <code>thym/1</code> holds programs, morphs,
 contexts, <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plans</a>, traces and packages; every MiniCOSM may declare moves.</li>

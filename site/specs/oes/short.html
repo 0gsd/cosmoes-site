@@ -1,0 +1,362 @@
+<article class="docoes docoes-short" data-doc="oes" data-density="short" data-lang="en">
+<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-the-short-version">The short version</a></li><li class="lvl2"><a href="#docs-sec-1">1. What an OES is</a></li><li class="lvl2"><a href="#docs-sec-2">2. Three scales</a></li><li class="lvl2"><a href="#docs-sec-3">3. What MacroCOSM gives every MiniCOSM</a></li><li class="lvl2"><a href="#docs-sec-4">4. What a MiniCOSM declares</a></li><li class="lvl2"><a href="#docs-sec-5">5. What a MicroCOSM may change</a></li><li class="lvl2"><a href="#docs-sec-6">6. Where Comprise OES sits</a></li><li class="lvl2"><a href="#docs-sec-7">7. Connections to the wider ecosystem</a></li><li class="lvl2"><a href="#docs-sec-8">8. The picture</a></li><li class="lvl2"><a href="#docs-sec-9">9. What is built today</a></li><li class="lvl2"><a href="#docs-sec-10">10. In this folder</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
+<div class="docoes-body">
+<section class="docs-sec" data-key="S:section/root" data-scope="">
+<h1 id="docs-oes-the-paradigm-map">OES: the paradigm map</h1>
+<p><em>What an organizational enumeration system is, the three scales of <a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">COSM</a>, and where Comprise OES sits among them.
+Written 2026-10-20 for phase 10 (decision Q54, slice 30b). The spec is <code>comprise-oes.md</code>; the machine-readable
+declaration is <code>comprise-oes.manifest.cosm</code>. <code>MO.md</code>, in the repository, says why any of this exists.</em></p>
+</section>
+<section class="docs-sec" data-key="S:section/the-short-version" data-scope="">
+<h2 id="docs-the-short-version" data-toc="2">The short version</h2>
+<p>Comprise describes a company as a file system that is also a relational database. Every concern (one company, or one
+part of a group, described on its own) is a folder, every module a set of tables, every item a row with a path. A
+system of that shape is an <strong>OES</strong>, an <em>organizational enumeration system</em> (<a class="ref-xref" href="#docs-sec-1">section 1</a>), and the shape is not special to
+companies. Written down once, as a shared grammar, it can describe an industry, a body of knowledge, an institution or
+a built world the same way. The shared grammar is <strong><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a></strong>. A grammar specialized for one domain is a <strong><a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a></strong>; <strong>Comprise OES</strong> is the first.
+One organization's additions on top of a MiniCOSM are a <strong><a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a></strong>. Only Comprise OES is built. The rest is mapped,
+so that Comprise OES fits it when it comes.</p>
+</section>
+<section class="docs-sec" data-key="S:section/1" data-scope="">
+<h2 id="docs-sec-1" data-toc="2">1. What an OES is</h2>
+<p>An <strong>OES</strong>, an <em>organizational enumeration system</em>, is a system that organizes a domain by enumerating everything in it,
+as a file system that is also a relational database, made to be rendered.</p>
+<ul>
+<li><strong>Enumerating.</strong> It lists what there is, item by item, each with its sources. What is unknown is an open question with
+the name of the role that can answer it, never a guess.</li>
+<li><strong>A file system.</strong> Plain text files in folders, on the subject's own machine. Anyone can read them without the app,
+move them, keep them in version control, and leave with everything.</li>
+<li><strong>A relational database.</strong> Every item has a primary key (its id), its fields are columns, its references are foreign
+keys, and <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a> are constraints. The same files can be indexed and queried.</li>
+<li><strong>Made to be rendered.</strong> The description is never the end. It exists to be turned into other forms for other
+readers: a 3D scene, a summary, chapters for a person, an export for an agent, a public projection. A renderer can
+only show what the description holds, so the description is held to account.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/2" data-scope="">
+<h2 id="docs-sec-2" data-toc="2">2. Three scales</h2>
+<p><strong>COSM</strong> is the family's name. It is no longer an acronym: it was <em>Context Ontology Schema and Markup</em>, and before that
+<em>OPI</em>; both are history. It comes from <em>kosmos</em>, order and world. <code>.cosm</code> is the family's file extension.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th>What it is</th>
+<th>Example</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MacroCOSM</strong></td>
+<td>the whole language: the shared grammar every MiniCOSM is written in</td>
+<td>(one)</td>
+<td>mapped, not built</td>
+</tr>
+<tr>
+<td><strong>MiniCOSM</strong></td>
+<td>an OES for one domain, declared by a <a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM">manifest</a>: its folders, kinds, fields, references, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a> and <a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">renderers</a></td>
+<td><strong>Comprise OES</strong> (companies)</td>
+<td>Comprise OES 1 is built</td>
+</tr>
+<tr>
+<td><strong>MicroCOSM</strong></td>
+<td>one organization's extension on top of a MiniCOSM: the extra kinds, fields or checks it needs</td>
+<td>(none yet)</td>
+<td>mapped, not built</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The names borrow an old idea, from Greek philosophy to the Renaissance: that a small world mirrors the order of the
+great one. Here each smaller scale keeps the order of the larger and adds to it.</p>
+</section>
+<section class="docs-sec" data-key="S:section/3" data-scope="">
+<h2 id="docs-sec-3" data-toc="2">3. What MacroCOSM gives every MiniCOSM</h2>
+<p>The shared grammar. Every <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> inherits all of it, unchanged. Comprise OES is where each part was first worked out;
+the right-hand column says where.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it is</th>
+<th>In Comprise OES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Paths, and a URI form</strong></td>
+<td>every top-level part (a concern, in Comprise OES), module, kind, item and field has an address that respells its id as a location; a qualified form adds the MiniCOSM and the database: <code>oes:&lt;minicosm&gt;/&lt;database&gt;/&lt;path&gt;</code></td>
+<td><code>mozilla-foundation/P/offering/creative-futures</code>; <code>oes:comprise/mozilla/mozilla-foundation/P/offering/creative-futures</code> (spec <a class="ref-xref" href="#docs-sec-6">§6</a>)</td>
+</tr>
+<tr>
+<td><strong>Items, fields and references</strong></td>
+<td>an item is a row with a stable id and a kind; its fields are columns; a reference is an id written in a field, and every reference must have two ends</td>
+<td><code>P:offering/ledger</code>; <code>owner: O:role/Founder</code> (<a class="ref-xref" href="#docs-sec-4">§4</a>, <a class="ref-xref" href="#docs-sec-7">§7</a>)</td>
+</tr>
+<tr>
+<td><strong>The envelope</strong></td>
+<td>the columns every item has, whatever its kind: owner (a role, never a person), status, visibility, provenance (how it is known, from what sources, how surely)</td>
+<td><a class="ref-xref" href="#docs-sec-4">§4</a></td>
+</tr>
+<tr>
+<td><strong>Open questions</strong></td>
+<td>a value nobody has given yet, written where the value would go, with who can answer it; never a guess</td>
+<td><code>{pending: &quot;…&quot;}</code> (<a class="ref-xref" href="#docs-sec-8">§8</a>)</td>
+</tr>
+<tr>
+<td><strong>Checks</strong></td>
+<td>constraints on the whole database, run on every write; a write that breaks one is undone; a verdict says whether this moment may be signed</td>
+<td>the lint, P's checks, the fourteen rules (<a class="ref-xref" href="#docs-sec-9">§9</a>)</td>
+</tr>
+<tr>
+<td><strong>Saved and signed versions</strong></td>
+<td>an immutable copy of the files at a moment, with a manifest of hashes; a copy the checks allowed, signed by the roles that govern it</td>
+<td>snapshots and attestations (<a class="ref-xref" href="#docs-sec-10">§10</a>)</td>
+</tr>
+<tr>
+<td><strong>The private/public split</strong></td>
+<td>two formats, not one with a setting: the complete private description (the <strong>Holotype</strong>), kept by its subject, and a small public projection of it (the <strong>isotype</strong>), default-deny, released and signed by the subject</td>
+<td>the Holotype, <code>comprise-isotype/0</code> (§11)</td>
+</tr>
+<tr>
+<td><strong>Renderers</strong></td>
+<td>anything that turns the database into another form; renderers only read, and show a reader only what that reader may see</td>
+<td>the 3D Overview, the Field Guide, the export (§12)</td>
+</tr>
+<tr>
+<td><strong>The manifest</strong></td>
+<td>the machine-readable declaration of a MiniCOSM: what a program needs to read, check and render its databases</td>
+<td><code>comprise-oes.manifest.cosm</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The words <em>Holotype</em> and <em>isotype</em> come from taxonomy, where a holotype is the one specimen that defines a species and
+an isotype is a duplicate of it. They name the two halves of the split in every MiniCOSM, not only Comprise's.</p>
+</section>
+<section class="docs-sec" data-key="S:section/4" data-scope="">
+<h2 id="docs-sec-4" data-toc="2">4. What a MiniCOSM declares</h2>
+<p>A <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> is declared by its <strong><a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM">manifest</a></strong>: one <code>.cosm</code> file, outside every database, that says</p>
+<ol>
+<li>its <strong>name and version</strong> (<code>comprise</code>, <code>1</code>), and the <strong>declaration</strong> a database uses to name it (<code>oes: comprise/1</code>),
+with any legacy forms it still reads;</li>
+<li>its <strong>volume layout</strong> (the folder one database is): the catalog file at its root, which says what the database
+holds, the folders for subjects and modules, and where versions and the local database live;</li>
+<li>its <strong>modules and kinds</strong>, and for each kind its <strong>fields</strong>: at least the reference fields, which the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a> follow;</li>
+<li>its <strong>reference kinds</strong>: the id forms, the relationship kinds, the closed lists;</li>
+<li>its <strong>checks</strong>, by id, with their severities and what the verdict means;</li>
+<li>its <strong><a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">renderers</a></strong>;</li>
+<li>its <strong>public projection</strong>: the fixed fields of the isotype, and the rule that derives each one.</li>
+</ol>
+<p>A database names its MiniCOSM with one line in its catalog and never embeds the manifest. A reader that does not know
+the MiniCOSM or the version a database declares refuses it with a plain error.</p>
+<p><em>The word manifest</em> has two senses in Comprise. This one is a declaration of a language. The other is the list of files
+and hashes in a saved version, a backup or a published atom. Both mean &quot;the list of everything aboard&quot;. They never
+meet on screen.</p>
+</section>
+<section class="docs-sec" data-key="S:section/5" data-scope="">
+<h2 id="docs-sec-5" data-toc="2">5. What a MicroCOSM may change</h2>
+<p>A <a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a> is one organization's extension of a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a>. It is mapped here, not built.</p>
+<p><strong>It may add:</strong></p>
+<ul>
+<li>kinds, in any module;</li>
+<li>fields, on any kind;</li>
+<li><a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a>, including stricter versions of the MiniCOSM's own;</li>
+<li><a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">renderers</a>.</li>
+</ul>
+<p><strong>It may never:</strong></p>
+<ul>
+<li>remove anything;</li>
+<li>rename anything;</li>
+<li>loosen anything: a closed list, a required field, a check's severity;</li>
+<li>change what a path or an id means;</li>
+<li>weaken the split: it adds nothing to the public projection, and opens nothing by default. Only the MiniCOSM, in a new
+version of its projection format, can add a public field, and only as one the subject opts into.</li>
+</ul>
+<p>What a MicroCOSM adds carries its name, <code>&lt;microcosm&gt;.&lt;kind&gt;</code> and <code>&lt;microcosm&gt;.&lt;field&gt;</code>, so a later version of the
+MiniCOSM can never collide with it. A database written with a MicroCOSM is still a valid database of its MiniCOSM: a
+reader that does not know the MicroCOSM keeps its fields and ignores its checks.</p>
+</section>
+<section class="docs-sec" data-key="S:section/6" data-scope="">
+<h2 id="docs-sec-6" data-toc="2">6. Where Comprise OES sits</h2>
+<p>Comprise OES is the first <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a>, and the one <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> is being read out of.</p>
+<ul>
+<li><strong>Its domain</strong> is companies: each company is a set of <strong>concerns</strong> (going concerns: a corporation's branded face, a
+subsidiary, a joint venture) joined by <strong>relationships</strong> (owns, controls, licenses, supplies…). Each concern has eight
+modules, C · O · M · P · R · I · S · E: Corporation, Organizations, Markets, Products, Representations, Inventories,
+Stacks, Employees.</li>
+<li><strong>Its database</strong> is a <strong>Holotype</strong>: one folder describing one company, at a moment.</li>
+<li><strong>Its chapter P</strong> is the old <a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">COSM</a> product tree (the brand, suites, offerings, functions, products and services, each
+answering nine questions), whole.</li>
+<li><strong>Its reference implementation</strong> is <code>core/</code> in this repository: where the spec and the code disagree, the code wins.</li>
+<li><strong>Its version</strong> is 1. Every Holotype made so far is a Comprise OES 1 Holotype as it stands; the legacy line
+<code>comprise: 0.1</code> reads as <code>oes: comprise/1</code>.</li>
+</ul>
+<p>Comprise OES is shaped to slot into MacroCOSM: the parts in <a class="ref-xref" href="#docs-sec-3">section 3</a> are written so that nothing in them says
+&quot;company&quot;.</p>
+</section>
+<section class="docs-sec" data-key="S:section/7" data-scope="">
+<h2 id="docs-sec-7" data-toc="2">7. Connections to the wider ecosystem</h2>
+<p>None of this is built. It is the reason the grammar is shared.</p>
+<ul>
+<li><strong>Other <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSMs</a>, for other subjects.</strong> An industry or a market, a body of knowledge or a practice, an institution,
+a built world (a fiction, a game, a franchise), and later people. Each declares its own kinds and <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a> in its own
+<a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM">manifest</a>, and keeps the grammar, <a class="docs-term" href="#docs-item-t-term-the-envelope" data-term="T:term/the-envelope" title="the columns every item has, whatever its kind: owner">the envelope</a> and the split. People come last and come with their own rules: the
+person holds the keys, only the person releases, and no other subject's database ever holds a person's private detail.</li>
+<li><strong>A shared vocabulary of public forms.</strong> Kinds of thing that many subjects name: &quot;chair&quot;, &quot;M4 screw&quot;, &quot;invoice&quot;,
+&quot;lease&quot;. A form is defined once, in public, and every MiniCOSM that needs it cites it instead of redefining it, the
+way an item cites another by id. Two companies that sell M4 screws then sell the same kind of thing, checkably.</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">Renderers</a> driven by a reader's own style profile.</strong> Today a renderer decides how a Holotype looks. Later a reader
+brings a profile (how much detail, which words, which pictures, beginner or expert) and the renderer follows it: the
+same truth, rewritten for beginners, set as story problems, told as narrative, drawn as a scene. The trade calls the
+text cases <em>transcreation</em>.</li>
+<li><strong>Universal addressing.</strong> Because every item has a path, and a path qualified with its MiniCOSM and its database is a
+URI, anything described anywhere can be pointed at: by a person, by an agent, by another database's reference. What
+the reader may see at that address is still the subject's choice.</li>
+</ul>
+</section>
+<section class="docs-sec" data-key="S:section/8" data-scope="">
+<h2 id="docs-sec-8" data-toc="2">8. The picture</h2>
+<pre><code>                 MacroCOSM: the shared grammar (mapped, not built)
+   paths and URIs . items, fields, references . the envelope . open questions
+   checks . saved and signed versions . the split . renderers . the manifest
+                                  |
+        +-------------------------+--------------------------+
+        |                         |                          |
+  Comprise OES 1           an industry OES           a built-world OES  ...   MiniCOSMs
+  companies, C O M P R I S E   (not built)              (not built)
+        |                                  \               /
+        |                     cite: shared public forms (&quot;chair&quot;, &quot;M4 screw&quot;) (not built)
+        |
+  a MicroCOSM: one organization's added kinds, fields, checks (not built)
+        |
+  Holotypes: one private volume per subject  --- projection ---&gt;  isotype: public, signed, default-deny
+        |                                                              |
+  renderers: the 3D Overview, the Field Guide, the export ...    the Index, only if the subject lists it
+        ^
+  a reader's style profile (not built)
+
+  every box above is addressable:  oes:&lt;minicosm&gt;/&lt;database&gt;/&lt;concern&gt;/&lt;module&gt;/&lt;kind&gt;/&lt;slug&gt;#&lt;field&gt;
+</code></pre>
+</section>
+<section class="docs-sec" data-key="S:section/9" data-scope="">
+<h2 id="docs-sec-9" data-toc="2">9. What is built today</h2>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>State</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comprise OES 1: the format, the eight modules, the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a></td>
+<td>built</td>
+<td><code>core/</code>, the fixtures, the app</td>
+</tr>
+<tr>
+<td>The spec and <a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM">the manifest</a></td>
+<td>written (this phase)</td>
+<td><code>oes/comprise-oes.md</code>, <code>oes/comprise-oes.manifest.cosm</code></td>
+</tr>
+<tr>
+<td>The declaration <code>oes: comprise/1</code></td>
+<td>built: read, default, write and refuse (slice 30c)</td>
+<td><code>core/model.py</code>, <code>core/align.py</code></td>
+</tr>
+<tr>
+<td>Paths (CLI, MCP, the export, <code>/h/{key}/at/&lt;path&gt;</code>, the item page's Details)</td>
+<td>built (slice 30c)</td>
+<td><code>core/paths.py</code>, spec <a class="ref-xref" href="#docs-sec-6">§6</a></td>
+</tr>
+<tr>
+<td>The qualified URI <code>oes:comprise/&lt;holotype&gt;/&lt;path&gt;</code></td>
+<td>read by the CLI and MCP within one install; no resolver across installs</td>
+<td>spec §6.4.7</td>
+</tr>
+<tr>
+<td>The split: Holotype, isotype, outside chart, sealed package, encrypted backups, the Index</td>
+<td>built</td>
+<td>the app, the vault, the Index</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-saved-and-signed-versions" data-term="T:term/saved-and-signed-versions" title="an immutable copy of the files at a moment, with a manifest of hashes">Saved and signed versions</a></td>
+<td>built</td>
+<td><code>snapshots/</code></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">Renderers</a>: 3D Overview, circles, Field Guide, export, reports, isotype</td>
+<td>built</td>
+<td>spec §12</td>
+</tr>
+<tr>
+<td>A manifest reader (load a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> from its manifest)</td>
+<td>not built</td>
+<td></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> as a separate grammar</td>
+<td>not built (mapped here)</td>
+<td></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSMs</a></td>
+<td>not built</td>
+<td></td>
+</tr>
+<tr>
+<td>Other MiniCOSMs</td>
+<td>not built</td>
+<td></td>
+</tr>
+<tr>
+<td>Shared public forms</td>
+<td>not built</td>
+<td></td>
+</tr>
+<tr>
+<td>Style-profile renderers</td>
+<td>not built</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec" data-key="S:section/10" data-scope="">
+<h2 id="docs-sec-10" data-toc="2">10. In this folder</h2>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.md</code></td>
+<td>this map</td>
+</tr>
+<tr>
+<td><code>comprise-oes.md</code></td>
+<td>Comprise OES 1, the spec: the map, the volume, the modules (P is the product tree), paths, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole database, run on every write">checks</a>, versions, the split, <a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns the database into another form">renderers</a>, conformance, and the decisions in this version</td>
+</tr>
+<tr>
+<td><code>comprise-oes.manifest.cosm</code></td>
+<td>the first <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> <a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM">manifest</a>, machine-readable; loads with <code>yaml.safe_load</code> and agrees with <code>core/schema.py</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
+<dl class="docs-gloss"><dt id="docs-item-t-term-checks">Checks</dt><dd>constraints on the whole database, run on every write — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-cosm">COSM</dt><dd>the family's name — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-items-fields-and-references">Items, fields and references</dt><dd>an item is a row with a stable id and a kind — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-macrocosm">MacroCOSM</dt><dd>the whole language: the shared grammar every MiniCOSM is written in — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-microcosm">MicroCOSM</dt><dd>one organization's extension on top of a MiniCOSM — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-minicosm">MiniCOSM</dt><dd>an OES for one domain, declared by a manifest — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-open-questions">Open questions</dt><dd>a value nobody has given yet, written where the value would go — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-paths-and-a-uri-form">Paths, and a URI form</dt><dd>every top-level part (a concern, in Comprise OES), module, kind — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-renderers">Renderers</dt><dd>anything that turns the database into another form — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-saved-and-signed-versions">Saved and signed versions</dt><dd>an immutable copy of the files at a moment, with a manifest of hashes — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-envelope">The envelope</dt><dd>the columns every item has, whatever its kind: owner — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-manifest">The manifest</dt><dd>the machine-readable declaration of a MiniCOSM — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-private-public-split">The private/public split</dt><dd>two formats, not one with a setting: the complete private description — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd></dl>
+</section>
+</div>
+</article>

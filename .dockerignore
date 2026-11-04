@@ -6,6 +6,8 @@ __pycache__
 .pytest_cache
 tests
 *.md
+!site/specs/*/source.md
+specs
 .env
 .DS_Store
 requirements-dev.txt

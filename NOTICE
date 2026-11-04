@@ -4,11 +4,11 @@ Copyright 2026 Graham Smith
 The site's code (cosmoes/, scripts/, tests/, the Dockerfile) is licensed under the Apache License, Version 2.0
 (LICENSE).
 
-The specifications it serves, in site/specs/, are exported from enough (python -m enough.docoes export) and
-are not all under that licence:
+The specifications it serves are not. The texts in specs/ — MacroCOSM OES, Thym, Ascribe, Comprise OES, and OES,
+the paradigm map — and the pages built from them in site/specs/ are
 
-- MacroCOSM OES (site/specs/macrocosm-oes/), Thym (site/specs/thym/) and Ascribe (site/specs/ascribe/) are
-  enough's documents, Apache License 2.0.
-- Comprise OES 1 (site/specs/comprise-oes/, and the chapters "Comprise OES 1" and "OES: the paradigm map" that
-  MacroCOSM OES carries in site/specs/macrocosm-oes/) is Comprise's own text:
-  Copyright (c) 2026 Graham Smith. All rights reserved. It is not covered by the Apache License 2.0.
+    Copyright (c) 2026 Graham Smith. All rights reserved.
+
+They are the canonical texts; the editions published at cosmoes.org and its hosts are built from them and from
+nothing else (specs/NOTICE.md, specs/specs.json). They are not covered by the Apache License 2.0, and no licence is
+granted on them by their presence in this repository (CONTRIBUTING.md).

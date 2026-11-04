@@ -25,8 +25,8 @@
 {% block content %}{% endblock %}
 </main>
 <footer class="foot">
-  {% if meta %}<p>From {{ meta.from }}{% if meta.commit %} ({{ meta.commit }}){% endif %}{% if meta.exported %}, exported {{ meta.exported|date_text }}{% endif %}.</p>{% endif %}
-  <p>MacroCOSM OES, Thym and Ascribe are Apache-2.0 (enough); Comprise OES 1 is Comprise's own text, © Graham Smith.</p>
+  {% if meta %}<p>Built from <a href="{{ repository }}">cosmoes-site</a>{% if meta.commit %} at {{ meta.commit }}{% if meta.dirty %}, with uncommitted changes{% endif %}{% endif %}{% if meta.enough %} by enough {{ meta.enough }} (DocOES){% endif %}{% if meta.exported %}, exported {{ meta.exported|date_text }}{% endif %}.</p>{% endif %}
+  <p>The texts are © 2026 Graham Smith, all rights reserved; the canonical editions are these pages. The site's code is Apache-2.0.</p>
 </footer>
 </body>
 </html>

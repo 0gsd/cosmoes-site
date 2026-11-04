@@ -2,7 +2,7 @@
 
 One service, `cosmoes-site`, in project `i0app-010010`, region `us-central1`, beside `comprise-site` and
 `comprise-connect` (which it never touches). Eight domain mappings point at it. The specifications ship in the image
-(`site/specs/`): no bucket, no secret, no environment variable. Run everything from the repository's root, in order;
+(`site/specs/`, built from `specs/` by `scripts/build_specs.py`): no bucket, no secret, no environment variable. Run everything from the repository's root, in order;
 each step is idempotent enough to re-run.
 
 ## 0. Names
@@ -48,7 +48,8 @@ gcloud run deploy $SERVICE --image $IMAGE --region $REGION \
   --cpu 1 --memory 512Mi --concurrency 80 --min-instances 0 --max-instances 3 --timeout 60
 export URL=$(gcloud run services describe $SERVICE --region $REGION --format='value(status.url)')
 curl -s $URL/health                                    # {"ok":true}
-curl -s $URL/ | grep -c 'class="tile"'                 # 4: the run.app address is an unknown host, so it serves the apex
+curl -s $URL/ | grep -c 'class="tile"'                 # 4: the run.app address is outside the domain, so it serves the apex
+curl -s $URL/raw/source.md | head -1                   # "# OES: the paradigm map": the apex text, raw
 ```
 
 `--allow-unauthenticated`: it is a public site with nothing to protect. `/healthz` is not a check here: on Cloud Run,
@@ -82,9 +83,11 @@ for h in macro thym ascribe comprise; do
   curl -s https://$h.$DOMAIN/ | grep -c '<h1'               # 1
   curl -s https://$h.$DOMAIN/robots.txt                     # Allow: / and the host's sitemap
   curl -s https://$h.$DOMAIN/sitemap.xml | grep -c '<loc>'  # 3
+  curl -sI https://$h.$DOMAIN/raw/source.md | grep -i -e '^HTTP' -e '^content-type' -e '^access-control'   # 200, text/markdown, *
 done
-curl -s https://$DOMAIN/ | grep -c 'class="tile"'          # 4
-curl -s https://$DOMAIN/sitemap.xml | grep -c '<loc>'       # 13
+curl -s https://$DOMAIN/ | grep -c 'class="tile"'          # 4: the apex text, then the four homes
+curl -s https://$DOMAIN/sitemap.xml | grep -c '<loc>'       # 15: the apex at three densities and the four hosts
+curl -s https://$DOMAIN/manifest.json | grep -o '"slug"' | wc -l   # 5: every document, with each file's sha256
 curl -sI https://www.$DOMAIN/atem | grep -i -e '^HTTP' -e '^location'      # 301 https://cosmoes.org/atem
 curl -sI https://docoes.$DOMAIN/ | grep -i -e '^HTTP' -e '^location'       # 302 https://macro.cosmoes.org/#docs-sec-18-5
 curl -sI https://mini.$DOMAIN/ | grep -i -e '^HTTP' -e '^location'         # 302 https://cosmoes.org/
@@ -92,14 +95,16 @@ curl -sI https://mini.$DOMAIN/ | grep -i -e '^HTTP' -e '^location'         # 302
 
 ## Updating
 
-When a specification changes (a new version in enough), sync, look, commit, build, deploy:
+When a text changes (a pull request against `specs/`, CONTRIBUTING.md), build, look, commit, check, build the image,
+deploy:
 
 ```sh
-.venv/bin/python scripts/sync_specs.py --enough ~/METMcloud/METMroot/enough-dev
-.venv/bin/uvicorn cosmoes.app:app --port 8097             # look (README.md), then commit what the sync wrote
+.venv/bin/python scripts/build_specs.py --enough ~/METMcloud/METMroot/enough-dev
+.venv/bin/uvicorn cosmoes.app:app --port 8097             # look (README.md), then commit what the build wrote with the text
+.venv/bin/python scripts/build_specs.py --enough ~/METMcloud/METMroot/enough-dev --check   # the commit is in step: exit 0
 export IMAGE=$REGION-docker.pkg.dev/$PROJECT/$REPO/site:$(git rev-parse --short HEAD)
 gcloud builds submit --tag $IMAGE .
 gcloud run deploy $SERVICE --image $IMAGE --region $REGION
 ```
 
-A code change deploys the same way without the sync. Nothing here touches `comprise-site` or `comprise-connect`.
+A code change deploys the same way without the build. Nothing here touches `comprise-site` or `comprise-connect`.

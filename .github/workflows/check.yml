@@ -1,0 +1,17 @@
+# The tests, on every push and pull request. The in-step check (scripts/build_specs.py --check) runs locally for now:
+# it needs an enough checkout whose DocOES export has --no-marks, --reference and an explicit slug (enough 0.5.1),
+# which the public main does not carry yet; CONTRIBUTING.md names it as the step before a commit.
+name: check
+on:
+  push:
+  pull_request:
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -q

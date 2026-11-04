@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{# One specification at one density on its own host: the density switch in the header, the export's fragment as it is
+{# One specification at one density on its host: the density switch in the header, the export's fragment as it is
    (`|safe`: cosmoes/specs.py checked its sha256 and that it carries no script, style or event attribute). The fragment
-   brings its own <h1>, contents and ids; its look is /docs.css (the export's), its two columns /site.css's. #}
+   brings its own <h1>, contents and ids; its look is /docs.css (the export's), its two columns /site.css's. On the
+   apex's / the list of the homes follows the text (`homes`). #}
 {% block title %}{{ doc.name }} ({{ density }}) · {{ host }}{% endblock %}
 {% block head %}<link rel="stylesheet" href="/docs.css">{% endblock %}
-{% block body_class %}doc density-{{ density }}{% endblock %}
+{% block body_class %}doc density-{{ density }}{% if homes is not none %} apex{% endif %}{% endblock %}
 {% block switch %}
   <nav class="densities" aria-label="Density">
     {% for d in densities %}
@@ -13,6 +14,35 @@
   </nav>
 {% endblock %}
 {% block content %}
-<p class="kicker">{{ host }} · specification{% if doc.version %} · v{{ doc.version }}{% endif %} · {{ titles[density] }}</p>
+<p class="kicker">{{ host }}{% if doc.edition %} · edition {{ doc.edition }}{% endif %}{% if doc.revised %} · revised {{ doc.revised|date_text }}{% endif %} · {{ titles[density] }}</p>
 {{ fragment|safe }}
+{% if homes is not none %}
+<section class="homes" aria-labelledby="homes-h">
+  <h2 id="homes-h">The specifications and their homes</h2>
+  <p class="lede">Each specification has an address of its own and three densities: <b>atem</b>, one line per section;
+  <b>short</b>, the readable text; <b>fabula</b>, every item as a card.</p>
+  {% if homes %}
+  <ul class="tiles">
+    {% for d in homes %}
+    <li class="tile" id="home-{{ d.slug }}">
+      <p class="kicker"><a href="{{ d.url }}">{{ d.host }}</a>{% if d.edition %} · edition {{ d.edition }}{% endif %}</p>
+      <h3><a href="{{ d.url }}">{{ d.name }}</a></h3>
+      {% if d.lead %}<p class="lead">{{ d.lead }}</p>{% endif %}
+      <ul class="links" aria-label="{{ d.name }} at each density">
+        {% for dn in densities %}
+        <li><a href="{{ d.url }}{{ pages[dn].lstrip('/') }}">{{ dn }}</a> {{ titles[dn] }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="none" role="status">No specification is published at a host of its own yet.</p>
+  {% endif %}
+  <p class="also">DocOES, the document form these pages are made from, is section 18.5 of MacroCOSM OES, not a
+  specification of its own; <a href="https://docoes.{{ domain }}/">docoes.{{ domain }}</a> goes there. A MiniCOSM gets a
+  home here once it has a specification of its own; <a href="https://mini.{{ domain }}/">mini.{{ domain }}</a> comes back
+  to this page. The whole set, with every file's sha256, is <a href="/manifest.json">/manifest.json</a>.</p>
+</section>
+{% endif %}
 {% endblock %}

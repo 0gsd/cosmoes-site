@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-02T23:53:58Z",
+  "exported": "2026-11-04T02:56:04Z",
   "by": "enough/0.5.1",
   "source": {
-    "commit": "2ddc7ce",
+    "commit": "d2ea035",
     "dirty": true
   },
   "css": "docs.css",
@@ -15,6 +15,59 @@
   "standalone": false,
   "documents": [
     {
+      "slug": "oes",
+      "name": "OES",
+      "version": "1",
+      "lang": "en",
+      "id": "doc/oes",
+      "oes": "doc/1",
+      "lead": "OES: the paradigm map",
+      "source": {
+        "path": "specs/oes.md",
+        "sha256": "055b80dc0f45fc4372839849d58bcc965207128ef0cefdb15a9fa8267cb4d11c"
+      },
+      "chapters": [],
+      "counts": {
+        "sections": 12,
+        "terms": 13,
+        "examples": 0,
+        "decisions": 0,
+        "reference": 0
+      },
+      "files": {
+        "short": {
+          "path": "oes/short.html",
+          "sha256": "3cd4c588f2eb328047550927d89ebed96c4294a827d3073d4992a97a3c3b0b09",
+          "bytes": 27642
+        },
+        "atem": {
+          "path": "oes/atem.html",
+          "sha256": "b6419fc1fe18654c7a8096256908b4e2e7f2fb0f6e7b969ae5bd912fe4479903",
+          "bytes": 6348
+        },
+        "fabula": {
+          "path": "oes/fabula.html",
+          "sha256": "9d9ba89a1f0cdd5289bf6b22da2d93908cbe213e5758e67cf43f68da14d18426",
+          "bytes": 26255
+        },
+        "source": {
+          "path": "oes/source.md",
+          "sha256": "055b80dc0f45fc4372839849d58bcc965207128ef0cefdb15a9fa8267cb4d11c",
+          "bytes": 13710
+        }
+      },
+      "edition": "1",
+      "describes": {},
+      "host": "cosmoes.org",
+      "revised": "2026-11-03",
+      "raw": {
+        "source": "/raw/source.md",
+        "short": "/raw/short.html",
+        "atem": "/raw/atem.html",
+        "fabula": "/raw/fabula.html"
+      }
+    },
+    {
       "slug": "macrocosm-oes",
       "name": "MacroCOSM OES",
       "version": "0.0.2",
@@ -23,64 +76,62 @@
       "oes": "doc/1",
       "lead": "MacroCOSM OES is the shared grammar every MiniCOSM is written in",
       "source": {
-        "path": "docs/MACROCOSM_OES.md",
+        "path": "specs/macrocosm-oes.md",
         "sha256": "24321ad5a5499a3717700d62856a1bb945119d06af1e1512f497b05dc91d9f2e"
       },
-      "chapters": [
-        {
-          "id": "S:chapter/comprise-oes",
-          "name": "Comprise OES 1",
-          "source": "oes/comprise-oes.md",
-          "commit": "fbe5b08",
-          "sha256": "2c578c9c04dec2184be8fe827d81a2ce5880d4ae93782f897b71739a214a5a21",
-          "prefix": "comprise",
-          "version": "1"
-        },
-        {
-          "id": "S:chapter/comprise-paradigm-map",
-          "name": "OES: the paradigm map",
-          "source": "oes/README.md",
-          "commit": "fbe5b08",
-          "sha256": "0a3a52762c908f0cebd67a16032acf6f2671b551947f1eeedcbbda8f8b8b661d",
-          "prefix": "comprise-map",
-          "version": "1"
-        }
-      ],
+      "chapters": [],
       "counts": {
-        "sections": 220,
-        "terms": 68,
+        "sections": 112,
+        "terms": 41,
         "examples": 8,
-        "decisions": 46,
+        "decisions": 27,
         "reference": 256
       },
       "files": {
         "short": {
           "path": "macrocosm-oes/short.html",
-          "sha256": "d3f20e9dfa7df80b06bd69e803b00b84461b4c442c3b39b23981e347cf7a64d9",
-          "bytes": 610803
+          "sha256": "4190bcb2c123c25d1c3b0b69db72d35b1f8dfab29c9e898aed8704884fb9f692",
+          "bytes": 340889
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
-          "sha256": "0b52d59f5a06c481f98f9218aaa72266efd0904a5498cdcf80ecdc73b556ac77",
-          "bytes": 111294
+          "sha256": "35cf98099ea49f4e6c6f69c6ae7ec09852403973e0014a7be9ba69f319bd5bab",
+          "bytes": 76078
         },
         "fabula": {
           "path": "macrocosm-oes/fabula.html",
-          "sha256": "4c5adedc1b9699318aa9d3cafcfca38cab2d041264ac74d37a31d279a23488c6",
-          "bytes": 832801
+          "sha256": "9d6031902667a4a33c83bfee8a5c2c3174cbacb94160c875ddc5f455970740f3",
+          "bytes": 616391
+        },
+        "source": {
+          "path": "macrocosm-oes/source.md",
+          "sha256": "24321ad5a5499a3717700d62856a1bb945119d06af1e1512f497b05dc91d9f2e",
+          "bytes": 158053
         }
+      },
+      "edition": "0.0.2",
+      "describes": {
+        "macrocosm": "0.0.2"
+      },
+      "host": "macro.cosmoes.org",
+      "revised": "2026-11-03",
+      "raw": {
+        "source": "/raw/source.md",
+        "short": "/raw/short.html",
+        "atem": "/raw/atem.html",
+        "fabula": "/raw/fabula.html"
       }
     },
     {
       "slug": "thym",
-      "name": "Thym 0",
+      "name": "Thym",
       "version": "0",
       "lang": "en",
       "id": "doc/thym",
       "oes": "doc/1",
       "lead": "Version 0 of the language, written 2026-11-01 for enough 0.5.0",
       "source": {
-        "path": "docs/THYM.md",
+        "path": "specs/thym.md",
         "sha256": "67b93f1810629af648a9e9ca74aab6793e5d2e4676373fac23e123f6a579bb2f"
       },
       "chapters": [],
@@ -94,8 +145,8 @@
       "files": {
         "short": {
           "path": "thym/short.html",
-          "sha256": "c7e4cfa6fd42a840c9ee9097e364f69994d753f084a7158f80f40cd050f0cf7f",
-          "bytes": 155368
+          "sha256": "9ac2345b4fa6725de69bb5c53d4355e1eec41f7b59ba633278992e9c8a6cb826",
+          "bytes": 151125
         },
         "atem": {
           "path": "thym/atem.html",
@@ -104,21 +155,38 @@
         },
         "fabula": {
           "path": "thym/fabula.html",
-          "sha256": "4c3593bd868bb4750631d8539e726ad80289d460ba1706ec87240be3368fc8f2",
-          "bytes": 128004
+          "sha256": "851a000c827b634932adb0c3e230c4f700fe1012f801b80919428fab83feda61",
+          "bytes": 128118
+        },
+        "source": {
+          "path": "thym/source.md",
+          "sha256": "67b93f1810629af648a9e9ca74aab6793e5d2e4676373fac23e123f6a579bb2f",
+          "bytes": 89579
         }
+      },
+      "edition": "0",
+      "describes": {
+        "thym": "1"
+      },
+      "host": "thym.cosmoes.org",
+      "revised": "2026-11-03",
+      "raw": {
+        "source": "/raw/source.md",
+        "short": "/raw/short.html",
+        "atem": "/raw/atem.html",
+        "fabula": "/raw/fabula.html"
       }
     },
     {
       "slug": "ascribe",
-      "name": "Ascribe OES 1",
+      "name": "Ascribe",
       "version": "1",
       "lang": "en",
       "id": "doc/ascribe",
       "oes": "doc/1",
       "lead": "Ascribe is the MiniCOSM for a person's holograph",
       "source": {
-        "path": "docs/ASCRIBE.md",
+        "path": "specs/ascribe.md",
         "sha256": "53933b3101d464ccd708c5071e4b6f54fdb2f8af8d8d97445c4e27ce656388e9"
       },
       "chapters": [],
@@ -132,8 +200,8 @@
       "files": {
         "short": {
           "path": "ascribe/short.html",
-          "sha256": "4bdcd3477089d0ee98d2e36a575d9eb67370236a948d0feec1e3f5c87c3bad4a",
-          "bytes": 45725
+          "sha256": "695cc4db286c10f8fafbd2f001773e351b5a0714a5e72e53e9ce7265596f6838",
+          "bytes": 44812
         },
         "atem": {
           "path": "ascribe/atem.html",
@@ -142,26 +210,43 @@
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "09f91d13c4167b275f5128b758c9a809032e374f3bfa4b33e1ee801cba4d92ae",
-          "bytes": 48130
+          "sha256": "a03482fcc93fdc20f93e71198e8d50ba5139a25d8ed48edf63d2e85bbba56bc6",
+          "bytes": 48174
+        },
+        "source": {
+          "path": "ascribe/source.md",
+          "sha256": "53933b3101d464ccd708c5071e4b6f54fdb2f8af8d8d97445c4e27ce656388e9",
+          "bytes": 30842
         }
+      },
+      "edition": "1",
+      "describes": {
+        "ascribe": "1"
+      },
+      "host": "ascribe.cosmoes.org",
+      "revised": "2026-11-03",
+      "raw": {
+        "source": "/raw/source.md",
+        "short": "/raw/short.html",
+        "atem": "/raw/atem.html",
+        "fabula": "/raw/fabula.html"
       }
     },
     {
       "slug": "comprise-oes",
-      "name": "Comprise OES 1",
+      "name": "Comprise OES",
       "version": "1",
       "lang": "en",
       "id": "doc/comprise-oes",
       "oes": "doc/1",
       "lead": "The code in core/ is the reference reader and writer",
       "source": {
-        "path": "defaults/cosm/chapters/comprise-oes.md",
-        "sha256": "2c578c9c04dec2184be8fe827d81a2ce5880d4ae93782f897b71739a214a5a21"
+        "path": "specs/comprise-oes.md",
+        "sha256": "d64a442f6dcce60d686e9aca79ce9c46def9275385c32497e46227b11ff8c60c"
       },
       "chapters": [],
       "counts": {
-        "sections": 96,
+        "sections": 98,
         "terms": 14,
         "examples": 0,
         "decisions": 19,
@@ -170,19 +255,36 @@
       "files": {
         "short": {
           "path": "comprise-oes/short.html",
-          "sha256": "aec6af1c324bb59aad381a0f80ce11cbfd469b921470f558e0b856b67e087018",
-          "bytes": 184857
+          "sha256": "21e9069b618fad7b942d8e096b83017a70dc1c811308c1cdeda524e41ebb70bc",
+          "bytes": 194507
         },
         "atem": {
           "path": "comprise-oes/atem.html",
-          "sha256": "4c60e24cc3ec4dfb847da10ccb2a94c2a1f512b0ec68f3c8e4aa1328fc28de09",
-          "bytes": 28033
+          "sha256": "2f59e1f793203f54896577920e3bd7a027c62272d3884632ba13dee909124691",
+          "bytes": 28642
         },
         "fabula": {
           "path": "comprise-oes/fabula.html",
-          "sha256": "29e980f8e239b1c25fff3441622ee29d8578088a462dbac6eae13f585b38b54b",
-          "bytes": 152505
+          "sha256": "ffa1bd5107a59dd45b389fbc47205e1e4864fe7bb0d19d8e2d639ea1303514cb",
+          "bytes": 152958
+        },
+        "source": {
+          "path": "comprise-oes/source.md",
+          "sha256": "d64a442f6dcce60d686e9aca79ce9c46def9275385c32497e46227b11ff8c60c",
+          "bytes": 101976
         }
+      },
+      "edition": "1",
+      "describes": {
+        "comprise": "1"
+      },
+      "host": "comprise.cosmoes.org",
+      "revised": "2026-11-03",
+      "raw": {
+        "source": "/raw/source.md",
+        "short": "/raw/short.html",
+        "atem": "/raw/atem.html",
+        "fabula": "/raw/fabula.html"
       }
     }
   ]
