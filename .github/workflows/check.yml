@@ -1,6 +1,4 @@
-# The tests, on every push and pull request. The in-step check (scripts/build_specs.py --check) runs locally for now:
-# it needs an enough checkout whose DocOES export has --no-marks, --reference and an explicit slug (enough 0.5.1),
-# which the public main does not carry yet; CONTRIBUTING.md names it as the step before a commit.
+# The tests, on every push and pull request, and the in-step check of the committed export against enough's public main.
 name: check
 on:
   push:
@@ -15,3 +13,79 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements-dev.txt
       - run: pytest -q
+
+  # tests/test_build.py's in-step test needs an enough checkout and is skipped above. This job clones enough's public
+  # main (https://github.com/0gsd/enough) and rebuilds site/specs/ from specs/ with it, as scripts/build_specs.py does.
+  #
+  # It holds what must always be true, and reports what may lag:
+  #   - fails when the export is out of step with the texts: a file added or removed, a source.md that is not its
+  #     text, or a manifest that differs in anything but the exporter's own stamps (a text's edition, revised date,
+  #     chapters, a registry field);
+  #   - warns, and passes, when the only differences come from enough's exporter having moved on since the export was
+  #     built: the rendered .html pages, the manifest's `by`, a document's `counts`, and the html files' sha256 and
+  #     size. The release routine's `prepare` rebuilds the export with the new enough at every major, so that lag is
+  #     expected between majors; rebuilding and committing site/specs/ clears it at any time.
+  in-step:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt    # build_specs.py imports the site's app for its hosts
+      - uses: astral-sh/setup-uv@v6
+      - name: enough's public main
+        run: |
+          git clone --quiet --depth 1 https://github.com/0gsd/enough "$RUNNER_TEMP/enough"
+          git -C "$RUNNER_TEMP/enough" log --oneline -1
+          (cd "$RUNNER_TEMP/enough" && uv sync --frozen --quiet)
+      - name: rebuild site/specs/ and compare with the commit
+        env:
+          ENOUGH_DOCS_ROOT: ${{ runner.temp }}/docoes
+        run: |
+          python3 scripts/build_specs.py --enough "$RUNNER_TEMP/enough"
+          python3 - <<'EOF'
+          import json, os, subprocess, sys
+          git = lambda *a: subprocess.run(['git', *a], capture_output=True, text=True, check=True).stdout
+          changed = [l for l in git('status', '--porcelain', '--untracked-files=all', '--', 'site/specs').splitlines() if l]
+          if not changed:
+              print('site/specs/ is in step with specs/ and enough main'); sys.exit(0)
+          hard, soft = [], []
+          for line in changed:
+              state, path = line[:2], line[3:]
+              if state.strip() != 'M':
+                  hard.append(f'{path}: {"added" if "?" in state or "A" in state else "removed" if "D" in state else state.strip()}')
+              elif path.endswith('.html'):
+                  soft.append(f'{path} differs (rendering)')
+              elif path != 'site/specs/manifest.json':
+                  hard.append(f'{path} differs')
+          old = json.loads(git('show', 'HEAD:site/specs/manifest.json'))
+          new = json.loads(open('site/specs/manifest.json', encoding='utf-8').read())
+          if old.get('by') != new.get('by'):
+              soft.append(f'manifest by: {old.get("by")} -> {new.get("by")}')
+          def stable(m):
+              m = {k: v for k, v in m.items() if k not in ('exported', 'source', 'by')}
+              docs = []
+              for d in m.get('documents', []):
+                  d = {k: v for k, v in d.items() if k != 'counts'}
+                  d['files'] = {k: ({'path': f['path']} if f.get('path', '').endswith('.html') else f)
+                                for k, f in (d.get('files') or {}).items()}
+                  docs.append(d)
+              return {**m, 'documents': docs}
+          for o, n in zip(old.get('documents', []), new.get('documents', [])):
+              if o.get('counts') != n.get('counts'):
+                  soft.append(f'{o.get("slug")} counts: {o.get("counts")} -> {n.get("counts")}')
+          if stable(old) != stable(new):
+              hard.append('site/specs/manifest.json differs beyond the exporter\'s stamps')
+          summary = os.environ.get('GITHUB_STEP_SUMMARY')
+          lines = ['## The committed export against enough main', '']
+          lines += [f'- **out of step:** {h}' for h in hard] + [f'- lags the exporter: {s}' for s in soft]
+          if summary:
+              open(summary, 'a', encoding='utf-8').write('\n'.join(lines) + '\n')
+          print('\n'.join(lines))
+          if hard:
+              print('::error::site/specs/ is out of step with specs/: run scripts/build_specs.py --enough <enough> and commit what it writes')
+              sys.exit(1)
+          print('::warning::site/specs/ was built by an older enough exporter (it differs only in rendering and stamps); '
+                'the next major\'s prepare rebuilds it, or run scripts/build_specs.py --enough <enough> and commit')
+          EOF
