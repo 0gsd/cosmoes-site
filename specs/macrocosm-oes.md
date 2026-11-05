@@ -1810,9 +1810,9 @@ source; a run that only settles the dialectic's answers (section 18.6.4) changes
 |---|---|---|
 | `at` | when, as a timestamp in UTC | always |
 | `by` | at whose request: `person`, or the readvisor's name | always |
-| `model` | the model's own id: for a local model, the name the implementation knows it by; for a cloud model, the provider's resolved id (`anthropic/claude-opus-5.5`) | model mode |
+| `model` | the model's own id: for a local model, the name the implementation knows it by; for a cloud model, the provider's resolved id, of the form `vendor/model` | model mode |
 | `route` | `local` or `cloud` | model mode |
-| `provider` | the service that carried a cloud request (`openrouter`) | cloud only |
+| `provider` | the service that carried a cloud request, by its name | cloud only |
 | `program` | the file of the Thym program that built the fabula (`decompile-python.thym`) | when a Thym program did |
 | `run` | the trace id of that program's run | with `program` |
 | `mode` | `model` or `rules` | always |
@@ -2509,7 +2509,7 @@ flavour: fabulap
 id: fabula/poems--the-sick-rose-txt
 name: The Sick Rose
 source: {path: the-sick-rose.txt, sha256: c35789bdb766ef26a13b65a2c3cb243ac59e9119731f361194ed5023c39fca58, size: 232, mtime_ns: 1793914431114080113}
-derived: {at: 2026-11-05T11:40:00Z, by: person, model: anthropic/claude-opus-5.5, route: cloud, provider: openrouter, mode: model, completeness: full, chunks: 1}
+derived: {at: 2026-11-05T11:40:00Z, by: person, model: vendor/large-model, route: cloud, provider: broker-name, mode: model, completeness: full, chunks: 1}
 atem:
   line: An unseen worm flying through a stormy night finds a rose's bed of crimson joy, and its dark secret love destroys the rose's life.
   focus: A speaker tells a rose that it is sick, and names the cause, a worm whose hidden love is killing it.
@@ -2906,7 +2906,7 @@ derived:
     - {program: decompile-python.thym, run: 2026-11-05-1512-0b31, at: 2026-11-05T15:12:03Z}
     - {program: decompile-python.thym, run: 2026-11-05-1512-7c20, at: 2026-11-05T15:12:05Z}
     - {program: decompile-python.thym, run: 2026-11-05-1513-41aa, at: 2026-11-05T15:14:52Z, model: g40-04, route: local}
-    - {program: decompile-python.thym, run: 2026-11-05-1515-d3f8, at: 2026-11-05T15:18:30Z, model: anthropic/claude-opus-5.5, route: cloud, provider: openrouter}
+    - {program: decompile-python.thym, run: 2026-11-05-1515-d3f8, at: 2026-11-05T15:18:30Z, model: vendor/large-model, route: cloud, provider: broker-name}
     - {program: decompile-python.thym, run: 2026-11-05-1521-9e07, at: 2026-11-05T15:21:40Z, model: g40-04, route: local}
 atem:
   line: days prints how many whole days lie between today, or a date you give, and another date, as a phrase or as a bare number.
@@ -2914,9 +2914,9 @@ atem:
   push: Ask a date question in one line and get one line back, with nothing to install.
   pull: Only whole calendar days are counted, so times of day, time zones and dates written in words are outside what it does.
 shorts:
-  - {path: days.cshort-2026-11-05-1530/, at: 2026-11-05T15:30:12Z, by: anthropic/claude-opus-5.5, mode: model, order: code, route: cloud, language: python, files: 2}
+  - {path: days.cshort-2026-11-05-1530/, at: 2026-11-05T15:30:12Z, by: vendor/large-model, mode: model, order: code, route: cloud, language: python, files: 2}
 catems:
-  - {path: days.catem-2026-11-05-1532.md, at: 2026-11-05T15:32:40Z, by: anthropic/claude-opus-5.5, mode: model, route: cloud, depth: overview}
+  - {path: days.catem-2026-11-05-1532.md, at: 2026-11-05T15:32:40Z, by: vendor/large-model, mode: model, route: cloud, depth: overview}
 nodes:
   - id: I:influence/one-line-tools
     type: influence
@@ -3160,7 +3160,7 @@ nodes:
 The first lines of its cshort's `CSHORT.md`:
 
 ```markdown
-*a cshort of days.fabulac.cosm, in Python, compiled on 2026-11-05 by anthropic/claude-opus-5.5 (cloud, openrouter); never run*
+*a cshort of days.fabulac.cosm, in Python, compiled on 2026-11-05 by vendor/large-model (cloud, broker-name); never run*
 
 | file | from | sha256 |
 |---|---|---|
@@ -3189,7 +3189,7 @@ past. A date is written YYYY-MM-DD, or `today`.
 The date is named on standard error, as in `days: not a date: '2026-02-30' (write it as YYYY-MM-DD)`, and the exit
 status is 1. A command typed wrongly prints the usage, with exit status 2.
 
-*a catem of days.fabulac.cosm, at depth overview, compiled on 2026-11-05 by anthropic/claude-opus-5.5 (cloud, openrouter)*
+*a catem of days.fabulac.cosm, at depth overview, compiled on 2026-11-05 by vendor/large-model (cloud, broker-name)*
 ```
 
 #### 18.4.8 The fabula's checks

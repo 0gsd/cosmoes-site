@@ -2333,14 +2333,14 @@ Nothing reaches a cloud model that the person did not choose for that run.
 A plan with a node that asks carries the catalog key `models` before anything runs:
 
 ```yaml
-models: {route: cloud, provider: openrouter, model: anthropic/claude-…, calls: 61, at_most: 183, calls_open: [], window: 200000}
+models: {route: cloud, provider: broker-name, model: vendor/large-model, calls: 61, at_most: 183, calls_open: [], window: 200000}
 ```
 
 `calls` is the number of model requests the plan makes when every check passes the first time: a plain node that asks
 counts one, and a node with calls in a loop counts its asking calls times its `members.at_most`. `at_most` is `calls`
 times each node's attempts. `calls_open` lists the nodes whose count cannot be known at plan time: a recursive move
 that asks, a loop over a collection of unknown size. A command line prints it under the plan's atem:
-`61 model calls, at most 183, on the cloud (openrouter: anthropic/claude-…)`. The plan's root summary is the same in both versions. A
+`61 model calls, at most 183, on the cloud (broker-name: vendor/large-model)`. The plan's root summary is the same in both versions. A
 plan compared by the conformance suite is compared without `models`, since the route is the run's choice, not the
 program's.
 
