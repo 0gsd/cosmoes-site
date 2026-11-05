@@ -21,8 +21,9 @@ Comprise, comprise-connect) sync it from here. A change to a text is a change to
    The first writes `site/specs/`; commit it with the text. The second rebuilds into a temporary folder and compares,
    byte for byte, and exits 1 on a difference: it guards the commit. It needs an enough checkout whose DocOES export
    is 0.5.1's or later (`--no-marks`, `--reference`, an explicit slug) with its `.venv` made (`uv sync --frozen`
-   there); CI runs `pytest -q` and not this check until that export is on enough's public main, so run it before
-   you push.
+   there). Run it before you push. CI's `in-step` job runs the same build against enough's public main: it fails
+   when the export is out of step with the texts, and only warns when the export is in step but was rendered by an
+   older enough (a major's `prepare` rebuilds it then).
 4. **The owner merges and deploys** (DEPLOY.md, "Updating"). Nothing is live until then.
 
 ## Licence

@@ -98,7 +98,8 @@ loader refuses, and that the shipped `site/specs/` is the registry built, every 
 margin marks, the Comprise chapters gone. `tests/test_build.py`: the registry's validation and the build against a
 stand-in export; its last test runs `--check` with the real enough when a checkout is at hand (`COSMOES_ENOUGH`, else
 `~/METMcloud/METMroot/enough-dev`). The fixture export is written by `tests/conftest.py`. CI
-(`.github/workflows/check.yml`) runs the suite on every push and pull request.
+(`.github/workflows/check.yml`) runs the suite on every push and pull request, and its `in-step` job rebuilds the
+export with enough's public main: out of step with the texts fails, rendered by an older enough only warns.
 
 ## Licences
 
