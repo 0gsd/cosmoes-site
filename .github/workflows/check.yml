@@ -29,6 +29,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt    # build_specs.py imports the site's app for its hosts
       - uses: astral-sh/setup-uv@v6
       - name: enough's public main
         run: |
