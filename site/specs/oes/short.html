@@ -1,5 +1,5 @@
 <article class="docoes docoes-short" data-doc="oes" data-density="short" data-lang="en">
-<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-the-short-version">The short version</a></li><li class="lvl2"><a href="#docs-sec-1">1. What an OES is</a></li><li class="lvl2"><a href="#docs-sec-2">2. Three scales</a></li><li class="lvl2"><a href="#docs-sec-3">3. What MacroCOSM gives every MiniCOSM</a></li><li class="lvl2"><a href="#docs-sec-4">4. What a MiniCOSM declares</a></li><li class="lvl2"><a href="#docs-sec-5">5. What a MicroCOSM may change</a></li><li class="lvl2"><a href="#docs-sec-6">6. The specifications and how they relate</a></li><li class="lvl2"><a href="#docs-sec-7">7. The picture</a></li><li class="lvl2"><a href="#docs-sec-8">8. Editions</a></li><li class="lvl2"><a href="#docs-sec-9">9. Implementations</a></li><li class="lvl2"><a href="#docs-sec-10">10. Open formats</a></li><li class="lvl2"><a href="#docs-changes">Changes</a></li><li class="lvl2"><a href="#docs-colophon">Colophon</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
+<nav class="docoes-contents" aria-label="Contents"><ol><li class="lvl2"><a href="#docs-the-short-version">The short version</a></li><li class="lvl2"><a href="#docs-sec-1">1. What an OES is</a></li><li class="lvl2"><a href="#docs-sec-2">2. Scales</a></li><li class="lvl2"><a href="#docs-sec-3">3. The model: decompile, fabula, compile, short, atem</a></li><li class="lvl2"><a href="#docs-sec-4">4. What MacroCOSM gives every MiniCOSM</a></li><li class="lvl2"><a href="#docs-sec-5">5. What a MiniCOSM declares</a></li><li class="lvl2"><a href="#docs-sec-6">6. What a MicroCOSM may change</a></li><li class="lvl2"><a href="#docs-sec-7">7. The specifications and how they relate</a></li><li class="lvl2"><a href="#docs-sec-8">8. The picture</a></li><li class="lvl2"><a href="#docs-sec-9">9. Editions</a></li><li class="lvl2"><a href="#docs-sec-10">10. Implementations</a></li><li class="lvl2"><a href="#docs-sec-11">11. Open formats</a></li><li class="lvl2"><a href="#docs-changes">Changes</a></li><li class="lvl2"><a href="#docs-colophon">Colophon</a></li><li class="lvl2"><a href="#docs-glossary-h">Terms</a></li></ol></nav>
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
 <h1 id="docs-the-oes-specifications">The OES specifications</h1>
@@ -12,12 +12,12 @@ this text.</p>
 <section class="docs-sec" data-key="S:section/the-short-version" data-scope="">
 <h2 id="docs-the-short-version" data-toc="2">The short version</h2>
 <p>An OES describes its subject as a file system that is also a relational database: every volume (a company's Holotype, a
-person's holograph, a text's twin, a library's catalog) is a folder of plain-text files or one such file, every module a
-set of tables, every item a row with a path. Written down once, as a shared grammar, the shape describes a company, a
-person, a text or a document the same way. The shared grammar is <strong><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a></strong>. A grammar specialized for one domain is
-a <strong><a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a></strong>: Comprise OES, for companies, is the first; Ascribe, for a person, has a specification of its own.
-<strong>Thym</strong> is the language of the programs that move meaning between volumes. One organization's additions on top of a
-MiniCOSM are a <strong><a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a></strong>, reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
+person's holograph, a text's <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">fabula</a>, a library's catalog) is a folder of plain-text files or one such file, every module a
+set of tables, every item a row with a path. <strong><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a></strong> is an OES: the shared grammar, with a <strong>core</strong> that holds what
+every reader has built in: a home file system (Canon), the fabula with its <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="The short, a telling">short</a> and <a class="docs-term" href="#docs-item-t-term-the-atem" data-term="T:term/the-atem" title="The atem, one line">atem</a>, documents, the product tree,
+Thym's volumes and <a class="docs-term" href="#docs-item-t-term-the-dialectic" data-term="T:term/the-dialectic" title="questions put to a person about what a source means, and the answers">the dialectic</a>. A <strong><a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSM</a></strong> is a domain's OES with a specification of its own, and there are two:
+Comprise OES, for companies, and Ascribe, for a person. <strong>Thym</strong> is the transcognition language that connects OESes. One
+organization's additions on top of a MiniCOSM are a <strong><a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a></strong>, reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/1" data-scope="">
 <h2 id="docs-sec-1" data-toc="2">1. What an OES is</h2>
@@ -26,8 +26,7 @@ as a file system that is also a relational database, made to be rendered.</p>
 <ul>
 <li><strong>Enumerating.</strong> It lists what there is, item by item, each with its sources. What is unknown is an open question with
 the name of the role that can answer it, never a guess.</li>
-<li><strong>A file system.</strong> Plain text files in folders, on the subject's own machine. Anyone can read them without any
-application, move them, keep them in version control, and leave with everything.</li>
+<li><strong>A file system.</strong> Plain text files in folders, on the subject's own machine, readable without any application.</li>
 <li><strong>A relational database.</strong> Every item has a primary key (its id), its fields are columns, its references are foreign
 keys, and <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a> are constraints. The same files can be indexed and queried.</li>
 <li><strong>Made to be rendered.</strong> The description exists to be turned into other forms for other readers: a 3D scene, a
@@ -36,9 +35,9 @@ description is held to account.</li>
 </ul>
 </section>
 <section class="docs-sec" data-key="S:section/2" data-scope="">
-<h2 id="docs-sec-2" data-toc="2">2. Three scales</h2>
-<p><strong>COSM</strong> is the family's name. It is not an acronym: it was <em>Context Ontology Schema and Markup</em>, and before that
-<em>OPI</em>; both are history. It comes from <em>kosmos</em>, order and world. <code>.cosm</code> is the family's file extension.</p>
+<h2 id="docs-sec-2" data-toc="2">2. Scales</h2>
+<p><strong>COSM</strong> is the family's name, from <em>kosmos</em>, order and world; it is not an acronym (it was <em>Context Ontology Schema and
+Markup</em>, and before that <em>OPI</em>). <code>.cosm</code> is the family's file extension.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -51,28 +50,74 @@ description is held to account.</li>
 <tbody>
 <tr>
 <td><strong>MacroCOSM</strong></td>
-<td>the whole language: the shared grammar every MiniCOSM is written in</td>
-<td>MacroCOSM OES</td>
+<td>an OES: the shared grammar, and its core, what every reader has built in</td>
+<td>MacroCOSM OES; the core in its section 18</td>
 </tr>
 <tr>
 <td><strong>MiniCOSM</strong></td>
-<td>an OES for one domain, declared by a <a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM, one .cosm file">manifest</a>: its volume layout, modules, kinds, fields, references, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a> and <a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns a volume into another form">renderers</a></td>
-<td>Comprise OES, Ascribe, Thym's <code>thym/1</code>; the rest in MacroCOSM OES, its section 18</td>
+<td>a domain's OES with a specification of its own, declared by a <a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM or a built-in, one .cosm file">manifest</a> (<a class="ref-xref" href="#docs-sec-5">section 5</a>)</td>
+<td>Comprise OES; Ascribe</td>
 </tr>
 <tr>
 <td><strong>MicroCOSM</strong></td>
-<td>one organization's extension on top of a MiniCOSM: the extra kinds, fields, checks or renderers it needs</td>
-<td>reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a> (<a class="ref-xref" href="#docs-sec-5">section 5</a>)</td>
+<td>one organization's extension on top of a MiniCOSM: the extra kinds, fields, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a> or <a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns a volume into another form">renderers</a> it needs</td>
+<td>reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a> (<a class="ref-xref" href="#docs-sec-6">section 6</a>)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The names borrow an old idea, from Greek philosophy to the Renaissance: that a small world mirrors the order of the
-great one. Here each smaller scale keeps the order of the larger and adds to it.</p>
+<p>A <strong>built-in</strong> is a kind of volume the core defines, declared by a manifest every reader ships with; it is never a
+MiniCOSM. Thym is not a scale; its volumes are a built-in. Each smaller scale keeps the order of the larger and adds
+to it.</p>
 </section>
 <section class="docs-sec" data-key="S:section/3" data-scope="">
-<h2 id="docs-sec-3" data-toc="2">3. What MacroCOSM gives every MiniCOSM</h2>
-<p>Every <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> inherits all of it, unchanged. The right-hand column gives the section of <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> OES
+<h2 id="docs-sec-3" data-toc="2">3. The model: decompile, fabula, compile, short, atem</h2>
+<p>Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code,
+and source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's
+folder) is <strong>decompiled</strong> to a <strong>fabula</strong>, which enumerates all the inspiration, meaning, intent, construction,
+production and assertions that can be found in the input or derived from it. A fabula is <strong>compiled</strong> to a <strong>short</strong>,
+and a short is said most plainly as an <strong>atem</strong>.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Prose</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The input</strong></td>
+<td>a text</td>
+<td>a repository</td>
+</tr>
+<tr>
+<td><strong>The fabula</strong></td>
+<td>a fabulan, or for verse a fabulap</td>
+<td>a fabulac: the specification</td>
+</tr>
+<tr>
+<td><strong>The short</strong></td>
+<td>a telling</td>
+<td>a cshort: the source code rebuilt, read and never run</td>
+</tr>
+<tr>
+<td><strong>The atem</strong></td>
+<td>one line</td>
+<td>a catem: everything a user can do with the program</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The running application is outside these specifications. Decompiling a poem cannot be done well without its author or
+someone who knows their work, so the core has one <strong><a class="docs-term" href="#docs-item-t-term-the-dialectic" data-term="T:term/the-dialectic" title="questions put to a person about what a source means, and the answers">dialectic</a></strong>: questions put to a person, and their answers recorded.
+The same programs run on a local model or, by choice, on a larger one through a broker, and a fabula records which
+model made it.</p>
+</section>
+<section class="docs-sec" data-key="S:section/4" data-scope="">
+<h2 id="docs-sec-4" data-toc="2">4. What MacroCOSM gives every MiniCOSM</h2>
+<p>Every <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSM</a> inherits all of it, unchanged. The right-hand column gives the section of <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> OES
 (https://macro.cosmoes.org/) that defines each part; the examples are Comprise OES's.</p>
 <div class="docs-table">
 <table>
@@ -86,17 +131,17 @@ great one. Here each smaller scale keeps the order of the larger and adds to it.
 <tbody>
 <tr>
 <td><strong>Paths, and a URI form</strong></td>
-<td>every part, module, kind, item and field has an address that respells its id as a location, <code>mozilla-foundation/P/offering/creative-futures</code>; qualified with the MiniCOSM and the volume's database name it is a URI, <code>oes:&lt;minicosm&gt;/&lt;database&gt;/&lt;path&gt;</code></td>
+<td>every item and field has an address that respells its id as a location, <code>mozilla-foundation/P/offering/creative-futures</code>; qualified with the format and the volume's database name it is a URI, <code>oes:&lt;format&gt;/&lt;database&gt;/&lt;path&gt;</code></td>
 <td>11</td>
 </tr>
 <tr>
 <td><strong>Items, fields and references</strong></td>
-<td>a row with a stable id and a kind (<code>P:offering/ledger</code>); its fields are columns; a reference is an id written in a field (<code>owner: O:role/Founder</code>), and every reference has two ends</td>
+<td>a row with a stable id and a kind; its fields are columns; a reference is an id written in a field, and every reference has two ends: the item <code>P:offering/ledger</code>, the reference <code>owner: O:role/Founder</code></td>
 <td>7 and 9</td>
 </tr>
 <tr>
 <td><strong>The envelope</strong></td>
-<td>the columns every item has: id, kind, name, summary, status, visibility, provenance (how it is known, from what, how surely), open questions and typed links; a MiniCOSM adds its own</td>
+<td>the columns every item has: id, kind, name, summary, status, visibility, provenance (how it is known and how surely), open questions and typed links; a MiniCOSM adds its own</td>
 <td>8</td>
 </tr>
 <tr>
@@ -111,7 +156,7 @@ great one. Here each smaller scale keeps the order of the larger and adds to it.
 </tr>
 <tr>
 <td><strong>Saved and signed versions</strong></td>
-<td>an immutable copy of the files at a moment, with a manifest of hashes; a copy the checks allowed, signed by the roles that govern it</td>
+<td>an immutable copy of the files at a moment, with a manifest of hashes, signed by the roles that govern it</td>
 <td>15</td>
 </tr>
 <tr>
@@ -126,8 +171,18 @@ great one. Here each smaller scale keeps the order of the larger and adds to it.
 </tr>
 <tr>
 <td><strong>The manifest</strong></td>
-<td>the machine-readable declaration of a MiniCOSM, one <code>.cosm</code> file: what a program needs to read, check and render its volumes</td>
+<td>the machine-readable declaration of a MiniCOSM or a <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="a kind of volume the core defines, declared by a manifest every reader ships with">built-in</a>, one <code>.cosm</code> file: what a program needs to read, check and render its volumes</td>
 <td>13</td>
+</tr>
+<tr>
+<td><strong>Densities</strong></td>
+<td>one meaning at three densities: <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">the fabula</a>, a <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="The short, a telling">short</a> told from it, and its <a class="docs-term" href="#docs-item-t-term-the-atem" data-term="T:term/the-atem" title="The atem, one line">atem</a></td>
+<td>18.1 and 18.4</td>
+</tr>
+<tr>
+<td><strong>The dialectic</strong></td>
+<td>questions put to a person about what a source means, and the answers; any volume may carry them</td>
+<td>18.6</td>
 </tr>
 </tbody>
 </table>
@@ -135,9 +190,9 @@ great one. Here each smaller scale keeps the order of the larger and adds to it.
 <p><em>Holotype</em> and <em>isotype</em> are taxonomy's words, the one specimen that defines a species and a duplicate of it; they name
 the two halves of the split in every MiniCOSM, not only Comprise's.</p>
 </section>
-<section class="docs-sec" data-key="S:section/4" data-scope="">
-<h2 id="docs-sec-4" data-toc="2">4. What a MiniCOSM declares</h2>
-<p>A <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> is declared by its <strong><a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM, one .cosm file">manifest</a></strong>: one <code>.cosm</code> file, outside every volume, that says</p>
+<section class="docs-sec" data-key="S:section/5" data-scope="">
+<h2 id="docs-sec-5" data-toc="2">5. What a MiniCOSM declares</h2>
+<p>A <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSM</a> is declared by its <strong><a class="docs-term" href="#docs-item-t-term-the-manifest" data-term="T:term/the-manifest" title="the machine-readable declaration of a MiniCOSM or a built-in, one .cosm file">manifest</a></strong>: one <code>.cosm</code> file, outside every volume, that says</p>
 <ol>
 <li>its <strong>name and version</strong> (<code>comprise</code>, <code>1</code>), and the <strong>declaration</strong> a volume uses to name it (<code>oes: comprise/1</code>),
 with any legacy forms it accepts;</li>
@@ -151,9 +206,9 @@ with any legacy forms it accepts;</li>
 <p>A volume names its MiniCOSM with one line in its catalog and never embeds the manifest. A reader that does not know
 the MiniCOSM or the version a volume declares refuses it with a plain error.</p>
 </section>
-<section class="docs-sec" data-key="S:section/5" data-scope="">
-<h2 id="docs-sec-5" data-toc="2">5. What a MicroCOSM may change</h2>
-<p>A <a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a> is one organization's extension of a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a>. <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> OES, in its section 17, states these rules as the grammar's;
+<section class="docs-sec" data-key="S:section/6" data-scope="">
+<h2 id="docs-sec-6" data-toc="2">6. What a MicroCOSM may change</h2>
+<p>A <a class="docs-term" href="#docs-item-t-term-microcosm" data-term="T:term/microcosm" title="one organization's extension on top of a MiniCOSM">MicroCOSM</a> is one organization's extension of a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSM</a>. <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> OES, in its section 17, states these rules as the grammar's;
 how a volume says that it uses a MicroCOSM, and how a reader loads one, are reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
 <p><strong>It may add:</strong> kinds, in any module; fields, on any kind; <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a>, including stricter versions of the MiniCOSM's own;
 <a class="docs-term" href="#docs-item-t-term-renderers" data-term="T:term/renderers" title="anything that turns a volume into another form">renderers</a>.</p>
@@ -165,85 +220,92 @@ subject opts into.</p>
 MiniCOSM can never collide with it. A volume written with a MicroCOSM remains a valid volume of its MiniCOSM: a reader
 that does not know the MicroCOSM keeps its fields and ignores its checks.</p>
 </section>
-<section class="docs-sec" data-key="S:section/6" data-scope="">
-<h2 id="docs-sec-6" data-toc="2">6. The specifications and how they relate</h2>
+<section class="docs-sec" data-key="S:section/7" data-scope="">
+<h2 id="docs-sec-7" data-toc="2">7. The specifications and how they relate</h2>
 <p>Four specifications are published at cosmoes.org, each at its own home.</p>
 <ul>
-<li><strong><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> OES</strong> (https://macro.cosmoes.org/) is the grammar every <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a> is written in: the parts in <a class="ref-xref" href="#docs-sec-3">section 3</a>,
-the file format, and what a conforming reader and writer must do. It is the grammar Comprise OES worked out for
-companies, read out of it so that nothing in it says &quot;company&quot;; its section 18 registers the MiniCOSMs.</li>
-<li><strong>Thym</strong> (https://thym.cosmoes.org/) is the language of programs over MacroCOSM volumes. Everything a reader does with
-a volume is generic; everything that <em>moves</em> meaning from one telling to another (a text to its twin, a document to
-its one-line atems, a Holotype to its public isotype) is a Thym move. A program says what it is for and what it must
-preserve, and its contracts are checked; programs, morphs, contexts, plans, traces and packages are themselves
-volumes of the <code>thym/1</code> MiniCOSM.</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> OES</strong> (https://macro.cosmoes.org/) is the grammar and its core: the parts in <a class="ref-xref" href="#docs-sec-4">section 4</a>, the file format,
+and what a conforming reader and writer must do. The core is its section 18, and its section 19 summarises the two
+<a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSMs</a>.</li>
+<li><strong>Thym</strong> (https://thym.cosmoes.org/) is the transcognition language that connects OESes: programs over volumes, in
+two grammar versions, with moves that decompile, compile, edit and question. A program says what it is for and what
+it must preserve, and its contracts are checked; its programs, plans, traces and packages are volumes of <code>thym/1</code>.</li>
 <li><strong>Ascribe</strong> (https://ascribe.cosmoes.org/) is the MiniCOSM for a person: a <strong>holograph</strong>, the description of one self
-comprehensive enough that a name is unnecessary, kept private by its subject, with no kind and no field for a name, an
-address or a government id. What leaves a holograph leaves by a Thym program its holder runs.</li>
+comprehensive enough that a name is unnecessary, kept private by its subject. It applies <a class="docs-term" href="#docs-item-t-term-the-dialectic" data-term="T:term/the-dialectic" title="questions put to a person about what a source means, and the answers">the dialectic</a> to a person,
+and says how a holograph is released and projected, the <strong>isograph</strong> among its projections, always by a Thym program
+its holder runs.</li>
 <li><strong>Comprise OES</strong> (https://comprise.cosmoes.org/) is the MiniCOSM for companies, and the first. A company is a set of
-<strong>concerns</strong> (a branded face, a subsidiary, a joint venture) joined by <strong>relationships</strong>, each concern with eight
-modules, C · O · M · P · R · I · S · E. Its volume is the <strong>Holotype</strong>, one folder describing one company at a moment;
-its public projection is the isotype. Its declaration is <code>oes: comprise/1</code>.</li>
+<strong>concerns</strong> joined by <strong>relationships</strong>; its volume is the <strong>Holotype</strong>, one folder describing one company at a
+moment, and its public projection is the isotype.</li>
 </ul>
-<p>Four more MiniCOSMs are registered in MacroCOSM OES, its section 18, and defined there, with no home of their own: <code>cosm</code> (one
-whole's product tree, outside any Holotype), <code>canon</code> (a library: its files, and what has been derived from them), <code>emf</code>
-(one text, taken apart into its words, the things it names, its claims and its events) and <code>doc</code> (one document, taken
-apart into items and compiled back byte for byte). <code>doc</code> is DocOES (MacroCOSM OES, its section 18.5), the form these pages are
-built in at three densities (atem, short, fabula).</p>
-<p>Comprise OES and Ascribe are written in MacroCOSM; Thym is written over it. A shared vocabulary of public forms
-(&quot;chair&quot;, &quot;M4 screw&quot;, &quot;invoice&quot;: defined once, cited by every MiniCOSM that needs them) is reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
-</section>
-<section class="docs-sec" data-key="S:section/7" data-scope="">
-<h2 id="docs-sec-7" data-toc="2">7. The picture</h2>
-<pre><code class="language-text">                 MacroCOSM OES: the shared grammar
-                                 |
-   +---------+---------+------+------+------+------+------+
- comprise  ascribe   cosm   canon   emf   doc   thym        MiniCOSMs
-    |         |                                   Thym: programs that move meaning between volumes
- a MicroCOSM: one organization's additions        (reserved for a later edition)
-    |
- Holotype, holograph: one private volume  --- projection ---&gt;  isotype: public, signed, default-deny
-    |
- renderers and lenses: a text tree, a card, a drawing, an export
-
- every item is addressable:  oes:&lt;minicosm&gt;/&lt;database&gt;/&lt;path&gt;
-</code></pre>
+<p>The core's <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="a kind of volume the core defines, declared by a manifest every reader ships with">built-ins</a> have no home of their own: <code>cosm</code> (a product tree), <code>canon</code> (Canon, the home file system), <code>fabula</code>
+(in three flavours), <code>doc</code> (documents) and <code>thym</code> (Thym's volumes, specified in Thym's own text). <code>doc</code> is DocOES
+(MacroCOSM OES, its section 18.5), the built-in these pages are made with, at three <a class="docs-term" href="#docs-item-t-term-densities" data-term="T:term/densities" title="one meaning at three densities: the fabula, a short told from it, and its atem">densities</a> (<a class="docs-term" href="#docs-item-t-term-the-atem" data-term="T:term/the-atem" title="The atem, one line">atem</a>, <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="The short, a telling">short</a>, <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">fabula</a>).</p>
+<p>A shared vocabulary of public forms (&quot;chair&quot;, &quot;M4 screw&quot;, &quot;invoice&quot;: defined once, cited by every MiniCOSM that needs
+them) is reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/8" data-scope="">
-<h2 id="docs-sec-8" data-toc="2">8. Editions</h2>
-<p>An <strong>edition</strong> is a published state of one of these texts. Every text here, this page included, is at edition 0.5.4; the
-status line says so. An edition is the text's, not the format's: a format's version (<code>thym/1</code>, <code>ascribe/1</code>,
-<code>comprise/1</code>, the grammar version <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> OES names) is a line in the files a program reads, and each text's status
-line names the one it describes. A text may be revised at any time; the canonical edition of each is the page at its
-home, a copy an application ships or syncs is a copy of an edition published here, and the source and history of every
-page are at https://github.com/0gsd/cosmoes-site.</p>
+<h2 id="docs-sec-8" data-toc="2">8. The picture</h2>
+<pre><code class="language-text">              MacroCOSM OES: the shared grammar, and its core
+   the core:  Canon, the home file system · the fabula · documents (DocOES)
+              the product tree · Thym's volumes · the dialectic
+                                      |
+                 +--------------------+--------------------+
+     Comprise OES: a company                     Ascribe: a person            MiniCOSMs
+                 |
+            a MicroCOSM: one organization's additions (reserved)
+
+   &lt;=================== Thym: the language that connects OESes ===================&gt;
+
+   input  --decompile--&gt;  fabula  --compile--&gt;  short  --said most plainly--&gt;  atem
+   prose:  a text         fabulan, fabulap      a telling                      one line
+   code:   a repository   fabulac               cshort                         catem
+
+   Holotype, holograph: one private volume  --- projection ---&gt;  isotype, isograph: public, default-deny
+        |
+   renderers and lenses: a text tree, a card, an export
+
+   every item is addressable:  oes:&lt;format&gt;/&lt;database&gt;/&lt;path&gt;
+</code></pre>
 </section>
 <section class="docs-sec" data-key="S:section/9" data-scope="">
-<h2 id="docs-sec-9" data-toc="2">9. Implementations</h2>
-<p>Two products are the reference implementations. <strong>enough</strong> (https://github.com/0gsd/enough) implements <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a> OES,
-Thym and Ascribe and reads every registered <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSM</a>: it loads, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a> and draws their volumes, compiles and runs Thym
-programs, and builds documents with DocOES. <strong>Comprise</strong> implements Comprise OES: it writes and reads Holotypes, runs
-their checks, saves and signs versions, and projects and releases isotypes. Where an implementation and a text disagree,
-one of them is in error, and the text's Changes appendix records which was corrected.</p>
+<h2 id="docs-sec-9" data-toc="2">9. Editions</h2>
+<p>An <strong>edition</strong> is a published state of one of these texts. Every text here, this page included, is at edition 0.5.4; the
+status line says so. An edition is the text's, not the format's: a format's version (<code>thym/1</code>, <code>ascribe/1</code>,
+<code>comprise/1</code>, the grammar version <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> OES names) is a line in the files a program reads, and each text's status
+line names the one it describes. The canonical edition of each text is the page at its home; a copy an application ships
+is a copy of an edition published here; the source and history of every page are at https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec" data-key="S:section/10" data-scope="">
-<h2 id="docs-sec-10" data-toc="2">10. Open formats</h2>
+<h2 id="docs-sec-10" data-toc="2">10. Implementations</h2>
+<p>Two products are the reference implementations. <strong>enough</strong> (https://github.com/0gsd/enough) implements <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> OES and
+its core, Thym and Ascribe, and reads every <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="a kind of volume the core defines, declared by a manifest every reader ships with">built-in</a> and both <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSMs</a>: it loads, <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="constraints on the whole volume, run on every write">checks</a> and draws their volumes,
+decompiles texts and programs and compiles their <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">fabulas</a>, shows a cshort and never runs it, compiles and runs Thym
+programs, and builds documents with DocOES. <strong>Comprise</strong> implements Comprise OES: it writes and checks Holotypes, signs
+their versions, and projects and releases isotypes. Where an implementation and a text disagree, one of them is in
+error, and the text's Changes appendix records which was corrected.</p>
+</section>
+<section class="docs-sec" data-key="S:section/11" data-scope="">
+<h2 id="docs-sec-11" data-toc="2">11. Open formats</h2>
 <p>This site exists so that the formats are open. Every format these texts describe is documented here completely enough
-that a second reader, a second writer, a second vault or a second index can be built from the text alone: the layer is
-larger than any one product. The files a format describes belong to their subject: plain text, on the subject's own
-machine, readable without any application, movable and complete, so that a subject who leaves takes everything. The
-format itself is never sold, and neither is the way out of it: no product and no account stands between a subject and
-their own files.</p>
+that a second reader, writer, vault or index can be built from the text alone: the layer is larger than any one
+product. The files a format describes belong to their subject: plain text, on the subject's own machine, readable
+without any application, movable and complete, so that a subject who leaves takes everything. The format itself is
+never sold, and neither is the way out of it: no product and no account stands between a subject and their own files.</p>
 </section>
 <section class="docs-sec" data-key="S:section/changes" data-scope="">
 <h2 id="docs-changes" data-toc="2">Changes</h2>
 <ol>
-<li><strong><a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">Edition</a> 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.</strong> The paradigm map becomes the text of
+<li><strong><a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">Edition</a> 0.6.0 (2026-11-05): the model and the core.</strong> <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and its core, what every reader has built in">MacroCOSM</a> is an OES with a core of <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="a kind of volume the core defines, declared by a manifest every reader ships with">built-ins</a>; there are two
+<a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest (section 5)">MiniCOSMs</a>, Comprise OES and Ascribe; Thym connects OESes. <a class="ref-xref" href="#docs-sec-2">Section 2</a> is &quot;Scales&quot;; <a class="ref-xref" href="#docs-sec-3">section 3</a>, the model, is added, and
+<a class="ref-xref" href="#docs-sec-3">sections 3</a> to <a class="ref-xref ref-xref-num" href="#docs-sec-10">10</a> become 4 to 11; the parts table gains the <a class="docs-term" href="#docs-item-t-term-densities" data-term="T:term/densities" title="one meaning at three densities: the fabula, a short told from it, and its atem">densities</a> and <a class="docs-term" href="#docs-item-t-term-the-dialectic" data-term="T:term/the-dialectic" title="questions put to a person about what a source means, and the answers">the dialectic</a>; <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">the fabula</a> replaces EMF; the picture is redrawn; the colophon names the
+steward.</li>
+<li><strong>Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.</strong> The paradigm map becomes the text of
 cosmoes.org itself, named <em>The OES specifications</em>; the edition is a field in the status line. <a class="ref-xref" href="#docs-sec-6">Section 6</a> is rewritten
-for the four specifications and the registered <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="an OES for one domain, declared by a manifest">MiniCOSMs</a>; the first form's <a class="ref-xref" href="#docs-sec-7">sections 7</a> (connections to a wider
+for the four specifications and the registered MiniCOSMs; the first form's <a class="ref-xref" href="#docs-sec-7">sections 7</a> (connections to a wider
 ecosystem), 9 (a status table) and 10 (a repository listing) are removed, what survives of 7 folded into <a class="ref-xref" href="#docs-sec-6">section 6</a>,
 and the picture (<a class="ref-xref" href="#docs-sec-8">section 8</a> in the first form) becomes <a class="ref-xref" href="#docs-sec-7">section 7</a> and is redrawn; <a class="ref-xref" href="#docs-sec-8">sections 8</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-9">9</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-10">10</a> (editions,
-implementations, open formats) are added; <em>volume</em> replaces <em>database</em> for one instance of a MiniCOSM, as <a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="the whole language: the shared grammar every MiniCOSM is written in">MacroCOSM</a>
+implementations, open formats) are added; <em>volume</em> replaces <em>database</em> for one instance of a MiniCOSM, as MacroCOSM
 OES uses it; repository paths, plans and what was built at a date are removed.</li>
 <li><strong>2026-10-20: the paradigm map.</strong> First written beside Comprise OES as the map of the OES family, in ten sections:
 <a class="ref-xref" href="#docs-sec-1">sections 1</a> to <a class="ref-xref ref-xref-num" href="#docs-sec-6">6</a> and the picture in their first form, a section on connections to a wider ecosystem, a status table
@@ -253,11 +315,12 @@ MacroCOSM was drawn from it in outline.</li>
 </section>
 <section class="docs-sec" data-key="S:section/colophon" data-scope="">
 <h2 id="docs-colophon" data-toc="2">Colophon</h2>
-<p>The OES specifications — Copyright © 2026 Graham Smith. All rights reserved. The canonical <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a> is published at
-https://cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.</p>
+<p>The OES specifications — Copyright © 2026 Graham Smith. All rights reserved. <em>The OES specifications</em> is stewarded by
+Verroes (Graham Smith). The canonical <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a> is published at https://cosmoes.org/; its source and history are at
+https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
-<dl class="docs-gloss"><dt id="docs-item-t-term-checks">Checks</dt><dd>constraints on the whole volume, run on every write — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-cosm">COSM</dt><dd>the family's name — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-edition">edition</dt><dd>a published state of one of these texts — <a class="ref-xref" href="#docs-sec-8">defined in §8 Editions</a></dd><dt id="docs-item-t-term-items-fields-and-references">Items, fields and references</dt><dd>Items, fields and references, a row with a stable id and a kind (P:offering/ledger) — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-macrocosm">MacroCOSM</dt><dd>the whole language: the shared grammar every MiniCOSM is written in — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-microcosm">MicroCOSM</dt><dd>one organization's extension on top of a MiniCOSM — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-minicosm">MiniCOSM</dt><dd>an OES for one domain, declared by a manifest — <a class="ref-xref" href="#docs-sec-2">defined in §2 Three scales</a></dd><dt id="docs-item-t-term-open-questions">Open questions</dt><dd>a value nobody has given yet — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-paths-and-a-uri-form">Paths, and a URI form</dt><dd>every part, module, kind, item and field has an address that respells its id… — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-renderers">Renderers</dt><dd>anything that turns a volume into another form — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-saved-and-signed-versions">Saved and signed versions</dt><dd>an immutable copy of the files at a moment, with a manifest of hashes — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-envelope">The envelope</dt><dd>the columns every item has: id, kind, name, summary, status, visibility, provenance — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-manifest">The manifest</dt><dd>the machine-readable declaration of a MiniCOSM, one .cosm file — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-private-public-split">The private/public split</dt><dd>two formats, not one with a setting: the complete private description — <a class="ref-xref" href="#docs-sec-3">defined in §3 What MacroCOSM gives every MiniCOSM</a></dd></dl>
+<dl class="docs-gloss"><dt id="docs-item-t-term-built-in">built-in</dt><dd>a kind of volume the core defines, declared by a manifest every reader ships with — <a class="ref-xref" href="#docs-sec-2">defined in §2 Scales</a></dd><dt id="docs-item-t-term-checks">Checks</dt><dd>constraints on the whole volume, run on every write — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-cosm">COSM</dt><dd>the family's name, from kosmos, order and world; it is not an acronym — <a class="ref-xref" href="#docs-sec-2">defined in §2 Scales</a></dd><dt id="docs-item-t-term-densities">Densities</dt><dd>one meaning at three densities: the fabula, a short told from it, and its atem — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-edition">edition</dt><dd>a published state of one of these texts — <a class="ref-xref" href="#docs-sec-9">defined in §9 Editions</a></dd><dt id="docs-item-t-term-items-fields-and-references">Items, fields and references</dt><dd>a row with a stable id and a kind; its fields are columns — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-macrocosm">MacroCOSM</dt><dd>an OES: the shared grammar, and its core, what every reader has built in — <a class="ref-xref" href="#docs-sec-2">defined in §2 Scales</a></dd><dt id="docs-item-t-term-microcosm">MicroCOSM</dt><dd>one organization's extension on top of a MiniCOSM — <a class="ref-xref" href="#docs-sec-2">defined in §2 Scales</a></dd><dt id="docs-item-t-term-minicosm">MiniCOSM</dt><dd>a domain's OES with a specification of its own, declared by a manifest (section 5) — <a class="ref-xref" href="#docs-sec-2">defined in §2 Scales</a></dd><dt id="docs-item-t-term-open-questions">Open questions</dt><dd>a value nobody has given yet — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-paths-and-a-uri-form">Paths, and a URI form</dt><dd>every item and field has an address that respells its id as a location, mozilla-foundation/P/offering/creative-futures — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-renderers">Renderers</dt><dd>anything that turns a volume into another form — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-saved-and-signed-versions">Saved and signed versions</dt><dd>an immutable copy of the files at a moment, with a manifest of hashes — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-atem">The atem</dt><dd>The atem, one line — <a class="ref-xref" href="#docs-sec-3">defined in §3 The model: decompile, fabula, compile, short, atem</a></dd><dt id="docs-item-t-term-the-dialectic">The dialectic</dt><dd>questions put to a person about what a source means, and the answers — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-envelope">The envelope</dt><dd>the columns every item has: id, kind, name, summary, status, visibility, provenance — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-fabula">The fabula</dt><dd>a fabulan, or for verse a fabulap — <a class="ref-xref" href="#docs-sec-3">defined in §3 The model: decompile, fabula, compile, short, atem</a></dd><dt id="docs-item-t-term-the-input">The input</dt><dd>The input, a text — <a class="ref-xref" href="#docs-sec-3">defined in §3 The model: decompile, fabula, compile, short, atem</a></dd><dt id="docs-item-t-term-the-manifest">The manifest</dt><dd>the machine-readable declaration of a MiniCOSM or a built-in, one .cosm file — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-private-public-split">The private/public split</dt><dd>two formats, not one with a setting: the complete private description — <a class="ref-xref" href="#docs-sec-4">defined in §4 What MacroCOSM gives every MiniCOSM</a></dd><dt id="docs-item-t-term-the-short">The short</dt><dd>The short, a telling — <a class="ref-xref" href="#docs-sec-3">defined in §3 The model: decompile, fabula, compile, short, atem</a></dd></dl>
 </section>
 </div>
 </article>
