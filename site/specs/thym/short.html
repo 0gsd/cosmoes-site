@@ -1037,7 +1037,7 @@ additions of the second table.</p>
 <td><code>project</code></td>
 <td>volume → volume; <code>as</code> kind (<code>isotype</code> or <code>paratype</code>, Comprise OES's; <code>isograph</code>, Ascribe's)</td>
 <td>no</td>
-<td>the target schema's rules: for <code>isotype</code> and <code>paratype</code>, <code>default-deny</code> <code>no-counts</code> <code>banded</code> <code>no-mark</code> <code>verified-derived</code> <code>standing-gate</code> <code>epoch</code> <code>provenance</code>; for <code>isograph</code>, <code>default-deny</code> <code>no-counts</code> <code>no-mark</code> <code>epoch</code> <code>provenance</code>. A check holds by the rules of the kind the call names: for an isograph, those of <code>ascribe-isograph/0</code></td>
+<td>the target schema's rules: for <code>isotype</code> and <code>paratype</code>, <code>default-deny</code> <code>no-counts</code> <code>banded</code> <code>no-mark</code> <code>verified-derived</code> <code>standing-gate</code> <code>epoch</code> <code>provenance</code>; for <code>isograph</code>, <code>default-deny</code> <code>no-counts</code> <code>no-mark</code> <code>epoch</code> <code>provenance</code>. A check holds by the rules of the kind the call names: for an isograph, those of <code>ascribe-isograph/0</code>. For an isograph, the ids of the items that leave are handed to the host with the value, as the release's <code>items</code> (Ascribe, its section 14.1)</td>
 </tr>
 <tr>
 <td><code>band</code></td>
@@ -1301,12 +1301,12 @@ fix: &quot;to <a class="docs-term" href="#docs-item-t-term-compile" data-term="T
 </table>
 </div>
 <p><code>propose</code> is Ascribe's: it reads the holder's own text, decompiled to a fabulan, and gives candidate nodes of the
-holograph, each with the question that asks the holder whether it is so; a program lands them with <code>gather</code>.
-<code>atem</code>, <code>expand</code>, <code>null</code>, <code>measure</code>, <code>morph</code>, <code>read</code>, <code>cut</code>, <code>package</code> and the rest are the same in both versions.
-<code>atem f</code> of a fabulac is the catem at depth <code>line</code>, under the same contract. The compiler picks the <code>gives</code>, the
-contract and the scaffold of a call from the call as written (its <code>as</code> word, or its first operand's type), and the
-<a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a>'s <code>P:contract</code> item lists the chosen contract, so a plan says exactly which checks a node keeps. <a class="ref-xref" href="#docs-sec-20">Sections 20</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a>
-and <a class="ref-xref ref-xref-num" href="#docs-sec-22">22</a> say what these moves do.</p>
+holograph, each with the question that asks the holder whether it is so; a program lands them with <code>gather</code>. <code>atem</code>,
+<code>expand</code>, <code>null</code>, <code>measure</code>, <code>morph</code>, <code>read</code>, <code>cut</code>, <code>package</code> and the rest are the same in both versions. <code>atem f</code> of a
+fabulac is the catem at depth <code>line</code>, under the same contract. The compiler picks the <code>gives</code>, the contract and the
+scaffold of a call from the call as written (its <code>as</code> word, or its first operand's type), and the <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a>'s <code>P:contract</code>
+item lists the chosen contract, so a plan says exactly which checks a node keeps. A call whose scaffold is <code>none</code> has no
+scaffold, and <code>--rules</code> refuses it at plan time (<a class="ref-xref" href="#docs-sec-19">section 19</a>). <a class="ref-xref" href="#docs-sec-20">Sections 20</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-22">22</a> say what these moves do.</p>
 </section>
 <section class="docs-sec" data-key="S:section/6.4" data-scope="">
 <h3 id="docs-sec-6-4" data-toc="3">6.4 Signatures in the manifest</h3>
@@ -1588,7 +1588,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>files-present</code></td>
-<td>the cshort holds every file it is required to rebuild, at its path (every <code>C:file</code> in a programming language that is not a test, and the README; MacroCOSM OES, its section 18.4.7), with <code>CSHORT.md</code>, and the digests <code>CSHORT.md</code> lists are the files'</td>
+<td>the cshort holds every file it is required to rebuild, at its path (every <code>C:file</code> in a programming language that is not a test, a type stub or the repository's own tooling, and the README; MacroCOSM OES, its section 18.4.7), and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it, with <code>CSHORT.md</code>, and the digests <code>CSHORT.md</code> lists are the files'</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -2055,7 +2055,8 @@ Candidate = {output, engine, route, provider, attempts, tokens, seconds, checks:
 </code></pre>
 <p>A candidate's <code>route</code> and <code>provider</code> say where its model ran (<a class="ref-xref" href="#docs-sec-23">section 23</a>); a candidate recorded before this edition
 has neither. A kept contract that failed (<a class="ref-xref" href="#docs-sec-7-5">section 7.5</a>) reaches the next request under <code>repair</code>, as the move's own failed
-checks do.</p>
+checks do. A move that asks more than once may name under <code>repair.failed</code> what it could not take in its last answer;
+that reaches the next request too, after the runtime's own verdicts, so that a request asked again says why.</p>
 <ul>
 <li><strong><code>ModelCoprocessor</code></strong> is enough's: its model client with the machinery of Canon's derivation, generalised, on the
 <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a>'s <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a>, a local model or a cloud model through a broker. It asks for
@@ -2805,7 +2806,7 @@ keeps the block as an unknown key; the <a class="docs-term" href="#docs-item-t-t
 </tr>
 <tr>
 <td><code>scaffold-when</code></td>
-<td>the same shape for <code>scaffold</code></td>
+<td>the same shape for <code>scaffold</code>; a rule may say <code>scaffold: none</code>, and a call it matches then has no scaffold, so that <code>--rules</code> refuses it at <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> time</td>
 </tr>
 </tbody>
 </table>
@@ -2869,7 +2870,9 @@ gives the rules twin, <code>atem</code> the labelled scaffold, <code>tell</code>
 statistics scales with the three judgement scales pending; in <code>thym 1</code>, <code>derive … as code</code> gives its file's outline
 marked pending, <code>tell</code> at a catem's depth the uses and interfaces in told order, <code>question</code> the bank's questions only,
 and <code>settle</code> its rules part, leaving the answers that must be read again answered and unsettled, for a run with a model.
-A move with no scaffold (<code>expand</code>, <code>morph</code>, <code>read</code>, <code>reword</code>, <code>derive</code> of a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>, <code>tell … as code</code>) still refuses.
+A move with no scaffold (<code>expand</code>, <code>morph</code>, <code>read</code>, <code>reword</code>, <code>derive</code> of a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>, <code>tell … as code</code>) still refuses,
+at plan time: &quot;1 step asks a model and has no scaffold: give code: tell f as code (line 12); --rules runs no model&quot;
+(with agent-free on, in the words above, which then add that the steps have no scaffold).
 <code>survey</code>, <code>history</code>, <code>record</code> and the editing moves other than <code>reword</code> ask nothing, and run. The trace says <code>engine: rules</code> for each scaffold, and every output is marked <code>state: pending</code>, as a fabula's rules mode marks a twin. The viewer
 offers only plans that can run.</p>
 <hr />
@@ -3093,25 +3096,25 @@ that landed. The stages, and the moves that make them:</p>
 <td>survey</td>
 <td><code>survey repo</code>, rules only</td>
 <td>no</td>
-<td>a fabulac outline: a <code>C:file</code> per file (language, <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">lines</a>, sha256), a <code>C:component</code> per module, package and class, a <code>C:interface</code> per public function, class, method, constant and command-line entry point, with its name and parameters from the syntax tree, a <code>C:dependency</code> per import from outside the tree and per declared requirement, a <code>C:setting</code> per environment variable read and per command-line option, a <code>C:structure</code> per data shape (a data class, a named tuple, a typed dictionary, an enumeration, a class with annotated attributes), the messages of the errors a function raises on its interface's <code>raises</code>, what a function prints, logs or exits with as a behaviour, a command's exit statuses on its interface's <code>gives</code>, the licence and the means. <code>files-found</code>, <code>code-span</code>, <code>licence-recorded</code></td>
+<td>a fabulac outline: a <code>C:file</code> per file (language, <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">lines</a>, sha256), a <code>C:component</code> per module, package and class (a nested class too), a <code>C:interface</code> per public function, class, method, constant and command-line entry point, with its name, parameters and decorators from the syntax tree (a property with its setter is one interface, overloads are read on their function, a definition under a module-level <code>if</code>, <code>try</code> or <code>with</code> carries the condition, and a private class a public one inherits from, or a private name another module or a test imports, is an interface not exported), a <code>C:dependency</code> per import from outside the tree (an import of a module of the tree, beside the importer or named in <code>from &lt;package&gt; import &lt;module&gt;</code>, is that module) and per declared requirement, the types a module's stub (<code>.pyi</code>) gives its interfaces, a <code>C:setting</code> per environment variable read, per command-line option (its help as a user sees it, or marked a template where no rule can fill it) and per key of the program's own <code>[tool.&lt;its name&gt;]</code> table in its <code>pyproject.toml</code>, a <code>C:structure</code> per data shape (a data class, a named tuple, a typed dictionary, an enumeration, a class with annotated attributes, a type alias), each public documentation string past its first paragraph as a behaviour and each of its doctest examples as a case, the messages of the errors a function raises on its interface's <code>raises</code>, what a function prints, logs or exits with as a behaviour, a command's exit statuses on its interface's <code>gives</code>, the licence and the means. The repository's own tooling (its documentation's build, its scripts, its examples) is not the program. <code>files-found</code>, <code>code-span</code>, <code>licence-recorded</code></td>
 </tr>
 <tr>
 <td>history</td>
 <td><code>history repo with f</code>, rules only</td>
 <td>no</td>
-<td>the fabula so far, with the clone's history: <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">changes</a> grouped into episodes (the commits between two tags, split again where two commits stand more than fourteen days apart), a release per tag with its date, a maker per author: by name only where the repository states it (its licence's copyright holder, or a line of an authors file), otherwise as a numbered contributor, never by address. <code>history-grounded</code></td>
+<td>the fabula so far, with the clone's history: <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">changes</a> grouped into episodes (the commits between two tags, split again where two commits stand more than fourteen days apart; where that gives more than twenty episodes, the commits between two tags alone; where that still does, one episode per year), a release for every tag with its date, placed by its commit, else by the newest commit whose subject names its version as a release, else unplaced, a maker per author: by name only where the repository states it (its licence's copyright holder, a line of an authors file, or an author or maintainer its packaging file names), otherwise as a numbered contributor, never by address. An implementation may bound the log it reads and keep only the newest changes as items, counting the rest in their episode and release (enough reads at most four hundred commits and keeps forty); a history that does not reach the first commit ends in a phase that says so. <code>history-grounded</code></td>
 </tr>
 <tr>
 <td>read</td>
 <td><code>derive t as code with f</code>, once per file, in <a class="docs-term" href="#docs-item-t-term-a-loop-that-collects" data-term="T:term/a-loop-that-collects" title="a for each that is the value of a let">a loop that collects</a></td>
 <td>yes</td>
-<td>that file's behaviours, structures, cases, terms, claims and events, read against the outline. <code>code-span</code>, <code>outline-cited</code>, <code>coverage</code> (every interface and component the outline lists for the file is the subject of a behaviour or a structure), <code>terms-grounded</code>, <code>stance-closed</code>. Its scaffold gives the outline's own items for the file, marked pending</td>
+<td>that file's behaviours, structures, cases, terms, claims and events, read against the outline. <code>code-span</code>, <code>outline-cited</code>, <code>coverage</code> (every interface the outline lists for the file is the subject of a behaviour or has a structure of its name, and every component is the subject of a behaviour or has its <code>does</code>), <code>terms-grounded</code>, <code>stance-closed</code>. A test file's <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> takes cases and structures only, and a file the outline gives no interface or component a structure that says what it is; a file longer than one request is read in parts, each covering the interfaces whose lines it holds, the first also the components, and a part a check's verdict is about is the only one asked again. Its scaffold gives the outline's own items for the file, marked pending</td>
 </tr>
 <tr>
 <td>(join)</td>
 <td><code>gather readings with f</code></td>
 <td>no</td>
-<td>the fabula so far with every <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> in it, each reading's additions to the outline merged into the outline's own items. <code>nothing-lost</code>, <code>ids-unique</code></td>
+<td>the fabula so far with every reading in it, each reading's additions to the outline merged into the outline's own items. <code>nothing-lost</code>, <code>ids-unique</code></td>
 </tr>
 <tr>
 <td>fold</td>
@@ -3224,21 +3227,25 @@ does not run them in sequence. Running a file whose programs each give one fabul
 <code>fabula</code> input with the fabula the run before landed and taking up again after the last that landed, is the host's job,
 specified with the fabulac (MacroCOSM OES, its section 18.4.7). A fabula built in several runs records every one of
 them: its catalog's <code>derived</code> describes the last run that derived it, and <code>derived.runs</code> holds one entry per run that
-wrote into the volume, a settle run included, with its program, its run, its model and its <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> (MacroCOSM OES,
-its section 18.4.1).</p>
+wrote into the volume, a settle run included, with its program's name, its run, its model and its <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> (MacroCOSM
+OES, its section 18.4.1). Under <code>--rules</code> a host runs survey and history and stops: the outline (MacroCOSM OES, its
+section 18.4.7).</p>
 </section>
 <section class="docs-sec" data-key="S:section/20.7" data-scope="">
 <h3 id="docs-sec-20-7" data-toc="3">20.7 Compiling a fabulac</h3>
 <p><strong><code>tell f as code</code></strong> gives a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>, the <strong>cshort</strong>: source code rebuilt from the fabulac, file by file, one model
 request per file it rebuilds: every <code>C:file</code> in a programming language that is not a test, and the README (MacroCOSM
-OES, its section 18.4.7). Each request carries the file's items: its components, its interfaces with their
-parameters, the behaviours and cases about them, and the settings and dependencies it touches. The move assembles the
-files and writes <code>CSHORT.md</code>: the cshort's footer <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> first (MacroCOSM OES, its section 18.4.7), then the file list
-with digests, then the source's licence line. Its contract is checked without executing anything: <code>parses</code>,
-<code>interfaces-present</code>, <code>files-present</code>, <code>footer</code> (<code>CSHORT.md</code>'s first line is the footer, naming the fabulac's file,
-the language, the UTC day of the <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> and the model; its last line is the licence line, equal to <code>source.licence</code>) and
-<code>provenance</code>. A failed check asks again only for the files it names, within the node's attempts. <code>tell … as code</code> has
-no scaffold, so <code>--rules</code> refuses it.</p>
+OES, its section 18.4.7). Each request carries the file's items: its components, its interfaces with their parameters,
+the behaviours and cases about them (and the cases of an interface whose behaviours name this file's module or a private
+helper of it: the file that does its work), the settings and dependencies it touches and the open questions about them;
+and what it reaches in the other files: the interfaces of the modules it uses and of those its items name, with the
+<a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">lines</a> of the behaviours about each it names. The README is asked for in the format its name says. The move assembles the
+files and writes <code>CSHORT.md</code>: the cshort's footer line first (MacroCOSM OES, its section 18.4.7), then the file list
+with digests (the packaging file rules wrote among them, or why none was written), then the source's licence line. Its
+contract is checked without executing anything: <code>parses</code>, <code>interfaces-present</code>, <code>files-present</code>, <code>footer</code> (<code>CSHORT.md</code>'s
+first line is the footer, naming the fabulac's file, the language, the UTC day of the <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> and the model; its last line
+is the licence line, equal to <code>source.licence</code>) and <code>provenance</code>. A failed check asks again only for the files it names,
+within the node's attempts. <code>tell … as code</code> has no scaffold, so <code>--rules</code> refuses it at <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> time.</p>
 <p><strong><code>tell f as line</code>, <code>as overview</code> and <code>as manual</code></strong> give a short, the <strong>catem</strong> at that depth. <code>line</code> is the atem's
 line, the same as <code>atem f</code>'s; <code>overview</code> names every use; <code>manual</code> names every use and every interface a person
 reaches (the command-line entry points and the public interface), with what they do. The contract is <code>coverage</code>
@@ -3353,8 +3360,8 @@ text edited is a new value: it lands in the <a class="docs-term" href="#docs-ite
 <li>every <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a> names its source: its <code>of</code> is the digest of the value being edited (&quot;a change names <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> 3 of another
 text&quot;);</li>
 <li>every change's line exists there with that digest (&quot;line 12 changed since it was read&quot;);</li>
-<li>no two <code>replace</code> or <code>drop</code> changes name one line, and inserts at one place keep their written order (&quot;lines 7 and
-7 are both replaced&quot;);</li>
+<li>no two <code>replace</code> or <code>drop</code> changes name one line, and inserts at one place keep their written order (&quot;line 7 is
+replaced twice&quot;);</li>
 <li>the output is the input with exactly those changes: every input line no change names appears byte for byte and in
 order, and the output holds no line that neither the input nor a change gave.</li>
 </ol>
@@ -3435,7 +3442,10 @@ always have, and a replay of either run needs neither the person nor the model.<
 flavour or format, a question for every <code>{pending: …}</code> field, and one for every item marked unsure (a confidence below
 0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5).
 When the run asks the model, the model adds questions where the volume is unsure, ambiguous, in conflict or silent on
-intent, and only there. Under <code>--rules</code> the bank part alone runs. Each question says who raised it and is <code>open</code>. Its
+intent, and only there. It reads only the items a person can say something about: of a fabulac its aims, uses,
+requirements, decisions, exclusions, behaviours, interfaces, structures and claims; of any other volume every item but
+its files, <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">changes</a>, releases, test cases and dependencies as such; and in every flavour any item marked unsure or
+pending. Under <code>--rules</code> the bank part alone runs. Each question says who raised it and is <code>open</code>. Its
 contract is <code>addressed</code>, <code>no-duplicate</code> and <code>provenance</code>. <code>question</code> gives a list, and a program lands the questions with
 the volume through <code>gather asked with f</code>.</p>
 </section>
@@ -3447,8 +3457,12 @@ session's record, and for each question answered, only its id, its new state and
 the format of the volume it answers (<code>fabula/1</code> for a twin read under <code>emf/1</code>: an old spelling is never written),
 carries that volume's <code>id</code>, and its <code>macrocosm:</code> when that volume has one; its <code>nodes:</code> hold exactly one <code>D:session</code>
 item and, for each question answered, unknown or declined, a mapping of the question's <code>id</code>, its new <code>state</code> and its
-new <code>answers</code>, each naming the session. A skipped question shows only in the session's <code>skipped</code>. It is read only as a
-delta, never checked as a volume of that format on its own. To <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> it is a <code>volume</code>.</p>
+new <code>answers</code>, each naming the session. An address asked without a question item (a format that asks from a bank
+without writing question items, as Comprise OES does, or a bank asked directly) is an entry <code>{about, answers}</code>: the
+address, <code>&lt;item id&gt;#&lt;field path&gt;</code>, and its new answers. A skipped question shows only in the session's <code>skipped</code>. It is
+read only as a delta, never checked as a volume of that format on its own. To <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> it is a <code>volume</code>. A sitting written
+and not yet recorded is read with the volume when its questions are listed: a question it answers is not put again, and
+a second sitting may not answer it.</p>
 <p><code>record said in f</code> is code: it appends each answer to its question's answers (never rewriting one), sets the question's
 state to <code>answered</code>, <code>unknown</code> or <code>declined</code>, and adds the session. It refuses an answers volume whose session the
 volume already holds, so a set of answers is recorded once, and it checks every entry before it writes any. Its contract
@@ -3466,7 +3480,8 @@ reference) is written by rules, and a call that needs no <a class="docs-term" hr
 answers that must be read again answered and unsettled, for a run with a model. Its contract is <code>addressed</code>;
 <code>only-the-asked</code> (the fields that <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a> are exactly those the answered questions are about, with their provenance and
 the questions' <code>settled</code> field); <code>fabula-checks</code>; and <code>provenance</code>: every field written carries <code>provenance: {mode: dialectic, sources: [D:session/&lt;id&gt;], confidence}</code>. In a fabula the settle run joins <code>derived.runs</code>, and <code>derived</code>'s
-single keys stay those of the run that derived it.</p>
+single keys stay those of the run that derived it. A volume that is not a fabula, which the program of <a class="ref-xref" href="#docs-sec-22-4">section 22.4</a> does
+not take, a host settles by the same moves' rules: it records the answers, then settles them with no reading.</p>
 </section>
 <section class="docs-sec" data-key="S:section/22.4" data-scope="">
 <h3 id="docs-sec-22-4" data-toc="3">22.4 The two runs, read as a pair</h3>
@@ -3516,11 +3531,13 @@ route: a local model at best effort fails more often, and is refused honestly; i
 <section class="docs-sec" data-key="S:section/23.1" data-scope="">
 <h3 id="docs-sec-23-1" data-toc="3">23.1 The route</h3>
 <p>The <strong>route</strong> is chosen per <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a>, and nowhere else: <code>local</code> (the default: the host's local model) or <code>cloud</code> (a cloud
-model through a broker, the host's named one or one the person names by the provider's id). On the command <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> it is
-<code>--model local</code>, <code>--model cloud</code> or <code>--model cloud:&lt;id&gt;</code> (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>). A <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> that asks a model on a cloud route whose
-gate is closed is refused at plan time, check <code>cloud</code>, in the gate's own words: &quot;the cloud is not open for this run:
-'local models only' is on in the broker&quot;. A plan that asks nothing runs on either route and reaches no model. Nothing
-reaches a cloud model that the person did not choose for that run.</p>
+model through a broker, the host's named one or one the person names by the provider's id). A run, or any job a host
+starts that asks a model, that names no route runs on the local route, whatever model the host's other work uses; with
+no local model running it runs by rules where it has a rules form, or refuses in words, and never falls back to the
+cloud. On the command <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> it is <code>--model local</code>, <code>--model cloud</code> or <code>--model cloud:&lt;id&gt;</code> (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>). A <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> that
+asks a model on a cloud route whose gate is closed is refused at plan time, check <code>cloud</code>, in the gate's own words: &quot;the
+cloud is not open for this run: 'local models only' is on in the broker&quot;. A plan that asks nothing runs on either route
+and reaches no model. Nothing reaches a cloud model that the person did not choose for that run.</p>
 </section>
 <section class="docs-sec" data-key="S:section/23.2" data-scope="">
 <h3 id="docs-sec-23-2" data-toc="3">23.2 What the plan shows</h3>
@@ -3546,8 +3563,8 @@ an older recorded <a class="docs-term" href="#docs-item-t-term-run" data-term="T
 provider, and the window of that model (<a class="ref-xref" href="#docs-sec-12-3">section 12.3</a>); where a provider answers with a more exact id of its own, that
 id is in <code>engine</code> and <code>made</code>.</li>
 <li>A fabula a program builds records which model made it, in its catalog's <code>derived</code>: <code>model</code>, <code>route</code>, <code>provider</code>,
-<code>program</code> and <code>run</code> for the last run that derived it, and one entry in <code>derived.runs</code> per run that wrote into it,
-a settle run included (<a class="ref-xref" href="#docs-sec-20-6">section 20.6</a>).</li>
+<code>program</code> (the program's name) and <code>run</code> for the last run that derived it, and one entry in <code>derived.runs</code> per run
+that wrote into it, a settle run included (<a class="ref-xref" href="#docs-sec-20-6">section 20.6</a>).</li>
 </ul>
 </section>
 <section class="docs-sec" data-key="S:section/23.4" data-scope="">

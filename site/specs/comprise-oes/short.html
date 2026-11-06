@@ -2302,9 +2302,9 @@ file inside the Holotype, relative to its root and written with <code>/</code>, 
 volume, never an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>, and it never leaves the Holotype.</p>
 <ul>
 <li><strong>Checked</strong> (<code>codebase-fabula</code>): the file must be there, inside the Holotype, load, and declare <code>oes: fabula/1</code> with
-<code>flavour: fabulac</code> (an error otherwise). When the source folder the fabulac describes is present, the fabulac must be
-fresh against it, its tree digest unchanged (a warning when it is stale). With no folder present, freshness is not
-judged.</li>
+<code>flavour: fabulac</code> (an error otherwise). When the source folder the fabulac describes is present (the folder its
+<code>source.path</code> names, relative to the fabulac's file), the fabulac must be fresh against it, its tree digest unchanged
+(a warning when it is stale). With no folder present, freshness is not judged.</li>
 <li><strong>Shown.</strong> A reader shows the fabulac's atem line beside the codebase, under the codebase's visibility (4.2). No other
 part of the fabulac is rendered from the Holotype.</li>
 <li><strong>Read, never built.</strong> Comprise OES reads a fabulac; it does not build one. A fabulac is made by decompiling the
@@ -2851,16 +2851,17 @@ person what a source means and recording what they say, as MacroCOSM OES (https:
 its section 18.6, defines it. What Comprise OES adds to it:</p>
 <ul>
 <li><strong>The banks.</strong> Comprise OES's question banks are the dialectic banks of its manifest (its <code>dialectic:</code> key, read as
-the core reads every manifest's banks): one bank per module, each question about a field of one or more <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>,
-asked of the item with the most left to fill in. A bank may also hold a <em>counter</em> per check: the question to put
-when that check refuses an answer.</li>
+the core reads every manifest's banks), each kept in a file of Comprise OES's own that the bank names in <code>from:</code>, so a
+reader without those files reads banks with no questions: one bank per module, each question about a field of one or
+more <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>, asked of the item with the most left to fill in. A bank may also hold a <em>counter</em> per check: the question
+to put when that check refuses an answer.</li>
 <li><strong>The sitting.</strong> One elicitation sitting is one session of the dialectic, written as a <code>D:session</code> record in the
-catalog's <code>sessions:</code> (2.2). Its id keeps the spelling <code>elicit-&lt;date&gt;-&lt;hex&gt;</code> (<code>D:session/elicit-2026-11-02-a3f9</code>),
-and the catalog's <code>sources:</code> declares the same id as a source, as before; the record sits beside that declaration
-and does not replace it. The record holds <code>at</code> (when the sitting began), <code>with: {to, who}</code> (<code>to</code> the role answering
-or <code>owner</code>; <code>who</code> a plain description, never a name), <code>through</code> (<code>person</code> or <code>agent</code>), <code>model</code> (the model that
-parsed or rephrased answers, when one did), <code>covers: {part, module}</code> (the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, and the module's letter, or <code>*</code>
-for a sitting across the Holotype), and <code>asked</code>, <code>answered</code> and <code>skipped</code>: the fields put to the person, each as
+catalog's <code>sessions:</code> (2.2). Its id keeps the spelling <code>elicit-&lt;date&gt;-&lt;hex&gt;</code> (<code>D:session/elicit-2026-11-02-a3f9</code>), and
+the catalog's <code>sources:</code> declares the same id as a source, as before; the record sits beside that declaration and does
+not replace it. The record holds <code>at</code> (when the sitting began), <code>with: {to, who}</code> (<code>to</code> the role answering or <code>owner</code>;
+<code>who</code> a plain description, never a name), <code>through</code> (<code>person</code> or <code>agent</code>), <code>model</code> (the model that parsed or rephrased
+answers, when one did), <code>covers: {part, module}</code> (the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, and the module's letter; a sitting across the Holotype
+is <code>{module: '*'}</code>, with no <code>part</code>), and <code>asked</code>, <code>answered</code> and <code>skipped</code>: the fields put to the person, each as
 <code>atom/&lt;concern&gt;//&lt;id&gt;#&lt;field path&gt;</code>.</li>
 <li><strong>Ask, check, commit.</strong> A question is put to one field. The answer becomes the field's value, and the write goes
 through the checks (<a class="ref-xref" href="#docs-sec-9">section 9</a>): a write that would add an error is undone, and the bank's counter for that check is
@@ -3468,7 +3469,8 @@ which was corrected.</p>
 MacroCOSM OES, an OES: the shared grammar and its core, which holds the formats built into every reader, the
 densities and the dialectic; Thym is
 named the transcognition language that connects OESes (the lead and 11.3). The status paragraph names the steward.</li>
-<li><strong>Elicitation is the dialectic</strong> (<a class="ref-xref" href="#docs-sec-8">section 8</a>). The question banks are the dialectic banks of the manifest. A sitting
+<li><strong>Elicitation is the dialectic</strong> (<a class="ref-xref" href="#docs-sec-8">section 8</a>). The question banks are the dialectic banks of the manifest, each kept in
+a file of Comprise OES's own that the bank names in <code>from:</code>. A sitting
 is a session of the dialectic, written as a <code>D:session</code> record in the catalog's new <code>sessions:</code> (2.2) beside the
 source the catalog already declares for it, its id still spelled <code>elicit-&lt;date&gt;-&lt;hex&gt;</code>; ask, check and commit, &quot;I
 don't know&quot; and who is asked are said against the core's primitive. Provenance written before,
