@@ -1,6 +1,6 @@
 # The OES specifications
 
-*Edition 0.5.4 · revised 2026-11-03 · cosmoes.org home: https://cosmoes.org/*
+*Edition 0.6.0 · revised 2026-11-06 · cosmoes.org home: https://cosmoes.org/*
 
 An OES, an organizational enumeration system, describes a domain by enumerating everything in it. It is written as
 plain-text files that are at once a file system and a relational database, made to be rendered. This page says what
@@ -193,7 +193,7 @@ them) is reserved for a later edition.
 
 <!-- atem: editions, revisions, format versions and the canonical pages -->
 
-An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.5.4; the
+An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.6.0; the
 status line says so. An edition is the text's, not the format's: a format's version (`thym/1`, `ascribe/1`,
 `comprise/1`, the grammar version MacroCOSM OES names) is a line in the files a program reads, and each text's status
 line names the one it describes. The canonical edition of each text is the page at its home; a copy an application ships
@@ -224,7 +224,7 @@ never sold, and neither is the way out of it: no product and no account stands b
 
 <!-- atem: what each edition changed, newest first -->
 
-1. **Edition 0.6.0 (2026-11-05): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
+1. **Edition 0.6.0 (2026-11-06): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
    MiniCOSMs, Comprise OES and Ascribe; Thym connects OESes. Section 2 is "Scales"; section 3, the model, is added, and
    sections 3 to 10 become 4 to 11; the parts table gains the densities and the dialectic; the fabula replaces EMF; the picture is redrawn; the colophon names the
    steward.

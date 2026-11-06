@@ -3,54 +3,54 @@
     "slug": "oes",
     "file": "oes.md",
     "name": "The OES specifications",
-    "edition": "0.5.4",
+    "edition": "0.6.0",
     "describes": {},
     "host": "cosmoes.org",
-    "revised": "2026-11-03"
+    "revised": "2026-11-06"
   },
   {
     "slug": "macrocosm-oes",
     "file": "macrocosm-oes.md",
     "name": "MacroCOSM OES",
-    "edition": "0.5.4",
+    "edition": "0.6.0",
     "describes": {
-      "macrocosm": "0.5.4"
+      "macrocosm": "0.6.0"
     },
     "host": "macro.cosmoes.org",
-    "revised": "2026-11-03",
+    "revised": "2026-11-06",
     "reference": true
   },
   {
     "slug": "thym",
     "file": "thym.md",
     "name": "Thym",
-    "edition": "0.5.4",
+    "edition": "0.6.0",
     "describes": {
       "thym": "1"
     },
     "host": "thym.cosmoes.org",
-    "revised": "2026-11-03"
+    "revised": "2026-11-06"
   },
   {
     "slug": "ascribe",
     "file": "ascribe.md",
     "name": "Ascribe",
-    "edition": "0.5.4",
+    "edition": "0.6.0",
     "describes": {
       "ascribe": "1"
     },
     "host": "ascribe.cosmoes.org",
-    "revised": "2026-11-03"
+    "revised": "2026-11-06"
   },
   {
     "slug": "comprise-oes",
     "file": "comprise-oes.md",
     "name": "Comprise OES",
-    "edition": "0.5.4",
+    "edition": "0.6.0",
     "describes": {
       "comprise": "1"
     },
     "host": "comprise.cosmoes.org",
-    "revised": "2026-11-03"
+    "revised": "2026-11-06"
   }
 ]
