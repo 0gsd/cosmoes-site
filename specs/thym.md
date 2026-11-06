@@ -288,7 +288,7 @@ keyword, since the writer probably forgot the blank line.
 | `if` | `if <cond> then <stmts> [else <stmts>] end` | a choice |
 | `for each` | `for each <name> in <expr> [where <cond>] <stmts> end` | a loop (section 8.1) |
 | `emit` | `emit [<slot>:] <expr>` | adds an item to the program's output volume, or, with a slot (`emit employees: …`), puts a value into that field of the projection; `project` consumes both (sections 8.2, 18) |
-| `give` | `give <expr>` | gives the block's output; nothing after it on that path runs. In `thym 1`, `give <output>: <expr>` names which output it gives (section 8.2) |
+| `give` | `give <expr>` | gives the block's output, once on each path; a path ends when its last output is given, and nothing after that runs. In `thym 1`, `give <output>: <expr>` names which output it gives (section 8.2) |
 | collecting `let` | `let <name> = for each <name> in <expr> [where <cond>] <stmts> end` | `thym 1`: a loop that collects; binds the list of what its `keep` lines kept (section 8.1) |
 | `keep` | `keep <expr>` | `thym 1`: adds a value to the list the nearest enclosing loop that collects is making |
 | `withhold` | `withhold <expr> [where <cond>]` | calls the move `withhold`: the items leave the output volume without a trace (section 18) |
@@ -342,7 +342,8 @@ In `thym 1`, three things change in conditions and loops:
   0`. A call in a condition ends at `is`, `<`, `>`, `=`, `has`, `covers`, `and`, `or`, `then`, `else`, a closing
   parenthesis or the end of the line. `in` ends it too, unless the move declares an `in` modifier, in which case `in` is
   the modifier (`read f with m in now`); write membership in parentheses then: `(read f with m) in xs`. Parentheses
-  still work everywhere.
+  still work everywhere. A move's name on a side begins a call only when an operand, or a modifier other than `in`,
+  `where` or `marked`, follows it; otherwise it is a field or a word, so `where count is 3` reads the field `count`.
 - **`in` with a text on its right**: `"TODO" in l` holds when the line, string, short or text on the right contains the
   characters on the left exactly. Membership in a list is unchanged.
 - **A `where` after a call in a `for each` header belongs to the loop**, unless the move declares a `where` modifier:
@@ -393,7 +394,8 @@ keep keeps contract depth before after
 ```
 
 `contract` opens a block, `keeps` and `depth` are heads, `keep` is a statement, and `before` and `after` are
-modifiers. The standard moves a program sees (section 6.3), the densities, the orders, the markings and the stances
+modifiers. `depth` is the head only where a `:` follows it; anywhere else it is a value, the field of a folder's file
+(section 20.1), so `repo where depth is 0` holds the files at the folder's top. The standard moves a program sees (section 6.3), the densities, the orders, the markings and the stances
 are reserved too: no block, binding or user move may take one of these names. A few words are both a keyword or a type and a move (`morph`,
 `context`, `package`, `graph`, `fabula`, `trace`); where the word stands decides which it is.
 
@@ -498,8 +500,8 @@ A `thym 0` file is read by the `thym 0` tables exactly, so a `thym 0` paragraph 
 stays prose, and every `thym 0` program compiles to the same items and the same plan under every later compiler.
 
 **This needs `thym 1`.** When a `thym 0` file is refused, the compiler compiles the same text again as `thym 1`. If
-that second compile succeeds, the refusal becomes a `version` refusal at the line of the first `thym 1` feature the
-second compile met: "this needs `thym 1`: a loop that collects (let readings = for each …) at line 14; the first line
+that second compile succeeds, the refusal becomes a `version` refusal at the first line of the file that holds a
+`thym 1` feature: "this needs `thym 1`: a loop that collects (let readings = for each …) at line 14; the first line
 says thym 0". Otherwise the `thym 0` refusal stands unchanged. The second compile never changes what a `thym 0` program
 means: it runs only on a file the first refused, and it only chooses the message.
 
@@ -513,8 +515,8 @@ moves: a later edition or a manifest may add a move to `thym 0` by declaring it 
 **`use` across versions.** A used file is read by its own version line, and its blocks mean what they meant there. A
 `thym 1` program may `use` a `thym 0` file, a `thym 1` file, a program volume of either version, and any morph or
 context volume. A `thym 0` program may `use` a `thym 0` file and any morph or context volume; a used `.thym` file or
-program volume whose version line (in a volume, the first line of its `front`) says `thym 1` is refused at the `use`
-line, check `version`.
+program volume whose version line (in a volume, the first line of its `front` that is neither blank nor a
+comment) says `thym 1` is refused at the `use` line, check `version`.
 
 **Enumeration and round trip** hold in both versions: `compile` on a program volume gives the `.thym` file back byte
 for byte (section 10). A `thym 0` file enumerates to exactly the items edition 0.5.4 gave it; new fields appear only on
@@ -839,7 +841,7 @@ contract shorter(new: line, old: line)
 end
 ```
 
-The head **`keeps <name> [against <name>, …]`** stands in a `move` or a `program` that gives, and promises that the
+The head **`keeps <name> [of <output>] [against <name>, …]`** stands in a `move` or a `program` that gives, and promises that the
 block's output passes the check. The kept value is the block's output and fills the contract's first parameter; the
 names after `against` are the block's own parameters (in a move) or its `takes` names (in a program), and they fill
 the second and later parameters, in order. `<name>` is a contract block the file can see (its own, a program's local
@@ -919,9 +921,11 @@ or a short as `line` values (section 21).
 **How a loop runs.** A loop over a list written in the program runs its statements once per member, as written. Over a
 collection known only at run time, `thym 0` runs each statement of the body over every member before the next statement
 starts, and `thym 1` runs the body member by member, as a unit, as a user move's body runs: a name the body binds, an
-`if` inside it and a nested call all take this pass's values (section 11.1 says how each plans). In `thym 0`, an `if`
-inside such a loop, and a `let` inside it read later in the same loop, are refused at run with the fix: write `thym 1`,
-where a loop's body runs member by member.
+`if` inside it and a nested call all take this pass's values (section 11.1 says how each plans). In `thym 0`, three
+such loops are refused at run with the fix, write `thym 1`, where a loop's body runs member by member: one holding an
+`if` whose condition reads the loop's variable or a name the body binds (the condition is read once, before the loop,
+and the refusal keeps the check that failed); one holding a `let` read later in the same loop (check `loop`); and one
+holding a `for each` nested inside it (check `loop`).
 
 **A loop that collects** (`thym 1`) is a `for each` that is the value of a `let`:
 
@@ -965,8 +969,8 @@ mark.
 
 **Several outputs** (`thym 1`). A program may give several outputs, `gives code: folder, manual: short`, and gives each
 with a labelled `give`, shaped like the labelled `emit`: `give code: tell f as code`. Every path gives each output
-exactly once, by name; a path that misses one is refused (`no-give`), and a `give` naming no output of the program is
-refused (`type`). A block with one output may label its `give` or not. A user move gives one value, since its signature
+exactly once, by name; a path that misses one is refused (`no-give`), and a second `give` of the same output on one
+path, or a `give` naming no output of the program, is refused (`type`). A block with one output may label its `give` or not. A user move gives one value, since its signature
 says one type. All of a program's outputs land at once, or none do.
 
 ### 8.3 User moves
@@ -986,7 +990,7 @@ A recursive move's contract and `asks` are those of every move on its cycle.
 A call of a recursive move is one node, as any call of a user move is (section 11.1): its body is never expanded into
 the plan, so the plan is as finite as the program text. The node's budget holds the move's `depth`. At run, the
 runtime counts the move's calls on its stack, and a call that would nest the move one deeper than its depth refuses the run,
-check `recursion`, naming the pass in the person's terms: "`give tree-of d` (line 16): tree-of went 13 deep; its
+check `recursion`, naming the pass in the person's terms: "`give tree-of d` (line 17): tree-of went 13 deep; its
 depth is 12". A depth bounds how deep a move goes, not how many calls it makes, so a plan with a recursive move that
 asks has an open count of model calls (section 23).
 
@@ -1004,7 +1008,7 @@ program folder-outline
     let below = for each sub in folders of d
       keep tree-of sub
     end
-    give join [d.path, (join below)]
+    give join [(join [d.path]), (join below)]
   end
 
   give tree-of d
@@ -1065,7 +1069,7 @@ end
 |---|---|---|
 | **compile** | a parse error (`parse`); a version line that names a grammar the compiler does not know, `thym 1` syntax or a move only `thym 1` sees under a `thym 0` line ("this needs `thym 1`", section 4.9), or a `thym 0` program that uses a `thym 1` file (`version`); an unknown move (`unknown-move`); an unknown URI or `use`d file (`unknown-uri`); two `use`d names that clash (`use-clash`); an unbound name (`unbound`); a type error (`type`); a name bound twice (`rebound`); recursion in `thym 0`, or in `thym 1` a move on a cycle without `depth:` (`recursion`); a `give` inside a loop (`type`); a `keep` outside a loop that collects, a loop that collects nothing or keeps two types, a contract that asks, a `depth:` out of range or on a move that never calls itself (`type`); a `keeps` naming no contract and no check (`unknown-check`); a block that `gives`, with a path that never reaches a `give` of each output, refused at the block's first line (`no-give`); emitted items with no `project` (`emit-without-project`); a static contract that cannot hold (the contract's check, such as `no-counts`), a fabula known to be of a flavour the move does not take among them (`flavour`) | the file and line, the check, and the fix where one is known |
 | **plan** | a model-backed node while agent-free (`agent-free`, section 19); a prompt the machine's model cannot hold (`preflight`, the 16 GB rule, section 12.5); a missing or changed input (`input`: its digest, or a folder's tree digest, differs from the plan's); a plan whose program cannot be read (`no-program`); a move with no implementation here (`move`), or none under `--rules` (`rules`); a cloud route whose gate is closed (`cloud`); a cloud plan whose count of model calls is open and that was given no ceiling (`calls`, section 23) | the node, the count or the size, and what would make it run |
-| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises; a move that went deeper than its depth (`recursion`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
+| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises; a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
 
 A refusal is a value, not an exception: the CLI prints it and exits non-zero, the server returns it as the response,
 and the viewer shows it in place of the plan or the outputs. It carries `stage` (`compile`, `plan` or `run`), `line`,
@@ -1075,7 +1079,7 @@ and the viewer shows it in place of the plan or the outputs. It carries `stage` 
 wrote it: the line without indentation or comment, cut to 60 characters with "…". It names that statement's line,
 and, inside a loop, the pass in the person's terms: `for o = M:offer/seed-boxes` (the item's id),
 `for t = tool/cli.py` (the file's path), `for l = line 7` (the line's number), `for x = the second member` (a member
-of a written list). It names a value by the expression the person wrote, such as `(count staff)`. It never shows a
+of a written list, by its place; the plan's node names the same pass by the member as written, section 11.1). It names a value by the expression the person wrote, such as `(count staff)`. It never shows a
 temporary (`t3`), a node's number, a node's id, an implementation's exception or the inside of a value as the
 implementation prints it. The shape is:
 
@@ -1120,7 +1124,7 @@ program's name, or `<program>.<move>` for a move local to a program.
   contracts the move inherits, and, in `thym 1`, the contracts the move keeps, after the inherited ones.
 - **What `thym 1` adds.** A contract block gives `P:check/<name>`, or `P:check/<program>.<name>` for one local to a
   program, with `why`, `params`, `body`, `lines`, `order` and `steps` (its lines as steps, `P:step/<name>.<n>`). A
-  `keep` is a step of form `keep`; a loop that collects is a step of form `for` that also binds its name. A labelled
+  `keep` is a step of form `keep`; a loop that collects is a step of form `for` whose `binds` is the loop's name. A labelled
   `give` holds its output's name in `slot`. A block that keeps a contract lists it in `keeps`, a move that may call
   itself holds its `depth`, and a program of several outputs lists each in `gives`. A `thym 0` file enumerates exactly
   as before: no field is new on any of its items.
@@ -1167,11 +1171,12 @@ The nodes of a plan come in evaluation order, a nested call before the call that
 
 A statement's node in a loop is named by its statement, with `, for each …` or `, for x = <member>` after it; it asks
 when any of its calls asks, and it takes every name the statement and the loop's `where` read. Under `thym 1`, a loop
-of one statement over a run-time collection gives exactly the `thym 0` node; a loop of several statements gives a node
-named by the loop's own line, with move `for` and `calls`, the moves its body calls in written order, once each. A
-loop that collects gives a node with move `for`, `gives` the loop's name, `repeats: true`, `calls`, and
-`members: {at_most: n}` when the collection's size is known at plan time (a written list, or a folder, volume or fabula input,
-counted before the `where`). A call of a user move that keeps contracts carries `keeps`, and one that may call itself
+over a run-time collection whose body is one plain statement (neither an `if` nor a `for each`) gives exactly the
+`thym 0` node; any other gives a node named by the loop's own line, with move `for`, `repeats: true`, `members` where
+known, and `calls`, the moves its header and its body call, in written order, once each. A loop that collects gives
+such a node, which also `gives` the loop's name. `members: {at_most: n}` is given only where the plan alone knows the
+collection's size: a list written in the program, or a folder input (its files, counted before the `where`); a count
+is never read from a volume or fabula input, so a plan does not depend on where it was planned. A call of a user move that keeps contracts carries `keeps`, and one that may call itself
 carries `depth` in its budget.
 
 A node takes names (inputs, bindings, or a temporary `t<n>` made by the nested call at node `n`) and gives at most one:
@@ -1668,7 +1673,7 @@ status, visibility, provenance, pending, links) and may carry `made` (section 5.
 | `morph` | `M:morph/<slug>` | `scales`, `toward`, `evidence`, `basis`, `confidence`, `pinned`, `derived` or `declared`, `shared` |
 | `context` | `C:context/<slug>` | `purpose`, `audience`, `medium`, `moment`, `hurry`, `words`, `minutes`, `language`, and any field |
 | `plan` | `R:plan/<run-id>` | `nodes` (refs, in order), `asks` (a count), `largest_prompt` (tokens) |
-| `node` | `R:node/<n>` | `step` (`{program, n}`), `move`, `asks`, `takes` (names), `gives` (a name), `after` (refs), `budget` (with `depth` for a move that may call itself), `line`, `repeats`, `branch` (`then` or `else`), `slot` (a labelled `emit`'s field); in `thym 1` plans, `calls` (the moves a loop's body calls), `members` (`{at_most: n}`), `keeps` (the contracts a called move keeps) |
+| `node` | `R:node/<n>` | `step` (`{program, n}`), `move`, `asks`, `takes` (names), `gives` (a name), `after` (refs), `budget` (with `depth` for a move that may call itself), `line`, `repeats`, `branch` (`then` or `else`), `slot` (a labelled `emit`'s field); in `thym 1` plans, `calls` (the moves a loop's header and body call), `members` (`{at_most: n}`), `keeps` (the contracts a called move keeps) |
 | `trace` | `R:trace/<run-id>` | `records` (refs), `outcome` (`landed`, `refused`), `stopped_at` (a ref, when refused) |
 | `record` | `R:record/<n>` | `node` (ref), `move`, `inputs`, `outputs` (lists of `{name, sha256, path}`), `engine`, `attempts`, `tokens`, `seconds`, `checks` (a list of `{name, ok, why}`), `tries`; `passes` for a loop run as one node |
 | `package` | `K:package/<slug>` | as the catalog's `contents` and `made`, for an index that lists packages |
@@ -1810,17 +1815,17 @@ without a leading `./`. The text of a text file is read when something walks or 
 
 1. any path one of whose parts begins with `.` (so `.git/`, `.venv/`, `.env`);
 2. any path one of whose parts is `__pycache__` or `node_modules`;
-3. symbolic links, which are never followed: a link is left out, and counted.
+3. symbolic links, which are never followed: a link is left out.
 
 A file is **text** when its bytes are UTF-8 (a byte-order mark is tolerated), hold no zero byte, and number at most
-1,000,000 bytes. Any other file is binary: it is in the tree and counted, and it is never read as text. The rule uses no
-ignore-file semantics, on purpose: those semantics are a program, not a rule, and the rule must be the same in every
-runtime.
+1,000,000 bytes. Any other file is binary: it is counted and listed, and it is never read as text. A text's `lines`
+are its line feeds, and one more when its last line has none. The rule uses no ignore-file semantics, on purpose:
+those semantics are a program, not a rule, and the rule must be the same in every runtime.
 
 The **tree digest** is MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it: over the files
 that section's rule reads, in the order of their paths' UTF-8 bytes, the sha256 of each file's relative path, a zero
-byte, its sha256 in hexadecimal and a line feed. Binary files are not among them. It is a fabulac's `source.tree`, and
-a fabulac is fresh while its folder's tree digest still matches. Everywhere a digest is asked for (`digest repo`, a plan's input
+byte, its sha256 in hexadecimal and a line feed. A binary file is among them only when its only zero bytes lie past
+its first 8,192 bytes. It is a fabulac's `source.tree`, and a fabulac is fresh while its folder's tree digest still matches. Everywhere a digest is asked for (`digest repo`, a plan's input
 row, a record's inputs and outputs, `made`), a folder's digest is its tree digest.
 
 Its fields, read with a dot, and as bare names in a `where` over the folder:
@@ -1833,7 +1838,7 @@ Its fields, read with a dot, and as bare names in a `where` over the folder:
 | `bytes` | their total size | — |
 | `lines` | total lines of its text files | the file's lines |
 | `tree` | the tree digest | — |
-| `commit` | the clone's `HEAD` commit, read from its files (no `git` is run), else `nothing` | — |
+| `commit` | the clone's `HEAD` commit, read from its files (no `git` is run, so it says nothing of uncommitted changes), else `nothing` | — |
 | `origin` | the clone's `origin` remote, else `nothing` | — |
 | `suffix` | — | the part of the name after its last `.`, without the dot (`py`, `md`); `""` for none |
 | `depth` | — | how many folders stand above it inside the folder walked (0 at the top) |
@@ -1847,7 +1852,7 @@ Its fields, read with a dot, and as bare names in a `where` over the folder:
 are counted. Each member's provenance is hand-made, with `source: {folder: <tree>, path}`.
 
 `repo where suffix is py` is a **folder**: the same root, only the files whose fields satisfy the condition, and a tree
-digest of its own over the files it kept. The same condition may stand on a loop,
+digest of its own over the files it kept that MacroCOSM's rule reads. The same condition may stand on a loop,
 `for each t in repo where suffix is py`. A `where` over a folder reads the member fields of the table above, over
 binary files too, so `repo where binary` gives the binary files. `folders of d` gives a `list of folder`: the folders directly below `d` that the rule
 keeps, in path order, each with its own fields and tree digest. `count` of a folder counts its text files.
@@ -1901,6 +1906,7 @@ nodes: []
 ```
 
 A replay reads a folder input from this snapshot and never from the disk, so it needs no repository (section 12.4).
+A snapshot keeps no binary file's bytes, so a replay of a run whose folder output held a binary file is refused.
 The cost is the text of the walked tree, once per run, and one row per binary file: a folder of about sixty files and
 six thousand lines takes a few hundred kilobytes per snapshot. Sharing one snapshot across the runs of a job, by its
 digest, is reserved for a later edition.
@@ -2359,7 +2365,7 @@ program's.
 
 Preflight (section 12.5) is unchanged in its rule, and reads the window of the route's model. `--calls N` sets a
 ceiling on a run's model requests: the runtime counts every request, re-asks included, and the request past N refuses
-the run, check `calls`: "`keep read-file t, f` (line 31, for t = `tool/cli.py`): this run reached its ceiling of 120 model
+the run, check `calls`: "`keep read-file t, f` (line 55, for t = `tool/cli.py`): this run reached its ceiling of 120 model
 calls; nothing landed". A cloud plan whose `calls_open` is not empty is refused at plan time without `--calls` (check
 `calls`): "this plan may ask the cloud model a number of times nobody can know before it runs (tree-of calls itself and
 asks); give a ceiling with --calls". A local run needs no ceiling: it costs time, not money.
@@ -2454,7 +2460,8 @@ section it touched.
    statements emits.
 2. **Corrected in both versions:** a call nested inside a statement of a loop's body is part of that statement's node
    and is evaluated with each member (section 11.1). Two kinds of program that compiled clean under edition 0.5.4 and
-   ran wrong run right in this edition. Under `thym 1` a loop over a collection known only at run time is one node.
+   ran wrong run right in this edition. Under `thym 1` a loop over a collection known only at run time is one node;
+   under `thym 0` the three such loops that would still run wrong are refused at run, with the fix (section 8.1).
 3. **`folder` is a type** (section 20), read under one fixed rule, with MacroCOSM's tree digest. A run snapshots every folder it
    takes, so a replay needs no repository.
 4. **A loop collects** with `let … = for each … keep … end` (section 8.1).
