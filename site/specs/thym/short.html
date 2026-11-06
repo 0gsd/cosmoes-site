@@ -1980,7 +1980,8 @@ over a run-time collection whose body is one plain statement (neither an <code>i
 <code>thym 0</code> node; any other gives a node named by the loop's own line, with move <code>for</code>, <code>repeats: true</code>, <code>members</code> where
 known, and <code>calls</code>, the moves its header and its body call, in written order, once each. A loop that collects gives
 such a node, which also <code>gives</code> the loop's name. <code>members: {at_most: n}</code> is given only where the plan alone knows the
-collection's size: a list written in the program, or a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> input (its files, counted before the <code>where</code>); a count
+collection's size: a list written in the program, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> input (its files, counted before the <code>where</code>), or a list
+input (its members); a count
 is never read from a volume or fabula input, so a plan does not depend on where it was planned. A call of a user move that keeps contracts carries <code>keeps</code>, and one that may call itself
 carries <code>depth</code> in its budget.</p>
 <p>A node takes names (inputs, bindings, or a temporary <code>t&lt;n&gt;</code> made by the nested call at node <code>n</code>) and gives at most one:
@@ -2013,8 +2014,8 @@ python -m enough.thym conform   [&lt;suite folder&gt;]                   run the
 </code></pre>
 <p><code>plan</code> and <code>run</code> also take <code>--model local</code> (the default: the local model), <code>--model cloud</code> (the cloud model the host
 names) or <code>--model cloud:&lt;the provider's model id&gt;</code>, and <code>--calls &lt;N&gt;</code>, a ceiling on the <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a>'s model requests (<a class="ref-xref" href="#docs-sec-23">section
-23</a>). An input is given as <code>name=path</code>, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>'s path included (<code>repo=tool/</code>); when the program takes exactly one
-input, a bare path will do (<code>python -m enough.thym run tidy.thym notes.md</code>). An argument is <code>name=path</code> when the text
+23</a>). An input is given as <code>name=path</code>, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>'s path included (<code>repo=tool/</code>), and a list input by its name once per
+member, in order (<code>xs=a.md xs=b.md</code>); when the program takes exactly one input, a bare path will do (<code>python -m enough.thym run tidy.thym notes.md</code>), and for a list, one bare path per member. An argument is <code>name=path</code> when the text
 before its first <code>=</code> is a name the program takes, and a bare path otherwise; a program of several inputs refuses a bare
 path (&quot;tidy takes story and voice; give each as name=path&quot;). The bare path is the command line's rule, not the
 grammar's, so it holds for both versions, and the <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> it makes is the plan <code>name=path</code> makes.</p>
@@ -2038,7 +2039,14 @@ nodes may <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/ru
 builds the coprocessor call from the move's contract and the node's inputs. A failing node refuses the run: outputs
 already made are discarded, nothing is written to the target paths, and the trace records how far the run got. Outputs
 are written only when every node has succeeded, all at once, with the trace beside them.</p>
-<p>A run snapshots every <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> it takes (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>), so that its replay needs no repository. A program of several
+<p>A list input (<code>takes xs: list of T</code>, in either version) is given member by member, in order; an empty list is not
+an input given. The plan records it as <code>{name, type, path, sha256, members: [{path, sha256}]}</code>: <code>path</code> is the first
+member's, <code>sha256</code> is over the members' digests in order, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> member also has <code>files</code> and <code>bytes</code>, and the list's
+size is the sum of its members'. The run reads each member as it reads a single input of type T, held to its own
+digest, names it <code>xs[2]</code> in a refusal (counted from 1), and gives the program the list in the order given. The record
+of a node that takes the list names each member beside it, as <code>xs[n]</code>, with its digest and path.</p>
+<p>A run snapshots every folder it takes (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>), a list's folder members each as <code>inputs/&lt;name&gt;.&lt;n&gt;.folder.cosm</code>,
+so that its replay needs no repository. A program of several
 outputs lands them all in the same step, or none. A folder output lands as a directory, <code>outputs/&lt;name&gt;/</code>, holding
 exactly the folder's files, and is renamed into place with every other output in that one step (<a class="ref-xref" href="#docs-sec-20-4">section 20.4</a>).</p>
 </section>
@@ -2567,7 +2575,7 @@ end
 <tr>
 <td><code>plan</code></td>
 <td><code>&lt;run-id&gt;.plan.cosm</code></td>
-<td><code>program</code>, <code>inputs</code>, <code>estimate</code>, the <code>R:plan</code> item and its <code>R:node</code> items</td>
+<td><code>program</code>, <code>inputs</code> (each <code>{name, type, path, sha256}</code>; a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>'s also <code>files</code> and <code>bytes</code>, a list's <code>members</code>, <a class="ref-xref" href="#docs-sec-12-1">section 12.1</a>), <code>estimate</code>, the <code>R:plan</code> item and its <code>R:node</code> items</td>
 </tr>
 <tr>
 <td><code>trace</code></td>
@@ -2582,7 +2590,7 @@ end
 <tr>
 <td><code>folder</code></td>
 <td><code>inputs/&lt;name&gt;.folder.cosm</code> in a <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a></td>
-<td>a run's snapshot of a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> it took: <code>name</code>, <code>path</code>, <code>tree</code>, <code>commit</code>, <code>origin</code>, <code>files</code> (each <code>{path, sha256, size}</code>, with <code>binary: true</code> for a file that is not text) and <code>texts</code> (each text file's bytes as a block scalar) (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>)</td>
+<td>a run's snapshot of a folder it took: <code>name</code>, <code>path</code>, <code>tree</code>, <code>commit</code>, <code>origin</code>, <code>files</code> (each <code>{path, sha256, size}</code>, with <code>binary: true</code> for a file that is not text) and <code>texts</code> (each text file's bytes as a block scalar) (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -3684,8 +3692,8 @@ bound them; agent-free refuses a cloud model as it refuses a local one (<a class
 enumeration keeps it. The moves <code>derive</code>, <code>tell</code>, <code>atem</code> and <code>expand</code> are declared by <code>fabula/1</code>, which replaces
 <code>emf/1</code>; <code>derive</code> and <code>tell</code> gain the flavours (<code>as prose</code>, <code>as verse</code>, <code>as code</code>, a catem's depths), and <code>survey</code>,
 <code>history</code>, <code>gather</code>, <code>question</code>, <code>record</code>, <code>settle</code>, the editing moves, <code>join</code>, <code>say</code> and <code>folders</code> are new, and
-so is Ascribe's <code>propose</code> (<a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>). <code>in</code> takes a text on its right, a call needs no parentheses in a condition, and a bare path names the
-one input of a program that takes one (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-11-3">11.3</a>).</li>
+so is Ascribe's <code>propose</code> (<a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>). <code>in</code> takes a text on its right, a call needs no parentheses in a condition, a bare path names the
+one input of a program that takes one, and a list input is given member by member (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-11-3">11.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-12-1">12.1</a>).</li>
 <li><strong><a class="ref-xref" href="#docs-sec-20">Sections 20</a> to <a class="ref-xref ref-xref-num" href="#docs-sec-23">23</a> are new.</strong> Conformance, Changes and Withdrawn, <a class="ref-xref" href="#docs-sec-20">sections 20</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-22">22</a> of edition 0.5.4, are
 <a class="ref-xref" href="#docs-sec-24">sections 24</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-25">25</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-26">26</a>, and the entry below names them by their numbers in this edition.</li>
 <li><strong>The taxonomy.</strong> <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> is the transcognition language that connects OESes; <code>thym/1</code> is a built-in of MacroCOSM's
