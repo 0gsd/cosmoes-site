@@ -13,8 +13,8 @@ thing it is about, under a pseudonymous handle.</p>
 (https://comprise.cosmoes.org/), for companies, is the other. Both are written in MacroCOSM OES
 (https://macro.cosmoes.org/), an OES: the shared grammar and its core, which holds the formats built into every
 reader, the densities and the <a class="docs-term" href="#docs-item-t-term-dialectic" data-term="T:term/dialectic" title="The dialectic is the core's one way of asking a person what something means…">dialectic</a>; its words (item, kind, volume, catalog, module, check, lens, open question, question, session) keep
-their meaning here. Thym (https://thym.cosmoes.org/) is the transcognition language that connects OESes: what leaves a
-holograph leaves by a Thym program its <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> runs. Comprise describes companies and Ascribe describes people, in the
+their meaning here. Thym (https://thym.cosmoes.org/) is the transcognition language that connects OESes: an <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a>
+leaves a holograph by a Thym program its <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> runs. Comprise describes companies and Ascribe describes people, in the
 same grammar and with the same envelope, so that one set of moves works on both.</p>
 <p><strong>Status.</strong> Normative for <code>ascribe/1</code>. The declaration is the manifest, <code>ascribe.manifest.cosm</code>. The reference
 implementation is enough (https://github.com/0gsd/enough): its MacroCOSM reader loads a holograph and runs the checks
@@ -133,7 +133,8 @@ or from relations they declare; a <code>when</code>, a <code>valence</code> and 
 <li>Nothing about the person that would identify them has a place in the schema. A check warns on what reads like it,
 and a filter keeps private files and restricted nodes out of everything that leaves (<a class="ref-xref" href="#docs-sec-11">section 11</a>).</li>
 <li>The holograph stays with its holder. What leaves it, as an <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a>, a <a class="docs-term" href="#docs-item-t-term-cryptograph" data-term="T:term/cryptograph" title="A cryptograph is the holder's encrypted share: a Thym package in its encrypted form">cryptograph</a>, <a class="docs-term" href="#docs-item-t-term-match-token" data-term="T:term/match-token" title="A match token lets a search find a cryptograph without reading it">match tokens</a> or an <a class="docs-term" href="#docs-item-t-term-isomorph" data-term="T:term/isomorph" title="An isomorph is a holomorph the holder chose to share">isomorph</a>,
-leaves by a Thym program the holder runs (<a class="ref-xref" href="#docs-sec-14">section 14</a>), and each <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> is recorded in the holograph (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
+leaves by the holder's act: an isograph by a Thym program the holder runs, the others made by the implementation
+(<a class="ref-xref" href="#docs-sec-14">section 14</a>); each <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> is recorded in the holograph (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
 </ul>
 <hr />
 </section>
@@ -1105,7 +1106,7 @@ nothing is in a <a class="docs-term" href="#docs-item-t-term-package" data-term=
 </tr>
 <tr>
 <td><code>trace</code></td>
-<td><code>{run, sha256}</code>: the run's id, and the sha256 of its cleaned trace, which stays on the holder's machine</td>
+<td><code>{run, sha256}</code>: the run's id, and the sha256 of its trace file as the run wrote it, which stays on the holder's machine</td>
 <td>yes</td>
 </tr>
 <tr>
@@ -1150,8 +1151,10 @@ its holder releases something.</p>
 </section>
 <section class="docs-sec" data-key="S:section/14" data-scope="">
 <h2 id="docs-sec-14" data-toc="2">14. Projections: the isograph, the cryptograph, match tokens, morphs</h2>
-<p>What leaves a holograph leaves by a Thym program its <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> runs, after the private filter (<a class="ref-xref" href="#docs-sec-11">section 11</a>), and is
-recorded as a <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> (<a class="ref-xref" href="#docs-sec-13">section 13</a>). Every <a class="docs-term" href="#docs-item-t-term-projection" data-term="T:term/projection" title="a program projects it: an isograph, match tokens, an isomorph (section 14)">projection</a> keeps four rules:</p>
+<p>What leaves a holograph leaves by its <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s act, after the private filter (<a class="ref-xref" href="#docs-sec-11">section 11</a>), and is recorded as a <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a>
+(<a class="ref-xref" href="#docs-sec-13">section 13</a>). In this edition an <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a> is made by a Thym program the holder runs (<a href="https://thym.cosmoes.org/">Thym</a>,
+its section 18); a <a class="docs-term" href="#docs-item-t-term-cryptograph" data-term="T:term/cryptograph" title="A cryptograph is the holder's encrypted share: a Thym package in its encrypted form">cryptograph</a>, an <a class="docs-term" href="#docs-item-t-term-isomorph" data-term="T:term/isomorph" title="An isomorph is a holomorph the holder chose to share">isomorph</a> and <a class="docs-term" href="#docs-item-t-term-match-token" data-term="T:term/match-token" title="A match token lets a search find a cryptograph without reading it">match tokens</a> are made by the implementation at the holder's act, and
+Thym moves for them are reserved for a later edition. Every <a class="docs-term" href="#docs-item-t-term-projection" data-term="T:term/projection" title="a program projects it: an isograph, match tokens, an isomorph (section 14)">projection</a> keeps four rules:</p>
 <ol>
 <li><strong>Default-deny.</strong> Only what this section names may appear; anything else is refused, never filtered.</li>
 <li><strong>Withhold, never falsify.</strong> What does not leave leaves no mark: no placeholder, no gap, no count.</li>
@@ -1280,8 +1283,8 @@ one chosen party. It is, for a person, the sealed package of <a href="https://co
 <ul>
 <li><strong>Two kinds.</strong> <em>The whole holograph</em>: one <code>holograph</code> row per file the filter keeps, at its own path, module D left
 out. <em>A projection</em>: <code>projection</code> (<code>projection.json</code>, an <code>ascribe-isograph/0</code> document), <code>program</code> (<code>program.thym</code>)
-and <code>trace</code> (<code>trace.cosm</code>, the cleaned trace). Nothing else is a cryptograph: no key, no morph's evidence, nothing the
-filter withholds.</li>
+and <code>trace</code> (<code>trace.cosm</code>, the run's trace as the run wrote it). Nothing else is a cryptograph: no key, no morph's
+evidence, nothing the filter withholds.</li>
 <li><strong>The seal.</strong> The cipher of Thym's encrypted form under a fresh data key for the package; its catalog's <code>hid</code> is a
 random id of its own, never the holograph's, so that a cryptograph cannot be joined to the holder's <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a>.</li>
 <li><strong>The key</strong> is shown once, stored nowhere, and handed by the holder to the party of their choosing. A lost key is a

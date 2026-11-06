@@ -2303,8 +2303,8 @@ that a reader always has them, and that reading their <a class="docs-term" href=
 <tr>
 <td><code>thym</code></td>
 <td><code>oes: thym/1</code></td>
-<td>Thym's programs, morphs, contexts, plans, traces and packages</td>
-<td>one file, one of six <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a></td>
+<td>Thym's programs, morphs, contexts, plans, traces and packages, and a run's snapshots of the folders it took</td>
+<td>one file, one of seven <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a></td>
 <td><code>&lt;name&gt;.thym.cosm</code>, <code>&lt;name&gt;.morph.cosm</code> …</td>
 <td>P M C R K</td>
 <td>18.7</td>
@@ -2364,11 +2364,11 @@ each one atomic run, and a job may resume between them (<a class="ref-xref" href
 and specified in Thym (https://thym.cosmoes.org/), its sections 6.3 and 20. <a class="docs-term" href="#docs-item-t-term-docoes" data-term="T:term/docoes" title="DocOES, Documentation OES, takes a markdown document apart into items">DocOES</a>'s byte-exact compile is a different
 act, which gives a document back from its own volume (<a class="ref-xref" href="#docs-sec-18-5">section 18.5</a>).</p>
 <p><strong>Models.</strong> A fabula records which model made it: the model's own id, its route (<code>local</code>, a model on the person's own
-machine, or <code>cloud</code>, a model reached through a broker), and for a cloud model its provider, once for each run that
-wrote into the volume (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). The model is chosen for each run: the same programs run on a local model at its
-best effort or on a cloud model through a broker, and nothing reaches a cloud model that the person did not choose for
-that run. A run made without a model is in rules mode and says so. With its agent off, an implementation refuses every
-model, local or cloud (Thym, its section 19).</p>
+machine, or <code>cloud</code>, a model reached through a broker), and for a cloud model its provider, once for each run that wrote
+into the volume (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). The model is chosen for each run: the same programs run on a local model at its best
+effort or on a cloud model through a broker, and nothing reaches a cloud model that the person did not choose for that
+run: a run that names no route runs on the local model. A run made without a model is in rules mode and says so. With
+its agent off, an implementation refuses every model, local or cloud (Thym, its section 19).</p>
 </section>
 <section class="docs-sec" data-key="S:section/18.2" data-scope="">
 <h3 id="docs-sec-18-2" data-toc="3">18.2 cosm: the product tree</h3>
@@ -3029,7 +3029,7 @@ source; a run that only settles the <a class="docs-term" href="#docs-item-t-term
 </tr>
 <tr>
 <td><code>program</code></td>
-<td>the file of the Thym program that built the fabula (<code>decompile-python.thym</code>)</td>
+<td>the name of the Thym program that built the fabula, as its <code>program</code> line gives it (<code>raise-the-questions</code>); one file may hold several programs</td>
 <td>when a Thym program did</td>
 </tr>
 <tr>
@@ -3059,7 +3059,7 @@ source; a run that only settles the <a class="docs-term" href="#docs-item-t-term
 </tr>
 <tr>
 <td><code>runs</code></td>
-<td>one entry per run that wrote into the fabula, in order, a settle run included: <code>{program, run, at, model, route, provider}</code>, the last three absent for a run made by rules alone</td>
+<td>one entry per run that wrote into the fabula, in order, a settle run included: <code>{program, run, at, model, route, provider}</code>, <code>program</code> naming the program as above, the last three absent for a run made by rules alone</td>
 <td>when a Thym program wrote into the fabula</td>
 </tr>
 </tbody>
@@ -3087,7 +3087,7 @@ appends its runs. The single keys repeat the last entry that derived the fabula,
 <tr>
 <td><code>shorts</code>, a <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a></td>
 <td><code>{path, at, by, mode, order: code, route, language, files}</code></td>
-<td><code>path</code> is the folder <code>&lt;name&gt;.cshort-&lt;YYYY-MM-DD-HHMM&gt;/</code>, with its <code>/</code>; <code>language</code> is the cshort's own; <code>files</code>, how many files it holds (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
+<td><code>path</code> is the folder <code>&lt;name&gt;.cshort-&lt;YYYY-MM-DD-HHMM&gt;/</code>, with its <code>/</code>, taking <code>-2</code>, <code>-3</code> on a collision; <code>language</code> is the cshort's own; <code>files</code>, how many files it holds besides <code>CSHORT.md</code> (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
 </tr>
 <tr>
 <td><code>catems</code></td>
@@ -3622,7 +3622,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:interface</code></td>
-<td><strong><code>surface</code></strong> [<code>function</code> <code>method</code> <code>class</code> <code>command</code> <code>format</code> <code>stream</code>]; <code>signature</code> <em>text</em>, exact: a Python <code>def</code> or <code>class</code> line with its annotations and defaults, a command's usage line, a format's one-line grammar; <code>defined-in</code> <em>ref</em> <code>C:file</code>; <code>takes</code>, a list of <code>{name, type, default, required, means}</code>; <code>gives</code>, <code>{type, means}</code> for a function or <code>{output, exit}</code> for a command; <code>raises</code>, a list of <code>{error, when, message}</code>; <code>exported</code> <em>bool</em></td>
+<td><strong><code>surface</code></strong> [<code>function</code> <code>method</code> <code>class</code> <code>command</code> <code>format</code> <code>stream</code>]; <code>signature</code> <em>text</em>, exact: a Python <code>def</code> or <code>class</code> line with its annotations and defaults, and with its decorators before it on the same line (<code>@property def size(self)</code>), a command's usage line, a format's one-line grammar; <code>defined-in</code> <em>ref</em> <code>C:file</code>; <code>takes</code>, a list of <code>{name, type, default, required, means}</code>; <code>gives</code>, <code>{type, means}</code> for a function or <code>{output, exit}</code> for a command; <code>raises</code>, a list of <code>{error, when, message}</code>; <code>exported</code> <em>bool</em></td>
 </tr>
 <tr>
 <td><code>C:structure</code></td>
@@ -3820,7 +3820,8 @@ back as <a class="ref-xref" href="#docs-sec-18-6">section 18.6</a> says.</p>
 <p><strong>A fabula records which model made it.</strong> The <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>derived</code> names the model, its route and, for a cloud model,
 its provider; <code>derived.runs</code> names them for every run that wrote into the fabula; and every item's provenance names its
 mode and its sources. A fabula made partly on a local model and partly on a cloud model says which part came from which
-(<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). Nothing reaches a cloud model that the person did not choose for that job.</p>
+(<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). Nothing reaches a cloud model that the person did not choose for that job, and a job that names no
+route runs on the local model, whatever entry point started it.</p>
 <p><strong>A scaffold says it is one.</strong> When no model is available, an implementation still writes a fabula, by rules: for a
 text, candidate terms and entities from the text and FEED, and <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atems</a> as in <a class="ref-xref" href="#docs-sec-18-3-5">section 18.3.5</a>; for a folder, the <code>outline</code>
 of <a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>. The catalog says <code>derived.mode: rules</code>. Every item a rules pass guesses at has <code>confidence: 0.3</code>,
@@ -3924,9 +3925,13 @@ We think a summary that arrives every morning is why owners stay.
 </code></pre>
 <p>Its <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a>, <code>guides/close.md.fabulan.cosm</code>, made by a local model in a run of the program <code>decompile-prose</code>, and settled
 by a second run, by rules (<code>derived.runs</code> lists both). It was decompiled again from a twin of the old name, whose one
-<a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short is a telling of a text that is compiled from the text's fabula">short</a> it carries over. Each of the six <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stances</a> appears once on its claims. The author was asked two <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">questions</a>
-from the <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a>'s <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a>: one was answered and settled into <code>N:audience/owners</code>, whose provenance says which <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a> the
-answer wrote; the other was skipped and stays open, with <code>I:occasion/why-written</code>'s event still a question.</p>
+<a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short is a telling of a text that is compiled from the text's fabula">short</a> it carries over. Each of the six <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stances</a> appears once on its claims. The first run also raised its <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">questions</a> by
+rules: one for each entry of the <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a>'s <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> that applies, asked once of the volume but for <code>stand-by</code>, which is
+asked of each of the six claims, and one for each pending value: twenty-two in all. Two of them were put to the author
+in a first sitting and are shown here with the sitting; the other twenty are open and are left out. The question the
+occasion's pending value raised was answered and settled into <code>I:occasion/why-written</code>, whose provenance says which
+<a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> the answer wrote. The bank's audience question, which is about <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> N and not about <code>N:audience/owners</code>, was
+skipped and stays open.</p>
 <pre><code class="language-cosm">oes: fabula/1
 macrocosm: 0.5.4
 flavour: fabulan
@@ -3938,14 +3943,14 @@ derived:
   by: person
   model: g40-04
   route: local
-  program: decompile-prose.thym
+  program: decompile-prose
   run: 2026-11-05-1002-a1c4
   mode: model
   completeness: full
   chunks: 1
   runs:
-    - {program: decompile-prose.thym, run: 2026-11-05-1002-a1c4, at: 2026-11-05T10:02:11Z, model: g40-04, route: local}
-    - {program: settle.thym, run: 2026-11-05-1031-b7e0, at: 2026-11-05T10:31:02Z}
+    - {program: decompile-prose, run: 2026-11-05-1002-a1c4, at: 2026-11-05T10:02:11Z, model: g40-04, route: local}
+    - {program: settle-the-answers, run: 2026-11-05-1031-b7e0, at: 2026-11-05T10:31:02Z}
 atem:
   line: Meadow closes each customer's books overnight once the bank feeds arrive, locks the day, and retries a failed close before anyone opens the summary.
   focus: How Meadow's overnight close works, what it guarantees, and what it waits on.
@@ -3959,9 +3964,14 @@ nodes:
     name: Why the guide was written
     summary: Nothing in the text says what prompted Meadow to write the guide.
     stance: assumed
-    roles: {event: {pending: &quot;what prompted this guide: a support question, a failed close, a launch?&quot;}}
+    roles: {event: an owner's call to support about a late morning summary}
     span: {lines: &quot;1&quot;}
-    provenance: {mode: derived, sources: ['close.md#L1'], confidence: 0.3, state: pending}
+    provenance:
+      mode: derived
+      sources: ['close.md#L1', D:session/session-1]
+      confidence: 0.3
+      state: pending
+      answered: {roles.event: {sources: [D:session/session-1], confidence: 0.9}}
   - id: L:term/close
     type: term
     name: close
@@ -4021,18 +4031,13 @@ nodes:
     provenance: {mode: derived, sources: ['close.md#L3-L8'], confidence: 0.7, state: known}
   - id: N:audience/owners
     type: audience
-    name: Restaurant owners, then support staff
-    summary: The guide is written for the restaurant owners who read the morning summary; Meadow's support staff read it too.
-    stance: hearsay
-    who: restaurant owners who are Meadow's customers, and Meadow's support staff
+    name: Restaurant owners
+    summary: The guide is written for the restaurant owners who read the morning summary.
+    stance: deduced
+    who: restaurant owners who are Meadow's customers
     needs: To know whether the morning summary can be relied on, and what happens when the close fails.
     span: {lines: &quot;5&quot;}
-    provenance:
-      mode: derived
-      sources: ['close.md#L5', D:session/session-1]
-      confidence: 0.9
-      state: known
-      answered: {summary: {sources: [D:session/session-1], confidence: 1}, who: {sources: [D:session/session-1], confidence: 1}}
+    provenance: {mode: derived, sources: ['close.md#L5'], confidence: 0.8, state: known}
   - id: C:voice/meadow-we
     type: voice
     name: Meadow, in the first person plural
@@ -4140,33 +4145,33 @@ nodes:
     provenance: {mode: derived, sources: ['close.md#L6-L7'], confidence: 0.8, state: known}
   - id: D:question/audience
     type: question
-    about: N:audience/owners
-    asks: Whom did you write the guide for?
+    about: N
+    asks: Whom did you write it for?
     why: missing
     kind: text
     to: author
     raised: {by: bank, from: fabulan/audience, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
-    state: answered
-    answers:
-      - {at: 2026-11-05T10:20:40Z, by: author, says: &quot;For owners first. Support reads it too, so they say the same thing on the phone.&quot;, value: &quot;restaurant owners who are Meadow's customers, and Meadow's support staff&quot;, confidence: 1, session: D:session/session-1}
-    settled: {at: 2026-11-05T10:31:02Z, run: 2026-11-05-1031-b7e0, wrote: ['N:audience/owners#summary', 'N:audience/owners#who']}
-  - id: D:question/occasion
+    state: open
+  - id: D:question/why-written-roles-event
     type: question
     about: I:occasion/why-written#roles.event
-    asks: What prompted this guide?
+    asks: &quot;What prompted this guide: a support question, a failed close, a launch?&quot;
     why: missing
     kind: text
     to: author
-    raised: {by: bank, from: fabulan/occasion, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
-    state: open
+    raised: {by: move, from: question, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
+    state: answered
+    answers:
+      - {at: 2026-11-05T10:20:40Z, by: author, says: &quot;An owner rang support asking why her summary was late, twice in a week.&quot;, value: an owner's call to support about a late morning summary, confidence: 0.9, session: D:session/session-1}
+    settled: {at: 2026-11-05T10:31:02Z, run: 2026-11-05-1031-b7e0, wrote: [I:occasion/why-written#roles.event]}
   - id: D:session/session-1
     type: session
     at: 2026-11-05T10:18:05Z
     with: {to: author, who: Meadow's head of support}
     through: person
-    asked: [D:question/audience, D:question/occasion]
-    answered: [D:question/audience]
-    skipped: [D:question/occasion]
+    asked: [D:question/audience, D:question/why-written-roles-event]
+    answered: [D:question/why-written-roles-event]
+    skipped: [D:question/audience]
 </code></pre>
 <p>A twin written before this edition, still read: the minimal twin made by asking for the <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a> of
 <code>research/interviews.txt</code> (the project of <a class="ref-xref" href="#docs-sec-18-3-6">section 18.3.6</a>) with no model running. It declares the <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a>, names no
@@ -4580,10 +4585,12 @@ with no licence file is still decompiled, with <code>licence: {pending: &quot;�
 <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> (<code>licence-recorded</code>, <a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>).</p>
 <p><strong>History.</strong> When the folder is a git clone, its history is read from the clone alone: its log, its tags, and the
 documents and change logs in the tree. Commits are grouped into episodes (<code>R:phase</code>), tags become releases, and authors
-become makers: by name only where the repository states that name itself (its licence's copyright holder, or a line of
-an authors file), otherwise as a numbered contributor, and never by address. A folder that is not a clone has only the
-history its own documents hold. Issues, <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a> requests and anything else held outside the clone are reserved for a later
-edition.</p>
+become makers: by name only where the repository states that name itself (its licence's copyright holder, a line of an
+authors file, or an author or maintainer its packaging file names), otherwise as a numbered contributor, and never by
+address. An implementation may bound how much of the log it reads and how many changes it keeps as items; a history that
+does not reach the first commit says so, and what is not kept item by item is counted in its episode and its release
+(Thym (https://thym.cosmoes.org/), its section 20.6). A folder that is not a clone has only the history its own
+documents hold. Issues, <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a> requests and anything else held outside the clone are reserved for a later edition.</p>
 <p><strong>How a fabulac is built.</strong> In five stages, each one whole run that lands its result before the next begins:</p>
 <div class="docs-table">
 <table>
@@ -4627,26 +4634,31 @@ edition.</p>
 its kind takes that the outline lacks (an interface's <code>takes</code>, <code>gives</code> and <code>raises</code>; a structure's <code>fields</code> and
 <code>invariants</code>; a component's <code>does</code>; a setting's <code>means</code>), and add inside one (a parameter's <code>means</code>), never changing
 what a rules stage read.</p>
-<p>After each stage the fabulac, with what the stage found, is written beside the folder, and a build that stops is resumed after the last
-stage that landed, as long as the tree digest has not moved. The fabulac's <code>derived.runs</code> lists every run. A build with
-no model runs the first two stages only and writes the <code>outline</code>: <code>derived.completeness: outline</code>, the files,
-components, interfaces, dependencies, settings, licence and history, with nothing read for meaning or intent. A Thym
-program that builds a fabulac is one file of five programs (Thym (https://thym.cosmoes.org/), its section 20). The
-host runs the file's programs as one job, in the order they are written, filling each program's <code>fabula</code> input with
-the fabulac the program before it landed, and a job that stops takes up again after the last program that landed. Each
-run joins <code>derived.runs</code>, naming the file in <code>program</code> and its own trace in <code>run</code>, which tells the programs of one file
-apart.</p>
+<p>After each stage the fabulac, with what the stage found, is written beside the folder, and a build that stops is resumed
+after the last stage that landed, as long as the tree digest has not moved. The fabulac's <code>derived.runs</code> lists every
+run. A build with no model runs the first two stages only and writes the <code>outline</code>: <code>derived.completeness: outline</code>, the
+files, components, interfaces, dependencies, settings, licence and history, with nothing read for meaning or intent. A
+Thym program that builds a fabulac is one file of five programs (Thym (https://thym.cosmoes.org/), its section 20). The
+host runs the file's programs as one job, in the order they are written, filling each program's <code>fabula</code> input with the
+fabulac the program before it landed, and a job that stops takes up again after the last program that landed. Each run
+joins <code>derived.runs</code>, naming its program in <code>program</code> (<code>survey-the-repo</code>) and its own trace in <code>run</code>.</p>
 <p><strong>What this edition specifies.</strong> A conforming builder handles pure-Python source that a person could read in an
 afternoon: no C extensions and no generated code, up to about sixty files and six thousand lines. Larger repositories,
 other languages and a fabulac kept as a <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> of several files are reserved for a later edition.</p>
 <p><strong>The cshort.</strong> Compiling a fabulac writes a folder beside it, <code>&lt;name&gt;.cshort-&lt;YYYY-MM-DD-HHMM&gt;/</code>, holding the rebuilt
 tree and a <code>CSHORT.md</code>. The cshort rebuilds every <code>C:file</code> whose language is a programming language and that is not a
-test, and the README; tests are rebuilt only when asked, since their content is held as <code>P:case</code> items. <code>CSHORT.md</code>'s
-first line is the footer, one italic line naming the fabulac, the language, the day of the run (in UTC) and the model:
-&quot;<em>a cshort of days.fabulac.<a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">cosm</a>, in Python, compiled on 2026-11-05 by …</em>&quot;. Then come a table of the files written, each
-with the <code>C:file</code> it came from and its sha256, what was not rebuilt, and, last, the source's licence line, <code>Licence of the source: &lt;source.licence&gt;</code> (with none recorded, <code>Licence of the source: not recorded (&lt;the open question&gt;)</code>). A
-compile is recorded in the fabulac's <code>shorts:</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). One fabulac may be told in another language than its
-source's; the entry's <code>language</code> names the cshort's own.</p>
+test, nor a type stub (<code>.pyi</code>), nor the repository's own tooling (its documentation's build, its scripts, its examples
+and benchmarks), and the README; tests are rebuilt only when asked, since their content is held as <code>P:case</code> items. It
+also carries a packaging file written by rules, never by a model, from what the survey recorded (the project's name, its
+version where recorded, the Python floor, the dependencies and optional groups, and the <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">modules</a> and packages with their
+layout), its first comment line saying that rules wrote it from the fabulac, so that the rebuilt program can be
+installed and its tests run from the folder; where the survey recorded too little to write one truthfully, it writes
+none and <code>CSHORT.md</code> says why. <code>CSHORT.md</code>'s first line is the footer, one italic line naming the fabulac, the language,
+the day of the run (in UTC) and the model: &quot;<em>a cshort of days.fabulac.<a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">cosm</a>, in Python, compiled on 2026-11-05 by …</em>&quot;.
+Then come a table of the files written, each with the <code>C:file</code> it came from (<code>rules</code> for the packaging file) and its
+sha256, what was not rebuilt, why no packaging file was written when none was, and, last, the source's licence line,
+<code>Licence of the source: &lt;source.licence&gt;</code> (with none recorded, <code>Licence of the source: not recorded (&lt;the open question&gt;)</code>). A compile is recorded in the fabulac's <code>shorts:</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). One fabulac may be told in another
+language than its source's; the entry's <code>language</code> names the cshort's own.</p>
 <p>A compile passes these checks, all without executing anything:</p>
 <div class="docs-table">
 <table>
@@ -4667,7 +4679,7 @@ source's; the entry's <code>language</code> names the cshort's own.</p>
 </tr>
 <tr>
 <td><code>files-present</code></td>
-<td>the cshort holds every file it is required to rebuild, at its path, and the digests <code>CSHORT.md</code> lists are the files'</td>
+<td>the cshort holds every file it is required to rebuild, at its path, and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it; and the digests <code>CSHORT.md</code> lists are the files'</td>
 </tr>
 <tr>
 <td><code>footer</code></td>
@@ -4773,7 +4785,7 @@ A date is written YYYY-MM-DD, or `today`. A date that cannot be read is named on
 </code></pre>
 <p>Its fabulac, <code>days.fabulac.cosm</code>, built in five runs: the survey and the history by rules, the reading of its one
 file on a local model, the fold on a cloud model, and the questions on the local model again. It has been compiled
-once into a cshort and once into a catem. A fuller fabulac, of a program of several <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">modules</a> with a history and tests,
+once into a cshort and once into a catem. A fuller fabulac, of a program of several modules with a history and tests,
 is in the conformance corpus (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</p>
 <pre><code class="language-cosm">oes: fabula/1
 macrocosm: 0.5.4
@@ -4786,17 +4798,17 @@ derived:
   by: person
   model: g40-04
   route: local
-  program: decompile-python.thym
+  program: raise-the-questions
   run: 2026-11-05-1521-9e07
   mode: model
   completeness: full
   chunks: 1
   runs:
-    - {program: decompile-python.thym, run: 2026-11-05-1512-0b31, at: 2026-11-05T15:12:03Z}
-    - {program: decompile-python.thym, run: 2026-11-05-1512-7c20, at: 2026-11-05T15:12:05Z}
-    - {program: decompile-python.thym, run: 2026-11-05-1513-41aa, at: 2026-11-05T15:14:52Z, model: g40-04, route: local}
-    - {program: decompile-python.thym, run: 2026-11-05-1515-d3f8, at: 2026-11-05T15:18:30Z, model: vendor/large-model, route: cloud, provider: broker-name}
-    - {program: decompile-python.thym, run: 2026-11-05-1521-9e07, at: 2026-11-05T15:21:40Z, model: g40-04, route: local}
+    - {program: survey-the-repo, run: 2026-11-05-1512-0b31, at: 2026-11-05T15:12:03Z}
+    - {program: read-the-history, run: 2026-11-05-1512-7c20, at: 2026-11-05T15:12:05Z}
+    - {program: read-every-file, run: 2026-11-05-1513-41aa, at: 2026-11-05T15:14:52Z, model: g40-04, route: local}
+    - {program: fold-the-whole, run: 2026-11-05-1515-d3f8, at: 2026-11-05T15:18:30Z, model: vendor/large-model, route: cloud, provider: broker-name}
+    - {program: raise-the-questions, run: 2026-11-05-1521-9e07, at: 2026-11-05T15:21:40Z, model: g40-04, route: local}
 atem:
   line: days prints how many whole days lie between today, or a date you give, and another date, as a phrase or as a bare number.
   focus: One command that reads one or two dates written YYYY-MM-DD and says the distance between them in days.
@@ -5054,6 +5066,8 @@ nodes:
 | days.py | C:file/days-py | &lt;the sha256 of the file as written&gt; |
 
 Not rebuilt: LICENSE (its licence is named below).
+
+No packaging file was written: the fabulac does not record the project's name (its survey read no packaging file that names one).
 </code></pre>
 <p>Its catem at depth <code>overview</code>, <code>days.catem-2026-11-05-1532.md</code>:</p>
 <pre><code class="language-markdown"># What you can do with days
@@ -5788,7 +5802,7 @@ provenance.</p>
 </tr>
 <tr>
 <td><code>covers</code></td>
-<td><code>{part, module}</code>: the <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> and the module the session was about, or <code>*</code></td>
+<td><code>{part, module}</code>: the <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> and the module the session was about; a sitting across the whole volume is <code>{module: '*'}</code>, with no <code>part</code></td>
 </tr>
 <tr>
 <td><code>asked</code>, <code>answered</code>, <code>skipped</code></td>
@@ -5809,7 +5823,9 @@ folder volume, in module files in the place the manifest gives module D, in the 
 layout puts each module in a folder named by its letter, that folder is <code>D</code>. A question about an item of another part
 names it by its qualified id (<a class="ref-xref" href="#docs-sec-6-4">section 6.4</a>). A <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest">MiniCOSM</a>'s own specification may say where its volumes keep these items:
 Comprise OES keeps each session as a record under its catalog's <code>sessions:</code> and writes no question items, asking each
-bank question of a field directly (Comprise OES (https://comprise.cosmoes.org/), its section 8).</p>
+bank question of a field directly (Comprise OES (https://comprise.cosmoes.org/), its section 8). An answer to such an
+address, asked without a question item, reaches an answers volume as an entry <code>{about, answers}</code> (Thym
+(https://thym.cosmoes.org/), its section 22.2).</p>
 </section>
 <section class="docs-sec" data-key="S:section/18.6.3" data-scope="">
 <h4 id="docs-sec-18-6-3">18.6.3 The life of a question</h4>
@@ -5910,7 +5926,7 @@ not written again: the new decompile reads the source afresh, and an open questi
 <tr>
 <td><code>text</code></td>
 <td>the answer, a string</td>
-<td>a new <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of the kind the <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> entry <code>writes</code> (or, where the entry names none, the module's first kind; <a class="ref-xref" href="#docs-sec-18-6-6">section 18.6.6</a>): <code>name</code> its first words, <code>summary</code> the answer, where the kind requires a <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a>, <code>stance: hearsay</code>, and every other field the kind requires, which the answer cannot fill, as an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>, <code>{pending: &quot;what is the &lt;field&gt; of this &lt;kind&gt;?&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>), for a later run to ask</td>
+<td>a new <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of the kind the <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> entry <code>writes</code> (or, where the entry names none, the module's kind named like the entry's id, where it has one, else the module's first kind; <a class="ref-xref" href="#docs-sec-18-6-6">section 18.6.6</a>): <code>name</code> its first words, <code>summary</code> the answer, where the kind requires a <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a>, <code>stance: hearsay</code>, and every other field the kind requires, which the answer cannot fill, as an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>, <code>{pending: &quot;what is the &lt;field&gt; of this &lt;kind&gt;?&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>), for a later run to ask</td>
 </tr>
 <tr>
 <td><code>choice</code></td>
@@ -6006,9 +6022,11 @@ answer again, and settling the counter does not settle it.</p>
 would go, and every reader that lists <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a> keeps working. A <code>D:question</code> is its long form: the same open
 question with an address, an answerer, a reason, a shape and a record of what was said. A <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> raised about a
 pending <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> is <code>about: &lt;item&gt;#&lt;field&gt;</code>, <code>why: missing</code>, <code>kind: text</code>, and <code>asks</code> the pending text with its first
-letter capitalised. Settling an answer replaces the pending value; settling &quot;I don't know&quot; rewrites it in the person's
-words. A <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> may hold either form, or both for one field, and neither is ever an error.</p>
-<p>An <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> below confidence 0.5, or whose <code>provenance.state</code> is <code>pending</code>, raises one question about the whole item:
+letter capitalised when it is a question; words that are not become one, made from the field and the <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a>'s name, with
+the words as its <code>hint</code> (<code>What is the reason for &quot;Not thread-safe&quot;?</code>). Settling an answer replaces the pending value;
+settling &quot;I don't know&quot; rewrites it in the person's words. A <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> may hold either form, or both for one field, and
+neither is ever an error.</p>
+<p>An item below confidence 0.5, or whose <code>provenance.state</code> is <code>pending</code>, raises one question about the whole item:
 <code>why: unsure</code>, <code>kind: text</code>, asking whether the item is right and, if not, what is, with its summary quoted. An item
 that holds a pending of its own raises the questions of its pending values instead, since they say what is unsure.</p>
 </section>
@@ -6019,7 +6037,7 @@ of the format before anything else is known.</p>
 <pre><code class="language-yaml">dialectic:
   writes: &lt;one line: what an answer writes&gt;
   answer-kinds: [text, choice, yes-no, number, date, ref, span]
-  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes]
+  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes, only-with, at-most]
   banks:
     &lt;bank name&gt;:
       for: {flavour: fabulap}                # or {module: S}, or nothing: the whole format
@@ -6030,13 +6048,24 @@ of the format before anything else is known.</p>
         - {id: speaker, about: C:voice#roles.speaker, asks: &quot;Who is speaking in {name}?&quot;, kind: text, why: unsure}
 </code></pre>
 <p>An entry's <code>about</code> names a <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> (<code>I</code>: asked once of the volume), a <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a> (<code>C:voice</code>: asked of each <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of that kind)
-or a kind's <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> (<code>C:voice#roles.speaker</code>: asked of each item where the field is absent or pending). <code>{name}</code>, and any
-<code>{&lt;field&gt;}</code>, are filled from the item when the question is raised. A raised question's <code>raised.from</code> is
-<code>&lt;bank name&gt;/&lt;entry id&gt;</code>. An entry about a module may say <code>writes</code>: the kind (<code>&lt;kind&gt;</code> of that module, or
-<code>&lt;M&gt;:&lt;kind&gt;</code>) that a new item written from its answer takes; absent, the module's first kind (<a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>).</p>
+or a kind's <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> (<code>C:voice#roles.speaker</code>: asked of each item where the field is absent or pending). An entry about a
+kind whose words fill nothing from the item (no <code>{name}</code> and no <code>{&lt;field&gt;}</code>) is asked once of the volume, about the
+kind's module, when the volume holds an item of that kind: a question that would be asked alike of each test case is one
+question. An entry may bound itself: <code>only-with: &lt;field&gt;</code> asks it only of an item whose field holds a value, and
+<code>at-most: &lt;n&gt;</code> of at most n items, those a person can best speak to: a command first, then a public name at the top of
+its module, then a public method, never first a private, dunder or abstract one; a setting a user sets before a
+constant; a change whose words say something before a release or a change-log entry; within that, what the reading
+marked unsure, then what carries an edge; ties to the newest. A field entry is not asked of an item that holds a pending
+of that field's name: the pending asks it. <code>{name}</code>, and any <code>{&lt;field&gt;}</code>, are filled from the item when the question is
+raised. A raised question's <code>raised.from</code> is <code>&lt;bank name&gt;/&lt;entry id&gt;</code>. An entry about a module may say <code>writes</code>: the
+kind (<code>&lt;kind&gt;</code> of that module, or <code>&lt;M&gt;:&lt;kind&gt;</code>) that a new item written from its answer takes; absent, the module's kind
+named like the entry's id (an entry <code>audience</code> about N writes an <code>N:audience</code>), where the module has one, else the
+module's first kind (<a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>).</p>
 <p><strong>The older shape</strong> keeps reading: <code>dialectic: {questions: {&lt;letter&gt;: [&quot;…&quot;, …]}}</code> is one bank, named after the
 manifest, each string an entry <code>{about: &lt;letter&gt;, asks: &lt;the string&gt;, kind: text, why: missing}</code> with the bank's
 default answerer. A manifest may hold either shape, and a reader reads both.</p>
+<p>A bank may keep its questions in a file of the format's own, named in <code>from: &lt;file&gt;</code> in place of <code>questions</code>; a
+reader that does not have the file reads the bank as one with no questions.</p>
 <p><strong>Each format carries its own banks.</strong> The <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a> carries one bank per <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavour</a> (<a class="ref-xref" href="#docs-sec-18-4">section 18.4</a>). Ascribe's opening
 questions are a bank (Ascribe (https://ascribe.cosmoes.org/), its section 8), and so are Comprise <a class="docs-term" href="#docs-item-t-term-oes" data-term="T:term/oes" title="stands for organizational enumeration system">OES</a>'s, module by
 module (Comprise OES (https://comprise.cosmoes.org/), its section 8). This text specifies neither. The source ids
@@ -6088,9 +6117,11 @@ on any other: <code>closed-list</code> on the four closed lists, <code>ref-unres
 </section>
 <section class="docs-sec" data-key="S:section/18.6.9" data-scope="">
 <h4 id="docs-sec-18-6-9">18.6.9 An example</h4>
-<p>The <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a> of <code>guides/close.md</code> (<a class="ref-xref" href="#docs-sec-18-4-5">section 18.4.5</a>) after one <a class="docs-term" href="#docs-item-t-term-session" data-term="T:term/session" title="D:session/&lt;slug&gt;: one session, a sitting in which a person was asked questions">session</a>, cut to four <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> and the <a class="docs-term" href="#docs-item-t-term-dialectic" data-term="T:term/dialectic" title="The dialectic is the core's one primitive for asking a person what a source means…">dialectic</a>'s three. The
-author was asked two <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">questions</a> from the <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a> <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a>, answered one and skipped the other, and a second run settled the
-answer into <code>N:audience/owners</code>; <code>derived.runs</code> lists that run beside the <a class="docs-term" href="#docs-item-t-term-decompile" data-term="T:term/decompile" title="The model">decompile</a>, whose single keys stand.</p>
+<p>The <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a> of <code>guides/close.md</code> (<a class="ref-xref" href="#docs-sec-18-4-5">section 18.4.5</a>) after one <a class="docs-term" href="#docs-item-t-term-session" data-term="T:term/session" title="D:session/&lt;slug&gt;: one session, a sitting in which a person was asked questions">session</a>, cut to four <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> and three of the <a class="docs-term" href="#docs-item-t-term-dialectic" data-term="T:term/dialectic" title="The dialectic is the core's one primitive for asking a person what a source means…">dialectic</a>'s.
+The <a class="docs-term" href="#docs-item-t-term-decompile" data-term="T:term/decompile" title="The model">decompile</a>'s run raised the <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">questions</a> by rules, among them one from the pending value of the occasion's event and
+one from the <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a> <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a>'s <code>audience</code> entry, which is about <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> N and so is asked once of the <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a>. The author
+was asked those two, answered the first and skipped the second, and a second run settled the answer into
+<code>I:occasion/why-written</code>; <code>derived.runs</code> lists that run beside the decompile, whose single keys stand.</p>
 <pre><code class="language-cosm">oes: fabula/1
 macrocosm: 0.5.4
 flavour: fabulan
@@ -6102,14 +6133,14 @@ derived:
   by: person
   model: g40-04
   route: local
-  program: decompile-prose.thym
+  program: decompile-prose
   run: 2026-11-05-1002-a1c4
   mode: model
   completeness: full
   chunks: 1
   runs:
-    - {program: decompile-prose.thym, run: 2026-11-05-1002-a1c4, at: 2026-11-05T10:02:11Z, model: g40-04, route: local}
-    - {program: settle.thym, run: 2026-11-05-1031-b7e0, at: 2026-11-05T10:31:02Z}
+    - {program: decompile-prose, run: 2026-11-05-1002-a1c4, at: 2026-11-05T10:02:11Z, model: g40-04, route: local}
+    - {program: settle-the-answers, run: 2026-11-05-1031-b7e0, at: 2026-11-05T10:31:02Z}
 atem:
   line: Meadow closes each customer's books overnight once the bank feeds arrive, locks the day, and retries a failed close before anyone opens the summary.
   focus: How Meadow's overnight close works, what it guarantees, and what it waits on.
@@ -6121,9 +6152,14 @@ nodes:
     name: Why the guide was written
     summary: Nothing in the text says what prompted Meadow to write the guide.
     stance: assumed
-    roles: {event: {pending: &quot;what prompted this guide: a support question, a failed close, a launch?&quot;}}
+    roles: {event: an owner's call to support about a late morning summary}
     span: {lines: &quot;1&quot;}
-    provenance: {mode: derived, sources: ['close.md#L1'], confidence: 0.3, state: pending}
+    provenance:
+      mode: derived
+      sources: ['close.md#L1', D:session/session-1]
+      confidence: 0.3
+      state: pending
+      answered: {roles.event: {sources: [D:session/session-1], confidence: 0.9}}
   - id: K:concept/close
     type: concept
     name: the close
@@ -6143,65 +6179,66 @@ nodes:
     provenance: {mode: derived, sources: ['close.md#L4'], confidence: 0.9, state: known}
   - id: N:audience/owners
     type: audience
-    name: Restaurant owners, then support staff
-    summary: The guide is written for the restaurant owners who read the morning summary; Meadow's support staff read it too.
-    stance: hearsay
-    who: restaurant owners who are Meadow's customers, and Meadow's support staff
+    name: Restaurant owners
+    summary: The guide is written for the restaurant owners who read the morning summary.
+    stance: deduced
+    who: restaurant owners who are Meadow's customers
     span: {lines: &quot;5&quot;}
-    provenance:
-      mode: derived
-      sources: ['close.md#L5', D:session/session-1]
-      confidence: 0.9
-      state: known
-      answered: {summary: {sources: [D:session/session-1], confidence: 1}, who: {sources: [D:session/session-1], confidence: 1}}
+    provenance: {mode: derived, sources: ['close.md#L5'], confidence: 0.8, state: known}
   - id: D:question/audience
     type: question
-    about: N:audience/owners
-    asks: Whom did you write the guide for?
+    about: N
+    asks: Whom did you write it for?
     why: missing
     kind: text
     to: author
     raised: {by: bank, from: fabulan/audience, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
-    state: answered
-    answers:
-      - {at: 2026-11-05T10:20:40Z, by: author, says: &quot;For owners first. Support reads it too, so they say the same thing on the phone.&quot;, value: &quot;restaurant owners who are Meadow's customers, and Meadow's support staff&quot;, confidence: 1, session: D:session/session-1}
-    settled: {at: 2026-11-05T10:31:02Z, run: 2026-11-05-1031-b7e0, wrote: ['N:audience/owners#summary', 'N:audience/owners#who']}
-  - id: D:question/occasion
+    state: open
+  - id: D:question/why-written-roles-event
     type: question
     about: I:occasion/why-written#roles.event
-    asks: What prompted this guide?
+    asks: &quot;What prompted this guide: a support question, a failed close, a launch?&quot;
     why: missing
     kind: text
     to: author
-    raised: {by: bank, from: fabulan/occasion, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
-    state: open
+    raised: {by: move, from: question, at: 2026-11-05T10:02:11Z, run: 2026-11-05-1002-a1c4}
+    state: answered
+    answers:
+      - {at: 2026-11-05T10:20:40Z, by: author, says: &quot;An owner rang support asking why her summary was late, twice in a week.&quot;, value: an owner's call to support about a late morning summary, confidence: 0.9, session: D:session/session-1}
+    settled: {at: 2026-11-05T10:31:02Z, run: 2026-11-05-1031-b7e0, wrote: [I:occasion/why-written#roles.event]}
   - id: D:session/session-1
     type: session
     at: 2026-11-05T10:18:05Z
     with: {to: author, who: Meadow's head of support}
     through: person
-    asked: [D:question/audience, D:question/occasion]
-    answered: [D:question/audience]
-    skipped: [D:question/occasion]
+    asked: [D:question/audience, D:question/why-written-roles-event]
+    answered: [D:question/why-written-roles-event]
+    skipped: [D:question/audience]
 </code></pre>
-<p>The skipped question stays open, and the occasion's own pending value stands beside it: the inline form and the long
-form of one <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>. <code>N:audience/owners</code> keeps <code>mode: derived</code>, because the text first showed its audience; the
-two <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a> the author gave name the session in <code>provenance.answered</code>. Loaded against the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>'s <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>, the <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a>
-passes every generic check and the three of <a class="ref-xref" href="#docs-sec-18-6-8">section 18.6.8</a>, with one open question listed.</p>
+<p>The answered question was the long form of the occasion's pending value: settling it replaced the pending value
+with the answer. <code>I:occasion/why-written</code> keeps <code>mode: derived</code>, its confidence and its <code>state: pending</code>, because the
+text did not show its occasion; the <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> the author gave names the session in <code>provenance.answered</code>, so the next run
+of <code>question</code> asks whether the item as a whole is right (<a class="ref-xref" href="#docs-sec-18-6-5">section 18.6.5</a>). The skipped question stays open. Had the
+author answered it, <code>settle</code> would have written a new <code>N:audience</code> item from the answer (<a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>), beside the
+one the reading found. Loaded against the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>'s <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>, the volume passes every generic check and the three of
+<a class="ref-xref" href="#docs-sec-18-6-8">section 18.6.8</a>, with one question open.</p>
 </section>
 <section class="docs-sec" data-key="S:section/18.7" data-scope="">
 <h3 id="docs-sec-18-7" data-toc="3">18.7 thym: Thym's volumes</h3>
 <p><strong>What it enumerates.</strong> What Thym, the transcognition language that connects <a class="docs-term" href="#docs-item-t-term-oes" data-term="T:term/oes" title="stands for organizational enumeration system">OESes</a>, reads and writes. <code>thym/1</code> is a
-<a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="A built-in is a kind of volume the core defines">built-in</a> of the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a>, specified in Thym's own text and never a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest">MiniCOSM</a>. A <code>thym/1</code> <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> is one of six <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a>: a <strong>program</strong> volume, the enumeration of one <code>.thym</code> file, compiled back byte for
-byte; a <strong>morph</strong> volume of style sheets, measured against the null morph or declared by hand on ten scales; a
-<strong>context</strong> volume of occasions; a <strong>plan</strong>, what a program will do before it does it; a <strong>trace</strong>, what a run did, one
-record per node; and a <strong>package</strong>, the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> of a text's self-contained export. The full specification is Thym
+<a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="A built-in is a kind of volume the core defines">built-in</a> of the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a>, specified in Thym's own text and never a <a class="docs-term" href="#docs-item-t-term-minicosm" data-term="T:term/minicosm" title="a domain's OES with a specification of its own, declared by a manifest">MiniCOSM</a>. A <code>thym/1</code> <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> is one of seven <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a>: a
+<strong>program</strong> volume, the enumeration of one <code>.thym</code> file, compiled back byte for byte; a <strong>morph</strong> volume of style
+sheets, measured against the null morph or declared by hand on ten scales; a <strong>context</strong> volume of occasions; a
+<strong>plan</strong>, what a program will do before it does it; a <strong>trace</strong>, what a run did, one record per node; a <strong>package</strong>, the
+<a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> of a text's self-contained export; and a <strong>folder</strong>, a run's snapshot of a folder it took, every file's digest
+and every text file's bytes, so that the run replays without the folder. The full specification is Thym
 (https://thym.cosmoes.org/), its section 17, which this section summarizes.</p>
 <p><strong>Its declaration.</strong> <code>oes: thym/1</code>. There is no legacy form, and a catalog without the key is refused.</p>
-<p><strong>Its volume.</strong> One file (<code>volume.single-file: true</code>), whose catalog's <code>kind</code> says which of the six it is:
+<p><strong>Its volume.</strong> One file (<code>volume.single-file: true</code>), whose catalog's <code>kind</code> says which of the seven it is:
 <code>&lt;name&gt;.thym.cosm</code> beside a program, <code>&lt;name&gt;.morph.cosm</code>, <code>&lt;name&gt;.context.cosm</code>, <code>&lt;run-id&gt;.plan.cosm</code>,
-<code>&lt;run-id&gt;.trace.cosm</code> (both under the implementation's Thym root by default), and <code>package.cosm</code> inside a
-package's folder or <code>&lt;name&gt;.package.cosm</code> beside its text.</p>
+<code>&lt;run-id&gt;.trace.cosm</code> (both under the implementation's Thym root by default), <code>package.cosm</code> inside a
+package's folder or <code>&lt;name&gt;.package.cosm</code> beside its text, and <code>inputs/&lt;name&gt;.folder.cosm</code> inside a run's folder. A
+folder snapshot's catalog adds the keys <code>path</code>, <code>tree</code>, <code>commit</code>, <code>origin</code>, <code>files</code> and <code>texts</code>, and holds no <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a>.</p>
 <p><strong>Its <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">modules</a> and kinds.</strong></p>
 <div class="docs-table">
 <table>
@@ -6276,7 +6313,7 @@ package's folder or <code>&lt;name&gt;.package.cosm</code> beside its text.</p>
 </tbody>
 </table>
 </div>
-<p>Every <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> may carry <code>made</code>, the provenance <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> Thym adds: the move, run, step and engine that made it. Six checks
+<p>Every item may carry <code>made</code>, the provenance <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> Thym adds: the move, run, step and engine that made it. Six checks
 are Thym's own (a program volume compiles to its items, a plan is acyclic, a trace is complete, a scale is in range, a
 package's digests match, a reading is labelled); enough runs them, and a generic reader does not.</p>
 <p><strong>Its moves.</strong> The <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a> ends in a <code>moves:</code> block (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>): the moves of the core that no other built-in
@@ -6715,8 +6752,9 @@ error. An item records what an answer filled in <code>provenance.answered</code>
 <a class="ref-xref ref-xref-num" href="#docs-sec-18-6">18.6</a>).</li>
 <li><strong>The manifest's new keys.</strong> <code>core</code>; <code>declaration.old</code>, with the reader reporting a catalog identified <code>old</code>;
 <code>catalog.id-old</code>; a kind's <code>flavours</code> and per-kind <code>closed</code> lists; <code>checks.own</code> as a list, each own check listed as
-not run by a reader that does not run it; <code>dialectic</code>; and the core's module D, declared once in
-<code>core.modules.cosm</code>. A reference may be an address, an id with <code>#</code> and a field path. Two generic checks are added,
+not run by a reader that does not run it; <code>dialectic</code>; and the core's module D, declared once in <code>core.modules.cosm</code>.
+<code>thym/1</code> gains a seventh kind of volume, <code>folder</code>, a run's snapshot of a folder it took, with its own catalog keys
+(<a class="ref-xref" href="#docs-sec-18-7">section 18.7</a>). A reference may be an address, an id with <code>#</code> and a field path. Two generic checks are added,
 <code>flavour</code> and <code>flavour-kind</code>. The registry order is <code>comprise</code>, <code>cosm</code>, <code>canon</code>, <code>fabula</code>, <code>doc</code>, then any other by
 name, and the registry keeps the built-ins and the MiniCOSMs as two lists (<a class="ref-xref" href="#docs-sec-7-3">sections 7.3</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-9-1">9.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-12-2">12.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-12-3">12.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-13">13</a>).</li>
 <li><strong>Every table that lists formats lists every format,</strong> grouped as the core's built-ins and the MiniCOSMs: <a class="ref-xref" href="#docs-sec-5-3">sections
