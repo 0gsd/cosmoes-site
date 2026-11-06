@@ -86,6 +86,8 @@ jobs:
           if hard:
               print('::error::site/specs/ is out of step with specs/: run scripts/build_specs.py --enough <enough> and commit what it writes')
               sys.exit(1)
+          if not soft:                                   # only the stamps (`exported`, `source`) moved: this checkout's commit
+              print('site/specs/ is in step with specs/ and enough main (the manifest differs only in its stamps)'); sys.exit(0)
           print('::warning::site/specs/ was built by an older enough exporter (it differs only in rendering and stamps); '
                 'the next major\'s prepare rebuilds it, or run scripts/build_specs.py --enough <enough> and commit')
           EOF
