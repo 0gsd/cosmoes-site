@@ -371,8 +371,8 @@ A refused catalog loads nothing. The reader returns a refusal, a value that says
 reader knows, and never raises. For example:
 
 ```text
-canon.cosm declares oes: canon/2, which this reader cannot read: it reads comprise/1, cosm/0, canon/1, fabula/1 (also
-emf/1), doc/1, ascribe/1, thym/1; nothing was loaded from this volume
+canon.cosm declares oes: canon/2, which this reader cannot read: this reader reads Canon as canon/1 only; nothing was
+loaded
 ```
 
 The checks report the refusal as one `load` error, and a viewer shows it in place of the volume.
@@ -1075,8 +1075,8 @@ implementation, and copied into the registry unedited, declares its moves in a s
 the registry passes it by; where a manifest and a sidecar both declare moves, the manifest's list wins.
 
 **The core's module D.** The dialectic's module (section 18.6) is declared once, by the core, in a file of modules that
-ships with the manifests, `core.modules.cosm`, a mapping `{modules-of: core, modules: {D: …}, closed: …}`. Like a
-sidecar it is not a manifest, and the registry passes it by. A reader merges its module D, with the closed lists of D's
+ships with the manifests, `core.modules.cosm`, a mapping `{modules-of: core, modules: {D: …}, closed: …}` whose
+`closed:` is keyed by kind, then by field. Like a sidecar it is not a manifest, and the registry passes it by. A reader merges its module D, with the closed lists of D's
 own kinds, into every manifest that declares no module D, and adds `D` to a manifest's module segment where
 `paths.segments.module` lists the letters. A manifest that declares module D itself keeps its declaration, which is the
 dialectic's. Comprise's manifest, a byte copy, inherits D this way without being edited.
@@ -3212,7 +3212,7 @@ them passing with no error; its old name, `emf-checks`, is read wherever a manif
 | `flavour-kind` | error | every item's kind belongs to the catalog's flavour: "C:line/1: a line belongs to fabulap, not to a fabulan" |
 | `code-span` | error | in a fabulac, every `span` is `{file, lines}`; its `file` is the path of a `C:file` of the fabulac; its `lines` are `n` or `n-m`, with n no greater than m, within the file's `length.lines` |
 | `licence-recorded` | error; a warning while pending | a fabulac records `source.licence`, a value or a question, and holds an `R:licence` item |
-| `question-about` | error | a question's `about` names an item, an item's field, a span that fits the source, or a module or kind the fabula declares; a settled question is skipped (section 18.6) |
+| `question-about` | error | a question's `about` names an item, an item's field, a span of the right shape (in a fabulac, one whose file and lines exist), or a module or kind the fabula declares; a settled question is skipped (section 18.6) |
 | `question-shape` | error | a question's answers agree with its state (section 18.6) |
 | `session-declared` | warning | a source `D:session/<id>` names a session of the fabula; the bare forms `session-<n>` and `elicit-…` are accepted without one |
 | `reading-whose` | warning | an author's or an expert's reading names the session it was given in; a critic's names the critic, or asks who |
@@ -3743,7 +3743,7 @@ field written carries the session as its source).
 
 | Check | Severity | Catches |
 |---|---|---|
-| `question-about` | error | an `about` that names nothing in the volume: an item that does not exist, a field path that does not parse, a span that does not fit the source, a module or kind the format does not declare. A question that has `settled` is skipped, since its answer may have removed what it was about |
+| `question-about` | error | an `about` that names nothing in the volume: an item that does not exist, a field path that does not parse, a span of the wrong shape (in a fabulac, one whose file or lines do not exist), a module or kind the format does not declare. A question that has `settled` is skipped, since its answer may have removed what it was about |
 | `question-shape` | error | a `choice` with no `options`; an `answered`, `unknown` or `declined` question with no answer; a last answer that disagrees with the state (a value for `answered`, `value: null` for `unknown`, `declined: true` for `declined`); an `open` question with `settled`; a `stale` or `withdrawn` question without `ended` |
 | `session-declared` | warning | a source `D:session/<id>`, in provenance or in an answer, that names no session of the volume. A bare `session-<n>` or `elicit-…` with no item is accepted, with a note |
 
