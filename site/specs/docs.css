@@ -155,6 +155,7 @@
 .docoes .docs-outline [data-depth="5"] { padding-left: 6em; }
 .docoes .docs-ol-num { color: var(--dx-ink3); font-variant-numeric: tabular-nums; margin-right: 0.3em; }
 .docoes .docs-ol-atem, .docoes .docs-r-atem, .docoes .docs-r-sev { color: var(--dx-ink3); }
+.docoes .docs-r-group { color: var(--dx-ink3); font-variant: small-caps; letter-spacing: .03em; margin: 1.4em 0 .2em; }
 .docoes .docs-atem-line { color: var(--dx-ink2); margin-top: -0.3em; }
 .docoes .docs-ref { list-style: none; margin: 0.4em 0 1.2em; padding: 0; }
 .docoes .docs-ref li { margin: 0.3em 0; padding-left: 1.2em; text-indent: -1.2em; }

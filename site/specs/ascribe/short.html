@@ -647,7 +647,7 @@ the holder gave with the answer, and <code>1</code> when they gave none and stat
 write that would add a check error is not made, and a <code>why: counter</code> question is raised instead.</p>
 <p>The earlier spelling of a session source, <code>session-&lt;n&gt;</code> (<code>sources: [session-1]</code>), stays valid: it names
 <code>D:session/session-&lt;n&gt;</code> whether or not the holograph holds that record. A writer writes <code>D:session/&lt;id&gt;</code> and a
-<code>D:session</code> item for every new session.</p>
+<code>D:session</code> item for every new session, and a new session's number skips every number a source already cites.</p>
 <p>A question, its session and an answer, as a fragment:</p>
 <pre><code class="language-yaml"># D/session-3.cosm
 nodes:
@@ -683,8 +683,10 @@ nodes:
 about; a new form for one word FEED has, <code>feed: {word, pos, origin: feed}</code>; and, for anything else, a new form whose
 <code>feed</code> is <code>{pending: &quot;not in FEED&quot;}</code>, named in the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s words. A word not in FEED is an open question, never an
 invented form: no writer grounds it in a sense FEED does not give, and the holder may answer it later with a
-definition or an encyclopedia article (<code>wiki</code>). Where the answer names no thing at all, the node is not written, and a
-follow-up asks what it is about.</p>
+definition or an encyclopedia article (<code>wiki</code>). The form is found from the holder's own words for what the answer is
+about, or from a thing the answer names whole, never from a word guessed out of a sentence. Where the answer names no
+thing at all, the node is not written, and a follow-up asks what it is about: a question about the bank question
+(<code>about: D:question/&lt;its id&gt;</code>, raised from <code>settle</code>), whose answer settles both.</p>
 <p>After a node is written, a writer may raise <strong>follow-up questions</strong> about its optional fields, each <code>to: holder</code>,
 <code>why: missing</code>, about <code>&lt;node&gt;#&lt;field&gt;</code>:</p>
 <div class="docs-table">
@@ -841,7 +843,8 @@ answer.</p>
 <p>The step that proposes candidates asks the model; it is the move <code>propose</code>, declared in Ascribe's manifest:
 <code>propose f with h</code> takes the text's fabulan and, <code>with</code> it, the holograph, and gives the candidates and their questions,
 which the program lands with <code>gather</code> (<a href="https://thym.cosmoes.org/">Thym</a>, its section 6.3). Its contract is
-<code>no-invention</code>, <code>provenance</code> and Ascribe's own checks, and its run lands every candidate and question or none.</p>
+<code>no-invention</code> and <code>provenance</code>, the move itself holds every candidate to Ascribe's own checks (<a class="ref-xref" href="#docs-sec-10">section 10</a>), and its run
+lands every candidate and question or none.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/10" data-scope="">
@@ -892,7 +895,7 @@ checks (<a href="https://macro.cosmoes.org/">MacroCOSM OES</a>, its section 18.6
 <tr>
 <td><code>release-shape</code></td>
 <td>error</td>
-<td>a <code>releases</code> entry that lacks a field <a class="ref-xref" href="#docs-sec-13">section 13</a> requires, or whose <code>as</code>, <code>epoch</code> or digests are not in their shape; a <code>morphs</code> entry that is not a bare file name ending <code>.morph.cosm</code></td>
+<td>a <code>releases</code> entry that lacks a field <a class="ref-xref" href="#docs-sec-13">section 13</a> requires, holds a field <a class="ref-xref" href="#docs-sec-13">section 13</a> does not name, or whose <code>as</code>, <code>epoch</code> or digests are not in their shape; a <code>morphs</code> entry that is not a bare file name ending <code>.morph.cosm</code></td>
 </tr>
 <tr>
 <td><code>no-pii</code></td>
@@ -1001,8 +1004,13 @@ included. A marker beside the catalog withholds the whole holograph: nothing lea
 written. A kept file that holds one is written out again without it, as its <code>nodes:</code> in the COSM YAML subset, and
 without its comments, since a comment cannot be tied to the node it was beside.</li>
 <li><strong>Module D</strong>, in every use but a transfer of the whole holograph into the holder's own keeping (<a class="ref-xref" href="#docs-sec-8-6">section 8.6</a>).</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-candidate" data-term="T:term/candidate" title="A candidate is an ordinary node of its kind">Candidates</a></strong>, in every use: every candidate (<a class="ref-xref" href="#docs-sec-9">section 9</a>) and every question about one, the holder's own keeping
+included, since a candidate is not part of the self until the holder says yes.</li>
+<li><strong>The catalog's <code>releases:</code></strong>, in every use: it is the holder's own account of what left (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
+<li><strong>What it cannot read:</strong> a symbolic link, and a <code>.cosm</code> file that does not parse, since either may hold what must be
+withheld.</li>
 </ul>
-<p><strong>What it never drops.</strong> Everything else, unchanged and byte for byte when its file holds nothing restricted. A
+<p><strong>What it never drops.</strong> Everything else, unchanged and byte for byte when its file holds nothing it withholds. A
 reference to a withheld item keeps its id and gains no name; the filter never rewrites a kept item, never adds a
 placeholder or a count for what it withheld, and never drops the catalog unless a marker sits beside it.</p>
 <p><strong>A pure function of the folder.</strong> The filter reads the holograph's folder and nothing else (no setting, no history, no
@@ -1065,7 +1073,8 @@ like any node, with its pending state shown.</p>
 <h2 id="docs-sec-13" data-toc="2">13. Releases</h2>
 <p>A <strong>release</strong> is one act of the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s by which something left the holograph: an <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a>, a <a class="docs-term" href="#docs-item-t-term-cryptograph" data-term="T:term/cryptograph" title="A cryptograph is the holder's encrypted share: a Thym package in its encrypted form">cryptograph</a>, a list of
 <a class="docs-term" href="#docs-item-t-term-match-token" data-term="T:term/match-token" title="A match token lets a search find a cryptograph without reading it">match tokens</a> or an <a class="docs-term" href="#docs-item-t-term-isomorph" data-term="T:term/isomorph" title="An isomorph is a holomorph the holder chose to share">isomorph</a> (<a class="ref-xref" href="#docs-sec-14">section 14</a>). Every release is recorded in the holograph, in the catalog's <code>releases:</code>
-list, oldest first. The record is the holder's own and private, and it is what Thym's <code>released</code> check reads:
+list, oldest first. The record is the holder's own and private: the private filter withholds it in every use
+(<a class="ref-xref" href="#docs-sec-11">section 11</a>). It is what Thym's <code>released</code> check reads:
 nothing is in a <a class="docs-term" href="#docs-item-t-term-package" data-term="T:term/package" title="a Thym package carries it, sealed or not, a cryptograph included (Thym, its section 15)">package</a>'s <code>graph.cosm</code> without a release recorded in the holograph
 (<a href="https://thym.cosmoes.org/">Thym</a>, its section 15). It is the shape of a Holotype's isotype release in
 <a href="https://comprise.cosmoes.org/">Comprise OES</a>, its section 11.3, kept in a file because a holograph has no database.</p>
@@ -1129,10 +1138,10 @@ withdrawn later stays recorded, since what left cannot be recalled.</p>
 <pre><code class="language-yaml">releases:
   - epoch: 2026-Q4
     as: isograph
-    program: {name: open-self, sha256: 2222222222222222222222222222222222222222222222222222222222222222}
-    trace: {run: 2026-11-05-1415-ab12, sha256: 3333333333333333333333333333333333333333333333333333333333333333}
+    program: {name: open-self, sha256: '2222222222222222222222222222222222222222222222222222222222222222'}
+    trace: {run: 2026-11-05-1415-ab12, sha256: '3333333333333333333333333333333333333333333333333333333333333333'}
     at: 2026-11-05T14:15:00Z
-    sha256: 4444444444444444444444444444444444444444444444444444444444444444
+    sha256: '4444444444444444444444444444444444444444444444444444444444444444'
     items: [A:affinity/fast-bread, F:form/sourdough]
 </code></pre>
 <p>A holograph with no <code>releases</code> has released nothing, and every holograph written under <code>ascribe/1</code> reads as such until
@@ -1161,7 +1170,7 @@ isotype is in <a href="https://comprise.cosmoes.org/">Comprise OES</a>, its sect
 (<a href="https://thym.cosmoes.org/">Thym</a>, its section 18, writes the company's): <code>project h as isograph</code>, under a program
 that only chooses, and can keep more back but never add a row, a word or a model's telling. A field added to the model
 later never flows into it by itself.</p>
-<pre><code class="language-text">{isograph, hid, handle, epoch, sample, program, trace, self}
+<pre><code class="language-text">{isograph, hid, handle, epoch, sample, program, run, self}
 self[]:  kind, form, valence, strength, when, marking
 </code></pre>
 <div class="docs-table">
@@ -1194,8 +1203,12 @@ self[]:  kind, form, valence, strength, when, marking
 <td><code>true</code> when the catalog says so; absent otherwise</td>
 </tr>
 <tr>
-<td><code>program</code>, <code>trace</code></td>
-<td>as the release records them: <code>{name, sha256}</code> and <code>{sha256}</code></td>
+<td><code>program</code></td>
+<td>as the release records it: <code>{name, sha256}</code></td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>the id of the run that made it; the release record carries its trace's digest (<a class="ref-xref" href="#docs-sec-13">section 13</a>)</td>
 </tr>
 <tr>
 <td><code>self[].kind</code></td>
@@ -1232,10 +1245,12 @@ the holder's own words, no relation, no pseudonym, and not the catalog's <code>s
 text can identify.</p>
 <p><strong>Its rules.</strong></p>
 <ul>
-<li><strong>Assertions, not measurements.</strong> No number of anything; the only digits are in the epoch, a decade and the digests.</li>
+<li><strong>Assertions, not measurements.</strong> No number of anything; the only digits are in the epoch, a decade, the hid, the
+run's id and the digests.</li>
 <li><strong>Bands.</strong> <code>strength</code> leaves only as its band, and <code>when</code> only as its decade.</li>
 <li><strong>Sorted.</strong> <code>self</code> is sorted by the order of the modules (A B C E I O Q S U Y), then by <code>form</code>, <code>valence</code>,
-<code>strength</code> and <code>when</code>, so that file order leaks nothing. At most twenty entries of each kind; at most 64 kilobytes.</li>
+<code>strength</code> and <code>when</code>, so that file order leaks nothing. Two nodes that give the same entry give it once, and
+nothing counts them. At most twenty entries of each kind; at most 64 kilobytes.</li>
 <li><strong>One per epoch.</strong> A holder releases at most one isograph in an epoch; one who releases more often chooses a shorter
 epoch.</li>
 <li><strong>Stated and verified.</strong> Every entry is marked <code>stated</code>: the holder's own word. <strong><code>verified</code></strong> is reserved for what a
@@ -1251,7 +1266,7 @@ fields a holder may open one at a time (each opt-in and marked <code>stated</cod
 edition. An isograph is the holder's to keep or hand on; nothing in this edition publishes one.</p>
 <p>The isograph of the holograph of <a class="ref-xref" href="#docs-sec-4-4">section 4.4</a>, were its node <code>A:affinity/fast-bread</code> of <a class="ref-xref" href="#docs-sec-5-2">section 5.2</a> added and marked
 <code>visibility: public</code> (the two other nodes anchor to a form FEED does not have, and stay):</p>
-<pre><code class="language-json">{&quot;epoch&quot;:&quot;2026-Q4&quot;,&quot;handle&quot;:&quot;salt-and-crumb&quot;,&quot;hid&quot;:&quot;aej6l5qrka6c6btarfiy2f7vnj&quot;,&quot;isograph&quot;:&quot;ascribe-isograph/0&quot;,&quot;program&quot;:{&quot;name&quot;:&quot;open-self&quot;,&quot;sha256&quot;:&quot;2222222222222222222222222222222222222222222222222222222222222222&quot;},&quot;sample&quot;:true,&quot;self&quot;:[{&quot;form&quot;:&quot;sourdough&quot;,&quot;kind&quot;:&quot;affinity&quot;,&quot;marking&quot;:&quot;stated&quot;,&quot;strength&quot;:&quot;moderate&quot;,&quot;valence&quot;:&quot;against&quot;}],&quot;trace&quot;:{&quot;sha256&quot;:&quot;3333333333333333333333333333333333333333333333333333333333333333&quot;}}
+<pre><code class="language-json">{&quot;epoch&quot;:&quot;2026-Q4&quot;,&quot;handle&quot;:&quot;salt-and-crumb&quot;,&quot;hid&quot;:&quot;aej6l5qrka6c6btarfiy2f7vnj&quot;,&quot;isograph&quot;:&quot;ascribe-isograph/0&quot;,&quot;program&quot;:{&quot;name&quot;:&quot;open-self&quot;,&quot;sha256&quot;:&quot;2222222222222222222222222222222222222222222222222222222222222222&quot;},&quot;run&quot;:&quot;2026-11-05-1415-ab12&quot;,&quot;sample&quot;:true,&quot;self&quot;:[{&quot;form&quot;:&quot;sourdough&quot;,&quot;kind&quot;:&quot;affinity&quot;,&quot;marking&quot;:&quot;stated&quot;,&quot;strength&quot;:&quot;moderate&quot;,&quot;valence&quot;:&quot;against&quot;}]}
 </code></pre>
 <p>A <a class="docs-term" href="#docs-item-t-term-package" data-term="T:term/package" title="a Thym package carries it, sealed or not, a cryptograph included (Thym, its section 15)">package</a>'s <code>graph.cosm</code> (<a href="https://thym.cosmoes.org/">Thym</a>, its section 15) is an isograph made for one text: the
 same keys, written in the COSM YAML subset, its <code>self</code> narrowed to what the program emitted for that text, and recorded
@@ -1399,8 +1414,9 @@ session spelling <code>session-&lt;n&gt;</code> stays valid.</li>
 <li><strong>Reading a person's own texts</strong> (<a class="ref-xref" href="#docs-sec-9">section 9</a>, new): the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s own writing, decompiled to a fabulan, proposes
 <a class="docs-term" href="#docs-item-t-term-candidate" data-term="T:term/candidate" title="A candidate is an ordinary node of its kind">candidate</a> nodes that become the holder's only by their answer; the move <code>propose</code>.</li>
 <li><strong>The checks</strong> (<a class="ref-xref" href="#docs-sec-10">section 10</a>): <code>release-shape</code> added; <code>no-pii</code> is an error at <a class="docs-term" href="#docs-item-t-term-projection" data-term="T:term/projection" title="a program projects it: an isograph, match tokens, an isomorph (section 14)">projection</a>.</li>
-<li><strong>The private filter applied</strong> (<a class="ref-xref" href="#docs-sec-11">section 11</a>): to every <a class="docs-term" href="#docs-item-t-term-ingest" data-term="T:term/ingest" title="another volume, a library or an index copies the holograph, or part of it, in">ingest</a>, <a class="docs-term" href="#docs-item-t-term-package" data-term="T:term/package" title="a Thym package carries it, sealed or not, a cryptograph included (Thym, its section 15)">package</a>, <a class="docs-term" href="#docs-item-t-term-transfer" data-term="T:term/transfer" title="the holograph, or part of it, is copied off the holder's machine, a backup included">transfer</a> and projection; restricted items
-and module D withheld; a pure function of the folder; what it never drops.</li>
+<li><strong>The private filter applied</strong> (<a class="ref-xref" href="#docs-sec-11">section 11</a>): to every <a class="docs-term" href="#docs-item-t-term-ingest" data-term="T:term/ingest" title="another volume, a library or an index copies the holograph, or part of it, in">ingest</a>, <a class="docs-term" href="#docs-item-t-term-package" data-term="T:term/package" title="a Thym package carries it, sealed or not, a cryptograph included (Thym, its section 15)">package</a>, <a class="docs-term" href="#docs-item-t-term-transfer" data-term="T:term/transfer" title="the holograph, or part of it, is copied off the holder's machine, a backup included">transfer</a> and projection; restricted items,
+module D, candidates and their questions, and the catalog's <code>releases:</code> withheld; a pure function of the folder; what
+it never drops.</li>
 <li><strong>Lenses</strong> (<a class="ref-xref" href="#docs-sec-12">section 12</a>, new): <code>self</code>, <code>graph</code> and <code>timeline</code>, with the generic <code>map</code>, <code>tree</code> and text tree.</li>
 <li><strong><a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">Releases</a></strong> (<a class="ref-xref" href="#docs-sec-13">section 13</a>, new): the catalog key <code>releases</code>, the record Thym's <code>released</code> check reads.</li>
 <li><strong>Projections</strong> (<a class="ref-xref" href="#docs-sec-14">section 14</a>, was &quot;Projections, by reference&quot;): the <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's public projection">isograph</a>'s fixed schema

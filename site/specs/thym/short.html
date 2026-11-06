@@ -1037,7 +1037,7 @@ additions of the second table.</p>
 <td><code>project</code></td>
 <td>volume → volume; <code>as</code> kind (<code>isotype</code> or <code>paratype</code>, Comprise OES's; <code>isograph</code>, Ascribe's)</td>
 <td>no</td>
-<td>the target schema's rules: <code>default-deny</code> <code>no-counts</code> <code>banded</code> <code>no-mark</code> <code>verified-derived</code> <code>standing-gate</code> <code>epoch</code> <code>provenance</code></td>
+<td>the target schema's rules: for <code>isotype</code> and <code>paratype</code>, <code>default-deny</code> <code>no-counts</code> <code>banded</code> <code>no-mark</code> <code>verified-derived</code> <code>standing-gate</code> <code>epoch</code> <code>provenance</code>; for <code>isograph</code>, <code>default-deny</code> <code>no-counts</code> <code>no-mark</code> <code>epoch</code> <code>provenance</code>. A check holds by the rules of the kind the call names: for an isograph, those of <code>ascribe-isograph/0</code></td>
 </tr>
 <tr>
 <td><code>band</code></td>
@@ -1273,7 +1273,7 @@ fix: &quot;to <a class="docs-term" href="#docs-item-t-term-compile" data-term="T
 <td><code>propose</code></td>
 <td>fabula → list of item (candidate nodes and their questions); <code>with</code> volume (the holograph)</td>
 <td>yes</td>
-<td><code>no-invention</code> <code>provenance</code>, and Ascribe's own checks</td>
+<td><code>no-invention</code> <code>provenance</code>; the move itself holds every candidate to Ascribe's own checks (Ascribe, its section 10)</td>
 <td>—</td>
 </tr>
 <tr>
@@ -1328,7 +1328,8 @@ refused with the nearest name: &quot;unknown move <code>summarise</code>; did yo
 <p>A declaration may also say <code>since: 1</code> (only <code>thym 1</code> programs see the move) and carry a <code>thym-1:</code> mapping of the keys a
 <code>thym 1</code> program sees in addition to its own; inside it, <code>gives-when</code>, <code>contract-when</code> and <code>scaffold-when</code> choose a
 call's type, contract and scaffold by its <code>as</code> word or its first operand's type. <a class="ref-xref" href="#docs-sec-17-6">Section 17.6</a> lists the keys, and
-<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a> says what each version sees.</p>
+<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a> says what each version sees. A word a declaration lists among a modifier's words is that word even when it
+is also a type's name: <code>tell f as line</code> names the catem's depth, since <code>tell</code>'s <code>as</code> lists <code>line</code> among its words.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/7" data-scope="">
@@ -1393,7 +1394,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>no-invention</code></td>
-<td>the telling names no entity, claim or event the fabula lacks</td>
+<td>the telling names no entity, claim or event the fabula lacks; for <code>propose</code>, no candidate or question says what its fabula lacks</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -1523,7 +1524,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>fabula-checks</code></td>
-<td>the volume passes its own manifest's checks: for a fabula, the generic ones and <code>fabula/1</code>'s own (<code>flavour</code>, <code>flavour-kind</code>, <code>code-span</code>, <code>licence-recorded</code>; MacroCOSM OES, its section 18.4.8). <code>emf-checks</code> is its old name: it is read wherever a manifest, a program or a trace writes it, a <code>thym 0</code> program's enumeration keeps it, and a verdict keeps the name it was asked by</td>
+<td>the volume passes its own manifest's checks: for a fabula, the generic ones and <code>fabula/1</code>'s own (<code>flavour</code>, <code>flavour-kind</code>, <code>code-span</code>, <code>licence-recorded</code>; MacroCOSM OES, its section 18.4.8). A file's reading (<a class="ref-xref" href="#docs-sec-20-6">section 20.6</a>) passes them together with the fabula it was read with. <code>emf-checks</code> is its old name: it is read wherever a manifest, a program or a trace writes it, a <code>thym 0</code> program's enumeration keeps it, and a verdict keeps the name it was asked by</td>
 <td>the MacroCOSM reader's lint</td>
 </tr>
 </tbody>
@@ -1562,7 +1563,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>outline-cited</code></td>
-<td>every behaviour, structure and case a file's reading gives names the interfaces or components of the outline it is about, and they belong to that file</td>
+<td>every behaviour, structure and case a file's reading gives names the interfaces or components of the outline it is about, and they belong to that file, or, for a test file, to the files it tests</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -1572,7 +1573,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>history-grounded</code></td>
-<td>every change cites commits the clone's log answered, every release a tag it answered, every maker a name in those commits</td>
+<td>every change cites commits the clone's log answered, every release a tag it answered, and every maker rests on commits it answered and carries no address</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -1582,7 +1583,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>interfaces-present</code></td>
-<td>every interface of the fabulac is defined in the cshort's file its span names, with the same name, kind and parameter names in the same order</td>
+<td>every interface of the fabulac is defined in the cshort's file it is <code>defined-in</code>, with the same name, kind and parameter names in the same order</td>
 <td>Thym's own; the host's syntax engine</td>
 </tr>
 <tr>
@@ -1597,17 +1598,17 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>nothing-lost</code></td>
-<td>every item of every part gathered, and of the <code>with</code> volume, is in the output, byte-equal</td>
+<td>every item of every part gathered, and of the <code>with</code> volume, is in the output with every field it carries, as it carries it (<code>made</code> aside); the output's item may say more</td>
 <td>Thym's own</td>
 </tr>
 <tr>
 <td><code>ids-unique</code></td>
-<td>no two different items share an id (two byte-equal ones are one)</td>
+<td>no two different items of the output share an id (two byte-equal ones, <code>made</code> aside, are one; <code>gather</code> merges two that say the same item before they land, <a class="ref-xref" href="#docs-sec-20-6">section 20.6</a>)</td>
 <td>Thym's own</td>
 </tr>
 <tr>
 <td><code>addressed</code></td>
-<td>every question's <code>about</code> resolves (an item, an <code>&lt;item&gt;#&lt;field&gt;</code>, a span of the source, or a module or kind the format declares), and every answer names a question that is <code>open</code> or <code>answered</code> and fits the question's <code>kind</code></td>
+<td>every question's <code>about</code> resolves (an item, an <code>&lt;item&gt;#&lt;field&gt;</code>, a span of the source, or a module or kind the format declares), and every answer names a question that is <code>open</code> and fits the question's <code>kind</code></td>
 <td>Thym's own; the dialectic is MacroCOSM OES's, its section 18.6</td>
 </tr>
 <tr>
@@ -1868,7 +1869,7 @@ end
 <tbody>
 <tr>
 <td><strong>compile</strong></td>
-<td>a parse error (<code>parse</code>); a version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> that names a grammar the compiler does not know, <code>thym 1</code> syntax or a move only <code>thym 1</code> sees under a <code>thym 0</code> line (&quot;this needs <code>thym 1</code>&quot;, <a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>), or a <code>thym 0</code> program that uses a <code>thym 1</code> file (<code>version</code>); an unknown move (<code>unknown-move</code>); an unknown URI or <code>use</code>d file (<code>unknown-uri</code>); two <code>use</code>d names that clash (<code>use-clash</code>); an unbound name (<code>unbound</code>); a type error (<code>type</code>); a name bound twice (<code>rebound</code>); recursion in <code>thym 0</code>, or in <code>thym 1</code> a move on a cycle without <code>depth:</code> (<code>recursion</code>); a <code>give</code> inside a loop (<code>type</code>); a <code>keep</code> outside <a class="docs-term" href="#docs-item-t-term-a-loop-that-collects" data-term="T:term/a-loop-that-collects" title="a for each that is the value of a let">a loop that collects</a>, a loop that collects nothing or keeps two types, a contract that asks, a <code>depth:</code> out of range or on a move that never calls itself (<code>type</code>); a <code>keeps</code> naming no contract and no check (<code>unknown-check</code>); a block that <code>gives</code>, with a path that never reaches a <code>give</code> of each output, refused at the block's first line (<code>no-give</code>); emitted items with no <code>project</code> (<code>emit-without-project</code>); a static contract that cannot hold (the contract's check, such as <code>no-counts</code>), a fabula known to be of a flavour the move does not take among them (<code>flavour</code>)</td>
+<td>a parse error (<code>parse</code>); a version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> that names a grammar the compiler does not know, <code>thym 1</code> syntax or a move only <code>thym 1</code> sees under a <code>thym 0</code> line (&quot;this needs <code>thym 1</code>&quot;, <a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>), or a <code>thym 0</code> program that uses a <code>thym 1</code> file (<code>version</code>); an unknown move (<code>unknown-move</code>); an unknown URI or <code>use</code>d file (<code>unknown-uri</code>); two <code>use</code>d names that clash (<code>use-clash</code>); an unbound name (<code>unbound</code>); a type error (<code>type</code>); an <code>insert</code> with neither <code>before</code> nor <code>after</code>, or with both (<code>type</code>); a name bound twice (<code>rebound</code>); recursion in <code>thym 0</code>, or in <code>thym 1</code> a move on a cycle without <code>depth:</code> (<code>recursion</code>); a <code>give</code> inside a loop (<code>type</code>); a <code>keep</code> outside <a class="docs-term" href="#docs-item-t-term-a-loop-that-collects" data-term="T:term/a-loop-that-collects" title="a for each that is the value of a let">a loop that collects</a>, a loop that collects nothing or keeps two types, a contract that asks, a <code>depth:</code> out of range or on a move that never calls itself (<code>type</code>); a <code>keeps</code> naming no contract and no check (<code>unknown-check</code>); a block that <code>gives</code>, with a path that never reaches a <code>give</code> of each output, refused at the block's first line (<code>no-give</code>); emitted items with no <code>project</code> (<code>emit-without-project</code>); a static contract that cannot hold (the contract's check, such as <code>no-counts</code>), a fabula known to be of a flavour the move does not take among them (<code>flavour</code>)</td>
 <td>the file and line, the check, and the fix where one is known</td>
 </tr>
 <tr>
@@ -2445,10 +2446,10 @@ id: thym/orchard-notes
 name: The Hollins Lane orchard, autumn notes
 contents:
   - {path: text.md, sha256: 54055e89856a29970eeb75baa1c24db60a13a5527a5a11b7cce650de07dc71c7, role: text}
-  - {path: fabula.cosm, sha256: 0000000000000000000000000000000000000000000000000000000000000000, role: fabula}
-  - {path: morph.cosm, sha256: 1111111111111111111111111111111111111111111111111111111111111111, role: morph}
-made: {program: {name: publish-story, sha256: 2222222222222222222222222222222222222222222222222222222222222222},
-       trace: {run: 2026-11-01-1042-7f3a, sha256: 3333333333333333333333333333333333333333333333333333333333333333},
+  - {path: fabula.cosm, sha256: '0000000000000000000000000000000000000000000000000000000000000000', role: fabula}
+  - {path: morph.cosm, sha256: '1111111111111111111111111111111111111111111111111111111111111111', role: morph}
+made: {program: {name: publish-story, sha256: '2222222222222222222222222222222222222222222222222222222222222222'},
+       trace: {run: 2026-11-01-1042-7f3a, sha256: '3333333333333333333333333333333333333333333333333333333333333333'},
        at: 2026-11-01T10:42:00Z, by: enough/0.5.0}
 notice: &quot;A Thym package. The text is its author's; the fabula, morph and context describe it. Readings made from it are the reader's and are labelled.&quot;
 nodes: []
@@ -2748,7 +2749,7 @@ keeps the block as an unknown key; the <a class="docs-term" href="#docs-item-t-t
 <tbody>
 <tr>
 <td><code>name</code></td>
-<td>the move's name, a FEED headword, unique across the registry</td>
+<td>the move's name, a FEED headword, unique across the registry but for an entry that <code>extends</code> a move</td>
 </tr>
 <tr>
 <td><code>takes</code></td>
@@ -2785,6 +2786,10 @@ keeps the block as an unknown key; the <a class="docs-term" href="#docs-item-t-t
 <tr>
 <td><code>since</code></td>
 <td><code>1</code>: the move exists for <code>thym 1</code> programs only (<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>)</td>
+</tr>
+<tr>
+<td><code>extends</code></td>
+<td><code>true</code>: the entry adds <code>as</code> kinds to a move another manifest declares, and nothing else (its <code>modifiers</code> are <code>{as: &lt;kinds&gt;}</code>); a call of one of its kinds gives the entry's <code>gives</code>, keeps its <code>contract</code> and <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> its <code>code</code>. Ascribe's <code>project … as isograph</code> is one (<a class="ref-xref" href="#docs-sec-6-2">section 6.2</a>)</td>
 </tr>
 <tr>
 <td><code>thym-1</code></td>
@@ -2857,17 +2862,16 @@ the holotype holds people or says it has none, and always fills <code>shape.mark
 <section class="docs-sec" data-key="S:section/19" data-scope="">
 <h2 id="docs-sec-19" data-toc="2">19. Agent-free</h2>
 <p>In agent-free mode the coprocessor is the refusing one: a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> with model-backed nodes is refused at plan time with
-their count and the first one's statement and <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> (&quot;3 steps ask a model, the first <code>let f = derive story</code> (line 11);
-agent-free is on&quot;). A cloud model is a model too: agent-free refuses a plan on the cloud <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> exactly as it refuses one
-on the local route, at plan time, before any broker is asked. A plan with no model-backed node <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a>. With <code>--rules</code>,
-each model-backed move that declares a <code>scaffold</code> runs it instead: <code>derive</code> gives the rules twin, <code>atem</code> the labelled
-scaffold, <code>tell</code> and <code>null</code> the ordered outline, and <code>measure</code> the seven statistics scales with the three judgement
-scales pending; in <code>thym 1</code>, <code>derive … as code</code> gives its file's outline marked pending, <code>tell</code> at a catem's depth
-the uses and interfaces in told order, <code>question</code> the bank's questions only, and <code>settle</code> its rules part, leaving the
-re-reads as open questions. A move with no scaffold (<code>expand</code>, <code>morph</code>, <code>read</code>, <code>reword</code>, <code>derive</code> of a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>,
-<code>tell … as code</code>) still refuses. <code>survey</code>, <code>history</code>, <code>record</code> and the editing moves other than <code>reword</code> ask nothing, and run. The trace says <code>engine: rules</code> for
-each scaffold, and every output is marked <code>state: pending</code>, as a fabula's rules mode marks a twin. The viewer offers only
-plans that can run.</p>
+their count, the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> and the first one's statement and <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> (&quot;3 steps ask a model on the local route, the first <code>let f = derive story</code> (line 11); agent-free is on&quot;). A cloud model is a model too: agent-free refuses a plan on the cloud
+route exactly as it refuses one on the local route, at plan time, before any broker is asked. A plan with no
+model-backed node <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a>. With <code>--rules</code>, each model-backed move that declares a <code>scaffold</code> runs it instead: <code>derive</code>
+gives the rules twin, <code>atem</code> the labelled scaffold, <code>tell</code> and <code>null</code> the ordered outline, and <code>measure</code> the seven
+statistics scales with the three judgement scales pending; in <code>thym 1</code>, <code>derive … as code</code> gives its file's outline
+marked pending, <code>tell</code> at a catem's depth the uses and interfaces in told order, <code>question</code> the bank's questions only,
+and <code>settle</code> its rules part, leaving the answers that must be read again answered and unsettled, for a run with a model.
+A move with no scaffold (<code>expand</code>, <code>morph</code>, <code>read</code>, <code>reword</code>, <code>derive</code> of a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>, <code>tell … as code</code>) still refuses.
+<code>survey</code>, <code>history</code>, <code>record</code> and the editing moves other than <code>reword</code> ask nothing, and run. The trace says <code>engine: rules</code> for each scaffold, and every output is marked <code>state: pending</code>, as a fabula's rules mode marks a twin. The viewer
+offers only plans that can run.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/20" data-scope="">
@@ -3089,13 +3093,13 @@ that landed. The stages, and the moves that make them:</p>
 <td>survey</td>
 <td><code>survey repo</code>, rules only</td>
 <td>no</td>
-<td>a fabulac outline: a <code>C:file</code> per file (language, <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">lines</a>, sha256), a <code>C:component</code> per module, package and class, a <code>C:interface</code> per public function, class, method, constant and command-line entry point, with its name and parameters from the syntax tree, a <code>C:dependency</code> per import from outside the tree and per declared requirement, a <code>C:setting</code> per environment variable read and per command-line option, the licence and the means. <code>files-found</code>, <code>code-span</code>, <code>licence-recorded</code></td>
+<td>a fabulac outline: a <code>C:file</code> per file (language, <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">lines</a>, sha256), a <code>C:component</code> per module, package and class, a <code>C:interface</code> per public function, class, method, constant and command-line entry point, with its name and parameters from the syntax tree, a <code>C:dependency</code> per import from outside the tree and per declared requirement, a <code>C:setting</code> per environment variable read and per command-line option, a <code>C:structure</code> per data shape (a data class, a named tuple, a typed dictionary, an enumeration, a class with annotated attributes), the messages of the errors a function raises on its interface's <code>raises</code>, what a function prints, logs or exits with as a behaviour, a command's exit statuses on its interface's <code>gives</code>, the licence and the means. <code>files-found</code>, <code>code-span</code>, <code>licence-recorded</code></td>
 </tr>
 <tr>
 <td>history</td>
 <td><code>history repo with f</code>, rules only</td>
 <td>no</td>
-<td>the fabula so far, with the clone's history: <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">changes</a> grouped into episodes (the commits between two tags, split again where two commits stand more than fourteen days apart), a release per tag with its date, a maker per author's name (never an address). <code>history-grounded</code></td>
+<td>the fabula so far, with the clone's history: <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">changes</a> grouped into episodes (the commits between two tags, split again where two commits stand more than fourteen days apart), a release per tag with its date, a maker per author: by name only where the repository states it (its licence's copyright holder, or a line of an authors file), otherwise as a numbered contributor, never by address. <code>history-grounded</code></td>
 </tr>
 <tr>
 <td>read</td>
@@ -3107,7 +3111,7 @@ that landed. The stages, and the moves that make them:</p>
 <td>(join)</td>
 <td><code>gather readings with f</code></td>
 <td>no</td>
-<td>the fabula so far with every <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> in it. <code>nothing-lost</code>, <code>ids-unique</code></td>
+<td>the fabula so far with every <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> in it, each reading's additions to the outline merged into the outline's own items. <code>nothing-lost</code>, <code>ids-unique</code></td>
 </tr>
 <tr>
 <td>fold</td>
@@ -3127,7 +3131,13 @@ that landed. The stages, and the moves that make them:</p>
 <p>Every stage's contract ends with <code>fabula-checks</code> and <code>provenance</code>, and the last program <code>keeps fabula-checks</code>. A
 reading is <code>derive</code> because a file read as code is a text decompiled, and the fold is <code>derive</code> because a folder
 decompiled with what is known of it is a decompile too; <code>read</code> keeps its meaning (<a class="ref-xref" href="#docs-sec-14">section 14</a>). <code>gather</code> takes a list
-of fabulas or of items and gives the <code>with</code> volume with every one of them in it.</p>
+of fabulas or of items and gives the <code>with</code> volume with every one of them in it. An item whose id the volume already
+has may add the fields the volume's item lacks, and add inside a field (a parameter's <code>means</code>, an error's <code>when</code>); a
+field both say must agree, and a field a rules stage reads is never changed; a clash is refused, naming the item and
+the field.</p>
+<p>A file's reading holds only what it adds for its file: its own items, and what it adds to the outline's items of that
+file (MacroCOSM OES, its section 18.4.7). Its <code>fabula-checks</code> runs on the reading together with the fabula it was read
+with, and <code>its-own-file</code>, <code>code-span</code> and <code>outline-cited</code> on the reading's own items.</p>
 <pre><code class="language-thym">thym 1
 
 -- The fabulac of a small Python repository, built in five runs. A host runs the programs of this file
@@ -3422,7 +3432,8 @@ always have, and a replay of either run needs neither the person nor the model.<
 <h3 id="docs-sec-22-1" data-toc="3">22.1 <code>question</code></h3>
 <p><code>question v</code> takes a fabula or a volume and gives a list of question items. It asks the model, with the scaffold
 <code>bank</code>. Its rules part always <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> first: it gives the opening questions of the manifest's bank for the volume's
-flavour or format, and a question for every <code>{pending: …}</code> field and every item marked unsure (a confidence below 0.5).
+flavour or format, a question for every <code>{pending: …}</code> field, and one for every item marked unsure (a confidence below
+0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5).
 When the run asks the model, the model adds questions where the volume is unsure, ambiguous, in conflict or silent on
 intent, and only there. Under <code>--rules</code> the bank part alone runs. Each question says who raised it and is <code>open</code>. Its
 contract is <code>addressed</code>, <code>no-duplicate</code> and <code>provenance</code>. <code>question</code> gives a list, and a program lands the questions with
@@ -3431,27 +3442,31 @@ the volume through <code>gather asked with f</code>.</p>
 <section class="docs-sec" data-key="S:section/22.2" data-scope="">
 <h3 id="docs-sec-22-2" data-toc="3">22.2 <code>record</code> and the answers volume</h3>
 <p>A person's answers reach a program as an <strong>answers volume</strong>, which the page or an agent writes beside the volume it
-answers, <code>&lt;the twin's name without .cosm&gt;.answers-&lt;YYYY-MM-DD-HHMM&gt;.cosm</code>. It is a delta: the session's record, and for
-each question answered, only its id, its new state and its new answers. Its catalog declares the format of the volume it
-answers and carries that volume's <code>id</code>; its <code>nodes:</code> hold the <code>D:session</code> item and, for each question answered, a
-mapping of the question's <code>id</code>, its new <code>state</code> and its new <code>answers</code>. It is read only as a delta, never checked as a
-volume of that format on its own. To <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> it is a <code>volume</code>.</p>
-<p><code>record said in f</code> is code: it appends each answer to its question's answers (never rewriting one), sets the
-question's state to <code>answered</code>, <code>unknown</code> or <code>declined</code>, and adds the session. Its contract is <code>addressed</code>,
-<code>only-the-asked</code> and <code>provenance</code>.</p>
+answers, <code>&lt;the twin's name without .cosm&gt;.answers-&lt;YYYY-MM-DD-HHMM&gt;.cosm</code>, the stamp in UTC. It is a delta: the
+session's record, and for each question answered, only its id, its new state and its new answers. Its catalog declares
+the format of the volume it answers (<code>fabula/1</code> for a twin read under <code>emf/1</code>: an old spelling is never written),
+carries that volume's <code>id</code>, and its <code>macrocosm:</code> when that volume has one; its <code>nodes:</code> hold exactly one <code>D:session</code>
+item and, for each question answered, unknown or declined, a mapping of the question's <code>id</code>, its new <code>state</code> and its
+new <code>answers</code>, each naming the session. A skipped question shows only in the session's <code>skipped</code>. It is read only as a
+delta, never checked as a volume of that format on its own. To <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> it is a <code>volume</code>.</p>
+<p><code>record said in f</code> is code: it appends each answer to its question's answers (never rewriting one), sets the question's
+state to <code>answered</code>, <code>unknown</code> or <code>declined</code>, and adds the session. It refuses an answers volume whose session the
+volume already holds, so a set of answers is recorded once, and it checks every entry before it writes any. Its contract
+is <code>addressed</code>, <code>only-the-asked</code> and <code>provenance</code>.</p>
 </section>
 <section class="docs-sec" data-key="S:section/22.3" data-scope="">
 <h3 id="docs-sec-22-3" data-toc="3">22.3 <code>settle</code></h3>
-<p><code>settle f</code> takes a fabula or a volume and gives the same, with every answered question folded into the item it is
-about. It asks the model only where an answer means an item must be read again (an answer about intent or a conflict
-over a claim, an answer about a span). Every other answer (a field filled from a text, a choice, a number, a date or a
-reference) is written by rules, and a call that needs no <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> asks nothing. An answer that the person does not know (<code>unknown</code>) leaves the field
-<code>{pending: &quot;&lt;the person's own words&gt;&quot;}</code>, and a refusal to say lists the field in the item's <code>withheld</code> and writes <code>provenance.state: not-disclosed</code>. Its scaffold,
-<code>direct</code>, <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> the rules part only and leaves the re-reads as open questions. Its contract is <code>addressed</code>;
+<p><code>settle f</code> takes a fabula or a volume and gives the same, with every answered question folded into the item it is about.
+It asks the model only where an answer means an item must be read again (a value about a whole item or a span of the
+source, a value that would replace a structure, a yes-no answer about a field that is not <code>true</code> or <code>false</code>; MacroCOSM
+OES, its section 18.6.4). Every other answer (a field filled from a text, a choice, a yes-no, a number, a date or a
+reference) is written by rules, and a call that needs no <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: a telling of a fabula in the reader's morph">reading</a> asks nothing. An answer that the person does not know
+(<code>unknown</code>) leaves the field <code>{pending: &quot;&lt;the person's own words&gt;&quot;}</code>, and a refusal to say lists the field in the item's
+<code>withheld</code> and writes <code>provenance.state: not-disclosed</code>. Its scaffold, <code>direct</code>, <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> the rules part only and leaves the
+answers that must be read again answered and unsettled, for a run with a model. Its contract is <code>addressed</code>;
 <code>only-the-asked</code> (the fields that <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a> are exactly those the answered questions are about, with their provenance and
-the questions' <code>settled</code> field); <code>fabula-checks</code>; and <code>provenance</code>: every field written carries
-<code>provenance: {mode: dialectic, sources: [D:session/&lt;id&gt;], confidence}</code>. In a fabula the settle run joins
-<code>derived.runs</code>, and <code>derived</code>'s single keys stay those of the run that derived it.</p>
+the questions' <code>settled</code> field); <code>fabula-checks</code>; and <code>provenance</code>: every field written carries <code>provenance: {mode: dialectic, sources: [D:session/&lt;id&gt;], confidence}</code>. In a fabula the settle run joins <code>derived.runs</code>, and <code>derived</code>'s
+single keys stay those of the run that derived it.</p>
 </section>
 <section class="docs-sec" data-key="S:section/22.4" data-scope="">
 <h3 id="docs-sec-22-4" data-toc="3">22.4 The two runs, read as a pair</h3>
@@ -3502,9 +3517,10 @@ route: a local model at best effort fails more often, and is refused honestly; i
 <h3 id="docs-sec-23-1" data-toc="3">23.1 The route</h3>
 <p>The <strong>route</strong> is chosen per <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a>, and nowhere else: <code>local</code> (the default: the host's local model) or <code>cloud</code> (a cloud
 model through a broker, the host's named one or one the person names by the provider's id). On the command <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> it is
-<code>--model local</code>, <code>--model cloud</code> or <code>--model cloud:&lt;id&gt;</code> (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>). A cloud route whose gate is closed is refused at
-<a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> time, check <code>cloud</code>, in the gate's own words: &quot;the cloud is not open for this run: local models only is on&quot;.
-Nothing reaches a cloud model that the person did not choose for that run.</p>
+<code>--model local</code>, <code>--model cloud</code> or <code>--model cloud:&lt;id&gt;</code> (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>). A <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> that asks a model on a cloud route whose
+gate is closed is refused at plan time, check <code>cloud</code>, in the gate's own words: &quot;the cloud is not open for this run:
+'local models only' is on in the broker&quot;. A plan that asks nothing runs on either route and reaches no model. Nothing
+reaches a cloud model that the person did not choose for that run.</p>
 </section>
 <section class="docs-sec" data-key="S:section/23.2" data-scope="">
 <h3 id="docs-sec-23-2" data-toc="3">23.2 What the plan shows</h3>
@@ -3515,8 +3531,9 @@ Nothing reaches a cloud model that the person did not choose for that run.</p>
 counts one, and a node with calls in a loop counts its asking calls times its <code>members.at_most</code>. <code>at_most</code> is <code>calls</code>
 times each node's attempts. <code>calls_open</code> lists the nodes whose count cannot be known at plan time: a recursive move
 that asks, a loop over a collection of unknown size. A command <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> prints it under the plan's atem:
-<code>61 model calls, at most 183, on the cloud (broker-name: vendor/large-model)</code>. The plan's root summary is the same in both versions. A
-plan compared by the conformance suite is compared without <code>models</code>, since the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> is the run's choice, not the
+<code>61 model calls, at most 183, on the cloud (broker-name: vendor/large-model)</code>; on the local <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a>,
+<code>3 model calls, at most 9, on this machine (g40-04)</code>; with an open count it adds <code>; and more that cannot be counted before it runs</code>, naming the steps. The plan's root summary is the same in both versions. A
+plan compared by the conformance suite is compared without <code>models</code>, since the route is the run's choice, not the
 program's.</p>
 </section>
 <section class="docs-sec" data-key="S:section/23.3" data-scope="">
@@ -3525,8 +3542,9 @@ program's.</p>
 <li><code>made</code> gains <code>route</code> and <code>provider</code> (<a class="ref-xref" href="#docs-sec-5-3">section 5.3</a>), and <code>engine</code> stays <code>model:&lt;id&gt;</code>, the model's own id.</li>
 <li>A candidate gains <code>route</code> and <code>provider</code> (<a class="ref-xref" href="#docs-sec-12-2">section 12.2</a>). A candidate recorded without them replays without them, so
 an older recorded <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> replays to the same bytes.</li>
-<li>The trace's environment holds the id of the model that ran, the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a>, the provider, and the window of that model
-(<a class="ref-xref" href="#docs-sec-12-3">section 12.3</a>).</li>
+<li>The trace's environment holds the id of the model, as the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> names it before the first request, the route, the
+provider, and the window of that model (<a class="ref-xref" href="#docs-sec-12-3">section 12.3</a>); where a provider answers with a more exact id of its own, that
+id is in <code>engine</code> and <code>made</code>.</li>
 <li>A fabula a program builds records which model made it, in its catalog's <code>derived</code>: <code>model</code>, <code>route</code>, <code>provider</code>,
 <code>program</code> and <code>run</code> for the last run that derived it, and one entry in <code>derived.runs</code> per run that wrote into it,
 a settle run included (<a class="ref-xref" href="#docs-sec-20-6">section 20.6</a>).</li>
@@ -3597,7 +3615,10 @@ bad/&lt;slug&gt;.thym                 programs that must be refused; the first l
 back byte for byte and <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plans</a> to its <code>expected/&lt;name&gt;/plan.cosm</code>, and when every <code>bad/</code> program is refused at the stage,
 check and <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> its first line names. A runtime conforms when every deterministic program's outputs match (run with
 the clock pinned to 2026-11-01T12:00:00Z, so an epoch in a recorded output stays comparable)
-<code>expected/&lt;name&gt;/outputs/</code> and every <code>replay/</code> run re-runs to its recorded outputs. The three programs of this document
+<code>expected/&lt;name&gt;/outputs/</code> and every <code>replay/</code> run re-runs to its recorded outputs. A deterministic program whose
+outputs carry its run's id (every item's <code>made</code>, a fabula's <code>derived.run</code>) cannot be frozen so: it is run as its latest
+recording under <code>replay/&lt;name&gt;/</code>, with that run's id and clock, and its outputs are compared with the recording's byte
+for byte. The three programs of this document
 (<a class="ref-xref" href="#docs-sec-4-1">sections 4.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-16-2">16.2</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18">18</a>) are the suite's first three, byte for byte, and the suite's test compiles every block marked
 <code>thym</code> here.</p>
 <p>The suite reads each file by its own version line. Its <code>thym 0</code> files are those of edition 0.5.4, unchanged, but for
@@ -3666,7 +3687,7 @@ chunks that opens past its bounds.</li>
 <li><strong>A <code>use</code>d path stays inside the program's folder</strong> (<a class="ref-xref" href="#docs-sec-8-4">section 8.4</a>).</li>
 <li><strong><a class="ref-xref" href="#docs-sec-1-3">Section 1.3</a> says who stewards the specification</strong>, in the sentence all five texts share.</li>
 <li><strong><code>project</code> takes <code>as isograph</code></strong>, Ascribe's kind, beside Comprise OES's <code>isotype</code> and <code>paratype</code>: each MiniCOSM
-declares the kinds it projects (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-2">6.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18">18</a>).</li>
+declares the kinds it projects, in a <code>moves:</code> entry that <code>extends</code> the move (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-2">6.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-17-6">17.6</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18">18</a>).</li>
 <li><strong>The grammar's <code>call</code> may have no operand</strong>, as <code>fabula of p</code> and every accessor have always been written
 (<a class="ref-xref" href="#docs-sec-4-8">section 4.8</a>).</li>
 </ol>

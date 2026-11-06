@@ -3662,7 +3662,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>R:licence</code></td>
-<td><code>identifier</code>, the licence's standard <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short is a telling of a text that is compiled from the text's fabula">short</a> identifier (<code>MIT</code>) or plain words (<code>public domain</code>); <code>file</code>, a path; <code>holder</code>; <code>year</code>; <code>first-line</code></td>
+<td><code>identifier</code>, the licence's standard <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short is a telling of a text that is compiled from the text's fabula">short</a> identifier (<code>MIT</code>) or plain words (<code>public domain</code>); <code>file</code>, a path; <code>holder</code>; <code>year</code> <em>text</em>, as the source writes it (<code>'1794'</code>); <code>first-line</code></td>
 </tr>
 <tr>
 <td><code>P:reading</code></td>
@@ -3882,6 +3882,9 @@ order given, a compile tells <code>told</code> when the fabula names a source te
 fabula. Without a model a short is the ordered outline itself, said in the items' own sentences; with one, a model
 writes the outline as prose and is told which order it is in. A third order, the events first in the order they
 happened, is reserved for a later edition.</p>
+<p>A short of a fabulap (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>) is told stanza by stanza: how the poem is built, then each stanza's lines with
+their stresses and rhymes (their words only where the fabulap holds them), its devices and its readings, each reading
+said as whose it is. Told by weight, it ends with how the poem can be read.</p>
 <p><strong>The file.</strong> A short is written beside its text as <code>&lt;text-stem&gt;.short-&lt;YYYY-MM-DD-HHMM&gt;.md</code>, in local time:
 <code>notes.md</code> gives <code>notes.short-2026-10-23-1042.md</code>. The stem is the text's, whatever the twin is called: the twins
 <code>close.md.fabulan.cosm</code> and <code>close.md.cosm</code> both give <code>close.short-…md</code>, and a standalone <code>rain.fabulan.cosm</code> gives
@@ -4189,7 +4192,8 @@ counted over the whole poem, its stanza, its stresses and its place in the rhyme
 <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a>, <code>C:metre</code> and <code>C:rhyme</code>, each naming the lines it governs and, for a metre, where a line departs from it. Its
 devices, its voice and its divisions are the prose <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a> <code>C:device</code>, <code>C:voice</code> and <code>C:part</code>, with stanzas, verses,
 choruses, refrains and bridges among the divisions. Its occasions and allusions are I items; the book or the album it
-appeared in is an <code>R:release</code>.</p>
+appeared in is an <code>R:release</code>. Rhymes are compared within a stanza, and the scheme's letters run on from one stanza to
+the next: a sound that comes back in a later stanza takes a new letter there, and a second <code>C:rhyme</code>.</p>
 <p><strong>Several readings stand side by side.</strong> A poem often means more than one thing at once, and a <a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a> does not choose.
 Each interpretation is a <code>P:reading</code> whose <code>of</code> names what it reads: the line, the word, the image. Readings of the
 same thing stand together, each saying whose it is and what in the text supports it:</p>
@@ -4248,9 +4252,11 @@ when the author cannot be asked the questions go <code>to: expert</code>. This i
 a question is answered, its <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> stays pending and the readings stay side by side.</p>
 <p><strong>A line's text is stored only when the source may be copied.</strong> <code>C:line.text</code> is written only when the person says the
 poem may be copied: it is their own work, or it is out of copyright. Otherwise the line's <code>span</code> is the pointer, and
-the fabulap holds the line's number, stresses and rhyme without its words. Nothing is ever fetched: a fabulap is made
-from the copy of the poem on the person's disk, and no implementation goes looking for a text, a draft or a critic's
-reading.</p>
+the fabulap holds the line's number, stresses and rhyme without its words. Nor are its words in its <code>name</code>: a line whose
+text is not written is named by its number (<code>line 5</code>). Single words the fabulap needs elsewhere, a term, a rhyme's
+sounds, an allusion's cue, are not the line's words, and are kept. A line's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is that of its words; how sure its
+scansion is shows in its provenance's <code>confidence</code>. Nothing is ever fetched: a fabulap is made from the copy of the
+poem on the person's disk, and no implementation goes looking for a text, a draft or a critic's reading.</p>
 <p>The kinds' fields are in <a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>.</p>
 <p><strong>An example.</strong> William Blake's <em>The Sick Rose</em>, first published in 1794 and out of copyright everywhere, as
 <code>poems/the-sick-rose.txt</code>:</p>
@@ -4574,8 +4580,10 @@ with no licence file is still decompiled, with <code>licence: {pending: &quot;�
 <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> (<code>licence-recorded</code>, <a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>).</p>
 <p><strong>History.</strong> When the folder is a git clone, its history is read from the clone alone: its log, its tags, and the
 documents and change logs in the tree. Commits are grouped into episodes (<code>R:phase</code>), tags become releases, and authors
-become makers by name. A folder that is not a clone has only the history its own documents
-hold. Issues, <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a> requests and anything else held outside the clone are reserved for a later edition.</p>
+become makers: by name only where the repository states that name itself (its licence's copyright holder, or a line of
+an authors file), otherwise as a numbered contributor, and never by address. A folder that is not a clone has only the
+history its own documents hold. Issues, <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a> requests and anything else held outside the clone are reserved for a later
+edition.</p>
 <p><strong>How a fabulac is built.</strong> In five stages, each one whole run that lands its result before the next begins:</p>
 <div class="docs-table">
 <table>
@@ -4615,6 +4623,10 @@ hold. Issues, <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:te
 </tbody>
 </table>
 </div>
+<p>A file's reading holds only what it adds for its file. It may add to an item of the outline of its own file the fields
+its kind takes that the outline lacks (an interface's <code>takes</code>, <code>gives</code> and <code>raises</code>; a structure's <code>fields</code> and
+<code>invariants</code>; a component's <code>does</code>; a setting's <code>means</code>), and add inside one (a parameter's <code>means</code>), never changing
+what a rules stage read.</p>
 <p>After each stage the fabulac, with what the stage found, is written beside the folder, and a build that stops is resumed after the last
 stage that landed, as long as the tree digest has not moved. The fabulac's <code>derived.runs</code> lists every run. A build with
 no model runs the first two stages only and writes the <code>outline</code>: <code>derived.completeness: outline</code>, the files,
@@ -4630,11 +4642,11 @@ other languages and a fabulac kept as a <a class="docs-term" href="#docs-item-t-
 <p><strong>The cshort.</strong> Compiling a fabulac writes a folder beside it, <code>&lt;name&gt;.cshort-&lt;YYYY-MM-DD-HHMM&gt;/</code>, holding the rebuilt
 tree and a <code>CSHORT.md</code>. The cshort rebuilds every <code>C:file</code> whose language is a programming language and that is not a
 test, and the README; tests are rebuilt only when asked, since their content is held as <code>P:case</code> items. <code>CSHORT.md</code>'s
-first line is the footer, one italic line naming the fabulac, the language, the day of the run (in UTC) and the model: &quot;<em>a cshort of
-days.fabulac.<a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">cosm</a>, in Python, compiled on 2026-11-05 by …</em>&quot;. Then come a table of the files written, each with the
-<code>C:file</code> it came from and its sha256, what was not rebuilt, and, last, the source's licence line. A compile is
-recorded in the fabulac's <code>shorts:</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). One fabulac may be told in another language than its source's;
-the entry's <code>language</code> names the cshort's own.</p>
+first line is the footer, one italic line naming the fabulac, the language, the day of the run (in UTC) and the model:
+&quot;<em>a cshort of days.fabulac.<a class="docs-term" href="#docs-item-t-term-cosm" data-term="T:term/cosm" title="the family's name">cosm</a>, in Python, compiled on 2026-11-05 by …</em>&quot;. Then come a table of the files written, each
+with the <code>C:file</code> it came from and its sha256, what was not rebuilt, and, last, the source's licence line, <code>Licence of the source: &lt;source.licence&gt;</code> (with none recorded, <code>Licence of the source: not recorded (&lt;the open question&gt;)</code>). A
+compile is recorded in the fabulac's <code>shorts:</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). One fabulac may be told in another language than its
+source's; the entry's <code>language</code> names the cshort's own.</p>
 <p>A compile passes these checks, all without executing anything:</p>
 <div class="docs-table">
 <table>
@@ -4651,7 +4663,7 @@ the entry's <code>language</code> names the cshort's own.</p>
 </tr>
 <tr>
 <td><code>interfaces-present</code></td>
-<td>every <code>C:interface</code> of the fabulac is defined in the cshort's file its <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a> names, with the same name, the same surface and the same parameter names in the same order</td>
+<td>every <code>C:interface</code> of the fabulac is defined in the cshort's file it is <code>defined-in</code>, with the same name, the same surface and the same parameter names in the same order</td>
 </tr>
 <tr>
 <td><code>files-present</code></td>
@@ -5145,7 +5157,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>question-about</code></td>
 <td>error</td>
-<td>a question's <code>about</code> names an item, an item's field, a <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a> of the right shape (in a fabulac, one whose file and lines exist), or a module or kind the fabula declares; a settled question is skipped (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>)</td>
+<td>a question's <code>about</code> names an item, an item's field, a <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a> of the right shape (in a fabulac, one whose file and lines exist), or a module or kind the fabula declares; a settled, stale or withdrawn question is skipped (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>)</td>
 </tr>
 <tr>
 <td><code>question-shape</code></td>
@@ -5734,7 +5746,7 @@ provenance.</p>
 </tr>
 <tr>
 <td><code>answers</code></td>
-<td>the answers, appended and never rewritten: each <code>{at, by, says, value, confidence, session, declined}</code>. <code>by</code> is a word of <code>to</code> or a role's id; <code>says</code> the person's words, verbatim; <code>value</code> what is written (null for &quot;I don't know&quot;); <code>confidence</code> how sure the person is, 0 to 1; <code>session</code> the session's id; <code>declined: true</code> on a refusal</td>
+<td>the answers, appended and never rewritten: each <code>{at, by, says, value, confidence, session, declined}</code>. <code>by</code> is a word of <code>to</code> or a role's id; <code>says</code> the person's words, verbatim; <code>value</code> what is written (null for &quot;I don't know&quot; and for a refusal); <code>confidence</code> how sure the person is, 0 to 1, and 1 for a value given with none (absent on &quot;I don't know&quot; or a refusal unless the person gave one); <code>session</code> the session's id; <code>declined: true</code> on a refusal</td>
 </tr>
 <tr>
 <td><code>settled</code></td>
@@ -5852,12 +5864,12 @@ bank question of a field directly (Comprise OES (https://comprise.cosmoes.org/),
 <td>any</td>
 <td><code>open</code></td>
 <td>a person, a bank or a move asks again: another person, an expert after the author, a later session</td>
-<td>earlier answers kept; the next answer is appended; an earlier <code>settled</code> stays as the record of the earlier write</td>
+<td>earlier answers kept; the next answer is appended; an earlier <code>settled</code> stays as the record of the earlier write until the question is settled again, when the new settling replaces it (the earlier answer stays in <code>answers</code>)</td>
 </tr>
 <tr>
 <td><code>open</code>, <code>answered</code></td>
 <td><code>stale</code></td>
-<td><code>question</code> or <code>settle</code> finds that <code>about</code> no longer holds: its item is gone, the <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> was dropped, or the source changed and the <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a>'s words are not found</td>
+<td><code>question</code> or <code>settle</code> finds that <code>about</code> no longer holds: its item is gone, the <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> was dropped (it held a value in the <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> before and is absent now), or the source changed and the <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a>'s words are not found</td>
 <td><code>ended</code>, by the move, with the reason; nothing is written into items</td>
 </tr>
 <tr>
@@ -5876,7 +5888,7 @@ bank question of a field directly (Comprise OES (https://comprise.cosmoes.org/),
 </table>
 </div>
 <p><strong>Re-asking appends.</strong> A question keeps its id for its whole life. Answers are appended, never rewritten or removed,
-so a <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> shows everything anyone said and when. At most one question is open for one address from one bank entry,
+so a volume shows everything anyone said and when. At most one question is open for one address from one bank entry,
 move or person.</p>
 <p><strong>A <a class="docs-term" href="#docs-item-t-term-decompile" data-term="T:term/decompile" title="The model">decompile</a> done again</strong> carries every D item over to the new volume when its <code>about</code> still resolves there, with
 its answers, its state and its sessions. A question whose <code>about</code> no longer resolves goes <code>stale</code>. Settled answers are
@@ -5898,7 +5910,7 @@ not written again: the new decompile reads the source afresh, and an open questi
 <tr>
 <td><code>text</code></td>
 <td>the answer, a string</td>
-<td>a new <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of the <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> entry's kind (or the module's first kind): <code>name</code> its first words, <code>summary</code> the answer, and, where the kind requires a <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a>, <code>stance: hearsay</code></td>
+<td>a new <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of the kind the <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> entry <code>writes</code> (or, where the entry names none, the module's first kind; <a class="ref-xref" href="#docs-sec-18-6-6">section 18.6.6</a>): <code>name</code> its first words, <code>summary</code> the answer, where the kind requires a <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a>, <code>stance: hearsay</code>, and every other field the kind requires, which the answer cannot fill, as an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>, <code>{pending: &quot;what is the &lt;field&gt; of this &lt;kind&gt;?&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>), for a later run to ask</td>
 </tr>
 <tr>
 <td><code>choice</code></td>
@@ -5922,7 +5934,7 @@ not written again: the new decompile reads the source afresh, and an open questi
 </tr>
 <tr>
 <td><code>ref</code></td>
-<td>an id that resolves (a list when <code>many</code>)</td>
+<td>an item's id that resolves, never an address (a list when <code>many</code>)</td>
 <td>not allowed</td>
 </tr>
 <tr>
@@ -5951,7 +5963,7 @@ not written again: the new decompile reads the source afresh, and an open questi
 <tr>
 <td>&quot;I don't know&quot;</td>
 <td><code>unknown</code></td>
-<td>the field stays an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>, <code>{pending: &quot;&lt;the person's own words&gt;&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>)</td>
+<td>the field stays an open question, <code>{pending: &quot;&lt;the person's own words&gt;&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>)</td>
 </tr>
 <tr>
 <td>a refusal</td>
@@ -5969,26 +5981,36 @@ not written again: the new decompile reads the source afresh, and an open questi
 <p><strong>&quot;I don't know&quot; is an answer.</strong> It is recorded, it closes the question, and the field stays open in the person's own
 words, which are a better question than the one asked. <strong>A refusal is a fact</strong>, not a question: the subject declined to
 say, and no later run asks the same person again unless a person opens the question again.</p>
+<p><strong>An answer about a whole item</strong> (<code>about: &lt;item id&gt;</code>). A value means the item must be read again (below). &quot;I don't
+know&quot; gives the item <code>pending: &quot;&lt;the person's own words&gt;&quot;</code>. A refusal sets its <code>provenance.state: not-disclosed</code> and
+removes its own <code>pending</code>, and lists nothing in <code>withheld</code>, since no field was asked.</p>
 <p><strong>The provenance of what is written.</strong> A new item carries <code>provenance: {mode: dialectic, sources: [D:session/&lt;id&gt;], confidence: &lt;the answer's&gt;}</code>: the <a class="docs-term" href="#docs-item-t-term-session" data-term="T:term/session" title="D:session/&lt;slug&gt;: one session, a sitting in which a person was asked questions">session</a> is its source and the person's own confidence is its confidence. A field of
-an existing item leaves the item's mode as it was; the session's id is appended to the item's <code>provenance.sources</code>,
-and <code>provenance.answered</code> gains one entry for the field, <code>{&lt;field path&gt;: {sources: [D:session/&lt;id&gt;], confidence}}</code>.</p>
+an existing item leaves the item's mode and its <code>provenance.state</code> as they were; the session's id is appended to the
+item's <code>provenance.sources</code>, and <code>provenance.answered</code> gains one entry for the field, <code>{&lt;field path&gt;: {sources: [D:session/&lt;id&gt;], confidence}}</code>. An item with no <code>provenance</code> gains one: <code>{mode: dialectic, sources: [D:session/&lt;id&gt;], confidence}</code>, with that entry in <code>answered</code>.</p>
 <p><strong>Rules first, the model only to read again.</strong> <code>settle</code> writes every answer by rules, and asks a model only where an
-item must be read again in the light of an answer: a reading the author disowned, a behaviour now known to be
-unintended.</p>
+item must be read again in the light of an answer: a value about a whole item or about a span of the source, a value
+that would replace a mapping or a list in a field (other than a <code>many</code> list or a span), and a yes-no answer about a
+field that holds something other than <code>true</code> or <code>false</code>. A yes-no answer into a field that holds <code>true</code> or <code>false</code>,
+such as a reading's or a behaviour's <code>intended</code>, is written by rules. A run with no model leaves an answer that must
+be read again <code>answered</code> and unsettled.</p>
 <p><strong>A settle run is recorded.</strong> In a <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>, a settle run joins <code>derived.runs</code> and changes none of <code>derived</code>'s single
 keys, which describe the last run that derived the fabula from its source (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>).</p>
 <p><strong>A write that would add a check error is not made.</strong> The answer stays recorded and the question stays as it was, and a
 sibling question about the same address is raised with <code>why: counter</code>, asking again differently (a bank's <code>counters</code>
-give its words; <a class="ref-xref" href="#docs-sec-18-6-6">section 18.6.6</a>).</p>
+give its words; <a class="ref-xref" href="#docs-sec-18-6-6">section 18.6.6</a>). While the counter question stands, the question it counters waits: no run tries its
+answer again, and settling the counter does not settle it.</p>
 </section>
 <section class="docs-sec" data-key="S:section/18.6.5" data-scope="">
 <h4 id="docs-sec-18-6-5">18.6.5 Open questions and the dialectic</h4>
 <p>The two are one thing in two lengths. <code>{pending: &quot;…&quot;}</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>) stays the inline <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short is a telling of a text that is compiled from the text's fabula">short</a> form, written where the value
 would go, and every reader that lists <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a> keeps working. A <code>D:question</code> is its long form: the same open
 question with an address, an answerer, a reason, a shape and a record of what was said. A <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> raised about a
-pending <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> is <code>about: &lt;item&gt;#&lt;field&gt;</code>, <code>why: missing</code>, and <code>asks</code> the pending text. Settling an answer replaces the
-pending value; settling &quot;I don't know&quot; rewrites it in the person's words. A <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> may hold either form, or both for
-one field, and neither is ever an error.</p>
+pending <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> is <code>about: &lt;item&gt;#&lt;field&gt;</code>, <code>why: missing</code>, <code>kind: text</code>, and <code>asks</code> the pending text with its first
+letter capitalised. Settling an answer replaces the pending value; settling &quot;I don't know&quot; rewrites it in the person's
+words. A <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> may hold either form, or both for one field, and neither is ever an error.</p>
+<p>An <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> below confidence 0.5, or whose <code>provenance.state</code> is <code>pending</code>, raises one question about the whole item:
+<code>why: unsure</code>, <code>kind: text</code>, asking whether the item is right and, if not, what is, with its summary quoted. An item
+that holds a pending of its own raises the questions of its pending values instead, since they say what is unsure.</p>
 </section>
 <section class="docs-sec" data-key="S:section/18.6.6" data-scope="">
 <h4 id="docs-sec-18-6-6">18.6.6 Banks</h4>
@@ -5997,7 +6019,7 @@ of the format before anything else is known.</p>
 <pre><code class="language-yaml">dialectic:
   writes: &lt;one line: what an answer writes&gt;
   answer-kinds: [text, choice, yes-no, number, date, ref, span]
-  entry-fields: [id, about, asks, kind, options, to, why, many, hint]
+  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes]
   banks:
     &lt;bank name&gt;:
       for: {flavour: fabulap}                # or {module: S}, or nothing: the whole format
@@ -6010,7 +6032,8 @@ of the format before anything else is known.</p>
 <p>An entry's <code>about</code> names a <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> (<code>I</code>: asked once of the volume), a <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a> (<code>C:voice</code>: asked of each <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> of that kind)
 or a kind's <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> (<code>C:voice#roles.speaker</code>: asked of each item where the field is absent or pending). <code>{name}</code>, and any
 <code>{&lt;field&gt;}</code>, are filled from the item when the question is raised. A raised question's <code>raised.from</code> is
-<code>&lt;bank name&gt;/&lt;entry id&gt;</code>.</p>
+<code>&lt;bank name&gt;/&lt;entry id&gt;</code>. An entry about a module may say <code>writes</code>: the kind (<code>&lt;kind&gt;</code> of that module, or
+<code>&lt;M&gt;:&lt;kind&gt;</code>) that a new item written from its answer takes; absent, the module's first kind (<a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>).</p>
 <p><strong>The older shape</strong> keeps reading: <code>dialectic: {questions: {&lt;letter&gt;: [&quot;…&quot;, …]}}</code> is one bank, named after the
 manifest, each string an entry <code>{about: &lt;letter&gt;, asks: &lt;the string&gt;, kind: text, why: missing}</code> with the bank's
 default answerer. A manifest may hold either shape, and a reader reads both.</p>
@@ -6045,12 +6068,12 @@ the same thing of one address), <code>only-the-asked</code> (only what the quest
 <tr>
 <td><code>question-about</code></td>
 <td>error</td>
-<td>an <code>about</code> that names nothing in the <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a>: an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> that does not exist, a <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> path that does not parse, a <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a> of the wrong shape (in a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>, one whose file or <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a> do not exist), a <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> or <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a> the <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> does not declare. A <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> that has <code>settled</code> is skipped, since its answer may have removed what it was about</td>
+<td>an <code>about</code> that names nothing in the <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a>: an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> that does not exist, a <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> path that does not parse, a <a class="docs-term" href="#docs-item-t-term-span" data-term="T:term/span" title="An item's span points it back at its input">span</a> of the wrong shape (in a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>, one whose file or <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a> do not exist), a <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> or <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a> the <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> does not declare. A <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> that has <code>settled</code>, or whose state is <code>stale</code> or <code>withdrawn</code>, is skipped, since its answer may have removed what it was about, or it has ended because what it was about is gone</td>
 </tr>
 <tr>
 <td><code>question-shape</code></td>
 <td>error</td>
-<td>a <code>choice</code> with no <code>options</code>; an <code>answered</code>, <code>unknown</code> or <code>declined</code> question with no answer; a last answer that disagrees with the state (a value for <code>answered</code>, <code>value: null</code> for <code>unknown</code>, <code>declined: true</code> for <code>declined</code>); an <code>open</code> question with <code>settled</code>; a <code>stale</code> or <code>withdrawn</code> question without <code>ended</code></td>
+<td>a <code>choice</code> with no <code>options</code>; an <code>answered</code>, <code>unknown</code> or <code>declined</code> question with no answer; a last answer that disagrees with the state (a value for <code>answered</code>, <code>value: null</code> for <code>unknown</code>, <code>declined: true</code> for <code>declined</code>); an <code>open</code> question with <code>settled</code> and no answer; a <code>stale</code> or <code>withdrawn</code> question without <code>ended</code></td>
 </tr>
 <tr>
 <td><code>session-declared</code></td>
