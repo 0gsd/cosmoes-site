@@ -3,7 +3,7 @@
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
 <h1 id="docs-thym">Thym</h1>
-<p><em>Edition 0.5.4 · revised 2026-11-03 · cosmoes.org home: https://<a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">thym</a>.cosmoes.org/</em></p>
+<p><em>Edition 0.6.0 · revised 2026-11-06 · cosmoes.org home: https://<a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">thym</a>.cosmoes.org/</em></p>
 <p><em>This edition describes the <code>thym/1</code> built-in and defines the language in two grammars; a program's version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a>, <code>thym 0</code> or <code>thym 1</code>, names the grammar it is written in.</em></p>
 <p>Thym is the transcognition language that connects OESes, with its compiler and its runtime: programs compose named
 moves over values typed by density, carrying meaning from one volume to another, whether the volume is a text's fabula,
@@ -3663,7 +3663,7 @@ section it touched.</p>
 </section>
 <section class="docs-sec" data-key="S:section/25" data-scope="">
 <h2 id="docs-sec-25" data-toc="2">25. Changes</h2>
-<p><strong>Edition 0.6.0 · 2026-11-05.</strong> The language gains a second grammar, and the text follows MacroCOSM's new taxonomy.</p>
+<p><strong>Edition 0.6.0 · 2026-11-06.</strong> The language gains a second grammar, and the text follows MacroCOSM's new taxonomy.</p>
 <ol>
 <li><strong><code>thym 1</code>, the second grammar, is a superset of <code>thym 0</code>'s syntax</strong> (<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>). A <code>thym 0</code> program <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a> and
 <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> unchanged, against the <code>thym 0</code> view of every declaration; new syntax, or a move only <code>thym 1</code> sees, under a
@@ -3715,6 +3715,11 @@ chunks that opens past its bounds.</li>
 declares the kinds it projects, in a <code>moves:</code> entry that <code>extends</code> the move (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-2">6.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-17-6">17.6</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18">18</a>).</li>
 <li><strong>The grammar's <code>call</code> may have no operand</strong>, as <code>fabula of p</code> and every accessor have always been written
 (<a class="ref-xref" href="#docs-sec-4-8">section 4.8</a>).</li>
+<li><strong>A <code>moves:</code> entry may choose by its call</strong> (<a class="ref-xref" href="#docs-sec-6-4">sections 6.4</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-17-6">17.6</a>): <code>gives-when</code>, <code>contract-when</code> and
+<code>scaffold-when</code> choose what a call gives, the contract it keeps and its scaffold by its <code>as</code> word or its first
+operand's type, and a rule that says <code>scaffold: none</code> makes a rules run refuse the call when the run is planned. A
+run's snapshot of a folder it took is a <code>thym/1</code> volume of kind <code>folder</code> (<a class="ref-xref" href="#docs-sec-17-1">section 17.1</a>). A move that asks more than
+once may name under <code>repair.failed</code> what it could not take, and a request asked again says why (<a class="ref-xref" href="#docs-sec-12-2">section 12.2</a>).</li>
 </ol>
 <p><strong>Edition 0.5.4 · 2026-11-03.</strong> The canonical edition at cosmoes.org (https://thym.cosmoes.org/).</p>
 <ul>
