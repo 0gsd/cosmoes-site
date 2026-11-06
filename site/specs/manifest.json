@@ -1,10 +1,10 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-06T03:24:43Z",
+  "exported": "2026-11-06T03:29:01Z",
   "by": "enough/0.5.4",
   "source": {
-    "commit": "16c3127",
-    "dirty": true
+    "commit": "7fac933",
+    "dirty": false
   },
   "css": "docs.css",
   "pages": {
@@ -85,7 +85,7 @@
         "terms": 56,
         "examples": 11,
         "decisions": 52,
-        "reference": 330
+        "reference": 339
       },
       "files": {
         "short": {
@@ -95,13 +95,13 @@
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
-          "sha256": "764652f691421116474fb2b520645b03dc67e74c358e93cab023c25a9190fd2f",
-          "bytes": 92240
+          "sha256": "6bd95cb4c74259c531d0d50e7e7082bfd87a4d2ca29110b17a5133aa48db8ad0",
+          "bytes": 94455
         },
         "fabula": {
           "path": "macrocosm-oes/fabula.html",
-          "sha256": "f33fa94f53bcf453ce986e0d4b9576b4d27748a4f75089c3406a64b5bc1042cf",
-          "bytes": 871669
+          "sha256": "bc053960648d756a62d75c1c74b840e559780ce3fc3217df6ac45d5c6744a267",
+          "bytes": 907518
         },
         "source": {
           "path": "macrocosm-oes/source.md",
