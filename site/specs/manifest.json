@@ -1,10 +1,10 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-04T04:27:47Z",
-  "by": "enough/0.5.1",
+  "exported": "2026-11-06T01:15:52Z",
+  "by": "enough/0.5.4",
   "source": {
-    "commit": "e2fb1d2",
-    "dirty": true
+    "commit": "cdadc5c",
+    "dirty": false
   },
   "css": "docs.css",
   "pages": {
@@ -24,36 +24,36 @@
       "lead": "An OES, an organizational enumeration system, describes a domain by enumerating everything in it",
       "source": {
         "path": "specs/oes.md",
-        "sha256": "9fcf9c7e608841104f2424978f7eaf8ca6cb53e55422a8ab5b0fc8906a3a1a11"
+        "sha256": "3821386679f3a9ef6c46b9799630f45de03b2b1bdcad562620c7677700d73303"
       },
       "chapters": [],
       "counts": {
-        "sections": 14,
-        "terms": 14,
+        "sections": 15,
+        "terms": 21,
         "examples": 0,
-        "decisions": 2,
+        "decisions": 3,
         "reference": 0
       },
       "files": {
         "short": {
           "path": "oes/short.html",
-          "sha256": "51699d9b3797737e39f1e7168f98fb8916308cff31c526add123823e730e72d2",
-          "bytes": 27234
+          "sha256": "eb11193c80650c3e9141a6c5790f411f8fa974c3d5cb3a7bb61ae02bdddbe923",
+          "bytes": 34855
         },
         "atem": {
           "path": "oes/atem.html",
-          "sha256": "a828f5c61d92da7044735af72791fd235f0d1fde7b0576de011c2df6d77bc469",
-          "bytes": 7155
+          "sha256": "1e2c488d254e3f70353de098f0ebff6aaeb002b192b4dc67088b2db928402863",
+          "bytes": 9023
         },
         "fabula": {
           "path": "oes/fabula.html",
-          "sha256": "44009b57428687f05fe36f6663fafb9fbb99ef7d139baa7f8cf44ef88866d91b",
-          "bytes": 33676
+          "sha256": "bd6c13aa296ac267f7edb2803f645eea2b88d7b56115a3e6e0fb5a54bbb9fb8c",
+          "bytes": 43363
         },
         "source": {
           "path": "oes/source.md",
-          "sha256": "9fcf9c7e608841104f2424978f7eaf8ca6cb53e55422a8ab5b0fc8906a3a1a11",
-          "bytes": 15039
+          "sha256": "3821386679f3a9ef6c46b9799630f45de03b2b1bdcad562620c7677700d73303",
+          "bytes": 16814
         }
       },
       "edition": "0.5.4",
@@ -74,39 +74,39 @@
       "lang": "en",
       "id": "doc/macrocosm-oes",
       "oes": "doc/1",
-      "lead": "MacroCOSM OES is the shared grammar every MiniCOSM is written in",
+      "lead": "MacroCOSM OES is an OES: a shared grammar and the core built into it",
       "source": {
         "path": "specs/macrocosm-oes.md",
-        "sha256": "9b815df5e9fa94eef97cd0bf59e215eceecd2433cf7170f67444ca7d39c380ff"
+        "sha256": "f152d48bd43058de5804e4d3643fac35aa601eefc5f57a5be0dc24f02c571828"
       },
       "chapters": [],
       "counts": {
-        "sections": 110,
-        "terms": 41,
-        "examples": 8,
-        "decisions": 38,
-        "reference": 256
+        "sections": 125,
+        "terms": 56,
+        "examples": 11,
+        "decisions": 52,
+        "reference": 330
       },
       "files": {
         "short": {
           "path": "macrocosm-oes/short.html",
-          "sha256": "1f25996eef06295d4c67bf8e33789d785a49c12a58b5f7799983d3afea55f8a5",
-          "bytes": 340958
+          "sha256": "3a1303a83d797e87fb29807f165f07ca9b6d14e9350cf35d34f03f51779fc4f0",
+          "bytes": 562377
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
-          "sha256": "699cad49a453022b99989d31d925bf2beb9816482d2e985b653ee210f8142b31",
-          "bytes": 75417
+          "sha256": "764652f691421116474fb2b520645b03dc67e74c358e93cab023c25a9190fd2f",
+          "bytes": 92240
         },
         "fabula": {
           "path": "macrocosm-oes/fabula.html",
-          "sha256": "51d299dc56bf689cf342eb7a2d0645f7fe049cf48b629e14914961e4fe2ff866",
-          "bytes": 631404
+          "sha256": "55260d5978f1af0f829079ea06465f30c06f587f808416dc6f39566e57ee8979",
+          "bytes": 871427
         },
         "source": {
           "path": "macrocosm-oes/source.md",
-          "sha256": "9b815df5e9fa94eef97cd0bf59e215eceecd2433cf7170f67444ca7d39c380ff",
-          "bytes": 159283
+          "sha256": "f152d48bd43058de5804e4d3643fac35aa601eefc5f57a5be0dc24f02c571828",
+          "bytes": 278803
         }
       },
       "edition": "0.5.4",
@@ -129,39 +129,39 @@
       "lang": "en",
       "id": "doc/thym",
       "oes": "doc/1",
-      "lead": "Thym is the MacroCOSM language, its compiler and its runtime",
+      "lead": "Thym is the transcognition language that connects OESes, with its compiler and its runtime",
       "source": {
         "path": "specs/thym.md",
-        "sha256": "c16196caca0b42f1d2b0bc308b2952ef8ef4eb0f779442f88cacc57d67065d5c"
+        "sha256": "4c6d315cb0cd856e4acb1aee77482db28ae272d9e60aa702be504144f126e151"
       },
       "chapters": [],
       "counts": {
-        "sections": 83,
-        "terms": 12,
+        "sections": 111,
+        "terms": 20,
         "examples": 1,
-        "decisions": 25,
+        "decisions": 46,
         "reference": 0
       },
       "files": {
         "short": {
           "path": "thym/short.html",
-          "sha256": "fcdf87e2f503c358d430f1cbd80e37a01a0b2dd6297328e180146ed3ff7a4e36",
-          "bytes": 153676
+          "sha256": "af062d8e2dd2892c93ce8761dd2546ece316bbdf1f13184722dd0084b6dc69d2",
+          "bytes": 293514
         },
         "atem": {
           "path": "thym/atem.html",
-          "sha256": "422427d703f6ed77c77dad86f7b8cb6d8529c8dac1682f08bd55be9c008c14c3",
-          "bytes": 24736
+          "sha256": "f967c52377e9f5d371d4b16e63b96db042a2f0c31f9dde0422b6cd1c95c64bf2",
+          "bytes": 33847
         },
         "fabula": {
           "path": "thym/fabula.html",
-          "sha256": "ed7044ca8c734e64621302379dd7e49b1ea78c7e34936049bed6ccb950ac72f6",
-          "bytes": 139120
+          "sha256": "6f72539f81827002c6dbb995c9798ba4227523ba3f1f42b9716a055a9ee4e6b7",
+          "bytes": 221118
         },
         "source": {
           "path": "thym/source.md",
-          "sha256": "c16196caca0b42f1d2b0bc308b2952ef8ef4eb0f779442f88cacc57d67065d5c",
-          "bytes": 91454
+          "sha256": "4c6d315cb0cd856e4acb1aee77482db28ae272d9e60aa702be504144f126e151",
+          "bytes": 171524
         }
       },
       "edition": "0.5.4",
@@ -187,36 +187,36 @@
       "lead": "A person, described without a name",
       "source": {
         "path": "specs/ascribe.md",
-        "sha256": "71ee6e4e62160873ed0d0f846ecd7096dcdb159350cb1c8af348277b99bea16f"
+        "sha256": "b35a8450cc1d76ddf52ddd3846155cf5763fa62374eb83de4001fb43af16d5dd"
       },
       "chapters": [],
       "counts": {
-        "sections": 27,
-        "terms": 2,
+        "sections": 45,
+        "terms": 15,
         "examples": 1,
-        "decisions": 12,
+        "decisions": 22,
         "reference": 0
       },
       "files": {
         "short": {
           "path": "ascribe/short.html",
-          "sha256": "29a459f4ba04a9045cda772dfbdf4a6f5a2489316530ee5c07bb697ed4199c02",
-          "bytes": 44508
+          "sha256": "4df357db990d0a61588d89717a36c0c1af9311e02b508bf23812bd9f09ecc027",
+          "bytes": 109331
         },
         "atem": {
           "path": "ascribe/atem.html",
-          "sha256": "e1292bb624eeacd9ff3422800a6e47f5d9e614f754ce1381332c02927b75b2e1",
-          "bytes": 7876
+          "sha256": "d68b9864fbadbd4010a71f0f61447ab120e35f41910601e11566172d2f76a6fc",
+          "bytes": 15435
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "8e13be2a221dd52ce832ae641cd824fbefd97e2d19d54a8ef7a342608e9993e5",
-          "bytes": 47507
+          "sha256": "c55fc2b0ed439926fa0b56d944a28792e80125f43b1ad799d3937564d43a0fec",
+          "bytes": 100931
         },
         "source": {
           "path": "ascribe/source.md",
-          "sha256": "71ee6e4e62160873ed0d0f846ecd7096dcdb159350cb1c8af348277b99bea16f",
-          "bytes": 31281
+          "sha256": "b35a8450cc1d76ddf52ddd3846155cf5763fa62374eb83de4001fb43af16d5dd",
+          "bytes": 63960
         }
       },
       "edition": "0.5.4",
@@ -242,36 +242,36 @@
       "lead": "Comprise OES is the MiniCOSM for companies",
       "source": {
         "path": "specs/comprise-oes.md",
-        "sha256": "fe9181a729117f341c8c1871aa0f97ba32b5f8ba9adea9dc3be33fab8c5265e9"
+        "sha256": "194a7e081ac8d2bc8ca5b29e976034c48a677b58d5c7f533402b90e0ebb60f11"
       },
       "chapters": [],
       "counts": {
         "sections": 99,
         "terms": 15,
         "examples": 0,
-        "decisions": 20,
+        "decisions": 29,
         "reference": 0
       },
       "files": {
         "short": {
           "path": "comprise-oes/short.html",
-          "sha256": "69889bf440851b261129457bb4b6bfdc0a704f18947f04a6af6683603caacbea",
-          "bytes": 197155
+          "sha256": "727019afea9dc11f5a5e8ce888be0c92c12a6b105cc7e9319a9727582e2bbde3",
+          "bytes": 208762
         },
         "atem": {
           "path": "comprise-oes/atem.html",
-          "sha256": "75bfb865eaba55b75805166e6a005ce1be1c2fe193ab29868a0d419df4d44352",
-          "bytes": 28882
+          "sha256": "a37e488a34f95d36c2413c6fc5af7db4fd43f88082fb636b82f785faf2c2e963",
+          "bytes": 28913
         },
         "fabula": {
           "path": "comprise-oes/fabula.html",
-          "sha256": "d3eb36f83e778277de96c18364ded2e352ec8b711cf813073769c5bdb10269be",
-          "bytes": 161810
+          "sha256": "a16f0914ccecc3785c7329bb7463375fd36ea4a8d33503ec77564cc72517cd3f",
+          "bytes": 176489
         },
         "source": {
           "path": "comprise-oes/source.md",
-          "sha256": "fe9181a729117f341c8c1871aa0f97ba32b5f8ba9adea9dc3be33fab8c5265e9",
-          "bytes": 105684
+          "sha256": "194a7e081ac8d2bc8ca5b29e976034c48a677b58d5c7f533402b90e0ebb60f11",
+          "bytes": 114519
         }
       },
       "edition": "0.5.4",

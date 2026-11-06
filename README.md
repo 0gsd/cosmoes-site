@@ -54,7 +54,7 @@ enough checkout whose `.venv` exists (`uv sync --frozen` there) and whose DocOES
 .venv/bin/python scripts/build_specs.py --enough ~/METMcloud/METMroot/enough-dev --check
 ```
 
-It validates the registry, lays the texts and enough's MiniCOSM manifests out as a sources root in a temporary folder,
+It validates the registry, lays the texts and enough's manifests out as a sources root in a temporary folder,
 runs the checkout's `python -m enough.docoes export` once per text (`--slug … --name … --version <edition> --page
 short=/ --page atem=/atem --page fabula=/fabula --no-marks`, plus `--reference` where the registry says so), adds the
 registry's fields and the source copies to the manifest, checks the result as the site reads it, and only then

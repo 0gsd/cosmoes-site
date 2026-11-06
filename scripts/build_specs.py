@@ -8,10 +8,10 @@ densities, with the registry's fields and a copy of each source.
 specs/specs.json is the registry: the one place names, editions and hosts are declared. One entry per text, with
 `slug`, `file` (under specs/), `name` (no number in it), `edition`, `describes` (the format versions the text
 describes, `{"thym": "1"}`), `host` (`thym.cosmoes.org`; `cosmoes.org` for the apex text), `revised` (an ISO date)
-and, where the text carries the reference generated from the MiniCOSM manifests (MacroCOSM OES), `reference: true`.
+and, where the text carries the reference generated from the manifests (MacroCOSM OES), `reference: true`.
 The build validates it first and refuses the whole run on any fault.
 
-The export reads a document from inside a sources root and the MiniCOSM manifests from `defaults/cosm/manifests/`
+The export reads a document from inside a sources root and the manifests from `defaults/cosm/manifests/`
 under it, so the build makes that root in a temporary folder: the texts as `specs/<file>`, the manifests copied from
 the enough checkout given by --enough. Then, in that checkout, with its own `.venv/bin/python` (or --python), once per
 entry, in the registry's order:
@@ -60,7 +60,7 @@ from cosmoes.app import DOMAIN, REDIRECTS, SUB_RE  # noqa: E402
 DEST = specs.FOLDER                                               # site/specs/
 SPECS = ROOT / 'specs'                                            # the texts and the registry
 REGISTRY = SPECS / 'specs.json'
-MANIFESTS_DIR = 'defaults/cosm/manifests'                         # enough's MiniCOSM manifests, under a sources root
+MANIFESTS_DIR = 'defaults/cosm/manifests'                         # enough's manifests, under a sources root
 PAGES = specs.PAGES                                               # --page density=href: each host's addresses
 RAW = specs.RAW                                                   # the raw endpoints every document host serves
 REQUIRED = ('slug', 'file', 'name', 'edition', 'describes', 'host', 'revised')

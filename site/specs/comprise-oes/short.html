@@ -10,13 +10,19 @@ and the sealed package as a <code>thym/1</code> package.</em></p>
 <p>Comprise OES is the MiniCOSM for companies: the format of a Holotype, one company described in plain-text <code>.cosm</code> files
 that are at once a file system and a relational database. Every part of the company the format knows (its legal bodies,
 roles, markets, products, representations, inventories, systems and people) has a place in both readings.</p>
+<p>A MiniCOSM is a domain's OES with a specification of its own, and there are two: Comprise OES, for companies, and
+Ascribe, for a person. Both are written in MacroCOSM OES (https://macro.cosmoes.org/), an OES: the shared grammar and its
+core, which holds the formats built into every reader, the densities and the dialectic, the one way of asking a person
+what a source means. Thym (https://thym.cosmoes.org/), the transcognition language that connects OESes, is the language of the
+programs this text names.</p>
 <p>Comprise OES replaces COSM 0.3, the earlier specification of the product tree, as the description of the format; COSM
 0.3's product tree is chapter P below, whole. Where this specification sits among the OES specifications, and why any of
 them exists, is said at https://cosmoes.org/.</p>
-<p><strong>Status.</strong> Normative. Comprise, the product, is the reference implementation: its reader and writer read and write
-this format, and the <code>python -m core …</code> lines quoted in this text are its command line, given as examples of how a
-check is run, never as the rule. Where an implementation and this text disagree, one of them is in error; the Changes
-appendix (<a class="ref-xref" href="#docs-sec-14">section 14</a>) records which was corrected. <em>Not checked</em> marks a rule the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not enforce (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</p>
+<p><strong>Status.</strong> Normative. Comprise OES is stewarded by Verroes (Graham Smith). Comprise, the product, is the reference
+implementation: its reader and writer read and write this format, and the <code>python -m core …</code> lines quoted in this text
+are its command line, given as examples of how a check is run, never as the rule. Where an implementation and this
+text disagree, one of them is in error; the Changes appendix (<a class="ref-xref" href="#docs-sec-14">section 14</a>) records which was corrected. <em>Not checked</em>
+marks a rule the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not enforce (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</p>
 <p><strong>The format does not change.</strong> A Comprise OES file is a <code>.cosm</code> file: the COSM YAML subset (<a class="ref-xref" href="#docs-sec-2-5">section 2.5</a>) and, for
 sketches, the one-line shorthand (<a class="ref-xref" href="#docs-p-6-the-sketch-shorthand">P.6</a>), exactly as Holotypes were written before the format had a name. <code>comprise/1</code>
 names the format and maps it; it adds one line to the catalog (<a class="ref-xref" href="#docs-sec-2-3">section 2.3</a>) and one way to address things (<a class="ref-xref" href="#docs-sec-6">section 6</a>).
@@ -315,6 +321,7 @@ are reserved for a later edition.</p>
   store.sqlite                           the local database (2.8)
   people.yaml  people.proposed.yaml      the people file, imported once into the local database
   feeds/&lt;slug&gt;/runs/  scans/  bindings/  reports/   kept payloads, replay pages, reviewed sources, report definitions
+  codebases/&lt;name&gt;.fabulac.cosm          optional: the fabulacs the codebases point at (chapter S)
   logo.svg | logo.png                    optional: replaces the drawn company mark
 </code></pre>
 <p>A module folder's letter is read case-insensitively (<code>p/</code> loads as <code>P/</code>); a writer must write the capital. A folder
@@ -379,6 +386,11 @@ that no script in it runs: it is only ever a picture.</p>
 <td><code>sources</code></td>
 <td>every source an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> outside P cites: <code>{id, page, url, supports, date}</code></td>
 <td>the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> (<code>source-undeclared</code>)</td>
+</tr>
+<tr>
+<td><code>sessions</code></td>
+<td>the dialectic's sessions: one <code>D:session</code> record per elicitation sitting (<a class="ref-xref" href="#docs-sec-8">section 8</a>)</td>
+<td>the pages</td>
 </tr>
 <tr>
 <td><code>attestations</code></td>
@@ -475,8 +487,9 @@ not write one (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</p>
 <section class="docs-sec" data-key="S:section/2.7" data-scope="">
 <h3 id="docs-sec-2-7" data-toc="3">2.7 Other folders</h3>
 <p><code>vendors/</code> (3.5) and <code>snapshots/</code> (10) are read-only to the app. <code>feeds/</code>, <code>scans/</code> and <code>bindings/</code> hold what sources
-brought in and what a person reviewed. <code>reports/</code> holds report definitions (<code>&lt;slug&gt;.report.yaml</code>). None of them is part
-of the model; none is read by the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> except where a section says so.</p>
+brought in and what a person reviewed. <code>reports/</code> holds report definitions (<code>&lt;slug&gt;.report.yaml</code>). <code>codebases/</code> holds
+the fabulacs that <code>S:codebase</code> <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">items</a> name in their <code>fabula</code> field (chapter S); a fabulac is read there, never written
+by Comprise OES. None of them is part of the model; none is read by the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> except where a section says so.</p>
 </section>
 <section class="docs-sec" data-key="S:section/2.8" data-scope="">
 <h3 id="docs-sec-2-8" data-toc="3">2.8 The local database</h3>
@@ -484,7 +497,8 @@ of the model; none is read by the <a class="docs-term" href="#docs-item-t-term-c
 <ul>
 <li><strong>Derived</strong> (rebuilt from the files by <code>python -m core index</code>): <code>nodes</code>, <code>edges</code>, <code>nodes_fts</code>.</li>
 <li><strong>Canonical, never in a file:</strong> the people (<code>people_meta</code>, <code>persons</code>, <code>assignments</code>, <code>memberships</code>, <code>credentials</code>,
-<code>access</code>), sealed field by field; <code>series</code>; feed runs, synced SKUs, listings, levels and drift; scan runs, the scan log
+<code>access</code>), their personal fields sealed field by field (chapter E); <code>series</code>; feed runs, synced SKUs, listings,
+levels and drift; scan runs, the scan log
 and candidates; logins, invites, tokens, keys (public halves only) and the audit; <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> statements and evidence;
 isotype settings and releases.</li>
 </ul>
@@ -1199,9 +1213,12 @@ service directly.</p>
 </tbody>
 </table>
 </div>
-<p>P has one more kind, <code>release</code> (<code>P:release/&lt;unit&gt;@&lt;version&gt;</code>: date, channels, build, notes, listings), declared in the
-schema. P's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> do not know the kind, and a <code>P:release</code> item fails them as an unknown kind: a disagreement recorded,
-not resolved; its resolution is reserved for a later edition.</p>
+<p>P has one more kind, <code>release</code> (<code>P:release/&lt;unit&gt;@&lt;version&gt;</code>: date, channels, build, notes, listings), which stands
+outside the levels. A release is one version of a unit put out, not a part of the tree: it holds no parts, is no item's
+part, and names the product or service it releases in <code>unit</code> (and, in <code>build</code>, the <code>S:codebase</code> it was built from,
+when there is one). It carries P's identity like every P item (<a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>). The invariants below are the tree's and pass
+over a release; P's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> know the kind and hold it to these rules (<code>release</code>, <a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>), and the seven conditions leave
+it out.</p>
 <p><strong>Invariants</strong>, checked except where marked:</p>
 <ol>
 <li>A direct part sits at a strictly lower level, except that a suite may contain a suite and a function a function
@@ -1282,7 +1299,7 @@ stale or leak.</p>
 </tr>
 <tr>
 <td><code>visibility</code></td>
-<td><code>public</code> · <code>internal</code> · <code>restricted</code>. When absent: <code>public</code> for the brand, suites and offerings; <code>internal</code> for functions; for a product or service, <code>public</code> only when one of its flows touches a market or a channel (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>)</td>
+<td><code>public</code> · <code>internal</code> · <code>restricted</code>. When absent: <code>public</code> for the brand, suites and offerings; <code>internal</code> for functions; for a product or service, <code>public</code> only when one of its flows touches a market or a channel (<a class="ref-xref" href="#docs-p-5-2-externals">P.5.2</a>); for a release, its unit's</td>
 </tr>
 <tr>
 <td><code>kind</code></td>
@@ -1925,7 +1942,7 @@ reports them. Severities: an error blocks, a warning is recorded, a note is advi
 <tr>
 <td><code>type</code></td>
 <td>error</td>
-<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> is not one of P's levels</td>
+<td>the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a> is not one of P's levels or <code>release</code></td>
 </tr>
 <tr>
 <td><code>type-prefix</code></td>
@@ -2045,7 +2062,12 @@ reports them. Severities: an error blocks, a warning is recorded, a note is advi
 <tr>
 <td><code>orphan</code>, <code>single-parent</code>, <code>acyclic</code></td>
 <td>error</td>
-<td>containment is broken (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>)</td>
+<td>containment is broken (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>); a release is never an orphan</td>
+</tr>
+<tr>
+<td><code>release</code></td>
+<td>error</td>
+<td>a release holds parts or is an item's part, or its <code>unit</code> is not a product or service of the tree (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>)</td>
 </tr>
 <tr>
 <td><code>flow-mirror</code></td>
@@ -2266,13 +2288,28 @@ a published atom and the isotype's offers all use this rule.</p>
 </tr>
 <tr>
 <td><code>codebase</code></td>
-<td>source code, and what it runs</td>
+<td>source code, and what it runs; <code>fabula</code>, optional: the fabulac that describes the code</td>
 <td><code>runs</code></td>
-<td></td>
+<td><code>codebase-fabula</code> (<code>fabula</code>)</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p><strong>A codebase's fabulac.</strong> A codebase may point at a <strong>fabulac</strong>, the fabula of a folder of source code, as MacroCOSM OES
+(https://macro.cosmoes.org/), its section 18.4.7, defines it, in its <code>fabula</code> field: the path of a <code>.fabulac.cosm</code>
+file inside the Holotype, relative to its root and written with <code>/</code>, conventionally under <code>codebases/</code>
+(<code>fabula: codebases/firefox.fabulac.cosm</code>). The field is a path, not a reference (<a class="ref-xref" href="#docs-sec-7">section 7</a>): it names a file of the
+volume, never an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>, and it never leaves the Holotype.</p>
+<ul>
+<li><strong>Checked</strong> (<code>codebase-fabula</code>): the file must be there, inside the Holotype, load, and declare <code>oes: fabula/1</code> with
+<code>flavour: fabulac</code> (an error otherwise). When the source folder the fabulac describes is present, the fabulac must be
+fresh against it, its tree digest unchanged (a warning when it is stale). With no folder present, freshness is not
+judged.</li>
+<li><strong>Shown.</strong> A reader shows the fabulac's atem line beside the codebase, under the codebase's visibility (4.2). No other
+part of the fabulac is rendered from the Holotype.</li>
+<li><strong>Read, never built.</strong> Comprise OES reads a fabulac; it does not build one. A fabulac is made by decompiling the
+folder, as MacroCOSM OES defines it, and one a Holotype holds was made elsewhere and copied in.</li>
+</ul>
 </section>
 <section class="docs-sec" data-key="S:section/chapter-e-employees" data-scope="">
 <h3 id="docs-chapter-e-employees" data-toc="3">Chapter E · Employees</h3>
@@ -2310,7 +2347,7 @@ module with personal data, and it is never in a file (2.6). Its <a class="docs-t
 </tr>
 <tr>
 <td><code>access</code></td>
-<td><code>access</code></td>
+<td><code>access</code>: a person's level of access to the Holotype in the app, one row per person per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>: <code>admin</code> · <code>steward</code> (with <code>scope</code>, the modules the person edits) · <code>editor-of-own</code> · <code>viewer</code>. An active person with no row is a <code>viewer</code>. The row holds the person's id and no personal data, and is not sealed</td>
 <td></td>
 </tr>
 <tr>
@@ -2512,7 +2549,7 @@ reserved name, alone or before a dot (6.6).</li>
 <li>An id whose slug falls outside that set (one with a slash, a colon, a <code>#</code>, a space or a non-ASCII letter) parses as an
 id but has <strong>no path</strong> in <code>comprise/1</code>; the command line says so. <em>Not checked:</em> the checks do not warn about such ids
 (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).</li>
-<li>The catalog's own entries (sources, grants, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a>, attestations) have no path in <code>comprise/1</code>.</li>
+<li>The catalog's own entries (sources, sessions, grants, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a>, attestations) have no path in <code>comprise/1</code>.</li>
 </ul>
 </section>
 <section class="docs-sec" data-key="S:section/6.5" data-scope="">
@@ -2805,9 +2842,36 @@ on the whole item is the item's path.</li>
 <li><strong>What it does to the checks.</strong> An open value is never an error. It makes a rule <em>unverifiable</em> where the rule needs
 the value (a price, a rate, a reporting line, a counterparty), and an unverifiable rule refuses signing.</li>
 <li><strong>Not the same as &quot;not disclosed&quot;.</strong> <code>provenance.state: not-disclosed</code> says the subject declined to say: a fact.</li>
-<li><strong>Not the same as &quot;to fill in&quot;.</strong> <em>To fill in</em> counts the details the question bank would still ask about an item,
-its open questions included; an item with nothing left to fill in is <strong>complete</strong>. The three health figures (open
-questions, to fill in, complete) come from one place.</li>
+<li><strong>Not the same as &quot;to fill in&quot;.</strong> <em>To fill in</em> counts the details the question banks (below) would still ask about an
+item, its open questions included; an item with nothing left to fill in is <strong>complete</strong>. The three health figures
+(open questions, to fill in, complete) come from one place.</li>
+</ul>
+<p><strong>Asking</strong> (<em>elicitation</em>). Comprise OES fills a Holotype by asking with the dialectic, the core's one way of asking a
+person what a source means and recording what they say, as MacroCOSM OES (https://macro.cosmoes.org/),
+its section 18.6, defines it. What Comprise OES adds to it:</p>
+<ul>
+<li><strong>The banks.</strong> Comprise OES's question banks are the dialectic banks of its manifest (its <code>dialectic:</code> key, read as
+the core reads every manifest's banks): one bank per module, each question about a field of one or more <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a>,
+asked of the item with the most left to fill in. A bank may also hold a <em>counter</em> per check: the question to put
+when that check refuses an answer.</li>
+<li><strong>The sitting.</strong> One elicitation sitting is one session of the dialectic, written as a <code>D:session</code> record in the
+catalog's <code>sessions:</code> (2.2). Its id keeps the spelling <code>elicit-&lt;date&gt;-&lt;hex&gt;</code> (<code>D:session/elicit-2026-11-02-a3f9</code>),
+and the catalog's <code>sources:</code> declares the same id as a source, as before; the record sits beside that declaration
+and does not replace it. The record holds <code>at</code> (when the sitting began), <code>with: {to, who}</code> (<code>to</code> the role answering
+or <code>owner</code>; <code>who</code> a plain description, never a name), <code>through</code> (<code>person</code> or <code>agent</code>), <code>model</code> (the model that
+parsed or rephrased answers, when one did), <code>covers: {part, module}</code> (the <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>, and the module's letter, or <code>*</code>
+for a sitting across the Holotype), and <code>asked</code>, <code>answered</code> and <code>skipped</code>: the fields put to the person, each as
+<code>atom/&lt;concern&gt;//&lt;id&gt;#&lt;field path&gt;</code>.</li>
+<li><strong>Ask, check, commit.</strong> A question is put to one field. The answer becomes the field's value, and the write goes
+through the checks (<a class="ref-xref" href="#docs-sec-9">section 9</a>): a write that would add an error is undone, and the bank's counter for that check is
+put instead. Outside P, the item written takes <code>provenance.mode: dialectic</code>, the session's id among its <code>sources</code> and
+the answer's <code>confidence</code>; in P, the session's id joins the item's <code>sources</code> (4.1). The bare id <code>elicit-…</code> names the
+session wherever it is written, so <code>provenance: {mode: dialectic, sources: [elicit-…]}</code> reads as it always has.</li>
+<li><strong>&quot;I don't know&quot;</strong> stays an open question, in the person's own words: the field is written <code>{pending: &quot;&lt;their words&gt;&quot;}</code>, and the question waits for the next sitting.</li>
+<li><strong>Who is asked.</strong> A question goes to the item's owner by default, as every open question does (above): a role, never
+a person.</li>
+<li><strong>No question items.</strong> A Holotype holds no <code>D:question</code> items: a question asked in a sitting is a bank's question put
+to one field, and one left open is an open question where the value would go.</li>
 </ul>
 <hr />
 </section>
@@ -2904,6 +2968,11 @@ write the app makes goes through them, and a write that adds an error is undone.
 <td>kind or stance missing or outside its list; a malformed horizon</td>
 </tr>
 <tr>
+<td><code>codebase-fabula</code></td>
+<td>error / warning</td>
+<td>a codebase's <code>fabula</code> is not a fabulac inside the Holotype (error); the fabulac is stale against its source folder (warning); chapter S</td>
+</tr>
+<tr>
 <td><code>module-none</code></td>
 <td>warning</td>
 <td><code>module: none</code> without a reason</td>
@@ -2949,7 +3018,8 @@ reason.</p>
 <h2 id="docs-sec-10" data-toc="2">10. Versions</h2>
 <ul>
 <li><strong>A saved version</strong> (<em>snapshot</em>) is an immutable copy of the model files at a moment, at <code>snapshots/&lt;stamp&gt;/</code>: the
-catalog, everything under <code>atoms/</code>, the bindings and the fetched vendors; never <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>, the people file,
+catalog, everything under <code>atoms/</code>, the fabulacs under <code>codebases/</code>, the bindings and the fetched vendors; never <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the
+local database</a>, the people file,
 feed payloads or scan runs. Its <code>manifest.yaml</code> holds when and by whom, every file's sha256, each <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a>'s content
 hash and <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> count, the export's hash, the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>' verdict, the people counts, the perspective concern's <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a>,
 and its own hash. Taking one changes nothing and is always allowed.</li>
@@ -3028,6 +3098,7 @@ identity:  name, domains, jurisdiction, founded, kind
 shape:     employees (some | none), structure (single | group), markets
 offers[]:  name, summary, kind (suite, offering, function, product, service, audience)
 seeks[], open_to[]:  kind (the aim kinds), summary
+optional:  program, trace, bonds, policies, and the optional keys of items (below)
 </code></pre>
 <div class="docs-table">
 <table>
@@ -3151,7 +3222,7 @@ with Comprise: <em>minimal</em>, which reproduces those rules byte for byte; <em
 which adds the rest of the table. A subject with first-party <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> may write its own program, and a program that breaks a rule is refused,
 with the line. A first release states a market word, and after that it moves only after 90 days past its boundary. The moves are declared
 in a sidecar, <code>comprise.moves.cosm</code>, and never in the manifest; the language a program is written in is Thym
-(https://thym.cosmoes.org/).</p>
+(https://thym.cosmoes.org/), the transcognition language that connects OESes.</p>
 <p>Further isotype fields a subject may open one at a time, each opt-in and marked verified or stated, are reserved for a
 later edition.</p>
 </section>
@@ -3329,8 +3400,8 @@ yes, in the owner's own words, reaches the asker.</li>
 </tbody>
 </table>
 </div>
-<p>Renderers driven by a reader's own style profile, and rewritings for beginners, story problems and narrative (the text
-cases of what the trade calls <em>transcreation</em>), are reserved for a later edition.</p>
+<p>Renderers driven by a reader's own style profile, and shorts compiled for one audience (for beginners, as story
+problems, as narrative), are reserved for a later edition.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/13" data-scope="">
@@ -3370,7 +3441,8 @@ name.</li>
 <h3 id="docs-sec-13-3" data-toc="3">13.3 What the checks verify, and what they do not</h3>
 <p><strong>Verified:</strong> the load, the <code>oes:</code> declaration included (2.3); the id grammar; <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kinds</a> per module; the envelope's closed
 lists, required fields and provenance; owners are roles; every reference resolves (with the exceptions in 7.3);
-<a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> kinds and bases; aims; P's per-<a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> and seven conditions; the fourteen rules.</p>
+<a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationship</a> kinds and bases; aims; a codebase's fabulac; P's per-<a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a>, releases included, and seven
+conditions; the fourteen rules.</p>
 <p><strong>Not verified</strong> (a writer must still keep them):</p>
 <ul>
 <li>that no item is written into an E file;</li>
@@ -3390,6 +3462,32 @@ lists, required fields and provenance; owners are roles; every reference resolve
 <h2 id="docs-sec-14" data-toc="2">14. Changes</h2>
 <p>Newest first. An entry records what changed in the text; where an implementation and this text had disagreed, it says
 which was corrected.</p>
+<p><strong>Edition 0.6.0 · 2026-11-05.</strong></p>
+<ol>
+<li><strong>Where Comprise OES stands.</strong> The lead says there are two MiniCOSMs, Comprise OES and Ascribe, both written in
+MacroCOSM OES, an OES: the shared grammar and its core, which holds the formats built into every reader, the
+densities and the dialectic; Thym is
+named the transcognition language that connects OESes (the lead and 11.3). The status paragraph names the steward.</li>
+<li><strong>Elicitation is the dialectic</strong> (<a class="ref-xref" href="#docs-sec-8">section 8</a>). The question banks are the dialectic banks of the manifest. A sitting
+is a session of the dialectic, written as a <code>D:session</code> record in the catalog's new <code>sessions:</code> (2.2) beside the
+source the catalog already declares for it, its id still spelled <code>elicit-&lt;date&gt;-&lt;hex&gt;</code>; ask, check and commit, &quot;I
+don't know&quot; and who is asked are said against the core's primitive. Provenance written before,
+<code>{mode: dialectic, sources: [elicit-…]}</code>, stays valid as written. Sessions join the catalog entries that have no
+path (6.4.8).</li>
+<li><strong><code>S:codebase</code> gains <code>fabula</code></strong> (chapter S): an optional path to a fabulac inside the Holotype, by convention under
+<code>codebases/</code> (2.1, 2.7), checked by <code>codebase-fabula</code> (9.2, 13.3), its atem line shown beside the codebase. Comprise
+OES reads a fabulac and never builds one. A saved version copies <code>codebases/</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>).</li>
+<li><strong><code>P:release</code> is resolved.</strong> The first edition recorded a disagreement: <code>P:release</code> declared in the schema and
+rejected by P's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> as an unknown <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>. In this edition P's checks know <code>release</code>, a kind outside the levels:
+no parts, in no <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s parts, naming its unit, its visibility its unit's (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>, <a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>; in <a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>, <code>type</code>, <code>orphan</code> and
+the new <code>release</code>). The reference implementation's checks were corrected.</li>
+<li><strong><code>access</code> is described</strong> (chapter E): one row per person per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> holding a level, and for a steward the
+modules; it holds no personal data and is not sealed. <a class="ref-xref" href="#docs-sec-2-8">Section 2.8</a> says it is the people tables' personal fields
+that are sealed.</li>
+<li><strong>The isotype's schema line</strong> (11.3) names its optional keys, <code>program</code> and <code>trace</code> among them; an outside chart
+still requires both (11.4).</li>
+<li><strong>Words.</strong> <a class="ref-xref" href="#docs-sec-12">Section 12</a> names the reserved tellings for one audience as shorts; the trade's word for them is dropped.</li>
+</ol>
 <p><strong>Edition 0.5.4 · 2026-11-03, second revision.</strong> Rules the reference implementation keeps and this text had not stated
 are written in: the logo file served script-free (2.1); a sample's names and mark (2.2); team members named by account
 id (2.8); <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> and its proven levels (<a class="ref-xref" href="#docs-sec-11">section 11</a>); fees and promoted entries (11.3); the holder's handle, the
@@ -3402,24 +3500,29 @@ way to this appendix's rule. Chapter <a class="ref-xref" href="#docs-p-11-withdr
 (where COSM 0.3's text and the implementation disagreed) and <a class="ref-xref" href="#docs-sec-13-4">section 13.4</a> (where the code wins) are withdrawn: <a class="ref-xref" href="#docs-p-11-withdrawn">P.11</a>'s
 and <a class="ref-xref" href="#docs-p-12-withdrawn">P.12</a>'s substance is recorded in the entry for 2026-10-20 below, 13.4's rules stand in their own sections, and its
 rule for <code>at: site/…</code> is folded into <a class="ref-xref" href="#docs-sec-4">section 4</a>. The <em>not built</em> markers are withdrawn and each gap is stated where it
-falls as reserved for a later edition (SQL views per <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a> as perspectives, the <code>substrate</code> and <code>rules</code> views,
+falls as reserved for a later edition (SQL views per kind, <a class="docs-term" href="#docs-item-t-term-group" data-term="T:term/group" title="a named set of concerns (&quot;the group&quot;, a reporting segment), declared in the catalog's groups">groups</a> as perspectives, the <code>substrate</code> and <code>rules</code> views,
 the resolution of <code>P:release</code>, a globally unique Holotype name and a resolver for qualified paths, further opt-in isotype
 fields, style-profile <a class="docs-term" href="#docs-item-t-term-renderer" data-term="T:term/renderer" title="turns a Holotype into another form">renderers</a>). The manifest's rules, formerly among the decisions of 2026-10-20, are folded into
 &quot;How to read this&quot;. Status passages, decision and slice references, repository paths, pointers to planning documents
-and the <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a> counts of the sample Holotypes are removed; the cross-references to Thym and to the overview are their
+and the item counts of the sample Holotypes are removed; the cross-references to Thym and to the overview are their
 cosmoes.org homes. <a class="ref-xref" href="#docs-sec-14">Section 14</a>, &quot;Decisions in this version&quot;, becomes this appendix.</p>
+<p><strong>Edition 1 · 2026-11-03, the outside chart and the sealed package.</strong> <a class="ref-xref" href="#docs-sec-11-4">Section 11.4</a>, the outside chart
+(<code>comprise-paratype/0</code>), and <a class="ref-xref" href="#docs-sec-11-5">section 11.5</a>, the sealed package (a cryptotype: a Thym package in its encrypted form), are
+added, and <a class="ref-xref" href="#docs-sec-11-3">section 11.3</a> gains what a release may also carry and the dial, a release as a program's projection. They
+write down rulings made on 2026-11-02; Comprise 0.3.0, the reference implementation that carries them, shipped on
+2026-11-04.</p>
 <p><strong>Edition 1 · 2026-10-20.</strong> The first edition of the format under its own name, replacing COSM 0.3.</p>
 <ol>
 <li><strong>One document.</strong> The product tree is chapter P and the other seven modules are chapters of the same shape. COSM
 0.3's normative text survives in chapter P. What COSM 0.3 described beyond the description of a tree is not part of
 the format: simulation (units as queues, aggregates by min-cut, role variance as jitter, rule gates, affect probes,
 scenarios); <code>whatif</code>, <code>harmonize</code>, <code>propose</code>, <code>rank</code>, <code>uat</code>, <code>qa</code> and <code>hooks</code> (the findings in <code>doc.cosm</code> keep
-harmonize's words); <code>depersonalize</code> (the <code>no-humans</code> <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> find, a person fixes); export to JSON-LD, Turtle, OWL,
+harmonize's words); <code>depersonalize</code> (the <code>no-humans</code> checks find, a person fixes); export to JSON-LD, Turtle, OWL,
 SHACL, ArchiMate and CSV, and import; <code>save</code>, <code>put</code>, <code>remove</code>, <code>where</code>, <code>upstream</code>, <code>downstream</code>, <code>glossary</code>,
 <code>capacity</code> and <code>cost</code> as an API (the app's editor writes through the checks); <code>sketch</code>, the tree written back as
 shorthand (<code>expand</code> is kept). The Remote Assistance Protocol is replaced by grants in the catalog, proposals a person
 accepts and the audit; the State Library (<code>history</code>, <code>diff</code>, <code>at</code>, <code>attest</code>) by saved and signed versions (<a class="ref-xref" href="#docs-sec-10">section
-10</a>); firms within firms by <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concerns</a> and <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> (<a class="ref-xref" href="#docs-sec-3">section 3</a>). COSM 0.3's own <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a> (mattering shares,
+10</a>); firms within firms by concerns and <a class="docs-term" href="#docs-item-t-term-relationship" data-term="T:term/relationship" title="a typed, dated, sourced tie between two concerns">relationships</a> (<a class="ref-xref" href="#docs-sec-3">section 3</a>). COSM 0.3's own <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a> (mattering shares,
 an affect scale, product internals) are not taken up.</li>
 <li><strong>Where COSM 0.3's text and this edition differ, this edition holds.</strong> The tree's version is 0.3 (the brand and
 <code>restricted</code> added), and P files say <code>cosm: 0.3</code>. <code>rule-syntax</code> is a warning when the actor is not a role (an

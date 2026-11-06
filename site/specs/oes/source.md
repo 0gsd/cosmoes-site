@@ -9,15 +9,15 @@ this text.
 
 ## The short version
 
-<!-- atem: one grammar, a dialect per domain, an organization's additions -->
+<!-- atem: one grammar with a core, two domains, a language between them -->
 
 An OES describes its subject as a file system that is also a relational database: every volume (a company's Holotype, a
-person's holograph, a text's twin, a library's catalog) is a folder of plain-text files or one such file, every module a
-set of tables, every item a row with a path. Written down once, as a shared grammar, the shape describes a company, a
-person, a text or a document the same way. The shared grammar is **MacroCOSM**. A grammar specialized for one domain is
-a **MiniCOSM**: Comprise OES, for companies, is the first; Ascribe, for a person, has a specification of its own.
-**Thym** is the language of the programs that move meaning between volumes. One organization's additions on top of a
-MiniCOSM are a **MicroCOSM**, reserved for a later edition.
+person's holograph, a text's fabula, a library's catalog) is a folder of plain-text files or one such file, every module a
+set of tables, every item a row with a path. **MacroCOSM** is an OES: the shared grammar, with a **core** that holds what
+every reader has built in: a home file system (Canon), the fabula with its short and atem, documents, the product tree,
+Thym's volumes and the dialectic. A **MiniCOSM** is a domain's OES with a specification of its own, and there are two:
+Comprise OES, for companies, and Ascribe, for a person. **Thym** is the transcognition language that connects OESes. One
+organization's additions on top of a MiniCOSM are a **MicroCOSM**, reserved for a later edition.
 
 ## 1. What an OES is
 
@@ -28,31 +28,53 @@ as a file system that is also a relational database, made to be rendered.
 
 - **Enumerating.** It lists what there is, item by item, each with its sources. What is unknown is an open question with
   the name of the role that can answer it, never a guess.
-- **A file system.** Plain text files in folders, on the subject's own machine. Anyone can read them without any
-  application, move them, keep them in version control, and leave with everything.
+- **A file system.** Plain text files in folders, on the subject's own machine, readable without any application.
 - **A relational database.** Every item has a primary key (its id), its fields are columns, its references are foreign
   keys, and checks are constraints. The same files can be indexed and queried.
 - **Made to be rendered.** The description exists to be turned into other forms for other readers: a 3D scene, a
   summary, an export for an agent, a public projection. A renderer can only show what the description holds, so the
   description is held to account.
 
-## 2. Three scales
+## 2. Scales
 
-<!-- atem: the grammar, a domain's dialect, an organization's additions -->
+<!-- atem: the grammar and its core, a domain's OES, an organization's additions -->
 
-**COSM** is the family's name. It is not an acronym: it was *Context Ontology Schema and Markup*, and before that
-*OPI*; both are history. It comes from *kosmos*, order and world. `.cosm` is the family's file extension.
+**COSM** is the family's name, from *kosmos*, order and world; it is not an acronym (it was *Context Ontology Schema and
+Markup*, and before that *OPI*). `.cosm` is the family's file extension.
 
 | Scale | What it is | Specified by |
 |---|---|---|
-| **MacroCOSM** | the whole language: the shared grammar every MiniCOSM is written in | MacroCOSM OES |
-| **MiniCOSM** | an OES for one domain, declared by a manifest: its volume layout, modules, kinds, fields, references, checks and renderers | Comprise OES, Ascribe, Thym's `thym/1`; the rest in MacroCOSM OES, its section 18 |
-| **MicroCOSM** | one organization's extension on top of a MiniCOSM: the extra kinds, fields, checks or renderers it needs | reserved for a later edition (section 5) |
+| **MacroCOSM** | an OES: the shared grammar, and its core, what every reader has built in | MacroCOSM OES; the core in its section 18 |
+| **MiniCOSM** | a domain's OES with a specification of its own, declared by a manifest (section 5) | Comprise OES; Ascribe |
+| **MicroCOSM** | one organization's extension on top of a MiniCOSM: the extra kinds, fields, checks or renderers it needs | reserved for a later edition (section 6) |
 
-The names borrow an old idea, from Greek philosophy to the Renaissance: that a small world mirrors the order of the
-great one. Here each smaller scale keeps the order of the larger and adds to it.
+A **built-in** is a kind of volume the core defines, declared by a manifest every reader ships with; it is never a
+MiniCOSM. Thym is not a scale; its volumes are a built-in. Each smaller scale keeps the order of the larger and adds
+to it.
 
-## 3. What MacroCOSM gives every MiniCOSM
+## 3. The model: decompile, fabula, compile, short, atem
+
+<!-- atem: input decompiled to fabula, compiled to short, said as atem -->
+
+Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code,
+and source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's
+folder) is **decompiled** to a **fabula**, which enumerates all the inspiration, meaning, intent, construction,
+production and assertions that can be found in the input or derived from it. A fabula is **compiled** to a **short**,
+and a short is said most plainly as an **atem**.
+
+| | Prose | Code |
+|---|---|---|
+| **The input** | a text | a repository |
+| **The fabula** | a fabulan, or for verse a fabulap | a fabulac: the specification |
+| **The short** | a telling | a cshort: the source code rebuilt, read and never run |
+| **The atem** | one line | a catem: everything a user can do with the program |
+
+The running application is outside these specifications. Decompiling a poem cannot be done well without its author or
+someone who knows their work, so the core has one **dialectic**: questions put to a person, and their answers recorded.
+The same programs run on a local model or, by choice, on a larger one through a broker, and a fabula records which
+model made it.
+
+## 4. What MacroCOSM gives every MiniCOSM
 
 <!-- atem: the parts of the shared grammar every MiniCOSM inherits unchanged -->
 
@@ -61,20 +83,22 @@ Every MiniCOSM inherits all of it, unchanged. The right-hand column gives the se
 
 | Part | What it is | Section of MacroCOSM OES |
 |---|---|---|
-| **Paths, and a URI form** | every part, module, kind, item and field has an address that respells its id as a location, `mozilla-foundation/P/offering/creative-futures`; qualified with the MiniCOSM and the volume's database name it is a URI, `oes:<minicosm>/<database>/<path>` | 11 |
-| **Items, fields and references** | a row with a stable id and a kind (`P:offering/ledger`); its fields are columns; a reference is an id written in a field (`owner: O:role/Founder`), and every reference has two ends | 7 and 9 |
-| **The envelope** | the columns every item has: id, kind, name, summary, status, visibility, provenance (how it is known, from what, how surely), open questions and typed links; a MiniCOSM adds its own | 8 |
+| **Paths, and a URI form** | every item and field has an address that respells its id as a location, `mozilla-foundation/P/offering/creative-futures`; qualified with the format and the volume's database name it is a URI, `oes:<format>/<database>/<path>` | 11 |
+| **Items, fields and references** | a row with a stable id and a kind; its fields are columns; a reference is an id written in a field, and every reference has two ends: the item `P:offering/ledger`, the reference `owner: O:role/Founder` | 7 and 9 |
+| **The envelope** | the columns every item has: id, kind, name, summary, status, visibility, provenance (how it is known and how surely), open questions and typed links; a MiniCOSM adds its own | 8 |
 | **Open questions** | a value nobody has given yet, `{pending: "…"}`, written where the value would go, with who can answer it; never a guess | 10 |
 | **Checks** | constraints on the whole volume, run on every write; a write that breaks one is undone | 12 |
-| **Saved and signed versions** | an immutable copy of the files at a moment, with a manifest of hashes; a copy the checks allowed, signed by the roles that govern it | 15 |
+| **Saved and signed versions** | an immutable copy of the files at a moment, with a manifest of hashes, signed by the roles that govern it | 15 |
 | **The private/public split** | two formats, not one with a setting: the complete private description (the **Holotype**), kept by its subject, and its small public projection (the **isotype**), default-deny, released and signed by the subject | 16 |
 | **Renderers** | anything that turns a volume into another form; renderers only read, and show a reader only what that reader may see | 14 |
-| **The manifest** | the machine-readable declaration of a MiniCOSM, one `.cosm` file: what a program needs to read, check and render its volumes | 13 |
+| **The manifest** | the machine-readable declaration of a MiniCOSM or a built-in, one `.cosm` file: what a program needs to read, check and render its volumes | 13 |
+| **Densities** | one meaning at three densities: the fabula, a short told from it, and its atem | 18.1 and 18.4 |
+| **The dialectic** | questions put to a person about what a source means, and the answers; any volume may carry them | 18.6 |
 
 *Holotype* and *isotype* are taxonomy's words, the one specimen that defines a species and a duplicate of it; they name
 the two halves of the split in every MiniCOSM, not only Comprise's.
 
-## 4. What a MiniCOSM declares
+## 5. What a MiniCOSM declares
 
 <!-- atem: the manifest: one file that declares a MiniCOSM to any reader -->
 
@@ -92,7 +116,7 @@ A MiniCOSM is declared by its **manifest**: one `.cosm` file, outside every volu
 A volume names its MiniCOSM with one line in its catalog and never embeds the manifest. A reader that does not know
 the MiniCOSM or the version a volume declares refuses it with a plain error.
 
-## 5. What a MicroCOSM may change
+## 6. What a MicroCOSM may change
 
 <!-- atem: an organization's additions: what they may add and may never touch -->
 
@@ -111,100 +135,107 @@ What a MicroCOSM adds carries its name, `<microcosm>.<kind>` and `<microcosm>.<f
 MiniCOSM can never collide with it. A volume written with a MicroCOSM remains a valid volume of its MiniCOSM: a reader
 that does not know the MicroCOSM keeps its fields and ignores its checks.
 
-## 6. The specifications and how they relate
+## 7. The specifications and how they relate
 
-<!-- atem: four documents: the grammar, the language of programs, two MiniCOSMs -->
+<!-- atem: four documents: the grammar and its core, the language, two MiniCOSMs -->
 
 Four specifications are published at cosmoes.org, each at its own home.
 
-- **MacroCOSM OES** (https://macro.cosmoes.org/) is the grammar every MiniCOSM is written in: the parts in section 3,
-  the file format, and what a conforming reader and writer must do. It is the grammar Comprise OES worked out for
-  companies, read out of it so that nothing in it says "company"; its section 18 registers the MiniCOSMs.
-- **Thym** (https://thym.cosmoes.org/) is the language of programs over MacroCOSM volumes. Everything a reader does with
-  a volume is generic; everything that *moves* meaning from one telling to another (a text to its twin, a document to
-  its one-line atems, a Holotype to its public isotype) is a Thym move. A program says what it is for and what it must
-  preserve, and its contracts are checked; programs, morphs, contexts, plans, traces and packages are themselves
-  volumes of the `thym/1` MiniCOSM.
+- **MacroCOSM OES** (https://macro.cosmoes.org/) is the grammar and its core: the parts in section 4, the file format,
+  and what a conforming reader and writer must do. The core is its section 18, and its section 19 summarises the two
+  MiniCOSMs.
+- **Thym** (https://thym.cosmoes.org/) is the transcognition language that connects OESes: programs over volumes, in
+  two grammar versions, with moves that decompile, compile, edit and question. A program says what it is for and what
+  it must preserve, and its contracts are checked; its programs, plans, traces and packages are volumes of `thym/1`.
 - **Ascribe** (https://ascribe.cosmoes.org/) is the MiniCOSM for a person: a **holograph**, the description of one self
-  comprehensive enough that a name is unnecessary, kept private by its subject, with no kind and no field for a name, an
-  address or a government id. What leaves a holograph leaves by a Thym program its holder runs.
+  comprehensive enough that a name is unnecessary, kept private by its subject. It applies the dialectic to a person,
+  and says how a holograph is released and projected, the **isograph** among its projections, always by a Thym program
+  its holder runs.
 - **Comprise OES** (https://comprise.cosmoes.org/) is the MiniCOSM for companies, and the first. A company is a set of
-  **concerns** (a branded face, a subsidiary, a joint venture) joined by **relationships**, each concern with eight
-  modules, C · O · M · P · R · I · S · E. Its volume is the **Holotype**, one folder describing one company at a moment;
-  its public projection is the isotype. Its declaration is `oes: comprise/1`.
+  **concerns** joined by **relationships**; its volume is the **Holotype**, one folder describing one company at a
+  moment, and its public projection is the isotype.
 
-Four more MiniCOSMs are registered in MacroCOSM OES, its section 18, and defined there, with no home of their own: `cosm` (one
-whole's product tree, outside any Holotype), `canon` (a library: its files, and what has been derived from them), `emf`
-(one text, taken apart into its words, the things it names, its claims and its events) and `doc` (one document, taken
-apart into items and compiled back byte for byte). `doc` is DocOES (MacroCOSM OES, its section 18.5), the form these pages are
-built in at three densities (atem, short, fabula).
+The core's built-ins have no home of their own: `cosm` (a product tree), `canon` (Canon, the home file system), `fabula`
+(in three flavours), `doc` (documents) and `thym` (Thym's volumes, specified in Thym's own text). `doc` is DocOES
+(MacroCOSM OES, its section 18.5), the built-in these pages are made with, at three densities (atem, short, fabula).
 
-Comprise OES and Ascribe are written in MacroCOSM; Thym is written over it. A shared vocabulary of public forms
-("chair", "M4 screw", "invoice": defined once, cited by every MiniCOSM that needs them) is reserved for a later edition.
+A shared vocabulary of public forms ("chair", "M4 screw", "invoice": defined once, cited by every MiniCOSM that needs
+them) is reserved for a later edition.
 
-## 7. The picture
+## 8. The picture
 
-<!-- atem: the grammar, its MiniCOSMs, the language over them, the split -->
+<!-- atem: the core, two MiniCOSMs, the language across them, the cycle -->
 
 ```text
-                 MacroCOSM OES: the shared grammar
-                                 |
-   +---------+---------+------+------+------+------+------+
- comprise  ascribe   cosm   canon   emf   doc   thym        MiniCOSMs
-    |         |                                   Thym: programs that move meaning between volumes
- a MicroCOSM: one organization's additions        (reserved for a later edition)
-    |
- Holotype, holograph: one private volume  --- projection --->  isotype: public, signed, default-deny
-    |
- renderers and lenses: a text tree, a card, a drawing, an export
+              MacroCOSM OES: the shared grammar, and its core
+   the core:  Canon, the home file system · the fabula · documents (DocOES)
+              the product tree · Thym's volumes · the dialectic
+                                      |
+                 +--------------------+--------------------+
+     Comprise OES: a company                     Ascribe: a person            MiniCOSMs
+                 |
+            a MicroCOSM: one organization's additions (reserved)
 
- every item is addressable:  oes:<minicosm>/<database>/<path>
+   <=================== Thym: the language that connects OESes ===================>
+
+   input  --decompile-->  fabula  --compile-->  short  --said most plainly-->  atem
+   prose:  a text         fabulan, fabulap      a telling                      one line
+   code:   a repository   fabulac               cshort                         catem
+
+   Holotype, holograph: one private volume  --- projection --->  isotype, isograph: public, default-deny
+        |
+   renderers and lenses: a text tree, a card, an export
+
+   every item is addressable:  oes:<format>/<database>/<path>
 ```
 
-## 8. Editions
+## 9. Editions
 
 <!-- atem: editions, revisions, format versions and the canonical pages -->
 
 An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.5.4; the
 status line says so. An edition is the text's, not the format's: a format's version (`thym/1`, `ascribe/1`,
 `comprise/1`, the grammar version MacroCOSM OES names) is a line in the files a program reads, and each text's status
-line names the one it describes. A text may be revised at any time; the canonical edition of each is the page at its
-home, a copy an application ships or syncs is a copy of an edition published here, and the source and history of every
-page are at https://github.com/0gsd/cosmoes-site.
+line names the one it describes. The canonical edition of each text is the page at its home; a copy an application ships
+is a copy of an edition published here; the source and history of every page are at https://github.com/0gsd/cosmoes-site.
 
-## 9. Implementations
+## 10. Implementations
 
 <!-- atem: enough and Comprise, the reference implementations -->
 
-Two products are the reference implementations. **enough** (https://github.com/0gsd/enough) implements MacroCOSM OES,
-Thym and Ascribe and reads every registered MiniCOSM: it loads, checks and draws their volumes, compiles and runs Thym
-programs, and builds documents with DocOES. **Comprise** implements Comprise OES: it writes and reads Holotypes, runs
-their checks, saves and signs versions, and projects and releases isotypes. Where an implementation and a text disagree,
-one of them is in error, and the text's Changes appendix records which was corrected.
+Two products are the reference implementations. **enough** (https://github.com/0gsd/enough) implements MacroCOSM OES and
+its core, Thym and Ascribe, and reads every built-in and both MiniCOSMs: it loads, checks and draws their volumes,
+decompiles texts and programs and compiles their fabulas, shows a cshort and never runs it, compiles and runs Thym
+programs, and builds documents with DocOES. **Comprise** implements Comprise OES: it writes and checks Holotypes, signs
+their versions, and projects and releases isotypes. Where an implementation and a text disagree, one of them is in
+error, and the text's Changes appendix records which was corrected.
 
-## 10. Open formats
+## 11. Open formats
 
 <!-- atem: open formats, the subject's files, the way out never sold -->
 
 This site exists so that the formats are open. Every format these texts describe is documented here completely enough
-that a second reader, a second writer, a second vault or a second index can be built from the text alone: the layer is
-larger than any one product. The files a format describes belong to their subject: plain text, on the subject's own
-machine, readable without any application, movable and complete, so that a subject who leaves takes everything. The
-format itself is never sold, and neither is the way out of it: no product and no account stands between a subject and
-their own files.
+that a second reader, writer, vault or index can be built from the text alone: the layer is larger than any one
+product. The files a format describes belong to their subject: plain text, on the subject's own machine, readable
+without any application, movable and complete, so that a subject who leaves takes everything. The format itself is
+never sold, and neither is the way out of it: no product and no account stands between a subject and their own files.
 
 ## Changes
 
 <!-- atem: what each edition changed, newest first -->
 
-1. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
+1. **Edition 0.6.0 (2026-11-05): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
+   MiniCOSMs, Comprise OES and Ascribe; Thym connects OESes. Section 2 is "Scales"; section 3, the model, is added, and
+   sections 3 to 10 become 4 to 11; the parts table gains the densities and the dialectic; the fabula replaces EMF; the picture is redrawn; the colophon names the
+   steward.
+2. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
    cosmoes.org itself, named *The OES specifications*; the edition is a field in the status line. Section 6 is rewritten
    for the four specifications and the registered MiniCOSMs; the first form's sections 7 (connections to a wider
    ecosystem), 9 (a status table) and 10 (a repository listing) are removed, what survives of 7 folded into section 6,
    and the picture (section 8 in the first form) becomes section 7 and is redrawn; sections 8, 9 and 10 (editions,
    implementations, open formats) are added; *volume* replaces *database* for one instance of a MiniCOSM, as MacroCOSM
    OES uses it; repository paths, plans and what was built at a date are removed.
-2. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
+3. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
    sections 1 to 6 and the picture in their first form, a section on connections to a wider ecosystem, a status table
    of what was built and a listing of the folder it was written in. Comprise OES was the only MiniCOSM specified and
    MacroCOSM was drawn from it in outline.
@@ -213,5 +244,6 @@ their own files.
 
 <!-- atem: copyright, the canonical edition and its source -->
 
-The OES specifications — Copyright © 2026 Graham Smith. All rights reserved. The canonical edition is published at
-https://cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.
+The OES specifications — Copyright © 2026 Graham Smith. All rights reserved. *The OES specifications* is stewarded by
+Verroes (Graham Smith). The canonical edition is published at https://cosmoes.org/; its source and history are at
+https://github.com/0gsd/cosmoes-site.
