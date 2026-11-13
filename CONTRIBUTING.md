@@ -28,9 +28,9 @@ Comprise, comprise-connect) sync it from here. A change to a text is a change to
 
 ## Licence
 
-The texts are © 2026 Graham Smith, all rights reserved (`specs/NOTICE.md`). Until terms for the texts are published,
-contributions to them are by the owner's invitation; a pull request from anyone else is read as a report, with thanks,
-and is not merged as written. The site's code is Apache-2.0 (`LICENSE`): a change to it is welcome by pull request,
+The texts are © 2026 Graham Smith, licensed under CC BY 4.0 with the author's OWFa 1.0 patent promise; the names are not
+licensed (`specs/NOTICE.md`). Anyone may copy, change and pass the texts on under those terms. Changes to the canonical texts
+here are the author's: a pull request to a text is read as a report, with thanks, and is not merged as written. The site's code is Apache-2.0 (`LICENSE`): a change to it is welcome by pull request,
 with `pytest -q` green.
 
 ## Adding a text

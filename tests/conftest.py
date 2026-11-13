@@ -33,7 +33,8 @@ REVISED = '2026-11-03'
 EXPORTED = '2026-11-03T20:00:00Z'
 PROV = ('Built from <a href="https://github.com/0gsd/cosmoes-site">cosmoes-site</a> at d2ea035, with uncommitted changes '
         'by enough 0.5.1 (DocOES), exported 3 Nov 2026.')
-LICENCE = ("The texts are © 2026 Graham Smith, all rights reserved; the canonical editions are these pages. "
+LICENCE = ('The texts are © 2026 Graham Smith, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, '
+           "with the author's OWFa 1.0 patent promise; the names are not licensed. The canonical editions are these pages. "
            "The site's code is Apache-2.0.")
 CSS = '.docoes { color: var(--ink, #1a1f2b); }\n'
 

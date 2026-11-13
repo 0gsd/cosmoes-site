@@ -36,7 +36,7 @@ a text changes.
 
 ## The texts: `specs/`
 
-`specs/<file>.md` are the canonical texts (`specs/NOTICE.md`: © 2026 Graham Smith, all rights reserved;
+`specs/<file>.md` are the canonical texts (`specs/NOTICE.md`: © 2026 Graham Smith, CC BY 4.0 with an OWFa 1.0 patent promise, the names not licensed;
 `specs/ORIGINS.md`: where each came from on 2026-11-03). `specs/specs.json` is the registry: one entry per text with
 `slug`, `file`, `name` (never with a number in it), `edition`, `describes` (the format versions the text describes),
 `host`, `revised`, and `reference: true` for the text that carries the manifests' reference (MacroCOSM OES). A
@@ -103,5 +103,6 @@ export with enough's public main: out of step with the texts fails, rendered by 
 
 ## Licences
 
-The texts are © 2026 Graham Smith, all rights reserved (`specs/NOTICE.md`, `NOTICE`); the canonical editions are the
+The texts are © 2026 Graham Smith, licensed under CC BY 4.0 with the author's OWFa 1.0 patent promise; the names are not
+licensed (`specs/NOTICE.md`, `NOTICE`). The canonical editions are the
 pages at cosmoes.org and its hosts. The site's code is Apache-2.0 (`LICENSE`).
