@@ -1286,7 +1286,7 @@ describes a subject who keeps it private:
 | MiniCOSM | The private volume | Its public projection | How the projection is made |
 |---|---|---|---|
 | `comprise` | the Holotype | the isotype | by a fixed schema, each field derived by one rule (Comprise OES, its section on the private/public split) |
-| `ascribe` | the holograph | the isograph | by a Thym program the holder runs over the holograph (Ascribe, https://ascribe.cosmoes.org/, on projections) |
+| `ascribe` | the holograph | the isograph, which the holder shares in private; the allograph, which the holder lists in the Allograph Registry | by a Thym program the holder runs over the holograph (Ascribe, https://ascribe.cosmoes.org/, on projections) |
 
 A MiniCOSM with a split declares its public projection in its manifest (Comprise's and Ascribe's
 `public-projection`), and the rules of the projection are its own.
@@ -1371,7 +1371,7 @@ A running program is outside the model: nothing in the core runs a cshort, impor
 An **entailment** is the step that expands meaning by reducing data, and it is also what that step makes. The whole
 entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a codebase or an
 application entails its fabulac, and a fabulac a cshort or a catem; a Holotype entails its isotype and its paratype, and a
-holograph its isograph (and, from 0.7, an allograph). What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
+holograph its isograph and its allograph. What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
 voice. An entailment made by rule, a projection (section 16), holds by construction. An entailment made by a model holds
 only because the contract's checks hold it: `no-invention` (it names nothing its whole lacks), `stance-kept` (it says
 no claim more strongly than its whole does) and `coverage` (each of its sentences traces to items of its whole), as
@@ -4139,8 +4139,8 @@ checks (an anchored form, a declared relation, the shape of a `when`, the range 
 personal data, and what a private marker would drop) are enough's (its `ascribe lint` command runs them over a
 holograph's folder), and a generic reader runs none of them. The personal-data check warns in a holograph and refuses a projection while it finds anything. The
 opening questions its manifest's `dialectic:` block holds are a bank of the core's dialectic, and a holograph's
-sessions and questions are items of module D (section 18.6). Ascribe's application module, isographs and index belong
-to Ascribe's own specification.
+sessions and questions are items of module D (section 18.6). Ascribe's projections, the isograph and the allograph, and the
+Allograph Registry where a holder lists an allograph belong to Ascribe's own specification.
 
 **An example.** A holograph small enough to be one file: two forms, a declared relation and two nodes.
 

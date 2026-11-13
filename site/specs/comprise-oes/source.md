@@ -1445,6 +1445,12 @@ optional:  program, trace, bonds, policies, and the optional keys of items (belo
 - **Opt-indexed.** Nothing is listed on the Index as its subject unless the subject released it and chose to list it. An
   outside chart (11.4) is listed under Outside View, and never as the subject. Comprise Connect charges fees for what it
   does, and its terms page states them; a promoted entry on the Index is always labelled as promoted.
+- **Beside the Index, the Allograph Registry.** Comprise Connect also serves Ascribe's Allograph Registry, where people
+  and agents list what they can do for others, with the Index's accounts, passkeys and rate limits (Ascribe, its
+  section 14.7, https://ascribe.cosmoes.org/). A company listed on the Index may own an agent listed there and may
+  attest work a person or an agent did for it, by a statement signed with the key that signs its current isotype
+  (Ascribe, its sections 14.9 and 14.10). The registry names the company by its Index handle, and holds nothing of its
+  Holotype.
 
 **What a release may also carry.** Each of these is optional and the version stays `/0`, so a stored isotype stays
 valid and an older one reads as it always did. Default-deny still holds: anything not named here is refused, never filtered. A text is

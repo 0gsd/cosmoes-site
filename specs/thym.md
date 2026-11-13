@@ -630,13 +630,13 @@ stand-in with a weaker output, which a run with `--rules` uses instead (section 
 | `fabula/1` | a built-in of the core | `derive`, `entail`, `atem`, `expand`; for `thym 1`, `survey` and `history` |
 | `doc/1` | a built-in of the core | `enumerate`, `compile` |
 | `comprise/1` | a MiniCOSM | `project`, `band`, `mark`, `withhold`, in a sidecar (section 17.6), since `comprise/1`'s manifest belongs to Comprise OES |
-| `ascribe/1` | a MiniCOSM | for `thym 1`, `propose`, in its own manifest (Ascribe, https://ascribe.cosmoes.org/) |
+| `ascribe/1` | a MiniCOSM | for `thym 1`, `propose`, and the kinds `isograph` and `allograph` of `project`, by an entry that `extends` it, in its own manifest (Ascribe, https://ascribe.cosmoes.org/) |
 
 `fabula/1`'s manifest declares the four moves that `emf/1`'s declared under the old name, unchanged in their `thym 0`
 view; the one that `emf/1` named `tell` is spelled `entail` (section 6.3). The dialectic's moves sit with `thym/1`'s because any volume may carry the dialectic's questions, so no single
 format owns them. Section 17.6 gives the `moves:` block that declares them all.
 `project` takes as its kind what each MiniCOSM declares that it projects: `isotype` and `paratype` are Comprise OES's,
-and `isograph` is Ascribe's (section 18).
+and `isograph` and `allograph` are Ascribe's (section 18).
 
 ### 6.3 The standard moves
 
@@ -655,7 +655,7 @@ additions of the second table.
 | `measure` | text → morph; `against` short (the null) | yes | `scale-range` `scale-evidence` `provenance` |
 | `morph` | short → short; `with` morph | yes | `coverage` `no-invention` `stance-kept` `scales-met` `provenance` |
 | `read` | fabula → short; `with` morph; `in` context | yes | `coverage` `no-invention` `stance-kept` `scales-met` `labelled` `never-source` `provenance` |
-| `project` | volume → volume; `as` kind (`isotype` or `paratype`, Comprise OES's; `isograph`, Ascribe's) | no | the target schema's rules: for `isotype` and `paratype`, `default-deny` `no-counts` `banded` `no-mark` `verified-derived` `standing-gate` `epoch` `provenance`; for `isograph`, `default-deny` `no-counts` `no-mark` `epoch` `provenance`. A check holds by the rules of the kind the call names: for an isograph, those of `ascribe-isograph/0`. For an isograph, the ids of the items that leave are handed to the host with the value, as the release's `items` (Ascribe, its section 14.1) |
+| `project` | volume → volume; `as` kind (`isotype` or `paratype`, Comprise OES's; `isograph` or `allograph`, Ascribe's) | no | the target schema's rules: for `isotype` and `paratype`, `default-deny` `no-counts` `banded` `no-mark` `verified-derived` `standing-gate` `epoch` `provenance`; for `isograph` and `allograph`, `default-deny` `no-counts` `no-mark` `epoch` `provenance`. A check holds by the rules of the kind the call names: for an isograph, those of `ascribe-isograph/0`; for an allograph, those of `ascribe-allograph/0`. For an isograph or an allograph, the ids of the items that leave are handed to the host with the value, as the release's `items` (Ascribe, its sections 14.1 and 14.6) |
 | `band` | number → word; `as` a list of words (`[none, some]`: 0 is `none`; any other list: equal steps of ten) | no | `banded` |
 | `mark` | item \| word → the same; `as` marking | no | `verified-only-where-derived` |
 | `withhold` | item \| volume → nothing; `where` condition | no | `no-mark` |
@@ -1747,7 +1747,7 @@ keeps the block as an unknown key; the Thym compiler reads it. Each entry:
 | `code` | the reference implementation, informative: `enough.thym.moves.emf:entail` |
 | `says` | one line, in FEED words, for the viewer and the readvisor |
 | `since` | `1`: the move exists for `thym 1` programs only (section 4.9) |
-| `extends` | `true`: the entry adds `as` kinds to a move another manifest declares, and nothing else (its `modifiers` are `{as: <kinds>}`); a call of one of its kinds gives the entry's `gives`, keeps its `contract` and runs its `code`. Ascribe's `project … as isograph` is one (section 6.2) |
+| `extends` | `true`: the entry adds `as` kinds to a move another manifest declares, and nothing else (its `modifiers` are `{as: <kinds>}`); a call of one of its kinds gives the entry's `gives`, keeps its `contract` and runs its `code`. Ascribe's `project … as isograph` and `project … as allograph` are one, an entry whose `as` lists both (section 6.2) |
 | `thym-1` | a mapping of the keys a `thym 1` program sees in addition to, or in place of, the entry's own: `takes`, `gives`, `modifiers`, `contract`, `scaffold`, and the three below; a `thym 0` program sees the entry without it |
 | `gives-when` | a list of `{as: <words>, gives: <type>}` or `{takes: <type>, gives: <type>}`: the type a call gives when its `as` word, or its first operand's type, is one of these |
 | `contract-when` | the same shape, with `contract: [...]`: the call's contract when its `as` word or first operand's type matches; else `contract` |
@@ -1770,11 +1770,15 @@ owner may write their own. A release carries the digests of the program and the 
 is a specification of its own, Comprise OES (https://comprise.cosmoes.org/); Thym defines none of it, and a Thym
 implementation reads what Comprise produces. A person's dial is the same move over a holograph, `project h as
 isograph`, to the schema of Ascribe's isograph (Ascribe (https://ascribe.cosmoes.org/), its section 14.1), whose rules
-are then the contract. Each MiniCOSM declares the kinds it projects: `isotype` and `paratype` are Comprise OES's, and
-`isograph` is Ascribe's.
+are then the contract. `project h as allograph` makes the other projection a holder runs: the allograph, which keeps
+only the holder's experience and domain expertise and is the one thing of a holograph a registry lists (Ascribe, its
+sections 14.6 and 14.7). Each MiniCOSM declares the kinds it projects: `isotype` and `paratype` are Comprise OES's, and
+`isograph` and `allograph` are Ascribe's. Listing an allograph is the implementation's act after the run; no move sends
+anything to a registry. Ascribe's cryptograph and isomorph are made by the implementation, and moves for them are
+reserved for a later edition; it makes match tokens no more, so no move is reserved for them.
 
 A projection is an entailment made by rule: a holotype entails its isotype and its paratype, and a holograph its
-isograph (MacroCOSM OES, its section 18.1). What it makes holds by construction, since the schema's rules are its
+isograph and its allograph (MacroCOSM OES, its section 18.1). What it makes holds by construction, since the schema's rules are its
 contract and no model is asked. `entail` (section 6.3) makes an entailment by a model under contract, and what it makes
 holds only because its checks hold it. The two kinds stay on the two sides of the line section 1 draws: `project`
 transcodes, and `entail` transcognizes.

@@ -151,8 +151,9 @@ Four specifications are published at cosmoes.org, each at its own home.
   it must preserve, and its contracts are checked; its programs, plans, traces and packages are volumes of `thym/1`.
 - **Ascribe** (https://ascribe.cosmoes.org/) is the MiniCOSM for a person: a **holograph**, the description of one self
   comprehensive enough that a name is unnecessary, kept private by its subject. It applies the dialectic to a person,
-  and says how a holograph is released and projected, the **isograph** among its projections, always by a Thym program
-  its holder runs.
+  and says how a holograph is released and projected, the **isograph** and the **allograph** among its projections,
+  always by a Thym program its holder runs, and how a holder lists an allograph, what they can do for others, in the
+  Allograph Registry.
 - **Comprise OES** (https://comprise.cosmoes.org/) is the MiniCOSM for companies, and the first. A company is a set of
   **concerns** joined by **relationships**; its volume is the **Holotype**, one folder describing one company at a
   moment, and its public projection is the isotype.
@@ -184,7 +185,7 @@ them) is reserved for a later edition.
    prose:  a text         fabulan, fabulap      an entailment                  one line
    code:   a repository   fabulac               cshort                         catem
 
-   Holotype, holograph: one private volume  --- projection --->  isotype, isograph: public, default-deny
+   Holotype, holograph: one private volume  --- projection --->  isotype, isograph, allograph: default-deny
         |
    renderers and lenses: a text tree, a card, an export
 
