@@ -1,10 +1,10 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-13T00:38:32Z",
+  "exported": "2026-11-13T00:43:23Z",
   "by": "enough/0.6.0",
   "source": {
-    "commit": "76ac890",
-    "dirty": false
+    "commit": "9214c36",
+    "dirty": true
   },
   "css": "docs.css",
   "pages": {
@@ -77,7 +77,7 @@
       "lead": "MacroCOSM OES is an OES: a shared grammar and the core built into it",
       "source": {
         "path": "specs/macrocosm-oes.md",
-        "sha256": "5519653f6a91f1327adb410ee7a7c6b42707a8231348b3f17c274637a72d571c"
+        "sha256": "1c6314f59ea6d4b2d6e69c93579976193286605134c824e70196bc0c26c4e6d3"
       },
       "chapters": [],
       "counts": {
@@ -90,8 +90,8 @@
       "files": {
         "short": {
           "path": "macrocosm-oes/short.html",
-          "sha256": "b8e2ddb6d48841483bd874475d442d2a0812d5f3f473c1540f52ae304bcdec77",
-          "bytes": 578411
+          "sha256": "ccae41516d1706afb6eba5dcb5ed4fafe2d1c0ecc26ae9cb6a7394e9fc0472cf",
+          "bytes": 578457
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
@@ -105,8 +105,8 @@
         },
         "source": {
           "path": "macrocosm-oes/source.md",
-          "sha256": "5519653f6a91f1327adb410ee7a7c6b42707a8231348b3f17c274637a72d571c",
-          "bytes": 289935
+          "sha256": "1c6314f59ea6d4b2d6e69c93579976193286605134c824e70196bc0c26c4e6d3",
+          "bytes": 289981
         }
       },
       "edition": "0.6.0",

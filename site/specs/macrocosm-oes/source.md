@@ -1369,9 +1369,9 @@ A running program is outside the model: nothing in the core runs a cshort, impor
 
 <!-- term: entailment -->
 An **entailment** is the step that expands meaning by reducing data, and it is also what that step makes. The whole
-entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a fabulac entails a
-cshort or a catem; a Holotype entails its isotype and its paratype, and a holograph its isograph (and, from 0.7, an
-allograph). What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
+entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a codebase or an
+application entails its fabulac, and a fabulac a cshort or a catem; a Holotype entails its isotype and its paratype, and a
+holograph its isograph (and, from 0.7, an allograph). What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
 voice. An entailment made by rule, a projection (section 16), holds by construction. An entailment made by a model holds
 only because the contract's checks hold it: `no-invention` (it names nothing its whole lacks), `stance-kept` (it says
 no claim more strongly than its whole does) and `coverage` (each of its sentences traces to items of its whole), as
