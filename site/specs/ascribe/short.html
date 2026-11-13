@@ -238,11 +238,11 @@ a morph volume included, is kept beside the folder and never inside it.</p>
 </tr>
 <tr>
 <td><code>summary</code></td>
-<td>one line, optional; people appear in it by role, never by name</td>
+<td>one line, optional; people appear in it by what they are to the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>, never by name</td>
 </tr>
 <tr>
 <td><code>subject</code></td>
-<td><code>person</code>, the default when absent: the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s own self; or <code>character</code>: the self of a subject that is not a person, kept by its holder (below)</td>
+<td><code>person</code>, the default when absent: the holder's own self; or <code>character</code>: the self of a subject that is not a person, kept by its holder (below)</td>
 </tr>
 <tr>
 <td><code>sample</code></td>
@@ -651,8 +651,8 @@ names the holder by the role word <code>holder</code> and describes them by noth
 <p>An answer to a bank question writes a <strong>node</strong> in the container the question belongs to, or, for a question of the
 forms, a form. <code>settle</code> writes it, from the answer, after <code>record</code> has kept the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s words verbatim on the question:</p>
 <ul>
-<li><code>name</code>: a few words of the holder's own, naming the node; <code>summary</code>: the answer, one line, people in it by role or
-by a declared pseudonym;</li>
+<li><code>name</code>: a few words of the holder's own, naming the node; <code>summary</code>: the answer, one line, people in it by what
+they are to the holder or by a declared pseudonym;</li>
 <li><code>form</code>: the form the answer is about, found as <a class="ref-xref" href="#docs-sec-8-4">section 8.4</a> says;</li>
 <li><code>provenance: {mode: dialectic, sources: [D:session/&lt;id&gt;], confidence: &lt;how sure the person is&gt;}</code>, the confidence
 the holder gave with the answer, and <code>1</code> when they gave none and stated it plainly.</li>
@@ -818,8 +818,8 @@ person.</p>
 </tbody>
 </table>
 </div>
-<p>Its <code>name</code> and <code>summary</code> say what the text shows in the reading's words, and name people only by role or by a declared
-pseudonym; the text's own names never enter the holograph. A candidate is proposed only from what the text says
+<p>Its <code>name</code> and <code>summary</code> say what the text shows in the reading's words, and name people only by what they are to the holder
+or by a declared pseudonym; the text's own names never enter the holograph. A candidate is proposed only from what the text says
 (the core's <code>no-invention</code>), and each carries the span that shows it.</p>
 <p><strong>The holder decides.</strong> Each candidate gets a question about it, <code>about: &lt;the candidate's id&gt;</code>, <code>why: unsure</code>,
 <code>to: holder</code>, <code>kind: choice</code>, <code>options: [yes, no, partly]</code>, asking whether it is so:</p>
@@ -974,8 +974,8 @@ It warns on:</p>
 </table>
 </div>
 <p>A stretch one pattern has claimed is not claimed again, so one email address is one warning. A form with a <code>wiki</code> names
-a public subject, and its prose is not read for names. Every warning ends with the same advice: people appear by role,
-or by a pseudonym you declare.</p>
+a public subject, and its prose is not read for names. Every warning ends with the same advice: describe people by what
+they are to you, or by a pseudonym you declare.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/11" data-scope="">
@@ -2215,8 +2215,9 @@ catalog with no <code>subject</code> as a person's holograph.</li>
 <h3 id="docs-sec-16-2" data-toc="3">16.2 A writer must</h3>
 <ol>
 <li>Never write a name, an email address, a phone number, a postal address, a birth date, a government id or an
-employer's legal name, in any field, key or comment; write people by role or by a pseudonym the catalog declares.</li>
-<li>Write a node only from the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s own word: an answer, an accepted <a class="docs-term" href="#docs-item-t-term-candidate" data-term="T:term/candidate" title="A candidate is an ordinary node of its kind">candidate</a>, or what the holder wrote down
+employer's legal name, in any field, key or comment; write people by what they are to the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> or by a pseudonym the catalog
+declares.</li>
+<li>Write a node only from the holder's own word: an answer, an accepted <a class="docs-term" href="#docs-item-t-term-candidate" data-term="T:term/candidate" title="A candidate is an ordinary node of its kind">candidate</a>, or what the holder wrote down
 (<a class="ref-xref" href="#docs-sec-8">section 8</a>, <a class="ref-xref" href="#docs-sec-9">section 9</a>); write an open question, never a guess, and never a form FEED does not have as if it did.</li>
 <li>Read only the holder's own texts into a holograph, never a text about them by anyone else.</li>
 <li>Apply the private filter (<a class="ref-xref" href="#docs-sec-11">section 11</a>) to every <a class="docs-term" href="#docs-item-t-term-ingest" data-term="T:term/ingest" title="another volume, a library or an index copies the holograph, or part of it, in">ingest</a>, <a class="docs-term" href="#docs-item-t-term-package" data-term="T:term/package" title="a Thym package carries it, sealed or not, a cryptograph included (Thym, its section 15)">package</a>, <a class="docs-term" href="#docs-item-t-term-transfer" data-term="T:term/transfer" title="the holograph, or part of it, is copied off the holder's machine, a backup included">transfer</a> and <a class="docs-term" href="#docs-item-t-term-projection" data-term="T:term/projection" title="a program or the implementation projects it: an isograph, an allograph, an isomorph (section 14)">projection</a>, before anything else reads

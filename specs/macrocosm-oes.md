@@ -4095,8 +4095,8 @@ sources:
 the whole self, private, kept by its subject, as a Holotype is a company's. It holds what the person is drawn to,
 believes, worries about, has lived through, wants to know, thinks, feels, can do, understands and longs for, each item
 anchored to the thing it is about. There is no kind and no field for a name, an email address, a phone number, a postal
-address, a birth date, a government id or an employer's legal name; people in a person's life appear by role or by a
-pseudonym the catalog declares. The full specification is Ascribe (https://ascribe.cosmoes.org/); this section says how
+address, a birth date, a government id or an employer's legal name; people in a person's life appear by what they are
+to the holder or by a pseudonym the catalog declares. The full specification is Ascribe (https://ascribe.cosmoes.org/); this section says how
 it sits in MacroCOSM.
 
 **Its declaration.** `oes: ascribe/1`. There is no legacy form, and a catalog without the key is refused.

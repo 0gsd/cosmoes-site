@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-13T01:40:39Z",
+  "exported": "2026-11-13T01:50:39Z",
   "by": "enough/0.6.0",
   "source": {
-    "commit": "2bedd42",
+    "commit": "f12dc9e",
     "dirty": true
   },
   "css": "docs.css",
@@ -77,7 +77,7 @@
       "lead": "MacroCOSM OES is an OES: a shared grammar and the core built into it",
       "source": {
         "path": "specs/macrocosm-oes.md",
-        "sha256": "fd45e72ef8feecb5794df0e1ad151a803c5ab7e760b183ac33ce814b38f31733"
+        "sha256": "006c02eff60ddc53c70b41a423cebca1531dd7044919263b24ebda2f8c05ef1c"
       },
       "chapters": [],
       "counts": {
@@ -90,8 +90,8 @@
       "files": {
         "short": {
           "path": "macrocosm-oes/short.html",
-          "sha256": "6716c7f4d51d11ee9679854e008ca92cd456b8b5580d9905debe42c10097ea3f",
-          "bytes": 578612
+          "sha256": "629ea80cfc9def9bef590d9ad59cf1ff1cdd37ccf2f1480aa32866da1e0eb0c8",
+          "bytes": 578635
         },
         "atem": {
           "path": "macrocosm-oes/atem.html",
@@ -105,8 +105,8 @@
         },
         "source": {
           "path": "macrocosm-oes/source.md",
-          "sha256": "fd45e72ef8feecb5794df0e1ad151a803c5ab7e760b183ac33ce814b38f31733",
-          "bytes": 290136
+          "sha256": "006c02eff60ddc53c70b41a423cebca1531dd7044919263b24ebda2f8c05ef1c",
+          "bytes": 290159
         }
       },
       "edition": "0.6.0",
@@ -187,7 +187,7 @@
       "lead": "A person, described without a name",
       "source": {
         "path": "specs/ascribe.md",
-        "sha256": "d1d9eb428bc95b75bba55e8f732408e044a5b66b2b7f8f20dd1e390cc4023707"
+        "sha256": "5e4e9a088e075562eb83cc0eef2bfe2bf579566ee606dea7bc7c490ad2184ae1"
       },
       "chapters": [],
       "counts": {
@@ -200,8 +200,8 @@
       "files": {
         "short": {
           "path": "ascribe/short.html",
-          "sha256": "cf08738282637a6c3b5b615c0b2db2a8fe5b5c45e5c3caf7d142d9e1abf2ce8b",
-          "bytes": 183414
+          "sha256": "c7c96efb850f5ff8b7d760cd6a887521b9d24298d8be09c6f51b1f070b7be2be",
+          "bytes": 183524
         },
         "atem": {
           "path": "ascribe/atem.html",
@@ -210,13 +210,13 @@
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "3794e0d7a31c6a9a54f0bd68377facf5f8bf7e0d66343ea5056e51c433e5a975",
+          "sha256": "e8883435c8a347dac7b6f99280c3867bc60f8f1af22f1ddb52099cf8e1d4ae44",
           "bytes": 129380
         },
         "source": {
           "path": "ascribe/source.md",
-          "sha256": "d1d9eb428bc95b75bba55e8f732408e044a5b66b2b7f8f20dd1e390cc4023707",
-          "bytes": 105632
+          "sha256": "5e4e9a088e075562eb83cc0eef2bfe2bf579566ee606dea7bc7c490ad2184ae1",
+          "bytes": 105745
         }
       },
       "edition": "0.6.0",

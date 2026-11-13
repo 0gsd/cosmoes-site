@@ -187,7 +187,7 @@ a morph volume included, is kept beside the folder and never inside it.
 | `macrocosm` | reserved ([MacroCOSM OES](https://macro.cosmoes.org/), its section 5.6) |
 | `id` | `ascribe/<hid>`: the hid is twenty-six characters of lowercase base32 (`a`–`z`, `2`–`7`), the shape of a Comprise Connect `hid` |
 | `handle` | a pseudonymous handle: lowercase words joined by hyphens (`salt-and-crumb`), never a name |
-| `summary` | one line, optional; people appear in it by role, never by name |
+| `summary` | one line, optional; people appear in it by what they are to the holder, never by name |
 | `subject` | `person`, the default when absent: the holder's own self; or `character`: the self of a subject that is not a person, kept by its holder (below) |
 | `sample` | `true` on a fixture or a demonstration, never on a real person's holograph |
 | `visibility` | `public`, `internal` or `restricted`; `internal` when absent |
@@ -443,8 +443,8 @@ names the holder by the role word `holder` and describes them by nothing else.
 An answer to a bank question writes a **node** in the container the question belongs to, or, for a question of the
 forms, a form. `settle` writes it, from the answer, after `record` has kept the holder's words verbatim on the question:
 
-- `name`: a few words of the holder's own, naming the node; `summary`: the answer, one line, people in it by role or
-  by a declared pseudonym;
+- `name`: a few words of the holder's own, naming the node; `summary`: the answer, one line, people in it by what
+  they are to the holder or by a declared pseudonym;
 - `form`: the form the answer is about, found as section 8.4 says;
 - `provenance: {mode: dialectic, sources: [D:session/<id>], confidence: <how sure the person is>}`, the confidence
   the holder gave with the answer, and `1` when they gave none and stated it plainly.
@@ -553,8 +553,8 @@ A **candidate** is an ordinary node of its kind, proposed by a reading and not y
 | `form` | a form of the holograph, a new form found as section 8.4 says, or `{pending: "<what it seems to be about>"}` |
 | `made` | the move, run and engine that proposed it ([Thym](https://thym.cosmoes.org/), its section 5.3) |
 
-Its `name` and `summary` say what the text shows in the reading's words, and name people only by role or by a declared
-pseudonym; the text's own names never enter the holograph. A candidate is proposed only from what the text says
+Its `name` and `summary` say what the text shows in the reading's words, and name people only by what they are to the holder
+or by a declared pseudonym; the text's own names never enter the holograph. A candidate is proposed only from what the text says
 (the core's `no-invention`), and each carries the span that shows it.
 
 **The holder decides.** Each candidate gets a question about it, `about: <the candidate's id>`, `why: unsure`,
@@ -627,8 +627,8 @@ It warns on:
 | a personal name | in a prose field (a `summary`, and an experience's `name`), two adjacent capitalised words neither of which is all capitals, a place word, a month or day, a sentence's opening word, or a declared pseudonym |
 
 A stretch one pattern has claimed is not claimed again, so one email address is one warning. A form with a `wiki` names
-a public subject, and its prose is not read for names. Every warning ends with the same advice: people appear by role,
-or by a pseudonym you declare.
+a public subject, and its prose is not read for names. Every warning ends with the same advice: describe people by what
+they are to you, or by a pseudonym you declare.
 
 ---
 
@@ -1394,7 +1394,8 @@ name, an email address, an id-like run of digits, an `employer` field and a stre
 ### 16.2 A writer must
 
 1. Never write a name, an email address, a phone number, a postal address, a birth date, a government id or an
-   employer's legal name, in any field, key or comment; write people by role or by a pseudonym the catalog declares.
+   employer's legal name, in any field, key or comment; write people by what they are to the holder or by a pseudonym the catalog
+   declares.
 2. Write a node only from the holder's own word: an answer, an accepted candidate, or what the holder wrote down
    (section 8, section 9); write an open question, never a guess, and never a form FEED does not have as if it did.
 3. Read only the holder's own texts into a holograph, never a text about them by anyone else.
