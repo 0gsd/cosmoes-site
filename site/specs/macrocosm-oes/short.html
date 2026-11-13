@@ -2882,8 +2882,8 @@ key, and every <a class="docs-term" href="#docs-item-t-term-module" data-term="T
 <p>A fabula's <strong>flavour</strong> is the kind of input it is the fabula of, from a closed list of three: <code>fabulan</code>, <code>fabulap</code> and
 <code>fabulac</code>. A fabula that names no flavour is a fabulan.</p>
 <p>A <strong>fabulan</strong> is the fabula of narrative or non-fiction prose: an essay, a guide, a story, a report, a page of notes.</p>
-<p>A <strong>fabulap</strong> is the fabula of poetry, metered verse or song lyrics. It adds <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">the lines</a>, the metre and the rhymes, and
-lets several readings of one line stand side by side (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>).</p>
+<p>A <strong>fabulap</strong> is the fabula of poetry, metered verse or song lyrics. It adds <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">the lines</a>, the metre, the rhymes and the
+form, and lets several readings of one line stand side by side (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>).</p>
 <p>A <strong>fabulac</strong> is the fabula of code: a folder of source, enumerated as the specification of the program it holds
 (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>).</p>
 <p><strong>Its declaration.</strong> <code>oes: fabula/1</code>. The fabula is one of the <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="A built-in is a kind of volume the core defines">built-ins</a> of the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a> (<a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>), and its <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>
@@ -3061,7 +3061,7 @@ source; a run that only settles the <a class="docs-term" href="#docs-item-t-term
 </tr>
 <tr>
 <td><code>completeness</code></td>
-<td><code>full</code>; <code>atem</code>, a fabula that holds the atem and nothing else; or <code>outline</code>, a fabulac's rules-only skeleton (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
+<td><code>full</code>; <code>atem</code>, a fabula that holds the atem and nothing else; or <code>outline</code>, a rules-only skeleton: a fabulac's (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>), or a fabulap's, its lines, sounds and form with nothing read for meaning (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>)</td>
 <td>always</td>
 </tr>
 <tr>
@@ -3225,7 +3225,7 @@ modification time. The <strong>tree digest</strong> is computed exactly as follo
 <td>Construction</td>
 <td>construction</td>
 <td>how the work is built</td>
-<td>prose and verse: <code>part</code>, <code>device</code>, <code>voice</code>; verse only: <code>line</code>, <code>metre</code>, <code>rhyme</code>; code: <code>file</code>, <code>component</code>, <code>interface</code>, <code>structure</code>, <code>behaviour</code>, <code>dependency</code>, <code>setting</code></td>
+<td>prose and verse: <code>part</code>, <code>device</code>, <code>voice</code>; verse only: <code>line</code>, <code>metre</code>, <code>rhyme</code>, <code>form</code>; code: <code>file</code>, <code>component</code>, <code>interface</code>, <code>structure</code>, <code>behaviour</code>, <code>dependency</code>, <code>setting</code></td>
 </tr>
 <tr>
 <td>R</td>
@@ -3378,7 +3378,7 @@ fabula, and a literal otherwise.</p>
 <td>a figure or technique at a place</td>
 <td>n p</td>
 <td><code>where</code></td>
-<td><code>stance</code>, <code>figure</code>, <code>effect</code></td>
+<td><code>stance</code>, <code>figure</code>, <code>effect</code>, <code>cue</code>, <code>senses</code>, <code>intended</code></td>
 </tr>
 <tr>
 <td><code>C:voice</code></td>
@@ -3407,6 +3407,13 @@ fabula, and a literal otherwise.</p>
 <td>p</td>
 <td><code>lines</code></td>
 <td><code>stance</code>, <code>scheme</code>, <code>sound</code>, <code>quality</code>, <code>placement</code></td>
+</tr>
+<tr>
+<td><code>C:form</code></td>
+<td>the form a poem keeps: a sonnet, a villanelle, a ballad stanza, free verse</td>
+<td>p</td>
+<td><code>parts</code>, <code>metre</code>, <code>departures.at</code></td>
+<td><code>stance</code>, <code>form</code>, <code>scheme</code>, <code>rules</code>, <code>intended</code></td>
 </tr>
 <tr>
 <td><code>C:file</code></td>
@@ -3611,7 +3618,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:device</code></td>
-<td><strong><code>figure</code></strong> <em>text</em>, an open word (<code>apostrophe</code>, <code>metaphor</code>, <code>symbol</code>, <code>alliteration</code>, <code>anaphora</code>, <code>irony</code>, <code>personification</code>, <code>appeal to authority</code> …); <code>where</code> <em>refs</em> (<code>C:line</code>, <code>C:part</code>, <code>L:term</code>, <code>P:claim</code>); <code>effect</code> <em>text</em></td>
+<td><strong><code>figure</code></strong> <em>text</em>, an open word (<code>apostrophe</code>, <code>metaphor</code>, <code>symbol</code>, <code>image</code>, <code>alliteration</code>, <code>anaphora</code>, <code>refrain</code>, <code>caesura</code>, <code>turn</code>, <code>hook</code>, <code>irony</code>, <code>personification</code>, <code>appeal to authority</code> …); <code>where</code> <em>refs</em> (<code>C:line</code>, <code>C:part</code>, <code>L:term</code>, <code>P:claim</code>); <code>effect</code> <em>text</em>; <code>cue</code> <em>text</em>, the words that carry it, at most 60 characters; <code>senses</code>, for an image, a list from [<code>sight</code> <code>hearing</code> <code>touch</code> <code>taste</code> <code>smell</code> <code>movement</code>]; <code>intended</code> <em>bool</em>, whether the author meant it, absent until asked</td>
 </tr>
 <tr>
 <td><code>C:voice</code></td>
@@ -3628,6 +3635,10 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 <tr>
 <td><code>C:rhyme</code></td>
 <td><code>scheme</code> <em>text</em>, the letter; <code>sound</code> <em>text</em>; <code>lines</code> <em>refs</em> <code>C:line</code>; <code>quality</code> [<code>full</code> <code>slant</code> <code>eye</code> <code>identical</code>]; <code>placement</code> [<code>end</code> <code>internal</code>]</td>
+</tr>
+<tr>
+<td><code>C:form</code></td>
+<td><strong><code>form</code></strong> <em>text</em>: a form's name from the table of <a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a> (<code>Shakespearean sonnet</code>, <code>villanelle</code>, <code>ballad stanza</code>, <code>free verse</code>), else the poem's shape in plain words (<code>four quatrains, rhymed abcb</code>); <code>parts</code> <em>refs</em> <code>C:part</code>; <code>metre</code> <em>ref</em> <code>C:metre</code>; <code>scheme</code> <em>text</em>, the rhyme scheme, a space between stanzas (<code>abab cdcd efef gg</code>); <code>rules</code>, a list of <code>{rule, held}</code>, what the form asks (<code>fourteen lines</code>, <code>a turn at line 9</code>) and whether the poem keeps it, <code>held</code> a <em>bool</em>; <code>departures</code>, a list of <code>{at, what}</code>, <code>at</code> a <code>C:line</code> or a <code>C:part</code>; <code>intended</code> <em>bool</em>, whether the author meant the form, absent until asked</td>
 </tr>
 <tr>
 <td><code>C:file</code></td>
@@ -3900,9 +3911,9 @@ order given, a compile uses <code>told</code> when the fabula names a source tex
 fabula. Without a model a short is the ordered outline itself, said in the items' own sentences; with one, a model
 writes the outline as prose and is told which order it is in. A third order, the events first in the order they
 happened, is reserved for a later edition.</p>
-<p>A short of a fabulap (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>) goes stanza by stanza: how the poem is built, then each stanza's lines with
-their stresses and rhymes (their words only where the fabulap holds them), its devices and its readings, each reading
-said as whose it is. Told by weight, it ends with how the poem can be read.</p>
+<p>A short of a fabulap (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>) goes stanza by stanza: how the poem is built, its form and its metre, then each
+stanza's lines with their stresses and rhymes (their words only where the fabulap holds them), its devices and its
+readings, each reading said as whose it is. Told by weight, it ends with how the poem can be read.</p>
 <p><strong>The file.</strong> A short is written beside its text as <code>&lt;text-stem&gt;.short-&lt;YYYY-MM-DD-HHMM&gt;.md</code>, in local time:
 <code>notes.md</code> gives <code>notes.short-2026-10-23-1042.md</code>. The stem is the text's, whatever the twin is called: the twins
 <code>close.md.fabulan.cosm</code> and <code>close.md.cosm</code> both give <code>close.short-…md</code>, and a standalone <code>rain.fabulan.cosm</code> gives
@@ -4272,11 +4283,226 @@ speaks, what an image stands for, whether an ambiguity is meant, what was cut fr
 after the poet an expert in the poet's work. The fabulap's <a class="docs-term" href="#docs-item-t-term-bank" data-term="T:term/bank" title="A bank is a format's list of opening questions, kept in its manifest's dialectic">bank</a> of opening questions asks the author these things, and
 when the author cannot be asked the questions go <code>to: expert</code>. This is what the dialectic is for (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>). Until
 a question is answered, its <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> stays pending and the readings stay side by side.</p>
+<p><strong>What a full fabulap holds.</strong> A fabulap made at its best guess holds what one reading finds. A full one is built by
+Thym's helper moves for verse, <code>scan</code> by rule and <code>construe</code> by a model (Thym (https://thym.cosmoes.org/), its section
+20.9), and holds the poem along eight axes:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>What the fabulap holds</th>
+<th>Kinds</th>
+<th>Made by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sound</td>
+<td>each line's stresses and syllables; the end and inner rhymes, and the scheme; alliteration, assonance, consonance</td>
+<td><code>C:line</code>, <code>C:rhyme</code>, <code>C:device</code></td>
+<td>rule, from FEED's pronunciations</td>
+</tr>
+<tr>
+<td>form</td>
+<td>the metre and its departures; the form the poem keeps, with each of its rules held or broken; where lines run on, and where they pause</td>
+<td><code>C:metre</code>, <code>C:form</code>, <code>C:line</code>, <code>C:device</code></td>
+<td>rule</td>
+</tr>
+<tr>
+<td>structure</td>
+<td>the stanzas and a lyric's sections; refrains, repeated lines and openings, the hook; where the poem turns; what happens in it, in order</td>
+<td><code>C:part</code>, <code>C:device</code>, <code>T:event</code></td>
+<td>rule; the turn and the events by a model</td>
+</tr>
+<tr>
+<td>sense</td>
+<td>the words it leans on and their senses, the things and people it names, the ideas it uses, what it states outright, each stanza's <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a></td>
+<td>L, E, K, <code>P:claim</code>, X</td>
+<td>a model, grounded in FEED</td>
+</tr>
+<tr>
+<td>figure</td>
+<td>its figures, and its images with the senses they reach</td>
+<td><code>C:device</code></td>
+<td>a model</td>
+</tr>
+<tr>
+<td>voice</td>
+<td>who speaks, to whom, before whom, in which person, in what tone and register, and where the voice shifts</td>
+<td><code>C:voice</code></td>
+<td>a model; the speaker is asked</td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-reference" data-term="T:term/reference" title="an id written in a reference field: a foreign key">reference</a></td>
+<td>what it echoes, the traditions and genres it answers to, its occasion, its maker and where it appeared</td>
+<td>I, <code>R:maker</code>, <code>R:release</code>, <code>R:licence</code></td>
+<td>a model, from the poem and its header only</td>
+</tr>
+<tr>
+<td>what is left open</td>
+<td>its readings, side by side; the words and lines that hold two senses; what it never names; and what the author meant, which only the author says</td>
+<td><code>P:reading</code>, <code>L:term</code>, <code>D:question</code></td>
+<td>a model, then the dialectic</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>What a rule reads exactly is <code>observed</code>, and what it reads through FEED's pronunciations is <code>deduced</code>. What a model
+writes keeps the <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> the poem gives it: a reading is the model's <code>opinion</code>, at a confidence of at most 0.5, and an
+aim, an occasion or an influence the poem does not state is <code>assumed</code>, pending, and asked (Thym, its section 20.9).</p>
+<p><strong>Its forms.</strong> A rule names a form when the poem keeps the form's defining rules, the first in this table that it
+keeps, and lists the form's other rules as held or not, with the lines or <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">parts</a> that depart from them:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Defining rules</th>
+<th>Other rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shakespearean sonnet</td>
+<td>14 lines; three quatrains and a couplet, as the rhymes run (<code>abab cdcd efef gg</code>)</td>
+<td>iambic pentameter; a turn at line 13</td>
+</tr>
+<tr>
+<td>Petrarchan sonnet</td>
+<td>14 lines; an octave rhymed <code>abbaabba</code></td>
+<td>a sestet on two or three sounds (<code>cdecde</code>, <code>cdcdcd</code>); iambic pentameter; a turn at line 9</td>
+</tr>
+<tr>
+<td>sonnet</td>
+<td>14 lines of pentameter, rhymed otherwise</td>
+<td>a turn</td>
+</tr>
+<tr>
+<td>villanelle</td>
+<td>19 lines: five tercets and a quatrain</td>
+<td><code>aba</code> throughout and <code>abaa</code> last; line 1 again at lines 6, 12 and 18, and line 3 at 9, 15 and 19</td>
+</tr>
+<tr>
+<td>sestina</td>
+<td>39 lines: six sestets and a tercet</td>
+<td>the first stanza's six end words end every stanza's lines, each stanza taking them in the order 6 1 5 2 4 3 of the one before; all six in the tercet</td>
+</tr>
+<tr>
+<td>terza rima</td>
+<td>tercets, each one's middle line rhyming with the outer lines of the next (<code>aba bcb cdc</code>)</td>
+<td>iambic pentameter; a closing line or couplet</td>
+</tr>
+<tr>
+<td>rhyme royal</td>
+<td>stanzas of 7 lines rhymed <code>ababbcc</code></td>
+<td>iambic pentameter</td>
+</tr>
+<tr>
+<td>ottava rima</td>
+<td>stanzas of 8 lines rhymed <code>abababcc</code></td>
+<td>iambic pentameter</td>
+</tr>
+<tr>
+<td>Spenserian stanza</td>
+<td>stanzas of 9 lines rhymed <code>ababbcbcc</code></td>
+<td>eight lines of iambic pentameter, then one of six feet</td>
+</tr>
+<tr>
+<td>common metre</td>
+<td>quatrains of 8, 6, 8 and 6 syllables</td>
+<td>iambic; the second and fourth lines rhyme</td>
+</tr>
+<tr>
+<td>long metre</td>
+<td>quatrains of 8 syllables a line</td>
+<td>iambic tetrameter; <code>abab</code> or <code>aabb</code></td>
+</tr>
+<tr>
+<td><a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a> metre</td>
+<td>quatrains of 6, 6, 8 and 6 syllables</td>
+<td>iambic; the second and fourth lines rhyme</td>
+</tr>
+<tr>
+<td>ballad stanza</td>
+<td>quatrains of four beats and three, alternating</td>
+<td>the second and fourth lines rhyme</td>
+</tr>
+<tr>
+<td>limerick</td>
+<td>5 lines rhymed <code>aabba</code></td>
+<td>three beats in lines 1, 2 and 5, two in lines 3 and 4; feet of anapaests</td>
+</tr>
+<tr>
+<td>triolet</td>
+<td>8 lines on two rhymes</td>
+<td>line 1 again at lines 4 and 7, and line 2 at 8</td>
+</tr>
+<tr>
+<td>pantoum</td>
+<td>quatrains, lines 2 and 4 of each coming back as lines 1 and 3 of the next</td>
+<td>the last stanza ends on the poem's first line</td>
+</tr>
+<tr>
+<td>ghazal</td>
+<td>five couplets or more</td>
+<td>every couplet's second line ends on the same word or words, as both lines of the first do</td>
+</tr>
+<tr>
+<td>heroic couplets</td>
+<td>rhymed couplets of pentameter (<code>aabbcc …</code>)</td>
+<td>iambic</td>
+</tr>
+<tr>
+<td>haiku</td>
+<td>3 lines</td>
+<td>5, 7 and 5 syllables; no rhyme</td>
+</tr>
+<tr>
+<td>blank verse</td>
+<td>10 lines or more of iambic pentameter</td>
+<td>no rhyme scheme</td>
+</tr>
+<tr>
+<td>free verse</td>
+<td>no metre (<code>basis: free</code>) and no rhyme scheme</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The thresholds behind each rule are the conformance suite's. Syllables and beats are counted in English, through FEED,
+so a haiku is counted by English syllables. A poem that keeps no form of the table is named by its shape (<code>four quatrains, rhymed abcb</code>). The table is this edition's, and a later one may add to it.</p>
+<p><strong>The questions.</strong> The fabulap's bank asks the author, or an expert in the author's work when the author cannot be
+asked, along the same axes: what set the poem going and what was in the author's ear (inspiration); what a reader
+should feel by the last line, and what the poem is careful not to say (intent); who speaks, to whom, and whether the
+voice shifts (voice); how a line is read aloud, and whether a break, a sound, a departure from the metre or the form
+itself was meant (sound and form); which image weighs most and what a figure stands for (figure); whether an echo was
+meant and, when the author cannot be asked, whether every word is as the author left it (reference); whether a reading
+was meant, and which the author would refuse (what is left open); and, for a song, what it is sung to and where the
+tune moves a word (a lyric). Each question names the item it is about, and its answer is written as <a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>
+says: an answer that the author meant a reading, a device or a form sets its <code>intended</code>.</p>
+<p><strong>A lyric.</strong> A song's words are verse, and a fabulap holds them as it holds a poem's, with three things more. Its
+sections are the parts a lyric sheet labels, verse, chorus, bridge and the rest, and a chorus that comes back is one part
+sung again. Its hook, the line a listener keeps, is found by rule as the line said most often, held as a guess, and
+asked. Its sung line is not its spoken line: the fabulap scans the words as they are spoken, and says so. Without the
+music a fabulap cannot know the melody, where the tune puts a word's stress or holds one syllable over several notes,
+the rhythm and the pace of the setting, its harmony, which lines are sung and which spoken, or what a singer adds or
+repeats. It holds what the author or an expert says of them: the tune as an <code>R:means</code> and its maker as an <code>R:maker</code> of
+capacity <code>composer</code>, a recording or a performance as an <code>R:release</code>, and a stress the tune moves as a <code>C:device</code> at its
+line; never the notes.</p>
+<p><strong>What it leaves out.</strong> This edition's fabulap does not hold the music of a song (above); the poem on the page beyond
+its lines and stanzas (indentation, spacing, the shape the lines make, type, and the marks a line's text keeps when it is
+written); prosody beyond stress (the length of syllables, pitch and pace) and every prosody but English's, which FEED
+reads; the poem's life outside its text (drafts, variants, editions, translations, letters, the poet's life), which
+reaches a fabulap only as an answer; readings in a school's name, which reach it only as a named critic's or a reader's
+own; and a measure of the poem's style against the null morph, whose scales read prose (Thym, its section 13). Each is a
+place a later edition can add to, by declaration (Thym, its section 20.9).</p>
 <p><strong>A line's text is stored only when the source may be copied.</strong> <code>C:line.text</code> is written only when the person says the
 poem may be copied: it is their own work, or it is out of copyright. Otherwise the line's <code>span</code> is the pointer, and
 the fabulap holds the line's number, stresses and rhyme without its words. Nor are its words in its <code>name</code>: a line whose
 text is not written is named by its number (<code>line 5</code>). Single words the fabulap needs elsewhere, a term, a rhyme's
-sounds, an allusion's cue, are not the line's words, and are kept. A line's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is that of its words; how sure its
+sounds, an allusion's cue, are not the line's words, and are kept. A line's stance is that of its words; how sure its
 scansion is shows in its provenance's <code>confidence</code>. Nothing is ever fetched: a fabulap is made from the copy of the
 poem on the person's disk, and no implementation goes looking for a text, a draft or a critic's reading.</p>
 <p>The kinds' fields are in <a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>.</p>
@@ -4295,7 +4521,7 @@ Of crimson joy:
 And his dark secret love
 Does thy life destroy.
 </code></pre>
-<p>Its fabulap, <code>poems/the-sick-rose.txt.fabulap.cosm</code>, made on a cloud model. To keep the example <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a> it holds the
+<p>Its fabulap, <code>poems/the-sick-rose.txt.fabulap.cosm</code>, made on a cloud model. To keep the example short it holds the
 lines of the second stanza only; a complete fabulap holds a <code>C:line</code> for every line of the poem. Two rival readings of
 the worm stand side by side, the model's own and a critic's whose name is still a question, and three questions wait
 for an expert in Blake's work, since the author cannot be asked. The lines' text is written because the poem is in the
