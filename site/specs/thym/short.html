@@ -3,7 +3,7 @@
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
 <h1 id="docs-thym">Thym</h1>
-<p><em>Edition 0.6.0 · revised 2026-11-06 · cosmoes.org home: https://<a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">thym</a>.cosmoes.org/</em></p>
+<p><em>Edition 0.7.0 · revised 2026-11-13 · cosmoes.org home: https://<a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">thym</a>.cosmoes.org/</em></p>
 <p><em>This edition describes the <code>thym/1</code> built-in and defines the language in two grammars; a program's version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a>, <code>thym 0</code> or <code>thym 1</code>, names the grammar it is written in.</em></p>
 <p>Thym is the transcognition language that connects OESes, with its compiler and its runtime: programs compose named
 moves over values typed by density, carrying meaning from one volume to another, whether the volume is a text's fabula,
@@ -3998,18 +3998,44 @@ section it touched.</p>
 </section>
 <section class="docs-sec" data-key="S:section/25" data-scope="">
 <h2 id="docs-sec-25" data-toc="2">25. Changes</h2>
+<p><strong>Edition 0.7.0 · 2026-11-13.</strong> <code>tell</code> is <code>entail</code>, and a poem is decompiled in steps.</p>
+<ol>
+<li><strong><code>entail</code>, once <code>tell</code></strong> (<a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>). The move that makes a short of a fabula is spelled <code>entail</code>. <code>tell</code> names
+the same move under <code>thym 0</code> and <code>thym 1</code> alike and for good, and <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a> to the same items, <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> and contract; the
+compiler reads it and never writes it, so a step, a plan, a record and a value's <code>made</code> say <code>entail</code>, and a trace
+recorded with <code>move: tell</code> reads as <code>entail</code>. No version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> marks the <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a>. <code>entail</code> is reserved from 0.7 and
+<code>tell</code> stays reserved, so a program that used <code>entail</code> as a name must rename it (<a class="ref-xref" href="#docs-sec-4-7">section 4.7</a>); none is known.</li>
+<li><strong>Entailment.</strong> Each step from a text to its fabula, a short and an atem is an entailment, the step that expands
+meaning by reducing data (How to read this). A projection is an entailment made by rule and holds by construction;
+what <code>entail</code> makes holds only because <code>coverage</code>, <code>no-invention</code> and <code>stance-kept</code> hold it: <code>project</code> transcodes,
+and <code>entail</code> transcognizes (<a class="ref-xref" href="#docs-sec-18">section 18</a>). The <a class="docs-term" href="#docs-item-t-term-null-morph" data-term="T:term/null-morph" title="Thym's reference entailment of a fabula">null morph</a> is <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a>'s reference entailment of a fabula (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
+<li><strong>The fabulap's helper moves</strong> (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>, new; <a class="ref-xref" href="#docs-sec-20">section 20</a> is &quot;<a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">Folders</a>, code and verse&quot;). <code>scan</code> reads a poem by
+rule and asks no model, <code>as</code> rhyme, sound, recurrence or form; <code>construe</code> asks a model under contract, <code>as</code> figure,
+image, allusion, voice, turn, meaning or ambiguity. Both carry <code>since: 1</code> and are reserved in a <code>thym 1</code> program
+(<a class="ref-xref" href="#docs-sec-4-7">sections 4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a>). The full fabulap is one file of five programs, <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> by a host as one job that takes up again
+after the last that landed; under <code>--rules</code> a host runs the first two, and <code>construe</code> refuses at plan time (<a class="ref-xref" href="#docs-sec-19">section
+19</a>). A manifest may add an <code>as</code> word to either move by declaration.</li>
+<li><strong>Four checks for verse</strong> (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>): <code>lines-found</code>, <code>scansion-grounded</code>, <code>sound-grounded</code> and <code>form-grounded</code>.
+<code>coverage</code>, <code>no-invention</code> and <code>stance-kept</code> have a <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: an entailment of a fabula in the reader's morph">reading</a> for verse, which <code>construe</code> keeps. <code>flavour</code> takes only a
+fabulap for <code>scan … with</code>, <code>construe … with</code> and <code>derive … as verse with</code>, and the last also keeps <code>nothing-lost</code>.</li>
+<li><strong><code>project h as allograph</code></strong> (<a class="ref-xref" href="#docs-sec-18">section 18</a>): Ascribe's second projection, the one thing of a holograph a registry
+lists. Listing it is the implementation's act after the run, and no move sends anything to a registry. Ascribe
+makes match tokens no more, so no move is reserved for them.</li>
+<li><strong>Stewardship.</strong> The text is licensed under CC BY 4.0, the author makes the OWFa 1.0 promise, and the names are not
+licensed (<a class="ref-xref" href="#docs-sec-1-3">section 1.3</a> and the colophon).</li>
+</ol>
 <p><strong>Edition 0.6.0 · 2026-11-06.</strong> The language gains a second grammar, and the text follows MacroCOSM's new taxonomy.</p>
 <ol>
-<li><strong><code>thym 1</code>, the second grammar, is a superset of <code>thym 0</code>'s syntax</strong> (<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>). A <code>thym 0</code> program <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a> and
-<a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> unchanged, against the <code>thym 0</code> view of every declaration; new syntax, or a move only <code>thym 1</code> sees, under a
-<code>thym 0</code> <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> is refused with &quot;this needs <code>thym 1</code>&quot;. This edition's moves carry <code>since: 1</code>. A <code>thym 0</code> program may not
-<code>use</code> a <code>thym 1</code> file. Relabelling a <code>thym 0</code> program as <code>thym 1</code> can <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a> the order of the items a loop of several
+<li><strong><code>thym 1</code>, the second grammar, is a superset of <code>thym 0</code>'s syntax</strong> (<a class="ref-xref" href="#docs-sec-4-9">section 4.9</a>). A <code>thym 0</code> program compiles and
+runs unchanged, against the <code>thym 0</code> view of every declaration; new syntax, or a move only <code>thym 1</code> sees, under a
+<code>thym 0</code> line is refused with &quot;this needs <code>thym 1</code>&quot;. This edition's moves carry <code>since: 1</code>. A <code>thym 0</code> program may not
+<code>use</code> a <code>thym 1</code> file. Relabelling a <code>thym 0</code> program as <code>thym 1</code> can change the order of the items a loop of several
 statements emits.</li>
 <li><strong>Corrected in both versions:</strong> a call nested inside a statement of a loop's body is part of that statement's node
 and is evaluated with each member (<a class="ref-xref" href="#docs-sec-11-1">section 11.1</a>). Two kinds of program that compiled clean under edition 0.5.4 and
 ran wrong run right in this edition. Under <code>thym 1</code> a loop over a collection known only at run time is one node;
 under <code>thym 0</code> the three such loops that would still run wrong are refused at run, with the fix (<a class="ref-xref" href="#docs-sec-8-1">section 8.1</a>).</li>
-<li><strong><code>folder</code> is a type</strong> (<a class="ref-xref" href="#docs-sec-20">section 20</a>), read under one fixed rule, with MacroCOSM's <a class="docs-term" href="#docs-item-t-term-tree-digest" data-term="T:term/tree-digest" title="MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it">tree digest</a>. A run snapshots every <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> it
+<li><strong><code>folder</code> is a type</strong> (<a class="ref-xref" href="#docs-sec-20">section 20</a>), read under one fixed rule, with MacroCOSM's <a class="docs-term" href="#docs-item-t-term-tree-digest" data-term="T:term/tree-digest" title="MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it">tree digest</a>. A run snapshots every folder it
 takes, so a replay needs no repository.</li>
 <li><strong>A loop collects</strong> with <code>let … = for each … keep … end</code> (<a class="ref-xref" href="#docs-sec-8-1">section 8.1</a>).</li>
 <li><strong>A program may define a check as a <code>contract</code> block</strong>, and a move or a program <code>keeps</code> it (<a class="ref-xref" href="#docs-sec-7-5">section 7.5</a>). A failed
@@ -4020,7 +4046,7 @@ kept contract asks the model again within the node's attempts. Its items are <co
 <li><strong>The dialectic is two atomic runs</strong> (<a class="ref-xref" href="#docs-sec-22">section 22</a>): <code>question</code> lands questions, and <code>record</code> and <code>settle</code> land the
 answers. No run waits on a person.</li>
 <li><strong>A model-backed step runs on the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> chosen for its run</strong> (<a class="ref-xref" href="#docs-sec-23">section 23</a>). <code>made</code>, the candidate and the trace say
-which route, provider and model; a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> says how many model calls it will make; <code>--model</code> and <code>--calls</code> choose and
+which route, provider and model; a plan says how many model calls it will make; <code>--model</code> and <code>--calls</code> choose and
 bound them; agent-free refuses a cloud model as it refuses a local one (<a class="ref-xref" href="#docs-sec-19">section 19</a>). The contract is one.</li>
 <li><strong>Refusals name the statement as written and the person's names</strong> (<a class="ref-xref" href="#docs-sec-9">section 9</a>), never a node or a temporary.</li>
 <li><strong><code>emf-checks</code> is <code>fabula-checks</code>.</strong> The old name is read wherever it is written, and a <code>thym 0</code> program's
@@ -4031,7 +4057,7 @@ so is Ascribe's <code>propose</code> (<a class="ref-xref" href="#docs-sec-6-3">s
 one input of a program that takes one, and a list input is given member by member (<a class="ref-xref" href="#docs-sec-4-5">sections 4.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-11-3">11.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-12-1">12.1</a>).</li>
 <li><strong><a class="ref-xref" href="#docs-sec-20">Sections 20</a> to <a class="ref-xref ref-xref-num" href="#docs-sec-23">23</a> are new.</strong> Conformance, Changes and Withdrawn, <a class="ref-xref" href="#docs-sec-20">sections 20</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-22">22</a> of edition 0.5.4, are
 <a class="ref-xref" href="#docs-sec-24">sections 24</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-25">25</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-26">26</a>, and the entry below names them by their numbers in this edition.</li>
-<li><strong>The taxonomy.</strong> <a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> is the transcognition language that connects OESes; <code>thym/1</code> is a built-in of MacroCOSM's
+<li><strong>The taxonomy.</strong> Thym is the transcognition language that connects OESes; <code>thym/1</code> is a built-in of MacroCOSM's
 core, specified here, and is no longer called a MiniCOSM (<a class="ref-xref" href="#docs-sec-17">section 17</a>); the built-ins and the MiniCOSMs declare moves
 (<a class="ref-xref" href="#docs-sec-3">sections 3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-6-2">6.2</a>). The name EMF is retired: a text's fabula, its twin, is a <code>fabula/1</code> volume, and <code>oes: emf/1</code>
 reads as a fabulan.</li>
@@ -4076,7 +4102,7 @@ unchanged.</li>
 </ul>
 <p><strong>Version 0 · 2026-11-01.</strong> The first version of the language, whose grammar the version line <code>thym 0</code> names. The
 reference compiler and runtime passed the conformance suite the same day, with a real-model run that replays. Two
-<a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: an entailment of a fabula in the reader's morph">readings</a> of the text were corrected on the way and folded into their sections: <code>stance-kept</code> reads a claim across every
+readings of the text were corrected on the way and folded into their sections: <code>stance-kept</code> reads a claim across every
 sentence that cites it (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>), and the null telling's <code>register</code> exempts its fabula's own words (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>).
 The decisions of the version:</p>
 <ol>
@@ -4095,7 +4121,7 @@ person can read and refuse.</li>
 <li><strong>Nothing partial</strong>, at compile time or at run time.</li>
 <li><strong>Programs are documents</strong>, with <code>why</code>, <code>must</code> and <code>decided</code>, enumerated like a manual; the file is the source of
 truth.</li>
-<li><strong>The <a class="docs-term" href="#docs-item-t-term-null-morph" data-term="T:term/null-morph" title="Thym's reference entailment of a fabula">null morph</a> is the reference telling</strong>, and a morph is a measured departure from it on ten scales; <code>formality</code>
+<li><strong>The null morph is the reference telling</strong>, and a morph is a measured departure from it on ten scales; <code>formality</code>
 alone carries a direction, and <code>analytical-depth</code> is carried from the fabula.</li>
 <li><strong>Readings are local, labelled and never the source.</strong></li>
 <li><strong>A package is self-contained</strong>: a folder, a single file, or encrypted with a key that never leaves the owner.</li>

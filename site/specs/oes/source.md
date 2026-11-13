@@ -1,6 +1,6 @@
 # The OES specifications
 
-*Edition 0.6.0 · revised 2026-11-06 · cosmoes.org home: https://cosmoes.org/*
+*Edition 0.7.0 · revised 2026-11-13 · cosmoes.org home: https://cosmoes.org/*
 
 An OES, an organizational enumeration system, describes a domain by enumerating everything in it. It is written as
 plain-text files that are at once a file system and a relational database, made to be rendered. This page says what
@@ -196,7 +196,7 @@ them) is reserved for a later edition.
 
 <!-- atem: editions, revisions, format versions and the canonical pages -->
 
-An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.6.0; the
+An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.7.0; the
 status line says so. An edition is the text's, not the format's: a format's version (`thym/1`, `ascribe/1`,
 `comprise/1`, the grammar version MacroCOSM OES names) is a line in the files a program reads, and each text's status
 line names the one it describes. The canonical edition of each text is the page at its home; a copy an application ships
@@ -227,18 +227,24 @@ never sold, and neither is the way out of it: no product and no account stands b
 
 <!-- atem: what each edition changed, newest first -->
 
-1. **Edition 0.6.0 (2026-11-06): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
+1. **Edition 0.7.0 (2026-11-13): entailment, the allograph and the licence.** Each step of the model is an
+   entailment, which expands meaning by reducing data, and a Holotype entails its isotype by rule (section 3); the
+   model's table, the parts table and the picture call a short an entailment of its fabula (sections 3, 4 and 8).
+   Ascribe's entry names the allograph and the Allograph Registry (section 7), and the picture draws the allograph
+   beside the isotype and the isograph. The colophon licenses the text under CC BY 4.0, makes the OWFa 1.0 promise and
+   holds the names.
+2. **Edition 0.6.0 (2026-11-06): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
    MiniCOSMs, Comprise OES and Ascribe; Thym connects OESes. Section 2 is "Scales"; section 3, the model, is added, and
    sections 3 to 10 become 4 to 11; the parts table gains the densities and the dialectic; the fabula replaces EMF; the picture is redrawn; the colophon names the
    steward.
-2. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
+3. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
    cosmoes.org itself, named *The OES specifications*; the edition is a field in the status line. Section 6 is rewritten
    for the four specifications and the registered MiniCOSMs; the first form's sections 7 (connections to a wider
    ecosystem), 9 (a status table) and 10 (a repository listing) are removed, what survives of 7 folded into section 6,
    and the picture (section 8 in the first form) becomes section 7 and is redrawn; sections 8, 9 and 10 (editions,
    implementations, open formats) are added; *volume* replaces *database* for one instance of a MiniCOSM, as MacroCOSM
    OES uses it; repository paths, plans and what was built at a date are removed.
-3. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
+4. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
    sections 1 to 6 and the picture in their first form, a section on connections to a wider ecosystem, a status table
    of what was built and a listing of the folder it was written in. Comprise OES was the only MiniCOSM specified and
    MacroCOSM was drawn from it in outline.

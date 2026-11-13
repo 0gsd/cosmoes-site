@@ -3,7 +3,7 @@
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
 <h1 id="docs-comprise-oes">Comprise OES</h1>
-<p><em>Edition 0.6.0 · revised 2026-11-06 · cosmoes.org home: https://comprise.cosmoes.org/</em></p>
+<p><em>Edition 0.7.0 · revised 2026-11-13 · cosmoes.org home: https://comprise.cosmoes.org/</em></p>
 <p><em>This edition describes the <code>comprise/1</code> MiniCOSM: a catalog declaring <code>oes: comprise/1</code>, with P files headed
 <code>cosm: 0.3</code>, the isotype <code>comprise-isotype/0</code>, the outside chart <code>comprise-paratype/0</code>, the backup <code>comprise-bundle/0</code>,
 and the sealed package as a <code>thym/1</code> package.</em></p>
@@ -3473,6 +3473,19 @@ conditions; the fourteen rules.</p>
 <h2 id="docs-sec-14" data-toc="2">14. Changes</h2>
 <p>Newest first. An entry records what changed in the text; where an implementation and this text had disagreed, it says
 which was corrected.</p>
+<p><strong>Edition 0.7.0 · 2026-11-13.</strong></p>
+<ol>
+<li><strong>Entailment</strong> (11.3). A release is an entailment made by rule: the Holotype entails its isotype, and what is
+projected holds by construction. The line built by rule from an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s summary and its public children is
+<code>offers[].entailed</code>, <code>seeks[].entailed</code> and <code>open_to[].entailed</code>, and the move that writes it is <code>entailment</code>; <code>told</code>
+and <code>telling</code>, their earlier spellings, are read for good and never written (11.3, 13.1).</li>
+<li><strong>Beside the Index, the Allograph Registry</strong> (11.3). Comprise Connect also serves Ascribe's registry, with the
+Index's accounts, passkeys and rate limits. A company listed on the Index may own an agent listed there and may
+attest work a person or an agent did for it, by a statement signed with the key that signs its current isotype; the
+registry names the company by its Index handle and holds nothing of its Holotype.</li>
+<li><strong>Stewardship.</strong> The colophon licenses the text under CC BY 4.0 and makes the OWFa 1.0 promise for it; the names of
+the family are not licensed, and the author holds them for now.</li>
+</ol>
 <p><strong>Edition 0.6.0 · 2026-11-06.</strong></p>
 <ol>
 <li><strong>Where Comprise OES stands.</strong> The lead says there are two MiniCOSMs, Comprise OES and Ascribe, both written in
@@ -3491,7 +3504,7 @@ path (6.4.8).</li>
 OES reads a fabulac and never builds one. A saved version copies <code>codebases/</code> (<a class="ref-xref" href="#docs-sec-10">section 10</a>).</li>
 <li><strong><code>P:release</code> is resolved.</strong> The first edition recorded a disagreement: <code>P:release</code> declared in the schema and
 rejected by P's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="lint, equilibrium rules">checks</a> as an unknown <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="kind, called type in the files">kind</a>. In this edition P's checks know <code>release</code>, a kind outside the levels:
-no parts, in no <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="item, called node in the files">item</a>'s parts, naming its unit, its visibility its unit's (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>, <a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>; in <a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>, <code>type</code>, <code>orphan</code> and
+no parts, in no item's parts, naming its unit, its visibility its unit's (<a class="ref-xref" href="#docs-p-2-levels-strata">P.2</a>, <a class="ref-xref" href="#docs-p-3-1-identity">P.3.1</a>; in <a class="ref-xref" href="#docs-p-9-p-s-checks">P.9</a>, <code>type</code>, <code>orphan</code> and
 the new <code>release</code>). The reference implementation's checks were corrected.</li>
 <li><strong><code>access</code> is described</strong> (chapter E): one row per person per <a class="docs-term" href="#docs-item-t-term-concern" data-term="T:term/concern" title="one bounded whole, described on its own">concern</a> holding a level, and for a steward the
 modules; it holds no personal data and is not sealed. <a class="ref-xref" href="#docs-sec-2-8">Section 2.8</a> says it is the people tables' personal fields
