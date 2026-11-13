@@ -247,6 +247,9 @@ never sold, and neither is the way out of it: no product and no account stands b
 
 <!-- atem: copyright, the canonical edition and its source -->
 
-The OES specifications — Copyright © 2026 Graham Smith. All rights reserved. *The OES specifications* is stewarded by
-Verroes (Graham Smith). The canonical edition is published at https://cosmoes.org/; its source and history are at
-https://github.com/0gsd/cosmoes-site.
+The OES specifications — Copyright © 2026 Graham Smith. The text is licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/). A copy carries the author, Graham Smith; the text's name and edition; and a
+link to its home, https://cosmoes.org/. For *The OES specifications*, the author makes the Open Web Foundation Final
+Specification Agreement 1.0 (OWFa 1.0) promise (https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0). The names of the family are not licensed by either; the author
+holds them for now. *The OES specifications* is stewarded by Verroes (Graham Smith). The canonical edition is published
+at https://cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.
