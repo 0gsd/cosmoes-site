@@ -4,11 +4,15 @@ Copyright 2026 Graham Smith
 The site's code (cosmoes/, scripts/, tests/, the Dockerfile) is licensed under the Apache License, Version 2.0
 (LICENSE).
 
-The specifications it serves are not. The texts in specs/ — MacroCOSM OES, Thym, Ascribe, Comprise OES, and The OES
-specifications — and the pages built from them in site/specs/ are
+The specifications it serves are under other terms. The texts in specs/ (MacroCOSM OES, Thym, Ascribe, Comprise OES,
+and The OES specifications) and the pages built from them in site/specs/ are
 
-    Copyright (c) 2026 Graham Smith. All rights reserved.
+    Copyright (c) 2026 Graham Smith.
+
+and licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0,
+https://creativecommons.org/licenses/by/4.0/), with the author's promise under the Open Web Foundation Final
+Specification Agreement 1.0 (OWFa 1.0). The names of the family are not licensed by either. specs/NOTICE.md states
+the terms in full.
 
 They are the canonical texts; the editions published at cosmoes.org and its hosts are built from them and from
-nothing else (specs/NOTICE.md, specs/specs.json). They are not covered by the Apache License 2.0, and no licence is
-granted on them by their presence in this repository (CONTRIBUTING.md).
+nothing else (specs/NOTICE.md, specs/specs.json). They are not covered by the Apache License 2.0.
