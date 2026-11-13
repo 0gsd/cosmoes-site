@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-13T04:24:35Z",
+  "exported": "2026-11-13T04:25:29Z",
   "by": "enough/0.6.0",
   "source": {
-    "commit": "da7b531",
+    "commit": "2f79eb3",
     "dirty": true
   },
   "css": "docs.css",
@@ -187,7 +187,7 @@
       "lead": "A person, described without a name",
       "source": {
         "path": "specs/ascribe.md",
-        "sha256": "8c3ba216753989b90203a610fdbba441af8d4bf52307b18e48f37f25f82ca66a"
+        "sha256": "19ebac4cc6810db4e070c880c4cf3cbe96a202ac93f93bf06771aa0477eb101b"
       },
       "chapters": [],
       "counts": {
@@ -200,8 +200,8 @@
       "files": {
         "short": {
           "path": "ascribe/short.html",
-          "sha256": "78dfe91154203624e47a9b98afc641adce522254295e3b9c3338ccd72aabf541",
-          "bytes": 184189
+          "sha256": "d71a52b94153ec860bd11621bc7f8870c77cbeebc47b29b76fbf1daf59628aff",
+          "bytes": 184448
         },
         "atem": {
           "path": "ascribe/atem.html",
@@ -210,13 +210,13 @@
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "3bdf051454b47d41f5b5668a0d103bde41108da3fc13f75e642a92666e42c326",
+          "sha256": "3097cb1f573386469fb128aae4e41bfe9cdd68de83c251ebe45c829857699df2",
           "bytes": 129380
         },
         "source": {
           "path": "ascribe/source.md",
-          "sha256": "8c3ba216753989b90203a610fdbba441af8d4bf52307b18e48f37f25f82ca66a",
-          "bytes": 106410
+          "sha256": "19ebac4cc6810db4e070c880c4cf3cbe96a202ac93f93bf06771aa0477eb101b",
+          "bytes": 106611
         }
       },
       "edition": "0.6.0",
