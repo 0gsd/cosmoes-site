@@ -3190,8 +3190,8 @@ digest's digits count nothing.</p>
 <td>a list from <em>minimal</em>, a word from <em>fuller</em> and <em>house</em></td>
 </tr>
 <tr>
-<td><code>offers[].told</code>, <code>seeks[].told</code>, <code>open_to[].told</code></td>
-<td>one line built from the item's summary and the names of its public children, by a rule and never by a model, and only when it says more than <code>summary</code></td>
+<td><code>offers[].entailed</code>, <code>seeks[].entailed</code>, <code>open_to[].entailed</code></td>
+<td>one line built from the item's summary and the names of its public children, by a rule and never by a model, and only when it says more than <code>summary</code>: an entailment of the item, made by rule. <code>told</code> is its earlier spelling: a reader accepts it for good, and a writer writes <code>entailed</code></td>
 <td><em>fuller</em>, <em>house</em></td>
 </tr>
 <tr>
@@ -3217,12 +3217,14 @@ digest's digits count nothing.</p>
 </tbody>
 </table>
 </div>
-<p><strong>The dial: a release is a program's projection.</strong> <code>project</code> calls the rules in the table above, then narrows to what a Thym program
+<p><strong>The dial: a release is a program's projection.</strong> A projection is an entailment made by rule: the Holotype entails its
+isotype, and what is projected holds by construction (MacroCOSM OES, its section 18.1). <code>project</code> calls the rules in the table above, then narrows to what a Thym program
 emitted and withheld, so a program only chooses: it can keep more back, and it can't add a row, word one or ask a model. Three presets ship
-with Comprise: <em>minimal</em>, which reproduces those rules byte for byte; <em>fuller</em>, with <code>told</code> and a word for <code>shape.markets</code>; and <em>house</em>,
+with Comprise: <em>minimal</em>, which reproduces those rules byte for byte; <em>fuller</em>, with <code>entailed</code> and a word for <code>shape.markets</code>; and <em>house</em>,
 which adds the rest of the table. A subject with first-party <a class="docs-term" href="#docs-item-t-term-standing" data-term="T:term/standing" title="whether the people keeping a Holotype speak for its subject, and to what proven level">standing</a> may write its own program, and a program that breaks a rule is refused,
 with the line. A first release states a market word, and after that it moves only after 90 days past its boundary. The moves are declared
-in a sidecar, <code>comprise.moves.cosm</code>, and never in the manifest; the language a program is written in is Thym
+in a sidecar, <code>comprise.moves.cosm</code>, and never in the manifest. The move that writes <code>entailed</code> is <code>entailment</code>; its
+earlier name, <code>telling</code>, is read for good as the same move, and a program written now says <code>entailment</code>. The language a program is written in is Thym
 (https://thym.cosmoes.org/), the transcognition language that connects OESes.</p>
 <p>Further isotype fields a subject may open one at a time, each opt-in and marked verified or stated, are reserved for a
 later edition.</p>
@@ -3423,6 +3425,8 @@ Holotype, never the disk.</li>
 name.</li>
 <li>Never read <a class="docs-term" href="#docs-item-t-term-the-local-database" data-term="T:term/the-local-database" title="the local database, called store in the files">the local database</a>'s people into anything but counts, outside E's own pages.</li>
 <li>Read through another system's tool (an MCP source) and never write through it.</li>
+<li>Read <code>told</code> on an isotype's or a paratype's <code>offers[]</code>, <code>seeks[]</code> and <code>open_to[]</code> as <code>entailed</code>, and the move
+<code>telling</code> as <code>entailment</code> (11.3); write only the new spellings.</li>
 </ol>
 </section>
 <section class="docs-sec" data-key="S:section/13.2" data-scope="">

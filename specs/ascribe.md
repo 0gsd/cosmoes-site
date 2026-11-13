@@ -750,9 +750,11 @@ There is no paratype of a person: no outsider's graph, ever.
 <!-- term: isograph -->
 An **isograph** (`ascribe-isograph/0`) is a person's public projection: a separate document with a fixed schema,
 computed from the holograph by rules, one rule per field, and narrowed by the holder's program, as a company's
-isotype is in [Comprise OES](https://comprise.cosmoes.org/), its section 11.3. It is the dial for a person
+isotype is in [Comprise OES](https://comprise.cosmoes.org/), its section 11.3. It is an entailment made by rule: the
+holograph entails its isograph, and what is projected holds by construction
+([MacroCOSM OES](https://macro.cosmoes.org/), its section 18.1). It is the dial for a person
 ([Thym](https://thym.cosmoes.org/), its section 18, writes the company's): `project h as isograph`, under a program
-that only chooses, and can keep more back but never add a row, a word or a model's telling. A field added to the model
+that only chooses, and can keep more back but never add a row, a word or a model's entailment. A field added to the model
 later never flows into it by itself.
 
 ```text

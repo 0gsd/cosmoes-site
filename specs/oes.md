@@ -60,13 +60,15 @@ Software is moving up a layer: a structured plain-English specification is the p
 and source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's
 folder) is **decompiled** to a **fabula**, which enumerates all the inspiration, meaning, intent, construction,
 production and assertions that can be found in the input or derived from it. A fabula is **compiled** to a **short**,
-and a short is said most plainly as an **atem**.
+and a short is said most plainly as an **atem**. Each step is an **entailment**, which expands meaning by reducing data:
+the input entails its fabula, the fabula a short, and a short an atem. A Holotype entails its isotype too,
+by rule.
 
 | | Prose | Code |
 |---|---|---|
 | **The input** | a text | a repository |
 | **The fabula** | a fabulan, or for verse a fabulap | a fabulac: the specification |
-| **The short** | a telling | a cshort: the source code rebuilt, read and never run |
+| **The short** | an entailment of the fabula | a cshort: the source code rebuilt, read and never run |
 | **The atem** | one line | a catem: everything a user can do with the program |
 
 The running application is outside these specifications. Decompiling a poem cannot be done well without its author or
@@ -92,7 +94,7 @@ Every MiniCOSM inherits all of it, unchanged. The right-hand column gives the se
 | **The private/public split** | two formats, not one with a setting: the complete private description (the **Holotype**), kept by its subject, and its small public projection (the **isotype**), default-deny, released and signed by the subject | 16 |
 | **Renderers** | anything that turns a volume into another form; renderers only read, and show a reader only what that reader may see | 14 |
 | **The manifest** | the machine-readable declaration of a MiniCOSM or a built-in, one `.cosm` file: what a program needs to read, check and render its volumes | 13 |
-| **Densities** | one meaning at three densities: the fabula, a short told from it, and its atem | 18.1 and 18.4 |
+| **Densities** | one meaning at three densities: the fabula, a short it entails, and its atem | 18.1 and 18.4 |
 | **The dialectic** | questions put to a person about what a source means, and the answers; any volume may carry them | 18.6 |
 
 *Holotype* and *isotype* are taxonomy's words, the one specimen that defines a species and a duplicate of it; they name
@@ -179,7 +181,7 @@ them) is reserved for a later edition.
    <=================== Thym: the language that connects OESes ===================>
 
    input  --decompile-->  fabula  --compile-->  short  --said most plainly-->  atem
-   prose:  a text         fabulan, fabulap      a telling                      one line
+   prose:  a text         fabulan, fabulap      an entailment                  one line
    code:   a repository   fabulac               cshort                         catem
 
    Holotype, holograph: one private volume  --- projection --->  isotype, isograph: public, default-deny
