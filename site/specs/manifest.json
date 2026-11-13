@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-13T01:03:58Z",
+  "exported": "2026-11-13T01:40:39Z",
   "by": "enough/0.6.0",
   "source": {
-    "commit": "b18594b",
+    "commit": "2bedd42",
     "dirty": true
   },
   "css": "docs.css",
@@ -132,7 +132,7 @@
       "lead": "Thym is the transcognition language that connects OESes, with its compiler and its runtime",
       "source": {
         "path": "specs/thym.md",
-        "sha256": "0d61d4df382cfb608c6fd383caac9f90818f5e2ae36f690decd2eb74278858b3"
+        "sha256": "59f983ba9174cc530c0154dc87ed1a2fc2218e60023a3bc60100a5d8c34f8ef4"
       },
       "chapters": [],
       "counts": {
@@ -145,8 +145,8 @@
       "files": {
         "short": {
           "path": "thym/short.html",
-          "sha256": "c68d8ee926b076bb6188146a37dbaa2a22bbcdbad3f748e55c3500d48e1fb0f6",
-          "bytes": 310917
+          "sha256": "04a3dd6902a711cbb530917c1b6e4098022427485fd5ef83b5b7ae8c59108b3e",
+          "bytes": 310892
         },
         "atem": {
           "path": "thym/atem.html",
@@ -160,8 +160,8 @@
         },
         "source": {
           "path": "thym/source.md",
-          "sha256": "0d61d4df382cfb608c6fd383caac9f90818f5e2ae36f690decd2eb74278858b3",
-          "bytes": 185125
+          "sha256": "59f983ba9174cc530c0154dc87ed1a2fc2218e60023a3bc60100a5d8c34f8ef4",
+          "bytes": 185273
         }
       },
       "edition": "0.6.0",
@@ -187,7 +187,7 @@
       "lead": "A person, described without a name",
       "source": {
         "path": "specs/ascribe.md",
-        "sha256": "b2b510270fbb95e793807b5d8c7940f573b5aac68e6e2f1fa0cf5eba1dd82e09"
+        "sha256": "d1d9eb428bc95b75bba55e8f732408e044a5b66b2b7f8f20dd1e390cc4023707"
       },
       "chapters": [],
       "counts": {
@@ -200,8 +200,8 @@
       "files": {
         "short": {
           "path": "ascribe/short.html",
-          "sha256": "89cd93d13542989b4605beba31e467002a0cd8dfe2444538dacab5a528ff83de",
-          "bytes": 179878
+          "sha256": "cf08738282637a6c3b5b615c0b2db2a8fe5b5c45e5c3caf7d142d9e1abf2ce8b",
+          "bytes": 183414
         },
         "atem": {
           "path": "ascribe/atem.html",
@@ -210,13 +210,13 @@
         },
         "fabula": {
           "path": "ascribe/fabula.html",
-          "sha256": "ff5a965f30f59deacefbcc1a63ae45f0f7fad360a226a2d0f7cf4ed0523bfdcc",
-          "bytes": 129371
+          "sha256": "3794e0d7a31c6a9a54f0bd68377facf5f8bf7e0d66343ea5056e51c433e5a975",
+          "bytes": 129380
         },
         "source": {
           "path": "ascribe/source.md",
-          "sha256": "b2b510270fbb95e793807b5d8c7940f573b5aac68e6e2f1fa0cf5eba1dd82e09",
-          "bytes": 102672
+          "sha256": "d1d9eb428bc95b75bba55e8f732408e044a5b66b2b7f8f20dd1e390cc4023707",
+          "bytes": 105632
         }
       },
       "edition": "0.6.0",

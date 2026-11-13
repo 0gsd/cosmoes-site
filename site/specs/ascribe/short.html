@@ -1447,8 +1447,8 @@ someone in private. No node's <code>name</code>, <code>summary</code>, <code>lin
 named only by an encyclopedia article or in the holder's own words, and no relation. Free text never leaves.</p>
 <p><strong>Its rules.</strong> The four rules of every <a class="docs-term" href="#docs-item-t-term-projection" data-term="T:term/projection" title="a program or the implementation projects it: an isograph, an allograph, an isomorph (section 14)">projection</a> (<a class="ref-xref" href="#docs-sec-14">section 14</a>) and these:</p>
 <ul>
-<li><strong>Assertions, not measurements.</strong> No number of anything; the only digits are in the epoch, a decade, the run's id
-and the program's digest.</li>
+<li><strong>Assertions, not measurements.</strong> No number of anything; the only digits are in the format string
+<code>ascribe-allograph/0</code>, the epoch, a decade, the run's id and the program's digest. A program's name may hold no digit.</li>
 <li><strong>One entry per kind and form.</strong> Nodes that give the same <code>kind</code> and <code>form</code> give one entry, with the strongest band
 among them and the latest decade, so that a claim is named by its kind and its form alone (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>).</li>
 <li><strong>Sorted.</strong> <code>expertise</code> is sorted by the order of the modules (E, S, U), then by <code>form</code>, a polyform's list sorting as
@@ -1459,8 +1459,9 @@ refuses an allograph that carries a field this section does not name or a markin
 <li><strong>Canonical JSON</strong>, as the isograph's; the release's <code>sha256</code> is over those bytes.</li>
 </ul>
 <p><strong>Made again, never edited.</strong> An allograph names the run that made it, and the run names the holograph's state: the
-run's plan records the digest of the holograph as the run took it, after the filter
-(<a href="https://thym.cosmoes.org/">Thym</a>, its section 17.1), and the release record carries the digest of the run's trace
+run's trace records the state of the holograph as the filter kept it, as a digest,
+and that digest is what names the state; the plan's digests of the run's inputs do not
+(<a href="https://thym.cosmoes.org/">Thym</a>, its section 17.1). The release record carries the digest of the run's trace
 (<a class="ref-xref" href="#docs-sec-13">section 13</a>). When the holograph changes, the holder may run the program again; the new allograph is a new release,
 and it replaces the listed one when the holder lists it. An implementation should tell the holder when their
 holograph has changed since the run their listed allograph names; nothing makes or lists an allograph again by itself.
@@ -1493,7 +1494,7 @@ attested for whom, no list of an owner's agents, no &quot;others like this&quot;
 only where it must, an agent's owner (<a class="ref-xref" href="#docs-sec-14-10">section 14.10</a>) and an attester who chose to be named (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>), and names it
 as a value, never as a link.</p>
 <p><strong>What it holds.</strong> For each listing: the holder's current <code>list</code> statement with its signature, the allograph inside it
-included; the <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplace</a> proofs it took, each <code>{faceplace, handle, address, checked, state}</code> (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>); the
+included; the <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplace</a> proofs it took, each <code>{faceplace, handle, address, checked, state}</code> and, while a proof is missed or lapsed, <code>since</code> (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>); the
 <a class="docs-term" href="#docs-item-t-term-attestation" data-term="T:term/attestation" title="An attestation is a party's signed word that the holder did work that bears out…">attestations</a> and <a class="docs-term" href="#docs-item-t-term-bond" data-term="T:term/bond" title="A bond joins an agent to the one owner who answers for it">bonds</a> signed for it or by it; and, privately, the account its tag is tied to (<a class="ref-xref" href="#docs-sec-14-8">section 14.8</a>). Nothing
 else: no page a proof was found on, no record of a look-up, and no count of who looked beyond what a rate limit keeps,
 which holds no words and lasts no longer than a day.</p>
@@ -1534,7 +1535,8 @@ sorted, no space between tokens, UTF-8 without a byte-order mark, and no charact
 escaping), its 64 bytes in standard base64 with padding. A listing's statements verify
 against the listing's key; a company's against the public key of its current isotype <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> on the Index, the key
 that signs its isotype (<a href="https://comprise.cosmoes.org/">Comprise OES</a>, its section 11.3). A statement is sent by a
-signed-in account of the registry, and the account is never in a statement, an entry or an answer. The nonce makes
+signed-in account of the registry, and the account is never in a statement, an entry or an answer. A company's
+statements are taken only from an account in that company's organization on Comprise Connect. The nonce makes
 every statement good once: a statement sent again, or kept and sent later, is refused, so that no one can bring back a
 withdrawn listing by sending its old statement.</p>
 </section>
@@ -1552,8 +1554,8 @@ never chosen, and never changes. <a class="docs-term" href="#docs-item-t-term-bo
 tag another live listing has.</p>
 <p><strong>The name.</strong> The holder picks a user name: two to thirty-two characters of <code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>, <code>.</code> and <code>-</code>, beginning
 with a letter, ending with a letter or a digit, with no <code>.</code> or <code>-</code> beside another. Many listings may share a name. A
-registry keeps a list of reserved names, its own and words that would read as its voice, and refuses them. A listing's
-name may change at most once in ninety days.</p>
+registry keeps a list of reserved names, its own and words that would read as its voice, and refuses them. The first name
+a listing takes is not a change. After that, a name may change at most once in ninety days.</p>
 <p>The <strong>dangler</strong> is a short line the holder hangs on their name and edits when they like: one to thirty-two printable
 characters on one line, so that two holders of one name can tell themselves apart (<code>bread, slowly</code>). It is refused when
 it holds <code>://</code>, or anything the <code>no-pii</code> check reads as an email address, a phone number, an id-like run of digits, a
@@ -1610,7 +1612,8 @@ a FEED headword in the edition of FEED it holds. It cannot read the holograph, s
 implementation has kept the rest. The first <code>list</code> statement for a tag ties the tag to the account that sent it. Only
 that account sends later statements for the listing, and it may withdraw the listing without the key (<a class="ref-xref" href="#docs-sec-14-13">section 14.13</a>).
 A lost key cannot be replaced in this edition: its holder withdraws by their account and lists again under a new key,
-and a new key is a new tag, to which no confirmation of the old one moves. Moving a listing to a new key is reserved
+and a new key is a new tag, to which no confirmation of the old one moves. A re-listing may not change a listing's kind
+between person and agent; its holder withdraws it and lists the other under a key of its own. Moving a listing to a new key is reserved
 for a later edition.</p>
 <p>A sample allograph (<code>sample: true</code>) is listed only by a registry that serves demonstrations, and is shown labelled as a
 sample. The <code>list</code> statement for the allograph of <a class="ref-xref" href="#docs-sec-14-6">section 14.6</a>, as its holder sends it, under the key made from the
@@ -1688,8 +1691,8 @@ claims: an <code>attest</code> statement, which holds:</p>
 </div>
 <p>An attester is a person's listing, an Allograph+ or not, or a company listed on the Comprise Index. An <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a> never
 attests, no one attests their own listing, and an owner never attests an agent bonded to them. An attestation waits
-until the holder accepts it with an <code>accept</code> statement that names its digest, the SHA-256 of the <code>attest</code> statement's
-canonical JSON in lowercase hex: nothing shows on a listing without its holder's word. The holder may remove an
+until the holder accepts it with an <code>accept</code> statement that names its digest, the SHA-256 of the inner <code>attest</code> statement's
+canonical JSON in lowercase hex, not of the <code>{statement, signature}</code> envelope: nothing shows on a listing without its holder's word. The holder may remove an
 attestation at any time, and so may its attester, with a <code>remove</code> statement. An accepted attestation shows beside each
 claim it names that the current allograph still makes, as <code>{as, epoch, from, plus, by}</code>: <code>from</code> is <code>person</code> or
 <code>company</code>; <code>plus</code> is <code>true</code> when the attester is an Allograph+, and absent otherwise; <code>by</code> is the attester's tag or
@@ -1699,9 +1702,46 @@ company or a person listed in its own right, and the registry checks it nowhere 
 and not an agent: a profile on a social or professional network, an account on a code host, a forum where they write
 under one name. A registry lists the faceplaces it can check, each as <code>{faceplace, title, handle, addresses}</code>: a
 lowercase word that names it, its title on screen, a regular expression for a handle in its normal form (by default
-lower case, with any leading <code>@</code> taken off), and the public addresses on it that belong to a handle, as <code>https</code>
-templates in which <code>{handle}</code> stands for the handle and <code>{any}</code> for one path segment of <code>A</code>–<code>Z</code>, <code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>, <code>_</code>
-and <code>-</code>. A faceplace is listed only when an address alone tells which account a page belongs to.</p>
+lower case, with any leading <code>@</code> taken off; every faceplace of this edition has that normal form, and none has
+another), and the public addresses on it that belong to a handle, as <code>https</code> templates in which <code>{handle}</code> stands for
+the handle, <code>{any}</code> for one path segment of <code>A</code>–<code>Z</code>, <code>a</code>–<code>z</code>, <code>0</code>–<code>9</code>, <code>_</code> and <code>-</code>, and, for a handle of the shape
+<code>user@host</code>, <code>{user}</code> and <code>{host}</code> for its two parts. Case does not matter in an address, and one trailing <code>/</code> is
+allowed; a query or a fragment is not. A faceplace is listed only when an address alone tells which account a page
+belongs to.</p>
+<p>The list is registry data, and the forms below are examples, not a closed list. A registry at launch accepts these:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Faceplace</th>
+<th>Handle</th>
+<th>Addresses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td><code>octocat</code></td>
+<td><code>https://github.com/octocat</code>; a gist, <code>https://gist.github.com/octocat/{any}</code></td>
+</tr>
+<tr>
+<td>a personal website</td>
+<td><code>example.org</code></td>
+<td><code>https://example.org/.well-known/ascribe-proof.txt</code>, on the holder's own domain</td>
+</tr>
+<tr>
+<td>Mastodon</td>
+<td><code>user@instance.example</code></td>
+<td><code>https://instance.example/@user</code>; a post, <code>https://instance.example/@user/{any}</code></td>
+</tr>
+<tr>
+<td>Bluesky</td>
+<td><code>user.bsky.social</code></td>
+<td><code>https://bsky.app/profile/user.bsky.social</code>; a post, <code>https://bsky.app/profile/user.bsky.social/post/{any}</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>Posted proofs.</strong> A holder proves that they control a faceplace account by posting a short code in a public place of
 the account (a bio, a gist, a post) at an address the faceplace's entry accepts for the handle. The code is the proof
 string:</p>
@@ -1711,24 +1751,30 @@ code  = the first twelve characters of the lowercase base32, without padding, of
 </code></pre>
 <p>It names the listing, and is good for one handle on one faceplace. For the listing of <a class="ref-xref" href="#docs-sec-14-8">section 14.8</a>, as the handle
 <code>harbour-baker</code> on a faceplace named <code>harbourboard</code>, it is <code>aar-ts7de32a5bnz-k7xgvdxsixco</code>. The holder then sends a
-<code>prove</code> statement with the <code>faceplace</code>, the <code>handle</code> and the <code>address</code>. The registry fetches the address over HTTPS,
+<code>prove</code> statement with the <code>faceplace</code>, the <code>handle</code> and the <code>address</code>. The registry reads the proof over HTTPS,
 with no credentials and following no redirect to another host, reads at most one megabyte of it as text, and looks
-for the proof string. It keeps the faceplace, the handle, the address and the day it last found the string, and
-nothing else of the page or the account. Anyone can check a proof again: the address shows the string, and the
+for the proof string. For a personal website it fetches the address itself. For the other faceplaces it reads the
+platform's own public interface for the same account or post (GitHub's users and gists interface, a Mastodon
+instance's <code>accounts/lookup</code> and <code>statuses</code>, Bluesky's public <code>getProfile</code> and <code>getPosts</code>), takes the text the holder
+wrote there (a bio, a gist, a post), and checks that the account or the post is the handle's. A gist or a post that
+another account made does not count. It keeps the faceplace, the handle, the address, the state, the day it last found
+the string and, while a proof is missed or lapsed, the day that began (<code>since</code>), and nothing else of the page or the
+account. Anyone can check a proof again: the address shows the string, and the
 string follows from the tag, the faceplace and the handle.</p>
 <p>A proof found is <code>live</code>. The registry checks each live proof again at least once in thirty days. A check that does not
-find the string is tried again a day later, and a second miss makes the proof <code>lapsed</code>. A lapsed proof counts for
-nothing, is live again when a check finds the string, and is removed after thirty days lapsed. An <code>unprove</code> statement
+find the string is tried again a day later, and a first miss still counts as live until the second miss makes the
+proof <code>lapsed</code>. A lapsed proof counts for nothing and is not fetched again. It is live again when the holder sends
+<code>prove</code> again and the string is found, and it is removed after thirty days lapsed. An <code>unprove</code> statement
 removes a proof at once. A matching name is never evidence; control of the account, shown by the string where only the
 account's holder could post it, is. Only a person's listing takes proofs, and a registry refuses a <code>prove</code> from an
 agent's.</p>
-<p>A registry never signs in to a faceplace, never reads any page but a proof's address, never follows or watches an
-account, and never uses a faceplace to find, describe or rank anyone. Proving by signing in to a faceplace, for one
+<p>A registry never signs in to a faceplace, never reads anything of an account or a post but what proves it, never keeps
+what it reads beyond what is named above, never follows or watches an account, and never uses a faceplace to find, describe or rank anyone. Proving by signing in to a faceplace, for one
 that allows it, is reserved for a later edition.</p>
 <p>An <strong>Allograph+</strong>, said <em>Allograph plus</em>, is a person's listing with an identity derived from faceplaces: live proofs on two
-or more faceplaces. It shows that one holder controls those accounts, each with a public life of its own. In an entry
+or more distinct faceplaces. Two proofs on one platform count once. It shows that one holder controls those accounts, each with a public life of its own. In an entry
 it is the field <code>plus: true</code>, never a character in a name, a tag or a key; in prose it is written Allograph+. A listing
-stops being an Allograph+ while it has fewer than two live proofs, and is one again when it has two. An agent is never
+stops being an Allograph+ while it has live proofs on fewer than two faceplaces, and is one again when it has two. An agent is never
 an Allograph+.</p>
 <p><strong>What a holder shows.</strong> By <code>show.faceplaces</code>, an entry gives a person's live proofs either <code>counted</code>, as their number
 (&quot;verified on three faceplaces&quot;), or <code>named</code>, as the list of their <code>{faceplace, handle, address, checked}</code>. By
@@ -1834,7 +1880,9 @@ how often it is looked up or by who looked.</p>
 </section>
 <section class="docs-sec" data-key="S:section/14.12" data-scope="">
 <h3 id="docs-sec-14-12" data-toc="3">14.12 The registry's operations</h3>
-<p>A registry speaks JSON over HTTPS. These are its operations, at these paths under its address:</p>
+<p>A registry speaks JSON over HTTPS. These are its operations, at these paths under its address. The look-ups (by <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a>, by
+name and by need) and the list of <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplaces</a> need no account. Only <code>challenge</code>, <code>statements</code>, <code>waiting</code> and <code>DELETE</code>
+need one.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -1873,11 +1921,11 @@ how often it is looked up or by who looked.</p>
 <tr>
 <td><code>GET /api/v0/allographs/faceplaces</code></td>
 <td>nothing</td>
-<td><code>{faceplaces}</code>: the <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplaces</a> it checks (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>)</td>
+<td><code>{faceplaces}</code>: the faceplaces it checks (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>)</td>
 </tr>
 <tr>
 <td><code>GET /api/v0/allographs/{tag}/waiting</code></td>
-<td>the account the <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a> is tied to</td>
+<td>the account the tag is tied to</td>
 <td><code>{attestations}</code>: each <code>{attestation, statement, signature}</code> waiting for the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s word</td>
 </tr>
 <tr>
@@ -1976,7 +2024,7 @@ how often it is looked up or by who looked.</p>
 <tr>
 <td>400</td>
 <td><code>bad_statement</code></td>
-<td>a field missing, a field this section does not name, or a value outside its shape</td>
+<td>a field missing, a field this section does not name, a value outside its shape, or an <code>owner</code> on a person's listing</td>
 </tr>
 <tr>
 <td>400</td>
@@ -2026,7 +2074,7 @@ how often it is looked up or by who looked.</p>
 <tr>
 <td>403</td>
 <td><code>not_allowed</code></td>
-<td>a signer who may not say this: an agent proving or attesting, an attester attesting themselves or an agent they own, an owner that is not an Allograph+ or a listed company, an agent naming no owner, a holder accepting an attestation of another listing</td>
+<td>a signer who may not say this: an agent proving or attesting, an attester attesting themselves or an agent they own, an owner that is not an Allograph+ or a listed company, an agent naming no owner, a re-listing that changes a listing's kind between person and agent, a company's statement from an account outside that company's organization, an <code>accept</code> or <code>remove</code> that names a digest the signer has no attestation under (the refusal does not say whether another listing holds that digest)</td>
 </tr>
 <tr>
 <td>400</td>
@@ -2036,12 +2084,12 @@ how often it is looked up or by who looked.</p>
 <tr>
 <td>400</td>
 <td><code>unknown_faceplace</code>, <code>bad_address</code></td>
-<td>a faceplace the registry does not list; an address its entry does not accept for the handle</td>
+<td>a faceplace the registry does not list; a handle outside the faceplace's shape, or an address its entry does not accept for the handle</td>
 </tr>
 <tr>
 <td>409</td>
 <td><code>proof_missing</code></td>
-<td>the address was read and the proof string was not on it</td>
+<td>the address could not be read, or it was read and the proof string was not on it</td>
 </tr>
 <tr>
 <td>403</td>
@@ -2067,7 +2115,8 @@ how often it is looked up or by who looked.</p>
 <section class="docs-sec" data-key="S:section/14.13" data-scope="">
 <h3 id="docs-sec-14-13" data-toc="3">14.13 Withdrawal</h3>
 <p>A <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> withdraws a listing at any time: by a <code>withdraw</code> statement, or, without the key, from the account its <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a> is
-tied to. A withdrawn listing is gone from every answer at once, in the request that withdraws it. The registry keeps
+tied to. The holder's key is kept by the holder, and a later <code>list</code> under the same key lists again under the same tag, as a new
+listing: nothing of the old one comes back. A withdrawn listing is gone from every answer at once, in the request that withdraws it. The registry keeps
 nothing of it: its statements, its <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">allograph</a>, its proofs, the <a class="docs-term" href="#docs-item-t-term-attestation" data-term="T:term/attestation" title="An attestation is a party's signed word that the holder did work that bears out…">attestations</a> and <a class="docs-term" href="#docs-item-t-term-bond" data-term="T:term/bond" title="A bond joins an agent to the one owner who answers for it">bonds</a> signed for it or by it, and the
 tie to its account are deleted then, and are gone from the registry's backups within thirty days. An <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a> bonded to
 it is in no answer until it has a live bond again. A registry that a law obliges to keep something states in its terms
@@ -2196,8 +2245,8 @@ a signature that verifies against the signer's key, and refuse every other with 
 <a class="ref-xref" href="#docs-sec-14-8">section 14.8</a>.</li>
 <li>Show each claim's level and each listing's, never show an attestation its <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> has not accepted, never show an
 <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a> as an Allograph+, and show no agent whose bond is not live (<a class="ref-xref" href="#docs-sec-14-9">sections 14.9</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-14-10">14.10</a>).</li>
-<li>Keep of a <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplace</a> proof only its faceplace, handle, address, state and the day it was last found, and never sign
-in to a faceplace (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>).</li>
+<li>Keep of a <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplace</a> proof only its faceplace, handle, address, state, the day it was last found and, while it is
+missed or lapsed, the day that began, and never sign in to a faceplace (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>).</li>
 <li>Answer look-ups and offer no browsing from one entry to another, and keep nothing of a look-up (<a class="ref-xref" href="#docs-sec-14-11">section 14.11</a>).</li>
 <li>Withdraw a listing at once when its holder asks, and keep nothing of it after (<a class="ref-xref" href="#docs-sec-14-13">section 14.13</a>).</li>
 </ol>

@@ -943,8 +943,8 @@ named only by an encyclopedia article or in the holder's own words, and no relat
 
 **Its rules.** The four rules of every projection (section 14) and these:
 
-- **Assertions, not measurements.** No number of anything; the only digits are in the epoch, a decade, the run's id
-  and the program's digest.
+- **Assertions, not measurements.** No number of anything; the only digits are in the format string
+  `ascribe-allograph/0`, the epoch, a decade, the run's id and the program's digest. A program's name may hold no digit.
 - **One entry per kind and form.** Nodes that give the same `kind` and `form` give one entry, with the strongest band
   among them and the latest decade, so that a claim is named by its kind and its form alone (section 14.9).
 - **Sorted.** `expertise` is sorted by the order of the modules (E, S, U), then by `form`, a polyform's list sorting as
@@ -955,8 +955,9 @@ named only by an encyclopedia article or in the holder's own words, and no relat
 - **Canonical JSON**, as the isograph's; the release's `sha256` is over those bytes.
 
 **Made again, never edited.** An allograph names the run that made it, and the run names the holograph's state: the
-run's plan records the digest of the holograph as the run took it, after the filter
-([Thym](https://thym.cosmoes.org/), its section 17.1), and the release record carries the digest of the run's trace
+run's trace records the state of the holograph as the filter kept it, as a digest,
+and that digest is what names the state; the plan's digests of the run's inputs do not
+([Thym](https://thym.cosmoes.org/), its section 17.1). The release record carries the digest of the run's trace
 (section 13). When the holograph changes, the holder may run the program again; the new allograph is a new release,
 and it replaces the listed one when the holder lists it. An implementation should tell the holder when their
 holograph has changed since the run their listed allograph names; nothing makes or lists an allograph again by itself.
@@ -997,7 +998,7 @@ only where it must, an agent's owner (section 14.10) and an attester who chose t
 as a value, never as a link.
 
 **What it holds.** For each listing: the holder's current `list` statement with its signature, the allograph inside it
-included; the faceplace proofs it took, each `{faceplace, handle, address, checked, state}` (section 14.9); the
+included; the faceplace proofs it took, each `{faceplace, handle, address, checked, state}` and, while a proof is missed or lapsed, `since` (section 14.9); the
 attestations and bonds signed for it or by it; and, privately, the account its tag is tied to (section 14.8). Nothing
 else: no page a proof was found on, no record of a look-up, and no count of who looked beyond what a rate limit keeps,
 which holds no words and lasts no longer than a day.
@@ -1021,7 +1022,8 @@ sorted, no space between tokens, UTF-8 without a byte-order mark, and no charact
 escaping), its 64 bytes in standard base64 with padding. A listing's statements verify
 against the listing's key; a company's against the public key of its current isotype release on the Index, the key
 that signs its isotype ([Comprise OES](https://comprise.cosmoes.org/), its section 11.3). A statement is sent by a
-signed-in account of the registry, and the account is never in a statement, an entry or an answer. The nonce makes
+signed-in account of the registry, and the account is never in a statement, an entry or an answer. A company's
+statements are taken only from an account in that company's organization on Comprise Connect. The nonce makes
 every statement good once: a statement sent again, or kept and sent later, is refused, so that no one can bring back a
 withdrawn listing by sending its old statement.
 
@@ -1042,8 +1044,8 @@ tag another live listing has.
 
 **The name.** The holder picks a user name: two to thirty-two characters of `a`–`z`, `0`–`9`, `.` and `-`, beginning
 with a letter, ending with a letter or a digit, with no `.` or `-` beside another. Many listings may share a name. A
-registry keeps a list of reserved names, its own and words that would read as its voice, and refuses them. A listing's
-name may change at most once in ninety days.
+registry keeps a list of reserved names, its own and words that would read as its voice, and refuses them. The first name
+a listing takes is not a change. After that, a name may change at most once in ninety days.
 
 <!-- term: dangler -->
 The **dangler** is a short line the holder hangs on their name and edits when they like: one to thirty-two printable
@@ -1071,7 +1073,8 @@ a FEED headword in the edition of FEED it holds. It cannot read the holograph, s
 implementation has kept the rest. The first `list` statement for a tag ties the tag to the account that sent it. Only
 that account sends later statements for the listing, and it may withdraw the listing without the key (section 14.13).
 A lost key cannot be replaced in this edition: its holder withdraws by their account and lists again under a new key,
-and a new key is a new tag, to which no confirmation of the old one moves. Moving a listing to a new key is reserved
+and a new key is a new tag, to which no confirmation of the old one moves. A re-listing may not change a listing's kind
+between person and agent; its holder withdraws it and lists the other under a key of its own. Moving a listing to a new key is reserved
 for a later edition.
 
 A sample allograph (`sample: true`) is listed only by a registry that serves demonstrations, and is shown labelled as a
@@ -1110,8 +1113,8 @@ claims: an `attest` statement, which holds:
 
 An attester is a person's listing, an Allograph+ or not, or a company listed on the Comprise Index. An agent never
 attests, no one attests their own listing, and an owner never attests an agent bonded to them. An attestation waits
-until the holder accepts it with an `accept` statement that names its digest, the SHA-256 of the `attest` statement's
-canonical JSON in lowercase hex: nothing shows on a listing without its holder's word. The holder may remove an
+until the holder accepts it with an `accept` statement that names its digest, the SHA-256 of the inner `attest` statement's
+canonical JSON in lowercase hex, not of the `{statement, signature}` envelope: nothing shows on a listing without its holder's word. The holder may remove an
 attestation at any time, and so may its attester, with a `remove` statement. An accepted attestation shows beside each
 claim it names that the current allograph still makes, as `{as, epoch, from, plus, by}`: `from` is `person` or
 `company`; `plus` is `true` when the attester is an Allograph+, and absent otherwise; `by` is the attester's tag or
@@ -1123,9 +1126,21 @@ A **faceplace** is a public place where a person has an account, under a handle,
 and not an agent: a profile on a social or professional network, an account on a code host, a forum where they write
 under one name. A registry lists the faceplaces it can check, each as `{faceplace, title, handle, addresses}`: a
 lowercase word that names it, its title on screen, a regular expression for a handle in its normal form (by default
-lower case, with any leading `@` taken off), and the public addresses on it that belong to a handle, as `https`
-templates in which `{handle}` stands for the handle and `{any}` for one path segment of `A`–`Z`, `a`–`z`, `0`–`9`, `_`
-and `-`. A faceplace is listed only when an address alone tells which account a page belongs to.
+lower case, with any leading `@` taken off; every faceplace of this edition has that normal form, and none has
+another), and the public addresses on it that belong to a handle, as `https` templates in which `{handle}` stands for
+the handle, `{any}` for one path segment of `A`–`Z`, `a`–`z`, `0`–`9`, `_` and `-`, and, for a handle of the shape
+`user@host`, `{user}` and `{host}` for its two parts. Case does not matter in an address, and one trailing `/` is
+allowed; a query or a fragment is not. A faceplace is listed only when an address alone tells which account a page
+belongs to.
+
+The list is registry data, and the forms below are examples, not a closed list. A registry at launch accepts these:
+
+| Faceplace | Handle | Addresses |
+|---|---|---|
+| GitHub | `octocat` | `https://github.com/octocat`; a gist, `https://gist.github.com/octocat/{any}` |
+| a personal website | `example.org` | `https://example.org/.well-known/ascribe-proof.txt`, on the holder's own domain |
+| Mastodon | `user@instance.example` | `https://instance.example/@user`; a post, `https://instance.example/@user/{any}` |
+| Bluesky | `user.bsky.social` | `https://bsky.app/profile/user.bsky.social`; a post, `https://bsky.app/profile/user.bsky.social/post/{any}` |
 
 **Posted proofs.** A holder proves that they control a faceplace account by posting a short code in a public place of
 the account (a bio, a gist, a post) at an address the faceplace's entry accepts for the handle. The code is the proof
@@ -1139,28 +1154,34 @@ code  = the first twelve characters of the lowercase base32, without padding, of
 
 It names the listing, and is good for one handle on one faceplace. For the listing of section 14.8, as the handle
 `harbour-baker` on a faceplace named `harbourboard`, it is `aar-ts7de32a5bnz-k7xgvdxsixco`. The holder then sends a
-`prove` statement with the `faceplace`, the `handle` and the `address`. The registry fetches the address over HTTPS,
+`prove` statement with the `faceplace`, the `handle` and the `address`. The registry reads the proof over HTTPS,
 with no credentials and following no redirect to another host, reads at most one megabyte of it as text, and looks
-for the proof string. It keeps the faceplace, the handle, the address and the day it last found the string, and
-nothing else of the page or the account. Anyone can check a proof again: the address shows the string, and the
+for the proof string. For a personal website it fetches the address itself. For the other faceplaces it reads the
+platform's own public interface for the same account or post (GitHub's users and gists interface, a Mastodon
+instance's `accounts/lookup` and `statuses`, Bluesky's public `getProfile` and `getPosts`), takes the text the holder
+wrote there (a bio, a gist, a post), and checks that the account or the post is the handle's. A gist or a post that
+another account made does not count. It keeps the faceplace, the handle, the address, the state, the day it last found
+the string and, while a proof is missed or lapsed, the day that began (`since`), and nothing else of the page or the
+account. Anyone can check a proof again: the address shows the string, and the
 string follows from the tag, the faceplace and the handle.
 
 A proof found is `live`. The registry checks each live proof again at least once in thirty days. A check that does not
-find the string is tried again a day later, and a second miss makes the proof `lapsed`. A lapsed proof counts for
-nothing, is live again when a check finds the string, and is removed after thirty days lapsed. An `unprove` statement
+find the string is tried again a day later, and a first miss still counts as live until the second miss makes the
+proof `lapsed`. A lapsed proof counts for nothing and is not fetched again. It is live again when the holder sends
+`prove` again and the string is found, and it is removed after thirty days lapsed. An `unprove` statement
 removes a proof at once. A matching name is never evidence; control of the account, shown by the string where only the
 account's holder could post it, is. Only a person's listing takes proofs, and a registry refuses a `prove` from an
 agent's.
 
-A registry never signs in to a faceplace, never reads any page but a proof's address, never follows or watches an
-account, and never uses a faceplace to find, describe or rank anyone. Proving by signing in to a faceplace, for one
+A registry never signs in to a faceplace, never reads anything of an account or a post but what proves it, never keeps
+what it reads beyond what is named above, never follows or watches an account, and never uses a faceplace to find, describe or rank anyone. Proving by signing in to a faceplace, for one
 that allows it, is reserved for a later edition.
 
 <!-- term: Allograph plus -->
 An **Allograph+**, said *Allograph plus*, is a person's listing with an identity derived from faceplaces: live proofs on two
-or more faceplaces. It shows that one holder controls those accounts, each with a public life of its own. In an entry
+or more distinct faceplaces. Two proofs on one platform count once. It shows that one holder controls those accounts, each with a public life of its own. In an entry
 it is the field `plus: true`, never a character in a name, a tag or a key; in prose it is written Allograph+. A listing
-stops being an Allograph+ while it has fewer than two live proofs, and is one again when it has two. An agent is never
+stops being an Allograph+ while it has live proofs on fewer than two faceplaces, and is one again when it has two. An agent is never
 an Allograph+.
 
 **What a holder shows.** By `show.faceplaces`, an entry gives a person's live proofs either `counted`, as their number
@@ -1238,7 +1259,9 @@ The registry keeps nothing of a look-up: not its words, not its answer, not who 
 
 ### 14.12 The registry's operations
 
-A registry speaks JSON over HTTPS. These are its operations, at these paths under its address:
+A registry speaks JSON over HTTPS. These are its operations, at these paths under its address. The look-ups (by tag, by
+name and by need) and the list of faceplaces need no account. Only `challenge`, `statements`, `waiting` and `DELETE`
+need one.
 
 | Operation | Request | Answer |
 |---|---|---|
@@ -1270,7 +1293,7 @@ A statement that is refused changes nothing, and is answered with one of these:
 | Status | Code | When |
 |---|---|---|
 | 401 | `signed_out` | no signed-in account |
-| 400 | `bad_statement` | a field missing, a field this section does not name, or a value outside its shape |
+| 400 | `bad_statement` | a field missing, a field this section does not name, a value outside its shape, or an `owner` on a person's listing |
 | 400 | `bad_signature` | the signature does not verify against the signer's key |
 | 400 | `bad_nonce` | a nonce the registry did not issue to this account, already taken, or older than ten minutes |
 | 400 | `bad_allograph` | an allograph that breaks a rule of section 14.6 |
@@ -1280,10 +1303,10 @@ A statement that is refused changes nothing, and is answered with one of these:
 | 409 | `name_changed` | a new name within ninety days of the last |
 | 409 | `tag_taken` | a key whose tag another live listing has, or a statement for a tag tied to another account |
 | 404 | `not_listed` | `by`, `of`, `agent` or `owner` names no live listing and no company listed on the Index |
-| 403 | `not_allowed` | a signer who may not say this: an agent proving or attesting, an attester attesting themselves or an agent they own, an owner that is not an Allograph+ or a listed company, an agent naming no owner, a holder accepting an attestation of another listing |
+| 403 | `not_allowed` | a signer who may not say this: an agent proving or attesting, an attester attesting themselves or an agent they own, an owner that is not an Allograph+ or a listed company, an agent naming no owner, a re-listing that changes a listing's kind between person and agent, a company's statement from an account outside that company's organization, an `accept` or `remove` that names a digest the signer has no attestation under (the refusal does not say whether another listing holds that digest) |
 | 400 | `bad_claim` | an attested claim the listing's current allograph does not make |
-| 400 | `unknown_faceplace`, `bad_address` | a faceplace the registry does not list; an address its entry does not accept for the handle |
-| 409 | `proof_missing` | the address was read and the proof string was not on it |
+| 400 | `unknown_faceplace`, `bad_address` | a faceplace the registry does not list; a handle outside the faceplace's shape, or an address its entry does not accept for the handle |
+| 409 | `proof_missing` | the address could not be read, or it was read and the proof string was not on it |
 | 403 | `sample_refused` | a sample, at a registry that serves no demonstrations |
 | 413 | `too_large` | a statement over 64 kilobytes |
 | 429 | `rate` | past a rate limit; the registry's terms state its limits |
@@ -1294,7 +1317,8 @@ A search with a token outside section 14.3's table, or a value that is not a FEE
 ### 14.13 Withdrawal
 
 A holder withdraws a listing at any time: by a `withdraw` statement, or, without the key, from the account its tag is
-tied to. A withdrawn listing is gone from every answer at once, in the request that withdraws it. The registry keeps
+tied to. The holder's key is kept by the holder, and a later `list` under the same key lists again under the same tag, as a new
+listing: nothing of the old one comes back. A withdrawn listing is gone from every answer at once, in the request that withdraws it. The registry keeps
 nothing of it: its statements, its allograph, its proofs, the attestations and bonds signed for it or by it, and the
 tie to its account are deleted then, and are gone from the registry's backups within thirty days. An agent bonded to
 it is in no answer until it has a live bond again. A registry that a law obliges to keep something states in its terms
@@ -1398,8 +1422,8 @@ name, an email address, an id-like run of digits, an `employer` field and a stre
    section 14.8.
 4. Show each claim's level and each listing's, never show an attestation its holder has not accepted, never show an
    agent as an Allograph+, and show no agent whose bond is not live (sections 14.9 and 14.10).
-5. Keep of a faceplace proof only its faceplace, handle, address, state and the day it was last found, and never sign
-   in to a faceplace (section 14.9).
+5. Keep of a faceplace proof only its faceplace, handle, address, state, the day it was last found and, while it is
+   missed or lapsed, the day that began, and never sign in to a faceplace (section 14.9).
 6. Answer look-ups and offer no browsing from one entry to another, and keep nothing of a look-up (section 14.11).
 7. Withdraw a listing at once when its holder asks, and keep nothing of it after (section 14.13).
 

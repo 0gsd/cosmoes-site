@@ -1747,7 +1747,7 @@ keeps the block as an unknown key; the Thym compiler reads it. Each entry:
 | `code` | the reference implementation, informative: `enough.thym.moves.emf:entail` |
 | `says` | one line, in FEED words, for the viewer and the readvisor |
 | `since` | `1`: the move exists for `thym 1` programs only (section 4.9) |
-| `extends` | `true`: the entry adds `as` kinds to a move another manifest declares, and nothing else (its `modifiers` are `{as: <kinds>}`); a call of one of its kinds gives the entry's `gives`, keeps its `contract` and runs its `code`. Ascribe's `project … as isograph` and `project … as allograph` are one, an entry whose `as` lists both (section 6.2) |
+| `extends` | `true`: the entry adds `as` kinds to a move another manifest declares, and nothing else (its `modifiers` are `{as: <kinds>}`); a call of one of its kinds gives the entry's `gives`, keeps its `contract` and runs its `code`. Ascribe's `project … as isograph` and `project … as allograph` are one, an entry whose `as` lists both, written as one string, `isograph | allograph`, since a manifest gives a modifier's alternatives as a single string and refuses a YAML list for one (section 6.2) |
 | `thym-1` | a mapping of the keys a `thym 1` program sees in addition to, or in place of, the entry's own: `takes`, `gives`, `modifiers`, `contract`, `scaffold`, and the three below; a `thym 0` program sees the entry without it |
 | `gives-when` | a list of `{as: <words>, gives: <type>}` or `{takes: <type>, gives: <type>}`: the type a call gives when its `as` word, or its first operand's type, is one of these |
 | `contract-when` | the same shape, with `contract: [...]`: the call's contract when its `as` word or first operand's type matches; else `contract` |
