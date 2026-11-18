@@ -12,3 +12,4 @@ specs
 .DS_Store
 requirements-dev.txt
 pytest.ini
+!library/*/*/*/files/**

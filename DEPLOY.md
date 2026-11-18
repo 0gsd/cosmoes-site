@@ -38,7 +38,9 @@ gcloud artifacts repositories create $REPO --repository-format=docker --location
 gcloud builds submit --tag $IMAGE .
 ```
 
-`.dockerignore` keeps the tests, the venv and the markdown out of the image; `site/specs/` goes in.
+`.dockerignore` keeps the tests, the venv and the markdown out of the image; `site/specs/` goes in, and so do
+`library/` (every publisher's file under a version folder's `files/`, markdown included) and
+`client/library_index.py`, by which the library's pages are made.
 
 ## 3. Deploy
 

@@ -1,0 +1,9 @@
+{% extends "library.html" %}
+{% block title %}{{ title }} · {{ t.entry.name }} {{ t.entry.version }} · {{ domain }}{% endblock %}
+{% block library %}
+{% include "_lib_notice.html" %}
+<article class="lib-page" data-page="{{ path }}">
+{% if not has_h1 %}<h1>{{ title }}</h1>{% endif %}
+{{ body|safe }}
+</article>
+{% endblock %}

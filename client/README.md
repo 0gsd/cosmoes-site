@@ -117,3 +117,13 @@ Two ways, both offline. A stand-in server (`http.server` on `127.0.0.1`, as `tes
 `opener=` anything with `.open(request, timeout=…)` returning a response that has `status`, `headers` (a
 case-insensitive mapping) and `read(n)`, and raising `urllib.error.HTTPError` for a 304 or an error status; see
 `FakeOpener` in `tests/test_client.py`. `clock=` replaces `time.time` for exact timestamps.
+
+## `client/library_index.py`: the library's rules and index
+
+The second canonical file here, standard library only. It holds the library's rules, used by three readers: the site
+(`cosmoes/library.py` renders pages from its blocks, so a page's anchors are the index's), `scripts/fetch_library.py`
+(`SHA256SUMS`, the registry's checks, the change note each `NOTICE` carries) and enough, which vendors it byte for byte
+as `enough/library_index.py`. `verify --library library` checks the registry and every kept folder; `build --library
+library --out <file.sqlite>` builds the index from the files alone (`--check`: exit 1 when it is stale). Tables:
+`meta`, `texts`, `files`, `sections` (heading path, anchor, kind, level, lines, the section's sha256, parent),
+`anchors` (every id, aliases too) and `sections_fts` (FTS5). Unlike `cosmoes_client.py`, the site imports this one.

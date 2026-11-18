@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{# The library's pages: the shelves, a shelf, a text's contents, one page. Every page of a kept text carries the notice
+   (_lib_notice.html); the footer says whose the texts are instead of the specifications' line. #}
+{% block body_class %}library{% endblock %}
+{% block content %}
+<p class="kicker"><a href="/library/">The library</a>{% for c in crumbs %} · {% if c.url %}<a href="{{ c.url }}">{{ c.label }}</a>{% else %}{{ c.label }}{% endif %}{% endfor %}</p>
+{% block library %}{% endblock %}
+{% endblock %}
+{% block foot %}
+  <p>The library keeps copies of other publishers' texts, each with its own licence and copyright notice; they are
+  not the publishers' own pages, and not the OES specifications. The site's code is Apache-2.0.</p>
+{% endblock %}

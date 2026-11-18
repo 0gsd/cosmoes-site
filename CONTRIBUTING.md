@@ -40,3 +40,11 @@ An entry in `specs/specs.json` (`slug`, `file` under `specs/`, `name` without a 
 reference), the DNS record and the Cloud Run mapping for its host (DEPLOY.md, section 4), the build, and the owner's
 go. Every name and edition the site shows comes from the registry through the manifest; the text's own heading is
 the page's heading.
+
+## Adding a text to the library
+
+The library (`library/`) is not a text of ours: a kept text enters only by the owner's run of
+`scripts/fetch_library.py` (an entry in its `ENTRIES`, a dry run, then the run at a terminal, where each licence is
+read whole first), and its version folder is never edited afterwards. A pinned text is an entry in
+`library/library.json` with `aboard: false`. Never add a publisher's file by hand, and never write a licence or a
+copyright notice that did not come from the publisher's files or the owner. `library/README.md` has the rest.

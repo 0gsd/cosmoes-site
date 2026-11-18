@@ -34,6 +34,16 @@ manifest's, a fragment that carries a script, a style, an event attribute…). T
 site's own stylesheet in `cosmoes/static/site.css`. `PLAN.md` is the plan this grew from; `CONTRIBUTING.md` says how
 a text changes.
 
+## The library: `library/`
+
+Apart from the specifications, the apex host serves the language library: the languages and standards the fabulacs
+lean on, each kept whole as its publisher's files with its own licence and copyright notice, at
+`/library/<shelf>/<text>/<version>/<path>`. Every page says it is a copy kept here, not the publisher's own page, and
+carries the licence, the notice and what was changed in form; `…/raw/<path>` serves the publisher's file unchanged.
+`library/library.json` is its registry (never `specs/specs.json`). Texts enter only by the owner's run of
+`scripts/fetch_library.py`; `client/library_index.py` verifies the shelf, splits the texts into sections and builds the
+SQLite index enough uses. `library/README.md` says the rest; `library/NOTICE.md` whose the texts are.
+
 ## The texts: `specs/`
 
 `specs/<file>.md` are the canonical texts (`specs/NOTICE.md`: © 2026 Graham Smith, CC BY 4.0 with an OWFa 1.0 patent promise, the names not licensed;
@@ -95,7 +105,9 @@ a time are easy to look at locally; the density switch and the in-page links wor
 apex text with its list of homes, the raw endpoints and their headers, names and hosts taken from the manifest, the
 redirect hosts, robots, sitemap, manifest, stylesheets, headers, the licence line). `tests/test_specs.py`: what the
 loader refuses, and that the shipped `site/specs/` is the registry built, every real page's anchors resolving, no
-margin marks, the Comprise chapters gone. `tests/test_build.py`: the registry's validation and the build against a
+margin marks, the Comprise chapters gone. `tests/test_library_site.py`, `tests/test_library_index.py`, `tests/test_fetch_library.py`: the library's routes, notices and
+raw files, its splitters and index, and the fetch script, against a made-up shelf (`tests/fixtures/library/`, written
+by the fetch script from local archives; no third party's text). `tests/test_build.py`: the registry's validation and the build against a
 stand-in export; its last test runs `--check` with the real enough when a checkout is at hand (`COSMOES_ENOUGH`, else
 `~/METMcloud/METMroot/enough-dev`). The fixture export is written by `tests/conftest.py`. CI
 (`.github/workflows/check.yml`) runs the suite on every push and pull request, and its `in-step` job rebuilds the
