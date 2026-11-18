@@ -2594,7 +2594,11 @@ always have, and a replay of either run needs neither the person nor the model.
 `question v` takes a fabula or a volume and gives a list of question items. It asks the model, with the scaffold
 `bank`. Its rules part always runs first: it gives the opening questions of the manifest's bank for the volume's
 flavour or format, a question for every `{pending: …}` field, and one for every item marked unsure (a confidence below
-0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5).
+0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5). One kind of bank entry waits
+for the model: an entry that says `model-stands-in: true` (MacroCOSM OES, its section 18.6.6) is a generic question
+whose place the model's own questions take, so a run that asks the model does not raise it. A fabulac's bank has two,
+`fabulac/intended` and `fabulac/settings`. Under `--rules`, and in a run where the model is given nothing to read, the
+rules part raises them as it raises every other entry.
 When the run asks the model, the model adds questions where the volume is unsure, ambiguous, in conflict or silent on
 intent, and only there. It reads only the items a person can say something about: of a fabulac its aims, uses,
 requirements, decisions, exclusions, behaviours, interfaces, structures and claims; of any other volume every item but
