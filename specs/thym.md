@@ -817,7 +817,7 @@ a program may also define a check of its own, as a contract block, and promise t
 | `null-pinned` | every scale of the null short is 1 (section 13.4 says why `analytical-depth` is) | Thym's own; the null morph's contract |
 | `scales-met` | each scale of the output, measured, is within one step of the morph asked for; `analytical-depth` excepted, since the fabula sets it (section 13.4) | Thym's own |
 | `labelled` | a reading carries `read_through: <morph name>` and the reading footer (section 14) | Thym's own |
-| `never-source` | a reading's output path is not the path of any input, and no input file changed | Thym's own |
+| `never-source` | a reading's output path is not the path of any input, and no input file changed: an input read from a file whose bytes on disk no longer have the digest they were read with fails it. The second half is the host's, read from its files; a runtime that reads no files holds the check by the paths alone | Thym's own |
 | `default-deny` | the projected volume holds only the fields its target schema names | Comprise (the isotype) |
 | `no-counts` | no number of anything internal reaches the projection; the only number allowed is one the schema names (a founded year) | Comprise |
 | `banded` | a number leaves only as a word from the declared list, and a band changes only after the value has stayed past the boundary for 90 days | Comprise (bands) |
@@ -1113,7 +1113,11 @@ end
 |---|---|---|
 | **compile** | a parse error (`parse`); a version line that names a grammar the compiler does not know, `thym 1` syntax or a move only `thym 1` sees under a `thym 0` line ("this needs `thym 1`", section 4.9), or a `thym 0` program that uses a `thym 1` file (`version`); an unknown move (`unknown-move`); an unknown URI or `use`d file (`unknown-uri`); two `use`d names that clash (`use-clash`); an unbound name (`unbound`); a type error (`type`); an `insert` with neither `before` nor `after`, or with both (`type`); a name bound twice (`rebound`); recursion in `thym 0`, or in `thym 1` a move on a cycle without `depth:` (`recursion`); a `give` inside a loop (`type`); a `keep` outside a loop that collects, a loop that collects nothing or keeps two types, a contract that asks, a `depth:` out of range or on a move that never calls itself (`type`); a `keeps` naming no contract and no check (`unknown-check`); a block that `gives`, with a path that never reaches a `give` of each output, refused at the block's first line (`no-give`); emitted items with no `project` (`emit-without-project`); a static contract that cannot hold (the contract's check, such as `no-counts`), a fabula known to be of a flavour the move does not take among them (`flavour`) | the file and line, the check, and the fix where one is known |
 | **plan** | a model-backed node while agent-free (`agent-free`, section 19); a prompt the machine's model cannot hold (`preflight`, the 16 GB rule, section 12.5); a missing or changed input (`input`: its digest, or a folder's tree digest, differs from the plan's); a plan whose program cannot be read (`no-program`); a move with no implementation here (`move`), or none under `--rules` (`rules`); a cloud route whose gate is closed (`cloud`); a cloud plan whose count of model calls is open and that was given no ceiling (`calls`, section 23) | the node, the count or the size, and what would make it run |
-| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises; a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
+| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises, or that needs one of the host's engines (FEED, Canon's derivation, a syntax engine, section 12.4) the host lacks ("the syntax engine is not here"); a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
+
+A move with no implementation is refused at plan time, since the plan names every move; an engine a move calls is
+looked for when the move runs, and the reference runtime refuses an absent one then, at run time, before the run
+writes anything. A host that knows at plan time which engines a node will call may refuse it then, with `move`.
 
 A refusal is a value, not an exception: the CLI prints it and exits non-zero, the server returns it as the response,
 and the viewer shows it in place of the plan or the outputs. It carries `stage` (`compile`, `plan` or `run`), `line`,
@@ -1283,7 +1287,19 @@ traces are read in the same viewer as everything else.
 `run` takes a plan and the program it was made from (the `.thym` file or its program volume; the plan's `program.sha256`
 must match), since a filter's condition, a local move's body and an `assert`'s message are read from the program, and
 checks the plan against the environment: the model present and large enough, agent-free or not, and
-every input present with the digest the plan recorded. It then walks the nodes in a topological order. Independent
+every input present with the digest the plan recorded.
+
+A runtime is given four things: the plan; the program; the declarations of the moves the program sees (section 17.6);
+and, for each format its inputs declare, the format's map of module letters to module names, from the format's
+manifest. The map is what `h where module is employees` reads: an item's module is the name the manifest gives its
+id's letter, trimmed and folded to lowercase, or the letter itself where the manifest names none or the format is not
+known. The plan is not executable alone. Each node's `name` is its statement as written, with each nested call outside
+a loop's body put as the temporary that holds its value (`band t3 as [none, some]`), and, inside a loop, with
+`, for each …` or `, for x = <member>` after it (section 11.1). A runtime reads that name by the grammar's `stmt`
+(section 4.8) with the names of the moves in scope, so that a name that is a move begins a call. From the program it
+reads what the plan does not hold: each statement as the person wrote it, by its line, for refusals (section 9); the
+`let` lines whose value is not a call, a filter among them; each user move's body and each contract block; the body of
+a loop run as one node; each `assert`'s message; and the program's `takes` and `gives`. It then walks the nodes in a topological order. Independent
 nodes may run in parallel or in sequence. A deterministic node calls its move's implementation. A model-backed node
 builds the coprocessor call from the move's contract and the node's inputs. A failing node refuses the run: outputs
 already made are discarded, nothing is written to the target paths, and the trace records how far the run got. Outputs
@@ -1291,7 +1307,8 @@ are written only when every node has succeeded, all at once, with the trace besi
 
 A list input (`takes xs: list of T`, in either version) is given member by member, in order; an empty list is not
 an input given. The plan records it as `{name, type, path, sha256, members: [{path, sha256}]}`: `path` is the first
-member's, `sha256` is over the members' digests in order, a folder member also has `files` and `bytes`, and the list's
+member's, `sha256` is over the members' digests in order, written one after another with nothing between them
+(section 12.6), a folder member also has `files` and `bytes`, and the list's
 size is the sum of its members'. The run reads each member as it reads a single input of type T, held to its own
 digest, names it `xs[2]` in a refusal (counted from 1), and gives the program the list in the order given. The record
 of a node that takes the list names each member beside it, as `xs[n]`, with its digest and path.
@@ -1392,14 +1409,73 @@ ceiling on its model requests, `--calls N`, which a cloud plan with an open coun
 
 ### 12.6 Portability
 
-No Python-only semantics. No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts:
-bands and scales are integers, and the ratios of section 13.3 are integers per hundred or per thousand. Digests are
-sha256: a text's over its bytes, a volume's over its catalog file, a file's always over its bytes, a folder's over its
-files as the tree digest (section 20.1), and a mapping's over the reader's canonical dump (keys in file order, LF
-newlines, UTF-8). The folder rule is the same in every language and uses no ignore-file semantics; the compiler's own
-`dump` writes program volumes for people, with block scalars, and is never a digest's form. File paths are URIs. Time is UTC in traces and local only in file names. A JavaScript
-runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make readings in the
-page.
+No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts: bands and scales are
+integers, and the ratios of section 13.3 are integers per hundred or per thousand. The folder rule is the same in every
+language and uses no ignore-file semantics. File paths are URIs. Time is UTC in traces and local only in file names. A
+JavaScript runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make
+readings in the page. Where the reference runtime's results depend on how its language treats text, this section says
+how, so that a runtime in another language gives the same bytes by following the text, not by reading Python.
+
+**Digests** are sha256, written as 64 lowercase hexadecimal digits:
+
+- a text's, a short's and a file's over its bytes;
+- a volume's over its catalog file, so that a change to one of its module files alone does not change it;
+- a folder's over its files, as the tree digest (section 20.1);
+- a mapping's (an item, or a volume a move made) over its canonical dump, below;
+- a list value's over its members' digests joined by line feeds, with none after the last;
+- a plain value's over its text: a number's decimal digits, `true` or `false`, a date's ISO 8601 form, a word's or a
+  string's UTF-8 bytes, and `nothing`'s over no bytes.
+
+A plan's list input has a digest of its own, over its members' digests with nothing between them (section 12.1). The
+two list rules differ, and both stand as written; one rule for both waits for a later grammar, since it would change
+recorded plans.
+
+**The canonical dump** is the text that PyYAML 6's `safe_dump` writes for the mapping, with the options
+`sort_keys=False, allow_unicode=True, width=110, default_flow_style=False` (keys not sorted, Unicode written as itself,
+a width of 110, block style throughout), and never an anchor or an alias (a mapping or a list held twice is refused
+before it is dumped; an equal scalar is written twice). Keys come in the order they were
+written, except that the declaration key (`oes`, `manifest`, `cosm`, `opi` or `comprise`) is moved first. Lines end
+with LF, and the text is encoded as UTF-8. So YAML 1.1's rules, as PyYAML 6 reads them, decide every byte:
+
+- a string that would read back as something else is single-quoted: `yes`, `no`, `on`, `off`, `null`, `true`, a
+  number such as `123` or `1.5`, a date such as `2026-11-01`, and the empty string; so is a string with a space at
+  either end, with `: ` or ` #` inside, or that ends with a line break;
+- a string that holds a character YAML must escape (a tab, a control character, U+2028 or U+2029) is double-quoted,
+  with PyYAML's escapes (`\t`, `\L` and `\P` among them);
+- a long scalar is folded at the first space past column 110, plain, single- and double-quoted scalars each in their
+  own way;
+- a key is quoted by the same rules as a string;
+- indentation is two spaces, a list under a key starts at the key's own indentation, an empty list is `[]` and an
+  empty mapping `{}`; `nothing` is `null`, and a date is written in its ISO 8601 form, unquoted.
+
+The suite carries the dump's vectors as data, each a mapping and the bytes it dumps to (section 24.3). A runtime in
+another language conforms when it writes those bytes; it need not use PyYAML, and the reference's JavaScript runtime
+does not. A smaller canonical form waits for a later grammar, since it would change every recorded digest. The
+compiler's own `dump` writes program volumes for people, with block scalars, and is never a digest's form.
+
+**Text** is read as a sequence of Unicode code points, and the reference runtime treats it so:
+
+- a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
+  check's reason in a record at 400;
+- whitespace, where a rule folds, trims or splits on it, is the characters Unicode's `White_Space` property names
+  (the Unicode Character Database, `PropList.txt`) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
+  return, U+001C to U+001F, space, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and
+  U+3000;
+- the lines of a text or a short, as `lines` gives them and a change names them (section 21), and a poem's lines
+  (section 20.9), end at a line feed, with a carriage return just before it part of the break; no other character
+  ends one;
+- the sentences of a text (section 7.3, `coverage`) are read over lines that end at a line feed, a carriage return and
+  line feed, or a carriage return alone;
+- a short or a text walked by `for each`, line by line, gives one member per line that is not blank, and its lines end
+  at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
+  U+2029;
+- a word, as `words` and `length` count it, is a run of the ASCII letters and digits and the code points U+00C0 to
+  U+024F, which may go on with one apostrophe (`'` or `’`) and ASCII letters; a poem's word (section 20.9) is a run of
+  those letters with no digits, with an apostrophe between any two runs, read after a hyphen and an em dash are made
+  spaces, and folded to lowercase;
+- where a rule of a move reads a digit, a word character or a word boundary, they are Unicode's: a digit is a code
+  point of general category `Nd`; a word character is a letter or number (general categories `L` and `N`) or the
+  underscore; a boundary lies between a word character and anything else.
 
 ---
 
@@ -1850,7 +1926,9 @@ the holotype holds people or says it has none, and always fills `shape.markets`;
 
 In agent-free mode the coprocessor is the refusing one: a plan with model-backed nodes is refused at plan time with
 their count, the route and the first one's statement and line ("3 steps ask a model on the local route, the first `let f
-= derive story` (line 11); agent-free is on"). A cloud model is a model too: agent-free refuses a plan on the cloud
+= derive story` (line 11); agent-free is on"). The route the refusal names is the one the run's environment gives
+(section 12.3), as the host's settings would choose it, and `local` when the environment names none; it is named even
+though no model runs, so a runtime is given the route to word the refusal the same way. A cloud model is a model too: agent-free refuses a plan on the cloud
 route exactly as it refuses one on the local route, at plan time, before any broker is asked. A plan with no
 model-backed node runs. With `--rules`, each model-backed move that declares a `scaffold` runs it instead: `derive`
 gives the rules twin, `atem` the labelled scaffold, `entail` and `null` the ordered outline, and `measure` the seven
@@ -2715,6 +2793,7 @@ expected/<name>/plan.cosm       the plan, compared without run ids, timestamps a
 expected/<name>/outputs/        the outputs of deterministic runs, byte for byte
 replay/<name>/<run-id>/         a recorded run: plan, trace, candidates; re-runs to the recorded outputs
 bad/<slug>.thym                 programs that must be refused; the first line reads -- refused: <stage> <check> line <n>
+canonical/<name>.json           a mapping, and canonical/<name>.cosm the bytes its canonical dump is (section 12.6)
 ```
 
 A compiler conforms when every program in `programs/` compiles, enumerates to its `expected/<name>/items.cosm`, compiles
