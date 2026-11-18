@@ -1,0 +1,28 @@
+{% extends "library.html" %}
+{% block title %}The library · {{ domain }}{% endblock %}
+{% block library %}
+<section class="hero" aria-labelledby="h">
+  <h1 id="h">The library</h1>
+  <p class="lede">The languages and standards the fabulacs lean on, in their publishers' own words: each text kept
+  whole as the publisher's files, with its licence and copyright notice, and shown here as pages. A text that may not
+  be copied is pinned by name and version, not kept.</p>
+</section>
+{% if shelves %}
+<ul class="tiles">
+  {% for s in shelves %}
+  <li class="tile" id="shelf-{{ s.slug }}">
+    <p class="kicker">{{ s.kind }}</p>
+    <h2><a href="/library/{{ s.slug }}/">{{ s.title }}</a></h2>
+    {% if s.about %}<p class="lead">{{ s.about }}</p>{% endif %}
+    <ul class="links">
+      {% for t in s.kept %}<li><a href="{{ t.url }}">{{ t.entry.name }} {{ t.entry.version }}</a></li>{% endfor %}
+      {% for p in s.pins %}<li>{{ p.name }}{% if p.version %} {{ p.version }}{% endif %}: pinned, not kept</li>{% endfor %}
+      {% if not s.kept and not s.pins %}<li class="none">Nothing on this shelf yet.</li>{% endif %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="none" role="status">Nothing is on the shelf yet.</p>
+{% endif %}
+{% endblock %}

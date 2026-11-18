@@ -1,0 +1,20 @@
+{% extends "library.html" %}
+{% block title %}{{ t.entry.name }} {{ t.entry.version }} · the library · {{ domain }}{% endblock %}
+{% block library %}
+<section class="hero" aria-labelledby="h">
+  <h1 id="h">{{ t.entry.name }} {{ t.entry.version }}</h1>
+</section>
+{% include "_lib_notice.html" %}
+{% if t.pages %}
+<h2 id="lib-contents">Pages</h2>
+<ul class="lib-pages">
+  {% for p in page_list %}<li><a href="{{ t.url }}{{ p }}">{{ p }}</a></li>{% endfor %}
+</ul>
+{% endif %}
+<h2 id="lib-raw">The publisher's files, unchanged</h2>
+<ul class="lib-pages">
+  {% for f in t.files %}<li><a href="{{ t.url }}raw/{{ f }}">{{ f }}</a></li>{% endfor %}
+</ul>
+<h2 id="lib-notice-whole">NOTICE</h2>
+<pre class="lib-notice-text">{{ t.notice }}</pre>
+{% endblock %}

@@ -4,7 +4,11 @@ registry specs/specs.json declares it): the document whose host is the domain it
 whose host is `<sub>.cosmoes.org` is served at that subdomain. Today:
 
     cosmoes.org             OES, the paradigm map, with the list of the four homes on /; /robots.txt, /sitemap.xml,
-                            /manifest.json (all of it), /health ({"ok":true,"edition":…}, on every host)
+                            /manifest.json (all of it), /health ({"ok":true,"edition":…}, on every host); and the
+                            library: /library/, /library/<shelf>/, /library/<shelf>/<text>/<version>/ (the text's
+                            contents and notice), …/<page> (a page, with the notice), …/raw/<path> (the publisher's
+                            file byte for byte, as plain text when a browser would run it), …/NOTICE, …/FETCHED,
+                            …/SHA256SUMS (cosmoes/library.py; library/README.md)
     macro.cosmoes.org       MacroCOSM OES          /  (short)   /atem   /fabula   /manifest.json   /raw/*   /docs.css
     thym.cosmoes.org        Thym                   the same
     ascribe.cosmoes.org     Ascribe                the same
@@ -33,6 +37,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+from . import library as library_mod
 from . import specs as specs_mod
 
 HERE = Path(__file__).resolve().parent
@@ -112,9 +117,11 @@ class Hosts:
         return host_url(self.sub_of[slug]) if slug in self.sub_of else APEX
 
 
-def create_app(specs_folder: Path | str | None = None) -> FastAPI:
-    """The site, its specifications read from `specs_folder` (site/specs/ unless a test names another)."""
+def create_app(specs_folder: Path | str | None = None, library_folder: Path | str | None = None) -> FastAPI:
+    """The site, its specifications read from `specs_folder` (site/specs/ unless a test names another) and its
+    library from `library_folder` (library/ unless a test names another)."""
     specs = specs_mod.Specs(specs_folder or specs_mod.FOLDER)
+    library = library_mod.Library(library_folder)
     env = Environment(loader=FileSystemLoader(str(HERE / 'templates')), autoescape=select_autoescape(['html', 'xml']),
                       trim_blocks=True, lstrip_blocks=True)
     env.filters['date_text'] = specs_mod.date_text
@@ -122,6 +129,7 @@ def create_app(specs_folder: Path | str | None = None) -> FastAPI:
 
     app = FastAPI(title='cosmoes.org', docs_url=None, redoc_url=None, openapi_url=None)
     app.state.specs = specs
+    app.state.library = library
     routing: dict[str, Hosts] = {}
 
     def hosts_map() -> Hosts:
@@ -287,11 +295,112 @@ def create_app(specs_folder: Path | str | None = None) -> FastAPI:
             urls = [APEX + PAGES[d].lstrip('/') for d in (('short', 'atem', 'fabula') if slug else ('short',))]
             for sub, s in hm.by_sub.items():
                 urls += [host_url(sub) + PAGES[d].lstrip('/') for d in ('short', 'atem', 'fabula')]
+            if library.load().shelves:                       # the library: the shelves, each shelf, text and page
+                base = APEX.rstrip('/')
+                urls.append(f'{base}/library/')
+                for sh in library.shelves:
+                    urls.append(f"{base}/library/{sh['slug']}/")
+                    for t in library.on_shelf(sh['slug'])[0]:
+                        urls.append(base + t.url)
+                        urls += [base + t.url + p for p in sorted(t.pages)]
         exported = specs.meta['exported'] if specs.meta else None
         lastmod = f'<lastmod>{exported:%Y-%m-%d}</lastmod>' if isinstance(exported, datetime.datetime) else ''
         body = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                 + ''.join(f'  <url><loc>{escape(u)}</loc>{lastmod}</url>\n' for u in urls) + '</urlset>\n')
         return Response(body, media_type='application/xml')
+
+    # --------------------------------------------------------------------- the library, on the apex host only
+
+    def lib_page(request: Request, template: str, crumbs: list[dict], **ctx) -> Response:
+        if where(request)[0] != 'apex':
+            return not_found(request)
+        return page(template, hosts=homes(None), crumbs=crumbs, canonical=APEX.rstrip('/') + request.url.path,
+                    **ctx)
+
+    def on_apex(request: Request) -> bool:
+        return where(request)[0] == 'apex'
+
+    @get('/library')
+    def library_bare(request: Request):
+        return RedirectResponse('/library/', status_code=301) if on_apex(request) else not_found(request)
+
+    @get('/library/')
+    def library_shelves(request: Request):
+        shelves = []
+        for s in library.load().shelves:
+            kept, pins = library.on_shelf(s['slug'])
+            shelves.append(dict(s, kept=kept, pins=pins))
+        return lib_page(request, 'library_shelves.html', [], shelves=shelves,
+                        description='The languages and standards the fabulacs lean on, kept in their publishers\' '
+                                    'own words with their licences.')
+
+    @get('/library/{shelf}')
+    def library_shelf_bare(request: Request, shelf: str):
+        if not on_apex(request) or library.shelf(shelf) is None:
+            return not_found(request)
+        return RedirectResponse(f'/library/{shelf}/', status_code=301)
+
+    @get('/library/{shelf}/')
+    def library_shelf(request: Request, shelf: str):
+        s = library.shelf(shelf)
+        if s is None:
+            return not_found(request)
+        kept, pins = library.on_shelf(shelf)
+        return lib_page(request, 'library_shelf.html', [{'label': s['title'], 'url': None}], shelf=s, kept=kept,
+                        pins=pins, description=s.get('about'))
+
+    @get('/library/{shelf}/{text}/')
+    def library_text_versions(request: Request, shelf: str, text: str):
+        """A text without a version: its shelf, where every version is listed."""
+        if not on_apex(request) or not library.versions(shelf, text):
+            return not_found(request)
+        return RedirectResponse(f'/library/{shelf}/', status_code=302)
+
+    @get('/library/{shelf}/{text}/{version}')
+    def library_text_bare(request: Request, shelf: str, text: str, version: str):
+        if not on_apex(request) or library.text(shelf, text, version) is None:
+            return not_found(request)
+        return RedirectResponse(f'/library/{shelf}/{text}/{version}/', status_code=301)
+
+    def text_crumbs(t) -> list[dict]:
+        s = library.shelf(t.entry['shelf'])
+        return [{'label': s['title'], 'url': f"/library/{s['slug']}/"},
+                {'label': f"{t.entry['name']} {t.entry['version']}", 'url': t.url}]
+
+    @get('/library/{shelf}/{text}/{version}/')
+    def library_text(request: Request, shelf: str, text: str, version: str):
+        t = library.text(shelf, text, version)
+        if t is None:
+            return not_found(request)
+        raw = f'{t.url}raw/{t.files[0]}' if not t.pages and len(t.files) == 1 else None
+        return lib_page(request, 'library_text.html', text_crumbs(t)[:1], t=t, page_list=sorted(t.pages), raw=raw,
+                        description=f"{t.entry['name']} {t.entry['version']}, a copy kept at {DOMAIN}.")
+
+    @get('/library/{shelf}/{text}/{version}/raw/{path:path}')
+    def library_raw(request: Request, shelf: str, text: str, version: str, path: str):
+        """A publisher's file as it came, byte for byte: plain text for anything a browser would run, sandboxed."""
+        t = library.text(shelf, text, version) if on_apex(request) else None
+        body = t.raw(path) if t else None
+        if body is None:
+            return not_found(request)
+        return Response(body, media_type=library_mod.raw_type(path, body),
+                        headers={'Access-Control-Allow-Origin': '*', 'Content-Security-Policy': library_mod.RAW_CSP})
+
+    @get('/library/{shelf}/{text}/{version}/{path:path}')
+    def library_text_page(request: Request, shelf: str, text: str, version: str, path: str):
+        t = library.text(shelf, text, version) if on_apex(request) else None
+        if t is None:
+            return not_found(request)
+        if path in library_mod.META_FILES:                   # NOTICE, FETCHED, SHA256SUMS: ours, as plain text
+            return Response(t.meta(path), media_type='text/plain; charset=utf-8',
+                            headers={'Access-Control-Allow-Origin': '*'})
+        rendered = library.page(shelf, text, version, path)
+        if rendered is None:
+            return not_found(request)
+        title, body = rendered
+        return lib_page(request, 'library_page.html', text_crumbs(t), t=t, path=path, title=title, body=body,
+                        has_h1='<h1' in body, raw=f"{t.url}raw/{t.pages[path][len('files/'):]}",
+                        description=f"{title}: {t.entry['name']} {t.entry['version']}, a copy kept at {DOMAIN}.")
 
     @get('/{path:path}')
     def anything_else(request: Request, path: str):
