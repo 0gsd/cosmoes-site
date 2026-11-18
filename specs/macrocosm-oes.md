@@ -3603,6 +3603,7 @@ ruling and a case's `allowing` take one allowance from a closed list, extended o
 | `exit-and-stdout` | its exit status and standard output are the original's; its error output may differ |
 | `stderr-said-or-not` | as `exit-and-stdout`, and its error output is empty exactly where the original's is |
 | `lines-in-any-order` | its output holds the original's lines, in any order |
+| `own-types` | a value takes the target's own type where the kept interface cannot see the difference, so its exit status, standard output and error output are the original's, compared as for `kept` |
 
 **Weighing a target.** A language is weighed against what the fabulac states before anything is entailed into it, and
 the weighing is kept as a dated `N:target` beside any earlier one: a later weighing, against the languages of its day,
@@ -4723,7 +4724,8 @@ language through its fabulac.
    into another language through its fabulac: the transconceiver rules what is kept, the original judges, and the
    fabulac says what it leaned on. The ground and its citations to the language library, the licence's lane, cases
    recorded outside, evidence and its seven levels, the twelve points a target language is weighed on, three of them
-   gates, thirteen checks and two gates, ready to keep and ready to entail into a named language.
+   gates, thirteen checks and two gates, ready to keep and ready to entail into a named language. The closed list of
+   `alike` allowances gains a fifth, `own-types`, as the transconceiver ruled on 2026-11-18.
 7. **The fabula's kinds** (section 18.4.2). New kinds `N:target`, `C:reliance` and `P:assumption`; the field `ruling`,
    with `made-for`, on interfaces, structures, behaviours, settings, reliances and cases; the plain kinds; new fields of
    `N:requirement`, `C:interface`, `C:component`, `C:structure`, `C:dependency`, `R:licence` and `P:case`; the capacity
