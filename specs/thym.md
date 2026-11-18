@@ -73,7 +73,9 @@ their names). Each of these steps is an entailment, the step that expands meanin
 what is made from it (MacroCOSM OES, its section 18.1). A fabula has a flavour, the value of its catalog's `flavour`: `fabulan` for prose,
 `fabulap` for verse, `fabulac` for code (MacroCOSM OES, its section 18.4). A fabulac's short is a `cshort`, source code
 rebuilt from it and never run, and its atem at depth is a `catem`, a text saying what a person can do with the program
-(section 20). A fabulap is built by its own helper moves, `scan` by rule and `construe` by a model (section 20.9).
+(section 20). A fabulac a person authored, before any program, is entailed as the program itself, its entailment, and
+that alone may be run, only in a sandbox (sections 20.11 and 20.12). A fabulap is built by its own helper moves, `scan`
+by rule and `construe` by a model (section 20.9).
 Thym adds three nouns and three verbs:
 
 - a **reading** is an entailment of someone else's fabula in your morph, local and labelled (section 14);
@@ -84,6 +86,11 @@ Thym adds three nouns and three verbs:
 - to **transcognize** is to re-represent a value by choices a mind makes: a move that asks the model, behind a
   contract (`derive`, `entail`, `atem`, `expand`, `null`, `morph`, `read`); the heavy lifting of re-cognition;
 - to **transconceptualize** is to transcognize with a change of frame: another morph, language, audience or occasion.
+
+A *transconception* is a transconceptualization of a program, carried through its fabulac: the program is decompiled
+into a fabulac and the fabulac is entailed in another language (MacroCOSM OES, its section 18.4.9). To transconceive a
+program is to carry it so, and the person who rules what it keeps is its transconceiver (section 20.10). It is minded
+from end to end, and the verb for it is to transconceive: to transcode keeps its sense, the mechanical move.
 
 Transcoding and transcognizing meet in entailment, and the line between them stays where it is. A projection
 (`project`, section 18) is an entailment made by rule, and holds by construction. `entail` makes an entailment by a
@@ -161,6 +168,7 @@ next grammar version, and every `thym 0` program compiles under every later comp
                  (moves, each with a signature and a contract)
 
    a folder of code ── derive ──▶ fabula (a fabulac) ── entail ──▶ cshort (code, never run) · catem (what it does)
+   a person ── author ──▶ fabula (an authored fabulac) ── entail ──▶ its entailment (code, run only in a sandbox)
    a fabula ── question ──▶ open questions ⇢ a person answers ⇢ record · settle ──▶ the fabula, settled
                  (two runs with a person between them; no run waits)
 
@@ -706,12 +714,19 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | move | signature | asks | contract | scaffold |
 |---|---|---|---|---|
 | `derive` | text \| folder → fabula; `as` prose \| verse \| code; `with` fabula | yes | a text as prose or verse: as above, with `fabula-checks` · a text as verse with a fabulap: the same, with `nothing-lost` · a text as code: `code-span` `outline-cited` `coverage` `terms-grounded` `stance-closed` `fabula-checks` `provenance` · a folder: `fold-grounded` `atem-shape` `licence-recorded` `fabula-checks` `provenance` | a text: the rules twin · as code: `file-outline` · a folder: none |
-| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview` or `manual`; `by` order; `with` morph; `as code` gives a folder | yes | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` |
+| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview`, `manual`, `cases` or `layout`; `by` order; `with` morph; `as code` gives a folder, `as cases` a text; `in` a language (a string), with `as layout` or `as code`; `as code in` a language takes `with` a layout (a short) | yes; `as cases` no | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `cases-entailed` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` · as cases: `case-outside` `provenance` · as layout in a language: `target-confirmed` `surface-answered` `no-invention` `footer` `provenance` · as code in a language: `target-confirmed` `files-present` `surface-answered` `apart` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` · cases: the call itself, by rules · layout: none |
 | `survey` | folder → fabula (a fabulac outline) | no | `files-found` `code-span` `licence-recorded` `fabula-checks` `provenance` | — |
 | `history` | folder → fabula; `with` fabula | no | `history-grounded` `fabula-checks` `provenance` | — |
 | `scan` | text → fabula (a fabulap); `as` rhyme \| sound \| recurrence \| form; `with` fabula | no | with no `as`: `lines-found` `scansion-grounded` `span-resolves` `fabula-checks` `provenance` · as rhyme, sound or recurrence: `sound-grounded` `nothing-lost` `fabula-checks` `provenance` · as form: `form-grounded` `nothing-lost` `fabula-checks` `provenance` | — |
 | `construe` | text → fabula (a fabulap); `as` figure \| image \| allusion \| voice \| turn \| meaning \| ambiguity; `with` fabula | yes | `span-resolves` `no-invention` `stance-kept` `coverage` `terms-grounded` `nothing-lost` `fabula-checks` `provenance` | none |
-| `gather` | list of fabula \| list of item → the type of `with`; `with` fabula \| volume | no | `nothing-lost` `ids-unique` `fabula-checks` `provenance` | — |
+| `gather` | list of fabula \| list of item → the type of `with`; `with` fabula \| volume; or text (a recorder's record or a runner's verdict) → fabula; `with` fabula | no | a list: `nothing-lost` `ids-unique` `fabula-checks` `provenance` · a text: `case-outside` `evidence-stated` `nothing-lost` `fabula-checks` `provenance` | — |
+| `ground` | folder → fabula; `with` fabula | no | `ground-cited` `code-span` `nothing-lost` `fabula-checks` `provenance` | — |
+| `weigh` | fabula → fabula (with one `N:target`); `in` a language (a string) | yes | `target-weighed` `no-invention` `fabula-checks` `provenance` | none |
+| `author` | text (a brief) → fabula, or → fabula with no operand (an interview); `as` `tool` \| `library` \| `service` | with a brief, yes; else no | `authored-source` `fabula-checks` `provenance` | a brief: none · no brief: — |
+| `add` | string → fabula; `as` `requirement` \| `decision` \| `case` \| `interface`; `with` fabula | no | `authored-source` `nothing-lost` `ids-unique` `fabula-checks` `provenance` | — |
+| `compare` | fabula → report; `with` fabula | no | none; the report holds what differs, item by item | — |
+| `uncovered` | fabula → list of item | no | none | — |
+| `run` | folder (an authored fabulac's entailment) → report; `as` `tests` \| `tool` \| `service`; `with` list of string (the tool's arguments) | no | `only-authored` `in-sandbox` `provenance` | — |
 | `question` | fabula \| volume → list of item (questions) | yes | `addressed` `no-duplicate` `provenance` | `bank` |
 | `record` | volume → the type of `in`; `in` fabula \| volume | no | `addressed` `only-the-asked` `provenance` | — |
 | `settle` | fabula \| volume → the same | yes, only where an item must be read again | `addressed` `only-the-asked` `fabula-checks` `provenance` | `direct` |
@@ -733,7 +748,14 @@ axis of a poem; section 20.9 says what each finds. `construe` keeps `coverage`, 
 they are read for verse (section 20.9). `propose` is Ascribe's: it reads the holder's own text, decompiled to
 a fabulan, and gives candidate nodes of the holograph, each with the question that asks the holder whether it is so; a
 program lands them with `gather`. `atem`, `expand`, `null`, `measure`, `morph`, `read`, `cut`, `package` and the rest
-are the same in both versions. `atem f` of a fabulac is the catem at depth `line`, under the same contract. The compiler
+are the same in both versions. `atem f` of a fabulac is the catem at depth `line`, under the same contract.
+
+`ground`, `weigh`, and `entail` `as cases`, `as layout in` and `as code in` a language, with `gather` of a record or a
+verdict, are the moves of a transconception (section 20.10). `author`, `add`, `compare` and `uncovered` author a
+fabulac (section 20.11), and `run` runs its entailment, in a sandbox only (section 20.12). `entail f as code` of an
+authored fabulac writes its entailment rather than a cshort, and `cases-entailed` holds of a cshort with nothing to
+check. `gather` of a text reads what it holds: a recorder's record names the cases it ran, and a runner's verdict names
+the cshort it judged. The compiler
 picks the `gives`, the contract and the scaffold of a call from the call as written (its `as` word, or its first
 operand's type), and the plan's `P:contract` item lists the chosen contract, so a plan says exactly which checks a node
 keeps. A call whose scaffold is `none` has no scaffold, and `--rules` refuses it at plan time (section 19). Sections 20,
@@ -844,7 +866,7 @@ The checks the moves of `thym 1` add:
 | `history-grounded` | every change cites commits the clone's log answered, every release a tag it answered, and every maker rests on commits it answered and carries no address | Thym's own |
 | `parses` | every file of a cshort in a language the fabulac names is read by that language's parser without a syntax error; parsing is not running, and nothing is imported or executed | Thym's own; the host's syntax engine |
 | `interfaces-present` | every interface of the fabulac is defined in the cshort's file it is `defined-in`, with the same name, kind and parameter names in the same order | Thym's own; the host's syntax engine |
-| `files-present` | the cshort holds every file it is required to rebuild, at its path (every `C:file` in a programming language that is not a test, a type stub or the repository's own tooling, and the README; MacroCOSM OES, its section 18.4.7), and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it, with `CSHORT.md`, and the digests `CSHORT.md` lists are the files' | Thym's own |
+| `files-present` | the cshort holds every file it is required to rebuild, at its path (every `C:file` in a programming language that is not a test, a type stub or the repository's own tooling, and the README; MacroCOSM OES, its section 18.4.7), and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it, with `CSHORT.md`, and the digests `CSHORT.md` lists are the files' · of a cshort in another language, every file its layout names, with `CSHORT.md` · of an authored fabulac's entailment, every file MacroCOSM OES's section 18.4.7 lists, with `ENTAILED.md` in the place of `CSHORT.md` | Thym's own |
 | `uses-told` | a catem says everything its depth asks for: at `overview` every use, at `manual` every use and every interface a person reaches | Thym's own |
 | `quotes-held` | every name a catem quotes inside a code span (a command, an option, a function, a setting, a path, a message's words) is in its fabulac, looked up as `no-invention` looks up names: in the fabula's name, its atem and every string its items hold (`provenance` and `made` aside), folded to lowercase, as a whole word. A name is a run of letters, digits and `_` `.` `/` `~` `-` that holds a letter, less a trailing `.`, `/` or `-`; the catem's footer line quotes nothing; a scaffold's catem, which quotes the fabulac's own words, holds it | Thym's own |
 | `nothing-lost` | every item of every part gathered, and of the `with` volume, is in the output with every field it carries, as it carries it (`made` aside); the output's item may say more | Thym's own |
@@ -858,7 +880,18 @@ The checks the moves of `thym 1` add:
 | `lines-found` | every line of the poem that is not blank, after its header and less a lyric's labels, is one `C:line`, numbered from 1 in the poem's order, with a span on its own line and its `part`; every stanza and every labelled section is a `C:part`; no `C:line` names a line the poem lacks | Thym's own; the fabulap is MacroCOSM OES's, its section 18.4.6 |
 | `scansion-grounded` | every line's `stresses` and `syllables` are read from FEED's pronunciations of all its words, a contraction as the words it joins (a syllable is stressed where FEED marks a primary or secondary stress; a word of one syllable is stressed unless it is a function word of the edition's list), or are `{pending: …}` naming the words FEED does not hold; the `C:metre` and its departures are those the rule of section 20.9 gives from them | Thym's own |
 | `sound-grounded` | every rhyme, sound pattern and recurrence a call writes names lines of the poem, and their words share what it says they share: a rhyme's words the sound its `quality` names, by FEED; an alliteration's, an assonance's or a consonance's `cue` the sound, by FEED, at the edition's thresholds; a refrain's, an anaphora's or an epistrophe's lines the same words, folded to lowercase; each line's `rhyme` letter is its rhyme's `scheme` | Thym's own |
-| `form-grounded` | a `C:form` names a form of MacroCOSM OES's table (its section 18.4.6) only when the poem keeps that form's defining rules, read from the fabula's own lines, parts, metre, rhymes and recurrences; every other rule of the form is in its `rules`, `held` as the fabula shows it; every departure names a line or a part | Thym's own |
+| `form-grounded` | a `C:form` names a form of MacroCOSM OES's table (its section 18.4.6) only when the poem keeps that form's defining rules, read from the fabula's own lines, parts, metre, rhymes and recurrences; every other rule of the form is in its `rules`, `held` as the fabula shows it, or `held: {pending: "…"}` where no rule can read it; every departure names a line or a part; a rule that runs across stanzas is read from the form's `scheme`, which runs over the whole poem | Thym's own |
+| `ground-cited` | every reliance `on: language` or `on: runtime` carries `stated`, and every `stated` that names a text resolves to a section the language library holds, or to a pinned text's digest; a reliance copied from a ground catalog is stored whole, with `entry` naming the entry it came from | MacroCOSM OES, its section 18.4.9 |
+| `target-weighed` | the `N:target` a weighing writes names its `language` and the `version` weighed; `weighed` holds one entry for each of the twelve points of the target bank, each with a score from 0 to 3 and its evidence; `provides` says how the language gives every `C:reliance`, `C:interface` and `C:behaviour` ruled kept; its `verdict` is `not` when a gate point fails (MacroCOSM OES, its section 18.4.9) | Thym's own |
+| `target-confirmed` | the fabula entailed has an `N:target` for the call's language whose `verdict` is `feasible` or `feasible-with`, that `provides` everything kept by some way other than `cannot`, and whose spike reached level 2: the second gate holds for that language | MacroCOSM OES, its section 18.4.9 |
+| `case-outside` | a case that stands outside is whole data and names none of the source's functions, classes or files | MacroCOSM OES, its section 18.4.9 |
+| `surface-answered` | of a cshort in another language, in place of `interfaces-present`: `CSHORT.md` maps every interface ruled `kept` or `alike` to a file and a name, and the name is in that file; of a layout, the layout maps each such interface to a file and a name | MacroCOSM OES, its section 18.4.9; for a layout, Thym's own |
+| `apart` | of a cshort entailed apart: no request of the entailment carried a span, a source path or the source's text | MacroCOSM OES, its section 18.4.9 |
+| `evidence-stated` | a cshort's `evidence`, once written, carries its level, its counts and its verdict file's digest | MacroCOSM OES, its section 18.4.9 |
+| `cases-entailed` | after an authored fabulac is entailed, every runnable case is a test in `tests/test_cases.py`, and every other case is either a test marked as written by a model or named in `ENTAILED.md` with the reason it was not entailed; of a cshort it holds with nothing to check | MacroCOSM OES, its section 18.4.8 |
+| `authored-source` | the fabulac's `source` is the authored form (MacroCOSM OES, its section 18.4.1), its `licence` a value or `{pending: …}`, and its catalog's `program` names a `kind`; every item a move of authoring writes is `stance: axiom`, its `provenance.mode` `structured-intake` when a brief gave it, `manual` when `add` wrote it and `dialectic` when an answer did; an item read from a brief says only what the brief says, and what the brief leaves open is a question | Thym's own |
+| `only-authored` | the folder run is the entailment of an authored fabulac: the fabulac of the same name beside it says `source: {kind: authored, …}`, and the folder is the one its `entailed` records. A cshort, a decompiled fabulac's folder and any other code are read, never run | Thym's own; the rule is MacroCOSM OES's, its section 18.4.7 |
+| `in-sandbox` | the host ran the folder in a sandbox that holds to every row of MacroCOSM OES's section 18.4.7, and the report says which of them the host could enforce on its system and which it could not, as limits on memory on some systems | Thym's own; the host's sandbox |
 
 `coverage`, `no-invention` and `stance-kept` have a reading for verse, which `construe` keeps (section 20.9).
 
@@ -2082,7 +2115,7 @@ refused of either (check `flavour`): "f is a fabulap, a poem's fabula; only a fa
 ```thym
 thym 1
 
-program decompile-verse
+program decompile-verse-quick
   why: a poem decompiled into its fabula, line by line, with its metre and its rhymes, and a
        question for its author wherever a reading is a guess.
   must: nothing is fetched; the poem is the person's own copy.
@@ -2099,8 +2132,8 @@ end
 
 `covers` of a fabulap reads the poem's lines rather than its sentences: every line that is not blank is in the span of
 at least one item. That is `coverage` read for verse, defined with the fabulap's kinds (MacroCOSM OES, its section
-18.4.6). This program makes a fabulap in one call, at its best guess; section 20.9 builds the full fabulap in stages, by
-its helper moves.
+18.4.6). This program, `decompile-verse-quick`, makes a fabulap in one call, at its best guess; section 20.9 builds the
+full fabulap in stages, by its helper moves.
 
 ### 20.6 Decompiling a folder of code
 
@@ -2260,6 +2293,31 @@ program compile-python
 end
 ```
 
+**An authored fabulac's code.** The same call compiles it, and what it gives is its entailment, not a cshort: the folder of
+the fabulac's name beside it, holding the sources a model writes file by file, and what rules write: `ENTAILED.md` in
+the place of `CSHORT.md`, `pyproject.toml` from the fabulac's `program`, `RUNNING.md`, and `tests/test_cases.py` from
+its runnable cases (MacroCOSM OES, its section 18.4.7). The tests are written by rules from the cases, never by the model
+that writes the code, and `cases-entailed` holds that every case became a test or is named with its reason. Entailing
+again writes into the same folder, and only the files whose items moved are asked for again (section 20.11). Its program
+stands beside `compile-python`, with one decision more:
+
+```thym
+thym 1
+
+program entail-authored-python
+  why: a fabulac its person authored, entailed as the program they can start: the sources, the tests its
+       cases give, and the pages on running it.
+  must: nothing is fetched or installed; the tests are written by rules, from the cases.
+  decided 2026-11-14: run and serve for an authored fabulac; serving is refused in this edition.
+
+  takes f: fabula
+  gives code: folder, manual: short
+
+  give code: entail f as code                      -- the entailment: sources, tests from the cases, its pages
+  give manual: entail f as manual                  -- the catem at its deepest
+end
+```
+
 ### 20.8 What is never run
 
 Nothing a program reads or makes from code is executed by Thym. `survey` reads syntax trees; `history` reads the
@@ -2268,6 +2326,11 @@ paths, and each tag's name, commit and date; `parses` and `interfaces-present` a
 answer per file is recorded as an engine call (section 12.4), so a replay, and a runtime in another language, needs no
 parser. Parsing is not running: nothing is imported, compiled into files on disk, or run. A cshort is viewed, never
 run; whether it behaves as its source did is a test that runs outside Thym, in a sandbox of its own.
+
+One thing may be run, and never by Thym itself: the entailment of a fabulac a person authored. `run` hands it to the
+host's sandbox, and the host's answer is recorded as an engine call (section 12.4), so a replay runs nothing
+(section 20.12). A cshort, the folder a fabulac was decompiled from, and any code the person did not author stay read
+and never run.
 
 ### 20.9 Decompiling a poem: the fabulap's helper moves
 
@@ -2335,7 +2398,8 @@ guess: its rules part is `scan` with every `as` word, run inside it, and its mod
   consonants agree, or their vowel does and their closings are near; and an `eye` rhyme when they are spelled alike at
   the end and sounded apart. A stressed word inside a line that rhymes fully with the line's last word, or with another
   stressed word of the line, is an inner rhyme. The scheme's letters run on from stanza to stanza (MacroCOSM OES, its
-  section 18.4.6).
+  section 18.4.6): a sound that comes back in a later stanza takes a new letter there, and a second `C:rhyme`. Only the
+  form's `scheme` is read across the whole poem, where a sound that comes back keeps the letter it first had.
 - **Sound.** Three stressed syllables or more that open on the same consonant sound, in one line or across two lines
   that follow one another, are `alliteration`; three or more in one line that share their vowel, the line's rhyme
   apart, are `assonance`; three or more in one line that close on the same consonants, rhymes apart, are `consonance`.
@@ -2347,7 +2411,11 @@ guess: its rules part is `scan` with every `as` word, run inside it, and its mod
   it is one is asked.
 - **Form.** A form of MacroCOSM OES's table is named only when the poem keeps its defining rules (its number of lines
   and its stanzas' shape); every other rule of the form is listed in `rules`, `held` or not, and each line or part that
-  breaks one is a departure. The form's confidence is the share of its rules held, at most 0.8. A poem that keeps no
+  breaks one is a departure. A rule no rule here can read, such as a sonnet's turn at line 9, is written
+  `held: {pending: "…"}` and asked. The form's `scheme` is read over the whole poem, a sound that comes back in any
+  stanza keeping its first letter, and a rule that runs across stanzas, as a villanelle's refrains and rhymes do, is
+  read from it. The form's confidence is the share of its rules held, counted over the rules held or
+  broken, at most 0.8: a pending rule counts once it is held or broken. A poem that keeps no
   form of the table is named by its shape, `four quatrains, rhymed abcb`, or is `free verse` when it has neither a
   metre nor a rhyme scheme.
 
@@ -2372,8 +2440,11 @@ the fabulap's bank asks the author, or an expert in the author's work, about eac
 18.4.6); a pending value a move wrote, a speaker, a word's sense, a line FEED could not scan, an allusion's source, is
 asked in its own words; an item a model guessed at is asked as unsure; and the model adds a question where readings
 stand side by side, conflict or are silent on intent. `settle` writes the answers by rules where they fill a field
-(`intended` on a reading, a device or a form; a speaker; a word's sense), and asks a model only to read an item again in
-the light of an answer about the whole of it (MacroCOSM OES, its section 18.6.4).
+(`intended` on a reading, a device or a form; a speaker; a word's sense; a pending rule's `held`), and asks a model only
+to read an item again in the light of an answer about the whole of it (MacroCOSM OES, its section 18.6.4). An answer
+that fills no field, whether the line breaks were meant (`breaks`) or how the stanzas were meant to fall (`stanza`), is
+written by rules as the answerer's `P:reading` of those lines or stanzas, `whose` the answerer's with the session, at
+stance `hearsay`; it never writes a new `C:line` or `C:part`.
 
 **The program.** The full fabulap is one file of five programs, run by a host as one job, as a fabulac's is (section
 20.6): each lands the fabulap so far beside the poem, and a job that stops takes up again after the last that landed.
@@ -2459,6 +2530,275 @@ The answers are settled by `settle-the-answers` (section 22.4), unchanged.
 word to `scan` or to `construe` by an entry that `extends` it (section 17.6), with its own contract and its own code,
 as Ascribe adds its kinds to `project`; an axis this edition leaves out (MacroCOSM OES, its section 18.4.6) enters that
 way, never as new syntax.
+
+### 20.10 Transconceiving a fabulac
+
+A transconception carries a program into another language through its fabulac (MacroCOSM OES, its section 18.4.9). The
+fabulac is built as section 20.6 builds one, says `purpose: transconception` in its catalog, and is ruled by its
+transconceiver, who answers the dialectic's questions about the program (`to: transconceiver`). The work goes in eight
+stages. Each is one whole run, or one sitting of the dialectic between two runs, as every build is: nothing waits
+inside a run, and Thym runs no program. Two things run outside Thym, between its runs, with a sandbox of their own: a
+recorder, which runs the original over the cases' inputs and writes down what it did, and a runner, which runs an
+entailment over the same inputs and compares it with that record.
+
+| stage | the moves | what must hold to go on |
+|---|---|---|
+| admit | the standing bank, asked by `question` and written by `settle` (section 22) | how the source was obtained and its licence's lane are recorded; a source in the closed lane has its holder's leave (`standing`) |
+| survey and ground | `survey repo` and `history repo with f`, as section 20.6; then `ground repo with f`, rules only: one reliance for each entry of the language's ground catalog that the syntax shows, stored whole, each citing where its gift is written | every reliance on the language or its runtime cites the kept text (`ground-cited`) |
+| weigh | `weigh f in language`, once for each language a person names; the spike, the riskiest use entailed small, is built and judged outside | an `N:target` for each language (`target-weighed`); one is feasible, or the work stops here, cheaply |
+| read and fold | as section 20.6 | as section 20.6 |
+| ask and rule | `question f`, the rulings bank asked of the transconceiver, the riskiest first, alike things together (`batch`); `settle` writes each ruling | everything a person or another program reaches has a ruling (`ruled`) |
+| record | `entail f as cases`, the cases that stand outside as data, by rules; the recorder runs the original; `gather recorded with f` keeps its record beside the fabulac | every case that stands outside is whole data (`case-outside`) |
+| entail | the round trip first: `entail f as code` in the source's own language, judged by the runner against the original's own tests, its verdict kept with `gather verdict with f`; then `entail f as layout in language`, and `entail f as code in language with` that layout | the round trip stands at level 2 (`round-trip`) before any other language is entailed |
+| judge | the runner compares the cshort with the original's record; `gather verdict with f` writes the cshort's `evidence`, and a difference no ruling covers comes back as a question, `why: conflict` | the level reached is written (`evidence-stated`) |
+
+**The gates.** Two gates stand where MacroCOSM OES puts them (its section 18.4.9): ready to keep, before anything is
+entailed into another language, while the original can still be run and the people who know it asked; and ready to
+entail into a named language, which adds `target-confirmed` for that language. The checks of MacroCOSM OES's section
+18.4.9 run in every stage's `fabula-checks` and are reported there, and they refuse only at a gate, since most of them
+hold only once the transconceiver has ruled. `entail … in` a language checks the second gate itself: its contract
+opens with `target-confirmed`, so it is refused until that language is weighed, feasible and its spike has stood. A fabulac
+nobody could rule says `ruled-by: none` in its catalog; the first gate reports it as kept unruled, never as passed, and
+it never reaches the second.
+
+**Apart, and the layout.** `entail … in` a language is entailed apart from the source: the model that writes a file is
+given the fabulac and the layout, never a span, a source path or the source's text (`apart`). A host entails beside the
+source only where MacroCOSM OES permits it, a person's own code or a source in the open lane, and only when the person
+asks; it records which in the cshort's entry (`entailed: apart` or `beside`), and a program cannot ask for it.
+`entail f as layout in language` gives a short of order `layout`, saved beside the fabulac as
+`<name>.layout-<language>-<YYYY-MM-DD-HHMM>.md`: the files of the program to be, what each holds, and the name each
+kept interface takes there (`surface-answered`). `as code in` a language takes it `with`, and the cshort's entry names
+it in `layout`. The language is a string the program is given, as `"go"` or `"rust"`; Thym knows no language by name.
+`parses` is not in that contract: a host need not read another language, and whether the cshort builds is the runner's
+first level.
+
+**Weighing.** `weigh f in language` puts the target bank's twelve points (MacroCOSM OES, its section 18.4.9) to a model
+and then to the transconceiver, once for each `N:target`: a score from 0 to 3 for each point, with its evidence, and,
+for each reliance, interface and behaviour kept, how the language provides it. It writes one dated `N:target` with its
+verdict. A later weighing of the same language adds another beside it and never rewrites the first, since the facts
+behind a choice outlast the choice.
+
+The moves of a transconception, after its fabulac is built (section 20.6) and its rulings are settled (section 22.4).
+The round trip is `compile-python` (section 20.7):
+
+```thym
+thym 1
+
+-- A transconception's programs, run one at a time: the recorder and the runner run outside Thym,
+-- between them, and the dialectic's sittings fall between them as section 22.4 says.
+
+program ground-the-fabulac
+  why: what the program leans on in its language is found by rule, each reliance citing where the
+       language's own text states it.
+  must: nothing in the repository is run, imported or installed.
+
+  takes repo: folder, f: fabula
+  gives g: fabula
+
+  give ground repo with f                          -- one reliance per ground entry the syntax shows
+end
+
+program weigh-a-target
+  why: a language is weighed on the twelve points before anything is entailed into it.
+
+  takes f: fabula, language: string
+  gives g: fabula
+
+  give weigh f in language                         -- one N:target, its scores, what it provides, its verdict
+end
+
+program hand-out-the-cases
+  why: the cases that stand outside go to the recorder as data, written by rules.
+
+  takes f: fabula
+  gives cases: text
+
+  give entail f as cases
+end
+
+program keep-the-record
+  why: what the original did over the cases, as the recorder wrote it, is kept beside the fabulac:
+       the original judges, never a model's idea of what it does.
+
+  takes recorded: text, f: fabula
+  gives g: fabula
+
+  give gather recorded with f
+end
+
+program entail-in-a-language
+  why: a weighed and confirmed language gets a layout first, then the code, apart from the source.
+
+  takes f: fabula, language: string
+  gives arrangement: short, code: folder
+
+  let drawn = entail f as layout in language       -- the files, their parts, the names kept interfaces take
+  give arrangement: drawn
+  give code: entail f as code in language with drawn
+end
+
+program keep-the-verdict
+  why: the runner's verdict is written on the cshort's entry as its evidence.
+
+  takes verdict: text, f: fabula
+  gives g: fabula
+
+  give gather verdict with f
+end
+```
+
+When the source moves, the fabulac goes stale and is decompiled again, carrying each ruling and reliance over while
+what it is on still resolves; a record and a verdict hold only against the source they were made from, and are made
+again (MacroCOSM OES, its section 18.4.9).
+
+### 20.11 Authoring a fabulac
+
+An authored fabulac (MacroCOSM OES, its section 18.4.7) is written before its program, by the person who means to make
+it, and is the program's source: the program is entailed from it (section 20.7), and a change to the program is made in
+the fabulac and entailed again. `author` begins one, in one of two ways. From a brief, a text the person wrote, a model
+reads what the brief answers into items, and what it leaves open is asked. With no operand, by rules, it begins an
+interview: the catalog alone, and the questions. Either way the catalog carries the authored source, `source: {kind:
+authored, language: python, licence, by, at, brief}`, the licence `{pending: …}` until the person gives one, and a
+`program` whose `kind` is the `as` word: `tool`, `library` or `service` (`authored-source`).
+
+The interview is the dialectic's, one or two questions at a time, stage by stage (MacroCOSM OES, its section 18.4.7):
+what the program is for and for whom; the ways in; what it needs and the settings it reads; what it leaves out on
+purpose; the cases; the open questions. Each stage is one pair of runs, `question` and then `settle` (section 22.4),
+and lands whole before the next is asked. Every item written from an answer is `stance: axiom`, with
+`provenance.mode: dialectic`, and from a brief `structured-intake`: the program is to be so because its author says
+so. An authored fabulac passes the checks a decompiled one passes, and holds no `span` until a part of it is taken back
+from code.
+
+**The helpers.** Three moves work on an authored fabulac by rules, and ask no model:
+
+- `add said as requirement with f`, and `as decision`, `as case` or `as interface`, writes the person's own sentence as
+  a new item of that kind, its summary the sentence, `stance: axiom`, `provenance.mode: manual`. What the kind needs and
+  the sentence does not give is `{pending: …}`, and `question` asks it. A case so added is prose until its `given` and
+  `expect` are answered as data, and only then is it runnable (MacroCOSM OES, its section 18.4.7). `add` takes only an
+  authored fabulac.
+- `compare f with g` gives a report of what differs between two fabulacs, item by item by id: the items one has and
+  the other lacks, and each field that differs. Two states of one fabulac are compared so, or two fabulacs of one
+  program.
+- `uncovered f` gives the requirements of `force: must` that name no case in `checked-by`: the items
+  `requirement-cased` warns of, so that each can be given a case before the fabulac is entailed.
+
+**Keeping in step.** The fabulac's `entailed` records each file its last entailment wrote, with the file's sha256 and
+the digest of the brief it was written from (MacroCOSM OES, its section 18.4.1). Entailing again asks only for the files
+whose brief moved. A file whose sha256 is not the one recorded, or that is not recorded at all, was edited by hand: the
+host names it, file by file, and writes over it only with the person's word, who chooses to write over it, to keep it
+(a decision recorded in the fabulac), or to take it back, reading that file as section 20.6 reads one and putting what
+it finds to the person as answers to accept. An item taken back from code keeps `stance: observed`. A host refuses to
+decompile the folder of an authored fabulac's entailment: it is entailed again, or a hand edit is taken back.
+
+A program larger than one fabulac holds is authored in parts under a head fabulac, each part authored and entailed on
+its own; `parts-resolve` and `interfaces-agree` hold the parts to the head (MacroCOSM OES, its sections 18.4.7 and
+18.4.8).
+
+```thym
+thym 1
+
+-- An authored fabulac, begun from a brief or by an interview. The interview goes on as the dialectic's
+-- pair of runs, raise-the-questions and settle-the-answers (section 22.4), one stage at a time, until no
+-- question is open; ready-to-entail stands before the entailment (section 20.7).
+
+program begin-from-a-brief
+  why: the person's brief answers what it can about the program they mean to make, and the rest is
+       asked.
+  must: nothing is fetched; the brief is the person's own.
+
+  takes brief: text
+  gives f: fabula
+
+  let begun = author brief as tool                 -- the catalog, and items from the brief, every one an axiom
+  let asked = question begun
+  give gather asked with begun
+end
+
+program begin-by-interview
+  why: a program begun with nothing written: its catalog, and the first stage's questions.
+
+  gives f: fabula
+
+  let begun = author as tool                       -- the catalog alone, by rules
+  let asked = question begun
+  give gather asked with begun
+end
+
+program state-a-requirement
+  why: a requirement the person states goes into the fabulac they authored, in their own words.
+
+  takes f: fabula, said: string
+  gives g: fabula
+
+  give add said as requirement with f
+end
+
+program ready-to-entail
+  why: an authored fabulac is entailed only when every requirement it must meet has a case.
+
+  takes f: fabula
+  gives g: fabula
+  keeps fabula-checks
+
+  let left = uncovered f
+  assert count left < 1 else "a requirement the program must meet has no case"
+  give f
+end
+```
+
+### 20.12 Running an authored entailment
+
+`run code as tests` runs the tests of an authored fabulac's entailment, `tests/test_cases.py` and any others in its
+`tests/`, with the standard library's `unittest`. `run code as tool with ["count", "notes.md"]` starts a `tool` by its
+`program.start`, with those arguments and an empty standard input. Each gives a report: the exit status; the output and
+the error output, each cut at the host's limit; for tests, each test's verdict; whether the run was stopped, and by
+what; and which rows of the sandbox the host enforced. A test that fails is in the report, and the run still lands: the
+report is what the cases judged, and the person reads it.
+
+Thym runs nothing itself. `run` asks the host, which runs the folder in its sandbox and answers with the report, and the
+answer is recorded as an engine call (section 12.4), so a replay, and a runtime with no sandbox, reads it and runs
+nothing. A host with no sandbox refuses at run time, as for an absent engine, and a host that knows may refuse at plan
+time with `move` (section 9). `run` of anything but an authored fabulac's entailment is refused (`only-authored`): a
+cshort, a decompiled fabulac's folder and any code the person did not author are read, and never run.
+
+The sandbox holds to the rule of MacroCOSM OES (its section 18.4.7), and the report says which of these the host
+enforced (`in-sandbox`):
+
+| the sandbox | holds |
+|---|---|
+| its own place | a copy of the folder, with a home folder, a temporary folder and an environment of its own, made for the run; nothing of the project, the person's home folder or the host's own files is in reach, unless the person hands a file over for that run, and then as a copy that cannot be written |
+| no network | nothing is fetched or sent |
+| limits | a limit on the time a run may take, on the processor's time, and on the size of what it writes and prints; on some systems memory cannot be limited, and there the report says so and nothing is promised for it |
+| a stop | the person can stop a run at any moment; a stopped run leaves nothing running, and its report says it was stopped |
+| packages | in this edition the language's standard library only, and nothing is installed. The host names the place packages come from in one place, so that a later edition can name a second source. A fabulac that needs a package outside the standard library is authored and entailed all the same, and its run is refused, naming the package |
+| serving | `run code as service` starts a `service` on the port its `program.serve.port` names, or on one the host chooses for 0; it may reach only what `serve.reach` lists, and it is stopped as any run is. Specified in this edition, and refused: a host says that serving comes in a later edition |
+
+```thym
+thym 1
+
+-- An authored fabulac's entailment, judged by its cases and started by its person, in the host's sandbox.
+
+program test-the-entailment
+  why: an authored fabulac's entailment is judged by its cases: its tests run in the host's sandbox.
+  must: only the entailment of a fabulac its person authored is run, and only in a sandbox; nothing is
+       fetched or installed.
+  decided 2026-11-14: run and serve for an authored fabulac; serving is refused in this edition.
+
+  takes code: folder
+  gives r: report
+
+  give run code as tests
+end
+
+program start-the-tool
+  why: the person starts the program they authored, with the arguments they give.
+
+  takes code: folder, arguments: list of string
+  gives r: report
+
+  give run code as tool with arguments
+end
+```
 
 ---
 
@@ -2858,6 +3198,29 @@ section it touched.
 8. **`question` leaves the model's place to the model** (section 22.1): a bank entry that says `model-stands-in: true`
    is not raised in a run that asks the model; a fabulac's two generic questions are such entries.
 9. **Section 24.3 lists the suite as it is**, and section 6.3's contract cells hold check names only.
+10. **Transconception** (section 20.10, new; How to read this). A transconception is a transconceptualization of a
+    program carried through its fabulac, and to transcode keeps its mechanical sense. New moves `ground` and `weigh`
+    (`in` a language), and `entail` `as cases`, `as layout in` and `as code in` a language `with` its layout; `gather`
+    takes a recorder's record or a runner's verdict. Eight stages and the two gates of MacroCOSM OES; new checks in
+    section 7.3: `ground-cited`, `target-weighed`, `target-confirmed`, `case-outside`, `surface-answered`, `apart` and
+    `evidence-stated`.
+11. **Authoring a fabulac** (section 20.11, new). `author` begins an authored fabulac from a brief or by an interview,
+    `as` `tool`, `library` or `service`; the interview is the dialectic's, stage by stage; `add`, `compare` and
+    `uncovered` are its helpers, by rules; a hand edit is named and written over only with the person's word. New
+    check `authored-source`.
+12. **An authored fabulac's entailment** (section 20.7). `entail f as code` of an authored fabulac writes its
+    entailment, with `ENTAILED.md`, `RUNNING.md`, its packaging and tests written by rules from its cases;
+    `cases-entailed` joins that call's contract, and `files-present` reads `ENTAILED.md`. A second program,
+    `entail-authored-python`, stands beside `compile-python`, decided 2026-11-14.
+13. **Running an authored entailment** (section 20.12, new; sections 20.8 and 2, How to read this). The new move `run`
+    runs an authored fabulac's entailment, `as tests` or `as tool`, and only in the host's sandbox, under MacroCOSM
+    OES's rule: its own place, no network, limits, a stop, the standard library only, and serving specified and
+    refused in this edition. Thym runs nothing itself, and a replay reads the host's answer. Everything else is still
+    read and never run. New checks `only-authored` and `in-sandbox`.
+14. **The fabulap's four points** (sections 20.5, 20.9 and 7.3). The one-call program of section 20.5 is
+    `decompile-verse-quick`; a form's rule that rules cannot read is `held: {pending: …}` and asked, and counts only
+    once held or broken; the form's `scheme` is read across the whole poem; an answer to `breaks` or `stanza` writes the
+    answerer's `P:reading`.
 
 **Edition 0.7.0 · 2026-11-13.** `tell` is `entail`, and a poem is decompiled in steps.
 
