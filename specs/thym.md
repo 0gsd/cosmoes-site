@@ -2836,6 +2836,28 @@ section it touched.
 
 <!-- atem: what each edition changed, newest first -->
 
+**Edition 0.8.0.** The text says what a second runtime needs, as the reference runtime does it; no behaviour changed.
+
+1. **`quotes-held` is a check of section 7.3**, the owner's ruling of 0.7: every name a catem quotes in a code span is
+   in its fabulac. `entail` at a catem's depth keeps it (sections 6.3 and 20.7).
+2. **The canonical dump is named** (section 12.6): PyYAML 6's `safe_dump` with its options, the declaration key
+   first; YAML 1.1's rules decide its quoting, folding and escaping. Its vectors are suite data (section 24.3). A smaller
+   canonical form waits for a later grammar.
+3. **Every digest is listed** (section 12.6), and both list rules stand as they are: a list value's members' digests
+   joined by line feeds, a plan's list input's with nothing between them (section 12.1).
+4. **`made` has a key order** (section 5.3): `move`, `run`, `step`, `node`, `engine`, then `route` and `provider`; an
+   item's digest is over it. `node` is the node's number as text, as the reference runtime has always written it.
+5. **What a runtime is given** (section 12.1): the plan, the program, the moves' declarations, and each format's map of
+   module letters to names. A node's name is read by the grammar, and the program holds what the plan does not.
+6. **How text is read** (section 12.6): lengths in code points, the whitespace set, where a line ends for lines, for
+   sentences and for a walk, the word, and Unicode's digit, word and boundary classes, in place of "no Python-only
+   semantics".
+7. **When a host refuses** (sections 9, 7.3 and 19): an absent engine at run time, or at plan time where the host
+   knows; `never-source`'s second half is the host's; the agent-free refusal names the route the environment gives.
+8. **`question` leaves the model's place to the model** (section 22.1): a bank entry that says `model-stands-in: true`
+   is not raised in a run that asks the model; a fabulac's two generic questions are such entries.
+9. **Section 24.3 lists the suite as it is**, and section 6.3's contract cells hold check names only.
+
 **Edition 0.7.0 · 2026-11-13.** `tell` is `entail`, and a poem is decompiled in steps.
 
 1. **`entail`, once `tell`** (section 6.3). The move that makes a short of a fabula is spelled `entail`. `tell` names
