@@ -2019,7 +2019,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `N:requirement` | **`force`** [`must` `should` `may`]; `of` [`behaviour` `quality` `making`], whether it asks for something the program does, a quality it has (speed, size, safety) or something about how it is made; `met-by` *refs* (`C:behaviour`, `C:interface`, `C:dependency`); `checked-by` *refs* `P:case` |
 | `N:decision` | **`chose`** *text*; `over`, a list of `{option, because}`, what was not chosen and why; `because` *text*; `by` *ref* (an `R:maker` or the maker's E item); `changed-in` *refs* `R:change` |
 | `N:exclusion` | `horizon` [`never` `later`]; `because` *text* |
-| `N:target` | **`language`** *text*; **`version`** *text*, the release weighed; `weighed`, a list of `{point, score, evidence}`, one per point of the target bank, `score` an *integer* from 0 to 3; `provides`, a list of `{for, by, what, note}`, how the language gives what the fabulac keeps, `for` *ref* (a `C:reliance`, `C:interface` or `C:behaviour`), `by` [`built-in` `library` `binding` `written` `cannot` `dropped`]; `spike` `{use, level, where}`, the small trial entailment that tested it; **`verdict`** [`feasible` `feasible-with` `not`], with `conditions` *text* when `feasible-with`; `at` *date*; `by` *ref* `R:maker` (section 18.4.9) |
+| `N:target` | **`language`** *text*; **`version`** *text*, the release weighed; `weighed`, a list of `{point, score, evidence}`, one per point of the target bank, `point` the point's number and `score` an *integer* from 0 to 3, each as section 18.4.9 says; `provides`, a list of `{for, by, what, note}`, how the language gives what the fabulac keeps, `for` *ref* (a `C:reliance`, `C:interface` or `C:behaviour`), `by` [`built-in` `library` `binding` `written` `cannot` `dropped`]; `spike` `{use, level, where}`, the small trial entailment that tested it; **`verdict`** [`feasible` `feasible-with` `not`], with `conditions` *text* when `feasible-with`; `at` *date*; `by` *ref* `R:maker` (section 18.4.9) |
 | `C:part` | **`division`** [`chapter` `section` `paragraph` `scene` `list` `quotation` `stanza` `verse` `chorus` `refrain` `bridge` `other`]; `number` *integer*, its place among its siblings, from 1; `of` *ref* `C:part`, the part it sits in; `heading` *text* |
 | `C:device` | **`figure`** *text*, an open word (`apostrophe`, `metaphor`, `symbol`, `image`, `alliteration`, `anaphora`, `refrain`, `caesura`, `turn`, `hook`, `irony`, `personification`, `appeal to authority` …); `where` *refs* (`C:line`, `C:part`, `L:term`, `P:claim`); `effect` *text*; `cue` *text*, the words that carry it, at most 60 characters; `senses`, for an image, a list from [`sight` `hearing` `touch` `taste` `smell` `movement`]; `intended` *bool*, whether the author meant it, absent until asked |
 | `C:voice` | `roles.*`: `speaker`, `addressee`, `listener`; `perspective` [`first` `second` `third` `mixed`]; `tone` *text* |
@@ -3604,17 +3604,48 @@ ruling and a case's `allowing` take one allowance from a closed list, extended o
 | `stderr-said-or-not` | as `exit-and-stdout`, and its error output is empty exactly where the original's is |
 | `lines-in-any-order` | its output holds the original's lines, in any order |
 
+**Weighing a target.** A language is weighed against what the fabulac states before anything is entailed into it, and
+the weighing is kept as a dated `N:target` beside any earlier one: a later weighing, against the languages of its day,
+adds its own and rewrites none, since the facts behind a choice outlast the choice. The target bank asks twelve points,
+each scored in `weighed` from 0 to 3 with its evidence, `point` being its number here. Three are gates: a target that
+fails one, by a score of 0, is `not`, whatever its other scores.
+
+| Point | The evidence that counts |
+|---|---|
+| 1. Stewardship that outlives one company (a gate) | a foundation or a standards body, a published way of deciding, ten years of releases |
+| 2. A written specification, and more than one implementation | the text, and a second program that follows it |
+| 3. A promise that old programs keep building | the published promise, and programs five to ten years old that still build |
+| 4. Everything the program leans on is provided (a gate) | for each dependency and each kept reliance: built in, a maintained library, a binding, or an estimate to write it, as the target's `provides` says |
+| 5. It runs where it must and ships as it must (a gate) | support for every system required, in the form required |
+| 6. It fits the program's shapes | how it holds memory and does many things at once, set against the program's structures |
+| 7. Safe by default | memory safety with no way around it, checked against the rules then in force |
+| 8. Its tools can check what the fabulac states | how much of the stated intent a type checker or another tool verifies |
+| 9. The writing agent's skill in it | a pass rate measured at the time, on tasks the agent has not seen |
+| 10. It meets the budgets | time, memory and start-up measured in a spike, with room to spare |
+| 11. People can read it | the transconceiver and the later maintainers can review it |
+| 12. It can be left | how hard it would be to leave it for another language |
+
+Published scores do not settle point 9, since their order changes with the benchmark: the writing agent's skill is
+measured at the time, on a small set held back. The fabulac holds what the weighing needs: the kind of program, where it
+must run, each dependency with its meaning, its shapes, its budgets, who calls it and how long it should live.
+
 **Evidence.** A cshort judged against the original carries `evidence` in its entry in `shorts`: `{level, steps,
 against, where, digest, at}`. `steps` is `{kept, agree}`, how many recorded steps at kept interfaces were counted and
 how many agreed; `against` is `original` (the recorded cases) or `tests` (the original's own tests); `where` is the
-verdict file and `digest` its sha256. `level` says how far the cshort stands:
+verdict file and `digest` its sha256. `level` is one of seven, and each says what it does not show:
 
-| Level | The cshort |
-|---|---|
-| 1 | builds, or parses, in its language |
-| 2 | passes what it was judged against: the original's own tests, or the recorded cases with no step that fails to run |
-| 3 | agrees with the original on at least 95 in 100 of the recorded steps at kept interfaces, and every other difference is ruled |
-| 4 | agrees as at level 3 on inputs generated from the plain kinds as well (section 18.4.2) |
+| Level | The cshort | What it does not show |
+|---|---|---|
+| 0, entailed | exists, and answers every kept interface by name | anything about behaviour |
+| 1, builds | is accepted by its language's own tools: it builds, or parses | anything about behaviour |
+| 2, passes its cases | passes the cases read from the original's tests and documents, or, `against: tests`, the original's own tests | whether the fabulac matches the original |
+| 3, passes recorded cases | agrees with the original on the recorded steps at kept interfaces, and every step that differs is ruled | inputs nobody recorded |
+| 4, agrees on generated inputs | agrees as at level 3 on many inputs generated from the plain kinds as well (section 18.4.2) | rare paths, and real use |
+| 5, ran beside the original | agreed with the original in real use, over a stated time | what did not happen in that time |
+| 6, proven, for stated parts | has a checked proof for small, pure parts, which its verdict names | the rest of the program |
+
+A level is reached when every step that differs is ruled, not by a share of steps that agree; `steps` says how many
+did. Most stop at level 3 or 4, and say so.
 
 **The checks.** They run only on a fabulac whose `purpose` is `transconception`, except `case-outside`, which runs on
 every case that `stands: outside`:
@@ -4153,7 +4184,7 @@ of the format before anything else is known.
 dialectic:
   writes: <one line: what an answer writes>
   answer-kinds: [text, choice, yes-no, number, date, ref, span]
-  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes, only-with, at-most, batch]
+  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes, only-with, at-most, batch, model-stands-in]
   banks:
     <bank name>:
       for: {flavour: fabulap}                # or {module: S}, or {purpose: transconception}, or nothing: the whole format
@@ -4177,7 +4208,9 @@ of that field's name: the pending asks it. `{name}`, and any `{<field>}`, are fi
 raised. A raised question's `raised.from` is `<bank name>/<entry id>`. An entry about a module may say `writes`: the
 kind (`<kind>` of that module, or `<M>:<kind>`) that a new item written from its answer takes; absent, the module's kind
 named like the entry's id (an entry `audience` about N writes an `N:audience`), where the module has one, else the
-module's first kind (section 18.6.4).
+module's first kind (section 18.6.4). An entry may say `model-stands-in: true`: it is a generic question whose place a
+model's own questions take, so a run that asks a model about the volume does not raise it, and a run without one raises
+it as it raises every other entry (Thym (https://thym.cosmoes.org/), its section 22.1).
 
 **The older shape** keeps reading: `dialectic: {questions: {<letter>: ["…", …]}}` is one bank, named after the
 manifest, each string an entry `{about: <letter>, asks: <the string>, kind: text, why: missing}` with the bank's
@@ -4689,8 +4722,8 @@ language through its fabulac.
 6. **Transconception** (section 18.4.9, new, and the new terms transconception and transconceiver). A program carried
    into another language through its fabulac: the transconceiver rules what is kept, the original judges, and the
    fabulac says what it leaned on. The ground and its citations to the language library, the licence's lane, cases
-   recorded outside, evidence and its levels, thirteen checks and two gates, ready to keep and ready to entail into a
-   named language.
+   recorded outside, evidence and its seven levels, the twelve points a target language is weighed on, three of them
+   gates, thirteen checks and two gates, ready to keep and ready to entail into a named language.
 7. **The fabula's kinds** (section 18.4.2). New kinds `N:target`, `C:reliance` and `P:assumption`; the field `ruling`,
    with `made-for`, on interfaces, structures, behaviours, settings, reliances and cases; the plain kinds; new fields of
    `N:requirement`, `C:interface`, `C:component`, `C:structure`, `C:dependency`, `R:licence` and `P:case`; the capacity
@@ -4698,7 +4731,8 @@ language through its fabulac.
    18.4.1). A **mefa** is the smallest unit of meaning in a fabula, one item (a new term).
 8. **The dialectic** (section 18.6). The answerer `transconceiver`; a bank `for: {purpose: transconception}`, and the
    three banks standing, target and rulings; `batch`, one answer for many alike things; a difference the judge finds
-   comes back as a question, `why: conflict`.
+   comes back as a question, `why: conflict`. A bank entry may say `model-stands-in: true`, a generic question whose
+   place a model's own questions take (section 18.6.6).
 9. **The fabulap** (sections 18.4.2 and 18.4.6). A form's rule that rules cannot read is `held: {pending}` and asked.
    A form's `scheme` is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the
    bank's `breaks` or `stanza` writes the answerer's `P:reading` of those lines or stanzas.
