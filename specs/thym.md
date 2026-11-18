@@ -592,8 +592,15 @@ and every other format keeps as an unknown field:
 
 ```yaml
 provenance: {mode: derived, sources: ["notes.md#sha256:54055e8…", "oes:thym/2026-11-01-1042-7f3a/R/record/3"], confidence: 0.9}
-made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: R:node/4, engine: "model:g40-04", route: local}
+made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: '4', engine: "model:g40-04", route: local}
 ```
+
+`made`'s keys come in this order: `move`, `run`, `step` (the step's number), `node` (the node's number, as text: `'4'`
+for `R:node/4`), `engine`, then `route` and `provider` when the value has them. A move writes `made` into what it
+makes: into an item, replacing the `made` it carried in the place that key held, or as its last key; into every item of
+a volume it makes that carries none, as that item's last key. A value read from disk byte for byte is not written
+into. The item's digest is over its canonical dump with `made` in it (section 12.6), so a second runtime that orders
+these keys otherwise gives other digests.
 
 `engine` is `model:<id>` for a model-backed value, where the id is the model's own: the name a local model is known by,
 or the provider's resolved id for a cloud model. A model-backed value also says its `route`, `local` or `cloud`, and a
@@ -649,7 +656,7 @@ additions of the second table.
 
 | move | signature | asks | contract |
 |---|---|---|---|
-| `derive` | text → fabula | yes | `span-resolves` `stance-closed` `terms-grounded` `coverage` `fabula-checks` `provenance` (in the `thym 0` view the fifth check keeps its old name, `emf-checks`; it is the same check) |
+| `derive` | text → fabula | yes | `span-resolves` `stance-closed` `terms-grounded` `coverage` `fabula-checks` `provenance` |
 | `entail` | fabula \| item \| volume → short; `as` order or `by` order; `with` morph | yes | `coverage` `no-invention` `stance-kept` `scales-met` (with a morph) `footer` `provenance` |
 | `atem` | text \| fabula \| short \| item → atem | yes | `atem-shape` `span-resolves` `provenance` |
 | `expand` | atem → short; `with` fabula; `to` N words | yes | `coverage` `no-invention` `stance-kept` `length` `span-inside` `provenance` |
@@ -676,6 +683,7 @@ additions of the second table.
 | `words` | text \| short \| atem → number | no | none |
 | `digest` | any meaning value → string | no | none |
 
+In the `thym 0` view, `derive`'s fifth check keeps its old name, `emf-checks`; it is the same check (section 7.3).
 The accessors are read-only and may give `nothing`. `context of` a text gives the surrounding volume's catalog around it
 (section 16.1), and of a package the context the package carries; `isomorph of` a package gives the author's shared
 morph. `measure` asks the model only for its three judgement scales; the other seven are statistics, computed in code
@@ -698,11 +706,11 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | move | signature | asks | contract | scaffold |
 |---|---|---|---|---|
 | `derive` | text \| folder → fabula; `as` prose \| verse \| code; `with` fabula | yes | a text as prose or verse: as above, with `fabula-checks` · a text as verse with a fabulap: the same, with `nothing-lost` · a text as code: `code-span` `outline-cited` `coverage` `terms-grounded` `stance-closed` `fabula-checks` `provenance` · a folder: `fold-grounded` `atem-shape` `licence-recorded` `fabula-checks` `provenance` | a text: the rules twin · as code: `file-outline` · a folder: none |
-| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview` or `manual`; `by` order; `with` morph; `as code` gives a folder | yes | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `provenance` · as line, overview or manual: `coverage` `no-invention` `uses-told` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` |
+| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview` or `manual`; `by` order; `with` morph; `as code` gives a folder | yes | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` |
 | `survey` | folder → fabula (a fabulac outline) | no | `files-found` `code-span` `licence-recorded` `fabula-checks` `provenance` | — |
 | `history` | folder → fabula; `with` fabula | no | `history-grounded` `fabula-checks` `provenance` | — |
 | `scan` | text → fabula (a fabulap); `as` rhyme \| sound \| recurrence \| form; `with` fabula | no | with no `as`: `lines-found` `scansion-grounded` `span-resolves` `fabula-checks` `provenance` · as rhyme, sound or recurrence: `sound-grounded` `nothing-lost` `fabula-checks` `provenance` · as form: `form-grounded` `nothing-lost` `fabula-checks` `provenance` | — |
-| `construe` | text → fabula (a fabulap); `as` figure \| image \| allusion \| voice \| turn \| meaning \| ambiguity; `with` fabula | yes | `span-resolves` `no-invention` `stance-kept` `coverage` `terms-grounded` `nothing-lost` `fabula-checks` `provenance`, with `coverage`, `no-invention` and `stance-kept` read for verse (section 20.9) | none |
+| `construe` | text → fabula (a fabulap); `as` figure \| image \| allusion \| voice \| turn \| meaning \| ambiguity; `with` fabula | yes | `span-resolves` `no-invention` `stance-kept` `coverage` `terms-grounded` `nothing-lost` `fabula-checks` `provenance` | none |
 | `gather` | list of fabula \| list of item → the type of `with`; `with` fabula \| volume | no | `nothing-lost` `ids-unique` `fabula-checks` `provenance` | — |
 | `question` | fabula \| volume → list of item (questions) | yes | `addressed` `no-duplicate` `provenance` | `bank` |
 | `record` | volume → the type of `in`; `in` fabula \| volume | no | `addressed` `only-the-asked` `provenance` | — |
@@ -721,7 +729,8 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | `words` | adds line \| string | no | none | — |
 
 `scan` and `construe` are the fabulap's helper moves, the first by rule and the second by a model, each `as` word one
-axis of a poem; section 20.9 says what each finds. `propose` is Ascribe's: it reads the holder's own text, decompiled to
+axis of a poem; section 20.9 says what each finds. `construe` keeps `coverage`, `no-invention` and `stance-kept` as
+they are read for verse (section 20.9). `propose` is Ascribe's: it reads the holder's own text, decompiled to
 a fabulan, and gives candidate nodes of the holograph, each with the question that asks the holder whether it is so; a
 program lands them with `gather`. `atem`, `expand`, `null`, `measure`, `morph`, `read`, `cut`, `package` and the rest
 are the same in both versions. `atem f` of a fabulac is the catem at depth `line`, under the same contract. The compiler
@@ -837,6 +846,7 @@ The checks the moves of `thym 1` add:
 | `interfaces-present` | every interface of the fabulac is defined in the cshort's file it is `defined-in`, with the same name, kind and parameter names in the same order | Thym's own; the host's syntax engine |
 | `files-present` | the cshort holds every file it is required to rebuild, at its path (every `C:file` in a programming language that is not a test, a type stub or the repository's own tooling, and the README; MacroCOSM OES, its section 18.4.7), and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it, with `CSHORT.md`, and the digests `CSHORT.md` lists are the files' | Thym's own |
 | `uses-told` | a catem says everything its depth asks for: at `overview` every use, at `manual` every use and every interface a person reaches | Thym's own |
+| `quotes-held` | every name a catem quotes inside a code span (a command, an option, a function, a setting, a path, a message's words) is in its fabulac, looked up as `no-invention` looks up names: in the fabula's name, its atem and every string its items hold (`provenance` and `made` aside), folded to lowercase, as a whole word. A name is a run of letters, digits and `_` `.` `/` `~` `-` that holds a letter, less a trailing `.`, `/` or `-`; the catem's footer line quotes nothing; a scaffold's catem, which quotes the fabulac's own words, holds it | Thym's own |
 | `nothing-lost` | every item of every part gathered, and of the `with` volume, is in the output with every field it carries, as it carries it (`made` aside); the output's item may say more | Thym's own |
 | `ids-unique` | no two different items of the output share an id (two byte-equal ones, `made` aside, are one; `gather` merges two that say the same item before they land, section 20.6) | Thym's own |
 | `addressed` | every question's `about` resolves (an item, an `<item>#<field>`, a span of the source, or a module or kind the format declares), and every answer names a question that is `open` and fits the question's `kind` | Thym's own; the dialectic is MacroCOSM OES's, its section 18.6 |
@@ -2150,8 +2160,8 @@ within the node's attempts. `entail … as code` has no scaffold, so `--rules` r
 **`entail f as line`, `as overview` and `as manual`** give a short, the **catem** at that depth. `line` is the atem's
 line, the same as `atem f`'s; `overview` names every use; `manual` names every use and every interface a person
 reaches (the command-line entry points and the public interface), with what they do. The contract is `coverage`
-(every sentence traces to behaviours, uses or events), `no-invention`, `uses-told`, `footer` (the catem's footer names
-its depth) and `provenance`, and the scaffold `uses-outline` lists the uses and interfaces in told order, in their own
+(every sentence traces to behaviours, uses or events), `no-invention`, `quotes-held` (every name it quotes in code is
+the fabulac's), `uses-told`, `footer` (the catem's footer names its depth) and `provenance`, and the scaffold `uses-outline` lists the uses and interfaces in told order, in their own
 words. The host saves a catem as `<name>.catem-<YYYY-MM-DD-HHMM>.md` beside the fabulac.
 
 ```thym
@@ -2719,12 +2729,17 @@ for byte. The three programs of this document
 `thym` here.
 
 The suite reads each file by its own version line. Its `thym 0` files are those of edition 0.5.4, unchanged, but for
-one: `bad/version.thym` names `thym 2`, since `thym 1` is a grammar. Beside them it holds `thym 1` programs with their
-expected items, plans and outputs (among them `python-files` and `folder-outline` over a small folder of code with a
-binary file, `aims-in-brief`, `drop-the-todos` and a deterministic contract block); a `thym 0` program whose loop
-folds a nested call into one node; `bad/` files for every refusal sections 4.9, 7.5, 8 and 21 add, each read by the
-version its own line names; and recorded runs of `tighten`, with one re-ask a kept contract forced, and of
-`decompile-prose`.
+one: `bad/version.thym` names `thym 2`, since `thym 1` is a grammar. Beside them it holds `nested-in-loop`, a `thym 0`
+program whose loop folds a nested call into one node, and eleven `thym 1` programs with their expected items and
+plans: `bounded-recursion`, `collect-the-offers`, `contract-holds` (a deterministic contract block), `drop-the-todos`,
+`join-the-notes` (a list input), `keep-the-python` and `split-a-folder` (over a small folder of code with a binary
+file), `loop-as-a-unit`, `settle-the-answers`, `survey-a-repo` and `tighten`. The deterministic ones among them have
+their outputs; `bad/` holds files for every refusal sections 4.9, 7.5, 8 and 21 add, each read by the version
+its own line names. `replay/` holds recorded runs: two of `publish-story` with their engine calls, one of `tighten`
+with one re-ask a kept contract forced, and one each of `settle-the-answers` and `survey-a-repo`, deterministic
+programs whose outputs carry their run's id. The other blocks of this text marked `thym` (among them `python-files`,
+`folder-outline`, `aims-in-brief`, `decompile-prose` and the fabulap's programs) are not suite files: the suite's test
+compiles them, and runs none.
 
 ### 24.4 Where an implementation and this text disagree
 
