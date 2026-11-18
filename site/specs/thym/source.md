@@ -1457,8 +1457,8 @@ Text is read as a sequence of Unicode code points, and the reference runtime tre
 
 - a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
   check's reason in a record at 400;
-- whitespace, where a rule folds, trims or splits on it, is the characters Unicode's `White_Space` property names
-  (the Unicode Character Database, `PropList.txt`) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
+- white space, where a rule folds, trims or splits on it, is the characters Unicode's `White_Space` property names
+  (in the Unicode Character Database, the file of properties `PropList`) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
   return, U+001C to U+001F, space, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and
   U+3000;
 - the lines of a text or a short, as `lines` gives them and a change names them (section 21), and a poem's lines
@@ -1469,8 +1469,9 @@ Text is read as a sequence of Unicode code points, and the reference runtime tre
 - a short or a text walked by `for each`, line by line, gives one member per line that is not blank, and its lines end
   at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
   U+2029;
-- a word, as `words` and `length` count it, is a run of the ASCII letters and digits and the code points U+00C0 to
-  U+024F, which may go on with one apostrophe (`'` or `’`) and ASCII letters; a poem's word (section 20.9) is a run of
+- a word, as `words` and `length` count it, is a run of the letters `A` to `Z` and `a` to `z`, the digits `0` to `9`
+  and the code points U+00C0 to U+024F, which may go on with one apostrophe (`'` or `’`) and letters `A` to `Z` and
+  `a` to `z`; a poem's word (section 20.9) is a run of
   those letters with no digits, with an apostrophe between any two runs, read after a hyphen and an em dash are made
   spaces, and folded to lowercase;
 - where a rule of a move reads a digit, a word character or a word boundary, they are Unicode's: a digit is a code
@@ -2849,7 +2850,7 @@ section it touched.
    item's digest is over it. `node` is the node's number as text, as the reference runtime has always written it.
 5. **What a runtime is given** (section 12.1): the plan, the program, the moves' declarations, and each format's map of
    module letters to names. A node's name is read by the grammar, and the program holds what the plan does not.
-6. **How text is read** (section 12.6): lengths in code points, the whitespace set, where a line ends for lines, for
+6. **How text is read** (section 12.6): lengths in code points, the white space, where a line ends for lines, for
    sentences and for a walk, the word, and Unicode's digit, word and boundary classes, in place of "no Python-only
    semantics".
 7. **When a host refuses** (sections 9, 7.3 and 19): an absent engine at run time, or at plan time where the host

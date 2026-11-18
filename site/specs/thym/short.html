@@ -2267,8 +2267,8 @@ compiler's own <code>dump</code> writes program volumes for people, with block s
 <ul>
 <li>a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
 check's reason in a record at 400;</li>
-<li>whitespace, where a rule folds, trims or splits on it, is the characters Unicode's <code>White_Space</code> property names
-(the Unicode Character Database, <code>PropList.txt</code>) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
+<li>white space, where a rule folds, trims or splits on it, is the characters Unicode's <code>White_Space</code> property names
+(in the Unicode Character Database, the file of properties <code>PropList</code>) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
 return, U+001C to U+001F, space, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and
 U+3000;</li>
 <li>the lines of a text or a short, as <code>lines</code> gives them and a change names them (<a class="ref-xref" href="#docs-sec-21">section 21</a>), and a poem's lines
@@ -2279,8 +2279,9 @@ line feed, or a carriage return alone;</li>
 <li>a short or a text walked by <code>for each</code>, line by line, gives one member per line that is not blank, and its lines end
 at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
 U+2029;</li>
-<li>a word, as <code>words</code> and <code>length</code> count it, is a <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> of the ASCII letters and digits and the code points U+00C0 to
-U+024F, which may go on with one apostrophe (<code>'</code> or <code>’</code>) and ASCII letters; a poem's word (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>) is a run of
+<li>a word, as <code>words</code> and <code>length</code> count it, is a <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> of the letters <code>A</code> to <code>Z</code> and <code>a</code> to <code>z</code>, the digits <code>0</code> to <code>9</code>
+and the code points U+00C0 to U+024F, which may go on with one apostrophe (<code>'</code> or <code>’</code>) and letters <code>A</code> to <code>Z</code> and
+<code>a</code> to <code>z</code>; a poem's word (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>) is a run of
 those letters with no digits, with an apostrophe between any two runs, read after a hyphen and an em dash are made
 spaces, and folded to lowercase;</li>
 <li>where a rule of a move reads a digit, a word character or a word boundary, they are Unicode's: a digit is a code
@@ -4108,7 +4109,7 @@ joined by <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/l
 item's digest is over it. <code>node</code> is the node's number as text, as the reference runtime has always written it.</li>
 <li><strong>What a runtime is given</strong> (<a class="ref-xref" href="#docs-sec-12-1">section 12.1</a>): the plan, the program, the moves' declarations, and each format's map of
 module letters to names. A node's name is read by the grammar, and the program holds what the plan does not.</li>
-<li><strong>How text is read</strong> (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>): lengths in code points, the whitespace set, where a line ends for lines, for
+<li><strong>How text is read</strong> (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>): lengths in code points, the white space, where a line ends for lines, for
 sentences and for a walk, the word, and Unicode's digit, word and boundary classes, in place of &quot;no Python-only
 semantics&quot;.</li>
 <li><strong>When a host refuses</strong> (<a class="ref-xref" href="#docs-sec-9">sections 9</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-7-3">7.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-19">19</a>): an absent engine at <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> time, or at plan time where the host

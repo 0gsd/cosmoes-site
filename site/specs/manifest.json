@@ -1,9 +1,9 @@
 {
   "format": "docoes-export/1",
-  "exported": "2026-11-18T22:03:39Z",
+  "exported": "2026-11-18T22:05:43Z",
   "by": "enough/0.7.0",
   "source": {
-    "commit": "e5ad0be",
+    "commit": "916d1c1",
     "dirty": false
   },
   "css": "docs.css",
@@ -132,7 +132,7 @@
       "lead": "Thym is the transcognition language that connects OESes, with its compiler and its runtime",
       "source": {
         "path": "specs/thym.md",
-        "sha256": "b65d4b44a78eba3e30083cc708881a7e84c4907d6affba9c402d06f2a404e3e4"
+        "sha256": "60079019707026fceecda0c5f54fc620075b94d7db9c0d3299c9ad1628dcfb1a"
       },
       "chapters": [],
       "counts": {
@@ -145,8 +145,8 @@
       "files": {
         "short": {
           "path": "thym/short.html",
-          "sha256": "8d9d8e63043e18e7283cd5e3aed9956f062471f2c43e2c2691164026bcaf1ff0",
-          "bytes": 357813
+          "sha256": "deef9fa58cfd84f77ced880d1f2e6863c5bda3f0a3ed80b343200a84f60598a3",
+          "bytes": 357995
         },
         "atem": {
           "path": "thym/atem.html",
@@ -155,13 +155,13 @@
         },
         "fabula": {
           "path": "thym/fabula.html",
-          "sha256": "8a80352709bcbba4a9322bc2e4fe34b118cb88aadf30a59e3aec2306114ab636",
-          "bytes": 252014
+          "sha256": "025fd1fac9345ec1b48c56f3ea14a6e9878e592f98f14ad231d115cbede3c1af",
+          "bytes": 252008
         },
         "source": {
           "path": "thym/source.md",
-          "sha256": "b65d4b44a78eba3e30083cc708881a7e84c4907d6affba9c402d06f2a404e3e4",
-          "bytes": 220789
+          "sha256": "60079019707026fceecda0c5f54fc620075b94d7db9c0d3299c9ad1628dcfb1a",
+          "bytes": 220863
         }
       },
       "edition": "0.7.0",
