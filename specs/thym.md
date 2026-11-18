@@ -1416,7 +1416,7 @@ JavaScript runtime that passes the conformance suite is a conforming runtime, an
 readings in the page. Where the reference runtime's results depend on how its language treats text, this section says
 how, so that a runtime in another language gives the same bytes by following the text, not by reading Python.
 
-**Digests** are sha256, written as 64 lowercase hexadecimal digits:
+Digests are sha256, written as 64 lowercase hexadecimal digits:
 
 - a text's, a short's and a file's over its bytes;
 - a volume's over its catalog file, so that a change to one of its module files alone does not change it;
@@ -1453,7 +1453,7 @@ another language conforms when it writes those bytes; it need not use PyYAML, an
 does not. A smaller canonical form waits for a later grammar, since it would change every recorded digest. The
 compiler's own `dump` writes program volumes for people, with block scalars, and is never a digest's form.
 
-**Text** is read as a sequence of Unicode code points, and the reference runtime treats it so:
+Text is read as a sequence of Unicode code points, and the reference runtime treats it so:
 
 - a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
   check's reason in a record at 400;
