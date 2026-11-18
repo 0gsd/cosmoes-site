@@ -2066,9 +2066,9 @@ is `{is, made-for, by, on, said}` and the fields its value asks for:
 `made-for` is *ref* the `N:target` the ruling was made with in mind; a ruling without `made-for` holds for every
 target. `by` is *ref* the `R:maker` who ruled, of capacity `transconceiver`; `on` the day; `said` the words the ruling
 was given in, verbatim. A ruling never changes the item it is on: it says what an entailment of it must keep. Beside
-`ruling`, the item may carry `relied-on`, a list from [`documented` `tested` `used` `seen`], says why anyone relies on the thing: rules fill the
-first two, from the program's documents and its tests. A thing with no ruling for a target raises a question
-(section 18.6), and an entailment into that target waits for the answer.
+`ruling`, the item may carry `relied-on`, a list from [`documented` `tested` `used` `seen`], which says why anyone relies
+on the thing: rules fill the first two, from the program's documents and its tests. A thing with no ruling for a target
+raises a question (section 18.6), and an entailment into that target waits for the answer.
 
 In a fabulac the unchanged kinds take the program's terms: `L:term` its own vocabulary, E items the named things it
 deals with (a holder, a service, a file it writes), `K:concept` the ideas the code relies on, `P:claim` what its
@@ -3098,9 +3098,9 @@ a head fabulac names them. The head's catalog lists them in `parts`, each `{uri,
 last checked it. The head holds one `C:component` per part, whose `told-in` is the part's URI, and states once, as its
 own `C:interface` items, every interface between two parts: its signature, what it takes, gives and raises. Each part
 names its head in its catalog's `head`, and each `C:interface` of a part that keeps or calls an interface between parts
-says `stated-in`, the URI of the head's item (`oes:fabula/tally/C/interface/count-lines`). What the whole program is for,
-its aims, its audience and its uses, belongs to the head; what one part does belongs to the part. A part's release is
-recorded in the head's `R:release`, never in a URI. These URIs are text fields, checked by the fabula's own checks
+says `stated-in`, the URI of the head's item (`oes:fabula/tally/C/interface/count-lines`). What the whole program is
+for, its aims, its audience and its uses, belongs to the head; what one part does belongs to the part. A part's release
+is recorded in the head's `R:release`, never in a URI. These URIs are text fields, checked by the fabula's own checks
 `parts-resolve` and `interfaces-agree` (section 18.4.8) over the fabulacs one reader knows; the reference fields of
 section 9 stay within one volume.
 
@@ -3540,9 +3540,9 @@ does not run them lists them as not run (section 12.3).
 
 <!-- term: transconception -->
 A **transconception** is a transconceptualization of a program, carried through its fabulac: in Thym's words
-(https://thym.cosmoes.org/), a transcognition with a change of frame, here a change of language. A program in one language is
-decompiled into a fabulac kept for that purpose, and the fabulac is entailed into another language that was weighed
-and found feasible first. To **transconceive** a program is to carry it so. A fabulac kept for it says `purpose:
+(https://thym.cosmoes.org/), a transcognition with a change of frame, here a change of language. A program in one
+language is decompiled into a fabulac kept for that purpose, and the fabulac is entailed into another language that was
+weighed and found feasible first. To **transconceive** a program is to carry it so. A fabulac kept for it says `purpose:
 transconception` in its catalog. The moves are Thym's (Thym, its section 20.10).
 
 <!-- term: transconceiver -->
@@ -3591,8 +3591,8 @@ only for a person's own code and for a source in the open lane. A cshort's entry
 
 **Cases from outside.** Cases recorded by running the original are kept whole as data in one file beside the fabulac,
 named in the catalog's `cases` (`vulture.cases.json`), with the tree digest and the commit they were recorded from. The
-fabulac keeps as `P:case` items only the cases a person wrote or ruled. A case `stands: outside` when it is judged at the
-program's boundary and names none of its source's functions, classes or files. A recorder (cases and the original's
+fabulac keeps as `P:case` items only the cases a person wrote or ruled. A case `stands: outside` when it is judged at
+the program's boundary and names none of its source's functions, classes or files. A recorder (cases and the original's
 command, to recorded cases) and a runner (cases and an entailment's command, to a verdict) live outside the
 implementation, with the round trip's own sandbox: an implementation reads their files and starts neither. An `alike`
 ruling and a case's `allowing` take one allowance from a closed list, extended only by a later edition:
@@ -4700,7 +4700,8 @@ language through its fabulac.
    three banks standing, target and rulings; `batch`, one answer for many alike things; a difference the judge finds
    comes back as a question, `why: conflict`.
 9. **The fabulap** (sections 18.4.2 and 18.4.6). A form's rule that rules cannot read is `held: {pending}` and asked.
-   A form's `scheme` is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the bank's `breaks` or `stanza` writes the answerer's `P:reading` of those lines or stanzas.
+   A form's `scheme` is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the
+   bank's `breaks` or `stanza` writes the answerer's `P:reading` of those lines or stanzas.
 
 **Edition 0.7.0 · 2026-11-13.** Each density is an entailment of the one before, and a poem's fabula is built in full.
 
