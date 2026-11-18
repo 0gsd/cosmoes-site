@@ -1460,9 +1460,9 @@ refuses an allograph that carries a field this section does not name or a markin
 <li><strong>Canonical JSON</strong>, as the isograph's; the release's <code>sha256</code> is over those bytes.</li>
 </ul>
 <p><strong>Made again, never edited.</strong> An allograph names the run that made it, and the run names the holograph's state: the
-run's trace records the state of the holograph as the filter kept it, as a digest,
-and that digest is what names the state; the plan's digests of the run's inputs do not
-(<a href="https://thym.cosmoes.org/">Thym</a>, its section 17.1). The release record carries the digest of the run's trace
+run records the state of the holograph as the filter kept it, as a digest, in the record of the engine call that
+made the allograph, whose answer names it as <code>holograph</code>, and that digest is what names the state; the plan's digests
+of the run's inputs do not (<a href="https://thym.cosmoes.org/">Thym</a>, its section 12.4). The release record carries the digest of the run's trace
 (<a class="ref-xref" href="#docs-sec-13">section 13</a>). When the holograph changes, the holder may run the program again; the new allograph is a new release,
 and it replaces the listed one when the holder lists it. An implementation should tell the holder when their
 holograph has changed since the run their listed allograph names; nothing makes or lists an allograph again by itself.

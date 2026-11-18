@@ -900,8 +900,14 @@ node. Written
 into a <code>.cosm</code>, this becomes the item's envelope provenance plus one field, <code>made</code>, which <code>thym/1</code> lists in its envelope
 and every other format keeps as an unknown field:</p>
 <pre><code class="language-yaml">provenance: {mode: derived, sources: [&quot;notes.md#sha256:54055e8…&quot;, &quot;oes:thym/2026-11-01-1042-7f3a/R/record/3&quot;], confidence: 0.9}
-made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: R:node/4, engine: &quot;model:g40-04&quot;, route: local}
+made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: '4', engine: &quot;model:g40-04&quot;, route: local}
 </code></pre>
+<p><code>made</code>'s keys come in this order: <code>move</code>, <code>run</code>, <code>step</code> (the step's number), <code>node</code> (the node's number, as text: <code>'4'</code>
+for <code>R:node/4</code>), <code>engine</code>, then <code>route</code> and <code>provider</code> when the value has them. A move writes <code>made</code> into what it
+makes: into an item, replacing the <code>made</code> it carried in the place that key held, or as its last key; into every item of
+a volume it makes that carries none, as that item's last key. A value read from disk byte for byte is not written
+into. The item's digest is over its <a class="docs-term" href="#docs-item-t-term-the-canonical-dump" data-term="T:term/the-canonical-dump" title="the text that PyYAML 6's safe_dump writes for the mapping, with the options sort_keys=False, allow_unicode=True">canonical dump</a> with <code>made</code> in it (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>), so a second runtime that orders
+these keys otherwise gives other digests.</p>
 <p><code>engine</code> is <code>model:&lt;id&gt;</code> for a model-backed value, where the id is the model's own: the name a local model is known by,
 or the provider's resolved id for a cloud model. A model-backed value also says its <code>route</code>, <code>local</code> or <code>cloud</code>, and a
 cloud one its <code>provider</code> (<a class="ref-xref" href="#docs-sec-23">section 23</a>). A value made before this edition has neither key, and a replay of it writes
@@ -995,7 +1001,7 @@ additions of the second table.</p>
 <td><code>derive</code></td>
 <td>text → fabula</td>
 <td>yes</td>
-<td><code>span-resolves</code> <code>stance-closed</code> <code>terms-grounded</code> <code>coverage</code> <code>fabula-checks</code> <code>provenance</code> (in the <code>thym 0</code> view the fifth check keeps its old name, <code>emf-checks</code>; it is the same check)</td>
+<td><code>span-resolves</code> <code>stance-closed</code> <code>terms-grounded</code> <code>coverage</code> <code>fabula-checks</code> <code>provenance</code></td>
 </tr>
 <tr>
 <td><code>entail</code></td>
@@ -1150,7 +1156,8 @@ additions of the second table.</p>
 </tbody>
 </table>
 </div>
-<p>The accessors are read-only and may give <code>nothing</code>. <code>context of</code> a text gives the surrounding volume's catalog around it
+<p>In the <code>thym 0</code> view, <code>derive</code>'s fifth check keeps its old name, <code>emf-checks</code>; it is the same check (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>).
+The accessors are read-only and may give <code>nothing</code>. <code>context of</code> a text gives the surrounding volume's catalog around it
 (<a class="ref-xref" href="#docs-sec-16-1">section 16.1</a>), and of a package the context the package carries; <code>isomorph of</code> a package gives the author's shared
 morph. <code>measure</code> asks the model only for its three judgement scales; the other seven are statistics, computed in code
 (<a class="ref-xref" href="#docs-sec-13-2">section 13.2</a>), and its scaffold gives those seven with the three pending. <code>compile</code> given a fabula is refused with the
@@ -1189,7 +1196,7 @@ checks hold it; what <code>project</code> makes is an entailment made by rule, a
 <td><code>entail</code></td>
 <td>fabula | item | volume → short; <code>as</code> an order, <code>code</code>, <code>line</code>, <code>overview</code> or <code>manual</code>; <code>by</code> order; <code>with</code> morph; <code>as code</code> gives a folder</td>
 <td>yes</td>
-<td>as an order: as above · as code: <code>parses</code> <code>interfaces-present</code> <code>files-present</code> <code>footer</code> <code>provenance</code> · as line, overview or manual: <code>coverage</code> <code>no-invention</code> <code>uses-told</code> <code>footer</code> <code>provenance</code></td>
+<td>as an order: as above · as code: <code>parses</code> <code>interfaces-present</code> <code>files-present</code> <code>footer</code> <code>provenance</code> · as line, overview or manual: <code>coverage</code> <code>no-invention</code> <code>quotes-held</code> <code>uses-told</code> <code>footer</code> <code>provenance</code></td>
 <td>an order: the outline · code: none · a catem: <code>uses-outline</code></td>
 </tr>
 <tr>
@@ -1217,7 +1224,7 @@ checks hold it; what <code>project</code> makes is an entailment made by rule, a
 <td><code>construe</code></td>
 <td>text → fabula (a fabulap); <code>as</code> figure | image | allusion | voice | turn | meaning | ambiguity; <code>with</code> fabula</td>
 <td>yes</td>
-<td><code>span-resolves</code> <code>no-invention</code> <code>stance-kept</code> <code>coverage</code> <code>terms-grounded</code> <code>nothing-lost</code> <code>fabula-checks</code> <code>provenance</code>, with <code>coverage</code>, <code>no-invention</code> and <code>stance-kept</code> read for verse (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>)</td>
+<td><code>span-resolves</code> <code>no-invention</code> <code>stance-kept</code> <code>coverage</code> <code>terms-grounded</code> <code>nothing-lost</code> <code>fabula-checks</code> <code>provenance</code></td>
 <td>none</td>
 </tr>
 <tr>
@@ -1336,7 +1343,8 @@ checks hold it; what <code>project</code> makes is an entailment made by rule, a
 </table>
 </div>
 <p><code>scan</code> and <code>construe</code> are the fabulap's helper moves, the first by rule and the second by a model, each <code>as</code> word one
-axis of a poem; <a class="ref-xref" href="#docs-sec-20-9">section 20.9</a> says what each finds. <code>propose</code> is Ascribe's: it reads the holder's own text, decompiled to
+axis of a poem; <a class="ref-xref" href="#docs-sec-20-9">section 20.9</a> says what each finds. <code>construe</code> keeps <code>coverage</code>, <code>no-invention</code> and <code>stance-kept</code> as
+they are read for verse (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>). <code>propose</code> is Ascribe's: it reads the holder's own text, decompiled to
 a fabulan, and gives candidate nodes of the holograph, each with the question that asks the holder whether it is so; a
 program lands them with <code>gather</code>. <code>atem</code>, <code>expand</code>, <code>null</code>, <code>measure</code>, <code>morph</code>, <code>read</code>, <code>cut</code>, <code>package</code> and the rest
 are the same in both versions. <code>atem f</code> of a fabulac is the catem at depth <code>line</code>, under the same contract. The compiler
@@ -1501,7 +1509,7 @@ things, no gap in an order that reveals them.</li>
 </tr>
 <tr>
 <td><code>never-source</code></td>
-<td>a reading's output path is not the path of any input, and no input file changed</td>
+<td>a reading's output path is not the path of any input, and no input file changed: an input read from a file whose bytes on disk no longer have the digest they were read with fails it. The second half is the host's, read from its files; a runtime that reads no files holds the check by the paths alone</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -1631,6 +1639,11 @@ things, no gap in an order that reveals them.</li>
 <tr>
 <td><code>uses-told</code></td>
 <td>a catem says everything its depth asks for: at <code>overview</code> every use, at <code>manual</code> every use and every interface a person reaches</td>
+<td>Thym's own</td>
+</tr>
+<tr>
+<td><code>quotes-held</code></td>
+<td>every name a catem quotes inside a code span (a command, an option, a function, a setting, a path, a message's words) is in its fabulac, looked up as <code>no-invention</code> looks up names: in the fabula's name, its atem and every string its items hold (<code>provenance</code> and <code>made</code> aside), folded to lowercase, as a whole word. A name is a <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> of letters, digits and <code>_</code> <code>.</code> <code>/</code> <code>~</code> <code>-</code> that holds a letter, less a trailing <code>.</code>, <code>/</code> or <code>-</code>; the catem's footer line quotes nothing; a scaffold's catem, which quotes the fabulac's own words, holds it</td>
 <td>Thym's own</td>
 </tr>
 <tr>
@@ -1937,12 +1950,15 @@ end
 </tr>
 <tr>
 <td><strong>run</strong></td>
-<td>a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (<code>schema</code>); a check the runtime lacks (the check's name, &quot;not implemented&quot;); a failed <code>assert</code>; a deterministic move that raises; a move that went deeper than its depth (<code>recursion</code>); a <code>thym 0</code> loop that <a class="ref-xref" href="#docs-sec-8-1">section 8.1</a> refuses at run (<code>loop</code>); a fabula of a flavour the move does not take (<code>flavour</code>); a run that reached its ceiling of model calls (<code>calls</code>)</td>
+<td>a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (<code>schema</code>); a check the runtime lacks (the check's name, &quot;not implemented&quot;); a failed <code>assert</code>; a deterministic move that raises, or that needs one of the host's engines (FEED, Canon's derivation, a syntax engine, <a class="ref-xref" href="#docs-sec-12-4">section 12.4</a>) the host lacks (&quot;the syntax engine is not here&quot;); a move that went deeper than its depth (<code>recursion</code>); a <code>thym 0</code> loop that <a class="ref-xref" href="#docs-sec-8-1">section 8.1</a> refuses at run (<code>loop</code>); a fabula of a flavour the move does not take (<code>flavour</code>); a run that reached its ceiling of model calls (<code>calls</code>)</td>
 <td>the trace, which says the node, the check and the attempts; nothing is written</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>A move with no implementation is refused at plan time, since the plan names every move; an engine a move calls is
+looked for when the move runs, and the reference runtime refuses an absent one then, at run time, before the run
+writes anything. A host that knows at plan time which engines a node will call may refuse it then, with <code>move</code>.</p>
 <p>A refusal is a value, not an exception: the CLI prints it and exits non-zero, the server returns it as the response,
 and the viewer shows it in place of the plan or the outputs. It carries <code>stage</code> (<code>compile</code>, <code>plan</code> or <code>run</code>), <code>line</code>,
 <code>check</code> and <code>message</code>, and like MacroCOSM's refusal it reads as a plain no.</p>
@@ -2092,14 +2108,26 @@ traces are read in the same viewer as everything else.</p>
 <p><code>run</code> takes a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> and the program it was made from (the <code>.thym</code> file or its program volume; the plan's <code>program.sha256</code>
 must match), since a filter's condition, a local move's body and an <code>assert</code>'s message are read from the program, and
 checks the plan against the environment: the model present and large enough, agent-free or not, and
-every input present with the digest the plan recorded. It then walks the nodes in a topological order. Independent
-nodes may <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> in parallel or in sequence. A deterministic node calls its move's implementation. A model-backed node
+every input present with the digest the plan recorded.</p>
+<p>A runtime is given four things: the plan; the program; the declarations of the moves the program sees (<a class="ref-xref" href="#docs-sec-17-6">section 17.6</a>);
+and, for each format its inputs declare, the format's map of module letters to module names, from the format's
+manifest. The map is what <code>h where module is employees</code> reads: an item's module is the name the manifest gives its
+id's letter, trimmed and folded to lowercase, or the letter itself where the manifest names none or the format is not
+known. The plan is not executable alone. Each node's <code>name</code> is its statement as written, with each nested call outside
+a loop's body put as the temporary that holds its value (<code>band t3 as [none, some]</code>), and, inside a loop, with
+<code>, for each …</code> or <code>, for x = &lt;member&gt;</code> after it (<a class="ref-xref" href="#docs-sec-11-1">section 11.1</a>). A runtime reads that name by the grammar's <code>stmt</code>
+(<a class="ref-xref" href="#docs-sec-4-8">section 4.8</a>) with the names of the moves in scope, so that a name that is a move begins a call. From the program it
+reads what the plan does not hold: each statement as the person wrote it, by its <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a>, for refusals (<a class="ref-xref" href="#docs-sec-9">section 9</a>); the
+<code>let</code> lines whose value is not a call, a filter among them; each user move's body and each contract block; the body of
+a loop <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> as one node; each <code>assert</code>'s message; and the program's <code>takes</code> and <code>gives</code>. It then walks the nodes in a topological order. Independent
+nodes may run in parallel or in sequence. A deterministic node calls its move's implementation. A model-backed node
 builds the coprocessor call from the move's contract and the node's inputs. A failing node refuses the run: outputs
 already made are discarded, nothing is written to the target paths, and the trace records how far the run got. Outputs
 are written only when every node has succeeded, all at once, with the trace beside them.</p>
 <p>A list input (<code>takes xs: list of T</code>, in either version) is given member by member, in order; an empty list is not
 an input given. The plan records it as <code>{name, type, path, sha256, members: [{path, sha256}]}</code>: <code>path</code> is the first
-member's, <code>sha256</code> is over the members' digests in order, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> member also has <code>files</code> and <code>bytes</code>, and the list's
+member's, <code>sha256</code> is over the members' digests in order, written one after another with nothing between them
+(<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>), a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> member also has <code>files</code> and <code>bytes</code>, and the list's
 size is the sum of its members'. The run reads each member as it reads a single input of type T, held to its own
 digest, names it <code>xs[2]</code> in a refusal (counted from 1), and gives the program the list in the order given. The record
 of a node that takes the list names each member beside it, as <code>xs[n]</code>, with its digest and path.</p>
@@ -2194,14 +2222,72 @@ ceiling on its model requests, <code>--calls N</code>, which a cloud plan with a
 </section>
 <section class="docs-sec" data-key="S:section/12.6" data-scope="">
 <h3 id="docs-sec-12-6" data-toc="3">12.6 Portability</h3>
-<p>No Python-only semantics. No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts:
-bands and scales are integers, and the ratios of <a class="ref-xref" href="#docs-sec-13-3">section 13.3</a> are integers per hundred or per thousand. Digests are
-sha256: a text's over its bytes, a volume's over its catalog file, a file's always over its bytes, a <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a>'s over its
-files as the <a class="docs-term" href="#docs-item-t-term-tree-digest" data-term="T:term/tree-digest" title="MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it">tree digest</a> (<a class="ref-xref" href="#docs-sec-20-1">section 20.1</a>), and a mapping's over the reader's canonical dump (keys in file order, LF
-newlines, UTF-8). The folder rule is the same in every language and uses no ignore-file semantics; the compiler's own
-<code>dump</code> writes program volumes for people, with block scalars, and is never a digest's form. File paths are URIs. Time is UTC in traces and local only in file names. A JavaScript
-runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make <a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: an entailment of a fabula in the reader's morph">readings</a> in the
-page.</p>
+<p>No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts: bands and scales are
+integers, and the ratios of <a class="ref-xref" href="#docs-sec-13-3">section 13.3</a> are integers per hundred or per thousand. The <a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">folder</a> rule is the same in every
+language and uses no ignore-file semantics. File paths are URIs. Time is UTC in traces and local only in file names. A
+JavaScript runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make
+<a class="docs-term" href="#docs-item-t-term-reading" data-term="T:term/reading" title="read f with m in c: an entailment of a fabula in the reader's morph">readings</a> in the page. Where the reference runtime's results depend on how its language treats text, this section says
+how, so that a runtime in another language gives the same bytes by following the text, not by reading Python.</p>
+<p>Digests are sha256, written as 64 lowercase hexadecimal digits:</p>
+<ul>
+<li>a text's, a short's and a file's over its bytes;</li>
+<li>a volume's over its catalog file, so that a <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a> to one of its module files alone does not change it;</li>
+<li>a folder's over its files, as the <a class="docs-term" href="#docs-item-t-term-tree-digest" data-term="T:term/tree-digest" title="MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it">tree digest</a> (<a class="ref-xref" href="#docs-sec-20-1">section 20.1</a>);</li>
+<li>a mapping's (an item, or a volume a move made) over its canonical dump, below;</li>
+<li>a list value's over its members' digests joined by <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> feeds, with none after the last;</li>
+<li>a plain value's over its text: a number's decimal digits, <code>true</code> or <code>false</code>, a date's ISO 8601 form, a word's or a
+string's UTF-8 bytes, and <code>nothing</code>'s over no bytes.</li>
+</ul>
+<p>A <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a>'s list input has a digest of its own, over its members' digests with nothing between them (<a class="ref-xref" href="#docs-sec-12-1">section 12.1</a>). The
+two list rules differ, and both stand as written; one rule for both waits for a later grammar, since it would change
+recorded plans.</p>
+<p><strong>The canonical dump</strong> is the text that PyYAML 6's <code>safe_dump</code> writes for the mapping, with the options
+<code>sort_keys=False, allow_unicode=True, width=110, default_flow_style=False</code> (keys not sorted, Unicode written as itself,
+a width of 110, block style throughout), and never an anchor or an alias (a mapping or a list held twice is refused
+before it is dumped; an equal scalar is written twice). Keys come in the order they were
+written, except that the declaration key (<code>oes</code>, <code>manifest</code>, <code>cosm</code>, <code>opi</code> or <code>comprise</code>) is moved first. Lines end
+with LF, and the text is encoded as UTF-8. So YAML 1.1's rules, as PyYAML 6 reads them, decide every byte:</p>
+<ul>
+<li>a string that would read back as something else is single-quoted: <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code>, <code>null</code>, <code>true</code>, a
+number such as <code>123</code> or <code>1.5</code>, a date such as <code>2026-11-01</code>, and the empty string; so is a string with a space at
+either end, with <code>: </code> or <code> #</code> inside, or that ends with a line break;</li>
+<li>a string that holds a character YAML must escape (a tab, a control character, U+2028 or U+2029) is double-quoted,
+with PyYAML's escapes (<code>\t</code>, <code>\L</code> and <code>\P</code> among them);</li>
+<li>a long scalar is folded at the first space past column 110, plain, single- and double-quoted scalars each in their
+own way;</li>
+<li>a key is quoted by the same rules as a string;</li>
+<li>indentation is two spaces, a list under a key starts at the key's own indentation, an empty list is <code>[]</code> and an
+empty mapping <code>{}</code>; <code>nothing</code> is <code>null</code>, and a date is written in its ISO 8601 form, unquoted.</li>
+</ul>
+<p>The suite carries the dump's vectors as data, each a mapping and the bytes it dumps to (<a class="ref-xref" href="#docs-sec-24-3">section 24.3</a>). A runtime in
+another language conforms when it writes those bytes; it need not use PyYAML, and the reference's JavaScript runtime
+does not. A smaller canonical form waits for a later grammar, since it would change every recorded digest. The
+compiler's own <code>dump</code> writes program volumes for people, with block scalars, and is never a digest's form.</p>
+<p>Text is read as a sequence of Unicode code points, and the reference runtime treats it so:</p>
+<ul>
+<li>a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
+check's reason in a record at 400;</li>
+<li>white space, where a rule folds, trims or splits on it, is the characters Unicode's <code>White_Space</code> property names
+(in the Unicode Character Database, the file of properties <code>PropList</code>) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
+return, U+001C to U+001F, space, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and
+U+3000;</li>
+<li>the lines of a text or a short, as <code>lines</code> gives them and a change names them (<a class="ref-xref" href="#docs-sec-21">section 21</a>), and a poem's lines
+(<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>), end at a line feed, with a carriage return just before it part of the break; no other character
+ends one;</li>
+<li>the sentences of a text (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>, <code>coverage</code>) are read over lines that end at a line feed, a carriage return and
+line feed, or a carriage return alone;</li>
+<li>a short or a text walked by <code>for each</code>, line by line, gives one member per line that is not blank, and its lines end
+at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
+U+2029;</li>
+<li>a word, as <code>words</code> and <code>length</code> count it, is a <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> of the letters <code>A</code> to <code>Z</code> and <code>a</code> to <code>z</code>, the digits <code>0</code> to <code>9</code>
+and the code points U+00C0 to U+024F, which may go on with one apostrophe (<code>'</code> or <code>’</code>) and letters <code>A</code> to <code>Z</code> and
+<code>a</code> to <code>z</code>; a poem's word (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>) is a run of
+those letters with no digits, with an apostrophe between any two runs, read after a hyphen and an em dash are made
+spaces, and folded to lowercase;</li>
+<li>where a rule of a move reads a digit, a word character or a word boundary, they are Unicode's: a digit is a code
+point of general category <code>Nd</code>; a word character is a letter or number (general categories <code>L</code> and <code>N</code>) or the
+underscore; a boundary lies between a word character and anything else.</li>
+</ul>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/13" data-scope="">
@@ -2938,9 +3024,11 @@ the holotype holds people or says it has none, and always fills <code>shape.mark
 <section class="docs-sec" data-key="S:section/19" data-scope="">
 <h2 id="docs-sec-19" data-toc="2">19. Agent-free</h2>
 <p>In agent-free mode the coprocessor is the refusing one: a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> with model-backed nodes is refused at plan time with
-their count, the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> and the first one's statement and <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> (&quot;3 steps ask a model on the local route, the first <code>let f = derive story</code> (line 11); agent-free is on&quot;). A cloud model is a model too: agent-free refuses a plan on the cloud
+their count, the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> and the first one's statement and <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> (&quot;3 steps ask a model on the local route, the first <code>let f = derive story</code> (line 11); agent-free is on&quot;). The route the refusal names is the one the <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a>'s environment gives
+(<a class="ref-xref" href="#docs-sec-12-3">section 12.3</a>), as the host's settings would choose it, and <code>local</code> when the environment names none; it is named even
+though no model runs, so a runtime is given the route to word the refusal the same way. A cloud model is a model too: agent-free refuses a plan on the cloud
 route exactly as it refuses one on the local route, at plan time, before any broker is asked. A plan with no
-model-backed node <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a>. With <code>--rules</code>, each model-backed move that declares a <code>scaffold</code> runs it instead: <code>derive</code>
+model-backed node runs. With <code>--rules</code>, each model-backed move that declares a <code>scaffold</code> runs it instead: <code>derive</code>
 gives the rules twin, <code>atem</code> the labelled scaffold, <code>entail</code> and <code>null</code> the ordered outline, and <code>measure</code> the seven
 statistics scales with the three judgement scales pending; in <code>thym 1</code>, <code>derive … as code</code> gives its file's outline
 marked pending, <code>entail</code> at a catem's depth the uses and interfaces in told order, <code>question</code> the bank's questions only,
@@ -3327,8 +3415,8 @@ within the node's attempts. <code>entail … as code</code> has no scaffold, so 
 <p><strong><code>entail f as line</code>, <code>as overview</code> and <code>as manual</code></strong> give a short, the <strong>catem</strong> at that depth. <code>line</code> is the atem's
 line, the same as <code>atem f</code>'s; <code>overview</code> names every use; <code>manual</code> names every use and every interface a person
 reaches (the command-line entry points and the public interface), with what they do. The contract is <code>coverage</code>
-(every sentence traces to behaviours, uses or events), <code>no-invention</code>, <code>uses-told</code>, <code>footer</code> (the catem's footer names
-its depth) and <code>provenance</code>, and the scaffold <code>uses-outline</code> lists the uses and interfaces in told order, in their own
+(every sentence traces to behaviours, uses or events), <code>no-invention</code>, <code>quotes-held</code> (every name it quotes in code is
+the fabulac's), <code>uses-told</code>, <code>footer</code> (the catem's footer names its depth) and <code>provenance</code>, and the scaffold <code>uses-outline</code> lists the uses and interfaces in told order, in their own
 words. The host saves a catem as <code>&lt;name&gt;.catem-&lt;YYYY-MM-DD-HHMM&gt;.md</code> beside the fabulac.</p>
 <pre><code class="language-thym">thym 1
 
@@ -3783,7 +3871,11 @@ always have, and a replay of either run needs neither the person nor the model.<
 <p><code>question v</code> takes a fabula or a volume and gives a list of question items. It asks the model, with the scaffold
 <code>bank</code>. Its rules part always <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">runs</a> first: it gives the opening questions of the manifest's bank for the volume's
 flavour or format, a question for every <code>{pending: …}</code> field, and one for every item marked unsure (a confidence below
-0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5).
+0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5). One kind of bank entry waits
+for the model: an entry that says <code>model-stands-in: true</code> (MacroCOSM OES, its section 18.6.6) is a generic question
+whose place the model's own questions take, so a run that asks the model does not raise it. A fabulac's bank has two,
+<code>fabulac/intended</code> and <code>fabulac/settings</code>. Under <code>--rules</code>, and in a run where the model is given nothing to read, the
+rules part raises them as it raises every other entry.
 When the run asks the model, the model adds questions where the volume is unsure, ambiguous, in conflict or silent on
 intent, and only there. It reads only the items a person can say something about: of a fabulac its aims, uses,
 requirements, decisions, exclusions, behaviours, interfaces, structures and claims; of any other volume every item but
@@ -3970,6 +4062,7 @@ expected/&lt;name&gt;/plan.cosm       the plan, compared without run ids, timest
 expected/&lt;name&gt;/outputs/        the outputs of deterministic runs, byte for byte
 replay/&lt;name&gt;/&lt;run-id&gt;/         a recorded run: plan, trace, candidates; re-runs to the recorded outputs
 bad/&lt;slug&gt;.thym                 programs that must be refused; the first line reads -- refused: &lt;stage&gt; &lt;check&gt; line &lt;n&gt;
+canonical/&lt;name&gt;.json           a mapping, and canonical/&lt;name&gt;.cosm the bytes its canonical dump is (section 12.6)
 </code></pre>
 <p>A compiler conforms when every program in <code>programs/</code> <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a>, enumerates to its <code>expected/&lt;name&gt;/items.cosm</code>, compiles
 back byte for byte and <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plans</a> to its <code>expected/&lt;name&gt;/plan.cosm</code>, and when every <code>bad/</code> program is refused at the stage,
@@ -3982,12 +4075,17 @@ for byte. The three programs of this document
 (<a class="ref-xref" href="#docs-sec-4-1">sections 4.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-16-2">16.2</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18">18</a>) are the suite's first three, byte for byte, and the suite's test compiles every block marked
 <code>thym</code> here.</p>
 <p>The suite reads each file by its own version line. Its <code>thym 0</code> files are those of edition 0.5.4, unchanged, but for
-one: <code>bad/version.thym</code> names <code>thym 2</code>, since <code>thym 1</code> is a grammar. Beside them it holds <code>thym 1</code> programs with their
-expected items, plans and outputs (among them <code>python-files</code> and <code>folder-outline</code> over a small folder of code with a
-binary file, <code>aims-in-brief</code>, <code>drop-the-todos</code> and a deterministic contract block); a <code>thym 0</code> program whose loop
-folds a nested call into one node; <code>bad/</code> files for every refusal <a class="ref-xref" href="#docs-sec-4-9">sections 4.9</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-7-5">7.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-8">8</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a> add, each read by the
-version its own line names; and recorded runs of <code>tighten</code>, with one re-ask a kept contract forced, and of
-<code>decompile-prose</code>.</p>
+one: <code>bad/version.thym</code> names <code>thym 2</code>, since <code>thym 1</code> is a grammar. Beside them it holds <code>nested-in-loop</code>, a <code>thym 0</code>
+program whose loop folds a nested call into one node, and eleven <code>thym 1</code> programs with their expected items and
+plans: <code>bounded-recursion</code>, <code>collect-the-offers</code>, <code>contract-holds</code> (a deterministic contract block), <code>drop-the-todos</code>,
+<code>join-the-notes</code> (a list input), <code>keep-the-python</code> and <code>split-a-folder</code> (over a small folder of code with a binary
+file), <code>loop-as-a-unit</code>, <code>settle-the-answers</code>, <code>survey-a-repo</code> and <code>tighten</code>. The deterministic ones among them have
+their outputs; <code>bad/</code> holds files for every refusal <a class="ref-xref" href="#docs-sec-4-9">sections 4.9</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-7-5">7.5</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-8">8</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-21">21</a> add, each read by the version
+its own line names. <code>replay/</code> holds recorded runs: two of <code>publish-story</code> with their engine calls, one of <code>tighten</code>
+with one re-ask a kept contract forced, and one each of <code>settle-the-answers</code> and <code>survey-a-repo</code>, deterministic
+programs whose outputs carry their run's id. The other blocks of this text marked <code>thym</code> (among them <code>python-files</code>,
+<code>folder-outline</code>, <code>aims-in-brief</code>, <code>decompile-prose</code> and the fabulap's programs) are not suite files: the suite's test
+compiles them, and runs none.</p>
 </section>
 <section class="docs-sec" data-key="S:section/24.4" data-scope="">
 <h3 id="docs-sec-24-4" data-toc="3">24.4 Where an implementation and this text disagree</h3>
@@ -3998,12 +4096,34 @@ section it touched.</p>
 </section>
 <section class="docs-sec" data-key="S:section/25" data-scope="">
 <h2 id="docs-sec-25" data-toc="2">25. Changes</h2>
+<p><strong>Edition 0.8.0.</strong> The text says what a second runtime needs, as the reference runtime does it; no behaviour changed.</p>
+<ol>
+<li><strong><code>quotes-held</code> is a check of <a class="ref-xref" href="#docs-sec-7-3">section 7.3</a></strong>, the owner's ruling of 0.7: every name a catem quotes in a code span is
+in its fabulac. <code>entail</code> at a catem's depth keeps it (<a class="ref-xref" href="#docs-sec-6-3">sections 6.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-20-7">20.7</a>).</li>
+<li><strong><a class="docs-term" href="#docs-item-t-term-the-canonical-dump" data-term="T:term/the-canonical-dump" title="the text that PyYAML 6's safe_dump writes for the mapping, with the options sort_keys=False, allow_unicode=True">The canonical dump</a> is named</strong> (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>): PyYAML 6's <code>safe_dump</code> with its options, the declaration key
+first; YAML 1.1's rules decide its quoting, folding and escaping. Its vectors are suite data (<a class="ref-xref" href="#docs-sec-24-3">section 24.3</a>). A smaller
+canonical form waits for a later grammar.</li>
+<li><strong>Every digest is listed</strong> (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>), and both list rules stand as they are: a list value's members' digests
+joined by <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> feeds, a <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a>'s list input's with nothing between them (<a class="ref-xref" href="#docs-sec-12-1">section 12.1</a>).</li>
+<li><strong><code>made</code> has a key order</strong> (<a class="ref-xref" href="#docs-sec-5-3">section 5.3</a>): <code>move</code>, <code>run</code>, <code>step</code>, <code>node</code>, <code>engine</code>, then <code>route</code> and <code>provider</code>; an
+item's digest is over it. <code>node</code> is the node's number as text, as the reference runtime has always written it.</li>
+<li><strong>What a runtime is given</strong> (<a class="ref-xref" href="#docs-sec-12-1">section 12.1</a>): the plan, the program, the moves' declarations, and each format's map of
+module letters to names. A node's name is read by the grammar, and the program holds what the plan does not.</li>
+<li><strong>How text is read</strong> (<a class="ref-xref" href="#docs-sec-12-6">section 12.6</a>): lengths in code points, the white space, where a line ends for lines, for
+sentences and for a walk, the word, and Unicode's digit, word and boundary classes, in place of &quot;no Python-only
+semantics&quot;.</li>
+<li><strong>When a host refuses</strong> (<a class="ref-xref" href="#docs-sec-9">sections 9</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-7-3">7.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-19">19</a>): an absent engine at <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> time, or at plan time where the host
+knows; <code>never-source</code>'s second half is the host's; the agent-free refusal names the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> the environment gives.</li>
+<li><strong><code>question</code> leaves the model's place to the model</strong> (<a class="ref-xref" href="#docs-sec-22-1">section 22.1</a>): a bank entry that says <code>model-stands-in: true</code>
+is not raised in a run that asks the model; a fabulac's two generic questions are such entries.</li>
+<li><strong><a class="ref-xref" href="#docs-sec-24-3">Section 24.3</a> lists the suite as it is</strong>, and <a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>'s contract cells hold check names only.</li>
+</ol>
 <p><strong>Edition 0.7.0 · 2026-11-13.</strong> <code>tell</code> is <code>entail</code>, and a poem is decompiled in steps.</p>
 <ol>
 <li><strong><code>entail</code>, once <code>tell</code></strong> (<a class="ref-xref" href="#docs-sec-6-3">section 6.3</a>). The move that makes a short of a fabula is spelled <code>entail</code>. <code>tell</code> names
-the same move under <code>thym 0</code> and <code>thym 1</code> alike and for good, and <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a> to the same items, <a class="docs-term" href="#docs-item-t-term-plan" data-term="T:term/plan" title="a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold">plan</a> and contract; the
+the same move under <code>thym 0</code> and <code>thym 1</code> alike and for good, and <a class="docs-term" href="#docs-item-t-term-compile" data-term="T:term/compile" title="a parse error (parse)">compiles</a> to the same items, plan and contract; the
 compiler reads it and never writes it, so a step, a plan, a record and a value's <code>made</code> say <code>entail</code>, and a trace
-recorded with <code>move: tell</code> reads as <code>entail</code>. No version <a class="docs-term" href="#docs-item-t-term-line" data-term="T:term/line" title="one line of a text or a short">line</a> marks the <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a>. <code>entail</code> is reserved from 0.7 and
+recorded with <code>move: tell</code> reads as <code>entail</code>. No version line marks the <a class="docs-term" href="#docs-item-t-term-change" data-term="T:term/change" title="one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;…">change</a>. <code>entail</code> is reserved from 0.7 and
 <code>tell</code> stays reserved, so a program that used <code>entail</code> as a name must rename it (<a class="ref-xref" href="#docs-sec-4-7">section 4.7</a>); none is known.</li>
 <li><strong>Entailment.</strong> Each step from a text to its fabula, a short and an atem is an entailment, the step that expands
 meaning by reducing data (How to read this). A projection is an entailment made by rule and holds by construction;
@@ -4012,7 +4132,7 @@ and <code>entail</code> transcognizes (<a class="ref-xref" href="#docs-sec-18">s
 <li><strong>The fabulap's helper moves</strong> (<a class="ref-xref" href="#docs-sec-20-9">section 20.9</a>, new; <a class="ref-xref" href="#docs-sec-20">section 20</a> is &quot;<a class="docs-term" href="#docs-item-t-term-folder" data-term="T:term/folder" title="a directory tree read under one fixed rule, with a digest">Folders</a>, code and verse&quot;). <code>scan</code> reads a poem by
 rule and asks no model, <code>as</code> rhyme, sound, recurrence or form; <code>construe</code> asks a model under contract, <code>as</code> figure,
 image, allusion, voice, turn, meaning or ambiguity. Both carry <code>since: 1</code> and are reserved in a <code>thym 1</code> program
-(<a class="ref-xref" href="#docs-sec-4-7">sections 4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a>). The full fabulap is one file of five programs, <a class="docs-term" href="#docs-item-t-term-run" data-term="T:term/run" title="a model-backed output that still fails its contract after narrow repair and its budget…">run</a> by a host as one job that takes up again
+(<a class="ref-xref" href="#docs-sec-4-7">sections 4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-6-3">6.3</a>). The full fabulap is one file of five programs, run by a host as one job that takes up again
 after the last that landed; under <code>--rules</code> a host runs the first two, and <code>construe</code> refuses at plan time (<a class="ref-xref" href="#docs-sec-19">section
 19</a>). A manifest may add an <code>as</code> word to either move by declaration.</li>
 <li><strong>Four checks for verse</strong> (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>): <code>lines-found</code>, <code>scansion-grounded</code>, <code>sound-grounded</code> and <code>form-grounded</code>.
@@ -4045,7 +4165,7 @@ kept contract asks the model again within the node's attempts. Its items are <co
 <li><strong>A program may give several outputs</strong>, each named on its <code>give</code> (<a class="ref-xref" href="#docs-sec-8-2">section 8.2</a>). All land or none.</li>
 <li><strong>The dialectic is two atomic runs</strong> (<a class="ref-xref" href="#docs-sec-22">section 22</a>): <code>question</code> lands questions, and <code>record</code> and <code>settle</code> land the
 answers. No run waits on a person.</li>
-<li><strong>A model-backed step runs on the <a class="docs-term" href="#docs-item-t-term-route" data-term="T:term/route" title="chosen per run, and nowhere else: local (the default: the host's local model) or cloud">route</a> chosen for its run</strong> (<a class="ref-xref" href="#docs-sec-23">section 23</a>). <code>made</code>, the candidate and the trace say
+<li><strong>A model-backed step runs on the route chosen for its run</strong> (<a class="ref-xref" href="#docs-sec-23">section 23</a>). <code>made</code>, the candidate and the trace say
 which route, provider and model; a plan says how many model calls it will make; <code>--model</code> and <code>--calls</code> choose and
 bound them; agent-free refuses a cloud model as it refuses a local one (<a class="ref-xref" href="#docs-sec-19">section 19</a>). The contract is one.</li>
 <li><strong>Refusals name the statement as written and the person's names</strong> (<a class="ref-xref" href="#docs-sec-9">section 9</a>), never a node or a temporary.</li>
@@ -4154,7 +4274,7 @@ in a program.</p>
 <p><a class="docs-term" href="#docs-item-t-term-thym" data-term="T:term/thym" title="said THIGH-m: thigh with an m on the end, after Fukuyama's thymos">Thym</a> — Copyright © 2026 Graham Smith. The text is licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/). A copy carries the author, Graham Smith; the text's name and edition; and a link to its home, https://thym.cosmoes.org/. For Thym, the author makes the Open Web Foundation Final Specification Agreement 1.0 (OWFa 1.0) promise (https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0). The names of the family are not licensed by either; the author holds them for now. The canonical edition is published at https://thym.cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
-<dl class="docs-gloss"><dt id="docs-item-t-term-a-call-on-either-side-of-a-comparison-needs-no-parentheses">A call on either side of a comparison needs no parentheses</dt><dd>assert words new &lt; words old, where count parts is 0 — <a class="ref-xref" href="#docs-sec-4-5">defined in §4.5 Expressions and modifiers</a></dd><dt id="docs-item-t-term-a-company-comprise">a company (Comprise)</dt><dd>a company (Comprise), called holotype in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-a-loop-that-collects">A loop that collects</dt><dd>a for each that is the value of a let — <a class="ref-xref" href="#docs-sec-8-1">defined in §8.1 Choice and loop</a></dd><dt id="docs-item-t-term-a-person-ascribe">a person (Ascribe)</dt><dd>a person (Ascribe), called holograph in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-change">change</dt><dd>one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;… — <a class="ref-xref" href="#docs-sec-21-1">defined in §21.1 Lines and changes</a></dd><dt id="docs-item-t-term-compile">compile</dt><dd>a parse error (parse) — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-folder">folder</dt><dd>a directory tree read under one fixed rule, with a digest — <a class="ref-xref" href="#docs-sec-20-1">defined in §20.1 The folder type</a></dd><dt id="docs-item-t-term-holomorph">holomorph</dt><dd>measure t against null of f, for a person's text t with fabula f — <a class="ref-xref" href="#docs-sec-13-4">defined in §13.4 Holomorph and isomorph</a></dd><dt id="docs-item-t-term-in-with-a-text-on-its-right">in with a text on its right</dt><dd>&quot;TODO&quot; in l holds when the line, string — <a class="ref-xref" href="#docs-sec-4-5">defined in §4.5 Expressions and modifiers</a></dd><dt id="docs-item-t-term-isomorph">isomorph</dt><dd>a holomorph the owner chose to share — <a class="ref-xref" href="#docs-sec-13-4">defined in §13.4 Holomorph and isomorph</a></dd><dt id="docs-item-t-term-line">line</dt><dd>one line of a text or a short — <a class="ref-xref" href="#docs-sec-21-1">defined in §21.1 Lines and changes</a></dd><dt id="docs-item-t-term-null-morph">null morph</dt><dd>Thym's reference entailment of a fabula — <a class="ref-xref" href="#docs-sec-13-1">defined in §13.1 The null morph</a></dd><dt id="docs-item-t-term-occasional-context">occasional context</dt><dd>just-in-time: why this text, for whom, in what medium, at what moment, under what constraints — <a class="ref-xref" href="#docs-sec-16-2">defined in §16.2 Occasional context</a></dd><dt id="docs-item-t-term-plan">plan</dt><dd>a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-reading">reading</dt><dd>read f with m in c: an entailment of a fabula in the reader's morph — <a class="ref-xref" href="#docs-sec-14">defined in §14 Readings</a></dd><dt id="docs-item-t-term-route">route</dt><dd>chosen per run, and nowhere else: local (the default: the host's local model) or cloud — <a class="ref-xref" href="#docs-sec-23-1">defined in §23.1 The route</a></dd><dt id="docs-item-t-term-run">run</dt><dd>a model-backed output that still fails its contract after narrow repair and its budget… — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-surrounding-context">surrounding context</dt><dd>the volume a text sits in: its volume's catalog in the home file system — <a class="ref-xref" href="#docs-sec-16-1">defined in §16.1 Surrounding context</a></dd><dt id="docs-item-t-term-thym">Thym</dt><dd>said THIGH-m: thigh with an m on the end, after Fukuyama's thymos — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-tree-digest">tree digest</dt><dd>MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it — <a class="ref-xref" href="#docs-sec-20-1">defined in §20.1 The folder type</a></dd></dl>
+<dl class="docs-gloss"><dt id="docs-item-t-term-a-call-on-either-side-of-a-comparison-needs-no-parentheses">A call on either side of a comparison needs no parentheses</dt><dd>assert words new &lt; words old, where count parts is 0 — <a class="ref-xref" href="#docs-sec-4-5">defined in §4.5 Expressions and modifiers</a></dd><dt id="docs-item-t-term-a-company-comprise">a company (Comprise)</dt><dd>a company (Comprise), called holotype in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-a-loop-that-collects">A loop that collects</dt><dd>a for each that is the value of a let — <a class="ref-xref" href="#docs-sec-8-1">defined in §8.1 Choice and loop</a></dd><dt id="docs-item-t-term-a-person-ascribe">a person (Ascribe)</dt><dd>a person (Ascribe), called holograph in the files — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-change">change</dt><dd>one edit: {at: &lt;line number&gt;, was: &lt;sha256 of that line&gt;, of: &lt;sha256 of the source&gt;… — <a class="ref-xref" href="#docs-sec-21-1">defined in §21.1 Lines and changes</a></dd><dt id="docs-item-t-term-compile">compile</dt><dd>a parse error (parse) — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-folder">folder</dt><dd>a directory tree read under one fixed rule, with a digest — <a class="ref-xref" href="#docs-sec-20-1">defined in §20.1 The folder type</a></dd><dt id="docs-item-t-term-holomorph">holomorph</dt><dd>measure t against null of f, for a person's text t with fabula f — <a class="ref-xref" href="#docs-sec-13-4">defined in §13.4 Holomorph and isomorph</a></dd><dt id="docs-item-t-term-in-with-a-text-on-its-right">in with a text on its right</dt><dd>&quot;TODO&quot; in l holds when the line, string — <a class="ref-xref" href="#docs-sec-4-5">defined in §4.5 Expressions and modifiers</a></dd><dt id="docs-item-t-term-isomorph">isomorph</dt><dd>a holomorph the owner chose to share — <a class="ref-xref" href="#docs-sec-13-4">defined in §13.4 Holomorph and isomorph</a></dd><dt id="docs-item-t-term-line">line</dt><dd>one line of a text or a short — <a class="ref-xref" href="#docs-sec-21-1">defined in §21.1 Lines and changes</a></dd><dt id="docs-item-t-term-null-morph">null morph</dt><dd>Thym's reference entailment of a fabula — <a class="ref-xref" href="#docs-sec-13-1">defined in §13.1 The null morph</a></dd><dt id="docs-item-t-term-occasional-context">occasional context</dt><dd>just-in-time: why this text, for whom, in what medium, at what moment, under what constraints — <a class="ref-xref" href="#docs-sec-16-2">defined in §16.2 Occasional context</a></dd><dt id="docs-item-t-term-plan">plan</dt><dd>a model-backed node while agent-free (agent-free, section 19); a prompt the machine's model cannot hold — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-reading">reading</dt><dd>read f with m in c: an entailment of a fabula in the reader's morph — <a class="ref-xref" href="#docs-sec-14">defined in §14 Readings</a></dd><dt id="docs-item-t-term-route">route</dt><dd>chosen per run, and nowhere else: local (the default: the host's local model) or cloud — <a class="ref-xref" href="#docs-sec-23-1">defined in §23.1 The route</a></dd><dt id="docs-item-t-term-run">run</dt><dd>a model-backed output that still fails its contract after narrow repair and its budget… — <a class="ref-xref" href="#docs-sec-9">defined in §9 Errors: compile, plan, run</a></dd><dt id="docs-item-t-term-surrounding-context">surrounding context</dt><dd>the volume a text sits in: its volume's catalog in the home file system — <a class="ref-xref" href="#docs-sec-16-1">defined in §16.1 Surrounding context</a></dd><dt id="docs-item-t-term-the-canonical-dump">The canonical dump</dt><dd>the text that PyYAML 6's safe_dump writes for the mapping, with the options sort_keys=False, allow_unicode=True — <a class="ref-xref" href="#docs-sec-12-6">defined in §12.6 Portability</a></dd><dt id="docs-item-t-term-thym">Thym</dt><dd>said THIGH-m: thigh with an m on the end, after Fukuyama's thymos — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-tree-digest">tree digest</dt><dd>MacroCOSM's, computed exactly as MacroCOSM OES, its section 18.4.1, gives it — <a class="ref-xref" href="#docs-sec-20-1">defined in §20.1 The folder type</a></dd></dl>
 </section>
 </div>
 </article>

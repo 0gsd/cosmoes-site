@@ -956,9 +956,9 @@ named only by an encyclopedia article or in the holder's own words, and no relat
 - **Canonical JSON**, as the isograph's; the release's `sha256` is over those bytes.
 
 **Made again, never edited.** An allograph names the run that made it, and the run names the holograph's state: the
-run's trace records the state of the holograph as the filter kept it, as a digest,
-and that digest is what names the state; the plan's digests of the run's inputs do not
-([Thym](https://thym.cosmoes.org/), its section 17.1). The release record carries the digest of the run's trace
+run records the state of the holograph as the filter kept it, as a digest, in the record of the engine call that
+made the allograph, whose answer names it as `holograph`, and that digest is what names the state; the plan's digests
+of the run's inputs do not ([Thym](https://thym.cosmoes.org/), its section 12.4). The release record carries the digest of the run's trace
 (section 13). When the holograph changes, the holder may run the program again; the new allograph is a new release,
 and it replaces the listed one when the holder lists it. An implementation should tell the holder when their
 holograph has changed since the run their listed allograph names; nothing makes or lists an allograph again by itself.
