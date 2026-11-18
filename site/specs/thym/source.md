@@ -592,8 +592,15 @@ and every other format keeps as an unknown field:
 
 ```yaml
 provenance: {mode: derived, sources: ["notes.md#sha256:54055e8…", "oes:thym/2026-11-01-1042-7f3a/R/record/3"], confidence: 0.9}
-made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: R:node/4, engine: "model:g40-04", route: local}
+made: {move: entail, run: 2026-11-01-1042-7f3a, step: 3, node: '4', engine: "model:g40-04", route: local}
 ```
+
+`made`'s keys come in this order: `move`, `run`, `step` (the step's number), `node` (the node's number, as text: `'4'`
+for `R:node/4`), `engine`, then `route` and `provider` when the value has them. A move writes `made` into what it
+makes: into an item, replacing the `made` it carried in the place that key held, or as its last key; into every item of
+a volume it makes that carries none, as that item's last key. A value read from disk byte for byte is not written
+into. The item's digest is over its canonical dump with `made` in it (section 12.6), so a second runtime that orders
+these keys otherwise gives other digests.
 
 `engine` is `model:<id>` for a model-backed value, where the id is the model's own: the name a local model is known by,
 or the provider's resolved id for a cloud model. A model-backed value also says its `route`, `local` or `cloud`, and a
@@ -649,7 +656,7 @@ additions of the second table.
 
 | move | signature | asks | contract |
 |---|---|---|---|
-| `derive` | text → fabula | yes | `span-resolves` `stance-closed` `terms-grounded` `coverage` `fabula-checks` `provenance` (in the `thym 0` view the fifth check keeps its old name, `emf-checks`; it is the same check) |
+| `derive` | text → fabula | yes | `span-resolves` `stance-closed` `terms-grounded` `coverage` `fabula-checks` `provenance` |
 | `entail` | fabula \| item \| volume → short; `as` order or `by` order; `with` morph | yes | `coverage` `no-invention` `stance-kept` `scales-met` (with a morph) `footer` `provenance` |
 | `atem` | text \| fabula \| short \| item → atem | yes | `atem-shape` `span-resolves` `provenance` |
 | `expand` | atem → short; `with` fabula; `to` N words | yes | `coverage` `no-invention` `stance-kept` `length` `span-inside` `provenance` |
@@ -676,6 +683,7 @@ additions of the second table.
 | `words` | text \| short \| atem → number | no | none |
 | `digest` | any meaning value → string | no | none |
 
+In the `thym 0` view, `derive`'s fifth check keeps its old name, `emf-checks`; it is the same check (section 7.3).
 The accessors are read-only and may give `nothing`. `context of` a text gives the surrounding volume's catalog around it
 (section 16.1), and of a package the context the package carries; `isomorph of` a package gives the author's shared
 morph. `measure` asks the model only for its three judgement scales; the other seven are statistics, computed in code
@@ -698,11 +706,11 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | move | signature | asks | contract | scaffold |
 |---|---|---|---|---|
 | `derive` | text \| folder → fabula; `as` prose \| verse \| code; `with` fabula | yes | a text as prose or verse: as above, with `fabula-checks` · a text as verse with a fabulap: the same, with `nothing-lost` · a text as code: `code-span` `outline-cited` `coverage` `terms-grounded` `stance-closed` `fabula-checks` `provenance` · a folder: `fold-grounded` `atem-shape` `licence-recorded` `fabula-checks` `provenance` | a text: the rules twin · as code: `file-outline` · a folder: none |
-| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview` or `manual`; `by` order; `with` morph; `as code` gives a folder | yes | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `provenance` · as line, overview or manual: `coverage` `no-invention` `uses-told` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` |
+| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview` or `manual`; `by` order; `with` morph; `as code` gives a folder | yes | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` |
 | `survey` | folder → fabula (a fabulac outline) | no | `files-found` `code-span` `licence-recorded` `fabula-checks` `provenance` | — |
 | `history` | folder → fabula; `with` fabula | no | `history-grounded` `fabula-checks` `provenance` | — |
 | `scan` | text → fabula (a fabulap); `as` rhyme \| sound \| recurrence \| form; `with` fabula | no | with no `as`: `lines-found` `scansion-grounded` `span-resolves` `fabula-checks` `provenance` · as rhyme, sound or recurrence: `sound-grounded` `nothing-lost` `fabula-checks` `provenance` · as form: `form-grounded` `nothing-lost` `fabula-checks` `provenance` | — |
-| `construe` | text → fabula (a fabulap); `as` figure \| image \| allusion \| voice \| turn \| meaning \| ambiguity; `with` fabula | yes | `span-resolves` `no-invention` `stance-kept` `coverage` `terms-grounded` `nothing-lost` `fabula-checks` `provenance`, with `coverage`, `no-invention` and `stance-kept` read for verse (section 20.9) | none |
+| `construe` | text → fabula (a fabulap); `as` figure \| image \| allusion \| voice \| turn \| meaning \| ambiguity; `with` fabula | yes | `span-resolves` `no-invention` `stance-kept` `coverage` `terms-grounded` `nothing-lost` `fabula-checks` `provenance` | none |
 | `gather` | list of fabula \| list of item → the type of `with`; `with` fabula \| volume | no | `nothing-lost` `ids-unique` `fabula-checks` `provenance` | — |
 | `question` | fabula \| volume → list of item (questions) | yes | `addressed` `no-duplicate` `provenance` | `bank` |
 | `record` | volume → the type of `in`; `in` fabula \| volume | no | `addressed` `only-the-asked` `provenance` | — |
@@ -721,7 +729,8 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | `words` | adds line \| string | no | none | — |
 
 `scan` and `construe` are the fabulap's helper moves, the first by rule and the second by a model, each `as` word one
-axis of a poem; section 20.9 says what each finds. `propose` is Ascribe's: it reads the holder's own text, decompiled to
+axis of a poem; section 20.9 says what each finds. `construe` keeps `coverage`, `no-invention` and `stance-kept` as
+they are read for verse (section 20.9). `propose` is Ascribe's: it reads the holder's own text, decompiled to
 a fabulan, and gives candidate nodes of the holograph, each with the question that asks the holder whether it is so; a
 program lands them with `gather`. `atem`, `expand`, `null`, `measure`, `morph`, `read`, `cut`, `package` and the rest
 are the same in both versions. `atem f` of a fabulac is the catem at depth `line`, under the same contract. The compiler
@@ -808,7 +817,7 @@ a program may also define a check of its own, as a contract block, and promise t
 | `null-pinned` | every scale of the null short is 1 (section 13.4 says why `analytical-depth` is) | Thym's own; the null morph's contract |
 | `scales-met` | each scale of the output, measured, is within one step of the morph asked for; `analytical-depth` excepted, since the fabula sets it (section 13.4) | Thym's own |
 | `labelled` | a reading carries `read_through: <morph name>` and the reading footer (section 14) | Thym's own |
-| `never-source` | a reading's output path is not the path of any input, and no input file changed | Thym's own |
+| `never-source` | a reading's output path is not the path of any input, and no input file changed: an input read from a file whose bytes on disk no longer have the digest they were read with fails it. The second half is the host's, read from its files; a runtime that reads no files holds the check by the paths alone | Thym's own |
 | `default-deny` | the projected volume holds only the fields its target schema names | Comprise (the isotype) |
 | `no-counts` | no number of anything internal reaches the projection; the only number allowed is one the schema names (a founded year) | Comprise |
 | `banded` | a number leaves only as a word from the declared list, and a band changes only after the value has stayed past the boundary for 90 days | Comprise (bands) |
@@ -837,6 +846,7 @@ The checks the moves of `thym 1` add:
 | `interfaces-present` | every interface of the fabulac is defined in the cshort's file it is `defined-in`, with the same name, kind and parameter names in the same order | Thym's own; the host's syntax engine |
 | `files-present` | the cshort holds every file it is required to rebuild, at its path (every `C:file` in a programming language that is not a test, a type stub or the repository's own tooling, and the README; MacroCOSM OES, its section 18.4.7), and the packaging file rules write whenever the fabulac records enough for one, exactly as they write it, with `CSHORT.md`, and the digests `CSHORT.md` lists are the files' | Thym's own |
 | `uses-told` | a catem says everything its depth asks for: at `overview` every use, at `manual` every use and every interface a person reaches | Thym's own |
+| `quotes-held` | every name a catem quotes inside a code span (a command, an option, a function, a setting, a path, a message's words) is in its fabulac, looked up as `no-invention` looks up names: in the fabula's name, its atem and every string its items hold (`provenance` and `made` aside), folded to lowercase, as a whole word. A name is a run of letters, digits and `_` `.` `/` `~` `-` that holds a letter, less a trailing `.`, `/` or `-`; the catem's footer line quotes nothing; a scaffold's catem, which quotes the fabulac's own words, holds it | Thym's own |
 | `nothing-lost` | every item of every part gathered, and of the `with` volume, is in the output with every field it carries, as it carries it (`made` aside); the output's item may say more | Thym's own |
 | `ids-unique` | no two different items of the output share an id (two byte-equal ones, `made` aside, are one; `gather` merges two that say the same item before they land, section 20.6) | Thym's own |
 | `addressed` | every question's `about` resolves (an item, an `<item>#<field>`, a span of the source, or a module or kind the format declares), and every answer names a question that is `open` and fits the question's `kind` | Thym's own; the dialectic is MacroCOSM OES's, its section 18.6 |
@@ -1103,7 +1113,11 @@ end
 |---|---|---|
 | **compile** | a parse error (`parse`); a version line that names a grammar the compiler does not know, `thym 1` syntax or a move only `thym 1` sees under a `thym 0` line ("this needs `thym 1`", section 4.9), or a `thym 0` program that uses a `thym 1` file (`version`); an unknown move (`unknown-move`); an unknown URI or `use`d file (`unknown-uri`); two `use`d names that clash (`use-clash`); an unbound name (`unbound`); a type error (`type`); an `insert` with neither `before` nor `after`, or with both (`type`); a name bound twice (`rebound`); recursion in `thym 0`, or in `thym 1` a move on a cycle without `depth:` (`recursion`); a `give` inside a loop (`type`); a `keep` outside a loop that collects, a loop that collects nothing or keeps two types, a contract that asks, a `depth:` out of range or on a move that never calls itself (`type`); a `keeps` naming no contract and no check (`unknown-check`); a block that `gives`, with a path that never reaches a `give` of each output, refused at the block's first line (`no-give`); emitted items with no `project` (`emit-without-project`); a static contract that cannot hold (the contract's check, such as `no-counts`), a fabula known to be of a flavour the move does not take among them (`flavour`) | the file and line, the check, and the fix where one is known |
 | **plan** | a model-backed node while agent-free (`agent-free`, section 19); a prompt the machine's model cannot hold (`preflight`, the 16 GB rule, section 12.5); a missing or changed input (`input`: its digest, or a folder's tree digest, differs from the plan's); a plan whose program cannot be read (`no-program`); a move with no implementation here (`move`), or none under `--rules` (`rules`); a cloud route whose gate is closed (`cloud`); a cloud plan whose count of model calls is open and that was given no ceiling (`calls`, section 23) | the node, the count or the size, and what would make it run |
-| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises; a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
+| **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises, or that needs one of the host's engines (FEED, Canon's derivation, a syntax engine, section 12.4) the host lacks ("the syntax engine is not here"); a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
+
+A move with no implementation is refused at plan time, since the plan names every move; an engine a move calls is
+looked for when the move runs, and the reference runtime refuses an absent one then, at run time, before the run
+writes anything. A host that knows at plan time which engines a node will call may refuse it then, with `move`.
 
 A refusal is a value, not an exception: the CLI prints it and exits non-zero, the server returns it as the response,
 and the viewer shows it in place of the plan or the outputs. It carries `stage` (`compile`, `plan` or `run`), `line`,
@@ -1273,7 +1287,19 @@ traces are read in the same viewer as everything else.
 `run` takes a plan and the program it was made from (the `.thym` file or its program volume; the plan's `program.sha256`
 must match), since a filter's condition, a local move's body and an `assert`'s message are read from the program, and
 checks the plan against the environment: the model present and large enough, agent-free or not, and
-every input present with the digest the plan recorded. It then walks the nodes in a topological order. Independent
+every input present with the digest the plan recorded.
+
+A runtime is given four things: the plan; the program; the declarations of the moves the program sees (section 17.6);
+and, for each format its inputs declare, the format's map of module letters to module names, from the format's
+manifest. The map is what `h where module is employees` reads: an item's module is the name the manifest gives its
+id's letter, trimmed and folded to lowercase, or the letter itself where the manifest names none or the format is not
+known. The plan is not executable alone. Each node's `name` is its statement as written, with each nested call outside
+a loop's body put as the temporary that holds its value (`band t3 as [none, some]`), and, inside a loop, with
+`, for each …` or `, for x = <member>` after it (section 11.1). A runtime reads that name by the grammar's `stmt`
+(section 4.8) with the names of the moves in scope, so that a name that is a move begins a call. From the program it
+reads what the plan does not hold: each statement as the person wrote it, by its line, for refusals (section 9); the
+`let` lines whose value is not a call, a filter among them; each user move's body and each contract block; the body of
+a loop run as one node; each `assert`'s message; and the program's `takes` and `gives`. It then walks the nodes in a topological order. Independent
 nodes may run in parallel or in sequence. A deterministic node calls its move's implementation. A model-backed node
 builds the coprocessor call from the move's contract and the node's inputs. A failing node refuses the run: outputs
 already made are discarded, nothing is written to the target paths, and the trace records how far the run got. Outputs
@@ -1281,7 +1307,8 @@ are written only when every node has succeeded, all at once, with the trace besi
 
 A list input (`takes xs: list of T`, in either version) is given member by member, in order; an empty list is not
 an input given. The plan records it as `{name, type, path, sha256, members: [{path, sha256}]}`: `path` is the first
-member's, `sha256` is over the members' digests in order, a folder member also has `files` and `bytes`, and the list's
+member's, `sha256` is over the members' digests in order, written one after another with nothing between them
+(section 12.6), a folder member also has `files` and `bytes`, and the list's
 size is the sum of its members'. The run reads each member as it reads a single input of type T, held to its own
 digest, names it `xs[2]` in a refusal (counted from 1), and gives the program the list in the order given. The record
 of a node that takes the list names each member beside it, as `xs[n]`, with its digest and path.
@@ -1382,14 +1409,73 @@ ceiling on its model requests, `--calls N`, which a cloud plan with an open coun
 
 ### 12.6 Portability
 
-No Python-only semantics. No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts:
-bands and scales are integers, and the ratios of section 13.3 are integers per hundred or per thousand. Digests are
-sha256: a text's over its bytes, a volume's over its catalog file, a file's always over its bytes, a folder's over its
-files as the tree digest (section 20.1), and a mapping's over the reader's canonical dump (keys in file order, LF
-newlines, UTF-8). The folder rule is the same in every language and uses no ignore-file semantics; the compiler's own
-`dump` writes program volumes for people, with block scalars, and is never a digest's form. File paths are URIs. Time is UTC in traces and local only in file names. A JavaScript
-runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make readings in the
-page.
+No reliance on mapping order beyond what the COSM YAML subset fixes. No floats in contracts: bands and scales are
+integers, and the ratios of section 13.3 are integers per hundred or per thousand. The folder rule is the same in every
+language and uses no ignore-file semantics. File paths are URIs. Time is UTC in traces and local only in file names. A
+JavaScript runtime that passes the conformance suite is a conforming runtime, and the docs viewer could then make
+readings in the page. Where the reference runtime's results depend on how its language treats text, this section says
+how, so that a runtime in another language gives the same bytes by following the text, not by reading Python.
+
+Digests are sha256, written as 64 lowercase hexadecimal digits:
+
+- a text's, a short's and a file's over its bytes;
+- a volume's over its catalog file, so that a change to one of its module files alone does not change it;
+- a folder's over its files, as the tree digest (section 20.1);
+- a mapping's (an item, or a volume a move made) over its canonical dump, below;
+- a list value's over its members' digests joined by line feeds, with none after the last;
+- a plain value's over its text: a number's decimal digits, `true` or `false`, a date's ISO 8601 form, a word's or a
+  string's UTF-8 bytes, and `nothing`'s over no bytes.
+
+A plan's list input has a digest of its own, over its members' digests with nothing between them (section 12.1). The
+two list rules differ, and both stand as written; one rule for both waits for a later grammar, since it would change
+recorded plans.
+
+**The canonical dump** is the text that PyYAML 6's `safe_dump` writes for the mapping, with the options
+`sort_keys=False, allow_unicode=True, width=110, default_flow_style=False` (keys not sorted, Unicode written as itself,
+a width of 110, block style throughout), and never an anchor or an alias (a mapping or a list held twice is refused
+before it is dumped; an equal scalar is written twice). Keys come in the order they were
+written, except that the declaration key (`oes`, `manifest`, `cosm`, `opi` or `comprise`) is moved first. Lines end
+with LF, and the text is encoded as UTF-8. So YAML 1.1's rules, as PyYAML 6 reads them, decide every byte:
+
+- a string that would read back as something else is single-quoted: `yes`, `no`, `on`, `off`, `null`, `true`, a
+  number such as `123` or `1.5`, a date such as `2026-11-01`, and the empty string; so is a string with a space at
+  either end, with `: ` or ` #` inside, or that ends with a line break;
+- a string that holds a character YAML must escape (a tab, a control character, U+2028 or U+2029) is double-quoted,
+  with PyYAML's escapes (`\t`, `\L` and `\P` among them);
+- a long scalar is folded at the first space past column 110, plain, single- and double-quoted scalars each in their
+  own way;
+- a key is quoted by the same rules as a string;
+- indentation is two spaces, a list under a key starts at the key's own indentation, an empty list is `[]` and an
+  empty mapping `{}`; `nothing` is `null`, and a date is written in its ISO 8601 form, unquoted.
+
+The suite carries the dump's vectors as data, each a mapping and the bytes it dumps to (section 24.3). A runtime in
+another language conforms when it writes those bytes; it need not use PyYAML, and the reference's JavaScript runtime
+does not. A smaller canonical form waits for a later grammar, since it would change every recorded digest. The
+compiler's own `dump` writes program volumes for people, with block scalars, and is never a digest's form.
+
+Text is read as a sequence of Unicode code points, and the reference runtime treats it so:
+
+- a length is counted in code points, never in bytes or UTF-16 units: a statement a refusal quotes is cut at 60, a
+  check's reason in a record at 400;
+- whitespace, where a rule folds, trims or splits on it, is the characters Unicode's `White_Space` property names
+  (the Unicode Character Database, `PropList.txt`) and also U+001C to U+001F: tab, line feed, U+000B, U+000C, carriage
+  return, U+001C to U+001F, space, U+0085, U+00A0, U+1680, U+2000 to U+200A, U+2028, U+2029, U+202F, U+205F and
+  U+3000;
+- the lines of a text or a short, as `lines` gives them and a change names them (section 21), and a poem's lines
+  (section 20.9), end at a line feed, with a carriage return just before it part of the break; no other character
+  ends one;
+- the sentences of a text (section 7.3, `coverage`) are read over lines that end at a line feed, a carriage return and
+  line feed, or a carriage return alone;
+- a short or a text walked by `for each`, line by line, gives one member per line that is not blank, and its lines end
+  at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
+  U+2029;
+- a word, as `words` and `length` count it, is a run of the ASCII letters and digits and the code points U+00C0 to
+  U+024F, which may go on with one apostrophe (`'` or `’`) and ASCII letters; a poem's word (section 20.9) is a run of
+  those letters with no digits, with an apostrophe between any two runs, read after a hyphen and an em dash are made
+  spaces, and folded to lowercase;
+- where a rule of a move reads a digit, a word character or a word boundary, they are Unicode's: a digit is a code
+  point of general category `Nd`; a word character is a letter or number (general categories `L` and `N`) or the
+  underscore; a boundary lies between a word character and anything else.
 
 ---
 
@@ -1840,7 +1926,9 @@ the holotype holds people or says it has none, and always fills `shape.markets`;
 
 In agent-free mode the coprocessor is the refusing one: a plan with model-backed nodes is refused at plan time with
 their count, the route and the first one's statement and line ("3 steps ask a model on the local route, the first `let f
-= derive story` (line 11); agent-free is on"). A cloud model is a model too: agent-free refuses a plan on the cloud
+= derive story` (line 11); agent-free is on"). The route the refusal names is the one the run's environment gives
+(section 12.3), as the host's settings would choose it, and `local` when the environment names none; it is named even
+though no model runs, so a runtime is given the route to word the refusal the same way. A cloud model is a model too: agent-free refuses a plan on the cloud
 route exactly as it refuses one on the local route, at plan time, before any broker is asked. A plan with no
 model-backed node runs. With `--rules`, each model-backed move that declares a `scaffold` runs it instead: `derive`
 gives the rules twin, `atem` the labelled scaffold, `entail` and `null` the ordered outline, and `measure` the seven
@@ -2150,8 +2238,8 @@ within the node's attempts. `entail … as code` has no scaffold, so `--rules` r
 **`entail f as line`, `as overview` and `as manual`** give a short, the **catem** at that depth. `line` is the atem's
 line, the same as `atem f`'s; `overview` names every use; `manual` names every use and every interface a person
 reaches (the command-line entry points and the public interface), with what they do. The contract is `coverage`
-(every sentence traces to behaviours, uses or events), `no-invention`, `uses-told`, `footer` (the catem's footer names
-its depth) and `provenance`, and the scaffold `uses-outline` lists the uses and interfaces in told order, in their own
+(every sentence traces to behaviours, uses or events), `no-invention`, `quotes-held` (every name it quotes in code is
+the fabulac's), `uses-told`, `footer` (the catem's footer names its depth) and `provenance`, and the scaffold `uses-outline` lists the uses and interfaces in told order, in their own
 words. The host saves a catem as `<name>.catem-<YYYY-MM-DD-HHMM>.md` beside the fabulac.
 
 ```thym
@@ -2506,7 +2594,11 @@ always have, and a replay of either run needs neither the person nor the model.
 `question v` takes a fabula or a volume and gives a list of question items. It asks the model, with the scaffold
 `bank`. Its rules part always runs first: it gives the opening questions of the manifest's bank for the volume's
 flavour or format, a question for every `{pending: …}` field, and one for every item marked unsure (a confidence below
-0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5).
+0.5, or pending) that holds no pending of its own (MacroCOSM OES, its section 18.6.5). One kind of bank entry waits
+for the model: an entry that says `model-stands-in: true` (MacroCOSM OES, its section 18.6.6) is a generic question
+whose place the model's own questions take, so a run that asks the model does not raise it. A fabulac's bank has two,
+`fabulac/intended` and `fabulac/settings`. Under `--rules`, and in a run where the model is given nothing to read, the
+rules part raises them as it raises every other entry.
 When the run asks the model, the model adds questions where the volume is unsure, ambiguous, in conflict or silent on
 intent, and only there. It reads only the items a person can say something about: of a fabulac its aims, uses,
 requirements, decisions, exclusions, behaviours, interfaces, structures and claims; of any other volume every item but
@@ -2705,6 +2797,7 @@ expected/<name>/plan.cosm       the plan, compared without run ids, timestamps a
 expected/<name>/outputs/        the outputs of deterministic runs, byte for byte
 replay/<name>/<run-id>/         a recorded run: plan, trace, candidates; re-runs to the recorded outputs
 bad/<slug>.thym                 programs that must be refused; the first line reads -- refused: <stage> <check> line <n>
+canonical/<name>.json           a mapping, and canonical/<name>.cosm the bytes its canonical dump is (section 12.6)
 ```
 
 A compiler conforms when every program in `programs/` compiles, enumerates to its `expected/<name>/items.cosm`, compiles
@@ -2719,12 +2812,17 @@ for byte. The three programs of this document
 `thym` here.
 
 The suite reads each file by its own version line. Its `thym 0` files are those of edition 0.5.4, unchanged, but for
-one: `bad/version.thym` names `thym 2`, since `thym 1` is a grammar. Beside them it holds `thym 1` programs with their
-expected items, plans and outputs (among them `python-files` and `folder-outline` over a small folder of code with a
-binary file, `aims-in-brief`, `drop-the-todos` and a deterministic contract block); a `thym 0` program whose loop
-folds a nested call into one node; `bad/` files for every refusal sections 4.9, 7.5, 8 and 21 add, each read by the
-version its own line names; and recorded runs of `tighten`, with one re-ask a kept contract forced, and of
-`decompile-prose`.
+one: `bad/version.thym` names `thym 2`, since `thym 1` is a grammar. Beside them it holds `nested-in-loop`, a `thym 0`
+program whose loop folds a nested call into one node, and eleven `thym 1` programs with their expected items and
+plans: `bounded-recursion`, `collect-the-offers`, `contract-holds` (a deterministic contract block), `drop-the-todos`,
+`join-the-notes` (a list input), `keep-the-python` and `split-a-folder` (over a small folder of code with a binary
+file), `loop-as-a-unit`, `settle-the-answers`, `survey-a-repo` and `tighten`. The deterministic ones among them have
+their outputs; `bad/` holds files for every refusal sections 4.9, 7.5, 8 and 21 add, each read by the version
+its own line names. `replay/` holds recorded runs: two of `publish-story` with their engine calls, one of `tighten`
+with one re-ask a kept contract forced, and one each of `settle-the-answers` and `survey-a-repo`, deterministic
+programs whose outputs carry their run's id. The other blocks of this text marked `thym` (among them `python-files`,
+`folder-outline`, `aims-in-brief`, `decompile-prose` and the fabulap's programs) are not suite files: the suite's test
+compiles them, and runs none.
 
 ### 24.4 Where an implementation and this text disagree
 
@@ -2737,6 +2835,28 @@ section it touched.
 ## 25. Changes
 
 <!-- atem: what each edition changed, newest first -->
+
+**Edition 0.8.0.** The text says what a second runtime needs, as the reference runtime does it; no behaviour changed.
+
+1. **`quotes-held` is a check of section 7.3**, the owner's ruling of 0.7: every name a catem quotes in a code span is
+   in its fabulac. `entail` at a catem's depth keeps it (sections 6.3 and 20.7).
+2. **The canonical dump is named** (section 12.6): PyYAML 6's `safe_dump` with its options, the declaration key
+   first; YAML 1.1's rules decide its quoting, folding and escaping. Its vectors are suite data (section 24.3). A smaller
+   canonical form waits for a later grammar.
+3. **Every digest is listed** (section 12.6), and both list rules stand as they are: a list value's members' digests
+   joined by line feeds, a plan's list input's with nothing between them (section 12.1).
+4. **`made` has a key order** (section 5.3): `move`, `run`, `step`, `node`, `engine`, then `route` and `provider`; an
+   item's digest is over it. `node` is the node's number as text, as the reference runtime has always written it.
+5. **What a runtime is given** (section 12.1): the plan, the program, the moves' declarations, and each format's map of
+   module letters to names. A node's name is read by the grammar, and the program holds what the plan does not.
+6. **How text is read** (section 12.6): lengths in code points, the whitespace set, where a line ends for lines, for
+   sentences and for a walk, the word, and Unicode's digit, word and boundary classes, in place of "no Python-only
+   semantics".
+7. **When a host refuses** (sections 9, 7.3 and 19): an absent engine at run time, or at plan time where the host
+   knows; `never-source`'s second half is the host's; the agent-free refusal names the route the environment gives.
+8. **`question` leaves the model's place to the model** (section 22.1): a bank entry that says `model-stands-in: true`
+   is not raised in a run that asks the model; a fabulac's two generic questions are such entries.
+9. **Section 24.3 lists the suite as it is**, and section 6.3's contract cells hold check names only.
 
 **Edition 0.7.0 · 2026-11-13.** `tell` is `entail`, and a poem is decompiled in steps.
 
