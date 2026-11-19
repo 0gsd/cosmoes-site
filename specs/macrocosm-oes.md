@@ -3137,7 +3137,12 @@ reads those and never runs them.
 a head fabulac names them. The head's catalog lists them in `parts`, each `{uri, path, sha256}`: the part's URI
 (`oes:fabula/tally-core`, section 11.3), its file's path relative to the head, and the sha256 of that file when the head
 last checked it. The head holds one `C:component` per part, whose `told-in` is the part's URI, and states once, as its
-own `C:interface` items, every interface between two parts: its signature, what it takes, gives and raises. Each part
+own `C:interface` items, every interface between two parts: its signature, what it takes, gives and raises. A class
+that passes between parts, or that such an interface takes or gives, has its members stated in the head too. Each
+method a part may call is a `C:interface` of surface `method`, whose id is the class's id, a full stop and the method's
+name. The class's fields are one `C:structure` of the class's name, each field with its type, its plain kind and, for a
+map or a list, what it holds. The head reads them all from the source by rule, and `interfaces-agree` holds a part's
+own statement of them to the head's. Each part
 names its head in its catalog's `head`, and each `C:interface` of a part that keeps or calls an interface between parts
 says `stated-in`, the URI of the head's item (`oes:fabula/tally/C/interface/count-lines`). What the whole program is
 for, its aims, its audience and its uses, belongs to the head; what one part does belongs to the part. A part's release
@@ -3570,7 +3575,8 @@ them passing with no error; its old name, `emf-checks`, is read wherever a manif
 | `interface-signature` | warning | a `function`, `method`, `class`, `command` or `format` interface carries its `signature` |
 | `case-outcome` | error | a case says what is given and what is expected |
 | `parts-resolve` | error | in a head, every part in `parts` is a fabulac the reader knows, at its `path`, whose catalog names this head in `head`, and every `told-in` names one of them; in a part, every `stated-in` names an interface of its head that exists |
-| `interfaces-agree` | error | in a part, every `C:interface` that says `stated-in` has the same name, surface, signature and parameters as the head's item; a part whose file's sha256 differs from the head's `parts` entry is reported as moved, with a note |
+| `interfaces-agree` | error | in a part, every `C:interface` that says `stated-in` has the same name, surface, signature and parameters as the head's item, and so does each method the head states of a
+class, while each field of a class the head states has the head's type and plain kind; a part whose file's sha256 differs from the head's `parts` entry is reported as moved, with a note |
 | `cases-entailed` | error | after an authored fabulac is entailed, every runnable case is a test in `tests/test_cases.py`, and every other case is either a test marked as written by a model or named in `ENTAILED.md` with the reason it was not entailed |
 | `requirement-cased` | warning | in an authored fabulac, every `N:requirement` of `force: must` names at least one `P:case` in `checked-by` |
 
@@ -4110,7 +4116,7 @@ provenance.
 | `asks` | the question, in plain words and in no one's voice, `{name}` already filled |
 | `why` | why it is asked, from a closed list: `missing` (nobody has said) · `unsure` (an item below confidence 0.5, or pending) · `ambiguous` (two readings stand) · `intent` (was it meant) · `conflict` (two answers or two items disagree) · `counter` (a check refused an answer; asked again differently) |
 | `kind` | the answer's shape, from a closed list: `text` · `choice` · `yes-no` · `number` · `date` · `ref` · `span` |
-| `options` | for `choice`, the choices (required); for `ref`, the id prefixes the answer may name (optional) |
+| `options` | for `choice`, the choices (required; a question a model raises lists two to eight); for `ref`, the id prefixes the answer may name (optional) |
 | `options-open` | `true` when a `choice` also takes a word outside `options` |
 | `many` | `true` when the answer is a list |
 | `range` | `[low, high]`, for `number` |
@@ -4812,7 +4818,7 @@ language through its fabulac.
    person did not author, is still read and never run, as ruled on 2026-11-05.
 3. **Cases as the judge** (sections 18.4.2, 18.4.7 and 18.4.8). A `P:case` written as data for a command or a function
    can be run; tests are entailed from such cases by rules, never by the model that writes the code. New checks
-   `cases-entailed` and `requirement-cased`. A command case may name `cwd`, and `<CASE>` stands for its own folder; a
+   `cases-entailed` and `requirement-cased`. A command case may name the folder its steps run in, and `<CASE>` stands for its own folder; a
    function case calls by keyword, and its error matches by class or a class that comes from it, its message exactly.
    The entailment's folder holds `tests/__init__.py`, and `tests/test_prose_cases.py` when a case is prose;
    `ENTAILED.md`'s footer is `*an entailment of <file>, in Python, entailed on <day> by <who>*`; a program with no
@@ -4826,7 +4832,9 @@ language through its fabulac.
    told as parts under a head that names them, `parts` and `head` in the catalogs, and states once the interfaces
    between them; two programs are held to one interface by the same rule across two heads. New checks `parts-resolve`
    and `interfaces-agree`, over the fabulacs a reader knows: those in the head's folder and the three above it, and the
-   files `parts` names. A fabula kept as a volume of several files stays reserved.
+   files `parts` names. A fabula kept as a volume of several files stays reserved. A class that passes between parts
+   has its methods and fields stated in the head, read from the source by rule, and `interfaces-agree` holds the parts
+   to them.
 6. **Transconception** (section 18.4.9, new, and the new terms transconception and transconceiver). A program carried
    into another language through its fabulac: the transconceiver rules what is kept, the original judges, and the
    fabulac says what it leaned on. The ground and its citations to the language library, the licence's lane, cases
@@ -4836,7 +4844,7 @@ language through its fabulac.
    cited at its address, https://cosmoes.org/library/. A weighing again is `N:target/<language>-2`; the latest stands,
    and rulings name the first; point 4 and the verdict follow by rule; `target-confirmed` reads the standing weighing,
    its gate points and the reliances kept, and the spike's level on its own cases. A layout's tables and footer, and a
-   cshort's `CSHORT.md`, `NOTES.md`, `NOTICE` and `requests.jsonl`, are given; a cshort not yet judged says `evidence:
+   cshort's `CSHORT.md`, `NOTES.md`, `NOTICE` and the file of the requests it sent, are given; a cshort not yet judged says `evidence:
    []`, and evidence holds only against the source it names. A ruling may rule a part of its thing (`about`) or, on a
    case, some of its `steps`; one not yet made is pending.
 7. **The fabula's kinds** (section 18.4.2). New kinds `N:target`, `C:reliance` and `P:assumption`; the field `ruling`,
@@ -4852,7 +4860,8 @@ language through its fabulac.
    an authored fabulac has a bank of its own, `for: {flavour: fabulac, source: authored}`, and the decompile bank says
    `source: [folder, none]`; an entry may name its `stage`, and a bank so marked is asked a stage at a time, and its
    `brief`, the headings of a brief that answer it by rule; the entry fields `sets` and `only-where` are written down.
-   "I don't know" to a ruling leaves it pending (section 18.6.4).
+   "I don't know" to a ruling leaves it pending (section 18.6.4). A `choice` that a model raises lists two to eight
+   options (section 18.6.2).
 9. **The fabulap** (sections 18.4.2 and 18.4.6). A form's rule that rules cannot read is `held: {pending}` and asked.
    A form's `scheme` is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the
    bank's `breaks` or `stanza` writes the answerer's `P:reading` of those lines or stanzas.

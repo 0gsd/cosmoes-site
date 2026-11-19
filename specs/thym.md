@@ -739,7 +739,7 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 | `edit` | text \| short → the same; `with` list of change | no | `only-the-changed` `never-source` `provenance` | — |
 | `reword` | line \| string \| short → the same; `to` N words; `with` morph | yes | `length` `one-line` `nothing-added` `provenance` | — |
 | `join` | list of string \| list of line \| list of short → short; `with` string | no | `provenance` | — |
-| `say` | number \| date \| word \| bool \| string → string | no | none | — |
+| `say` | number \| date \| word \| bool \| string → string; a date in its ISO 8601 form, with its time when it carries one | no | none | — |
 | `propose` | fabula → list of item (candidate nodes and their questions); `with` volume (the holograph) | yes | `no-invention` `provenance`; the move itself holds every candidate to Ascribe's own checks (Ascribe, its section 10) | — |
 | `folders` | → list of folder; `of` folder | no | none | — |
 | `count` | adds folder (its text files) | no | none | — |
@@ -827,9 +827,9 @@ a program may also define a check of its own, as a contract block, and promise t
 | check | holds when | where it comes from |
 |---|---|---|
 | `span-resolves` | every `span` names lines or quotes that exist in the source text | enough (Canon's derivation) |
-| `stance-closed` | every claim's stance is in the fabula's closed list | MacroCOSM's generic `closed-list` check |
+| `stance-closed` | every stance in the fabula is in its closed list: a claim's, and that of any other item that has one | MacroCOSM's generic `closed-list` check |
 | `terms-grounded` | every `L:term` is in FEED, or carries `{pending: "not in FEED"}`, or is a named entity | enough (the lexicon floor) |
-| `coverage` | every sentence of an entailment traces to one or more items of its fabula. As a condition it is written `f covers t`, for a fabula `f` and a text or short `t`: the fabula's items cover every claim-bearing sentence of `t` (prose or a list item of three or more words that does not end in a question mark; headings never count); the map `[{sentence, lines, items}]` lives in a derived fabula's `derived.covers` and in the check's verdict | Thym's own; the trace records the sentence → item map |
+| `coverage` | every sentence of an entailment traces to one or more items of its fabula. As a condition it is written `f covers t`, for a fabula `f` and a text or short `t`: the fabula's items cover every claim-bearing sentence of `t` (prose or a list item of three or more words that does not end in a question mark; headings never count); the map `[{sentence, lines, items}]` lives in a derived fabula's `derived.covers` and in the check's verdict. A sentence's `lines` count the lines of the file as written, front matter included, however the map was made. Sentences are read by the one rule of section 12.6 | Thym's own; the trace records the sentence → item map |
 | `no-invention` | the entailment names no entity, claim or event the fabula lacks; for `propose`, no candidate or question says what its fabula lacks | Thym's own |
 | `stance-kept` | each claim's stance in the entailment is at or below its fabula stance on the ladder; a sentence counts at the weakest stance its wording marks (a hedge reads as `hearsay`, a plain sentence as `observed`), and a claim said over several sentences is said at the weakest any of them marks | Thym's own |
 | `footer` | a short ends with the footer line of MacroCOSM OES, its section 18.4.4 | enough (the short footer) |
@@ -997,7 +997,7 @@ Bindings are section 5.4.
 ### 8.1 Choice and loop
 
 `if … then … else … end` chooses. `for each … in … where … end` goes through the items of a volume or a fabula (in
-`told` order: by span, then by id), the lines of a short, or the members of a list. `where` filters before the body
+`told` order: by span, then by id), the lines of a short, each a `string`, or the members of a list. `where` filters before the body
 runs. The loop variable is bound for the body. The body may `emit`, `assert`, `let` new names and run moves for their
 effect. It may not `give`: a program gives once, after its loops (refused as `type`, section 9). In `thym 1` a loop
 also goes through the text files of a folder, in path order (section 20.2), and `lines of s` gives the lines of a text
@@ -1152,7 +1152,7 @@ end
 
 | time | what is refused | with |
 |---|---|---|
-| **compile** | a parse error (`parse`); a version line that names a grammar the compiler does not know, `thym 1` syntax or a move only `thym 1` sees under a `thym 0` line ("this needs `thym 1`", section 4.9), or a `thym 0` program that uses a `thym 1` file (`version`); an unknown move (`unknown-move`); an unknown URI or `use`d file (`unknown-uri`); two `use`d names that clash (`use-clash`); an unbound name (`unbound`); a type error (`type`); an `insert` with neither `before` nor `after`, or with both (`type`); a name bound twice (`rebound`); recursion in `thym 0`, or in `thym 1` a move on a cycle without `depth:` (`recursion`); a `give` inside a loop (`type`); a `keep` outside a loop that collects, a loop that collects nothing or keeps two types, a contract that asks, a `depth:` out of range or on a move that never calls itself (`type`); a `keeps` naming no contract and no check (`unknown-check`); a block that `gives`, with a path that never reaches a `give` of each output, refused at the block's first line (`no-give`); emitted items with no `project` (`emit-without-project`); a static contract that cannot hold (the contract's check, such as `no-counts`), a fabula known to be of a flavour the move does not take among them (`flavour`) | the file and line, the check, and the fix where one is known |
+| **compile** | a parse error, or a program file that is not UTF-8 (`parse`); a version line that names a grammar the compiler does not know, `thym 1` syntax or a move only `thym 1` sees under a `thym 0` line ("this needs `thym 1`", section 4.9), or a `thym 0` program that uses a `thym 1` file (`version`); an unknown move (`unknown-move`); an unknown URI or `use`d file, or a program file that cannot be read (`unknown-uri`); two `use`d names that clash (`use-clash`); an unbound name (`unbound`); a type error (`type`); an `insert` with neither `before` nor `after`, or with both (`type`); a name bound twice (`rebound`); recursion in `thym 0`, or in `thym 1` a move on a cycle without `depth:` (`recursion`); a `give` inside a loop (`type`); a `keep` outside a loop that collects, a loop that collects nothing or keeps two types, a contract that asks, a `depth:` out of range or on a move that never calls itself (`type`); a `keeps` naming no contract and no check (`unknown-check`); a block that `gives`, with a path that never reaches a `give` of each output, refused at the block's first line (`no-give`); emitted items with no `project` (`emit-without-project`); a static contract that cannot hold (the contract's check, such as `no-counts`), a fabula known to be of a flavour the move does not take among them (`flavour`) | the file and line, the check, and the fix where one is known |
 | **plan** | a model-backed node while agent-free (`agent-free`, section 19); a prompt the machine's model cannot hold (`preflight`, the 16 GB rule, section 12.5); a missing or changed input (`input`: its digest, or a folder's tree digest, differs from the plan's); a plan whose program cannot be read (`no-program`); a move with no implementation here (`move`), or none under `--rules` (`rules`); a cloud route whose gate is closed (`cloud`); a cloud plan whose count of model calls is open and that was given no ceiling (`calls`, section 23) | the node, the count or the size, and what would make it run |
 | **run** | a model-backed output that still fails its contract after narrow repair and its budget of attempts (the check's name, a kept contract's included), or that never fits the contract's schema (`schema`); a check the runtime lacks (the check's name, "not implemented"); a failed `assert`; a deterministic move that raises, or that needs one of the host's engines (FEED, Canon's derivation, a syntax engine, section 12.4) the host lacks ("the syntax engine is not here"); a move that went deeper than its depth (`recursion`); a `thym 0` loop that section 8.1 refuses at run (`loop`); a fabula of a flavour the move does not take (`flavour`); a run that reached its ceiling of model calls (`calls`) | the trace, which says the node, the check and the attempts; nothing is written |
 
@@ -1507,7 +1507,12 @@ Text is read as a sequence of Unicode code points, and the reference runtime tre
   ends one;
 - the sentences of a text (section 7.3, `coverage`) are read over lines that end at a line feed, a carriage return and
   line feed, or a carriage return alone;
-- a short or a text walked by `for each`, line by line, gives one member per line that is not blank, and its lines end
+- inside a paragraph a sentence ends at `.`, `!` or `?`, followed by white space and then a capital A to Z or a digit,
+  with an opening quotation mark or bracket (`"` `'` `“` `‘` `(` `[`) allowed before it. A closing quotation mark or
+  bracket after the stop (`"` `'` `”` `’` `)` `]`) stays with its sentence, so `He said "Go." Then he left.` is two
+  sentences, the first `He said "Go."`. A stop after a short form that the reference runtime lists (`Dr.` and `Mr.`
+  among them) ends no sentence. Every check and every move reads sentences by this one rule;
+- a short or a text walked by `for each`, line by line, gives one member per line that is not blank, each a `string`, and its lines end
   at a line feed, a carriage return, the two together, U+000B, U+000C, U+001C, U+001D, U+001E, U+0085, U+2028 or
   U+2029;
 - a word, as `words` and `length` count it, is a run of the letters `A` to `Z` and `a` to `z`, the digits `0` to `9`
@@ -1574,7 +1579,7 @@ suite pins them, and a later edition may move them only with an entry in the Cha
 | `person-voice` | first and second person pronouns and address (`I`, `me`, `my`, `we`, `us`, `our`, `you`, `your`) per thousand words | < 5 | < 15 | < 30 | < 60 | ≥ 60 |
 | `formality` | toward casual: contractions and casual markers (`gonna`, `kinda`, `yeah`, `ok`, `stuff`, interjections) per thousand words; toward formal: Latinate markers (`utilise`, `commence`, `prior to`, `in accordance with`, the passive in more than half of sentences, honorifics) per thousand words; the larger decides `toward` | < 5 | < 15 | < 30 | < 60 | ≥ 60 |
 | `humour` | sentences the model judges to be making a joke or an ironic turn, per hundred sentences | 0 | < 3 | < 10 | < 20 | ≥ 20 |
-| `allusion` | references to works, sayings and figures outside the text's subject, judged by the model with the fabula's `E:work`, `E:person` and quotations as candidates, per thousand words | 0 | < 1 | < 3 | < 6 | ≥ 6 |
+| `allusion` | references to works, sayings and figures outside the text's subject, judged by the model with the fabula's `E:work`, `E:person` and quotations as candidates, per thousand words; each reference counts, so two in one sentence count twice | 0 | < 1 | < 3 | < 6 | ≥ 6 |
 
 For every scale, `measure` gives a `value`; a `basis` (`statistics` or `judgement`); `evidence`, one to three sentences
 of the text that moved it; and a `confidence` as an integer per hundred (no floats reach a `.cosm`). Below 300 words
@@ -2577,7 +2582,7 @@ it never reaches the second.
 given the fabulac and the layout, never a span, a source path or the source's text (`apart`). A host entails beside the
 source only where MacroCOSM OES permits it, a person's own code or a source in the open lane, and only when the person
 asks; it records which in the cshort's entry (`entailed: apart` or `beside`), and a program cannot ask for it. A
-cshort entailed apart keeps every request sent to a model, one line each, in its `requests.jsonl`, and `apart` reads
+cshort entailed apart keeps every request sent to a model, one line each, in its requests file (MacroCOSM OES, its section 18.4.9), and `apart` reads
 that file; of a cshort entailed beside, `apart` holds with nothing to check.
 `entail f as layout in language` gives a short of order `layout`, saved beside the fabulac as
 `<name>.layout-<language>-<YYYY-MM-DD-HHMM>.md`: the files of the program to be, what each holds, and the name each
@@ -3197,8 +3202,14 @@ programs whose outputs carry their run's id. The other blocks of this text marke
 `folder-outline`, `aims-in-brief`, `decompile-prose` and the fabulap's programs) are not suite files: the suite's test
 compiles them, and runs none.
 
-<!-- FOR THE CONDUCTOR (lane W3-TX5, 2026-11-19): the suite's 0.8 files (tally's transconception as the conformance
-fixture, lane W4-X9) go here once W4-X9's landed note says what they are; it was not written when this lane ran. -->
+Beside it, a second folder of the same shape holds one transconception whole (section 20.10): tally's, the reference
+implementation's `tests/fixtures/fabula/transconception/tally/`. Its six `thym 1` programs are this text's own:
+`ground-the-fabulac`, `hand-out-the-cases`, `weigh-a-target` and `entail-in-a-language` of section 20.10,
+`raise-the-questions` of section 20.6 and `settle-the-answers` of section 22.4. Its `inputs/` hold the source, its
+cases file and the fabulac at each stage. Its `replay/` holds the ten runs from `ground` to a layout and a cshort in Go
+and in Rust, each with its engine calls, so the whole path replays with no model and no engine. Its two sittings and
+its two spikes' verdicts are simulated and say so, and its model is a recorded fake. No evidence is claimed: nothing
+was built or judged, so neither gate holds, as the folder records.
 
 ### 24.4 Where an implementation and this text disagree
 
@@ -3212,7 +3223,8 @@ section it touched.
 
 <!-- atem: what each edition changed, newest first -->
 
-**Edition 0.8.0.** The text says what a second runtime needs, as the reference runtime does it; no behaviour changed.
+**Edition 0.8.0.** The text says what a second runtime needs, as the reference runtime does it; no behaviour changed
+but by the three rulings of item 15.
 
 1. **`quotes-held` is a check of section 7.3**, the owner's ruling of 0.7: every name a catem quotes in a code span is
    in its fabulac. `entail` at a catem's depth keeps it (sections 6.3 and 20.7).
@@ -3232,7 +3244,9 @@ section it touched.
    knows; `never-source`'s second half is the host's; the agent-free refusal names the route the environment gives.
 8. **`question` leaves the model's place to the model** (section 22.1): a bank entry that says `model-stands-in: true`
    is not raised in a run that asks the model; a fabulac's two generic questions are such entries.
-9. **Section 24.3 lists the suite as it is**, and section 6.3's contract cells hold check names only.
+9. **Section 24.3 lists the suite as it is**, and section 6.3's contract cells hold check names only. Beside the suite,
+   a second folder of its shape holds tally's transconception whole, ten recorded runs that replay with no model and no
+   engine; its sittings and spikes are simulated, and neither gate holds.
 10. **Transconception** (section 20.10, new; How to read this). A transconception is a transconceptualization of a
     program carried through its fabulac, and to transcode keeps its mechanical sense. New moves `ground` and `weigh`
     (`in` a language), and `entail` `as cases`, `as layout in` and `as code in` a language `with` its layout; `gather`
@@ -3244,7 +3258,7 @@ section it touched.
     for, and `settle` keeps `ruled`, so that a ruling short of what its word needs is never written; a transconception's
     other checks are reported and refuse only at a gate. A weighing again is `N:target/<language>-2`, and the latest
     stands; point 4 and the verdict follow by rule; a layout ends with its footer, and a cshort entailed apart keeps
-    `requests.jsonl`.
+    every request it sent to a model, in its requests file.
 11. **Authoring a fabulac** (section 20.11, new). `author` begins an authored fabulac from a brief or by an interview,
     `as` `tool`, `library` or `service`; the interview is the dialectic's, stage by stage; `add`, `compare` and
     `uncovered` are its helpers, by rules; a hand edit is named and written over only with the person's word. New
@@ -3267,6 +3281,16 @@ section it touched.
     once held or broken; the form's `scheme` is read across the whole poem; an answer to `breaks` or `stanza` writes the
     answerer's `P:reading`. `form-grounded` takes, for a rule no rule can read, a person's answer as well as a pending
     value, and holds a rule that a rule reads to what it read.
+15. **Three rulings change what a run gives** (sections 7.3, 8.1 and 12.6), the owner's of 2026-11-19. A closing
+    quotation mark or bracket after a stop stays with its sentence, and every check and move reads sentences by one
+    rule, which also passes over a short form such as `Dr.`. A coverage map's `lines` count the file as written, front
+    matter included, however the map was made. `for each` over a short or a text gives each line as a `string`, in
+    every runtime, as the compiler always typed it. A recorded run that holds such a sentence, map or loop is recorded
+    again, never edited by hand.
+16. **What the readers asked** (sections 6.3, 7.3, 9 and 13.3). `say` gives a date in its ISO 8601 form, with its time
+    when it carries one. `stance-closed` reads every stance in the fabula, not only a claim's. A program file that cannot
+    be read is refused as `unknown-uri`, and one that is not UTF-8 as `parse`. `allusion` counts each reference, two in
+    one sentence twice.
 
 **Edition 0.7.0 · 2026-11-13.** `tell` is `entail`, and a poem is decompiled in steps.
 
