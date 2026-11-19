@@ -1,0 +1,10 @@
+fetched: 2026-11-19T00:16:33Z
+from: https://docs.python.org/3.13/archives/python-3.13-docs-text.tar.bz2
+by: the owner, with scripts/fetch_library.py
+archive: python-3.13-docs-text.tar.bz2
+archive-bytes: 3156138
+archive-sha256: 0ecc3ea13da534f7b1ca9549cd9b0c5991bf709498fc07ead2114df13f88883b
+address-confirmed: by the owner at fetch time
+licence-read: https://docs.python.org/3.13/license.html, read whole by the owner before this run
+licence-read: https://www.python.org/psf/trademarks/, read whole by the owner before this run
+stripped: python-3.13-docs-text/
