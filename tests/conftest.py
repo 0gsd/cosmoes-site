@@ -121,11 +121,12 @@ def reseal(folder: Path, slug: str, which: str, text: str) -> None:
 
 
 class Site:
-    """The site over an export folder; `get(host, path)` asks as that host, without following redirects."""
+    """The site over an export folder and a library folder (none unless named: the specifications' tests see no
+    shelf); `get(host, path)` asks as that host, without following redirects."""
 
-    def __init__(self, folder: Path, scheme: str = 'http'):
+    def __init__(self, folder: Path, scheme: str = 'http', library: Path | None = None):
         self.folder = folder
-        self.app = create_app(folder)
+        self.app = create_app(folder, library if library is not None else folder.parent / 'no-library')
         self.client = TestClient(self.app, base_url=f'{scheme}://cosmoes.org')
 
     def get(self, host: str, path: str = '/', **kw):

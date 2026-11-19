@@ -1,0 +1,32 @@
+{% extends "library.html" %}
+{% block title %}{{ shelf.title }} · the library · {{ domain }}{% endblock %}
+{% block library %}
+<section class="hero" aria-labelledby="h">
+  <h1 id="h">{{ shelf.title }}</h1>
+  {% if shelf.about %}<p class="lede">{{ shelf.about }}</p>{% endif %}
+</section>
+<h2 id="lib-kept">Kept</h2>
+{% if kept %}
+<table class="lib-table">
+  <thead><tr><th scope="col">Text</th><th scope="col">Version</th><th scope="col">Publisher</th><th scope="col">Licence</th><th scope="col">Obtained</th></tr></thead>
+  <tbody>
+  {% for t in kept %}
+  <tr id="text-{{ t.entry.text }}-{{ t.entry.version }}"><td><a href="{{ t.url }}">{{ t.entry.name }}</a></td><td>{{ t.entry.version }}</td><td>{{ t.entry.publisher }}</td><td><a href="{{ t.entry.licence.url }}">{{ t.entry.licence.name }}</a></td><td>{{ t.entry.obtained }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="none">No text is kept on this shelf yet.</p>
+{% endif %}
+{% if pins %}
+<h2 id="lib-pinned">Pinned, not kept</h2>
+<table class="lib-table">
+  <thead><tr><th scope="col">Name</th><th scope="col">Version</th><th scope="col">What</th><th scope="col">Publisher</th><th scope="col">Where</th></tr></thead>
+  <tbody>
+  {% for p in pins %}
+  <tr><td>{{ p.name }}</td><td>{{ p.version }}</td><td>{{ p.what }}</td><td>{{ p.publisher }}</td><td>{% if p.from %}<a href="{{ p.from }}">{{ p.from }}</a>{% endif %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

@@ -90,3 +90,29 @@ body.doc .docoes-short .docs-sec > blockquote, body.doc .docoes-atem .docs-atem-
   li.tile { padding: 16px; }
   body.doc .docoes { padding: 16px; }
 }
+
+/* the library: a kept text's notice on every page, its pages as plain prose and preformatted blocks, the tables */
+body.library .lib-notice { margin: 0 0 24px; padding: 14px 18px; max-width: 84ch; background: var(--surface);
+  border: 1px solid var(--line); border-left: 4px solid var(--ink3); border-radius: var(--r2); font-size: 0.9rem;
+  color: var(--ink2); }
+body.library .lib-notice p { margin: 0 0 6px; }
+body.library .lib-notice pre.lib-copyright { margin: 0 0 6px; white-space: pre-wrap; font-size: 0.85rem; }
+body.library .lib-page { min-width: 0; padding: 24px 32px 32px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r2); }
+body.library .lib-page > p, body.library .lib-body > p { max-width: var(--measure); }
+body.library pre { overflow-x: auto; padding: 10px 12px; background: var(--surface-2); border-radius: var(--r2);
+  font-family: var(--fg-mono); font-size: 0.85rem; line-height: 1.45; }
+body.library pre.lib-notice-text { white-space: pre-wrap; max-width: 84ch; }
+body.library .lib-sig { margin: 18px 0 0; }
+body.library .lib-sig + .lib-sig { margin-top: 2px; }
+body.library .lib-sig code, body.library .lib-rule code { font-family: var(--fg-mono); font-weight: 600; }
+body.library .lib-body { margin: 6px 0 12px 1.5rem; }
+body.library .lib-rule { margin: 14px 0 0; font-size: 0.8rem; color: var(--ink3); }
+body.library ul.lib-pages { columns: 3 16em; margin: 0 0 24px; padding-left: 1.2rem; font-size: 0.9rem; }
+body.library table.lib-table { border-collapse: collapse; margin: 0 0 24px; font-size: 0.9rem; background: var(--surface); }
+body.library .lib-table th, body.library .lib-table td { padding: 6px 10px; border: 1px solid var(--line); text-align: left;
+  vertical-align: top; }
+@media (max-width: 720px) {
+  body.library .lib-page { padding: 16px; }
+  body.library table.lib-table { display: block; overflow-x: auto; }
+}

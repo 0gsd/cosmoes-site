@@ -1,5 +1,6 @@
 # cosmoes.org on Cloud Run: one process, listening on $PORT (Cloud Run sets it; 8080 otherwise). The specifications
-# ship in the image (site/specs/): no storage, no secrets, no environment.
+# (site/specs/) and the library (library/, with the one client file its pages are made by) ship in the image: no
+# storage, no secrets, no environment.
 FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -14,6 +15,8 @@ RUN pip install -r requirements.txt
 
 COPY cosmoes ./cosmoes
 COPY site ./site
+COPY library ./library
+COPY client/library_index.py ./client/library_index.py
 RUN useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin cosmoes
 USER cosmoes
 
