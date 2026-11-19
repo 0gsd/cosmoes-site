@@ -1351,7 +1351,9 @@ cryptograph, and no cryptograph is hosted. A writer makes no token list; a reade
 <p>The bridge between a company and a person is the registry. A company listed on the Comprise Index searches the
 registry as anyone does, by what it needs (<a class="ref-xref" href="#docs-sec-14-11">section 14.11</a>); it may attest work a person or an <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a> did for it
 (<a class="ref-xref" href="#docs-sec-14-9">section 14.9</a>) and may own an agent (<a class="ref-xref" href="#docs-sec-14-10">section 14.10</a>). It never receives anything of a holograph but the <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">allograph</a> its
-<a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> listed. What follows a match, a conversation or an <a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's projection for sharing">isograph</a> handed in private, is the holder's act.</p>
+<a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a> listed. Of a person's listing a company keeps only the <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a>, and only when the person gave it; it reads the
+entry from the registry when it needs it, and keeps nothing of what it read. What follows a match, a conversation or an
+<a class="docs-term" href="#docs-item-t-term-isograph" data-term="T:term/isograph" title="An isograph (ascribe-isograph/0) is a person's projection for sharing">isograph</a> handed in private, is the holder's act.</p>
 </section>
 <section class="docs-sec" data-key="S:section/14.5" data-scope="">
 <h3 id="docs-sec-14-5" data-toc="3">14.5 Morphs</h3>
@@ -1460,9 +1462,9 @@ refuses an allograph that carries a field this section does not name or a markin
 <li><strong>Canonical JSON</strong>, as the isograph's; the release's <code>sha256</code> is over those bytes.</li>
 </ul>
 <p><strong>Made again, never edited.</strong> An allograph names the run that made it, and the run names the holograph's state: the
-run's trace records the state of the holograph as the filter kept it, as a digest,
-and that digest is what names the state; the plan's digests of the run's inputs do not
-(<a href="https://thym.cosmoes.org/">Thym</a>, its section 17.1). The release record carries the digest of the run's trace
+run records the state of the holograph as the filter kept it, as a digest, in the record of the engine call that
+made the allograph, whose answer names it as <code>holograph</code>, and that digest is what names the state; the plan's digests
+of the run's inputs do not (<a href="https://thym.cosmoes.org/">Thym</a>, its section 12.4). The release record carries the digest of the run's trace
 (<a class="ref-xref" href="#docs-sec-13">section 13</a>). When the holograph changes, the holder may run the program again; the new allograph is a new release,
 and it replaces the listed one when the holder lists it. An implementation should tell the holder when their
 holograph has changed since the run their listed allograph names; nothing makes or lists an allograph again by itself.
@@ -1537,7 +1539,9 @@ the listing or the company that makes it:</p>
 sorted, no space between tokens, UTF-8 without a byte-order mark, and no character escaped that JSON does not require
 escaping), its 64 bytes in standard base64 with padding. A listing's statements verify
 against the listing's key; a company's against the public key of its current isotype <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> on the Index, the key
-that signs its isotype (<a href="https://comprise.cosmoes.org/">Comprise OES</a>, its section 11.3). A statement is sent by a
+that signs its isotype (<a href="https://comprise.cosmoes.org/">Comprise OES</a>, its section 11.3). That key is the one of the
+company's current release, so when the company releases under another key, the new key signs its statements from then
+on; a statement the registry took before stays taken. A statement is sent by a
 signed-in account of the registry, and the account is never in a statement, an entry or an answer. A company's
 statements are taken only from an account in that company's organization on Comprise Connect. The nonce makes
 every statement good once: a statement sent again, or kept and sent later, is refused, so that no one can bring back a
@@ -1884,8 +1888,8 @@ how often it is looked up or by who looked.</p>
 <section class="docs-sec" data-key="S:section/14.12" data-scope="">
 <h3 id="docs-sec-14-12" data-toc="3">14.12 The registry's operations</h3>
 <p>A registry speaks JSON over HTTPS. These are its operations, at these paths under its address. The look-ups (by <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a>, by
-name and by need) and the list of <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplaces</a> need no account. Only <code>challenge</code>, <code>statements</code>, <code>waiting</code> and <code>DELETE</code>
-need one.</p>
+name and by need) and the list of <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplaces</a> need no account. Only <code>challenge</code>, <code>statements</code>, <code>waiting</code>, <code>proofs</code> and
+<code>DELETE</code> need one.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -1930,6 +1934,11 @@ need one.</p>
 <td><code>GET /api/v0/allographs/{tag}/waiting</code></td>
 <td>the account the tag is tied to</td>
 <td><code>{attestations}</code>: each <code>{attestation, statement, signature}</code> waiting for the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s word</td>
+</tr>
+<tr>
+<td><code>GET /api/v0/allographs/{tag}/proofs</code></td>
+<td>the account the tag is tied to</td>
+<td><code>{proofs, plus}</code>: every proof the listing holds, in every state and whatever <code>show</code> says, sorted by faceplace and then handle, each <code>{faceplace, handle, address, checked, state}</code> with <code>since</code> while it is missed or lapsed; <code>plus</code>, whether the listing is an <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">Allograph</a>+. An <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a>'s listing answers <code>{proofs: [], plus: false}</code></td>
 </tr>
 <tr>
 <td><code>DELETE /api/v0/allographs/{tag}</code></td>
@@ -1995,8 +2004,8 @@ need one.</p>
 </tr>
 <tr>
 <td><code>bond</code></td>
-<td>an <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">Allograph</a>+ person's listing, or a company</td>
-<td><code>agent</code>: the <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a>'s tag</td>
+<td>an Allograph+ person's listing, or a company</td>
+<td><code>agent</code>: the agent's tag</td>
 <td>the owner answers for the agent (<a class="ref-xref" href="#docs-sec-14-10">section 14.10</a>)</td>
 </tr>
 <tr>
@@ -2114,6 +2123,11 @@ need one.</p>
 </div>
 <p>A search with a token outside <a class="ref-xref" href="#docs-sec-14-3">section 14.3</a>'s table, or a value that is not a FEED headword, is 400 <code>bad_need</code>; a
 <code>next</code> the registry did not give is 400 <code>bad_next</code>.</p>
+<p><code>waiting</code> and <code>proofs</code> are the holder's own reads: they take no statement and no nonce, and they are refused to anyone
+but the account the tag is tied to, with the codes a statement meets (<code>signed_out</code>, <code>not_listed</code>, <code>tag_taken</code>). <code>proofs</code>
+shows the holder the proofs a public entry may only count, so that the holder can
+choose which to remove with <code>unprove</code>. No operation lists the attestations an attester gave: an attester that may want
+to remove one keeps the digest it signed.</p>
 </section>
 <section class="docs-sec" data-key="S:section/14.13" data-scope="">
 <h3 id="docs-sec-14-13" data-toc="3">14.13 Withdrawal</h3>
@@ -2263,16 +2277,28 @@ one that is wrong, and the Changes appendix (<a class="ref-xref" href="#docs-sec
 </section>
 <section class="docs-sec" data-key="S:section/17" data-scope="">
 <h2 id="docs-sec-17" data-toc="2">17. Changes</h2>
-<p><strong>Edition 0.7.0 · 2026-11-13.</strong> The <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">allograph</a> and the <a class="docs-term" href="#docs-item-t-term-allograph-registry" data-term="T:term/allograph-registry" title="The Allograph Registry is the one public place of Ascribe">Allograph Registry</a>, which replaces Ascribe-Connect.</p>
+<p><strong>Edition 0.8.0.</strong> The bridge to Comprise and the registry's operations say what was built.</p>
 <ol>
-<li><strong>The allograph</strong> (<a class="ref-xref" href="#docs-sec-14-6">section 14.6</a>, new): <code>ascribe-allograph/0</code>, the <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s public account of what they can do for
+<li><strong>What a company keeps</strong> (<a class="ref-xref" href="#docs-sec-14-4">section 14.4</a>): of a person's listing, only the <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a> the person gave it; it reads the entry
+live when it needs it.</li>
+<li><strong>The key that signs for a company</strong> (<a class="ref-xref" href="#docs-sec-14-7">section 14.7</a>) is its current <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a>'s, and moves when the company releases
+under another key; a statement taken before stays taken.</li>
+<li><strong>The <a class="docs-term" href="#docs-item-t-term-holder" data-term="T:term/holder" title="The holder of a holograph is its subject, who keeps it">holder</a>'s proofs</strong> (<a class="ref-xref" href="#docs-sec-14-12">section 14.12</a>): <code>GET /api/v0/allographs/{tag}/proofs</code>, for the account the tag is tied to
+only, lists every proof the listing holds, in every state, with whether the listing is an <a class="docs-term" href="#docs-item-t-term-allograph" data-term="T:term/allograph" title="An allograph (ascribe-allograph/0) is the holder's public account of what they can do for others">Allograph</a>+; an <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agent</a>'s is
+empty. No operation lists what an attester gave: the attester keeps its own digests.</li>
+<li><strong>The allograph's run</strong> (<a class="ref-xref" href="#docs-sec-14-6">section 14.6</a>): the holograph's state, as the filter kept it, is recorded in the record of
+the engine call that made the allograph, as Thym's section 12.4 says, and no longer cites Thym's section 17.1.</li>
+</ol>
+<p><strong>Edition 0.7.0 · 2026-11-13.</strong> The allograph and the <a class="docs-term" href="#docs-item-t-term-allograph-registry" data-term="T:term/allograph-registry" title="The Allograph Registry is the one public place of Ascribe">Allograph Registry</a>, which replaces Ascribe-Connect.</p>
+<ol>
+<li><strong>The allograph</strong> (<a class="ref-xref" href="#docs-sec-14-6">section 14.6</a>, new): <code>ascribe-allograph/0</code>, the holder's public account of what they can do for
 others, made by <code>project h as allograph</code> from the nodes of experience, skill and understanding alone, made again and
-never edited. The lead, How to read this and <a class="ref-xref" href="#docs-sec-2">section 2</a> name it, and a <a class="docs-term" href="#docs-item-t-term-release" data-term="T:term/release" title="A release is one act of the holder's by which something left the holograph">release</a> may be <code>as: allograph</code> (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
+never edited. The lead, How to read this and <a class="ref-xref" href="#docs-sec-2">section 2</a> name it, and a release may be <code>as: allograph</code> (<a class="ref-xref" href="#docs-sec-13">section 13</a>).</li>
 <li><strong>The Allograph Registry</strong> (<a class="ref-xref" href="#docs-sec-14-7">sections 14.7</a> to <a class="ref-xref ref-xref-num" href="#docs-sec-14-13">14.13</a>, new), the one public place of Ascribe: served by Comprise
 Connect beside the Comprise Index, its listings at https://allograph.net, its accounts signing in at Comprise
-Connect; every act a signed statement (<code>ascribe-statement/0</code>); a key for each listing, its <a class="docs-term" href="#docs-item-t-term-tag" data-term="T:term/tag" title="The tag is a listing's permanent hash">tag</a>, a user name and
+Connect; every act a signed statement (<code>ascribe-statement/0</code>); a key for each listing, its tag, a user name and
 a <a class="docs-term" href="#docs-item-t-term-dangler" data-term="T:term/dangler" title="The dangler is a short line the holder hangs on their name and edits when…">dangler</a> (14.8); the levels <code>stated</code>, <code>attested</code> and Allograph+, with <a class="docs-term" href="#docs-item-t-term-attestation" data-term="T:term/attestation" title="An attestation is a party's signed word that the holder did work that bears out…">attestations</a> and proofs posted on <a class="docs-term" href="#docs-item-t-term-faceplace" data-term="T:term/faceplace" title="A faceplace is a public place where a person has an account, under a handle">faceplaces</a>
-(14.9); <a class="docs-term" href="#docs-item-t-term-agent" data-term="T:term/agent" title="a listing whose allograph has kind">agents</a>, and the <a class="docs-term" href="#docs-item-t-term-bond" data-term="T:term/bond" title="A bond joins an agent to the one owner who answers for it">bond</a> to the one owner who answers for each (14.10); look-ups by tag, by name and by need,
+(14.9); agents, and the <a class="docs-term" href="#docs-item-t-term-bond" data-term="T:term/bond" title="A bond joins an agent to the one owner who answers for it">bond</a> to the one owner who answers for each (14.10); look-ups by tag, by name and by need,
 with no browsing (14.11); its operations (14.12); and withdrawal, which keeps nothing (14.13). What a registry must
 do is <a class="ref-xref" href="#docs-sec-16-3">section 16.3</a>, new, and where an implementation and this text disagree moves to 16.4.</li>
 <li><strong>What became of Ascribe-Connect</strong> (<a class="ref-xref" href="#docs-sec-14-14">section 14.14</a>, new, and <a class="ref-xref" href="#docs-sec-18">section 18</a>). Of what edition 0.6.0 reserved, the
