@@ -104,6 +104,7 @@ class Library:
         self.pins: list[dict] = []
         self.refused: dict[str, list[str]] = {}
         self.problems: list[str] = []
+        self.registry_bytes: bytes | None = None    # library.json as it is on disk, kept only when it validates
 
     def load(self) -> 'Library':
         if self._loaded:
@@ -121,6 +122,7 @@ class Library:
         if self.problems:                       # a registry that does not validate serves nothing: say so in the log
             log.error('library: library.json refused: %s', '; '.join(self.problems))
             return self
+        self.registry_bytes = (self.folder / L.REGISTRY).read_bytes()
         self.shelves = list(reg.get('shelves', []))
         for e in reg.get('texts', []):
             key = (e['shelf'], e['text'], e['version'])
