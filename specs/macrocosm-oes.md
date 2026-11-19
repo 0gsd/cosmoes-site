@@ -1896,10 +1896,10 @@ says what that entailment wrote:
 |---|---|
 | `path` | the entailed folder, relative to the fabulac, ending `/`: `tally/` beside `tally.fabulac.cosm` |
 | `at`, `run` | when the last entailment ran, and its trace id |
-| `files` | one entry per file written: `{path, sha256, from, brief}`. `path` is relative to the folder; `sha256` the digest of the bytes written; `from`, *refs*, the items the file was entailed from, or `rules` for a file rules wrote; `brief`, the sha256 of what the file was entailed from: the items `from` names, each dumped as Thym dumps a value for its digest (Thym (https://thym.cosmoes.org/), its section 12.6) with its `provenance` left out, joined in the order `from` gives; for a file rules wrote, of the inputs the rules read |
-| `kept` | the paths of files a person changed by hand and chose to keep, each with the `N:decision` that records the choice |
+| `files` | one entry per file written, `ENTAILED.md` included: `{path, sha256, from, brief}`. `path` is relative to the folder; `sha256` the digest of the bytes written; `from`, *refs*, the items the file was entailed from, or `rules` for a file rules wrote; `brief`, the sha256 of what the file was entailed from: the items `from` names, each dumped as Thym dumps a value for its digest (Thym (https://thym.cosmoes.org/), its section 12.6) with its `provenance` left out, joined in the order `from` gives; for a file rules wrote, of the inputs the rules read |
+| `kept` | the files a person changed by hand and chose to keep, each `{path, decision}`: its path in the folder, and *ref* the `N:decision` that records the choice. `ENTAILED.md` cannot be kept |
 
-Against it, each file of the entailment is in one of four states, read file by file:
+Against it, each file of the entailment is in one of six states, read file by file:
 
 | State | When |
 |---|---|
@@ -1907,12 +1907,29 @@ Against it, each file of the entailment is in one of four states, read file by f
 | moved | its bytes are as recorded, and its `brief` is not: an item it was entailed from has changed |
 | edited by hand | its bytes differ from the recorded `sha256`, or the folder holds a file the entailment did not record |
 | gone | it is recorded and not in the folder |
+| kept | it is under `kept`: it is never told again or written over, whatever its brief |
+| new | the fabulac now tells a file the last entailment did not write |
 
-An entailment done again tells again only the files that moved or are gone, and leaves the rest as they are. A file
-edited by hand is named, file by file, and the person chooses: write over it; keep it, recorded under `kept` with an
-`N:decision`, and left out of every later entailment until the person lets it go; or take it back, decompiling the file
-against the fabulac and putting what it adds to the person as questions (section 18.6). Nothing a person edited is
-written over without their word.
+An entailment done again tells again only the files that moved, are gone or are new, and leaves the rest as they are.
+A file edited by hand is named, file by file, and the person chooses:
+
+- **Write over it.** The person names each file to be written over; a file they do not name stops the entailment, and
+  nothing is written.
+- **Keep it.** The file is recorded under `kept` with an `N:decision`, `N:decision/kept-by-hand-<file>`, which says what
+  was chosen, over what, and why when the person says. It is left out of every later entailment until the person lets
+  it go: letting it go retires the decision (`status: retired`) and forgets the file's brief, so the next entailment
+  tells it again. The decision is about the entailment, not the program, so it is in no file's brief: keeping one file
+  moves no other.
+- **Take it back.** The file is decompiled against the fabulac, and each item it adds or changes is put to the person
+  as a question (section 18.6): `kind: choice`, with the options `take it back` and `leave it out`, `raised.from:
+  take-back`, `why: missing` for an item the fabulac lacks and `why: conflict` for one it holds otherwise, and
+  `proposed: {item, file}`, the item as read from the file. Settling `take it back` writes the item, `stance: observed`,
+  with the session among its sources; `leave it out` writes nothing. From then the file's bytes are recorded as the
+  entailment's, so it is no longer edited by hand; a file taken back that the fabulac tells nothing of is recorded with
+  `from: []`, and stays. Once the questions are settled, the file's brief has moved, and the next entailment tells it
+  from the fabulac.
+
+Nothing a person edited is written over without their word.
 
 #### 18.4.2 The modules and their kinds
 
@@ -2019,7 +2036,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `N:requirement` | **`force`** [`must` `should` `may`]; `of` [`behaviour` `quality` `making`], whether it asks for something the program does, a quality it has (speed, size, safety) or something about how it is made; `met-by` *refs* (`C:behaviour`, `C:interface`, `C:dependency`); `checked-by` *refs* `P:case` |
 | `N:decision` | **`chose`** *text*; `over`, a list of `{option, because}`, what was not chosen and why; `because` *text*; `by` *ref* (an `R:maker` or the maker's E item); `changed-in` *refs* `R:change` |
 | `N:exclusion` | `horizon` [`never` `later`]; `because` *text* |
-| `N:target` | **`language`** *text*; **`version`** *text*, the release weighed; `weighed`, a list of `{point, score, evidence}`, one per point of the target bank, `point` the point's number and `score` an *integer* from 0 to 3, each as section 18.4.9 says; `provides`, a list of `{for, by, what, note}`, how the language gives what the fabulac keeps, `for` *ref* (a `C:reliance`, `C:interface` or `C:behaviour`), `by` [`built-in` `library` `binding` `written` `cannot` `dropped`]; `spike` `{use, level, where}`, the small trial entailment that tested it; **`verdict`** [`feasible` `feasible-with` `not`], with `conditions` *text* when `feasible-with`; `at` *date*; `by` *ref* `R:maker` (section 18.4.9) |
+| `N:target` | **`language`** *text*; **`version`** *text*, the release weighed; `weighed`, a list of `{point, score, evidence, answered, ruled}`, one per point of the target bank, `point` the point's number and `score` an *integer* from 0 to 3, each as section 18.4.9 says, `answered` `rules` or `model`, whichever gave the score, and `ruled` the transconceiver's word on the point, once asked; `provides`, a list of `{for, by, what, note, gap, entry, answered}`, how the language gives what the fabulac keeps, `for` *ref* (a `C:reliance`, `C:interface` or `C:behaviour`), `by` [`built-in` `library` `binding` `written` `cannot` `dropped`], `gap` *text*, what the language lacks and the new program must fill, `entry` the ground entry the row was read from; `spike` `{use, level, where, cases, evidence}`, the small trial entailment that tested it, `cases` *refs* `P:case`, the spike's own cases; **`verdict`** [`feasible` `feasible-with` `not`], with `conditions` *text* when `feasible-with`; `at` *date*; `by` *ref* `R:maker` (section 18.4.9) |
 | `C:part` | **`division`** [`chapter` `section` `paragraph` `scene` `list` `quotation` `stanza` `verse` `chorus` `refrain` `bridge` `other`]; `number` *integer*, its place among its siblings, from 1; `of` *ref* `C:part`, the part it sits in; `heading` *text* |
 | `C:device` | **`figure`** *text*, an open word (`apostrophe`, `metaphor`, `symbol`, `image`, `alliteration`, `anaphora`, `refrain`, `caesura`, `turn`, `hook`, `irony`, `personification`, `appeal to authority` …); `where` *refs* (`C:line`, `C:part`, `L:term`, `P:claim`); `effect` *text*; `cue` *text*, the words that carry it, at most 60 characters; `senses`, for an image, a list from [`sight` `hearing` `touch` `taste` `smell` `movement`]; `intended` *bool*, whether the author meant it, absent until asked |
 | `C:voice` | `roles.*`: `speaker`, `addressee`, `listener`; `perspective` [`first` `second` `third` `mixed`]; `tone` *text* |
@@ -2065,10 +2082,14 @@ is `{is, made-for, by, on, said}` and the fields its value asks for:
 
 `made-for` is *ref* the `N:target` the ruling was made with in mind; a ruling without `made-for` holds for every
 target. `by` is *ref* the `R:maker` who ruled, of capacity `transconceiver`; `on` the day; `said` the words the ruling
-was given in, verbatim. A ruling never changes the item it is on: it says what an entailment of it must keep. Beside
-`ruling`, the item may carry `relied-on`, a list from [`documented` `tested` `used` `seen`], which says why anyone relies
-on the thing: rules fill the first two, from the program's documents and its tests. A thing with no ruling for a target
-raises a question (section 18.6), and an entailment into that target waits for the answer.
+was given in, verbatim. A ruling may rule only part of the thing: `about` says which part, in plain words (`the
+program's name`), and on a case `steps` names the steps it rules. An item holds at most one ruling for one target and
+one part, and a ruling settled for them replaces the one there. A ruling asked and not yet made is written
+`{pending: "…"}`, with the `made-for`, `about` and `steps` it will have. A ruling never changes the item it is on: it
+says what an entailment of it must keep. Beside `ruling`, the item may carry `relied-on`, a list from [`documented`
+`tested` `used` `seen`], which says why anyone relies on the thing: rules fill the first two, from the program's
+documents and its tests. A thing with no ruling for a target raises a question (section 18.6), and an entailment into
+that target waits for the answer.
 
 In a fabulac the unchanged kinds take the program's terms: `L:term` its own vocabulary, E items the named things it
 deals with (a holder, a service, a file it writes), `K:concept` the ideas the code relies on, `P:claim` what its
@@ -3047,11 +3068,13 @@ again writes into the same folder, and the fabulac's `entailed` key records what
 
 | File | Written by | Holds |
 |---|---|---|
-| `ENTAILED.md` | rules | the footer line, as a cshort's; a table of the files written, each with the items it came from, its sha256 and its brief digest; what was not entailed, and why; the licence line |
-| `pyproject.toml` | rules | the project's name and version, the Python floor, its entry points, the dependencies pinned exactly, and a table `[tool.enough]` that repeats the fabulac's `program` (`kind`, `start`, `serve`) |
+| `ENTAILED.md` | rules | the footer line first, `*an entailment of tally.fabulac.cosm, in Python, entailed on 2026-11-20 by <who>*`, the day in UTC and `<who>` the model that wrote the sources; a table of the files written, each with the items it came from, its sha256 and its brief digest; the cases whose tests a model wrote; what was not entailed, and why; the licence line last |
+| `pyproject.toml` | rules | the project's name and version, the version of its last `R:release` that gives one and `0.0.0` when none does; the Python floor, its entry points, the dependencies pinned exactly, and a table `[tool.enough]` that repeats the fabulac's `program` (`kind`, `start`, `serve`) |
 | `RUNNING.md` | rules | how to run its tests, how to start it, what it needs, and what an implementation will and will not run of it |
 | the sources | a model, file by file | the program, as the fabulac specifies it |
+| `tests/__init__.py` | rules | one comment line: the mark that lets `unittest` find the tests from the folder |
 | `tests/test_cases.py` | rules | one test per runnable case (below), with the standard library's `unittest` |
+| `tests/test_prose_cases.py` | a model, one test per case | only when a case is prose: a test for each such case, each marked as written by a model from the case's words |
 
 The fabulac's **`program`** key says what kind of program it specifies: `kind`, one of `tool` (started from a command
 line, then it ends), `library` (called by other programs) or `service` (it keeps running and answers on a port);
@@ -3069,13 +3092,31 @@ program, so its cases are the judge, and they are written before the code. A `P:
 
 | Surface | `given` | `expect` |
 |---|---|---|
-| a command | `files`, the files the case starts with, path to text; `env`, the environment's variables; `steps`, a list of `{arguments, input}`, each a run of the command with its arguments as a list and its standard input as text | `steps`, one `{exit, output, error-output}` per step; `files`, what the files hold after |
+| a command | `files`, the files the case starts with, path to text; `env`, the environment's variables, each a value or `null` for one that is unset; `cwd`, the folder within the case's own where the steps run; `steps`, a list of `{arguments, input}`, each a run of the command with its arguments as a list and its standard input as text | `steps`, one `{exit, output, error-output}` per step; `files`, what the files hold after, `null` for a file that must not be there |
 | a function | `calls`, the interface's id; `arguments`, a mapping of each parameter's name to its value | `value`, what it returns; or `raises`, `{error, message}` |
 
+```yaml
+given:  {files: {notes.md: "one two three\n"}, steps: [{arguments: [count, notes.md], input: ""}]}
+expect: {steps: [{exit: 0, output: "3\n", error-output: ""}]}
+```
+
+A command case runs in a folder of its own, made for it, with its `files` written there and the home folder set to it.
+`<CASE>`, in an argument or a variable's value, stands for that folder, and where the folder's own path shows in what
+the command prints, it is read as `<CASE>` before the output is compared; output is compared exactly. A function case
+calls the interface by keyword, each argument by its parameter's name; a list it returns compares equal to a list,
+whatever kind of sequence holds it. A `raises` holds when the error is of the class named, or of a class that comes from
+it, and its message is the one given, exactly. A case whose interface is not one the program offers (a command case of a
+library, a function case naming no function of the fabulac) cannot be run, and is not entailed. Authoring and
+transconception read one case shape: a case recorded outside (section 18.4.9) and a case a person wrote for an authored
+fabulac are the same data.
+
 A case that is not data, such as the days example's `given: {env: 'today is 2026-11-05', …}`, stays valid and is read
-as prose. Tests are entailed from runnable cases by rules, never by the model that writes the code: the judge is not
-written by the one it judges. A prose case is entailed by a model step of its own, and `ENTAILED.md` marks each test so
-made as written by a model. A case that could not be entailed at all is named there with the reason.
+as prose. A case whose `given` or `expect` is still `{pending: …}`, or is data no surface knows, is not runnable yet,
+and is named with why. Tests are entailed from runnable cases by rules, never by the model that writes the code: the
+judge is not written by the one it judges. A prose case is entailed by a model step of its own, and `ENTAILED.md` marks
+each test so made as written by a model. A case that could not be entailed at all is named there with the reason. A
+person gives a case's `given` and `expect` as data through the dialectic, by answering a question about the field in
+words or in data (section 18.6.4).
 
 **Running an authored entailment.** An implementation may run the entailment of an authored fabulac, its tests and the
 program itself, and only inside a sandbox that holds to all of this:
@@ -3102,7 +3143,10 @@ says `stated-in`, the URI of the head's item (`oes:fabula/tally/C/interface/coun
 for, its aims, its audience and its uses, belongs to the head; what one part does belongs to the part. A part's release
 is recorded in the head's `R:release`, never in a URI. These URIs are text fields, checked by the fabula's own checks
 `parts-resolve` and `interfaces-agree` (section 18.4.8) over the fabulacs one reader knows; the reference fields of
-section 9 stay within one volume.
+section 9 stay within one volume. A reader knows the fabulacs in the head's own folder and in the three folders above
+it, and each file its `parts` names, each by its `id`; when two fabulacs it knows have one `id`, it names both and
+knows neither. A head is written as an authored fabulac is, its `source` the authored form, its licence pending until
+given.
 
 An interface between two programs, such as an application and the service it calls, is stated by the same rule across
 two heads: it is stated once, in the head of the program that offers it, and the other program's head cites it with
@@ -3561,8 +3605,9 @@ A **transconceiver** is the person who rules what a transconception keeps, recor
   a reader who does not know the old language can still write the program again. What it takes to be true of its
   surroundings is written as `P:assumption` items.
 
-**The ground.** The language library, kept with these texts at cosmoes.org, holds the publishers' own descriptions of
-the languages a transconception leans on, each text kept whole with its licence and notice. A **ground catalog** heads
+**The ground.** The language library, kept with these texts at https://cosmoes.org/library/, holds the publishers' own
+descriptions of the languages a transconception leans on, each text kept whole with its licence and notice, each
+version of a text at its own address (https://cosmoes.org/library/python/docs/3.13/). A **ground catalog** heads
 each language there, `<language>.ground.cosm`: the gifts of that language that programs commonly lean on, one entry
 each. A `C:reliance` copied from an entry is stored whole in the fabulac, with `entry` naming the entry it came from,
 so that the fabulac reads alone without the library. Its `stated` says where the gift is written, a list whose entries
@@ -3630,6 +3675,14 @@ Published scores do not settle point 9, since their order changes with the bench
 measured at the time, on a small set held back. The fabulac holds what the weighing needs: the kind of program, where it
 must run, each dependency with its meaning, its shapes, its budgets, who calls it and how long it should live.
 
+**Which weighing stands.** A second weighing of a language is `N:target/<language>-2`, beside the first, and so on. The
+weighing that stands is the latest, by `at`, of those with a verdict: the target bank asks its points, and
+`target-confirmed` reads it. Rulings are made for the language's first `N:target` (`made-for`), whatever weighings
+follow, so that weighing again asks no ruling again. Point 4 is read by rules from `provides`: 0 when anything kept is
+`cannot`, 2 when a gap is named, 3 otherwise. The verdict follows by rule: `not` when a gate scores 0, `feasible-with`
+when a gap or a condition is named, with one condition for each gap, and `feasible` otherwise. The spike's level is read
+from the runner's verdict on the spike's own cases alone (`spike.cases`), and the verdict's file is its `evidence`.
+
 **Evidence.** A cshort judged against the original carries `evidence` in its entry in `shorts`: `{level, steps,
 against, where, digest, at}`. `steps` is `{kept, agree}`, how many recorded steps at kept interfaces were counted and
 how many agreed; `against` is `original` (the recorded cases) or `tests` (the original's own tests); `where` is the
@@ -3646,7 +3699,22 @@ verdict file and `digest` its sha256. `level` is one of seven, and each says wha
 | 6, proven, for stated parts | has a checked proof for small, pure parts, which its verdict names | the rest of the program |
 
 A level is reached when every step that differs is ruled, not by a share of steps that agree; `steps` says how many
-did. Most stop at level 3 or 4, and say so.
+did. Most stop at level 3 or 4, and say so. A cshort not yet judged says `evidence: []`, and no level is claimed for it.
+Evidence may name in `source` the tree digest and the commit of the source it was judged against; evidence, like a
+recorded case, holds only against the source it names, and is reported, never counted, once that source has moved.
+
+**The layout, and a cshort in another language.** A layout, `<name>.layout-<language>-<YYYY-MM-DD-HHMM>.md`, is a
+heading, `# <name> in <Language>: the layout`, a paragraph, and then these tables: `## Files, in the order they are
+written`, each row a file and what it holds; `## Interfaces`, each row an interface kept or alike, its file and the
+name it takes there; where ruled, `## The target's own types`, each row an item and its type; and, where the weighing
+named gaps, `## Gaps, and what fills each`. Its last line is its footer: `*a layout of <fabulac file>, in <Language>,
+compiled on <day> by <model>*`. A cshort in another language holds the layout's files and, beside them: `CSHORT.md`,
+the cshort's footer first, then a table of every file with what it holds and its sha256, then `## Every kept interface,
+mapped`, one row each, `| interface | file | name |`, which `surface-answered` reads, and the licence line last;
+`NOTES.md`, what each writer guessed, under its file, so that no guess is silent, and how the layout fills each gap;
+`NOTICE`, which says whose program this is a transconception of, carries the source's licence and copyright lines, and
+says whether it was entailed apart or beside; and, when entailed apart, `requests.jsonl`, one line for each request
+sent to a model, which `apart` reads.
 
 **The checks.** They run only on a fabulac whose `purpose` is `transconception`, except `case-outside`, which runs on
 every case that `stands: outside`:
@@ -3662,7 +3730,7 @@ every case that `stands: outside`:
 | `cases-cover` | warning | fewer than 60 in 100 of the kept behaviours are the subject of an outside case |
 | `ruled` | error | every command, format, stream, behaviour of one, and reliance they use, carries a ruling for the target in question, or one without `made-for` |
 | `round-trip` | error | a cshort in the source's own language stands at level 2 or higher against the original's own tests, by its `evidence` |
-| `target-confirmed` | error | the `N:target`'s `verdict` is `feasible` or `feasible-with`, it `provides` everything kept, by some way other than `cannot`, and its spike reached level 2 |
+| `target-confirmed` | error | the weighing of the language that stands, its latest, has the `verdict` `feasible` or `feasible-with` and no gate point scored 0; it `provides` every reliance kept, by some way other than `cannot`, and nothing kept is `cannot`; and its spike reached level 2 or better on the spike's own cases. Rows for the interfaces and behaviours kept are asked of a weighing, not here |
 | `surface-answered` | error | for a cshort in another language, in place of `interfaces-present`: `CSHORT.md` maps every interface ruled `kept` or `alike` to a file and a name, and the name is in that file |
 | `apart` | error | for a cshort entailed apart: no request of the entailment carried a span, a source path or the source's text |
 | `evidence-stated` | error | a cshort's `evidence`, once written, carries its level, its counts and its verdict file's digest |
@@ -4049,6 +4117,7 @@ provenance.
 | `hint` | a line shown under the question |
 | `to` | who can answer: `author` · `expert` · `maker` · `holder` (Ascribe's subject) · `owner` (Comprise's item owner) · `transconceiver` (section 18.4.9) · a role's id · `anyone` |
 | `batch` | the addresses one answer settles together with this question's own, when a bank or a move asks of many alike things at once (below) |
+| `proposed` | what the question proposes, for the person to accept or change: for a ruling, the ruling proposed (`is` and the fields its value asks for) with its `made-for`, `about` and `steps` (section 18.4.2); for a part of a file taken back, `{item, file}`, the item as read from the file (section 18.4.1). An answer `as proposed` takes it whole |
 | `raised` | `{by, from, at, run}`: `by` is `bank`, `move`, `model` or `person`; `from` the bank entry (`fabulap/speaker`), the move or the stage that raised it; `at` a timestamp; `run` the run's trace id |
 | `state` | `open` · `answered` · `unknown` · `declined` · `stale` · `withdrawn` (section 18.6.3) |
 | `answers` | the answers, appended and never rewritten: each `{at, by, says, value, confidence, session, declined}`. `by` is a word of `to` or a role's id; `says` the person's words, verbatim; `value` what is written (null for "I don't know" and for a refusal); `confidence` how sure the person is, 0 to 1, and 1 for a value given with none (absent on "I don't know" or a refusal unless the person gave one); `session` the session's id; `declined: true` on a refusal |
@@ -4132,7 +4201,14 @@ not written again: the new decompile reads the source afresh, and an open questi
 
 **"I don't know" is an answer.** It is recorded, it closes the question, and the field stays open in the person's own
 words, which are a better question than the one asked. **A refusal is a fact**, not a question: the subject declined to
-say, and no later run asks the same person again unless a person opens the question again.
+say, and no later run asks the same person again unless a person opens the question again. "I don't know" to a ruling
+leaves the thing unruled for that target and part, a pending ruling in the person's words (section 18.4.2); it is not a
+ruling.
+
+**A case's `given` and `expect`.** A `text` question about a `P:case`'s `given` or `expect` takes words or data. Words
+are written as the field's text, and the case stays prose. Data, a mapping, is checked against the shape of the case's
+surface (section 18.4.7) and written as data; data that does not fit is refused, saying what it lacks, and the question
+stays as it was.
 
 **An answer about a whole item** (`about: <item id>`). A value means the item must be read again (below). "I don't
 know" gives the item `pending: "<the person's own words>"`. A refusal sets its `provenance.state: not-disclosed` and
@@ -4185,10 +4261,11 @@ of the format before anything else is known.
 dialectic:
   writes: <one line: what an answer writes>
   answer-kinds: [text, choice, yes-no, number, date, ref, span]
-  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes, only-with, at-most, batch, model-stands-in]
+  entry-fields: [id, about, asks, kind, options, to, why, many, hint, writes, sets, only-with, only-where, at-most,
+                 batch, model-stands-in, stage, brief]
   banks:
     <bank name>:
-      for: {flavour: fabulap}                # or {module: S}, or {purpose: transconception}, or nothing: the whole format
+      for: {flavour: fabulap}                # or {module: S}, {purpose: transconception}, {source: authored}, nothing
       to: author                             # the default answerer; an entry may name another
       intro: <optional>
       counters: {<check id>: <question>}     # optional: the counter question for a refused write
@@ -4209,9 +4286,30 @@ of that field's name: the pending asks it. `{name}`, and any `{<field>}`, are fi
 raised. A raised question's `raised.from` is `<bank name>/<entry id>`. An entry about a module may say `writes`: the
 kind (`<kind>` of that module, or `<M>:<kind>`) that a new item written from its answer takes; absent, the module's kind
 named like the entry's id (an entry `audience` about N writes an `N:audience`), where the module has one, else the
-module's first kind (section 18.6.4). An entry may say `model-stands-in: true`: it is a generic question whose place a
+module's first kind (section 18.6.4). It may add `sets: {<field>: <value>}`, the fields of that new item the answer
+cannot fill (a device's `figure: turn`), and an entry of a bank `for` a purpose that `writes` and `sets` is not asked
+when the item it would write is already there. `only-where: {<field>: [<word>, …]}` asks an entry only of an item whose
+field holds one of the words. An entry may say `model-stands-in: true`: it is a generic question whose place a
 model's own questions take, so a run that asks a model about the volume does not raise it, and a run without one raises
 it as it raises every other entry (Thym (https://thym.cosmoes.org/), its section 22.1).
+
+**Which banks are asked.** A bank's `for` names what a volume must be for the bank to be asked of it, by three keys, any
+of which it may name, each with a word or a list of words: `flavour`, the fabula's flavour; `purpose`, the catalog's
+`purpose`; and `source`, the kind of its `source`, `text` (the default), `folder` or `authored`, or `none` for a fabula
+with no source. A bank is asked when every key it names holds one of its words. So a fabulac's decompile bank says `for:
+{flavour: fabulac, source: [folder, none]}`, and an authored fabulac's bank `for: {flavour: fabulac, source: authored}`:
+an authored fabulac is never asked the questions of reading a program, and a decompiled one never the questions of
+authoring one. A `for` with nothing in it is asked of every volume of the format.
+
+**A bank asked in stages.** An entry may name its `stage`: the bank's stages are then asked one at a time, in the order
+they first appear among its entries, and the next is raised only when nothing of the last is open, nothing answered is
+left unsettled, and no field the last stage left `{pending: …}` is still unasked. An authored fabulac's bank, `to:
+author`, has six: `for` (what the program is for, for whom, its use and occasion, and its licence), `ways-in` (its
+interfaces), `needs` (what it needs and the settings it reads), `left-out` (what it leaves out on purpose, and what it
+must and must never do), `cases`, and `open` (which case checks each requirement it must meet, and its open decisions).
+An entry may also name `brief`: the headings of a person's brief whose items answer it by rule, each item under one of
+them written as one item of the kind the entry writes, its summary the brief's words, `stance: axiom`, its provenance
+naming the brief's lines. An entry whose kind a brief has already answered is not asked of an authored fabulac.
 
 **The older shape** keeps reading: `dialectic: {questions: {<letter>: ["…", …]}}` is one bank, named after the
 manifest, each string an entry `{about: <letter>, asks: <the string>, kind: text, why: missing}` with the bank's
@@ -4225,7 +4323,9 @@ purpose, `to: transconceiver`. The fabula carries three: **standing**, about the
 and the transconceiver's own standing to rule; **target**, the points a language is weighed on, asked once per
 `N:target`; and **rulings**, one question per interface, structure, behaviour, setting, reliance or case that has no
 ruling for the target in question, proposing a ruling for the transconceiver to accept or change. The riskiest are
-asked first, and a skipped question blocks the gate it belongs to (section 18.4.9). An entry may say `batch: true`: the
+asked first, and a skipped question blocks the gate it belongs to (section 18.4.9). Each rulings question carries
+`proposed`, the ruling it proposes and the target and part it is for, `kept` where nothing was proposed before; the
+person answers `as proposed`, or with a ruling's word and what that word needs. An entry may say `batch: true`: the
 question then names in `batch` the alike things it asks about together, and one answer writes the same ruling into
 each, every one recorded with the answer's session. A difference the judge finds between an entailment and the original
 that no ruling covers comes back as a question about the case's ruling, `why: conflict`, quoting both, so that it is
@@ -4712,20 +4812,33 @@ language through its fabulac.
    person did not author, is still read and never run, as ruled on 2026-11-05.
 3. **Cases as the judge** (sections 18.4.2, 18.4.7 and 18.4.8). A `P:case` written as data for a command or a function
    can be run; tests are entailed from such cases by rules, never by the model that writes the code. New checks
-   `cases-entailed` and `requirement-cased`.
+   `cases-entailed` and `requirement-cased`. A command case may name `cwd`, and `<CASE>` stands for its own folder; a
+   function case calls by keyword, and its error matches by class or a class that comes from it, its message exactly.
+   The entailment's folder holds `tests/__init__.py`, and `tests/test_prose_cases.py` when a case is prose;
+   `ENTAILED.md`'s footer is `*an entailment of <file>, in Python, entailed on <day> by <who>*`; a program with no
+   release is version `0.0.0`. A case's `given` and `expect` are answered in words or in data (section 18.6.4).
 4. **Keeping in step** (section 18.4.1). The catalog's `entailed` records each file an entailment wrote, with its
    digest and the digest of what it was entailed from; entailing again tells only what moved, and a file edited by hand
-   is named, and is written over only with the person's word.
+   is named, and is written over only with the person's word. Six states, `kept` and `new` among them; `kept` entries
+   are `{path, decision}`, and a kept file's decision is in no file's brief; letting a file go tells it again; a file
+   taken back puts each item it adds or changes as a question, `take it back` or `leave it out`, with `proposed`.
 5. **The head fabulac** (sections 18.4, 18.4.1, 18.4.7 and 18.4.8, a new term). A program too large for one fabulac is
    told as parts under a head that names them, `parts` and `head` in the catalogs, and states once the interfaces
    between them; two programs are held to one interface by the same rule across two heads. New checks `parts-resolve`
-   and `interfaces-agree`. A fabula kept as a volume of several files stays reserved.
+   and `interfaces-agree`, over the fabulacs a reader knows: those in the head's folder and the three above it, and the
+   files `parts` names. A fabula kept as a volume of several files stays reserved.
 6. **Transconception** (section 18.4.9, new, and the new terms transconception and transconceiver). A program carried
    into another language through its fabulac: the transconceiver rules what is kept, the original judges, and the
    fabulac says what it leaned on. The ground and its citations to the language library, the licence's lane, cases
    recorded outside, evidence and its seven levels, the twelve points a target language is weighed on, three of them
    gates, thirteen checks and two gates, ready to keep and ready to entail into a named language. The closed list of
-   `alike` allowances gains a fifth, `own-types`, as the transconceiver ruled on 2026-11-18.
+   `alike` allowances gains a fifth, `own-types`, as the transconceiver ruled on 2026-11-18. The language library is
+   cited at its address, https://cosmoes.org/library/. A weighing again is `N:target/<language>-2`; the latest stands,
+   and rulings name the first; point 4 and the verdict follow by rule; `target-confirmed` reads the standing weighing,
+   its gate points and the reliances kept, and the spike's level on its own cases. A layout's tables and footer, and a
+   cshort's `CSHORT.md`, `NOTES.md`, `NOTICE` and `requests.jsonl`, are given; a cshort not yet judged says `evidence:
+   []`, and evidence holds only against the source it names. A ruling may rule a part of its thing (`about`) or, on a
+   case, some of its `steps`; one not yet made is pending.
 7. **The fabula's kinds** (section 18.4.2). New kinds `N:target`, `C:reliance` and `P:assumption`; the field `ruling`,
    with `made-for`, on interfaces, structures, behaviours, settings, reliances and cases; the plain kinds; new fields of
    `N:requirement`, `C:interface`, `C:component`, `C:structure`, `C:dependency`, `R:licence` and `P:case`; the capacity
@@ -4734,7 +4847,12 @@ language through its fabulac.
 8. **The dialectic** (section 18.6). The answerer `transconceiver`; a bank `for: {purpose: transconception}`, and the
    three banks standing, target and rulings; `batch`, one answer for many alike things; a difference the judge finds
    comes back as a question, `why: conflict`. A bank entry may say `model-stands-in: true`, a generic question whose
-   place a model's own questions take (section 18.6.6).
+   place a model's own questions take (section 18.6.6). A question may carry `proposed`, what it proposes for the
+   person to accept or change (section 18.6.2). A bank is chosen by `flavour`, `purpose` and the kind of `source`, so
+   an authored fabulac has a bank of its own, `for: {flavour: fabulac, source: authored}`, and the decompile bank says
+   `source: [folder, none]`; an entry may name its `stage`, and a bank so marked is asked a stage at a time, and its
+   `brief`, the headings of a brief that answer it by rule; the entry fields `sets` and `only-where` are written down.
+   "I don't know" to a ruling leaves it pending (section 18.6.4).
 9. **The fabulap** (sections 18.4.2 and 18.4.6). A form's rule that rules cannot read is `held: {pending}` and asked.
    A form's `scheme` is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the
    bank's `breaks` or `stanza` writes the answerer's `P:reading` of those lines or stanzas.
