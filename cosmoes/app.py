@@ -8,7 +8,8 @@ whose host is `<sub>.cosmoes.org` is served at that subdomain. Today:
                             library: /library/, /library/<shelf>/, /library/<shelf>/<text>/<version>/ (the text's
                             contents and notice), …/<page> (a page, with the notice), …/raw/<path> (the publisher's
                             file byte for byte, as plain text when a browser would run it), …/NOTICE, …/FETCHED,
-                            …/SHA256SUMS (cosmoes/library.py; library/README.md)
+                            …/SHA256SUMS, /library/library.json (the registry byte for
+                            byte, for apps that fetch a text on demand) (cosmoes/library.py; library/README.md)
     macro.cosmoes.org       MacroCOSM OES          /  (short)   /atem   /fabula   /manifest.json   /raw/*   /docs.css
     thym.cosmoes.org        Thym                   the same
     ascribe.cosmoes.org     Ascribe                the same
@@ -333,6 +334,16 @@ def create_app(specs_folder: Path | str | None = None, library_folder: Path | st
         return lib_page(request, 'library_shelves.html', [], shelves=shelves,
                         description='The languages and standards the fabulacs lean on, kept in their publishers\' '
                                     'own words with their licences.')
+
+    @get('/library/library.json')
+    def library_registry(request: Request):
+        """The registry byte for byte (shelves, kept texts with their digests, pins), for the apps that fetch a kept
+        text on demand: an entry's `digest` is the sha256 of its SHA256SUMS, which lists every file under raw/. Served
+        only when it validates; never on a document host."""
+        body = library.load().registry_bytes if on_apex(request) else None
+        if body is None:
+            return not_found(request)
+        return Response(body, media_type='application/json', headers={'Access-Control-Allow-Origin': '*'})
 
     @get('/library/{shelf}')
     def library_shelf_bare(request: Request, shelf: str):

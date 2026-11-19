@@ -162,12 +162,49 @@ def test_the_raw_route_refuses_what_is_not_a_kept_file(site):
         assert site.get(APEX, url(e, bad)).status_code == 404, bad
 
 
+def test_the_registry_is_served_byte_for_byte(site):
+    r = site.get(APEX, '/library/library.json')
+    assert r.status_code == 200
+    assert r.content == (FIXTURE / 'library.json').read_bytes()
+    assert r.headers['content-type'] == 'application/json'
+    assert r.headers['access-control-allow-origin'] == '*'
+    assert site.get(APEX, '/library/library.json/').status_code == 404
+
+
+def test_a_kept_text_can_be_fetched_whole_from_the_registry_its_sums_and_raw(site, tmp_path):
+    """What an app fetching on demand does: library.json, then for a kept entry its SHA256SUMS (whose sha256 is the
+    entry's digest), NOTICE and FETCHED, and every file the sums list from raw/; the copy verifies."""
+    import hashlib
+    import json
+    reg = json.loads(site.get(APEX, '/library/library.json').content)
+    for e in [x for x in reg['texts'] if x['aboard']]:
+        dest = tmp_path / e['shelf'] / e['text'] / e['version']
+        sums = site.get(APEX, url(e, 'SHA256SUMS')).content
+        assert 'sha256:' + hashlib.sha256(sums).hexdigest() == e['digest']
+        for name in ('NOTICE', 'FETCHED'):
+            (dest / name).parent.mkdir(parents=True, exist_ok=True)
+            (dest / name).write_bytes(site.get(APEX, url(e, name)).content)
+        (dest / 'SHA256SUMS').write_bytes(sums)
+        for line in sums.decode().splitlines():
+            rel = line.split('  ', 1)[1]
+            body = site.get(APEX, url(e, 'raw/' + rel[len('files/'):])).content
+            (dest / rel).parent.mkdir(parents=True, exist_ok=True)
+            (dest / rel).write_bytes(body)
+        assert L.verify(dest, e) == []
+
+
+def test_a_registry_that_does_not_validate_is_not_served(export, lib):
+    p = lib / 'library.json'
+    p.write_text(p.read_text().replace('"format": "cosmoes-library/1"', '"format": "other/9"'))
+    assert Site(export, library=lib).get(APEX, '/library/library.json').status_code == 404
+
+
 # ----------------------------------------------------------------------------- the apex only, and what is refused
 
 def test_the_library_is_on_the_apex_only(site):
     e = KEPT[0]
     for host in ('thym.cosmoes.org', 'macro.cosmoes.org'):
-        for path in ('/library/', '/library/example/', url(e), url(e, 'index'), url(e, 'raw/index.txt'), url(e, 'NOTICE')):
+        for path in ('/library/', '/library/library.json', '/library/example/', url(e), url(e, 'index'), url(e, 'raw/index.txt'), url(e, 'NOTICE')):
             assert site.get(host, path).status_code == 404, (host, path)
     assert site.get('localhost:8097', '/library/').status_code == 200        # a host outside the domain is the apex
 
