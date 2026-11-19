@@ -31,7 +31,11 @@ def test_the_fixture_and_the_real_registry_validate():
     real = L.load_registry(ROOT / 'library')
     assert L.validate_registry(real) == []
     assert real['format'] == L.FORMAT
-    assert [t for t in real['texts'] if t['aboard']] == []           # nothing kept until the owner's fetch
+    # every text aboard is the owner's fetch (scripts/fetch_library.py) and its folder verifies: the files against
+    # SHA256SUMS, FETCHED and NOTICE present (Python 3.13 since 2026-11-19)
+    for t in (t for t in real['texts'] if t['aboard']):
+        folder = ROOT / 'library' / t['shelf'] / t['text'] / t['version']
+        assert L.verify(folder, t) == [], (t['shelf'], t['text'], t['version'])
     assert {(t['shelf'], t['what']) for t in real['texts']} >= {('ieee-754', 'standard'), ('unicode', 'standard'),
                                                                ('ecmascript', 'tests'), ('python', 'implementation')}
     titles = {s['slug']: s['title'] for s in real['shelves']}
