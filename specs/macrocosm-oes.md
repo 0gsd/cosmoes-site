@@ -3677,8 +3677,8 @@ must run, each dependency with its meaning, its shapes, its budgets, who calls i
 
 **Which weighing stands.** A second weighing of a language is `N:target/<language>-2`, beside the first, and so on. The
 weighing that stands is the latest, by `at`, of those with a verdict: the target bank asks its points, and
-`target-confirmed` reads it. Rulings are made for the language's first `N:target` (`made-for`), whatever weighings
-follow, so that weighing again asks no ruling again. Point 4 is read by rules from `provides`: 0 when anything kept is
+`target-confirmed` reads it. Rulings are made for the language's first `N:target` (`made-for`), however often it is
+weighed after, so that weighing again asks no ruling again. Point 4 is read by rules from `provides`: 0 when anything kept is
 `cannot`, 2 when a gap is named, 3 otherwise. The verdict follows by rule: `not` when a gate scores 0, `feasible-with`
 when a gap or a condition is named, with one condition for each gap, and `feasible` otherwise. The spike's level is read
 from the runner's verdict on the spike's own cases alone (`spike.cases`), and the verdict's file is its `evidence`.
