@@ -958,6 +958,10 @@ inherits the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:ter
 <td>closed lists for the kind's own fields, <code>{&lt;field&gt;: [values]}</code>, applied to items of the kind over the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s <code>closed-lists</code> (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>)</td>
 </tr>
 <tr>
+<td><code>open</code></td>
+<td>the kind's fields that the manifest's <code>closed-lists</code> do not bind, a list: a field of one name may hold a closed word on one kind and something else on this one, as <code>scope</code> does on the fabula's <code>C:dependency</code> and its <code>C:lemma</code></td>
+</tr>
+<tr>
 <td>other keys</td>
 <td>what a format's own code needs: a <code>level</code>, an exception id form (<code>id: 'P:&lt;slug&gt;'</code>), <code>stored: database</code>, <code>public: never</code>, a <code>note</code></td>
 </tr>
@@ -1850,7 +1854,7 @@ manifests add. A reader keeps every key, including the ones it does not use.</p>
 </tr>
 <tr>
 <td><code>modules</code></td>
-<td>for each letter: <code>name</code>, <code>subtitle</code>, <code>note</code>, and <code>kinds</code>, each with <code>refs</code>, <code>required</code> (0.0.1), <code>checked</code>, <code>flavours</code> (the <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavours</a> that may hold the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a>), <code>closed</code> (closed lists for the kind's own fields, applied to its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> over <code>closed-lists</code>) and format-specific keys</td>
+<td>for each letter: <code>name</code>, <code>subtitle</code>, <code>note</code>, and <code>kinds</code>, each with <code>refs</code>, <code>required</code> (0.0.1), <code>checked</code>, <code>flavours</code> (the <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavours</a> that may hold the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a>), <code>closed</code> (closed lists for the kind's own fields, applied to its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> over <code>closed-lists</code>), <code>open</code> (the kind's fields that <code>closed-lists</code> do not bind) and format-specific keys</td>
 <td><code>type</code>, <code>type-prefix</code>, the reference checks, <code>closed-list</code>, <code>flavour-kind</code>, the viewer's rail</td>
 </tr>
 <tr>
@@ -1937,9 +1941,9 @@ keeps it in the manifest for the code that renders it, and neither lists it amon
 (<a class="ref-xref" href="#docs-sec-14-3">section 14.3</a>).</li>
 </ul>
 <p>The <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a> adds further optional keys, read the same way: <code>core</code>; <code>declaration.old</code>; <code>catalog.id-old</code>; a kind's
-<code>flavours</code> and <code>closed</code>; <code>checks.own</code> as a list; <code>dialectic</code>; and the core's module D (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>). A reader that
-does not know them keeps them. Without them it refuses an <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> and leaves module D undeclared, and every file it
-read before still reads.</p>
+<code>flavours</code>, <code>closed</code> and <code>open</code>; <code>checks.own</code> as a list; <code>dialectic</code>; and the core's module D (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>). A reader
+that does not know them keeps them. Without them it refuses an <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> and leaves module D undeclared, and every
+file it read before still reads.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13.6" data-scope="">
 <h3 id="docs-sec-13-6" data-toc="3">13.6 The registry</h3>
@@ -2304,9 +2308,9 @@ that a reader always has them, and that reading their <a class="docs-term" href=
 <tr>
 <td><code>fabula</code></td>
 <td><code>oes: fabula/1</code>; <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> <code>oes: emf/1</code></td>
-<td>one input decompiled, a text, a poem or a folder of code: everything found in it or derived from it, <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> by item</td>
+<td>one input decompiled, a text, a poem, a folder of code or a formal proof: everything found in it or derived from it, <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> by item</td>
 <td>one file, beside its input</td>
-<td><code>&lt;text&gt;.fabulan.cosm</code>, <code>&lt;text&gt;.fabulap.cosm</code>, <code>&lt;folder&gt;.fabulac.cosm</code>; an older <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a>'s <code>&lt;text&gt;.cosm</code></td>
+<td><code>&lt;text&gt;.fabulan.cosm</code>, <code>&lt;text&gt;.fabulap.cosm</code>, <code>&lt;folder&gt;.fabulac.cosm</code>, <code>&lt;name&gt;.fabulam.cosm</code>; an older <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a>'s <code>&lt;text&gt;.cosm</code></td>
 <td>I L E K N C R P T X</td>
 <td>18.4</td>
 </tr>
@@ -2342,7 +2346,7 @@ Where a program or a trace names the move <code>tell</code>, it names <code>enta
 derived from it, enumerated item by item. To compile is to make a <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a> of a fabula, its items said again in an
 order. The plainest thing that can be said of either is an <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>. These are three densities of one meaning: the fabula is the material, a
 short is one arrangement of it, and an atem is a reduction, with a hermeneutic shape of its own (<a class="ref-xref" href="#docs-sec-18-3-5">section 18.3.5</a>). For
-code each density has a form of its own:</p>
+code and for a proof each density has a form of its own:</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -2350,6 +2354,7 @@ code each density has a form of its own:</p>
 <th>Density</th>
 <th>Prose and verse</th>
 <th>Code</th>
+<th>Proof</th>
 </tr>
 </thead>
 <tbody>
@@ -2357,29 +2362,33 @@ code each density has a form of its own:</p>
 <td>the input</td>
 <td>a text: an essay, a story, a poem, a song</td>
 <td>a folder of source, or none, when the <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> is authored</td>
+<td>one file of a formal proof's source, read as text</td>
 </tr>
 <tr>
 <td>fabula</td>
 <td>a <code>fabulan</code> (narrative and non-fiction prose) or a <code>fabulap</code> (poetry, metered verse, song lyrics)</td>
 <td>a <code>fabulac</code>: the program's specification, item by item</td>
+<td>a <code>fabulam</code>: the proof taken apart, each item tied to the source by name and <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a></td>
 </tr>
 <tr>
 <td>short</td>
 <td>a short: an entailment of the fabula in markdown, its items in an order (<a class="ref-xref" href="#docs-sec-18-4-4">section 18.4.4</a>)</td>
 <td>a <code>cshort</code>: source code rebuilt from the fabulac, to be read and never run; or, from an <a class="docs-term" href="#docs-item-t-term-authored-fabulac" data-term="T:term/authored-fabulac" title="An authored fabulac is a fabulac a person wrote before the program">authored fabulac</a>, its entailment, source code meant to run, which may be run only in a sandbox (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
+<td>a <code>pshort</code>: a guide to the proof in markdown, written for an expert, a student or everyone, each run of its sentences citing the <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>'s items (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
 </tr>
 <tr>
 <td>atem</td>
-<td>the atem: a <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">line</a>, with its <a class="docs-term" href="#docs-item-t-term-focus" data-term="T:term/focus" title="at most two sentences">focus</a>, <a class="docs-term" href="#docs-item-t-term-push" data-term="T:term/push" title="one sentence: what the author wants the reader to take away, believe or do">push</a> and <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a></td>
+<td>the atem: a line, with its <a class="docs-term" href="#docs-item-t-term-focus" data-term="T:term/focus" title="at most two sentences">focus</a>, <a class="docs-term" href="#docs-item-t-term-push" data-term="T:term/push" title="one sentence: what the author wants the reader to take away, believe or do">push</a> and <a class="docs-term" href="#docs-item-t-term-pull" data-term="T:term/pull" title="one sentence: what the reader should actually take away">pull</a></td>
 <td>the atem, as for any fabula; and a <code>catem</code>, a text saying everything a user can do with the program, at the depth <code>line</code>, <code>overview</code> or <code>manual</code></td>
+<td>the atem, its line restating one statement of the proof</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The flavour is a property of the fabula, named in its catalog; one format, <code>fabula/1</code>, holds all three (<a class="ref-xref" href="#docs-sec-18-4">section 18.4</a>).
+<p>The flavour is a property of the fabula, named in its catalog; one format, <code>fabula/1</code>, holds all four (<a class="ref-xref" href="#docs-sec-18-4">section 18.4</a>).
 A running program is outside the model: nothing in the core runs a <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a>, imports it or installs it. The one exception
 is the entailment of a fabulac a person authored, which an implementation may run in a sandbox, under the rule of
-<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>.</p>
+<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>. A proof's source is read as text, and nothing of it is installed, built or run (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>).</p>
 <p>An <strong>entailment</strong> is the step that expands meaning by reducing data, and it is also what that step makes. The whole
 entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a codebase or an
 application entails its fabulac, and a fabulac a cshort or a <a class="docs-term" href="#docs-item-t-term-catem" data-term="T:term/catem" title="A catem is a fabulac's atem at depth">catem</a>; a Holotype entails its <a class="docs-term" href="#docs-item-t-term-isotype" data-term="T:term/isotype" title="a small public projection of the Holotype">isotype</a> and its paratype, and a
@@ -2785,7 +2794,8 @@ file's atem line onto the file's item.</li>
 Imports, ingests, listings and reconciles never make one.</li>
 <li><strong>Without a model,</strong> enough writes a labelled scaffold: the line is the passage's first sentence, cut to 25 words; the
 focus is its first two sentences; push and pull are <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open questions</a>, <code>{pending: &quot;a model has not read this passage&quot;}</code>;
-the twin records <code>derived.mode: rules</code>, and the card says &quot;scaffold, no model&quot;.</li>
+the twin records <code>derived.mode: rules</code>, and the card says &quot;scaffold, no model&quot;. The sentences are read by the one
+rule of Thym (https://thym.cosmoes.org/), its section 12.6.</li>
 </ul>
 </section>
 <section class="docs-sec" data-key="S:section/18.3.6" data-scope="">
@@ -2872,8 +2882,8 @@ nodes:
 </section>
 <section class="docs-sec" data-key="S:section/18.4" data-scope="">
 <h3 id="docs-sec-18-4" data-toc="3">18.4 fabula: the fabula</h3>
-<p><strong>What it enumerates.</strong> One input, a text, a poem or a folder of source code, taken apart into everything found in it
-or derived from it.</p>
+<p><strong>What it enumerates.</strong> One input, a text, a poem, a folder of source code or a formal proof, taken apart into
+everything found in it or derived from it.</p>
 <p>A <strong>fabula</strong> enumerates all the inspiration, meaning, intent, construction, production and assertions that can be found
 in an input or derived from it: what the work came from; the words it leans on, the particular things and people it
 names and the ideas it uses; what it sets out to do, for whom, and what it chose; how it is built; who made it, with
@@ -2885,22 +2895,24 @@ word comes from.</p>
 entails it, and it entails its shorts and its atem:</p>
 <ul>
 <li><strong>decompiling</strong> an input makes its fabula;</li>
-<li><strong>compiling</strong> a fabula makes a short, an entailment of it (<a class="ref-xref" href="#docs-sec-18-4-4">section 18.4.4</a>), and for code a <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a>, source rebuilt
-from it (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>);</li>
+<li><strong>compiling</strong> a fabula makes a short, an entailment of it (<a class="ref-xref" href="#docs-sec-18-4-4">section 18.4.4</a>), for code a <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a>, source rebuilt
+from it (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>), and for a proof a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a>, a guide to it (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>);</li>
 <li>an <strong>atem</strong> says it most plainly (<a class="ref-xref" href="#docs-sec-18-3-5">section 18.3.5</a>), and for code a <a class="docs-term" href="#docs-item-t-term-catem" data-term="T:term/catem" title="A catem is a fabulac's atem at depth">catem</a> says at depth everything a user can do
 (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>).</li>
 </ul>
 <p>In a Thym program the two acts are the moves <code>derive</code> and <code>entail</code> (Thym (https://thym.cosmoes.org/), its section 6; for
-a folder of code, its section 20).</p>
-<p><strong>Three flavours.</strong> One <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> serves three <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a> of input. A fabula's flavour says which, in the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>flavour</code>
+a folder of code and for a proof, its section 20).</p>
+<p><strong>Four flavours.</strong> One <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> serves four <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a> of input. A fabula's flavour says which, in the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>flavour</code>
 key, and every <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> and kind of <a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a> says which flavours may hold it.</p>
-<p>A fabula's <strong>flavour</strong> is the kind of input it is the fabula of, from a closed list of three: <code>fabulan</code>, <code>fabulap</code> and
-<code>fabulac</code>. A fabula that names no flavour is a fabulan.</p>
+<p>A fabula's <strong>flavour</strong> is the kind of input it is the fabula of, from a closed list of four: <code>fabulan</code>, <code>fabulap</code>,
+<code>fabulac</code> and <code>fabulam</code>. A fabula that names no flavour is a fabulan.</p>
 <p>A <strong>fabulan</strong> is the fabula of narrative or non-fiction prose: an essay, a guide, a story, a report, a page of notes.</p>
 <p>A <strong>fabulap</strong> is the fabula of poetry, metered verse or song lyrics. It adds <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">the lines</a>, the metre, the rhymes and the
 form, and lets several readings of one line stand side by side (<a class="ref-xref" href="#docs-sec-18-4-6">section 18.4.6</a>).</p>
 <p>A <strong>fabulac</strong> is the fabula of code: a folder of source, enumerated as the specification of the program it holds, or a
 program not yet written, authored as its specification (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>).</p>
+<p>The fourth flavour, the <strong><a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a></strong>, is the fabula of a formal proof: one file of the proof's source, enumerated as
+the argument it holds. <a class="ref-xref" href="#docs-sec-18-4-10">Section 18.4.10</a> defines it, with the pshort it entails.</p>
 <p><strong>Its declaration.</strong> <code>oes: fabula/1</code>. The fabula is one of the <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="A built-in is a kind of volume the core defines">built-ins</a> of the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a> (<a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>), and its <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>
 ships with every reader. There is no legacy form, and a catalog without the key is refused. The fabula was first
 published under the declaration <code>oes: emf/1</code>. That value is an <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> of <code>fabula/1</code>: a reader identifies it as a
@@ -2909,7 +2921,9 @@ spelling never names a flavour. A writer writes <code>fabula/1</code> and never 
 it did not write: a file that declares <code>oes: emf/1</code> keeps saying so until its text is decompiled again.</p>
 <p><strong>Its <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a>.</strong> One file. A text's fabula kept beside it is the text's <strong>twin</strong>, named by adding the flavour and <code>.cosm</code>
 to the text's whole name: <code>close.md</code> and <code>close.md.fabulan.cosm</code>, a poem <code>rose.txt</code> and <code>rose.txt.fabulap.cosm</code>. A
-folder's fabulac sits beside the folder: <code>tool/</code> and <code>tool.fabulac.cosm</code>. A twin's <code>source:</code> names its input.</p>
+folder's fabulac sits beside the folder: <code>tool/</code> and <code>tool.fabulac.cosm</code>. A proof's fabulam takes a name of its own,
+<code>&lt;name&gt;.fabulam.cosm</code>, and sits beside the root folder of the proof's source, never inside it (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>). A
+twin's <code>source:</code> names its input.</p>
 <ul>
 <li><strong>A fabula is identified by its declaration, never by its file name.</strong> A twin named as the first edition named it,
 the text's whole name with <code>.cosm</code> added (<code>close.md.cosm</code>), is read forever.</li>
@@ -2918,16 +2932,20 @@ written under the new name, the old twin's <code>shorts:</code> list is carried 
 This is the same act as refreshing a twin in place, under the new name. Nothing else ever renames or removes a twin.</li>
 <li><strong>Two names at once.</strong> If both <code>close.md.fabulan.cosm</code> and <code>close.md.cosm</code> exist, the one named with its flavour is
 the twin, and the old one is listed as an ordinary file with a note saying so. A text may have one twin per flavour.</li>
-<li><strong>A standalone fabula</strong> has no <code>source:</code> and is named <code>&lt;name&gt;.fabulan.cosm</code>, <code>&lt;name&gt;.fabulap.cosm</code> or
-<code>&lt;name&gt;.fabulac.cosm</code>; an old standalone <code>&lt;name&gt;.cosm</code> reads. It is read the same way as a twin.</li>
+<li><strong>A standalone fabula</strong> has no <code>source:</code> and is named <code>&lt;name&gt;.fabulan.cosm</code>, <code>&lt;name&gt;.fabulap.cosm</code>,
+<code>&lt;name&gt;.fabulac.cosm</code> or <code>&lt;name&gt;.fabulam.cosm</code>; an old standalone <code>&lt;name&gt;.cosm</code> reads. It is read the same way as a
+twin.</li>
 <li><strong>One file, however large.</strong> A fabulac is one file whatever the size of its folder. A program too large for one
-fabulac is told as several, each one file, under a <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> that names them (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). A fabula kept as a
+fabulac is told as several, each one file, under a <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> that names them (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). A proof of several
+files is told the same way: one fabulam for each file, under a head fabulam (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>). A fabula kept as a
 volume of several files is reserved for a later edition.</li>
 <li><strong>An <a class="docs-term" href="#docs-item-t-term-authored-fabulac" data-term="T:term/authored-fabulac" title="An authored fabulac is a fabulac a person wrote before the program">authored fabulac</a>'s folder.</strong> The folder beside an authored fabulac, of the same name, is its entailment, not its
 source (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). It is never decompiled into a fabulac of its own: a builder asked to decompile it refuses,
 and says that the fabulac beside it is authored.</li>
 <li><strong>The flavour of a text</strong> is the person's choice when the text is decompiled. An implementation may suggest
-<code>fabulap</code> for a text that looks like verse (short lines, stanza breaks, no headings) and <code>fabulan</code> otherwise.</li>
+<code>fabulap</code> for a text that looks like verse (short lines, stanza breaks, no headings) and <code>fabulan</code> otherwise. It
+never offers <code>fabulam</code> for a text: a fabulam is made only from a file in a proof language the implementation reads
+(<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>).</li>
 </ul>
 </section>
 <section class="docs-sec" data-key="S:section/18.4.1" data-scope="">
@@ -2956,7 +2974,7 @@ and says that the fabulac beside it is authored.</li>
 <tr>
 <td><code>flavour</code></td>
 <td>all</td>
-<td><code>fabulan</code>, <code>fabulap</code> or <code>fabulac</code>; absent, <code>fabulan</code></td>
+<td><code>fabulan</code>, <code>fabulap</code>, <code>fabulac</code> or <code>fabulam</code>; absent, <code>fabulan</code></td>
 </tr>
 <tr>
 <td><code>purpose</code></td>
@@ -2986,7 +3004,7 @@ and says that the fabulac beside it is authored.</li>
 <tr>
 <td><code>source</code></td>
 <td>all</td>
-<td>the input, in one of the three forms below; absent for a standalone <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a></td>
+<td>the input, in one of the four forms below; absent for a standalone <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a></td>
 </tr>
 <tr>
 <td><code>derived</code></td>
@@ -3000,18 +3018,28 @@ and says that the fabulac beside it is authored.</li>
 </tr>
 <tr>
 <td><code>head</code></td>
-<td>fabulac</td>
-<td>for a <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a>, the URI of its <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
+<td>fabulac, <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a></td>
+<td>for a <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a>, the URI of its <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>) or its head fabulam (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
 </tr>
 <tr>
 <td><code>parts</code></td>
-<td>fabulac</td>
-<td>for a head, its parts: a list of <code>{uri, path, sha256}</code> (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
+<td>fabulac, fabulam</td>
+<td>for a head, its parts: a list of <code>{uri, path, sha256}</code> (<a class="ref-xref" href="#docs-sec-18-4-7">sections 18.4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>)</td>
 </tr>
 <tr>
 <td><code>atem</code></td>
 <td>all</td>
-<td>the whole input's <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>: <code>{line, focus, push, pull}</code> (<a class="ref-xref" href="#docs-sec-18-3-5">section 18.3.5</a>). Every fabula has one, a fabulac too</td>
+<td>the whole input's <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>: <code>{line, focus, push, pull}</code> (<a class="ref-xref" href="#docs-sec-18-3-5">section 18.3.5</a>). Every fabula has one, a fabulac too. A fabulam's also carries <code>of</code>, <em>ref</em> the <code>C:statement</code> its <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">line</a> restates, or, in a part that holds no statement, one of the part's own declaration <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a></td>
+</tr>
+<tr>
+<td><code>teaching</code></td>
+<td>fabulam</td>
+<td>the teaching order: the ids of the argument's stages, in the order a teacher would tell them (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>fabulam</td>
+<td>the comment table: one row for each comment of the source (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
 </tr>
 <tr>
 <td><code>shorts</code></td>
@@ -3036,12 +3064,12 @@ and says that the fabulac beside it is authored.</li>
 <tr>
 <td><code>nodes</code></td>
 <td>all</td>
-<td>the <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a></td>
+<td>the items</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><strong><code>source</code></strong>, in one of three forms:</p>
+<p><strong><code>source</code></strong>, in one of four forms:</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -3059,7 +3087,7 @@ and says that the fabulac beside it is authored.</li>
 </tr>
 <tr>
 <td>a folder (fabulac only)</td>
-<td><code>path</code>, the folder relative to the fabula, ending <code>/</code>; <code>kind: folder</code>; <code>language</code> (<code>python</code> in this edition); <code>files</code>, <code>bytes</code> and <code>skipped</code>, the counts of the files read; <code>tree</code>, the tree digest (below); <code>commit</code>, the hash of the commit checked out, when the folder is a clean git clone, and absent otherwise; <code>origin</code>, the clone's remote address, when known; <code>licence</code>, the licence's standard short identifier (<code>MIT</code>), else the first <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">line</a> of the licence file, else <code>{pending: &quot;…&quot;}</code>; <code>obtained</code>, how the folder came to whoever decompiled it, one of <code>public</code> (published for anyone to read), <code>permitted</code> (given with its holder's leave) or <code>own</code> (their own code), absent until said</td>
+<td><code>path</code>, the folder relative to the fabula, ending <code>/</code>; <code>kind: folder</code>; <code>language</code> (<code>python</code> in this edition); <code>files</code>, <code>bytes</code> and <code>skipped</code>, the counts of the files read; <code>tree</code>, the tree digest (below); <code>commit</code>, the hash of the commit checked out, when the folder is a clean git clone, and absent otherwise; <code>origin</code>, the clone's remote address, when known; <code>licence</code>, the licence's standard short identifier (<code>MIT</code>), else the first line of the licence file, else <code>{pending: &quot;…&quot;}</code>; <code>obtained</code>, how the folder came to whoever decompiled it, one of <code>public</code> (published for anyone to read), <code>permitted</code> (given with its holder's leave) or <code>own</code> (their own code), absent until said</td>
 <td><code>{path: days/, kind: folder, language: python, files: 3, bytes: 2988, skipped: 0, tree: c9c7…0900, licence: MIT}</code></td>
 </tr>
 <tr>
@@ -3067,13 +3095,21 @@ and says that the fabulac beside it is authored.</li>
 <td><code>kind: authored</code>; <code>language</code>, the language its entailments are written in (<code>python</code> in this edition); <code>licence</code>, the terms on which its author offers it, as a folder's <code>licence</code> is written; <code>by</code>, <em>refs</em> <code>R:maker</code>, who authored it; <code>at</code>, the day it was begun; <code>brief</code>, the path of the written brief it was begun from, relative to the fabulac, absent when it was begun from <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">questions</a> alone</td>
 <td><code>{kind: authored, language: python, licence: MIT, by: [R:maker/author], at: 2026-11-20, brief: tally.brief.md}</code></td>
 </tr>
+<tr>
+<td>a proof's file (fabulam only)</td>
+<td><code>path</code>, the file relative to the fabulam; <code>kind: text</code>; <code>language</code> (<code>lean</code> in this edition); <code>toolchain</code>, the Lean version the source names, read from the nearest file of that name at or above the source, else <code>{pending: &quot;…&quot;}</code>; <code>module</code>, the file's dotted <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a> name; <code>lines</code>, <code>size</code> and <code>sha256</code>, of the file; <code>imports</code>, the modules it imports, as written, in order; <code>commit</code>, <code>origin</code>, <code>licence</code> and <code>obtained</code>, as a folder's are; <code>target</code>, the full names of the final theorems the fabulam tells, and <code>target-by</code>, <code>given</code> when the person named them and <code>rule</code> when the rule of <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a> found them; <code>wording</code>, the path of a public wording of the result, when the person gave one; <code>read</code>, how the file was read, and <code>checking</code>, what is known about its machine check (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+<td><code>{path: proofs/Primes.lean, kind: text, language: lean, lines: 120, sha256: 9c1e…40d2, licence: MIT, target: [&quot;Primes.infinite&quot;], target-by: rule, read: {by: rules, elaborated: &quot;no&quot;, comments: blanked}, checking: {sorry: 0, axioms: 0, native-decide: 0, built-here: &quot;no&quot;}}</code></td>
+</tr>
 </tbody>
 </table>
 </div>
 <p>A fabulan's or a fabulap's source is always a text. A fabulac's is a folder when the fabulac was decompiled from one,
 and the authored form when a person wrote the fabulac first, with no program behind it: an authored fabulac is its own
 source, and the program is entailed from it (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). An authored fabulac whose parts were later taken back
-from code keeps the authored form; the items taken back say so in their own <code>stance</code> and <code>provenance</code>.</p>
+from code keeps the authored form; the items taken back say so in their own <code>stance</code> and <code>provenance</code>. A fabulam's
+source is the one file it was read from. A head fabulam's is the folder its parts' files lie in, in the folder form,
+with <code>toolchain</code>, <code>target</code>, <code>target-by</code>, <code>wording</code>, <code>read</code> and <code>checking</code> as a proof's file has them (<a class="ref-xref" href="#docs-sec-18-4-10">section
+18.4.10</a>).</p>
 <p><strong><code>derived</code></strong> says how the fabula was made. Its single keys describe the last run that derived the fabula from its
 source; a run that only settles the <a class="docs-term" href="#docs-item-t-term-dialectic" data-term="T:term/dialectic" title="The dialectic is the core's one primitive for asking a person what a source means…">dialectic</a>'s answers (<a class="ref-xref" href="#docs-sec-18-6-4">section 18.6.4</a>) changes none of them:</p>
 <div class="docs-table">
@@ -3179,6 +3215,11 @@ appends its runs. The single keys repeat the last entry that derived the fabula,
 <td>the files, parts and names a cshort in another language will have, written before its code; the path is <code>&lt;name&gt;.layout-&lt;language&gt;-&lt;YYYY-MM-DD-HHMM&gt;.md</code> (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>)</td>
 </tr>
 <tr>
+<td><code>shorts</code>, a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a></td>
+<td><code>{path, at, by, mode, route, density, entailed}</code></td>
+<td><code>density</code> is <code>expert</code>, <code>student</code> or <code>everyone</code>; <code>entailed</code> is <code>apart</code>, since a pshort is entailed from the fabulam alone; the path is <code>&lt;name&gt;.pshort-&lt;density&gt;-&lt;YYYY-MM-DD-HHMM&gt;.md</code>, beside the fabulam, taking <code>-2</code>, <code>-3</code> on a collision as shorts do (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+</tr>
+<tr>
 <td><code>catems</code></td>
 <td><code>{path, at, by, mode, route, depth}</code></td>
 <td><code>depth</code> is <code>line</code>, <code>overview</code> or <code>manual</code>; the path is <code>&lt;name&gt;.catem-&lt;YYYY-MM-DD-HHMM&gt;.md</code>, taking <code>-2</code>, <code>-3</code> on a collision as shorts do (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>)</td>
@@ -3240,6 +3281,10 @@ modification time. The <strong>tree digest</strong> is computed exactly as follo
 </tbody>
 </table>
 </div>
+<p><strong>Fresh and stale, for a proof.</strong> A fabulam is <code>fresh</code> while its file's sha256 equals <code>source.sha256</code>, and <code>stale</code>
+otherwise; it is <code>absent</code> when its file is gone, and the fabulam is kept. A head fabulam is fresh while its folder's
+tree digest equals <code>source.tree</code>, as a fabulac is. A stale fabulam is kept and shown with its state, and a build of
+it starts again from its first stage.</p>
 <p><strong>Fresh and stale, for an authored fabulac.</strong> An authored fabulac is its own source, so it is never stale: there is no
 input it could fall behind. What can fall behind is its entailment, the folder entailed from it, and the <code>entailed</code> key
 says what that entailment wrote:</p>
@@ -3384,7 +3429,7 @@ from the fabulac.</li>
 <td>Construction</td>
 <td>construction</td>
 <td>how the work is built</td>
-<td>prose and verse: <code>part</code>, <code>device</code>, <code>voice</code>; verse only: <code>line</code>, <code>metre</code>, <code>rhyme</code>, <code>form</code>; code: <code>file</code>, <code>component</code>, <code>interface</code>, <code>structure</code>, <code>behaviour</code>, <code>dependency</code>, <code>setting</code>, <code>reliance</code></td>
+<td>prose and verse: <code>part</code>, <code>device</code>, <code>voice</code>; verse only: <code>line</code>, <code>metre</code>, <code>rhyme</code>, <code>form</code>; code: <code>file</code>, <code>component</code>, <code>interface</code>, <code>structure</code>, <code>behaviour</code>, <code>dependency</code>, <code>setting</code>, <code>reliance</code>; proof: <code>statement</code>, <code>definition</code>, <code>lemma</code>, <code>constant</code>, <code>step</code>, with <code>part</code>, <code>file</code>, <code>component</code>, <code>dependency</code> and <code>reliance</code></td>
 </tr>
 <tr>
 <td>R</td>
@@ -3397,8 +3442,8 @@ from the fabulac.</li>
 <td>P</td>
 <td>Propositions</td>
 <td>assertions</td>
-<td>what the work claims, how it can be read, what it must do, and what it takes to be true</td>
-<td><code>claim</code>, <code>reading</code>, <code>case</code>, <code>assumption</code></td>
+<td>what the work claims, how it can be read, what it must do, what it takes to be true, and, for a proof, what it delivers and how it fits a public wording</td>
+<td><code>claim</code>, <code>reading</code>, <code>case</code>, <code>assumption</code>, <code>yield</code>, <code>fit</code></td>
 </tr>
 <tr>
 <td>T</td>
@@ -3425,14 +3470,15 @@ from the fabulac.</li>
 </table>
 </div>
 <p>The modules L, E, K and X, and the kinds <code>P:claim</code> and <code>T:event</code>, are unchanged since the fabula's first edition, in
-their <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a> and their closed lists, so that every file that declares <code>oes: emf/1</code> is a valid <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a>.</p>
+their <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a> and their closed lists, so that every file that declares <code>oes: emf/1</code> is a valid <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a>. The fields a
+<a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a> adds to a claim are read in a fabulam alone.</p>
 <p>A <strong>mefa</strong> is the smallest unit of meaning in a fabula: one item, one entry of one kind in one module, such as a
 requirement, a case, a reliance or an event, which carries meaning alone and is cited by its address (<a class="ref-xref" href="#docs-sec-11-2">section 11.2</a>)
 inside its <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> and by its URI (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>) outside it. The fabula is the whole; a mefa is one of its items. The
 word began as the letters of <em>meaning enumeration foundation atom</em>.</p>
-<p><strong>Every kind.</strong> In the table, n is fabulan, p <a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a> and c <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. A <a class="docs-term" href="#docs-item-t-term-reference" data-term="T:term/reference" title="an id written in a reference field: a foreign key">reference</a> field is checked like every reference
-(<a class="ref-xref" href="#docs-sec-9">section 9</a>); <code>roles.*</code> is the wildcard of <a class="ref-xref" href="#docs-sec-9-6">section 9.6</a>: a slot holds an item's id when the participant is an item of the
-fabula, and a literal otherwise.</p>
+<p><strong>Every kind.</strong> In the table, n is fabulan, p <a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a>, c <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> and m fabulam. A <a class="docs-term" href="#docs-item-t-term-reference" data-term="T:term/reference" title="an id written in a reference field: a foreign key">reference</a> field is checked like
+every reference (<a class="ref-xref" href="#docs-sec-9">section 9</a>); <code>roles.*</code> is the wildcard of <a class="ref-xref" href="#docs-sec-9-6">section 9.6</a>: a slot holds an item's id when the participant
+is an item of the fabula, and a literal otherwise.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -3469,28 +3515,28 @@ fabula, and a literal otherwise.</p>
 <tr>
 <td><code>L:term</code></td>
 <td>a word the work leans on</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td></td>
 <td><code>feed</code>, <code>sense</code></td>
 </tr>
 <tr>
 <td><code>E:person</code> <code>E:org</code> <code>E:place</code> <code>E:work</code> <code>E:thing</code></td>
 <td>a particular named thing or person</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>K:concept</code></td>
 <td>an idea or universal the work uses</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>defined-by</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>N:aim</code></td>
 <td>what the work sets out to do</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>roles.*</code></td>
 <td><code>stance</code>, <code>measure</code></td>
 </tr>
@@ -3518,9 +3564,9 @@ fabula, and a literal otherwise.</p>
 <tr>
 <td><code>N:decision</code></td>
 <td>a choice made between options</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>by</code>, <code>changed-in</code></td>
-<td><code>stance</code>, <code>chose</code>, <code>over</code>, <code>because</code></td>
+<td><code>stance</code>, <code>chose</code>, <code>over</code>, <code>because</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>N:exclusion</code></td>
@@ -3538,10 +3584,10 @@ fabula, and a literal otherwise.</p>
 </tr>
 <tr>
 <td><code>C:part</code></td>
-<td>a division of the text</td>
-<td>n p</td>
-<td><code>of</code></td>
-<td><code>stance</code>, <code>division</code>, <code>number</code>, <code>heading</code></td>
+<td>a division of the text; in a fabulam, one stage of the argument</td>
+<td>n p m</td>
+<td><code>of</code>, <code>steps</code></td>
+<td><code>stance</code>, <code>division</code>, <code>number</code>, <code>heading</code>, <code>stage</code>, <code>says</code>, <code>plain</code>, <code>plain-if</code>, <code>obvious</code>, <code>regime</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>C:device</code></td>
@@ -3587,17 +3633,17 @@ fabula, and a literal otherwise.</p>
 </tr>
 <tr>
 <td><code>C:file</code></td>
-<td>one file of the tree</td>
-<td>c</td>
+<td>one file of the tree; in a fabulam, the proof's file</td>
+<td>c m</td>
 <td><code>component</code></td>
-<td><code>stance</code>, <code>path</code>, <code>language</code>, <code>holds</code>, <code>length</code>, <code>sha256</code>, <code>entry</code></td>
+<td><code>stance</code>, <code>path</code>, <code>language</code>, <code>holds</code>, <code>length</code>, <code>sha256</code>, <code>entry</code>, <code>opens</code>, <code>limits</code></td>
 </tr>
 <tr>
 <td><code>C:component</code></td>
-<td>a package, module or group of files with one responsibility</td>
-<td>c</td>
-<td><code>files</code>, <code>of</code>, <code>exposes</code>, <code>uses</code></td>
-<td><code>stance</code>, <code>does</code>, <code>told-in</code></td>
+<td>a package, module or group of files with one responsibility; in a head fabulam, one <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a></td>
+<td>c m</td>
+<td><code>files</code>, <code>of</code>, <code>exposes</code>, <code>uses</code>, <code>offers</code></td>
+<td><code>stance</code>, <code>does</code>, <code>told-in</code>, <code>stages</code>, <code>counts</code>, <code>completeness</code></td>
 </tr>
 <tr>
 <td><code>C:interface</code></td>
@@ -3622,8 +3668,8 @@ fabula, and a literal otherwise.</p>
 </tr>
 <tr>
 <td><code>C:dependency</code></td>
-<td>something outside the tree that the code needs</td>
-<td>c</td>
+<td>something outside the tree that the code needs; in a fabulam, a library the proof imports</td>
+<td>c m</td>
 <td><code>used-by</code></td>
 <td><code>stance</code>, <code>package</code>, <code>version</code>, <code>scope</code>, <code>needed-for</code>, <code>licence</code>, <code>address</code>, <code>resolved</code>, <code>digest</code></td>
 </tr>
@@ -3636,15 +3682,15 @@ fabula, and a literal otherwise.</p>
 </tr>
 <tr>
 <td><code>C:reliance</code></td>
-<td>something the program leans on beneath its own code: a gift of its language, its runtime, its platform or a dependency (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>)</td>
-<td>c</td>
+<td>something the program leans on beneath its own code: a gift of its language, its runtime, its platform or a dependency (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); in a fabulam, a result from outside the file that the proof depends on (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+<td>c m</td>
 <td><code>of</code>, <code>used-by</code>, <code>shown-by</code></td>
-<td><code>stance</code>, <code>on</code>, <code>gives</code>, <code>example</code>, <code>entry</code>, <code>stated</code>, <code>contradicted-by</code>, <code>ruling</code></td>
+<td><code>stance</code>, <code>on</code>, <code>gives</code>, <code>example</code>, <code>entry</code>, <code>stated</code>, <code>contradicted-by</code>, <code>ruling</code>, <code>lean</code>, <code>known-as</code>, <code>field</code>, <code>case</code>, <code>stated-in</code>, <code>digest</code></td>
 </tr>
 <tr>
 <td><code>R:maker</code></td>
 <td>who made the work, and in what capacity</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>who</code></td>
 <td><code>stance</code>, <code>capacity</code></td>
 </tr>
@@ -3672,44 +3718,93 @@ fabula, and a literal otherwise.</p>
 <tr>
 <td><code>R:means</code></td>
 <td>a tool, method or material of production</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td></td>
 <td><code>stance</code>, <code>what</code>, <code>used-for</code>, <code>version</code></td>
 </tr>
 <tr>
 <td><code>R:licence</code></td>
 <td>the terms on which the work may be used</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td></td>
 <td><code>stance</code>, <code>identifier</code>, <code>file</code>, <code>holder</code>, <code>year</code>, <code>first-line</code>, <code>lane</code></td>
 </tr>
 <tr>
 <td><code>P:claim</code></td>
-<td>what the work claims, and how the text knows it</td>
-<td>n p c</td>
-<td><code>roles.*</code></td>
-<td><code>stance</code>, <code>salience</code>, <code>span</code></td>
+<td>what the work claims, and how the text knows it; in a fabulam, what a comment, a public wording or a person says about the proof that the source does not itself bear out</td>
+<td>n p c m</td>
+<td><code>roles.*</code>, <code>by</code></td>
+<td><code>stance</code>, <code>salience</code>, <code>span</code>, <code>about</code>, <code>checked</code>, <code>mismatch</code>, <code>short-of</code>, <code>false-as-written</code></td>
 </tr>
 <tr>
 <td><code>P:reading</code></td>
-<td>an interpretation the text supports and does not state</td>
-<td>n p</td>
+<td>an interpretation the text supports and does not state; in a fabulam, a key idea: why the proof works</td>
+<td>n p m</td>
 <td><code>of</code>, <code>grounds.of</code></td>
-<td><code>stance</code>, <code>whose</code>, <code>grounds</code>, <code>intended</code>, <code>span</code></td>
+<td><code>stance</code>, <code>whose</code>, <code>grounds</code>, <code>intended</code>, <code>span</code>, <code>regime</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>P:case</code></td>
-<td>an example: what is given and what is expected</td>
-<td>c</td>
+<td>an example: what is given and what is expected; in a fabulam, a worked example in numbers</td>
+<td>c m</td>
 <td><code>of</code></td>
 <td><code>stance</code>, <code>given</code>, <code>expect</code>, <code>span</code>, <code>stands</code>, <code>from</code>, <code>allowing</code>, <code>ruling</code></td>
 </tr>
 <tr>
 <td><code>P:assumption</code></td>
-<td>what the program takes to be true of its surroundings without checking it (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>)</td>
-<td>c</td>
+<td>what the program takes to be true of its surroundings without checking it (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); in a fabulam, what a final theorem takes as given, and that the file was read as text (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+<td>c m</td>
 <td><code>relied-by</code></td>
 <td><code>stance</code>, <code>about</code>, <code>checked</code>, <code>if-false</code>, <code>carries</code></td>
+</tr>
+<tr>
+<td><code>C:statement</code></td>
+<td>a final theorem of a proof: what the file sets out to prove</td>
+<td>m</td>
+<td><code>uses</code>, <code>leans-on</code>, <code>relates.to</code></td>
+<td><code>stance</code>, <code>lean</code>, <code>says</code>, <code>quantifiers</code>, <code>form</code>, <code>slack</code>, <code>reached</code>, <code>depth</code></td>
+</tr>
+<tr>
+<td><code>C:definition</code></td>
+<td>a declaration of a proof's file that defines something: a definition, a structure, a class, an instance, a notation</td>
+<td>m</td>
+<td><code>uses</code>, <code>used-by</code></td>
+<td><code>stance</code>, <code>lean</code>, <code>says</code>, <code>form</code>, <code>fields</code>, <code>reached</code>, <code>depth</code>, <code>carries</code>, <code>private</code></td>
+</tr>
+<tr>
+<td><code>C:lemma</code></td>
+<td>any other proved declaration of the file: a theorem or a lemma on the way to a final one</td>
+<td>m</td>
+<td><code>uses</code>, <code>used-by</code>, <code>leans-on</code></td>
+<td><code>stance</code>, <code>lean</code>, <code>says</code>, <code>form</code>, <code>role</code>, <code>method</code>, <code>why</code>, <code>slack</code>, <code>automation</code>, <code>scope</code>, <code>reached</code>, <code>depth</code>, <code>carries</code>, <code>private</code>, <code>proof</code>, <code>sorry</code></td>
+</tr>
+<tr>
+<td><code>C:constant</code></td>
+<td>a constant or a choice of parameter that the proof fixes: a threshold, an exponent, a multiplier</td>
+<td>m</td>
+<td><code>where</code></td>
+<td><code>stance</code>, <code>says</code>, <code>value</code>, <code>why</code></td>
+</tr>
+<tr>
+<td><code>C:step</code></td>
+<td>a step of a proof that a reader needs and that has no declaration of its own</td>
+<td>m</td>
+<td><code>inside</code></td>
+<td><code>stance</code>, <code>says</code>, <code>span</code></td>
+</tr>
+<tr>
+<td><code>P:yield</code></td>
+<td>what a statement's proof delivers, set against what the statement says</td>
+<td>m</td>
+<td><code>of</code>, <code>grounds.of</code>, <code>chooses.where</code></td>
+<td><code>stance</code>, <code>beyond</code>, <code>says</code>, <code>as-statement</code>, <code>needs</code>, <code>bound</code>, <code>chooses</code>, <code>trivial</code>, <code>no-trivial</code>, <code>grounds</code>, <code>confidence</code>, <code>regime</code></td>
+</tr>
+<tr>
+<td><code>P:fit</code></td>
+<td>how a statement compares with a public wording of the result</td>
+<td>m</td>
+<td><code>of</code>, <code>against</code></td>
+<td><code>stance</code>, <code>how</code>, <code>form-differences</code>, <code>differences</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>T:event</code></td>
@@ -3721,14 +3816,14 @@ fabula, and a literal otherwise.</p>
 <tr>
 <td><code>X:atem</code></td>
 <td>the atem of a passage</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>of</code></td>
 <td><code>line</code>, <code>focus</code>, <code>push</code>, <code>pull</code>, <code>span</code></td>
 </tr>
 <tr>
 <td><code>D:question</code> <code>D:session</code></td>
 <td>the dialectic's kinds (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>)</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td>as <a class="ref-xref" href="#docs-sec-18-6">section 18.6</a> says</td>
 <td>as <a class="ref-xref" href="#docs-sec-18-6">section 18.6</a> says</td>
 </tr>
@@ -3736,7 +3831,7 @@ fabula, and a literal otherwise.</p>
 </table>
 </div>
 <p>A kind outside the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s flavour is an error (<code>flavour-kind</code>, <a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>): a fabulan holds no <code>C:line</code>, a
-fabulap no <code>C:file</code>.</p>
+fabulap no <code>C:file</code>, a fabulac no <code>C:lemma</code>.</p>
 <p><strong>The common rules.</strong></p>
 <ul>
 <li><strong>Required.</strong> Every item carries the <a class="docs-term" href="#docs-item-t-term-envelope" data-term="T:term/envelope" title="the set of columns every item carries, whatever its kind">envelope</a>'s <code>id</code>, <code>type</code>, <code>name</code>, <code>summary</code> and <code>provenance</code>. Every item of the
@@ -3802,7 +3897,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:part</code></td>
-<td><strong><code>division</code></strong> [<code>chapter</code> <code>section</code> <code>paragraph</code> <code>scene</code> <code>list</code> <code>quotation</code> <code>stanza</code> <code>verse</code> <code>chorus</code> <code>refrain</code> <code>bridge</code> <code>other</code>]; <code>number</code> <em>integer</em>, its place among its siblings, from 1; <code>of</code> <em>ref</em> <code>C:part</code>, the <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> it sits in; <code>heading</code> <em>text</em></td>
+<td><strong><code>division</code></strong> [<code>chapter</code> <code>section</code> <code>paragraph</code> <code>scene</code> <code>list</code> <code>quotation</code> <code>stanza</code> <code>verse</code> <code>chorus</code> <code>refrain</code> <code>bridge</code> <code>stage</code> <code>other</code>], <code>stage</code> for a stage of a fabulam's argument; <code>number</code> <em>integer</em>, its place among its siblings, from 1; <code>of</code> <em>ref</em> <code>C:part</code>, the part it sits in; <code>heading</code> <em>text</em></td>
 </tr>
 <tr>
 <td><code>C:device</code></td>
@@ -3858,7 +3953,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:reliance</code></td>
-<td><strong><code>on</code></strong> [<code>language</code> <code>runtime</code> <code>platform</code> <code>dependency</code>]; <strong><code>gives</code></strong> <em>text</em>, what the program takes from it, in plain words that name neither the language nor the dependency; <strong><code>example</code></strong> <em>text</em>, one plain example of it; <code>of</code> <em>ref</em> (an <code>R:means</code> or a <code>C:dependency</code>), whose gift it is; <code>used-by</code> <em>refs</em> (<code>C:behaviour</code>, <code>C:interface</code>), what leans on it; <code>shown-by</code> <em>refs</em> <code>P:case</code>; <code>entry</code> <em>text</em>, the id of the ground catalog's entry it was copied from; <code>stated</code>, a list of where the gift is written (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); <code>contradicted-by</code> <code>{at, says}</code>, where a text says otherwise than the program does; <code>ruling</code> (below)</td>
+<td><strong><code>on</code></strong> [<code>language</code> <code>runtime</code> <code>platform</code> <code>dependency</code> <code>part</code>], <code>part</code> for a fabulam's reliance on another part; <strong><code>gives</code></strong> <em>text</em>, what the program takes from it, in plain words that name neither the language nor the dependency; <strong><code>example</code></strong> <em>text</em>, one plain example of it; <code>of</code> <em>ref</em> (an <code>R:means</code> or a <code>C:dependency</code>), whose gift it is; <code>used-by</code> <em>refs</em> (<code>C:behaviour</code>, <code>C:interface</code>), what leans on it; <code>shown-by</code> <em>refs</em> <code>P:case</code>; <code>entry</code> <em>text</em>, the id of the ground catalog's entry it was copied from; <code>stated</code>, a list of where the gift is written (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); <code>contradicted-by</code> <code>{at, says}</code>, where a text says otherwise than the program does; <code>ruling</code> (below)</td>
 </tr>
 <tr>
 <td><code>R:maker</code></td>
@@ -3890,11 +3985,71 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>P:case</code></td>
-<td><strong><code>of</code></strong> <em>refs</em> (<code>C:interface</code>, <code>C:behaviour</code>, <code>N:requirement</code>, <code>N:use</code>); <strong><code>given</code></strong>, a mapping of <code>calls</code>, <code>arguments</code>, <code>input</code>, <code>env</code>, <code>file</code>, <code>files</code>, <code>steps</code>; <strong><code>expect</code></strong>, a mapping of <code>value</code>, <code>output</code>, <code>error-output</code>, <code>exit</code>, <code>files</code>, <code>raises</code>, <code>steps</code>; written as data, a case can be run (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>); <code>stands</code> [<code>outside</code> <code>inside</code>], whether the case is judged at the program's boundary or by calling inside it; <code>from</code> [<code>test</code> <code>document</code> <code>recorded</code> <code>ruled</code>], where it came from; <code>allowing</code>, an allowance from the closed list of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>; <code>ruling</code> (below)</td>
+<td><strong><code>of</code></strong> <em>refs</em> (<code>C:interface</code>, <code>C:behaviour</code>, <code>N:requirement</code>, <code>N:use</code>); <strong><code>given</code></strong>, a mapping of <code>calls</code>, <code>arguments</code>, <code>input</code>, <code>env</code>, <code>file</code>, <code>files</code>, <code>steps</code>; <strong><code>expect</code></strong>, a mapping of <code>value</code>, <code>output</code>, <code>error-output</code>, <code>exit</code>, <code>files</code>, <code>raises</code>, <code>steps</code>; written as data, a case can be run (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>); <code>stands</code> [<code>outside</code> <code>inside</code>], whether the case is judged at the program's boundary or by calling inside it; <code>from</code> [<code>test</code> <code>document</code> <code>recorded</code> <code>ruled</code> <code>worked</code>], where it came from, <code>worked</code> for a fabulam's worked example; <code>allowing</code>, an allowance from the closed list of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>; <code>ruling</code> (below)</td>
 </tr>
 <tr>
 <td><code>P:assumption</code></td>
 <td><strong><code>about</code></strong> <em>text</em>, what is taken to be true; <strong><code>checked</code></strong> <em>bool</em>, whether the program <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="the constraints of the database, run over the whole volume">checks</a> it; <code>if-false</code> <em>text</em>, what happens when it does not hold; <code>relied-by</code> <em>refs</em>, the items that take it; <code>carries</code> [<code>must</code> <code>need-not</code>], whether an entailment must take it too</td>
+</tr>
+<tr>
+<td><code>C:statement</code></td>
+<td><strong><code>lean</code></strong> <em>text</em>, the declaration's full name as the source has it, always written in quotes; <strong><code>says</code></strong> <em>text</em>, the statement in full, in words and ordinary notation: every quantifier, hypothesis and constant in the order the source gives them, nothing left out and nothing added; <strong><code>quantifiers</code></strong>, the list in order, each <code>{kind, what}</code>, <code>kind</code> from [<code>for-all</code> <code>exists</code> <code>infinitely-many</code> <code>eventually</code>]; <code>form</code>, the keyword it is declared with; <code>uses</code> <em>refs</em>, the declarations it names, and <code>leans-on</code> <em>refs</em> <code>C:reliance</code>, both by rule; <code>relates</code>, only when the fabulam has two statements, <code>{to, how, says}</code>, <code>how</code> from [<code>implies</code> <code>special-case-of</code> <code>equivalent</code> <code>independent</code>]; <code>slack</code>, <code>reached</code> and <code>depth</code> (below)</td>
+</tr>
+<tr>
+<td><code>C:definition</code></td>
+<td><strong><code>lean</code></strong>; <strong><code>form</code></strong>, by rule, the keyword it is declared with, from the closed list below; <code>says</code> <em>text</em>, what it defines, in words; <code>fields</code>, for a structure or a class, a list of <code>{name, says}</code>; <code>uses</code>, <code>used-by</code> <em>refs</em>; <code>reached</code>, <code>depth</code>, <code>carries</code> and <code>private</code> <em>bool</em>, all by rule</td>
+</tr>
+<tr>
+<td><code>C:lemma</code></td>
+<td><strong><code>lean</code></strong>; <code>says</code> <em>text</em>, its statement in words; <code>form</code> [<code>theorem</code> <code>lemma</code> <code>instance</code> <code>example</code>]; <code>role</code> [<code>spine</code> <code>support</code> <code>bookkeeping</code>], <code>method</code> <em>text</em>, one sentence on how it is proved, <code>why</code> <em>text</em> and <code>slack</code>, a model's, and only on a lemma that is reached (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>); by rule: <code>uses</code>, <code>used-by</code> <em>refs</em>; <code>leans-on</code> <em>refs</em> <code>C:reliance</code>; <code>reached</code>; <code>depth</code> and <code>carries</code> <em>integer</em>; <code>private</code> <em>bool</em>; <code>proof</code> [<code>tactic</code> <code>term</code> <code>none</code>]; <code>sorry</code> <em>integer</em>, how often its proof holds an admitted gap; <code>automation</code>, the search tactics its proof calls, so that its <code>uses</code> may be short; <code>scope</code>, the lines of the variables declared around it, a field this kind leaves open (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>)</td>
+</tr>
+<tr>
+<td><code>C:constant</code></td>
+<td><strong><code>says</code></strong> <em>text</em>; <strong><code>where</code></strong> <em>refs</em>, the item or items that hold it; <code>value</code> <em>text</em>, as the file gives it; <code>why</code> <em>text</em>. It never carries <code>lean</code></td>
+</tr>
+<tr>
+<td><code>C:step</code></td>
+<td><strong><code>inside</code></strong> <em>ref</em> (a <code>C:lemma</code> or a <code>C:statement</code>), the item whose proof holds it; <strong><code>says</code></strong> <em>text</em>; <strong><code>span</code></strong>, its lines, inside that item's lines</td>
+</tr>
+<tr>
+<td><code>P:yield</code></td>
+<td><strong><code>of</code></strong> <em>ref</em> <code>C:statement</code>; <strong><code>beyond</code></strong> [<code>yes</code> <code>no</code>]; <strong><code>says</code></strong> <em>text</em>; <code>as-statement</code> <em>text</em>, with <code>yes</code> alone; <strong><code>needs</code></strong>, a list of <em>text</em>; <strong><code>bound</code></strong> [<code>at-least</code> <code>at-most</code> <code>exactly</code> <code>between</code> <code>none</code>]; <strong><code>chooses</code></strong>, a list of <code>{what, where, value, gives, best, confidence}</code>; <strong><code>trivial</code></strong>, a list of <code>{case, known, delivered, compares}</code>, <code>compares</code> from [<code>above</code> <code>equal</code> <code>below</code>], with at least one entry, or empty with <code>no-trivial</code> <em>text</em>, one sentence on why there is none; <strong><code>grounds</code></strong>, a list of <code>{of, lines}</code>, at least one; <strong><code>confidence</code></strong> [<code>high</code> <code>medium</code> <code>low</code>]; <code>regime</code>. <a class="ref-xref" href="#docs-sec-18-4-10">Section 18.4.10</a> says what each holds</td>
+</tr>
+<tr>
+<td><code>P:fit</code></td>
+<td><strong><code>of</code></strong> <em>ref</em> <code>C:statement</code>; <strong><code>against</code></strong> <em>ref</em>, the wording, <code>E:work/wording</code>; <strong><code>how</code></strong> [<code>same</code> <code>stronger</code> <code>weaker</code> <code>a-particular-reading</code> <code>different</code>]; <code>form-differences</code>, a list of <em>text</em>, differences of form only; <strong><code>differences</code></strong>, a list of <em>text</em>, differences of mathematical content, one plain sentence each, with no word of judgement; <strong><code>confidence</code></strong> [<code>high</code> <code>medium</code> <code>low</code>]</td>
+</tr>
+<tr>
+<td><code>C:part</code>, in a fabulam</td>
+<td><code>division: stage</code>; <code>number</code>, its place in the logic, from 1 with no gap; <code>stage</code> [<code>reduction</code> <code>main</code> <code>tool</code> <code>side</code> <code>close</code>]; <code>says</code>, <code>plain</code>, <code>plain-if</code> and <code>obvious</code> <em>text</em>; <code>steps</code> <em>refs</em>, the lemmas, steps and statements that make it up, in the argument's order; <code>regime</code> (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+</tr>
+<tr>
+<td><code>C:file</code>, in a fabulam</td>
+<td><code>opens</code>, the namespaces the file opens; <code>limits</code>, a list of <em>text</em>, what the reader could not read</td>
+</tr>
+<tr>
+<td><code>C:component</code>, in a head fabulam</td>
+<td><code>told-in</code>, the part's URI; <code>does</code>, the part's atem line; <code>offers</code> <em>refs</em>, the head's items told in the part; <code>stages</code>, the names of the part's stages, in its teaching order; <code>counts</code> <code>{declarations, reached, spine}</code>; <code>completeness</code>, the part's own (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+</tr>
+<tr>
+<td><code>C:dependency</code>, in a fabulam</td>
+<td>one for each library the file imports from, Lean's own modules counting as one; <code>version</code>, the library's commit or the Lean version the source names; <code>scope: standard</code></td>
+</tr>
+<tr>
+<td><code>C:reliance</code>, in a fabulam</td>
+<td><strong><code>lean</code></strong>, a name or a list of names, as the file writes them, asked of a fabulam's reliance alone (<code>declared-once</code>); <code>on: dependency</code> with <code>of</code> <em>ref</em> <code>C:dependency</code> for a library's result, or <code>on: part</code> for a result of another part, with <code>stated-in</code> <em>text</em>, the URI of the head's item, and <code>digest</code>, that item's; <code>gives</code>, what the result says, in words; <code>known-as</code> <em>text</em>, the name the result is known by; <code>field</code> <em>text</em>, the part of mathematics it belongs to; <code>case</code> <em>text</em>, which case or form of a known theorem is used</td>
+</tr>
+<tr>
+<td><code>P:claim</code>, in a fabulam</td>
+<td><code>about</code>, <em>ref</em> the item the claim is about, or a few words when no item holds it; <code>checked</code> [<code>yes</code> <code>partial</code> <code>contradicted</code> <code>not-checkable</code>]; <code>by</code>, the item or items whose statements bear it out; <code>short-of</code> <em>text</em>; <code>mismatch</code> [<code>formula</code> <code>hypothesis</code> <code>name</code> <code>numbering</code> <code>inference</code>]; <code>false-as-written</code> [<code>yes</code> <code>no</code>] (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>)</td>
+</tr>
+<tr>
+<td><code>P:reading</code>, in a fabulam</td>
+<td><code>whose: {by: model}</code>; <code>of</code>, the statement or the stage it reads; <code>grounds</code>, a list of <code>{of, lines}</code>; <code>regime</code></td>
+</tr>
+<tr>
+<td><code>P:case</code>, in a fabulam</td>
+<td><code>from: worked</code>; <code>of</code> <em>ref</em> (a <code>C:statement</code> or a <code>P:yield</code>); <code>given</code> and <code>expect</code> <em>text</em>, in words and numbers; <code>stands: inside</code></td>
 </tr>
 </tbody>
 </table>
@@ -3953,6 +4108,19 @@ says what an entailment of it must keep. Beside <code>ruling</code>, the item ma
 <code>tested</code> <code>used</code> <code>seen</code>], which says why anyone relies on the thing: rules fill the first two, from the program's
 documents and its tests. A thing with no ruling for a target raises a question (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>), and an entailment into
 that target waits for the answer.</p>
+<p><strong>Three shapes a fabulam's kinds share.</strong> <code>slack</code> is a list of <code>{hypothesis, would-suffice, lines, confidence}</code>: a
+strict inequality or a range among an item's hypotheses that the proof does not use in full, the weaker one that
+would do, and the lines that show it. <code>regime</code> is <code>{as, uniform-in, fixed, worst-over}</code>, on any item that speaks of
+size, rate or order of magnitude. <code>reached</code> is one of <code>yes</code>, <code>no</code> and <code>perhaps</code>, with <code>depth</code> and <code>carries</code>, by the
+rule of <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>. The words <code>yes</code> and <code>no</code> are always written in quotes. An item that is a model's reading
+carries <code>confidence</code>, one of <code>high</code>, <code>medium</code> and <code>low</code>, and the builder writes <code>provenance.confidence</code> from it by
+rule: 0.5, 0.35 and 0.2. A definition's <code>form</code> is one of these, the last for a keyword the list does not hold:</p>
+<pre><code class="language-text">def abbrev structure class inductive instance opaque axiom alias notation other
+</code></pre>
+<p>In a fabulam the unchanged kinds take the proof's terms: <code>L:term</code> and <code>K:concept</code> a word or an idea a reader must
+know to follow the statement or the spine, E items the papers, the people and the bodies the inputs name, <code>N:aim</code>
+what the work sets out to prove, as its inputs say it, <code>N:decision</code> a choice visible in the formal text, and
+<code>D:question</code> a gap the build could not settle, asked of an expert.</p>
 <p>In a fabulac the unchanged kinds take the program's terms: <code>L:term</code> its own vocabulary, E items the named things it
 deals with (a holder, a service, a file it writes), <code>K:concept</code> the ideas the code relies on, <code>P:claim</code> what its
 documents assert, and <code>T:event</code> the steps of a use, in order, each linked <code>{rel: part-of, to: N:use/&lt;slug&gt;}</code>.</p>
@@ -5838,7 +6006,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>flavour</code></td>
 <td>error</td>
-<td>the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>flavour</code> is <code>fabulan</code>, <code>fabulap</code> or <code>fabulac</code>, or absent</td>
+<td>the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>flavour</code> is <code>fabulan</code>, <code>fabulap</code>, <code>fabulac</code> or <code>fabulam</code>, or absent</td>
 </tr>
 <tr>
 <td><code>flavour-kind</code></td>
@@ -5848,12 +6016,12 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>code-span</code></td>
 <td>error</td>
-<td>in a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>, every <code>span</code> is <code>{file, lines}</code>; its <code>file</code> is the path of a <code>C:file</code> of the fabulac; its <code>lines</code> are <code>n</code> or <code>n-m</code>, with n no greater than m, within the file's <code>length.lines</code></td>
+<td>in a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> or a <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>, every <code>span</code> is <code>{file, lines}</code>; its <code>file</code> is the path of a <code>C:file</code> of the fabulac; its <code>lines</code> are <code>n</code> or <code>n-m</code>, with n no greater than m, within the file's <code>length.lines</code></td>
 </tr>
 <tr>
 <td><code>licence-recorded</code></td>
 <td>error; a warning while pending</td>
-<td>a fabulac records <code>source.licence</code>, a value or a <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a>, and holds an <code>R:licence</code> item</td>
+<td>a fabulac or a fabulam records <code>source.licence</code>, a value or a <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a>, and holds an <code>R:licence</code> item</td>
 </tr>
 <tr>
 <td><code>question-about</code></td>
@@ -5888,7 +6056,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>parts-resolve</code></td>
 <td>error</td>
-<td>in a head, every <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> in <code>parts</code> is a fabulac the reader knows, at its <code>path</code>, whose catalog names this head in <code>head</code>, and every <code>told-in</code> names one of them; in a part, every <code>stated-in</code> names an interface of its head that exists</td>
+<td>in a head, every <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> in <code>parts</code> is a fabulac the reader knows, at its <code>path</code>, whose catalog names this head in <code>head</code>, and every <code>told-in</code> names one of them; in a part, every <code>stated-in</code> names an interface of its head that exists. Over fabulams the same: a head fabulam's parts are fabulams, and a part's <code>stated-in</code> names an item of its head</td>
 </tr>
 <tr>
 <td><code>interfaces-agree</code></td>
@@ -5910,10 +6078,103 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <td>warning</td>
 <td>in an authored fabulac, every <code>N:requirement</code> of <code>force: must</code> names at least one <code>P:case</code> in <code>checked-by</code></td>
 </tr>
+<tr>
+<td><code>declared-once</code></td>
+<td>error</td>
+<td>in a fabulam, every <code>C:statement</code>, <code>C:definition</code> and <code>C:lemma</code> carries <code>lean</code> and a span; no two of them carry the same <code>lean</code>; a <code>C:constant</code> carries none; a <code>C:reliance</code> carries the names it leans on, in <code>lean</code></td>
+</tr>
+<tr>
+<td><code>statement-whole</code></td>
+<td>error</td>
+<td>a fabulam that stands alone holds at least one <code>C:statement</code>, and a head one for every target; a part holds one for each target that its own file declares, and needs no other; each statement names a <code>source.target</code>, and has <code>says</code> and <code>quantifiers</code>; <code>atem.of</code> names a statement, or, in a part that holds none, one of the part's own declaration items; <code>relates</code> stands only between two</td>
+</tr>
+<tr>
+<td><code>yield-stated</code></td>
+<td>error</td>
+<td>every statement has exactly one <code>P:yield</code>: its <code>beyond</code> a quoted word, <code>as-statement</code> exactly when <code>yes</code>, <code>needs</code> and <code>chooses</code> lists, each entry of <code>chooses</code> whole, and <code>trivial</code> with an entry or <code>no-trivial</code> with a sentence</td>
+</tr>
+<tr>
+<td><code>fit-stated</code></td>
+<td>error</td>
+<td>when <code>source.wording</code> is set, every statement has exactly one <code>P:fit</code> and <code>E:work/wording</code> exists; when it is not, there is no <code>P:fit</code></td>
+</tr>
+<tr>
+<td><code>spine-told</code></td>
+<td>error</td>
+<td>every lemma with <code>reached: yes</code> has a <code>role</code>, and no other lemma has one; every spine lemma has <code>why</code> and is in the <code>steps</code> of a stage; following <code>uses</code> from the statements reaches every spine lemma, where the fabulam holds a statement</td>
+</tr>
+<tr>
+<td><code>stages-whole</code></td>
+<td>error</td>
+<td>the stages' <code>number</code>s run 1, 2, 3 with no gap; exactly one stage is the <code>reduction</code>, and it has <code>obvious</code>; each stage has <code>plain</code> and <code>plain-if</code>; <code>teaching</code> lists every stage once, the reduction first, then by <code>stage</code> in the order of <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a></td>
+</tr>
+<tr>
+<td><code>grounds-given</code></td>
+<td>error</td>
+<td>every <code>P:yield</code>, every <code>P:reading</code> and every <code>slack</code> entry has grounds with lines; every <code>C:step</code> has <code>inside</code> and a span inside it</td>
+</tr>
+<tr>
+<td><code>audit-whole</code></td>
+<td>error</td>
+<td>every row of <code>audit</code> has <code>lines</code>, <code>kind</code> and a <code>verdict</code> of the closed list; a row says <code>claim</code> exactly when it names a <code>P:claim</code>; every <code>P:claim</code> whose source is a comment is named by one row; every claim's <code>checked</code> is one of the four words, with the fields that word asks for</td>
+</tr>
+<tr>
+<td><code>stance-fits</code></td>
+<td>error</td>
+<td>each item's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is one that its kind's row in <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a> allows; a <code>hearsay</code> item names its source in <code>provenance.sources</code>; an item that is a model's opinion says its <code>confidence</code>; <code>assumed</code> stands only on a reliance without <code>stated-in</code>, a term or a concept; <code>deduced</code> may stand on any kind</td>
+</tr>
+<tr>
+<td><code>checking-said</code></td>
+<td>error</td>
+<td><code>P:claim/checking</code> exists; <code>source.checking.built-here</code> is <code>no</code>; the item's <code>says</code> holds <code>said</code> only with <code>said-by</code>; without them it holds none of &quot;machine-checked&quot;, &quot;verified&quot;, &quot;certified&quot; and &quot;proved correct&quot;</td>
+</tr>
+<tr>
+<td><code>example-worked</code></td>
+<td>error</td>
+<td>every statement has a <code>P:case</code> with <code>from: worked</code>, whose <code>given</code> and <code>expect</code> each hold a number</td>
+</tr>
+<tr>
+<td><code>no-up-to</code></td>
+<td>error</td>
+<td>no field of a <code>P:yield</code> and no stage's <code>plain</code> holds &quot;up to&quot;; the phrase is allowed before &quot;isomorphism&quot;, &quot;order&quot;, &quot;sign&quot;, &quot;symmetry&quot; and &quot;relabelling&quot;</td>
+</tr>
+<tr>
+<td><code>statements-agree</code></td>
+<td>error</td>
+<td>a <code>C:reliance</code> with <code>stated-in</code> has the <code>lean</code> and the <code>digest</code> of the head's item it names, and its <code>gives</code> is that item's <code>says</code>; a head's own item agrees in the same way with the part it is told in</td>
+</tr>
+<tr>
+<td><code>regime-named</code></td>
+<td>warning</td>
+<td>a <code>P:yield</code>, a <code>P:reading</code> or a stage whose sentences speak of size has a <code>regime</code></td>
+</tr>
+<tr>
+<td><code>no-judgement</code></td>
+<td>warning</td>
+<td>no difference a <code>P:fit</code> lists holds a word of judgement: &quot;trivial&quot;, &quot;easy&quot;, &quot;intended&quot;, &quot;obvious&quot;, &quot;famous&quot;</td>
+</tr>
+<tr>
+<td><code>plain-words</code></td>
+<td>warning</td>
+<td>a stage's <code>plain</code> holds no symbol and no one-letter name</td>
+</tr>
+<tr>
+<td><code>spine-rule-differs</code></td>
+<td>warning</td>
+<td>a candidate of the rule (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>) was judged <code>bookkeeping</code>, or a lemma with <code>carries: 0</code> at depth 3 or more was judged <code>spine</code>; a question is raised about each</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p>A fabulac whose <code>purpose</code> is <code>transconception</code> runs the checks of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a> as well.</p>
+<p>A fabulac whose <code>purpose</code> is <code>transconception</code> runs the checks of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a> as well. The rows from
+<code>declared-once</code> on are a fabulam's, and hold over the fabulam alone. A fabulam is built in stages, and each stage
+lands a fabulam that passes these checks, so an outline is a valid fabulam. A check that asks for what a later stage
+writes, every statement's yield, the stages and the teaching order, the worked example, the comments' verdicts, a
+reached lemma's role, the fit, holds it only once the fabulam says it is whole, <code>derived.completeness: full</code>, or once
+that layer has begun: one yield, one stage, one verdict, one role or one fit is there. What is there is always held to
+its shape. The four warnings prompt a person, and are never a gate. None of the checks judges whether the mathematics
+is right. A fabulam is held to its source, and a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a> to its fabulam, by named checks of Thym
+(https://thym.cosmoes.org/), its section 7.3, which the moves of its section 20.13 keep.</p>
 <p>The generic reader runs the checks of <a class="ref-xref" href="#docs-sec-12-2">section 12.2</a>, and <code>flavour</code> and <code>flavour-kind</code>, which the manifest drives. The
 others are the fabula's own, run by the reference implementation, enough (https://github.com/0gsd/enough); a reader that
 does not run them lists them as not run (<a class="ref-xref" href="#docs-sec-12-3">section 12.3</a>).</p>
@@ -6279,6 +6540,781 @@ target. Entailing into a new target asks again only the rulings made for another
 (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). Decompiled again, it carries each ruling and each reliance over while the item it is on still
 resolves, as a question is carried over (<a class="ref-xref" href="#docs-sec-18-6-3">section 18.6.3</a>). A recorded case and a cshort's evidence hold only against the
 source they were recorded from, which each names; against a moved source they are recorded again.</p>
+</section>
+<section class="docs-sec" data-key="S:section/18.4.10" data-scope="">
+<h4 id="docs-sec-18-4-10">18.4.10 Proof: the fabulam and the pshort</h4>
+<p><strong>The model for a proof.</strong> A fabulam is a map of a formal proof that a mathematician can check: one file of the
+proof's source taken apart into what it states, what it defines, what it proves on the way, what it leans on, what its
+proof delivers, and how the argument runs. Every declaration of the file is one <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a>, with its name and its <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a>, and
+every item that says something about the proof cites those items. So whatever a fabulam says of the proof reaches
+names and lines of the source, and <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="the constraints of the database, run over the whole volume">checks</a> hold it to that (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>; Thym (https://thym.cosmoes.org/), its
+section 7.3). A <strong>pshort</strong> is a guide to the proof, entailed from the fabulam alone, for one of three readers. Both are
+files that are read. The source is read as text, by rule: no conforming implementation installs, builds or runs
+anything of the proof's own system, to make a fabulam or a pshort or to show one.</p>
+<p>A <strong>fabulam</strong> is the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a> of a formal proof: one file of the proof's source, enumerated as the argument it holds,
+each item tied to the declarations it was read from, by name and by lines.</p>
+<p>A <strong>pshort</strong> is a fabulam's <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a>: a markdown text that guides one of three readers, an expert, a student or
+everyone, through the proof, each run of its sentences citing the items of the fabulam it rests on.</p>
+<p>In the two words, the <em>m</em> is for mathematics and the <em>p</em> is for proof.</p>
+<p>A fabulam is one file, <code>&lt;name&gt;.fabulam.cosm</code>, and its id is <code>fabula/&lt;name&gt;</code>. The name is the person's choice; where
+they give none, a builder makes it from the name of the file, less its ending, or of the folder: a hyphen goes in where
+a small letter or a digit meets a capital, and the result is respelled as a slug (<a class="ref-xref" href="#docs-sec-18-3-3">section 18.3.3</a>), so that
+<code>PrimesCongruentOne.lean</code> gives <code>primes-congruent-one</code>. The fabulam sits beside the root folder of the proof's source,
+the folder that holds the file naming its Lean version, as a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> sits beside its folder and never inside a clone. A
+loose file with no such folder has its fabulam beside it.</p>
+<p><strong>What a fabulam holds, facet by facet.</strong></p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Facet</th>
+<th>In a fabulam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inspiration</td>
+<td>none of its <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a>, in this edition; a paper or a source that the inputs name is an <code>E:work</code></td>
+</tr>
+<tr>
+<td>meaning</td>
+<td>the words and the ideas a reader must know to follow the statement or the spine (<code>L:term</code>, <code>K:concept</code>); the papers, people and bodies the inputs name (E), the public wording of the result among them, <code>E:work/wording</code>, when the person gave one</td>
+</tr>
+<tr>
+<td>intent</td>
+<td>what the work sets out to prove, as its inputs say it (<code>N:aim</code>); a choice visible in the formal text (<code>N:decision</code>)</td>
+</tr>
+<tr>
+<td>construction</td>
+<td>the file (<code>C:file</code>); every final theorem (<code>C:statement</code>), every definition (<code>C:definition</code>) and every other proved declaration (<code>C:lemma</code>), each with its name in the source and its lines; a step a reader needs that has no declaration of its own (<code>C:step</code>); a constant or a parameter the proof fixes (<code>C:constant</code>); the libraries the file imports (<code>C:dependency</code>), and each result from outside the file that carries real weight in the proof (<code>C:reliance</code>); the stages of the argument (<code>C:part</code>)</td>
+</tr>
+<tr>
+<td>production</td>
+<td>the authors a header names (<code>R:maker</code>); the licence (<code>R:licence</code>); the proof's own system, and any other system the inputs name (<code>R:means</code>)</td>
+</tr>
+<tr>
+<td>assertions</td>
+<td>what each statement's proof delivers, set against what the statement says (<code>P:yield</code>); how each statement compares with the public wording (<code>P:fit</code>); what a comment, the wording or a person says that the source does not itself bear out (<code>P:claim</code>), the one item on checking among them; the key ideas, why the proof works (<code>P:reading</code>); a worked example in numbers (<code>P:case</code>); what a final theorem takes as given, and that the file was read as text (<code>P:assumption</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>What the build could not settle is a <code>D:question</code> to an expert (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>), so that every gap has an id a pshort
+can cite. A fabulam says the proof again in words and ordinary notation: the names in <code>lean</code> aside, it carries no run
+of the file's own text longer than 80 code points (<code>nothing-carried</code>, Thym, its section 7.3).</p>
+<p>An item made from a declaration takes its id from its kind and the declaration's full name, <code>C:lemma/&lt;full name&gt;</code>. A
+character the id grammar refuses is respelled by rule: <code>'</code> becomes <code>-prime</code>, and any other becomes <code>-x</code> and its code
+point in hexadecimal, so that a full stop at the end is <code>-x2e</code>; a name that begins with neither a letter nor a digit
+takes an <code>x</code> in front. When two names give one id, the later takes <code>-2</code>. An instance or an example with no name is
+<code>C:definition/instance-L&lt;line&gt;</code> or <code>C:lemma/example-L&lt;line&gt;</code>. The <code>lean</code> <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> keeps the real name.</p>
+<p>Each item's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is from the fabula's closed list (<a class="ref-xref" href="#docs-sec-18-4-3">section 18.4.3</a>), and in a fabulam each stance has one meaning.
+The check <code>stance-fits</code> holds each kind to its row:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Stance</th>
+<th>In a fabulam</th>
+<th>Kinds that may carry it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observed</code></td>
+<td>read from a statement or a definition of the source, as written, or counted from its text</td>
+<td><code>C:file</code>, <code>C:statement</code>, <code>C:definition</code>, <code>C:lemma</code>, <code>C:dependency</code>, <code>P:assumption</code>, <code>N:decision</code>, every kind of R, and <code>P:claim/checking</code> while the person has given no entry</td>
+</tr>
+<tr>
+<td><code>deduced</code></td>
+<td>found by rule from other items, or from the names one declaration uses of another; a neighbour's statement copied from the head</td>
+<td>a <code>C:reliance</code> with <code>stated-in</code>, and anything a rule adds</td>
+</tr>
+<tr>
+<td><code>opinion</code></td>
+<td>a model's reading of a proof's body, or of how the pieces fit</td>
+<td><code>C:step</code>, <code>C:constant</code>, <code>C:part</code>, <code>P:yield</code>, <code>P:fit</code>, <code>P:reading</code>, <code>P:case</code>, <code>N:decision</code></td>
+</tr>
+<tr>
+<td><code>hearsay</code></td>
+<td>said by something the proof's system does not check: a comment, the public wording, a person's entry on checking</td>
+<td><code>P:claim</code>, <code>N:aim</code>, every kind of E, <code>R:maker</code></td>
+</tr>
+<tr>
+<td><code>assumed</code></td>
+<td>known from general mathematics, and not read from the inputs</td>
+<td>a <code>C:reliance</code> without <code>stated-in</code>, <code>L:term</code>, <code>K:concept</code>, and no other kind</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nothing about what this proof does is <code>assumed</code>. A hearsay item names its source in <code>provenance.sources</code>: a comment's
+place in the file, or <code>E:work/wording</code>. A lemma is one item in two layers. Its <code>says</code> is observed. Its <code>role</code>, <code>method</code>,
+<code>why</code> and <code>slack</code> are a model's, and are read as opinion, field by field, while the item's own stance stays <code>observed</code>.</p>
+<p><strong>Stated is not shown.</strong> What a statement says and what its proof delivers are kept apart. The statement goes in the
+<code>C:statement</code>, in its <code>says</code>, with its own ranges and nothing more. What the proof's construction delivers goes in a
+<code>P:yield</code>, exactly one for each statement. The rule cuts both ways: the <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>'s line, and a statement's <code>name</code>,
+<code>summary</code> and <code>says</code>, keep to the statement's own ranges, however much more the proof gives.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field of a <code>P:yield</code></th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>of</code></td>
+<td>the statement</td>
+</tr>
+<tr>
+<td><code>beyond</code></td>
+<td><code>yes</code> when the construction delivers more than the statement says, <code>no</code> when it delivers exactly the statement</td>
+</tr>
+<tr>
+<td><code>says</code></td>
+<td>what the construction delivers, in full; with <code>no</code>, why the reading is sure of it</td>
+</tr>
+<tr>
+<td><code>as-statement</code></td>
+<td>with <code>yes</code> alone: the delivered result as one theorem, with every range, quantifier and constant</td>
+</tr>
+<tr>
+<td><code>needs</code></td>
+<td>the steps between the file and <code>as-statement</code> that the file does not itself take; an empty list when there are none</td>
+</tr>
+<tr>
+<td><code>bound</code></td>
+<td><code>at-least</code>, <code>at-most</code>, <code>exactly</code> or <code>between</code>, when the delivered result bounds a quantity; else <code>none</code></td>
+</tr>
+<tr>
+<td><code>chooses</code></td>
+<td>one entry for each parameter or constant the proof picks, <code>{what, where, value, gives, best, confidence}</code>: <code>gives</code> is the delivered result written as a function of that choice; <code>best</code> is the choice that makes <code>gives</code> best and what it then gives, or <code>the file's choice</code>, or <code>{pending: &quot;…&quot;}</code>. An empty list when the proof picks nothing</td>
+</tr>
+<tr>
+<td><code>trivial</code></td>
+<td>the cases anyone can settle without the proof, each <code>{case, known, delivered, compares}</code>: what is plainly true there, what the delivered result says there, and <code>above</code>, <code>equal</code> or <code>below</code>. At least one, or <code>no-trivial</code> with one sentence on why there is none</td>
+</tr>
+<tr>
+<td><code>grounds</code></td>
+<td>the lemmas or steps it was read from, each with the lines, <code>{of, lines}</code>; at least one</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td><code>high</code>, <code>medium</code> or <code>low</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A yield is found by reading the proof of each target and of the last lemma it rests on. Where the statement says that
+something exists, the yield says how it is made. Where the statement fixes a range or a constant, the yield says
+whether the proof uses it or would run for more. Each choice the proof makes is then varied, and the result is written
+as a function of the choice. Last come the trivial cases: where the delivered result is weaker than what is plainly
+true, <code>compares: below</code> says so outright.</p>
+<ul>
+<li><strong>No &quot;up to&quot;.</strong> A delivered bound is told in the words of <code>bound</code>: &quot;at least&quot;, &quot;at most&quot;, &quot;exactly&quot;, &quot;between&quot;. The
+phrase &quot;up to&quot; is refused in a yield, in a stage's <code>plain</code>, and in any sentence of a pshort that cites a yield
+(<code>no-up-to</code>).</li>
+<li><strong>Slack.</strong> For each statement and each lemma at depth 1, every strict inequality and every range among its hypotheses
+is asked whether the proof uses its full strength. Where lines of the proof show that a weaker one would do, the item
+carries <code>slack</code> (<a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>). Slack in a constant the proof chose belongs in <code>chooses</code>.</li>
+<li><strong>The worked example.</strong> Every statement has at least one <code>P:case</code> with <code>from: worked</code>: small numbers put through
+the yield, which a reader can check by hand. The pshort for everyone uses its numbers and no others.</li>
+</ul>
+<p><strong>Spine, support, bookkeeping.</strong> Every lemma that a final theorem reaches has a <code>role</code>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><code>role</code></th>
+<th>The lemma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spine</code></td>
+<td>is one that a mathematician <a class="docs-term" href="#docs-item-t-term-telling" data-term="T:term/telling" title="A telling is one language a document is written in, a volume of its own">telling</a> the proof at a blackboard would state: without it the argument has a hole. A step that changes what must be proved is spine, however short its proof: a reformulation, a reduction of one condition to another, a bound that makes a later count possible. The length of a proof is no guide</td>
+</tr>
+<tr>
+<td><code>support</code></td>
+<td>is a real mathematical step that the same mathematician would only mention</td>
+</tr>
+<tr>
+<td><code>bookkeeping</code></td>
+<td>is needed by the proof's system and not by a reader: casts, rearrangements, bounds that are plain on paper</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A spine lemma carries <code>why</code>: what the argument would lack without it, and what it makes easier for the step after it.
+A <code>why</code> says what this proof does with the step. It never says that no other way exists.</p>
+<p>What a final theorem reaches, and how much rests on each declaration, is found by rule, before any model is asked,
+from the names one declaration uses of another:</p>
+<ol>
+<li><strong>Reach.</strong> From the targets, the names are followed. A declaration that is met is <code>reached: yes</code>, and its <code>depth</code>
+is the least number of steps from a target. One that is not met, and that the proof's system could use without
+naming it, is <code>perhaps</code>: in Lean, an instance, or a declaration that carries one of the attributes listed below.
+Every other is <code>no</code>: the final theorem never uses it, and no model reads it.</li>
+<li><strong>Carries.</strong> A declaration's <code>carries</code> is the number of reached declarations that every chain of names from a
+target meets only through it. A lemma that carries much is one the proof passes through.</li>
+<li><strong>Candidates.</strong> The rule's candidates for the spine are the targets, every reached theorem or lemma at depth 1,
+and every reached theorem or lemma whose <code>carries</code> is at least 3 and at least 2 in a hundred of all that is reached.</li>
+</ol>
+<pre><code class="language-text">simp instance aesop grind ext fun_prop gcongr positivity norm_cast push_cast norm_num
+</code></pre>
+<p>A model then judges, and only within what the rule found: <code>spine</code>, <code>support</code> or <code>bookkeeping</code> for each lemma with
+<code>reached: yes</code>, shown its <code>depth</code> and its <code>carries</code>. Where the model and the rule <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">part</a> ways, <code>spine-rule-differs</code>
+warns, and a <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a> is raised for a person (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>).</p>
+<p><strong>Stages and the teaching order.</strong> The argument is told in stages. A stage is a <code>C:part</code> of division <code>stage</code>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field of a stage</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>number</code></td>
+<td>its place in the logic: 1, 2, 3, with no gap</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>reduction</code>, <code>main</code>, <code>tool</code>, <code>side</code> or <code>close</code></td>
+</tr>
+<tr>
+<td><code>says</code></td>
+<td>what the stage achieves, and why the next one needs it</td>
+</tr>
+<tr>
+<td><code>plain</code></td>
+<td>one or two sentences that a reader with no mathematics could follow, saying what happens in the stage: the mechanism, and not only the goal. No symbol, and no term to look up. It names each thing by what it is before it uses it, and says nothing the stage's own items do not hold</td>
+</tr>
+<tr>
+<td><code>plain-if</code></td>
+<td>the condition the mechanism in <code>plain</code> needs in order to be true, in plain words; the word <code>none</code> only when <code>plain</code> is true with no condition</td>
+</tr>
+<tr>
+<td><code>obvious</code></td>
+<td>on the reduction only: the obvious way to the result and why it fails, or <code>none: the file's way is the obvious one</code></td>
+</tr>
+<tr>
+<td><code>steps</code></td>
+<td>the lemmas, steps and statements that make it up, in the order the argument takes them</td>
+</tr>
+<tr>
+<td><code>regime</code></td>
+<td>when the stage speaks of size (below)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Exactly one stage is the <code>reduction</code>: what has to be shown, or made large, and why. When the proof is direct, the
+reduction says so, and its <code>steps</code> name the statement. The <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>teaching</code> is the teaching order. It lists every
+stage's id once, in the order a teacher would tell them: the reduction first, then the <code>main</code> stages, then <code>tool</code>,
+then <code>side</code>, then <code>close</code>. Among stages of one word the order is the model's. <code>number</code> keeps the order of the logic,
+which may be another.</p>
+<p>Sizes name their regime. Any item that speaks of size, rate or order of magnitude carries <code>regime</code>: what grows or
+shrinks (<code>as</code>), what the statement is uniform in (<code>uniform-in</code>), what is held fixed (<code>fixed</code>) and what the worst case is
+taken over (<code>worst-over</code>). A proof with no sizes has no <code>regime</code> anywhere.</p>
+<p><strong>Comments are hearsay.</strong> A proof's system checks declarations and never comments. So what a comment says is hearsay
+until the source bears it out, and a fabulam says which comments the source bears out. Every comment of the file is
+one row of the catalog's <code>audit</code>, <code>{lines, kind, on, verdict, claim}</code>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field of a row</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lines</code></td>
+<td>the comment's lines in the file</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>header</code>, the file's first block comment; <code>module-note</code>, a note on the file as a whole; <code>note</code>, the comment above a declaration; <code>inline</code>, any other</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td>for a <code>note</code>, the item of the declaration it stands over; for an <code>inline</code> comment, the item of the declaration it sits inside; else empty</td>
+</tr>
+<tr>
+<td><code>verdict</code></td>
+<td><code>agrees</code>: the source under it bears it out. <code>nothing</code>: it says nothing about the mathematics (a heading, a licence line, a note on layout). <code>claim</code>: it is recorded as a <code>P:claim</code></td>
+</tr>
+<tr>
+<td><code>claim</code></td>
+<td>with the verdict <code>claim</code>, the <code>P:claim</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Every mismatch between a comment and the source is a claim. So is every remark the source cannot bear out and a reader
+would want kept: a credit, a piece of history, a judgement. A <code>P:claim</code> says what it is <code>about</code>, an item or a few
+words, and its <code>checked</code> says how it stands against the source:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th><code>checked</code></th>
+<th>Means</th>
+<th>Also carries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>yes</code></td>
+<td>a statement of the file bears it out in full</td>
+<td><code>by</code></td>
+</tr>
+<tr>
+<td><code>partial</code></td>
+<td>a statement bears it out in part</td>
+<td><code>by</code>; <code>short-of</code>, what is missing; <code>mismatch</code>; <code>false-as-written</code>, <code>yes</code> or <code>no</code></td>
+</tr>
+<tr>
+<td><code>contradicted</code></td>
+<td>the source shows otherwise</td>
+<td><code>by</code>, <code>mismatch</code></td>
+</tr>
+<tr>
+<td><code>not-checkable</code></td>
+<td>the source could bear it out neither way</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>mismatch</code> is one of <code>formula</code>, <code>hypothesis</code>, <code>name</code>, <code>numbering</code> and <code>inference</code>. <code>numbering</code> is a comment that points
+at a step or a lemma by a number the file does not have. A mismatch is never softened: a comment whose conclusion does
+not follow is <code>contradicted</code>, or <code>false-as-written: yes</code>.</p>
+<p>The rows are made by rule, with no verdict, when the file is surveyed, and the audit stage gives each its verdict.
+The model that reads the proof is given the file with its comments blanked, so that it tells what the declarations
+say and not what the comments promise. Only the audit sees the comments. <code>source.read</code> records it: <code>{by: rules, elaborated: &quot;no&quot;, comments: blanked}</code>, fixed in this edition.</p>
+<p><strong>What is said about checking.</strong> A fabulam does not check a proof. What is known about the machine check is kept in
+one place, <code>source.checking</code>:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Holds</th>
+<th>Written by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sorry</code></td>
+<td>how many admitted gaps the file's text holds, outside comments and strings</td>
+<td>rule</td>
+</tr>
+<tr>
+<td><code>axioms</code></td>
+<td>how many axioms the file itself declares</td>
+<td>rule</td>
+</tr>
+<tr>
+<td><code>native-decide</code></td>
+<td>how many times the file's text uses <code>native_decide</code>, which trusts the compiler</td>
+<td>rule</td>
+</tr>
+<tr>
+<td><code>built-here</code></td>
+<td>always <code>no</code>: nothing was built or run</td>
+<td>rule</td>
+</tr>
+<tr>
+<td><code>said</code>, <code>said-by</code>, <code>said-at</code></td>
+<td>one sentence on what is known about the check, who says it, and where or when; all three absent when the person gave none</td>
+<td>the person, never a model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>One item with a fixed id, <code>P:claim/checking</code>, says it in words. Rules write it when the file is surveyed, never a
+model. With no entry from the person, and with every count at 0, its <code>says</code> is:</p>
+<pre><code class="language-text">The file's text holds no `sorry` and declares no axiom of its own. It was read here as text. Nothing was built or run,
+so whether Lean accepts it is not known here.
+</code></pre>
+<p>A count above 0 changes the first sentence, which then gives the counts as they are, and a file that uses
+<code>native_decide</code> adds: &quot;It uses <code>native_decide</code> n times, which trusts the compiler.&quot; With an entry from the person the
+item goes on: <code>&lt;said-by&gt; says: &lt;said&gt; (&lt;said-at&gt;).</code> Its stance is <code>hearsay</code> with an entry and <code>observed</code> without. Its
+id is fixed so that a pshort can cite it.</p>
+<p>An implementation never says more about checking than this item says. Nothing it shows or writes, a page, a card, a
+pshort or a message, says that a proof is machine-checked, verified, certified or proved correct, except in the words
+of this item, shown in full with who says them. It shows no badge, tick or colour that could be read as such a claim
+(<code>checking-said</code>, <a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>; <code>checking-told</code>, Thym, its section 7.3).</p>
+<p><strong>Read as text.</strong> Reading a formal proof as text leaves some things unknown, and a fabulam marks each one where it
+falls:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Not knowable from the text</th>
+<th>What the reader does</th>
+<th>How the fabulam marks it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>what the proof's system fills in: implicit arguments, coercions, what a name's type really is</td>
+<td>reads the text as written</td>
+<td><code>source.read.elaborated: &quot;no&quot;</code>; a statement's <code>says</code> is what is written</td>
+</tr>
+<tr>
+<td>which of the variables declared around it a declaration really takes</td>
+<td>lists every one in scope</td>
+<td><code>scope</code> on the lemma; the model is shown those lines</td>
+</tr>
+<tr>
+<td>instances and tagged lemmas that are used without being named</td>
+<td>cannot see the use</td>
+<td><code>reached: perhaps</code></td>
+</tr>
+<tr>
+<td>the lemmas a search tactic finds</td>
+<td>lists the tactics</td>
+<td><code>automation</code> on the lemma: its <code>uses</code> may be short</td>
+</tr>
+<tr>
+<td>which declaration a short name means, under the namespaces a file opens</td>
+<td>places the name only when exactly one declaration fits</td>
+<td>a <code>C:reliance</code> keeps the name as written</td>
+</tr>
+<tr>
+<td>declarations that an attribute or a command makes, and notation the file defines</td>
+<td>lists what the text shows, and expands nothing</td>
+<td><code>limits</code> on the <code>C:file</code></td>
+</tr>
+<tr>
+<td>whether the file builds, and the axioms it rests on through its imports</td>
+<td>nothing</td>
+<td><code>P:claim/checking</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>One fixed item, <code>P:assumption/read-as-text</code>, says all of it once, so that a pshort can cite it. Its <code>about</code> is how
+the fabulam was read. It says that the file was read as text, that names were matched by spelling, and that Lean was
+not run. Its <code>if-false</code> says what may follow: a link between two declarations may be missing, or may point at the wrong
+one of two with one name. An <a class="docs-term" href="#docs-item-t-term-entailment" data-term="T:term/entailment" title="An entailment is the step that expands meaning by reducing data">entailment</a> must carry it (<code>carries: must</code>).</p>
+<p><strong>How a fabulam is built.</strong> In six stages, each one whole run that lands the fabulam so far before the next begins.
+The first is by rule alone; each of the others asks a model one small thing:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Asks a model</th>
+<th>Sees</th>
+<th>Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>survey</td>
+<td>no</td>
+<td>the file</td>
+<td>the outline: every declaration an item with its lines, the file, its libraries, its makers and its licence, the comment rows, <code>P:claim/checking</code>, <code>P:assumption/read-as-text</code>, and the reach</td>
+</tr>
+<tr>
+<td>read</td>
+<td>yes</td>
+<td>the file with its comments blanked, the outline, and the statements of its neighbours</td>
+<td>each reached declaration's statement in words; each lemma's role, method and why; steps; reliances; terms and concepts</td>
+</tr>
+<tr>
+<td>audit</td>
+<td>yes</td>
+<td>the file with its comments, and the fabulam so far</td>
+<td>each comment row's verdict, and the claims</td>
+</tr>
+<tr>
+<td>fit</td>
+<td>yes; run only when a wording was given</td>
+<td>the wording and the statements' items, never the source</td>
+<td><code>E:work/wording</code>, a <code>P:fit</code> for each statement, and the claims the wording makes</td>
+</tr>
+<tr>
+<td>fold</td>
+<td>yes</td>
+<td>for the yield, each target's proof and the last lemma it rests on, comments blanked; for the stages, the fabulam so far and no source</td>
+<td>the yield, the worked example, slack and constants; then the stages, the teaching order, three to six readings, the decisions and the atem</td>
+</tr>
+<tr>
+<td>question</td>
+<td>yes</td>
+<td>the fabulam</td>
+<td>the gaps, each a <code>D:question</code> to an expert (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The survey also finds the targets. A person may name them. When they name none, the targets are found by rule: every
+theorem or lemma of the file that is not private, is not deprecated, and that no other declaration of the file names,
+an alias of it aside. A file of a library can give many. When the rule gives more than three, a builder asks the person
+to choose, and builds nothing until they do.</p>
+<p>After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after the
+last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins <code>derived.runs</code>. The
+survey writes <code>derived.completeness: outline</code>, and only the last stage writes <code>full</code>: until then the checks ask of a
+fabulam only what its stages so far have written (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>). A build with no model runs the survey and stops at
+the outline: every declaration with its lines and its reach, and nothing read for meaning. The moves are Thym's (Thym,
+its section 20.13).</p>
+<p><strong>A head fabulam and its parts.</strong> A proof of several files is told one file at a time: each file has a fabulam of its
+own, a part, and a <strong>head fabulam</strong> names the parts, as a <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> does (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). The head's catalog lists
+them in <code>parts</code>, each <code>{uri, path, sha256}</code>, and each part names its head in <code>head</code>. The head's <code>source</code> is the folder.
+The files one head covers are its archive: a name that leads outside the archive is a library's name.</p>
+<p>The parts are kept in a folder beside the head, <code>&lt;name&gt;.fabulam.parts/</code>, which mirrors the folders of the source, each
+part named for its file, <code>&lt;File&gt;.fabulam.cosm</code>. A part's id is <code>fabula/&lt;name&gt;--&lt;module&gt;</code>, the <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a>'s name with a
+hyphen for each dot and its capitals kept.</p>
+<p>The head states once whatever a part needs of another, so that each part reads alone:</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th>The head states</th>
+<th>As</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the targets, the Lean version, the licence, the wording, and what is said about checking</td>
+<td>its <code>source</code>, <code>E:work/wording</code>, <code>P:claim/checking</code> and <code>R:licence</code>; each part repeats <code>toolchain</code>, <code>target</code> and <code>checking</code>, by rule</td>
+</tr>
+<tr>
+<td>every declaration that crosses: one that a reached declaration of another part names</td>
+<td>an item of its own of the same id, a <code>C:statement</code>, <code>C:lemma</code> or <code>C:definition</code>, with <code>lean</code>, <code>says</code> and <code>digest</code> copied from the part by rule, <code>told-in</code>, the URI of the part's item, its <code>depth</code> and its <code>carries</code> over the whole archive, and <code>role-there</code>, its role in its own part</td>
+</tr>
+<tr>
+<td>the members of a structure or a class that crosses</td>
+<td><code>fields</code> on the head's <code>C:definition</code>, copied from the part</td>
+</tr>
+<tr>
+<td>what each part is</td>
+<td>one <code>C:component</code> for each part: <code>told-in</code>, <code>does</code>, <code>offers</code>, <code>stages</code>, <code>counts</code> and <code>completeness</code> (<a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>)</td>
+</tr>
+<tr>
+<td>the yield of each target</td>
+<td>the <code>P:yield</code> of the part that holds the target, copied by rule, with <code>told-in</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A part that uses a declaration from another part holds a <code>C:reliance</code> for it: <code>on: part</code>, <code>stated-in</code> naming the head's
+item, with the head's <code>lean</code> and <code>digest</code>, and <code>gives</code> copied from the head's <code>says</code>. The check <code>statements-agree</code>
+holds the two to one statement. Nothing in a part needs another part's file to be read.</p>
+<p>A fabulam that stands alone holds at least one statement, and a head holds one for every target. A part need not. Each
+target that is a declaration of the part's own file has one statement there, and the other targets need none in that
+part. A part that holds no statement has its atem's <code>of</code> naming one of its own declaration items, and what is asked of
+each statement, its yield, its fit and its worked example, is asked of the statements there are. A part's <code>reached</code> and
+<code>depth</code> are the archive's, counted from the archive's targets across its files. Its <code>carries</code> counts within its own
+file, and the head's crossing items hold the archive's <code>carries</code>.</p>
+<p>The files are read in an order that puts each file after every file it imports, so that when a file is read each
+neighbour's statement is already in the head. A file that no target reaches is surveyed by rule and left as an
+outline: no model reads it, and its component in the head says <code>completeness: outline</code>. Summaries go upward:</p>
+<ol>
+<li>When a part lands, rules copy into the head the part's crossing items, its component's <code>does</code>, <code>stages</code> and
+<code>counts</code>, and a target's yield.</li>
+<li>When every reached part has landed, the head is folded: a model is asked once. It sees the components and the
+crossing items, never the source, and writes the head's own stages, whose <code>steps</code> are the head's crossing items,
+with their <code>plain</code> and <code>plain-if</code>, its teaching order, its readings and its atem.</li>
+<li>A head that is itself a part hands the same summary to the head above it.</li>
+</ol>
+<p>A pshort entailed from a head tells the archive at the head's grain. A pshort entailed from a part tells one file.</p>
+<p><strong>The pshort.</strong> Entailing a fabulam writes a pshort: a markdown file beside the fabulam, named
+<code>&lt;name&gt;.pshort-&lt;density&gt;-&lt;YYYY-MM-DD-HHMM&gt;.md</code> and recorded in <code>shorts</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section 18.4.1</a>). A pshort is a guide to a
+formal proof, and it is never called a proof, in its own text or by an implementation that shows it. Its <code>density</code>
+names its reader, and the same fabulam is entailed at any of the three. The word is the field's name: these are not
+the densities of <a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>, among which every pshort is a short.</p>
+<div class="docs-table">
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>expert</code></th>
+<th><code>student</code></th>
+<th><code>everyone</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The reader</td>
+<td>a mathematician in the field</td>
+<td>someone with a first course in the subject</td>
+<td>no mathematics assumed</td>
+</tr>
+<tr>
+<td>The order</td>
+<td>the logic, by <code>number</code></td>
+<td>the logic</td>
+<td>the teaching order, the reduction first</td>
+</tr>
+<tr>
+<td>It must hold</td>
+<td>the statement in full; the fit; the yield, with <code>as-statement</code>, <code>needs</code>, <code>chooses</code> and slack; every spine lemma by its name in the source, with its <code>why</code>; each reliance by the name it is known by, and its case; the comments the source contradicts; the questions</td>
+<td>each term defined where it is first used; each stage's <code>says</code> and its key lemma; one reading for each stage; the worked example</td>
+<td>each stage's <code>plain</code> with its <code>plain-if</code>; exactly one worked example, the <code>P:case</code>, with its numbers and no others; every symbol tied to its words where it is first used, or no symbols; why the result matters, only from the <code>N:aim</code>, <code>E:work</code> and <code>K:concept</code> items; what is open, last</td>
+</tr>
+<tr>
+<td>Words</td>
+<td>500 to 900</td>
+<td>500 to 800</td>
+<td>350 to 600</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Its heading, the two lines under it and its last line are written by rule, and the body between them by a model:</p>
+<pre><code class="language-text"># &lt;the fabulam's name&gt;, for &lt;experts | students | everyone&gt;
+
+*A pshort of &lt;file&gt;.fabulam.cosm at &lt;density&gt;. It is a guide to a formal proof. It is not a proof.*
+
+*&lt;the says of P:claim/checking&gt;* [P:claim/checking]
+
+&lt;the body&gt;
+
+*a pshort of &lt;file&gt;.fabulam.cosm, at &lt;density&gt;, entailed apart on &lt;day&gt; by &lt;model&gt;*
+</code></pre>
+<p>Every sentence of the body is cited. A citation is the id of an item of the fabulam in square brackets, and a group of
+them, one or more ids in one pair of brackets with a comma between, closes a run of sentences: it covers the sentence
+it closes and the sentences before it in the paragraph, back to the group before. So every paragraph ends in a
+citation. General mathematics is cited as anything else is, through a term, a concept or a reliance. The body says
+nothing the items do not hold. It gives the statement with its own ranges, and tells the yield as what the proof
+delivers, in the words of <code>bound</code>. It hedges what the fabulam holds at <code>confidence: low</code>, and tells an <a class="docs-term" href="#docs-item-t-term-open-question" data-term="T:term/open-question" title="a value nobody has yet given, written where the value would go">open question</a>
+as open.</p>
+<p>A pshort is entailed apart from the source. The model that writes it is given the fabulam's items and nothing else:
+every <code>span</code>, every <code>lines</code> and the source's path are taken out of what it is sent, and it never sees the source. An
+implementation may bound the size of the fabulam one entailment carries. Past its bound it leaves out the bookkeeping
+lemmas, by rule, then the <code>method</code> of the support lemmas, and the pshort says so in its last line. <code>&lt;day&gt;</code> in that
+line is the day of the run, in UTC, as in a <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a>'s footer.</p>
+<p>The checks that hold a pshort to its fabulam are Thym's (its section 7.3): <code>cites-resolve</code>, <code>every-sentence-cited</code>,
+<code>yield-cited</code>, <code>teaching-followed</code>, <code>no-up-to</code>, <code>example-worked</code>, <code>nothing-added</code>, <code>checking-told</code>, <code>confidence-told</code>,
+<code>symbols-worded</code>, <code>apart</code>, <code>length</code>, <code>footer</code> and <code>provenance</code>. They hold a pshort to what its fabulam says. Whether
+the teaching is good is a person's judgement, and no check decides it.</p>
+<p><strong>What this edition specifies.</strong> A conforming builder reads Lean 4, as text. One fabulam tells one file, and a proof
+of several files is told under one head, one level deep, within sixty files and twelve thousand lines; a builder
+refuses more. A fabulam entails pshorts, and nothing is entailed into a proof language. A head may itself be a part:
+a folder's head names the fabulams of the folder's files and the heads of its folders, so that a tree of any depth is
+told level by level. That rule is fixed here so that nothing is renamed later, and a builder of this edition makes one
+level. Other proof languages, deeper trees, and a reading that asks the proof's own system are reserved for a later
+edition.</p>
+<p><strong>An example.</strong> One file of Mathlib, the library of mathematics written in Lean:
+<code>Mathlib/NumberTheory/PrimesCongruentOne.lean</code>, read as text at one commit of the library, under its Apache-2.0
+licence. Its 75 lines prove that for every k that is not 0 there are infinitely many primes that leave remainder 1
+when divided by k. The catalog of its fabulam and five of its items follow, cut down:
+the <a class="docs-term" href="#docs-item-t-term-envelope" data-term="T:term/envelope" title="the set of columns every item carries, whatever its kind">envelope</a>'s <code>name</code>, <code>summary</code> and <code>provenance</code> are left out for room, and so are the other items and some
+fields of these. The conformance
+corpus carries a fabulam whole (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</p>
+<pre><code class="language-yaml">oes: fabula/1
+flavour: fabulam
+id: fabula/primes-congruent-one
+name: primes-congruent-one
+source:
+  path: mathlib4/Mathlib/NumberTheory/PrimesCongruentOne.lean
+  kind: text
+  language: lean
+  toolchain: leanprover/lean4:v4.37.0-rc1
+  module: Mathlib.NumberTheory.PrimesCongruentOne
+  lines: 75
+  size: 3151
+  sha256: 5130258351145d9fef49db0c6ef1f6146fbbb3fbb59e75380c281bdc6da47678
+  imports: [Mathlib.RingTheory.Polynomial.Cyclotomic.Eval]
+  commit: 6ebcce37335bcb6bca64596e5d57bb3035648030
+  licence: Apache-2.0
+  target: [&quot;Nat.infinite_setOfPred_prime_modEq_one&quot;]
+  target-by: rule
+  read: {by: rules, elaborated: &quot;no&quot;, comments: blanked}
+  checking: {sorry: 0, axioms: 0, native-decide: 0, built-here: &quot;no&quot;}
+atem:
+  of: C:statement/Nat.infinite_setOfPred_prime_modEq_one
+  line: For every whole number k that is not zero, infinitely many primes leave remainder 1 when divided by k.
+teaching: [C:part/what-must-be-found, C:part/a-number-built-to-have-the-right-factor, C:part/from-one-to-many]
+audit:
+  - {lines: &quot;1-5&quot;, kind: header, on: &quot;&quot;, verdict: nothing}
+  - {lines: &quot;10-15&quot;, kind: module-note, on: &quot;&quot;, verdict: agrees}
+  - {lines: &quot;26-27&quot;, kind: note, on: C:lemma/Nat.exists_prime_gt_modEq_one, verdict: agrees}
+  - {lines: &quot;67&quot;, kind: note, on: C:statement/Nat.infinite_setOfPred_prime_modEq_one, verdict: agrees}
+nodes:
+  - id: P:claim/checking
+    type: claim
+    stance: observed
+    says: The file's text holds no `sorry` and declares no axiom of its own. It was read here as text. Nothing was
+      built or run, so whether Lean accepts it is not known here.
+  - id: C:lemma/Nat.exists_prime_gt_modEq_one
+    type: lemma
+    stance: observed
+    lean: &quot;Nat.exists_prime_gt_modEq_one&quot;
+    form: theorem
+    span: {file: PrimesCongruentOne.lean, lines: &quot;28-59&quot;}
+    says: For every n and every k that is not 0 there is a prime p with p &gt; n and p ≡ 1 (mod k).
+    reached: &quot;yes&quot;
+    depth: 2
+    carries: 0
+    proof: tactic
+    automation: [simp]
+    role: spine
+    why: Without it nothing produces a prime of the right kind. It turns &quot;infinitely many&quot; into &quot;one beyond any n&quot;.
+  - id: C:part/a-number-built-to-have-the-right-factor
+    type: part
+    stance: opinion
+    division: stage
+    number: 2
+    stage: main
+    says: A number is built from k and n whose least prime factor is larger than n and leaves remainder 1 when
+      divided by k. The last stage needs one such prime beyond every n.
+    plain: Multiply the divisor by every whole number from one through the number you were given. Put the result
+      into a formula made for that divisor. The smallest prime that divides what comes out lies beyond the number
+      you were given, and dividing it by the divisor leaves one.
+    plain-if: The divisor is two or more.
+    steps: [C:lemma/Nat.exists_prime_gt_modEq_one]
+  - id: P:yield/what-the-proof-delivers
+    type: yield
+    stance: opinion
+    of: C:statement/Nat.infinite_setOfPred_prime_modEq_one
+    beyond: &quot;yes&quot;
+    says: The proof names the prime. For k at least 2 it is the least prime factor of the k-th cyclotomic
+      polynomial at k · n!, and it is larger than n.
+    as-statement: For every k ≥ 2 and every n, the least prime factor p of the k-th cyclotomic polynomial's value
+      at k · n! satisfies p &gt; n and p ≡ 1 (mod k).
+    needs: []
+    bound: none
+    chooses:
+      - {what: the point the polynomial is evaluated at, where: C:lemma/Nat.exists_prime_gt_modEq_one,
+         value: k · n!, best: the file's choice, confidence: medium,
+         gives: a prime ≡ 1 (mod k) dividing no factor of the point; it exceeds n when n! divides the point}
+    trivial:
+      - {case: k = 1, known: every prime qualifies, compares: equal,
+         delivered: a prime beyond n by the known infinitude of primes}
+    grounds: [{of: C:lemma/Nat.exists_prime_gt_modEq_one, lines: &quot;33-59&quot;}]
+    confidence: medium
+  - id: P:case/k-three-n-two
+    type: case
+    stance: opinion
+    of: P:yield/what-the-proof-delivers
+    from: worked
+    stands: inside
+    given: k = 3 and n = 2. The point is 3 · 2! = 6. The third cyclotomic polynomial is x² + x + 1.
+    expect: At 6 it gives 43. Its least prime factor is 43, which is larger than 2 and equals 3 · 14 + 1.
+</code></pre>
+<p>The pshort for everyone, entailed from it, opens and closes with the lines rules write. One paragraph of its body
+stands between them here, with its citation:</p>
+<pre><code class="language-markdown"># primes-congruent-one, for everyone
+
+*A pshort of primes-congruent-one.fabulam.cosm at everyone. It is a guide to a formal proof. It is not a proof.*
+
+*The file's text holds no `sorry` and declares no axiom of its own. It was read here as text. Nothing was built or run,
+so whether Lean accepts it is not known here.* [P:claim/checking]
+
+Take the divisor 3 and the number 2. Three times two times one is 6. The formula made for 3 turns 6 into 43, and the
+smallest prime that divides 43 is 43 itself. It lies beyond 2, and dividing it by 3 leaves 1.
+[P:case/k-three-n-two, P:yield/what-the-proof-delivers]
+
+*a pshort of primes-congruent-one.fabulam.cosm, at everyone, entailed apart on 2026-11-22 by vendor/large-model*
+</code></pre>
 </section>
 <section class="docs-sec" data-key="S:section/18.5" data-scope="">
 <h3 id="docs-sec-18-5" data-toc="3">18.5 doc: documents (DocOES)</h3>
@@ -7813,11 +8849,14 @@ one (<a class="ref-xref" href="#docs-sec-5-5">section 5.5</a>).</li>
 through the generic reader and Comprise's <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a> with no load problems, and every item has the path Comprise gives
 it;</li>
 <li>every block marked <code>cosm</code> in this document loads, identifies as the <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> it declares, and passes the <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="the constraints of the database, run over the whole volume">checks</a> its
-manifest selects with no errors; among them the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>'s examples of <a class="ref-xref" href="#docs-sec-18-4">section 18.4</a>, one of each <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavour</a> (a <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a> of
-a <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a> guide, a <a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a> of a poem and a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> of a small program), and the <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a> that keeps the <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a>
+manifest selects with no errors; among them the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>'s examples of <a class="ref-xref" href="#docs-sec-18-4">section 18.4</a> (a <a class="docs-term" href="#docs-item-t-term-fabulan" data-term="T:term/fabulan" title="A fabulan is the fabula of narrative or non-fiction prose">fabulan</a> of a <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a> guide, a
+<a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a> of a poem and a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> of a small program; the <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>'s is in the corpus, below), and the <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a> that keeps
+the <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a>
 <code>oes: emf/1</code>, which identifies as <code>fabula/1</code>, old;</li>
 <li>the fuller fabulac the <a class="docs-term" href="#docs-item-t-term-reference" data-term="T:term/reference" title="an id written in a reference field: a foreign key">reference</a> implementation's corpus carries beside its program, a program of several <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">modules</a>
 with a history and tests, loads and passes the same way;</li>
+<li>the fabulam the reference implementation's corpus carries, whole, beside the file of a formal proof it was built
+from, loads and passes the same way, with the three <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshorts</a> entailed from it (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>);</li>
 <li>every path in the table of <a class="ref-xref" href="#docs-sec-11-2">section 11.2</a> resolves to the id beside it;</li>
 <li>each refusal case of <a class="ref-xref" href="#docs-sec-5">section 5</a> (an unknown format, an unknown major, a misspelled value such as <code>comprise/01</code> or
 <code>' emf/1 '</code>, an empty <code>oes:</code>, a <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> with no declaration at a name no default claims) is refused, and each legacy
@@ -7837,19 +8876,58 @@ disagreement stands as a rule of its own.</p>
 <h2 id="docs-sec-21" data-toc="2">21. Changes</h2>
 <p>Each entry records what changed in the text or the grammar, newest first. Where an implementation and this text
 disagreed and one was corrected, the entry says which.</p>
-<p><strong>Edition 0.8.0 · 2026-11-20.</strong> A program can be written <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> first, and carried into another
+<p><strong>Edition 0.9.0.</strong> A formal proof can be taken apart into a <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>, and told again as a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a>.</p>
+<ol>
+<li><strong>The fabulam</strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4">18.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-2">18.4.2</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>, a new term). A fourth <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavour</a> of the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>, for
+a formal proof: one file of the proof's source, Lean 4 in this edition, read as text and enumerated as the argument
+it holds, every declaration an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> with its name and its <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a>. The <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> gains <code>teaching</code> and <code>audit</code>, <code>source</code> a
+fourth form, and a fabulam's <code>atem</code> an <code>of</code>. New <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a> <code>C:statement</code>, <code>C:definition</code>, <code>C:lemma</code>, <code>C:constant</code>,
+<code>C:step</code>, <code>P:yield</code> and <code>P:fit</code>; <code>C:part</code>, <code>C:file</code>, <code>C:component</code>, <code>C:dependency</code>, <code>C:reliance</code>, <code>P:claim</code>,
+<code>P:reading</code>, <code>P:case</code> and <code>P:assumption</code> take a fabulam's <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a>, and the closed lists of <code>division</code>, <code>on</code> and <code>from</code>
+gain <code>stage</code>, <code>part</code> and <code>worked</code>. Nothing of the proof's own system is installed, built or run.</li>
+<li><strong>Stated is not shown</strong> (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>). What a statement says and what its proof delivers are kept apart. The
+<code>P:yield</code> is written as a function of what the proof chooses and set against the trivial cases, in the words &quot;at
+least&quot;, &quot;at most&quot;, &quot;exactly&quot; and &quot;between&quot;, never &quot;up to&quot;. Slack is recorded, and every statement has one worked
+example in numbers.</li>
+<li><strong>The spine, the stages and the teaching order</strong> (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>). What a final theorem reaches, and how much each
+declaration carries, is found by rule; a model judges spine, support or bookkeeping within what the rule found. The
+argument is told in stages, each with a <code>plain</code> sentence and its <code>plain-if</code>, and the teaching order starts with the
+reduction.</li>
+<li><strong>Comments are hearsay, and checking is said once</strong> (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>). Every comment is a row of the comment table,
+and a claim's <code>checked</code> is one of four words; the proof is read with its comments blanked. <code>source.checking</code> and the
+fixed item <code>P:claim/checking</code> record what is known about the machine check and who says it, and an implementation
+never says more.</li>
+<li><strong>The head fabulam</strong> (<a class="ref-xref" href="#docs-sec-18-4-1">sections 18.4.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>). A proof of several files is told as one fabulam for each file,
+under a head that names its <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">parts</a> and states once every declaration that crosses between them. One level in this
+edition.</li>
+<li><strong>The pshort</strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>, a new term). A fabulam's <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a>: a guide for an expert, a student
+or everyone, each run of its sentences cited to items of the fabulam, its heading lines and its last line written by
+rule, entailed apart from the source. A pshort is never called a proof.</li>
+<li><strong>The fabulam's <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="the constraints of the database, run over the whole volume">checks</a></strong> (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>). New checks <code>declared-once</code>, <code>statement-whole</code>, <code>yield-stated</code>,
+<code>fit-stated</code>, <code>spine-told</code>, <code>stages-whole</code>, <code>grounds-given</code>, <code>audit-whole</code>, <code>stance-fits</code>, <code>checking-said</code>,
+<code>example-worked</code>, <code>no-up-to</code>, <code>statements-agree</code>, <code>regime-named</code>, <code>no-judgement</code>, <code>plain-words</code> and
+<code>spine-rule-differs</code>. <code>flavour</code> takes four values, and <code>code-span</code>, <code>licence-recorded</code> and <code>parts-resolve</code> read a
+fabulam as they read a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. A check that asks for what a later stage writes holds only once the fabulam is whole
+or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
+are Thym's (its section 7.3).</li>
+<li><strong>Three smaller things.</strong> A kind may say <code>open</code>, the fields of its own that the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s shared closed lists do
+not bind (<a class="ref-xref" href="#docs-sec-7-3">sections 7.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-13-3">13.3</a>); the fabula's <code>C:lemma</code> says it of <code>scope</code>. <a class="ref-xref" href="#docs-sec-18-3-5">Section 18.3.5</a> names the rule a
+scaffold's sentences are read by (Thym, its section 12.6). The conformance corpus carries a fabulam with its three
+pshorts (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</li>
+</ol>
+<p><strong>Edition 0.8.0 · 2026-11-20.</strong> A program can be written fabulac first, and carried into another
 language through its fabulac.</p>
 <ol>
 <li><strong>The <a class="docs-term" href="#docs-item-t-term-authored-fabulac" data-term="T:term/authored-fabulac" title="An authored fabulac is a fabulac a person wrote before the program">authored fabulac</a></strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4">18.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a>, a new term). A fabulac may come before the
 program: a person authors it through a brief and an interview, and its <code>source</code> takes a third form, <code>{kind: authored, language, licence, by, at, brief}</code>. An authored fabulac is its own source and never stale; the folder beside it of
 the same name is its <a class="docs-term" href="#docs-item-t-term-entailment" data-term="T:term/entailment" title="An entailment is the step that expands meaning by reducing data">entailment</a>, and is never decompiled.</li>
 <li><strong>Entailing a program meant to run, and running it</strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a>). An authored fabulac entails a folder
-a person can start, with its tests, its packaging, <code>ENTAILED.md</code> and <code>RUNNING.md</code>, and the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>program</code> says
+a person can start, with its tests, its packaging, <code>ENTAILED.md</code> and <code>RUNNING.md</code>, and the catalog's <code>program</code> says
 whether it is a tool, a library or a service. An implementation may run that folder's tests and the program in a
 sandbox, and only there; serving is specified and switched on in a later minor version. Every <a class="docs-term" href="#docs-item-t-term-cshort" data-term="T:term/cshort" title="A cshort is a fabulac's short">cshort</a>, and all code a
 person did not author, is still read and never run, as ruled on 2026-11-05.</li>
 <li><strong>Cases as the judge</strong> (<a class="ref-xref" href="#docs-sec-18-4-2">sections 18.4.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-8">18.4.8</a>). A <code>P:case</code> written as data for a command or a function
-can be run; tests are entailed from such cases by rules, never by the model that writes the code. New <a class="docs-term" href="#docs-item-t-term-checks" data-term="T:term/checks" title="the constraints of the database, run over the whole volume">checks</a>
+can be run; tests are entailed from such cases by rules, never by the model that writes the code. New checks
 <code>cases-entailed</code> and <code>requirement-cased</code>. A command case may name the folder its steps run in, and <code>&lt;CASE&gt;</code> stands for its own folder; a
 function case calls by keyword, and its error matches by class or a class that comes from it, its message exactly.
 The entailment's folder holds <code>tests/__init__.py</code>, and <code>tests/test_prose_cases.py</code> when a case is prose;
@@ -7859,13 +8937,13 @@ release is version <code>0.0.0</code>. A case's <code>given</code> and <code>exp
 digest and the digest of what it was entailed from; entailing again tells only what moved, and a file edited by hand
 is named, and is written over only with the person's word. Six states, <code>kept</code> and <code>new</code> among them; <code>kept</code> entries
 are <code>{path, decision}</code>, and a kept file's decision is in no file's brief; letting a file go tells it again; a file
-taken back puts each <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> it adds or changes as a <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a>, <code>take it back</code> or <code>leave it out</code>, with <code>proposed</code>.</li>
+taken back puts each item it adds or changes as a <a class="docs-term" href="#docs-item-t-term-question" data-term="T:term/question" title="A question asks one thing about one place in a volume">question</a>, <code>take it back</code> or <code>leave it out</code>, with <code>proposed</code>.</li>
 <li><strong>The <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a></strong> (<a class="ref-xref" href="#docs-sec-18-4">sections 18.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-8">18.4.8</a>, a new term). A program too large for one fabulac is
-told as <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">parts</a> under a head that names them, <code>parts</code> and <code>head</code> in the catalogs, and states once the interfaces
+told as parts under a head that names them, <code>parts</code> and <code>head</code> in the catalogs, and states once the interfaces
 between them; two programs are held to one interface by the same rule across two heads. New checks <code>parts-resolve</code>
 and <code>interfaces-agree</code>, over the fabulacs a reader knows: those in the head's folder and the three above it, and the
-files <code>parts</code> names. A <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a> kept as a <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> of several files stays reserved. A class that passes between parts
-has its methods and <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">fields</a> stated in the head, read from the source by rule, and <code>interfaces-agree</code> holds the parts
+files <code>parts</code> names. A fabula kept as a <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> of several files stays reserved. A class that passes between parts
+has its methods and fields stated in the head, read from the source by rule, and <code>interfaces-agree</code> holds the parts
 to them.</li>
 <li><strong><a class="docs-term" href="#docs-item-t-term-transconception" data-term="T:term/transconception" title="A transconception is a transconceptualization of a program, carried through its fabulac, in Transconception">Transconception</a></strong> (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>, new, and the new terms transconception and <a class="docs-term" href="#docs-item-t-term-transconceiver" data-term="T:term/transconceiver" title="A transconceiver is the person who rules what a transconception keeps">transconceiver</a>). A program carried
 into another language through its fabulac: the transconceiver rules what is kept, the original judges, and the
@@ -7878,7 +8956,7 @@ and <a class="docs-term" href="#docs-item-t-term-ruling" data-term="T:term/rulin
 its gate points and the reliances kept, and the spike's level on its own cases. A layout's tables and footer, and a
 cshort's <code>CSHORT.md</code>, <code>NOTES.md</code>, <code>NOTICE</code> and the file of the requests it sent, are given; a cshort not yet judged says <code>evidence: []</code>, and evidence holds only against the source it names. A ruling may rule a part of its thing (<code>about</code>) or, on a
 case, some of its <code>steps</code>; one not yet made is pending.</li>
-<li><strong>The fabula's <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kinds</a></strong> (<a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>). New kinds <code>N:target</code>, <code>C:reliance</code> and <code>P:assumption</code>; the field <code>ruling</code>,
+<li><strong>The fabula's kinds</strong> (<a class="ref-xref" href="#docs-sec-18-4-2">section 18.4.2</a>). New kinds <code>N:target</code>, <code>C:reliance</code> and <code>P:assumption</code>; the field <code>ruling</code>,
 with <code>made-for</code>, on interfaces, structures, behaviours, settings, reliances and cases; the plain kinds; new fields of
 <code>N:requirement</code>, <code>C:interface</code>, <code>C:component</code>, <code>C:structure</code>, <code>C:dependency</code>, <code>R:licence</code> and <code>P:case</code>; the capacity
 <code>transconceiver</code>. The catalog gains <code>purpose</code>, <code>written-for</code>, <code>ruled-by</code>, <code>cases</code>, and <code>source.obtained</code> (<a class="ref-xref" href="#docs-sec-18-4-1">section
@@ -7895,12 +8973,12 @@ an authored fabulac has a bank of its own, <code>for: {flavour: fabulac, source:
 options (<a class="ref-xref" href="#docs-sec-18-6-2">section 18.6.2</a>).</li>
 <li><strong>The <a class="docs-term" href="#docs-item-t-term-fabulap" data-term="T:term/fabulap" title="A fabulap is the fabula of poetry, metered verse or song lyrics">fabulap</a></strong> (<a class="ref-xref" href="#docs-sec-18-4-2">sections 18.4.2</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-6">18.4.6</a>). A form's rule that rules cannot read is <code>held: {pending}</code> and asked.
 A form's <code>scheme</code> is read across the whole poem, so that a villanelle and a terza rima can be named. An answer to the
-bank's <code>breaks</code> or <code>stanza</code> writes the answerer's <code>P:reading</code> of those <a class="docs-term" href="#docs-item-t-term-the-line" data-term="T:term/the-line" title="one sentence of 15 to 25 words that says what the whole says">lines</a> or stanzas.</li>
+bank's <code>breaks</code> or <code>stanza</code> writes the answerer's <code>P:reading</code> of those lines or stanzas.</li>
 </ol>
 <p><strong>Edition 0.7.0 · 2026-11-13.</strong> Each density is an entailment of the one before, and a poem's fabula is built in full.</p>
 <ol>
 <li><strong>Entailment</strong> (<a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>, a new term). An entailment is the step that expands meaning by reducing data, and what
-that step makes: an input entails its fabula, a fabula a <a class="docs-term" href="#docs-item-t-term-short" data-term="T:term/short" title="A short of a text is an entailment of the text's fabula, compiled from it">short</a>, and a short an <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>; a codebase or an application
+that step makes: an input entails its fabula, a fabula a short, and a short an <a class="docs-term" href="#docs-item-t-term-atem" data-term="T:term/atem" title="the tightest fair, full, plain-English reduction of a text or of a passage of one">atem</a>; a codebase or an application
 entails its fabulac; a <a class="docs-term" href="#docs-item-t-term-holotype" data-term="T:term/holotype" title="the complete, private description of one subject, kept by the subject, on the subject's machine">Holotype</a> entails its <a class="docs-term" href="#docs-item-t-term-isotype" data-term="T:term/isotype" title="a small public projection of the Holotype">isotype</a> and its paratype, and a holograph its isograph and its
 allograph. One made by rule, a projection, holds by construction; one made by a model holds only because
 <code>no-invention</code>, <code>stance-kept</code> and <code>coverage</code> hold it. Thym's move <code>tell</code> is <code>entail</code>, and a program or a trace that
@@ -7923,7 +9001,7 @@ form and its metre before its stanzas (<a class="ref-xref" href="#docs-sec-18-4-
 isograph in the table of <a class="ref-xref" href="#docs-sec-16">section 16</a>; <a class="ref-xref" href="#docs-sec-19-2">section 19.2</a> says the projections and the registry belong to Ascribe's text.</li>
 <li><strong>People by what they are to the holder.</strong> A holograph names the people in a person's life by what they are to the
 holder or by a pseudonym the catalog declares, no longer by role (<a class="ref-xref" href="#docs-sec-19-2">section 19.2</a>).</li>
-<li><strong>Stewardship.</strong> The text and its <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifests</a> are licensed under CC BY 4.0, the author makes the OWFa 1.0 promise for
+<li><strong>Stewardship.</strong> The text and its manifests are licensed under CC BY 4.0, the author makes the OWFa 1.0 promise for
 it, and the names of the family are not licensed and are held by the author for now (<a class="ref-xref" href="#docs-sec-1-3">section 1.3</a> and the colophon).</li>
 <li><strong>The grammar version is 0.7.0,</strong> in the reserved <code>macrocosm:</code> key (<a class="ref-xref" href="#docs-sec-1-1">sections 1.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-5-6">5.6</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-15">15</a>): the kind <code>C:form</code>,
 the fields of <code>C:device</code> and a fabulap's <code>outline</code> are new. Files written under 0.6.0, 0.5.4, 0.0.2 and 0.0.1 read
@@ -7945,7 +9023,7 @@ filter and projections), and Conformance, Changes and Withdrawn moved from 19, 2
 reference implementation. A file's <a class="docs-term" href="#docs-item-t-term-twin" data-term="T:term/twin" title="Its volume">twin</a> is named in its <code>fabula</code> field; <code>emf</code>, the field's <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a>, is read as
 <code>fabula</code> (<a class="ref-xref" href="#docs-sec-18-3-2">section 18.3.2</a>).</li>
 <li><strong>The name EMF is retired.</strong> The format is the fabula, declared <code>oes: fabula/1</code>. <code>oes: emf/1</code> is its old spelling,
-read forever as a fabula whose <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavour</a> is <code>fabulan</code> and never written; a catalog id <code>emf/&lt;slug&gt;</code> and a URI
+read forever as a fabula whose flavour is <code>fabulan</code> and never written; a catalog id <code>emf/&lt;slug&gt;</code> and a URI
 <code>oes:emf/…</code> are read with it, and the check name <code>emf-checks</code> is read as <code>fabula-checks</code> (<a class="ref-xref" href="#docs-sec-5-2">sections 5.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-5-4">5.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-5-5">5.5</a>,
 <a class="ref-xref ref-xref-num" href="#docs-sec-6-2">6.2</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-11-3">11.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-1">18.1</a>). A twin is named after its text and its flavour, and an older twin's <code>&lt;text&gt;.cosm</code> reads as it
 is (<a class="ref-xref" href="#docs-sec-18-4">section 18.4</a>).</li>
@@ -8250,7 +9328,7 @@ of them, keeps them, and leaves their meaning to Comprise.</p>
 <p><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and the core built into it">MacroCOSM</a> <a class="docs-term" href="#docs-item-t-term-oes" data-term="T:term/oes" title="stands for organizational enumeration system">OES</a> — Copyright © 2026 Graham Smith. The text and its <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifests</a> are licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/). A copy carries the author, Graham Smith; the text's name and edition; and a link to its home, https://macro.cosmoes.org/. For MacroCOSM OES, the author makes the Open Web Foundation Final Specification Agreement 1.0 (OWFa 1.0) promise (https://www.openwebfoundation.org/the-agreements/the-owf-1-0-agreements-granted-claims/owfa-1-0). The names of the family are not licensed by either; the author holds them for now. The canonical edition is published at https://macro.cosmoes.org/; its source and history are at https://github.com/0gsd/cosmoes-site.</p>
 </section>
 <section class="docs-sec docs-glossary" id="docs-glossary"><h2 id="docs-glossary-h" data-toc="2">Terms</h2>
-<dl class="docs-gloss"><dt id="docs-item-t-term-as-told">as told</dt><dd>every item where its span puts it, in the author's order: told in the files — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-atem">atem</dt><dd>the tightest fair, full, plain-English reduction of a text or of a passage of one — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-authored-fabulac">authored fabulac</dt><dd>An authored fabulac is a fabulac a person wrote before the program — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-bank">bank</dt><dd>A bank is a format's list of opening questions, kept in its manifest's dialectic — <a class="ref-xref" href="#docs-sec-18-6-6">defined in §18.6.6 Banks</a></dd><dt id="docs-item-t-term-built-in">built-in</dt><dd>A built-in is a kind of volume the core defines — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-by-weight">by weight</dt><dd>the claims that matter most first, then the events, then the terms — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-canon">Canon</dt><dd>Canon is MacroCOSM's home file system — <a class="ref-xref" href="#docs-sec-18-3">defined in §18.3 canon: Canon, the home file system</a></dd><dt id="docs-item-t-term-catalog">catalog</dt><dd>the file at the root of a volume that declares the format and says what… — <a class="ref-xref" href="#docs-sec-6-2">defined in §6.2 The catalog</a></dd><dt id="docs-item-t-term-catem">catem</dt><dd>A catem is a fabulac's atem at depth — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-chapter">chapter</dt><dd>A chapter is a document synced into the volume, read-only, in its author's own words — <a class="ref-xref" href="#docs-sec-18-5-3">defined in §18.5.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-checks">checks</dt><dd>the constraints of the database, run over the whole volume — <a class="ref-xref" href="#docs-sec-12-1">defined in §12.1 What the checks are</a></dd><dt id="docs-item-t-term-core">core</dt><dd>The core is what MacroCOSM holds built in — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-cosm">COSM</dt><dd>the family's name — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-cshort">cshort</dt><dd>A cshort is a fabulac's short — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-decompile">decompile</dt><dd>The model — <a class="ref-xref" href="#docs-sec-18-1">defined in §18.1 The core and its registry</a></dd><dt id="docs-item-t-term-dialectic">dialectic</dt><dd>The dialectic is the core's one primitive for asking a person what a source means… — <a class="ref-xref" href="#docs-sec-18-6">defined in §18.6 The dialectic</a></dd><dt id="docs-item-t-term-docoes">DocOES</dt><dd>DocOES, Documentation OES, takes a markdown document apart into items — <a class="ref-xref" href="#docs-sec-18-5">defined in §18.5 doc: documents (DocOES)</a></dd><dt id="docs-item-t-term-entailment">entailment</dt><dd>An entailment is the step that expands meaning by reducing data — <a class="ref-xref" href="#docs-sec-18-1">defined in §18.1 The core and its registry</a></dd><dt id="docs-item-t-term-envelope">envelope</dt><dd>the set of columns every item carries, whatever its kind — <a class="ref-xref" href="#docs-sec-8-1">defined in §8.1 The columns every item has</a></dd><dt id="docs-item-t-term-fabula">fabula</dt><dd>A fabula enumerates all the inspiration, meaning, intent, construction — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulac">fabulac</dt><dd>A fabulac is the fabula of code — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulan">fabulan</dt><dd>A fabulan is the fabula of narrative or non-fiction prose — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulap">fabulap</dt><dd>A fabulap is the fabula of poetry, metered verse or song lyrics — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-field">field</dt><dd>a column — <a class="ref-xref" href="#docs-sec-7-4">defined in §7.4 Fields</a></dd><dt id="docs-item-t-term-flavour">flavour</dt><dd>A fabula's flavour is the kind of input it is the fabula of — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-focus">focus</dt><dd>at most two sentences — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-format">format</dt><dd>A format is what a declaration names: a built-in or a MiniCOSM (section 5) — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-head-fabulac">head fabulac</dt><dd>A head fabulac is a fabulac that names the parts of one program — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-holotype">Holotype</dt><dd>the complete, private description of one subject, kept by the subject, on the subject's machine — <a class="ref-xref" href="#docs-sec-16">defined in §16 The private/public split (by reference)</a></dd><dt id="docs-item-t-term-isotype">isotype</dt><dd>a small public projection of the Holotype — <a class="ref-xref" href="#docs-sec-16">defined in §16 The private/public split (by reference)</a></dd><dt id="docs-item-t-term-item">item</dt><dd>a row: a mapping with a string id and a type — <a class="ref-xref" href="#docs-sec-7-1">defined in §7.1 Items</a></dd><dt id="docs-item-t-term-its-envelope">Its envelope</dt><dd>Comprise's, so that the same moves work on both subjects — <a class="ref-xref" href="#docs-sec-19-2">defined in §19.2 ascribe: a person's holograph</a></dd><dt id="docs-item-t-term-kind">kind</dt><dd>a table — <a class="ref-xref" href="#docs-sec-7-3">defined in §7.3 Kinds</a></dd><dt id="docs-item-t-term-lens">lens</dt><dd>a Mermaid rendering of a volume from one angle, declared in the manifest — <a class="ref-xref" href="#docs-sec-14-3">defined in §14.3 Lenses</a></dd><dt id="docs-item-t-term-macrocosm">MacroCOSM</dt><dd>an OES: the shared grammar, and the core built into it — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-manifest">manifest</dt><dd>the machine-readable declaration of a format, a built-in or a MiniCOSM — <a class="ref-xref" href="#docs-sec-13-1">defined in §13.1 What it is</a></dd><dt id="docs-item-t-term-mefa">mefa</dt><dd>A mefa is the smallest unit of meaning in a fabula — <a class="ref-xref" href="#docs-sec-18-4-2">defined in §18.4.2 The modules and their kinds</a></dd><dt id="docs-item-t-term-microcosm">MicroCOSM</dt><dd>one organization's extension on top of a MiniCOSM — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-minicosm">MiniCOSM</dt><dd>a domain's OES with a specification of its own, declared by a manifest — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-module">module</dt><dd>a group of kinds: a group of tables — <a class="ref-xref" href="#docs-sec-7-2">defined in §7.2 Modules</a></dd><dt id="docs-item-t-term-oes">OES</dt><dd>stands for organizational enumeration system — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-old-spelling">old spelling</dt><dd>Old spellings — <a class="ref-xref" href="#docs-sec-5-2">defined in §5.2 Identifying a catalog</a></dd><dt id="docs-item-t-term-open-question">open question</dt><dd>a value nobody has yet given, written where the value would go — <a class="ref-xref" href="#docs-sec-10">defined in §10 Open questions</a></dd><dt id="docs-item-t-term-part">part</dt><dd>a top-level division of a volume (Comprise: concern, atom) — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-pull">pull</dt><dd>one sentence: what the reader should actually take away — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-push">push</dt><dd>one sentence: what the author wants the reader to take away, believe or do — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-question">question</dt><dd>A question asks one thing about one place in a volume — <a class="ref-xref" href="#docs-sec-18-6">defined in §18.6 The dialectic</a></dd><dt id="docs-item-t-term-reference">reference</dt><dd>an id written in a reference field: a foreign key — <a class="ref-xref" href="#docs-sec-9-1">defined in §9.1 What a reference is</a></dd><dt id="docs-item-t-term-renderer">renderer</dt><dd>turns a volume into another form — <a class="ref-xref" href="#docs-sec-14-1">defined in §14.1 Renderers</a></dd><dt id="docs-item-t-term-ruling">ruling</dt><dd>A ruling says what an entailment must keep of one thing the program does — <a class="ref-xref" href="#docs-sec-18-4-2">defined in §18.4.2 The modules and their kinds</a></dd><dt id="docs-item-t-term-salience">salience</dt><dd>A claim's salience is how much it matters to the text — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-session">session</dt><dd>D:session/&lt;slug&gt;: one session, a sitting in which a person was asked questions — <a class="ref-xref" href="#docs-sec-18-6-2">defined in §18.6.2 Module D</a></dd><dt id="docs-item-t-term-short">short</dt><dd>A short of a text is an entailment of the text's fabula, compiled from it — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-span">span</dt><dd>An item's span points it back at its input — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-stance">stance</dt><dd>A claim's stance is how the text knows it — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-syuzhet">syuzhet</dt><dd>A syuzhet is an arrangement of a fabula's material, its items in an order — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-telling">telling</dt><dd>A telling is one language a document is written in, a volume of its own — <a class="ref-xref" href="#docs-sec-18-5-3">defined in §18.5.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-the-line">the line</dt><dd>one sentence of 15 to 25 words that says what the whole says — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-transconceiver">transconceiver</dt><dd>A transconceiver is the person who rules what a transconception keeps — <a class="ref-xref" href="#docs-sec-18-4-9">defined in §18.4.9 Transconception</a></dd><dt id="docs-item-t-term-transconception">transconception</dt><dd>A transconception is a transconceptualization of a program, carried through its fabulac, in Transconception — <a class="ref-xref" href="#docs-sec-18-4-9">defined in §18.4.9 Transconception</a></dd><dt id="docs-item-t-term-twin">twin</dt><dd>Its volume — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-typed-link">typed link</dt><dd>a mapping {rel: &lt;word&gt;, to: &lt;id&gt;} in an item's links: list — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 Typed links</a></dd><dt id="docs-item-t-term-volume">volume</dt><dd>one database of a format — <a class="ref-xref" href="#docs-sec-6-1">defined in §6.1 Volumes</a></dd></dl>
+<dl class="docs-gloss"><dt id="docs-item-t-term-as-told">as told</dt><dd>every item where its span puts it, in the author's order: told in the files — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-atem">atem</dt><dd>the tightest fair, full, plain-English reduction of a text or of a passage of one — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-authored-fabulac">authored fabulac</dt><dd>An authored fabulac is a fabulac a person wrote before the program — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-bank">bank</dt><dd>A bank is a format's list of opening questions, kept in its manifest's dialectic — <a class="ref-xref" href="#docs-sec-18-6-6">defined in §18.6.6 Banks</a></dd><dt id="docs-item-t-term-built-in">built-in</dt><dd>A built-in is a kind of volume the core defines — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-by-weight">by weight</dt><dd>the claims that matter most first, then the events, then the terms — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-canon">Canon</dt><dd>Canon is MacroCOSM's home file system — <a class="ref-xref" href="#docs-sec-18-3">defined in §18.3 canon: Canon, the home file system</a></dd><dt id="docs-item-t-term-catalog">catalog</dt><dd>the file at the root of a volume that declares the format and says what… — <a class="ref-xref" href="#docs-sec-6-2">defined in §6.2 The catalog</a></dd><dt id="docs-item-t-term-catem">catem</dt><dd>A catem is a fabulac's atem at depth — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-chapter">chapter</dt><dd>A chapter is a document synced into the volume, read-only, in its author's own words — <a class="ref-xref" href="#docs-sec-18-5-3">defined in §18.5.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-checks">checks</dt><dd>the constraints of the database, run over the whole volume — <a class="ref-xref" href="#docs-sec-12-1">defined in §12.1 What the checks are</a></dd><dt id="docs-item-t-term-core">core</dt><dd>The core is what MacroCOSM holds built in — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-cosm">COSM</dt><dd>the family's name — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-cshort">cshort</dt><dd>A cshort is a fabulac's short — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-decompile">decompile</dt><dd>The model — <a class="ref-xref" href="#docs-sec-18-1">defined in §18.1 The core and its registry</a></dd><dt id="docs-item-t-term-dialectic">dialectic</dt><dd>The dialectic is the core's one primitive for asking a person what a source means… — <a class="ref-xref" href="#docs-sec-18-6">defined in §18.6 The dialectic</a></dd><dt id="docs-item-t-term-docoes">DocOES</dt><dd>DocOES, Documentation OES, takes a markdown document apart into items — <a class="ref-xref" href="#docs-sec-18-5">defined in §18.5 doc: documents (DocOES)</a></dd><dt id="docs-item-t-term-entailment">entailment</dt><dd>An entailment is the step that expands meaning by reducing data — <a class="ref-xref" href="#docs-sec-18-1">defined in §18.1 The core and its registry</a></dd><dt id="docs-item-t-term-envelope">envelope</dt><dd>the set of columns every item carries, whatever its kind — <a class="ref-xref" href="#docs-sec-8-1">defined in §8.1 The columns every item has</a></dd><dt id="docs-item-t-term-fabula">fabula</dt><dd>A fabula enumerates all the inspiration, meaning, intent, construction — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulac">fabulac</dt><dd>A fabulac is the fabula of code — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulam">fabulam</dt><dd>A fabulam is the fabula of a formal proof — <a class="ref-xref" href="#docs-sec-18-4-10">defined in §18.4.10 Proof: the fabulam and the pshort</a></dd><dt id="docs-item-t-term-fabulan">fabulan</dt><dd>A fabulan is the fabula of narrative or non-fiction prose — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-fabulap">fabulap</dt><dd>A fabulap is the fabula of poetry, metered verse or song lyrics — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-field">field</dt><dd>a column — <a class="ref-xref" href="#docs-sec-7-4">defined in §7.4 Fields</a></dd><dt id="docs-item-t-term-flavour">flavour</dt><dd>A fabula's flavour is the kind of input it is the fabula of — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-focus">focus</dt><dd>at most two sentences — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-format">format</dt><dd>A format is what a declaration names: a built-in or a MiniCOSM (section 5) — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-head-fabulac">head fabulac</dt><dd>A head fabulac is a fabulac that names the parts of one program — <a class="ref-xref" href="#docs-sec-18-4-7">defined in §18.4.7 Code: the fabulac, the cshort and the catem</a></dd><dt id="docs-item-t-term-holotype">Holotype</dt><dd>the complete, private description of one subject, kept by the subject, on the subject's machine — <a class="ref-xref" href="#docs-sec-16">defined in §16 The private/public split (by reference)</a></dd><dt id="docs-item-t-term-isotype">isotype</dt><dd>a small public projection of the Holotype — <a class="ref-xref" href="#docs-sec-16">defined in §16 The private/public split (by reference)</a></dd><dt id="docs-item-t-term-item">item</dt><dd>a row: a mapping with a string id and a type — <a class="ref-xref" href="#docs-sec-7-1">defined in §7.1 Items</a></dd><dt id="docs-item-t-term-its-envelope">Its envelope</dt><dd>Comprise's, so that the same moves work on both subjects — <a class="ref-xref" href="#docs-sec-19-2">defined in §19.2 ascribe: a person's holograph</a></dd><dt id="docs-item-t-term-kind">kind</dt><dd>a table — <a class="ref-xref" href="#docs-sec-7-3">defined in §7.3 Kinds</a></dd><dt id="docs-item-t-term-lens">lens</dt><dd>a Mermaid rendering of a volume from one angle, declared in the manifest — <a class="ref-xref" href="#docs-sec-14-3">defined in §14.3 Lenses</a></dd><dt id="docs-item-t-term-macrocosm">MacroCOSM</dt><dd>an OES: the shared grammar, and the core built into it — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-manifest">manifest</dt><dd>the machine-readable declaration of a format, a built-in or a MiniCOSM — <a class="ref-xref" href="#docs-sec-13-1">defined in §13.1 What it is</a></dd><dt id="docs-item-t-term-mefa">mefa</dt><dd>A mefa is the smallest unit of meaning in a fabula — <a class="ref-xref" href="#docs-sec-18-4-2">defined in §18.4.2 The modules and their kinds</a></dd><dt id="docs-item-t-term-microcosm">MicroCOSM</dt><dd>one organization's extension on top of a MiniCOSM — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-minicosm">MiniCOSM</dt><dd>a domain's OES with a specification of its own, declared by a manifest — <a class="ref-xref" href="#docs-sec-3">defined in §3 Scales: MacroCOSM, MiniCOSM, MicroCOSM</a></dd><dt id="docs-item-t-term-module">module</dt><dd>a group of kinds: a group of tables — <a class="ref-xref" href="#docs-sec-7-2">defined in §7.2 Modules</a></dd><dt id="docs-item-t-term-oes">OES</dt><dd>stands for organizational enumeration system — <a class="ref-xref" href="#docs-sec-1-2">defined in §1.2 The name</a></dd><dt id="docs-item-t-term-old-spelling">old spelling</dt><dd>Old spellings — <a class="ref-xref" href="#docs-sec-5-2">defined in §5.2 Identifying a catalog</a></dd><dt id="docs-item-t-term-open-question">open question</dt><dd>a value nobody has yet given, written where the value would go — <a class="ref-xref" href="#docs-sec-10">defined in §10 Open questions</a></dd><dt id="docs-item-t-term-part">part</dt><dd>a top-level division of a volume (Comprise: concern, atom) — <a class="ref-xref" href="#docs-how-to-read-this">defined in How to read this</a></dd><dt id="docs-item-t-term-pshort">pshort</dt><dd>A pshort is a fabulam's short — <a class="ref-xref" href="#docs-sec-18-4-10">defined in §18.4.10 Proof: the fabulam and the pshort</a></dd><dt id="docs-item-t-term-pull">pull</dt><dd>one sentence: what the reader should actually take away — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-push">push</dt><dd>one sentence: what the author wants the reader to take away, believe or do — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-question">question</dt><dd>A question asks one thing about one place in a volume — <a class="ref-xref" href="#docs-sec-18-6">defined in §18.6 The dialectic</a></dd><dt id="docs-item-t-term-reference">reference</dt><dd>an id written in a reference field: a foreign key — <a class="ref-xref" href="#docs-sec-9-1">defined in §9.1 What a reference is</a></dd><dt id="docs-item-t-term-renderer">renderer</dt><dd>turns a volume into another form — <a class="ref-xref" href="#docs-sec-14-1">defined in §14.1 Renderers</a></dd><dt id="docs-item-t-term-ruling">ruling</dt><dd>A ruling says what an entailment must keep of one thing the program does — <a class="ref-xref" href="#docs-sec-18-4-2">defined in §18.4.2 The modules and their kinds</a></dd><dt id="docs-item-t-term-salience">salience</dt><dd>A claim's salience is how much it matters to the text — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-session">session</dt><dd>D:session/&lt;slug&gt;: one session, a sitting in which a person was asked questions — <a class="ref-xref" href="#docs-sec-18-6-2">defined in §18.6.2 Module D</a></dd><dt id="docs-item-t-term-short">short</dt><dd>A short of a text is an entailment of the text's fabula, compiled from it — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-span">span</dt><dd>An item's span points it back at its input — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-stance">stance</dt><dd>A claim's stance is how the text knows it — <a class="ref-xref" href="#docs-sec-18-4-3">defined in §18.4.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-syuzhet">syuzhet</dt><dd>A syuzhet is an arrangement of a fabula's material, its items in an order — <a class="ref-xref" href="#docs-sec-18-4-4">defined in §18.4.4 Shorts</a></dd><dt id="docs-item-t-term-telling">telling</dt><dd>A telling is one language a document is written in, a volume of its own — <a class="ref-xref" href="#docs-sec-18-5-3">defined in §18.5.3 The conventions, in plain words</a></dd><dt id="docs-item-t-term-the-line">the line</dt><dd>one sentence of 15 to 25 words that says what the whole says — <a class="ref-xref" href="#docs-sec-18-3-5">defined in §18.3.5 Atems</a></dd><dt id="docs-item-t-term-transconceiver">transconceiver</dt><dd>A transconceiver is the person who rules what a transconception keeps — <a class="ref-xref" href="#docs-sec-18-4-9">defined in §18.4.9 Transconception</a></dd><dt id="docs-item-t-term-transconception">transconception</dt><dd>A transconception is a transconceptualization of a program, carried through its fabulac, in Transconception — <a class="ref-xref" href="#docs-sec-18-4-9">defined in §18.4.9 Transconception</a></dd><dt id="docs-item-t-term-twin">twin</dt><dd>Its volume — <a class="ref-xref" href="#docs-sec-18-4">defined in §18.4 fabula: the fabula</a></dd><dt id="docs-item-t-term-typed-link">typed link</dt><dd>a mapping {rel: &lt;word&gt;, to: &lt;id&gt;} in an item's links: list — <a class="ref-xref" href="#docs-sec-9-4">defined in §9.4 Typed links</a></dd><dt id="docs-item-t-term-volume">volume</dt><dd>one database of a format — <a class="ref-xref" href="#docs-sec-6-1">defined in §6.1 Volumes</a></dd></dl>
 </section>
 </div>
 </article>
