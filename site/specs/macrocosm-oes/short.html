@@ -958,6 +958,10 @@ inherits the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:ter
 <td>closed lists for the kind's own fields, <code>{&lt;field&gt;: [values]}</code>, applied to items of the kind over the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s <code>closed-lists</code> (<a class="ref-xref" href="#docs-sec-13-3">section 13.3</a>)</td>
 </tr>
 <tr>
+<td><code>open</code></td>
+<td>the kind's fields that the manifest's <code>closed-lists</code> do not bind, a list: a field of one name may hold a closed word on one kind and something else on this one, as <code>scope</code> does on the fabula's <code>C:dependency</code> and its <code>C:lemma</code></td>
+</tr>
+<tr>
 <td>other keys</td>
 <td>what a format's own code needs: a <code>level</code>, an exception id form (<code>id: 'P:&lt;slug&gt;'</code>), <code>stored: database</code>, <code>public: never</code>, a <code>note</code></td>
 </tr>
@@ -1850,7 +1854,7 @@ manifests add. A reader keeps every key, including the ones it does not use.</p>
 </tr>
 <tr>
 <td><code>modules</code></td>
-<td>for each letter: <code>name</code>, <code>subtitle</code>, <code>note</code>, and <code>kinds</code>, each with <code>refs</code>, <code>required</code> (0.0.1), <code>checked</code>, <code>flavours</code> (the <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavours</a> that may hold the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a>), <code>closed</code> (closed lists for the kind's own fields, applied to its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> over <code>closed-lists</code>) and format-specific keys</td>
+<td>for each letter: <code>name</code>, <code>subtitle</code>, <code>note</code>, and <code>kinds</code>, each with <code>refs</code>, <code>required</code> (0.0.1), <code>checked</code>, <code>flavours</code> (the <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavours</a> that may hold the <a class="docs-term" href="#docs-item-t-term-kind" data-term="T:term/kind" title="a table">kind</a>), <code>closed</code> (closed lists for the kind's own fields, applied to its <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">items</a> over <code>closed-lists</code>), <code>open</code> (the kind's fields that <code>closed-lists</code> do not bind) and format-specific keys</td>
 <td><code>type</code>, <code>type-prefix</code>, the reference checks, <code>closed-list</code>, <code>flavour-kind</code>, the viewer's rail</td>
 </tr>
 <tr>
@@ -1937,9 +1941,9 @@ keeps it in the manifest for the code that renders it, and neither lists it amon
 (<a class="ref-xref" href="#docs-sec-14-3">section 14.3</a>).</li>
 </ul>
 <p>The <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a> adds further optional keys, read the same way: <code>core</code>; <code>declaration.old</code>; <code>catalog.id-old</code>; a kind's
-<code>flavours</code> and <code>closed</code>; <code>checks.own</code> as a list; <code>dialectic</code>; and the core's module D (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>). A reader that
-does not know them keeps them. Without them it refuses an <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> and leaves module D undeclared, and every file it
-read before still reads.</p>
+<code>flavours</code>, <code>closed</code> and <code>open</code>; <code>checks.own</code> as a list; <code>dialectic</code>; and the core's module D (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>). A reader
+that does not know them keeps them. Without them it refuses an <a class="docs-term" href="#docs-item-t-term-old-spelling" data-term="T:term/old-spelling" title="Old spellings">old spelling</a> and leaves module D undeclared, and every
+file it read before still reads.</p>
 </section>
 <section class="docs-sec" data-key="S:section/13.6" data-scope="">
 <h3 id="docs-sec-13-6" data-toc="3">13.6 The registry</h3>
@@ -3562,7 +3566,7 @@ is an item of the fabula, and a literal otherwise.</p>
 <td>a choice made between options</td>
 <td>n p c m</td>
 <td><code>by</code>, <code>changed-in</code></td>
-<td><code>stance</code>, <code>chose</code>, <code>over</code>, <code>because</code></td>
+<td><code>stance</code>, <code>chose</code>, <code>over</code>, <code>because</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>N:exclusion</code></td>
@@ -3583,7 +3587,7 @@ is an item of the fabula, and a literal otherwise.</p>
 <td>a division of the text; in a fabulam, one stage of the argument</td>
 <td>n p m</td>
 <td><code>of</code>, <code>steps</code></td>
-<td><code>stance</code>, <code>division</code>, <code>number</code>, <code>heading</code>, <code>stage</code>, <code>says</code>, <code>plain</code>, <code>plain-if</code>, <code>obvious</code>, <code>regime</code></td>
+<td><code>stance</code>, <code>division</code>, <code>number</code>, <code>heading</code>, <code>stage</code>, <code>says</code>, <code>plain</code>, <code>plain-if</code>, <code>obvious</code>, <code>regime</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>C:device</code></td>
@@ -3737,7 +3741,7 @@ is an item of the fabula, and a literal otherwise.</p>
 <td>an interpretation the text supports and does not state; in a fabulam, a key idea: why the proof works</td>
 <td>n p m</td>
 <td><code>of</code>, <code>grounds.of</code></td>
-<td><code>stance</code>, <code>whose</code>, <code>grounds</code>, <code>intended</code>, <code>span</code>, <code>regime</code></td>
+<td><code>stance</code>, <code>whose</code>, <code>grounds</code>, <code>intended</code>, <code>span</code>, <code>regime</code>, <code>confidence</code></td>
 </tr>
 <tr>
 <td><code>P:case</code></td>
@@ -3812,7 +3816,7 @@ is an item of the fabula, and a literal otherwise.</p>
 <tr>
 <td><code>X:atem</code></td>
 <td>the atem of a passage</td>
-<td>n p c</td>
+<td>n p c m</td>
 <td><code>of</code></td>
 <td><code>line</code>, <code>focus</code>, <code>push</code>, <code>pull</code>, <code>span</code></td>
 </tr>
@@ -3893,7 +3897,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:part</code></td>
-<td><strong><code>division</code></strong> [<code>chapter</code> <code>section</code> <code>paragraph</code> <code>scene</code> <code>list</code> <code>quotation</code> <code>stanza</code> <code>verse</code> <code>chorus</code> <code>refrain</code> <code>bridge</code> <code>stage</code> <code>other</code>], <code>stage</code> in a fabulam alone; <code>number</code> <em>integer</em>, its place among its siblings, from 1; <code>of</code> <em>ref</em> <code>C:part</code>, the part it sits in; <code>heading</code> <em>text</em></td>
+<td><strong><code>division</code></strong> [<code>chapter</code> <code>section</code> <code>paragraph</code> <code>scene</code> <code>list</code> <code>quotation</code> <code>stanza</code> <code>verse</code> <code>chorus</code> <code>refrain</code> <code>bridge</code> <code>stage</code> <code>other</code>], <code>stage</code> for a stage of a fabulam's argument; <code>number</code> <em>integer</em>, its place among its siblings, from 1; <code>of</code> <em>ref</em> <code>C:part</code>, the part it sits in; <code>heading</code> <em>text</em></td>
 </tr>
 <tr>
 <td><code>C:device</code></td>
@@ -3949,7 +3953,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:reliance</code></td>
-<td><strong><code>on</code></strong> [<code>language</code> <code>runtime</code> <code>platform</code> <code>dependency</code> <code>part</code>], <code>part</code> in a fabulam alone; <strong><code>gives</code></strong> <em>text</em>, what the program takes from it, in plain words that name neither the language nor the dependency; <strong><code>example</code></strong> <em>text</em>, one plain example of it; <code>of</code> <em>ref</em> (an <code>R:means</code> or a <code>C:dependency</code>), whose gift it is; <code>used-by</code> <em>refs</em> (<code>C:behaviour</code>, <code>C:interface</code>), what leans on it; <code>shown-by</code> <em>refs</em> <code>P:case</code>; <code>entry</code> <em>text</em>, the id of the ground catalog's entry it was copied from; <code>stated</code>, a list of where the gift is written (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); <code>contradicted-by</code> <code>{at, says}</code>, where a text says otherwise than the program does; <code>ruling</code> (below)</td>
+<td><strong><code>on</code></strong> [<code>language</code> <code>runtime</code> <code>platform</code> <code>dependency</code> <code>part</code>], <code>part</code> for a fabulam's reliance on another part; <strong><code>gives</code></strong> <em>text</em>, what the program takes from it, in plain words that name neither the language nor the dependency; <strong><code>example</code></strong> <em>text</em>, one plain example of it; <code>of</code> <em>ref</em> (an <code>R:means</code> or a <code>C:dependency</code>), whose gift it is; <code>used-by</code> <em>refs</em> (<code>C:behaviour</code>, <code>C:interface</code>), what leans on it; <code>shown-by</code> <em>refs</em> <code>P:case</code>; <code>entry</code> <em>text</em>, the id of the ground catalog's entry it was copied from; <code>stated</code>, a list of where the gift is written (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); <code>contradicted-by</code> <code>{at, says}</code>, where a text says otherwise than the program does; <code>ruling</code> (below)</td>
 </tr>
 <tr>
 <td><code>R:maker</code></td>
@@ -3981,7 +3985,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>P:case</code></td>
-<td><strong><code>of</code></strong> <em>refs</em> (<code>C:interface</code>, <code>C:behaviour</code>, <code>N:requirement</code>, <code>N:use</code>); <strong><code>given</code></strong>, a mapping of <code>calls</code>, <code>arguments</code>, <code>input</code>, <code>env</code>, <code>file</code>, <code>files</code>, <code>steps</code>; <strong><code>expect</code></strong>, a mapping of <code>value</code>, <code>output</code>, <code>error-output</code>, <code>exit</code>, <code>files</code>, <code>raises</code>, <code>steps</code>; written as data, a case can be run (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>); <code>stands</code> [<code>outside</code> <code>inside</code>], whether the case is judged at the program's boundary or by calling inside it; <code>from</code> [<code>test</code> <code>document</code> <code>recorded</code> <code>ruled</code> <code>worked</code>], where it came from, <code>worked</code> in a fabulam alone; <code>allowing</code>, an allowance from the closed list of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>; <code>ruling</code> (below)</td>
+<td><strong><code>of</code></strong> <em>refs</em> (<code>C:interface</code>, <code>C:behaviour</code>, <code>N:requirement</code>, <code>N:use</code>); <strong><code>given</code></strong>, a mapping of <code>calls</code>, <code>arguments</code>, <code>input</code>, <code>env</code>, <code>file</code>, <code>files</code>, <code>steps</code>; <strong><code>expect</code></strong>, a mapping of <code>value</code>, <code>output</code>, <code>error-output</code>, <code>exit</code>, <code>files</code>, <code>raises</code>, <code>steps</code>; written as data, a case can be run (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>); <code>stands</code> [<code>outside</code> <code>inside</code>], whether the case is judged at the program's boundary or by calling inside it; <code>from</code> [<code>test</code> <code>document</code> <code>recorded</code> <code>ruled</code> <code>worked</code>], where it came from, <code>worked</code> for a fabulam's worked example; <code>allowing</code>, an allowance from the closed list of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>; <code>ruling</code> (below)</td>
 </tr>
 <tr>
 <td><code>P:assumption</code></td>
@@ -3997,7 +4001,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:lemma</code></td>
-<td><strong><code>lean</code></strong>; <code>says</code> <em>text</em>, its statement in words; <code>form</code> [<code>theorem</code> <code>lemma</code> <code>instance</code> <code>example</code>]; <code>role</code> [<code>spine</code> <code>support</code> <code>bookkeeping</code>], <code>method</code> <em>text</em>, one sentence on how it is proved, <code>why</code> <em>text</em> and <code>slack</code>, a model's, and only on a lemma that is reached (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>); by rule: <code>uses</code>, <code>used-by</code> <em>refs</em>; <code>leans-on</code> <em>refs</em> <code>C:reliance</code>; <code>reached</code>; <code>depth</code> and <code>carries</code> <em>integer</em>; <code>private</code> <em>bool</em>; <code>proof</code> [<code>tactic</code> <code>term</code> <code>none</code>]; <code>sorry</code> <em>integer</em>, how often its proof holds an admitted gap; <code>automation</code>, the search tactics its proof calls, so that its <code>uses</code> may be short; <code>scope</code>, the lines of the variables declared around it</td>
+<td><strong><code>lean</code></strong>; <code>says</code> <em>text</em>, its statement in words; <code>form</code> [<code>theorem</code> <code>lemma</code> <code>instance</code> <code>example</code>]; <code>role</code> [<code>spine</code> <code>support</code> <code>bookkeeping</code>], <code>method</code> <em>text</em>, one sentence on how it is proved, <code>why</code> <em>text</em> and <code>slack</code>, a model's, and only on a lemma that is reached (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>); by rule: <code>uses</code>, <code>used-by</code> <em>refs</em>; <code>leans-on</code> <em>refs</em> <code>C:reliance</code>; <code>reached</code>; <code>depth</code> and <code>carries</code> <em>integer</em>; <code>private</code> <em>bool</em>; <code>proof</code> [<code>tactic</code> <code>term</code> <code>none</code>]; <code>sorry</code> <em>integer</em>, how often its proof holds an admitted gap; <code>automation</code>, the search tactics its proof calls, so that its <code>uses</code> may be short; <code>scope</code>, the lines of the variables declared around it, a field this kind leaves open (<a class="ref-xref" href="#docs-sec-7-3">section 7.3</a>)</td>
 </tr>
 <tr>
 <td><code>C:constant</code></td>
@@ -4033,7 +4037,7 @@ literal; <em>integer</em>, <em>bool</em>, <em>date</em>; a list in square bracke
 </tr>
 <tr>
 <td><code>C:reliance</code>, in a fabulam</td>
-<td><strong><code>lean</code></strong>, a list of <em>text</em>, the names as the file writes them; <code>on: dependency</code> with <code>of</code> <em>ref</em> <code>C:dependency</code> for a library's result, or <code>on: part</code> for a result of another part, with <code>stated-in</code> <em>text</em>, the URI of the head's item, and <code>digest</code>, that item's; <code>gives</code>, what the result says, in words; <code>known-as</code> <em>text</em>, the name the result is known by; <code>field</code> <em>text</em>, the part of mathematics it belongs to; <code>case</code> <em>text</em>, which case or form of a known theorem is used</td>
+<td><strong><code>lean</code></strong>, a name or a list of names, as the file writes them, asked of a fabulam's reliance alone (<code>declared-once</code>); <code>on: dependency</code> with <code>of</code> <em>ref</em> <code>C:dependency</code> for a library's result, or <code>on: part</code> for a result of another part, with <code>stated-in</code> <em>text</em>, the URI of the head's item, and <code>digest</code>, that item's; <code>gives</code>, what the result says, in words; <code>known-as</code> <em>text</em>, the name the result is known by; <code>field</code> <em>text</em>, the part of mathematics it belongs to; <code>case</code> <em>text</em>, which case or form of a known theorem is used</td>
 </tr>
 <tr>
 <td><code>P:claim</code>, in a fabulam</td>
@@ -6077,12 +6081,12 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>declared-once</code></td>
 <td>error</td>
-<td>in a fabulam, every <code>C:statement</code>, <code>C:definition</code> and <code>C:lemma</code> carries <code>lean</code> and a span; no two items carry the same <code>lean</code>; a <code>C:constant</code> carries none</td>
+<td>in a fabulam, every <code>C:statement</code>, <code>C:definition</code> and <code>C:lemma</code> carries <code>lean</code> and a span; no two of them carry the same <code>lean</code>; a <code>C:constant</code> carries none; a <code>C:reliance</code> carries the names it leans on, in <code>lean</code></td>
 </tr>
 <tr>
 <td><code>statement-whole</code></td>
 <td>error</td>
-<td>a fabulam that names no head, and is not one, holds at least one <code>C:statement</code>; each statement names a <code>source.target</code>, and every target that is a declaration of the fabulam's own file has one; each has <code>says</code> and <code>quantifiers</code>; <code>atem.of</code> names a statement, or, in a part that holds none, one of the part's own declaration items; <code>relates</code> stands only between two</td>
+<td>a fabulam that stands alone holds at least one <code>C:statement</code>, and a head one for every target; a part holds one for each target that its own file declares, and needs no other; each statement names a <code>source.target</code>, and has <code>says</code> and <code>quantifiers</code>; <code>atem.of</code> names a statement, or, in a part that holds none, one of the part's own declaration items; <code>relates</code> stands only between two</td>
 </tr>
 <tr>
 <td><code>yield-stated</code></td>
@@ -6097,7 +6101,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>spine-told</code></td>
 <td>error</td>
-<td>every lemma with <code>reached: yes</code> has a <code>role</code>, and no other lemma has one; every spine lemma has <code>why</code> and is in the <code>steps</code> of a stage; following <code>uses</code> from the statements reaches every spine lemma</td>
+<td>every lemma with <code>reached: yes</code> has a <code>role</code>, and no other lemma has one; every spine lemma has <code>why</code> and is in the <code>steps</code> of a stage; following <code>uses</code> from the statements reaches every spine lemma, where the fabulam holds a statement</td>
 </tr>
 <tr>
 <td><code>stages-whole</code></td>
@@ -6117,7 +6121,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>stance-fits</code></td>
 <td>error</td>
-<td>each item's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is one that its kind's row in <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a> allows; a <code>hearsay</code> item names its source in <code>provenance.sources</code>; <code>assumed</code> stands only on a reliance without <code>stated-in</code>, a term or a concept</td>
+<td>each item's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is one that its kind's row in <a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a> allows; a <code>hearsay</code> item names its source in <code>provenance.sources</code>; an item that is a model's opinion says its <code>confidence</code>; <code>assumed</code> stands only on a reliance without <code>stated-in</code>, a term or a concept; <code>deduced</code> may stand on any kind</td>
 </tr>
 <tr>
 <td><code>checking-said</code></td>
@@ -6163,8 +6167,13 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 </table>
 </div>
 <p>A fabulac whose <code>purpose</code> is <code>transconception</code> runs the checks of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a> as well. The rows from
-<code>declared-once</code> on are a fabulam's, and hold over the fabulam alone. None of them judges whether the mathematics is
-right. A fabulam is held to its source, and a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a> to its fabulam, by named checks of Thym
+<code>declared-once</code> on are a fabulam's, and hold over the fabulam alone. A fabulam is built in stages, and each stage
+lands a fabulam that passes these checks, so an outline is a valid fabulam. A check that asks for what a later stage
+writes, every statement's yield, the stages and the teaching order, the worked example, the comments' verdicts, a
+reached lemma's role, the fit, holds it only once the fabulam says it is whole, <code>derived.completeness: full</code>, or once
+that layer has begun: one yield, one stage, one verdict, one role or one fit is there. What is there is always held to
+its shape. The four warnings prompt a person, and are never a gate. None of the checks judges whether the mathematics
+is right. A fabulam is held to its source, and a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a> to its fabulam, by named checks of Thym
 (https://thym.cosmoes.org/), its section 7.3, which the moves of its section 20.13 keep.</p>
 <p>The generic reader runs the checks of <a class="ref-xref" href="#docs-sec-12-2">section 12.2</a>, and <code>flavour</code> and <code>flavour-kind</code>, which the manifest drives. The
 others are the fabula's own, run by the reference implementation, enough (https://github.com/0gsd/enough); a reader that
@@ -6548,9 +6557,11 @@ each item tied to the declarations it was read from, by name and by lines.</p>
 everyone, through the proof, each run of its sentences citing the items of the fabulam it rests on.</p>
 <p>In the two words, the <em>m</em> is for mathematics and the <em>p</em> is for proof.</p>
 <p>A fabulam is one file, <code>&lt;name&gt;.fabulam.cosm</code>, and its id is <code>fabula/&lt;name&gt;</code>. The name is the person's choice; where
-they give none, a builder makes it from the name of the file or of the folder, as a slug (<a class="ref-xref" href="#docs-sec-18-3-3">section 18.3.3</a>). The
-fabulam sits beside the root folder of the proof's source, the folder that holds the file naming its Lean version, as a
-<a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> sits beside its folder and never inside a clone. A loose file with no such folder has its fabulam beside it.</p>
+they give none, a builder makes it from the name of the file, less its ending, or of the folder: a hyphen goes in where
+a small letter or a digit meets a capital, and the result is respelled as a slug (<a class="ref-xref" href="#docs-sec-18-3-3">section 18.3.3</a>), so that
+<code>PrimesCongruentOne.lean</code> gives <code>primes-congruent-one</code>. The fabulam sits beside the root folder of the proof's source,
+the folder that holds the file naming its Lean version, as a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> sits beside its folder and never inside a clone. A
+loose file with no such folder has its fabulam beside it.</p>
 <p><strong>What a fabulam holds, facet by facet.</strong></p>
 <div class="docs-table">
 <table>
@@ -6593,7 +6604,8 @@ can cite. A fabulam says the proof again in words and ordinary notation: the nam
 of the file's own text longer than 80 code points (<code>nothing-carried</code>, Thym, its section 7.3).</p>
 <p>An item made from a declaration takes its id from its kind and the declaration's full name, <code>C:lemma/&lt;full name&gt;</code>. A
 character the id grammar refuses is respelled by rule: <code>'</code> becomes <code>-prime</code>, and any other becomes <code>-x</code> and its code
-point in hexadecimal. When two names give one id, the later takes <code>-2</code>. An instance or an example with no name is
+point in hexadecimal, so that a full stop at the end is <code>-x2e</code>; a name that begins with neither a letter nor a digit
+takes an <code>x</code> in front. When two names give one id, the later takes <code>-2</code>. An instance or an example with no name is
 <code>C:definition/instance-L&lt;line&gt;</code> or <code>C:lemma/example-L&lt;line&gt;</code>. The <code>lean</code> <a class="docs-term" href="#docs-item-t-term-field" data-term="T:term/field" title="a column">field</a> keeps the real name.</p>
 <p>Each item's <a class="docs-term" href="#docs-item-t-term-stance" data-term="T:term/stance" title="A claim's stance is how the text knows it">stance</a> is from the fabula's closed list (<a class="ref-xref" href="#docs-sec-18-4-3">section 18.4.3</a>), and in a fabulam each stance has one meaning.
 The check <code>stance-fits</code> holds each kind to its row:</p>
@@ -7046,16 +7058,19 @@ The first is by rule alone; each of the others asks a model one small thing:</p>
 theorem or lemma of the file that is not private, is not deprecated, and that no other declaration of the file names,
 an alias of it aside. A file of a library can give many. When the rule gives more than three, a builder asks the person
 to choose, and builds nothing until they do.</p>
-<p>After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after
-the last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins <code>derived.runs</code>. A
-build with no model runs the survey and stops: <code>derived.completeness: outline</code>, every declaration with its lines and
-its reach, and nothing read for meaning. The moves are Thym's (Thym, its section 20.13).</p>
+<p>After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after the
+last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins <code>derived.runs</code>. The
+survey writes <code>derived.completeness: outline</code>, and only the last stage writes <code>full</code>: until then the checks ask of a
+fabulam only what its stages so far have written (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>). A build with no model runs the survey and stops at
+the outline: every declaration with its lines and its reach, and nothing read for meaning. The moves are Thym's (Thym,
+its section 20.13).</p>
 <p><strong>A head fabulam and its parts.</strong> A proof of several files is told one file at a time: each file has a fabulam of its
 own, a part, and a <strong>head fabulam</strong> names the parts, as a <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> does (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). The head's catalog lists
 them in <code>parts</code>, each <code>{uri, path, sha256}</code>, and each part names its head in <code>head</code>. The head's <code>source</code> is the folder.
 The files one head covers are its archive: a name that leads outside the archive is a library's name.</p>
 <p>The parts are kept in a folder beside the head, <code>&lt;name&gt;.fabulam.parts/</code>, which mirrors the folders of the source, each
-part named for its file, <code>&lt;File&gt;.fabulam.cosm</code>, with the id <code>fabula/&lt;name&gt;--&lt;the module's name as a slug&gt;</code>.</p>
+part named for its file, <code>&lt;File&gt;.fabulam.cosm</code>. A part's id is <code>fabula/&lt;name&gt;--&lt;module&gt;</code>, the <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a>'s name with a
+hyphen for each dot and its capitals kept.</p>
 <p>The head states once whatever a part needs of another, so that each part reads alone:</p>
 <div class="docs-table">
 <table>
@@ -7092,12 +7107,12 @@ part named for its file, <code>&lt;File&gt;.fabulam.cosm</code>, with the id <co
 <p>A part that uses a declaration from another part holds a <code>C:reliance</code> for it: <code>on: part</code>, <code>stated-in</code> naming the head's
 item, with the head's <code>lean</code> and <code>digest</code>, and <code>gives</code> copied from the head's <code>says</code>. The check <code>statements-agree</code>
 holds the two to one statement. Nothing in a part needs another part's file to be read.</p>
-<p>A fabulam that names no head holds at least one statement. A part need not. Each target that is a declaration of the
-part's own file has one statement there, and the other targets need none in that part. A part that holds no statement
-has its atem's <code>of</code> naming one of its own declaration items, and what is asked of each statement, its yield, its fit
-and its worked example, is asked of the statements there are. A part's <code>reached</code> and <code>depth</code> are the archive's,
-counted from the archive's targets across its files. Its <code>carries</code> counts within its own file, and the head's crossing
-items hold the archive's <code>carries</code>.</p>
+<p>A fabulam that stands alone holds at least one statement, and a head holds one for every target. A part need not. Each
+target that is a declaration of the part's own file has one statement there, and the other targets need none in that
+part. A part that holds no statement has its atem's <code>of</code> naming one of its own declaration items, and what is asked of
+each statement, its yield, its fit and its worked example, is asked of the statements there are. A part's <code>reached</code> and
+<code>depth</code> are the archive's, counted from the archive's targets across its files. Its <code>carries</code> counts within its own
+file, and the head's crossing items hold the archive's <code>carries</code>.</p>
 <p>The files are read in an order that puts each file after every file it imports, so that when a file is read each
 neighbour's statement is already in the head. A file that no target reaches is surveyed by rule and left as an
 outline: no model reads it, and its component in the head says <code>completeness: outline</code>. Summaries go upward:</p>
@@ -8892,9 +8907,13 @@ rule, entailed apart from the source. A pshort is never called a proof.</li>
 <code>fit-stated</code>, <code>spine-told</code>, <code>stages-whole</code>, <code>grounds-given</code>, <code>audit-whole</code>, <code>stance-fits</code>, <code>checking-said</code>,
 <code>example-worked</code>, <code>no-up-to</code>, <code>statements-agree</code>, <code>regime-named</code>, <code>no-judgement</code>, <code>plain-words</code> and
 <code>spine-rule-differs</code>. <code>flavour</code> takes four values, and <code>code-span</code>, <code>licence-recorded</code> and <code>parts-resolve</code> read a
-fabulam as they read a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. The checks against the source, and those of a pshort, are Thym's (its section 7.3).</li>
-<li><strong>Two smaller things.</strong> <a class="ref-xref" href="#docs-sec-18-3-5">Section 18.3.5</a> names the rule a scaffold's sentences are read by (Thym, its section 12.6).
-The conformance corpus carries a fabulam with its three pshorts (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</li>
+fabulam as they read a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. A check that asks for what a later stage writes holds only once the fabulam is whole
+or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
+are Thym's (its section 7.3).</li>
+<li><strong>Three smaller things.</strong> A kind may say <code>open</code>, the fields of its own that the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s shared closed lists do
+not bind (<a class="ref-xref" href="#docs-sec-7-3">sections 7.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-13-3">13.3</a>); the fabula's <code>C:lemma</code> says it of <code>scope</code>. <a class="ref-xref" href="#docs-sec-18-3-5">Section 18.3.5</a> names the rule a
+scaffold's sentences are read by (Thym, its section 12.6). The conformance corpus carries a fabulam with its three
+pshorts (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</li>
 </ol>
 <p><strong>Edition 0.8.0 · 2026-11-20.</strong> A program can be written fabulac first, and carried into another
 language through its fabulac.</p>
@@ -8982,7 +9001,7 @@ form and its metre before its stanzas (<a class="ref-xref" href="#docs-sec-18-4-
 isograph in the table of <a class="ref-xref" href="#docs-sec-16">section 16</a>; <a class="ref-xref" href="#docs-sec-19-2">section 19.2</a> says the projections and the registry belong to Ascribe's text.</li>
 <li><strong>People by what they are to the holder.</strong> A holograph names the people in a person's life by what they are to the
 holder or by a pseudonym the catalog declares, no longer by role (<a class="ref-xref" href="#docs-sec-19-2">section 19.2</a>).</li>
-<li><strong>Stewardship.</strong> The text and its <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifests</a> are licensed under CC BY 4.0, the author makes the OWFa 1.0 promise for
+<li><strong>Stewardship.</strong> The text and its manifests are licensed under CC BY 4.0, the author makes the OWFa 1.0 promise for
 it, and the names of the family are not licensed and are held by the author for now (<a class="ref-xref" href="#docs-sec-1-3">section 1.3</a> and the colophon).</li>
 <li><strong>The grammar version is 0.7.0,</strong> in the reserved <code>macrocosm:</code> key (<a class="ref-xref" href="#docs-sec-1-1">sections 1.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-5-6">5.6</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-15">15</a>): the kind <code>C:form</code>,
 the fields of <code>C:device</code> and a fabulap's <code>outline</code> are new. Files written under 0.6.0, 0.5.4, 0.0.2 and 0.0.1 read

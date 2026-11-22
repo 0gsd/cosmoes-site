@@ -560,6 +560,7 @@ A **kind** is a table. It is declared under its module, with:
 | `required` | the fields an item of the kind must carry (section 13.5) |
 | `flavours` | in a format with flavours (the fabula's, section 18.4), the flavours whose volumes may hold the kind; the check `flavour-kind` reads it |
 | `closed` | closed lists for the kind's own fields, `{<field>: [values]}`, applied to items of the kind over the manifest's `closed-lists` (section 13.3) |
+| `open` | the kind's fields that the manifest's `closed-lists` do not bind, a list: a field of one name may hold a closed word on one kind and something else on this one, as `scope` does on the fabula's `C:dependency` and its `C:lemma` |
 | other keys | what a format's own code needs: a `level`, an exception id form (`id: 'P:<slug>'`), `stored: database`, `public: never`, a `note` |
 
 An item's `type` must be a kind its module declares (check `type`), and must equal the kind in its id (check
@@ -1053,7 +1054,7 @@ manifests add. A reader keeps every key, including the ones it does not use.
 | `references` | `forms`, `dotted-fields`, `unresolved`, `exceptions`; an address, an id with `#` and a field path, is read in any reference field (section 9.1) | `ref-grammar`, `ref-unresolved` |
 | `links` | `rels`, a closed list of typed-link relations (0.0.1) | `closed-list` on `links[].rel` |
 | `closed-lists` | a mapping from a field name to its closed list of values, applied wherever that field appears (0.0.1) | `closed-list` |
-| `modules` | for each letter: `name`, `subtitle`, `note`, and `kinds`, each with `refs`, `required` (0.0.1), `checked`, `flavours` (the flavours that may hold the kind), `closed` (closed lists for the kind's own fields, applied to its items over `closed-lists`) and format-specific keys | `type`, `type-prefix`, the reference checks, `closed-list`, `flavour-kind`, the viewer's rail |
+| `modules` | for each letter: `name`, `subtitle`, `note`, and `kinds`, each with `refs`, `required` (0.0.1), `checked`, `flavours` (the flavours that may hold the kind), `closed` (closed lists for the kind's own fields, applied to its items over `closed-lists`), `open` (the kind's fields that `closed-lists` do not bind) and format-specific keys | `type`, `type-prefix`, the reference checks, `closed-list`, `flavour-kind`, the viewer's rail |
 | `checks` | `envelope` (the generic check ids that apply), `load`, `severity` (0.0.1), `own` (the format's own checks: a list of ids, or prose), and other keys of the format's own (`products`, `rules`, `equilibrium` …) | selecting checks; listing the own checks as not run (section 12.3) |
 | `open-questions` | the form, who answers, the field path | the pending list |
 | `dialectic` | the opening questions a format's volumes are asked, as banks of questions by module, kind or field, with who answers them; Ascribe's older shape, a list of questions per module, is read as one bank named after the manifest (section 18.6) | the dialectic's questions |
@@ -1110,9 +1111,9 @@ Four more optional keys, which the reference implementation also reads:
   (section 14.3).
 
 The core adds further optional keys, read the same way: `core`; `declaration.old`; `catalog.id-old`; a kind's
-`flavours` and `closed`; `checks.own` as a list; `dialectic`; and the core's module D (section 13.4). A reader that
-does not know them keeps them. Without them it refuses an old spelling and leaves module D undeclared, and every file it
-read before still reads.
+`flavours`, `closed` and `open`; `checks.own` as a list; `dialectic`; and the core's module D (section 13.4). A reader
+that does not know them keeps them. Without them it refuses an old spelling and leaves module D undeclared, and every
+file it read before still reads.
 
 ### 13.6 The registry
 
@@ -1999,10 +2000,10 @@ is an item of the fabula, and a literal otherwise.
 | `N:audience` | whom it is for | n p c | | `stance`, `who`, `needs` |
 | `N:use` | one thing a user can do with the program, end to end | c | `for`, `via` | `stance`, `steps`, `gets` |
 | `N:requirement` | what the program must, should or may do or be | c | `met-by`, `checked-by` | `stance`, `force` |
-| `N:decision` | a choice made between options | n p c m | `by`, `changed-in` | `stance`, `chose`, `over`, `because` |
+| `N:decision` | a choice made between options | n p c m | `by`, `changed-in` | `stance`, `chose`, `over`, `because`, `confidence` |
 | `N:exclusion` | what the work deliberately does not do or cover | n p c | | `stance`, `horizon`, `because` |
 | `N:target` | a language the program could be entailed into, weighed (section 18.4.9) | c | | `stance`, `language`, `version`, `weighed`, `provides`, `verdict` |
-| `C:part` | a division of the text; in a fabulam, one stage of the argument | n p m | `of`, `steps` | `stance`, `division`, `number`, `heading`, `stage`, `says`, `plain`, `plain-if`, `obvious`, `regime` |
+| `C:part` | a division of the text; in a fabulam, one stage of the argument | n p m | `of`, `steps` | `stance`, `division`, `number`, `heading`, `stage`, `says`, `plain`, `plain-if`, `obvious`, `regime`, `confidence` |
 | `C:device` | a figure or technique at a place | n p | `where` | `stance`, `figure`, `effect`, `cue`, `senses`, `intended` |
 | `C:voice` | who speaks, to whom, how | n p | `roles.*` | `stance`, `perspective`, `tone` |
 | `C:line` | one line of verse | p | `part`, `metre` | `stance`, `number`, `text`, `stresses`, `syllables`, `rhyme`, `ending` |
@@ -2024,7 +2025,7 @@ is an item of the fabula, and a literal otherwise.
 | `R:means` | a tool, method or material of production | n p c m | | `stance`, `what`, `used-for`, `version` |
 | `R:licence` | the terms on which the work may be used | n p c m | | `stance`, `identifier`, `file`, `holder`, `year`, `first-line`, `lane` |
 | `P:claim` | what the work claims, and how the text knows it; in a fabulam, what a comment, a public wording or a person says about the proof that the source does not itself bear out | n p c m | `roles.*`, `by` | `stance`, `salience`, `span`, `about`, `checked`, `mismatch`, `short-of`, `false-as-written` |
-| `P:reading` | an interpretation the text supports and does not state; in a fabulam, a key idea: why the proof works | n p m | `of`, `grounds.of` | `stance`, `whose`, `grounds`, `intended`, `span`, `regime` |
+| `P:reading` | an interpretation the text supports and does not state; in a fabulam, a key idea: why the proof works | n p m | `of`, `grounds.of` | `stance`, `whose`, `grounds`, `intended`, `span`, `regime`, `confidence` |
 | `P:case` | an example: what is given and what is expected; in a fabulam, a worked example in numbers | c m | `of` | `stance`, `given`, `expect`, `span`, `stands`, `from`, `allowing`, `ruling` |
 | `P:assumption` | what the program takes to be true of its surroundings without checking it (section 18.4.9); in a fabulam, what a final theorem takes as given, and that the file was read as text (section 18.4.10) | c m | `relied-by` | `stance`, `about`, `checked`, `if-false`, `carries` |
 | `C:statement` | a final theorem of a proof: what the file sets out to prove | m | `uses`, `leans-on`, `relates.to` | `stance`, `lean`, `says`, `quantifiers`, `form`, `slack`, `reached`, `depth` |
@@ -2035,7 +2036,7 @@ is an item of the fabula, and a literal otherwise.
 | `P:yield` | what a statement's proof delivers, set against what the statement says | m | `of`, `grounds.of`, `chooses.where` | `stance`, `beyond`, `says`, `as-statement`, `needs`, `bound`, `chooses`, `trivial`, `no-trivial`, `grounds`, `confidence`, `regime` |
 | `P:fit` | how a statement compares with a public wording of the result | m | `of`, `against` | `stance`, `how`, `form-differences`, `differences`, `confidence` |
 | `T:event` | what happens; in code, one step of what happens when the program is used | n p c | `agent`, `patient`, `before`, `after` | `when`, `span` |
-| `X:atem` | the atem of a passage | n p c | `of` | `line`, `focus`, `push`, `pull`, `span` |
+| `X:atem` | the atem of a passage | n p c m | `of` | `line`, `focus`, `push`, `pull`, `span` |
 | `D:question` `D:session` | the dialectic's kinds (section 18.6) | n p c m | as section 18.6 says | as section 18.6 says |
 
 A kind outside the catalog's flavour is an error (`flavour-kind`, section 18.4.8): a fabulan holds no `C:line`, a
@@ -2068,7 +2069,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `N:decision` | **`chose`** *text*; `over`, a list of `{option, because}`, what was not chosen and why; `because` *text*; `by` *ref* (an `R:maker` or the maker's E item); `changed-in` *refs* `R:change` |
 | `N:exclusion` | `horizon` [`never` `later`]; `because` *text* |
 | `N:target` | **`language`** *text*; **`version`** *text*, the release weighed; `weighed`, a list of `{point, score, evidence, answered, ruled}`, one per point of the target bank, `point` the point's number and `score` an *integer* from 0 to 3, each as section 18.4.9 says, `answered` `rules` or `model`, whichever gave the score, and `ruled` the transconceiver's word on the point, once asked; `provides`, a list of `{for, by, what, note, gap, entry, answered}`, how the language gives what the fabulac keeps, `for` *ref* (a `C:reliance`, `C:interface` or `C:behaviour`), `by` [`built-in` `library` `binding` `written` `cannot` `dropped`], `gap` *text*, what the language lacks and the new program must fill, `entry` the ground entry the row was read from; `spike` `{use, level, where, cases, evidence}`, the small trial entailment that tested it, `cases` *refs* `P:case`, the spike's own cases; **`verdict`** [`feasible` `feasible-with` `not`], with `conditions` *text* when `feasible-with`; `at` *date*; `by` *ref* `R:maker` (section 18.4.9) |
-| `C:part` | **`division`** [`chapter` `section` `paragraph` `scene` `list` `quotation` `stanza` `verse` `chorus` `refrain` `bridge` `stage` `other`], `stage` in a fabulam alone; `number` *integer*, its place among its siblings, from 1; `of` *ref* `C:part`, the part it sits in; `heading` *text* |
+| `C:part` | **`division`** [`chapter` `section` `paragraph` `scene` `list` `quotation` `stanza` `verse` `chorus` `refrain` `bridge` `stage` `other`], `stage` for a stage of a fabulam's argument; `number` *integer*, its place among its siblings, from 1; `of` *ref* `C:part`, the part it sits in; `heading` *text* |
 | `C:device` | **`figure`** *text*, an open word (`apostrophe`, `metaphor`, `symbol`, `image`, `alliteration`, `anaphora`, `refrain`, `caesura`, `turn`, `hook`, `irony`, `personification`, `appeal to authority` …); `where` *refs* (`C:line`, `C:part`, `L:term`, `P:claim`); `effect` *text*; `cue` *text*, the words that carry it, at most 60 characters; `senses`, for an image, a list from [`sight` `hearing` `touch` `taste` `smell` `movement`]; `intended` *bool*, whether the author meant it, absent until asked |
 | `C:voice` | `roles.*`: `speaker`, `addressee`, `listener`; `perspective` [`first` `second` `third` `mixed`]; `tone` *text* |
 | `C:line` | **`number`** *integer*, counted from 1 over the whole poem; `text`, the line as written (section 18.4.6 says when it is written); `part` *ref* `C:part`; `metre` *ref* `C:metre`; `stresses` *text* (`x` unstressed, `/` stressed, `\|` between feet); `syllables` *integer*; `rhyme` *text*, the line's letter in the scheme; `ending` [`stopped` `run-on`] |
@@ -2082,7 +2083,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `C:behaviour` | **`does`** *text*; `of` *refs* (`C:interface`, `C:component`); `when` *text*, the trigger; `edges`, a list of `{given, then}`; `errors`, a list of `{when, message, exit}`; `intended` *bool*, absent until asked; `ruling` (below) |
 | `C:dependency` | **`scope`** [`standard` `run-time` `test` `build` `optional`]; `package`; `version`, a constraint; `needed-for` *text*; `used-by` *refs*; `licence`; `address`, where it is published (a package index's name and the package's name there, or a repository's address); `resolved`, the exact version that was read; `digest`, the sha256 of what was read at that version |
 | `C:setting` | **`set-in`** [`environment` `file` `option` `constant`]; `key`; `default`; `type`; `means`; `read-by` *refs* `C:interface`; `ruling` (below) |
-| `C:reliance` | **`on`** [`language` `runtime` `platform` `dependency` `part`], `part` in a fabulam alone; **`gives`** *text*, what the program takes from it, in plain words that name neither the language nor the dependency; **`example`** *text*, one plain example of it; `of` *ref* (an `R:means` or a `C:dependency`), whose gift it is; `used-by` *refs* (`C:behaviour`, `C:interface`), what leans on it; `shown-by` *refs* `P:case`; `entry` *text*, the id of the ground catalog's entry it was copied from; `stated`, a list of where the gift is written (section 18.4.9); `contradicted-by` `{at, says}`, where a text says otherwise than the program does; `ruling` (below) |
+| `C:reliance` | **`on`** [`language` `runtime` `platform` `dependency` `part`], `part` for a fabulam's reliance on another part; **`gives`** *text*, what the program takes from it, in plain words that name neither the language nor the dependency; **`example`** *text*, one plain example of it; `of` *ref* (an `R:means` or a `C:dependency`), whose gift it is; `used-by` *refs* (`C:behaviour`, `C:interface`), what leans on it; `shown-by` *refs* `P:case`; `entry` *text*, the id of the ground catalog's entry it was copied from; `stated`, a list of where the gift is written (section 18.4.9); `contradicted-by` `{at, says}`, where a text says otherwise than the program does; `ruling` (below) |
 | `R:maker` | `who` *ref* (an `E:person` or `E:org`); `capacity` [`author` `maintainer` `contributor` `editor` `translator` `publisher` `performer` `composer` `transconceiver`] |
 | `R:change` | `at` *date*; `by` *ref* `R:maker`; `nature` [`feature` `fix` `refactor` `removal` `docs` `tests` `build` `revision`]; `because` *text*; `touches` *refs*; `release` *ref* `R:release`; `phase` *ref* `R:phase`; `commit` *text* |
 | `R:phase` | `began`, `ended` *date*; `changes` *refs* `R:change` |
@@ -2090,11 +2091,11 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `R:means` | `what` *text*; `used-for` *text*; `version` |
 | `R:licence` | `identifier`, the licence's standard short identifier (`MIT`) or plain words (`public domain`); `file`, a path; `holder`; `year` *text*, as the source writes it (`'1794'`); `first-line`; `lane` [`open` `bound` `closed`], in a fabulac, what its terms allow a transconception to do (section 18.4.9) |
 | `P:reading` | **`of`** *refs* (the `C:line`, `L:term`, E item, `C:part` or `P:claim` it reads); **`whose`** `{by: [author expert critic model reader], name, work, session, model}`; `grounds`, a list of `{of, because}`, what in the text supports it; `intended` *bool*, whether the author meant it, absent until asked (section 18.4.6) |
-| `P:case` | **`of`** *refs* (`C:interface`, `C:behaviour`, `N:requirement`, `N:use`); **`given`**, a mapping of `calls`, `arguments`, `input`, `env`, `file`, `files`, `steps`; **`expect`**, a mapping of `value`, `output`, `error-output`, `exit`, `files`, `raises`, `steps`; written as data, a case can be run (section 18.4.7); `stands` [`outside` `inside`], whether the case is judged at the program's boundary or by calling inside it; `from` [`test` `document` `recorded` `ruled` `worked`], where it came from, `worked` in a fabulam alone; `allowing`, an allowance from the closed list of section 18.4.9; `ruling` (below) |
+| `P:case` | **`of`** *refs* (`C:interface`, `C:behaviour`, `N:requirement`, `N:use`); **`given`**, a mapping of `calls`, `arguments`, `input`, `env`, `file`, `files`, `steps`; **`expect`**, a mapping of `value`, `output`, `error-output`, `exit`, `files`, `raises`, `steps`; written as data, a case can be run (section 18.4.7); `stands` [`outside` `inside`], whether the case is judged at the program's boundary or by calling inside it; `from` [`test` `document` `recorded` `ruled` `worked`], where it came from, `worked` for a fabulam's worked example; `allowing`, an allowance from the closed list of section 18.4.9; `ruling` (below) |
 | `P:assumption` | **`about`** *text*, what is taken to be true; **`checked`** *bool*, whether the program checks it; `if-false` *text*, what happens when it does not hold; `relied-by` *refs*, the items that take it; `carries` [`must` `need-not`], whether an entailment must take it too |
 | `C:statement` | **`lean`** *text*, the declaration's full name as the source has it, always written in quotes; **`says`** *text*, the statement in full, in words and ordinary notation: every quantifier, hypothesis and constant in the order the source gives them, nothing left out and nothing added; **`quantifiers`**, the list in order, each `{kind, what}`, `kind` from [`for-all` `exists` `infinitely-many` `eventually`]; `form`, the keyword it is declared with; `uses` *refs*, the declarations it names, and `leans-on` *refs* `C:reliance`, both by rule; `relates`, only when the fabulam has two statements, `{to, how, says}`, `how` from [`implies` `special-case-of` `equivalent` `independent`]; `slack`, `reached` and `depth` (below) |
 | `C:definition` | **`lean`**; **`form`**, by rule, the keyword it is declared with, from the closed list below; `says` *text*, what it defines, in words; `fields`, for a structure or a class, a list of `{name, says}`; `uses`, `used-by` *refs*; `reached`, `depth`, `carries` and `private` *bool*, all by rule |
-| `C:lemma` | **`lean`**; `says` *text*, its statement in words; `form` [`theorem` `lemma` `instance` `example`]; `role` [`spine` `support` `bookkeeping`], `method` *text*, one sentence on how it is proved, `why` *text* and `slack`, a model's, and only on a lemma that is reached (section 18.4.10); by rule: `uses`, `used-by` *refs*; `leans-on` *refs* `C:reliance`; `reached`; `depth` and `carries` *integer*; `private` *bool*; `proof` [`tactic` `term` `none`]; `sorry` *integer*, how often its proof holds an admitted gap; `automation`, the search tactics its proof calls, so that its `uses` may be short; `scope`, the lines of the variables declared around it |
+| `C:lemma` | **`lean`**; `says` *text*, its statement in words; `form` [`theorem` `lemma` `instance` `example`]; `role` [`spine` `support` `bookkeeping`], `method` *text*, one sentence on how it is proved, `why` *text* and `slack`, a model's, and only on a lemma that is reached (section 18.4.10); by rule: `uses`, `used-by` *refs*; `leans-on` *refs* `C:reliance`; `reached`; `depth` and `carries` *integer*; `private` *bool*; `proof` [`tactic` `term` `none`]; `sorry` *integer*, how often its proof holds an admitted gap; `automation`, the search tactics its proof calls, so that its `uses` may be short; `scope`, the lines of the variables declared around it, a field this kind leaves open (section 7.3) |
 | `C:constant` | **`says`** *text*; **`where`** *refs*, the item or items that hold it; `value` *text*, as the file gives it; `why` *text*. It never carries `lean` |
 | `C:step` | **`inside`** *ref* (a `C:lemma` or a `C:statement`), the item whose proof holds it; **`says`** *text*; **`span`**, its lines, inside that item's lines |
 | `P:yield` | **`of`** *ref* `C:statement`; **`beyond`** [`yes` `no`]; **`says`** *text*; `as-statement` *text*, with `yes` alone; **`needs`**, a list of *text*; **`bound`** [`at-least` `at-most` `exactly` `between` `none`]; **`chooses`**, a list of `{what, where, value, gives, best, confidence}`; **`trivial`**, a list of `{case, known, delivered, compares}`, `compares` from [`above` `equal` `below`], with at least one entry, or empty with `no-trivial` *text*, one sentence on why there is none; **`grounds`**, a list of `{of, lines}`, at least one; **`confidence`** [`high` `medium` `low`]; `regime`. Section 18.4.10 says what each holds |
@@ -2103,7 +2104,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `C:file`, in a fabulam | `opens`, the namespaces the file opens; `limits`, a list of *text*, what the reader could not read |
 | `C:component`, in a head fabulam | `told-in`, the part's URI; `does`, the part's atem line; `offers` *refs*, the head's items told in the part; `stages`, the names of the part's stages, in its teaching order; `counts` `{declarations, reached, spine}`; `completeness`, the part's own (section 18.4.10) |
 | `C:dependency`, in a fabulam | one for each library the file imports from, Lean's own modules counting as one; `version`, the library's commit or the Lean version the source names; `scope: standard` |
-| `C:reliance`, in a fabulam | **`lean`**, a list of *text*, the names as the file writes them; `on: dependency` with `of` *ref* `C:dependency` for a library's result, or `on: part` for a result of another part, with `stated-in` *text*, the URI of the head's item, and `digest`, that item's; `gives`, what the result says, in words; `known-as` *text*, the name the result is known by; `field` *text*, the part of mathematics it belongs to; `case` *text*, which case or form of a known theorem is used |
+| `C:reliance`, in a fabulam | **`lean`**, a name or a list of names, as the file writes them, asked of a fabulam's reliance alone (`declared-once`); `on: dependency` with `of` *ref* `C:dependency` for a library's result, or `on: part` for a result of another part, with `stated-in` *text*, the URI of the head's item, and `digest`, that item's; `gives`, what the result says, in words; `known-as` *text*, the name the result is known by; `field` *text*, the part of mathematics it belongs to; `case` *text*, which case or form of a known theorem is used |
 | `P:claim`, in a fabulam | `about`, *ref* the item the claim is about, or a few words when no item holds it; `checked` [`yes` `partial` `contradicted` `not-checkable`]; `by`, the item or items whose statements bear it out; `short-of` *text*; `mismatch` [`formula` `hypothesis` `name` `numbering` `inference`]; `false-as-written` [`yes` `no`] (section 18.4.10) |
 | `P:reading`, in a fabulam | `whose: {by: model}`; `of`, the statement or the stage it reads; `grounds`, a list of `{of, lines}`; `regime` |
 | `P:case`, in a fabulam | `from: worked`; `of` *ref* (a `C:statement` or a `P:yield`); `given` and `expect` *text*, in words and numbers; `stands: inside` |
@@ -3642,15 +3643,15 @@ them passing with no error; its old name, `emf-checks`, is read wherever a manif
 class, while each field of a class the head states has the head's type and plain kind; a part whose file's sha256 differs from the head's `parts` entry is reported as moved, with a note |
 | `cases-entailed` | error | after an authored fabulac is entailed, every runnable case is a test in `tests/test_cases.py`, and every other case is either a test marked as written by a model or named in `ENTAILED.md` with the reason it was not entailed |
 | `requirement-cased` | warning | in an authored fabulac, every `N:requirement` of `force: must` names at least one `P:case` in `checked-by` |
-| `declared-once` | error | in a fabulam, every `C:statement`, `C:definition` and `C:lemma` carries `lean` and a span; no two items carry the same `lean`; a `C:constant` carries none |
-| `statement-whole` | error | a fabulam that names no head, and is not one, holds at least one `C:statement`; each statement names a `source.target`, and every target that is a declaration of the fabulam's own file has one; each has `says` and `quantifiers`; `atem.of` names a statement, or, in a part that holds none, one of the part's own declaration items; `relates` stands only between two |
+| `declared-once` | error | in a fabulam, every `C:statement`, `C:definition` and `C:lemma` carries `lean` and a span; no two of them carry the same `lean`; a `C:constant` carries none; a `C:reliance` carries the names it leans on, in `lean` |
+| `statement-whole` | error | a fabulam that stands alone holds at least one `C:statement`, and a head one for every target; a part holds one for each target that its own file declares, and needs no other; each statement names a `source.target`, and has `says` and `quantifiers`; `atem.of` names a statement, or, in a part that holds none, one of the part's own declaration items; `relates` stands only between two |
 | `yield-stated` | error | every statement has exactly one `P:yield`: its `beyond` a quoted word, `as-statement` exactly when `yes`, `needs` and `chooses` lists, each entry of `chooses` whole, and `trivial` with an entry or `no-trivial` with a sentence |
 | `fit-stated` | error | when `source.wording` is set, every statement has exactly one `P:fit` and `E:work/wording` exists; when it is not, there is no `P:fit` |
-| `spine-told` | error | every lemma with `reached: yes` has a `role`, and no other lemma has one; every spine lemma has `why` and is in the `steps` of a stage; following `uses` from the statements reaches every spine lemma |
+| `spine-told` | error | every lemma with `reached: yes` has a `role`, and no other lemma has one; every spine lemma has `why` and is in the `steps` of a stage; following `uses` from the statements reaches every spine lemma, where the fabulam holds a statement |
 | `stages-whole` | error | the stages' `number`s run 1, 2, 3 with no gap; exactly one stage is the `reduction`, and it has `obvious`; each stage has `plain` and `plain-if`; `teaching` lists every stage once, the reduction first, then by `stage` in the order of section 18.4.10 |
 | `grounds-given` | error | every `P:yield`, every `P:reading` and every `slack` entry has grounds with lines; every `C:step` has `inside` and a span inside it |
 | `audit-whole` | error | every row of `audit` has `lines`, `kind` and a `verdict` of the closed list; a row says `claim` exactly when it names a `P:claim`; every `P:claim` whose source is a comment is named by one row; every claim's `checked` is one of the four words, with the fields that word asks for |
-| `stance-fits` | error | each item's stance is one that its kind's row in section 18.4.10 allows; a `hearsay` item names its source in `provenance.sources`; `assumed` stands only on a reliance without `stated-in`, a term or a concept |
+| `stance-fits` | error | each item's stance is one that its kind's row in section 18.4.10 allows; a `hearsay` item names its source in `provenance.sources`; an item that is a model's opinion says its `confidence`; `assumed` stands only on a reliance without `stated-in`, a term or a concept; `deduced` may stand on any kind |
 | `checking-said` | error | `P:claim/checking` exists; `source.checking.built-here` is `no`; the item's `says` holds `said` only with `said-by`; without them it holds none of "machine-checked", "verified", "certified" and "proved correct" |
 | `example-worked` | error | every statement has a `P:case` with `from: worked`, whose `given` and `expect` each hold a number |
 | `no-up-to` | error | no field of a `P:yield` and no stage's `plain` holds "up to"; the phrase is allowed before "isomorphism", "order", "sign", "symmetry" and "relabelling" |
@@ -3661,8 +3662,13 @@ class, while each field of a class the head states has the head's type and plain
 | `spine-rule-differs` | warning | a candidate of the rule (section 18.4.10) was judged `bookkeeping`, or a lemma with `carries: 0` at depth 3 or more was judged `spine`; a question is raised about each |
 
 A fabulac whose `purpose` is `transconception` runs the checks of section 18.4.9 as well. The rows from
-`declared-once` on are a fabulam's, and hold over the fabulam alone. None of them judges whether the mathematics is
-right. A fabulam is held to its source, and a pshort to its fabulam, by named checks of Thym
+`declared-once` on are a fabulam's, and hold over the fabulam alone. A fabulam is built in stages, and each stage
+lands a fabulam that passes these checks, so an outline is a valid fabulam. A check that asks for what a later stage
+writes, every statement's yield, the stages and the teaching order, the worked example, the comments' verdicts, a
+reached lemma's role, the fit, holds it only once the fabulam says it is whole, `derived.completeness: full`, or once
+that layer has begun: one yield, one stage, one verdict, one role or one fit is there. What is there is always held to
+its shape. The four warnings prompt a person, and are never a gate. None of the checks judges whether the mathematics
+is right. A fabulam is held to its source, and a pshort to its fabulam, by named checks of Thym
 (https://thym.cosmoes.org/), its section 7.3, which the moves of its section 20.13 keep.
 
 The generic reader runs the checks of section 12.2, and `flavour` and `flavour-kind`, which the manifest drives. The
@@ -3865,9 +3871,11 @@ everyone, through the proof, each run of its sentences citing the items of the f
 In the two words, the *m* is for mathematics and the *p* is for proof.
 
 A fabulam is one file, `<name>.fabulam.cosm`, and its id is `fabula/<name>`. The name is the person's choice; where
-they give none, a builder makes it from the name of the file or of the folder, as a slug (section 18.3.3). The
-fabulam sits beside the root folder of the proof's source, the folder that holds the file naming its Lean version, as a
-fabulac sits beside its folder and never inside a clone. A loose file with no such folder has its fabulam beside it.
+they give none, a builder makes it from the name of the file, less its ending, or of the folder: a hyphen goes in where
+a small letter or a digit meets a capital, and the result is respelled as a slug (section 18.3.3), so that
+`PrimesCongruentOne.lean` gives `primes-congruent-one`. The fabulam sits beside the root folder of the proof's source,
+the folder that holds the file naming its Lean version, as a fabulac sits beside its folder and never inside a clone. A
+loose file with no such folder has its fabulam beside it.
 
 **What a fabulam holds, facet by facet.**
 
@@ -3886,7 +3894,8 @@ of the file's own text longer than 80 code points (`nothing-carried`, Thym, its 
 
 An item made from a declaration takes its id from its kind and the declaration's full name, `C:lemma/<full name>`. A
 character the id grammar refuses is respelled by rule: `'` becomes `-prime`, and any other becomes `-x` and its code
-point in hexadecimal. When two names give one id, the later takes `-2`. An instance or an example with no name is
+point in hexadecimal, so that a full stop at the end is `-x2e`; a name that begins with neither a letter nor a digit
+takes an `x` in front. When two names give one id, the later takes `-2`. An instance or an example with no name is
 `C:definition/instance-L<line>` or `C:lemma/example-L<line>`. The `lean` field keeps the real name.
 
 Each item's stance is from the fabula's closed list (section 18.4.3), and in a fabulam each stance has one meaning.
@@ -4087,10 +4096,12 @@ theorem or lemma of the file that is not private, is not deprecated, and that no
 an alias of it aside. A file of a library can give many. When the rule gives more than three, a builder asks the person
 to choose, and builds nothing until they do.
 
-After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after
-the last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins `derived.runs`. A
-build with no model runs the survey and stops: `derived.completeness: outline`, every declaration with its lines and
-its reach, and nothing read for meaning. The moves are Thym's (Thym, its section 20.13).
+After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after the
+last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins `derived.runs`. The
+survey writes `derived.completeness: outline`, and only the last stage writes `full`: until then the checks ask of a
+fabulam only what its stages so far have written (section 18.4.8). A build with no model runs the survey and stops at
+the outline: every declaration with its lines and its reach, and nothing read for meaning. The moves are Thym's (Thym,
+its section 20.13).
 
 **A head fabulam and its parts.** A proof of several files is told one file at a time: each file has a fabulam of its
 own, a part, and a **head fabulam** names the parts, as a head fabulac does (section 18.4.7). The head's catalog lists
@@ -4098,7 +4109,8 @@ them in `parts`, each `{uri, path, sha256}`, and each part names its head in `he
 The files one head covers are its archive: a name that leads outside the archive is a library's name.
 
 The parts are kept in a folder beside the head, `<name>.fabulam.parts/`, which mirrors the folders of the source, each
-part named for its file, `<File>.fabulam.cosm`, with the id `fabula/<name>--<the module's name as a slug>`.
+part named for its file, `<File>.fabulam.cosm`. A part's id is `fabula/<name>--<module>`, the module's name with a
+hyphen for each dot and its capitals kept.
 
 The head states once whatever a part needs of another, so that each part reads alone:
 
@@ -4114,12 +4126,12 @@ A part that uses a declaration from another part holds a `C:reliance` for it: `o
 item, with the head's `lean` and `digest`, and `gives` copied from the head's `says`. The check `statements-agree`
 holds the two to one statement. Nothing in a part needs another part's file to be read.
 
-A fabulam that names no head holds at least one statement. A part need not. Each target that is a declaration of the
-part's own file has one statement there, and the other targets need none in that part. A part that holds no statement
-has its atem's `of` naming one of its own declaration items, and what is asked of each statement, its yield, its fit
-and its worked example, is asked of the statements there are. A part's `reached` and `depth` are the archive's,
-counted from the archive's targets across its files. Its `carries` counts within its own file, and the head's crossing
-items hold the archive's `carries`.
+A fabulam that stands alone holds at least one statement, and a head holds one for every target. A part need not. Each
+target that is a declaration of the part's own file has one statement there, and the other targets need none in that
+part. A part that holds no statement has its atem's `of` naming one of its own declaration items, and what is asked of
+each statement, its yield, its fit and its worked example, is asked of the statements there are. A part's `reached` and
+`depth` are the archive's, counted from the archive's targets across its files. Its `carries` counts within its own
+file, and the head's crossing items hold the archive's `carries`.
 
 The files are read in an order that puts each file after every file it imports, so that when a file is read each
 neighbour's statement is already in the head. A file that no target reaches is surveyed by rule and left as an
@@ -5385,9 +5397,13 @@ disagreed and one was corrected, the entry says which.
    `fit-stated`, `spine-told`, `stages-whole`, `grounds-given`, `audit-whole`, `stance-fits`, `checking-said`,
    `example-worked`, `no-up-to`, `statements-agree`, `regime-named`, `no-judgement`, `plain-words` and
    `spine-rule-differs`. `flavour` takes four values, and `code-span`, `licence-recorded` and `parts-resolve` read a
-   fabulam as they read a fabulac. The checks against the source, and those of a pshort, are Thym's (its section 7.3).
-8. **Two smaller things.** Section 18.3.5 names the rule a scaffold's sentences are read by (Thym, its section 12.6).
-   The conformance corpus carries a fabulam with its three pshorts (section 20.3).
+   fabulam as they read a fabulac. A check that asks for what a later stage writes holds only once the fabulam is whole
+   or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
+   are Thym's (its section 7.3).
+8. **Three smaller things.** A kind may say `open`, the fields of its own that the manifest's shared closed lists do
+   not bind (sections 7.3 and 13.3); the fabula's `C:lemma` says it of `scope`. Section 18.3.5 names the rule a
+   scaffold's sentences are read by (Thym, its section 12.6). The conformance corpus carries a fabulam with its three
+   pshorts (section 20.3).
 
 **Edition 0.8.0 · 2026-11-20.** A program can be written fabulac first, and carried into another
 language through its fabulac.
