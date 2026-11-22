@@ -28,22 +28,27 @@ Nothing in a version folder is edited after it is added; a new version sits besi
 files do not match its SHA256SUMS, whose registry digest is not the sha256 of its SHA256SUMS, or whose NOTICE holds a
 gap marked `[OWNER:` is not served (the site logs why and serves the rest).
 
-## The first shelf (ruled 2026-11-06; nothing is kept until the owner's fetch)
+## The first shelf (ruled 2026-11-06; versions read on the publishers' pages 2026-11-22)
 
 | shelf | text | version | kept as | licence |
 |---|---|---|---|---|
-| python | docs | 3.13 (tally's) and the current release | the publisher's plain-text build, pages by the plain-text rule | PSF License v2; examples also 0BSD |
-| ecmascript | ecma-262 | 17.0 (ES2026) | the publisher's HTML whole; pages from a text extraction | Ecma's alternative copyright notice |
-| go | spec | 1.27 | `doc/go_spec.html`, `LICENSE`, `PATENTS` from the release's source archive; pages from a text extraction | CC BY 4.0 (go.dev/copyright); the repository's BSD-style LICENSE beside it |
-| rust | reference | 1.97 | the repository at the commit the release pins, pages from `src/*.md` | MIT or Apache-2.0 |
-| rust | fls | 1.97 | the repository at the tag or commit for the release, pages from `src/*.rst` | MIT or Apache-2.0 |
+| python | docs | 3.13 (tally's; build 3.13.18, aboard) and 3.15 (the current release, 3.15.2) | the publisher's plain-text build, pages by the plain-text rule | PSF License v2; examples also 0BSD |
+| ecmascript | ecma-262 | 17.0 (ES2026, June 2026) | the publisher's `index.html` whole; pages from a text extraction | Ecma's alternative copyright notice (the edition's annex) |
+| go | spec | 1.27 (go1.27.4) | `doc/go_spec.html`, `LICENSE`, `PATENTS` from the release's source archive; pages from a text extraction | CC BY 4.0 (go.dev/copyright); the repository's BSD-style LICENSE beside it |
+| rust | reference | 1.100 (current) and 1.97 (the 0.8 cshorts') | the repository at the commit the release pins, pages from `src/*.md` | MIT or Apache-2.0 |
+| rust | fls | 1.99 (the newest tag) and 1.97 | the repository at the tag's commit, pages from `src/*.rst` | MIT or Apache-2.0 (licences in `LICENSES/`) |
 | json | rfc | 8259 | `rfc8259.txt` whole, served only as the publisher's file, never as a page | IETF Trust Legal Provisions (BCP 78) |
 | unicode | ucd | 15.1.0 (Python 3.13's) | the data files whole, each shown as preformatted text | Unicode License v3 |
 
 Pinned only, in `library.json` with `aboard: false`: the Unicode Standard's core text (personal or internal use only),
-IEEE 754-2019 (sold), test262 (ECMA-262's conformance tests), and the implementations (CPython 3.13, the Go toolchain
-1.27, rustc 1.97). Implementations and tests are pinned by release, digest and software hash identifier, never copied.
-C is left out.
+IEEE 754-2019 (sold), test262 (ECMA-262's conformance tests), the implementations (CPython 3.13, the Go toolchain
+1.27, rustc 1.97), and the `lean` shelf: the Lean 4 toolchain and Mathlib, at the release and commit of the owner's
+Mathlib clone, which the fabulam reads as text and leans on by name. Implementations and tests are pinned by release,
+digest and software hash identifier, never copied. C is left out.
+
+Where a publisher's terms ask every copy to carry a statement (Ecma's statement of what was copied or derived, the CC
+BY attribution, Unicode's trademark legend), the fetch script writes it as the entry's `credit`, in NOTICE and on every
+page.
 
 ## `library.json`
 
@@ -65,6 +70,7 @@ entry per text:
 | `from`, `obtained` | the address it was fetched from, and when |
 | `files`, `digest` | how many files are kept, and `sha256:` of SHA256SUMS |
 | `address` | `https://cosmoes.org/library/<shelf>/<text>/<version>/` |
+| `credit` | optional: lines the publisher's terms ask every copy to carry, shown on every page |
 | `release`, `swhid`, `note` | pins: the exact release, the software hash identifier, what is still to fill |
 
 Kept entries are written by the fetch script, never by hand; pins are written by hand.

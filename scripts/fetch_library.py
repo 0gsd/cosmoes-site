@@ -82,98 +82,131 @@ class Entry:
     extras: tuple = ()                         # (address, save_as, status): the publisher's other files, e.g. a licence
     sha256: str = ''                           # the archive's sha256 when the publisher lists one
     notes: tuple = ()                          # marked lines for the owner
+    credit: tuple = ()                         # lines the publisher's terms ask every copy to carry (a statement
+                                               # of what was copied, a mark's legend): in NOTICE and on every page
 
     @property
     def key(self) -> str:
         return f'{self.shelf}/{self.text}/{self.version}'
 
 
+# Addresses marked READ were read on the publisher's own pages on 2026-11-22 (the 0.9 build, lane LIB), by a fetch
+# tool that saved nothing; what each was read on is in its notes. The Rust texts' commits were read; their archive
+# addresses follow GitHub's pattern (github.com/<owner>/<repo>/archive/<commit>.tar.gz), so the run asks about them.
+RUST_TM = 'https://rustfoundation.org/policy/rust-trademark-policy/'
+
+
+def rust_reference(version: str, release: str, commit: str, note: str) -> Entry:
+    return Entry('rust', 'reference', version, 'The Rust Reference', 'The Rust Project', 'text', 'markdown', 'open',
+                 url=f'https://github.com/rust-lang/reference/archive/{commit}.tar.gz', url_status=PATTERN, pages='src/',
+                 publisher_page=f'https://doc.rust-lang.org/{release}/reference/',
+                 licence_name='MIT or Apache License 2.0, at your option',
+                 licence_url='https://github.com/rust-lang/reference',
+                 read_whole=(('https://www.rust-lang.org/policies/licenses', PATTERN), (RUST_TM, READ)),
+                 licence_files=('LICENSE-APACHE', 'LICENSE-MIT'),
+                 copyright=('paragraphs', 'LICENSE-MIT', 'Copyright'),
+                 notes=(f'The commit is the one rust-lang/rust {release} pins at src/doc/reference (read through '
+                        f'https://api.github.com/repos/rust-lang/rust/contents/src/doc/reference?ref={release}). '
+                        'The repository has LICENSE-APACHE and LICENSE-MIT at its root; LICENSE-MIT\'s first line is '
+                        'its copyright line.', note))
+
+
+def rust_fls(version: str, commit: str, note: str) -> Entry:
+    return Entry('rust', 'fls', version,
+                 'The FLS (Rust language specification, formerly the Ferrocene Language Specification)',
+                 'The Rust Project', 'text', 'rst', 'open',
+                 url=f'https://github.com/rust-lang/fls/archive/{commit}.tar.gz', url_status=PATTERN, pages='src/',
+                 publisher_page='https://rust-lang.github.io/fls/',
+                 licence_name='MIT or Apache License 2.0, at your option (README.rst; each file\'s SPDX header)',
+                 licence_url='https://github.com/rust-lang/fls',
+                 read_whole=(('https://github.com/rust-lang/fls', READ), (RUST_TM, READ)),
+                 licence_files=('LICENSES/Apache-2.0.txt', 'LICENSES/MIT.txt', 'LICENSES/*'),
+                 copyright=('spdx', 'src', 'SPDX-FileCopyrightText'),
+                 notes=(f'The commit is the one tag {version} names on rust-lang/fls (read through '
+                        'https://api.github.com/repos/rust-lang/fls/tags). The FLS keeps its licences in LICENSES/ '
+                        '(Apache-2.0, MIT, CC-BY-4.0, OFL-1.1), not LICENSE-* at the root; LICENSES/MIT.txt is the '
+                        'blank template, so the notice is taken from the SPDX-FileCopyrightText lines under src/.',
+                        note))
+
+
 ENTRIES: list[Entry] = [
     Entry('python', 'docs', '3.13', 'The Python documentation', 'Python Software Foundation', 'text', 'text', 'open',
-          url='https://docs.python.org/3.13/archives/python-3.13-docs-text.tar.bz2', url_status=PATTERN,
+          url='https://docs.python.org/3.13/archives/python-3.13-docs-text.tar.bz2', url_status=READ,
           publisher_page='https://docs.python.org/3.13/',
           licence_name=('PSF License Version 2; examples, recipes and other code in the documentation are also under '
                         'the Zero-Clause BSD license'),
           licence_url='https://docs.python.org/3.13/license.html',
-          read_whole=(('https://docs.python.org/3.13/license.html', PATTERN),
-                      ('https://www.python.org/psf/trademarks/', PATTERN)),
+          read_whole=(('https://docs.python.org/3.13/license.html', READ),
+                      ('https://www.python.org/psf/trademarks/', READ)),
           licence_files=('license.txt', 'copyright.txt'),
           copyright=('paragraphs', 'copyright.txt', 'Copyright'),
-          notes=("OWNER: the archive's name is the 0.7 fetch's (fabulac-test-repos/_x0/library/python/3.13/); the "
-                 "address follows docs.python.org/3.15/archives/ as read on 2026-11-06. Confirm it on "
-                 "https://docs.python.org/3.13/download.html.",
-                 'The version tally runs on (3.13.11 on this Mac). The 0.7 fetch is not moved in: it has no '
-                 'source address, so it is fetched again.')),
+          notes=('Aboard since 2026-11-19 (build 3.13.18). On 2026-11-22 docs.python.org/3.13/download.html is still '
+                 '3.13.18 and the archive is still 3,156,138 bytes (dated 29-Oct-2026), the size kept: nothing to fetch.',
+                 'The version tally runs on (3.13.11 on this Mac).')),
     Entry('python', 'docs', '3.15', 'The Python documentation', 'Python Software Foundation', 'text', 'text', 'open',
-          url='https://docs.python.org/3.15/archives/python-3.15-docs-text.tar.bz2', url_status=PATTERN,
+          url='https://docs.python.org/3.15/archives/python-3.15-docs-text.tar.bz2', url_status=READ,
           publisher_page='https://docs.python.org/3.15/',
           licence_name=('PSF License Version 2; examples, recipes and other code in the documentation are also under '
                         'the Zero-Clause BSD license'),
           licence_url='https://docs.python.org/3.15/license.html',
           read_whole=(('https://docs.python.org/3.15/license.html', PATTERN),
-                      ('https://www.python.org/psf/trademarks/', PATTERN)),
+                      ('https://www.python.org/psf/trademarks/', READ)),
           licence_files=('license.txt', 'copyright.txt'),
           copyright=('paragraphs', 'copyright.txt', 'Copyright'),
-          notes=('OWNER: confirm 3.15 is the current release (3.15.0 was scheduled for October 2026) before '
-                 'fetching; survey G saw python-3.15-docs-text.tar.bz2 listed on docs.python.org/3.15/archives/ '
-                 '(3,500,631 bytes) on 2026-11-06.',)),
+          notes=('The current release: python.org/downloads names 3.15.2 (2026-10-25) the latest; '
+                 'docs.python.org/3.15/download.html is the 3.15.2 build, and docs.python.org/3.15/archives/ lists '
+                 'python-3.15-docs-text.tar.bz2 at 3,514,286 bytes, dated 19-Nov-2026 (read 2026-11-22).',)),
     Entry('ecmascript', 'ecma-262', '17.0', 'ECMA-262, ECMAScript 2026 Language Specification', 'Ecma International',
           'standard', 'html', 'open',
-          url='https://262.ecma-international.org/17.0/', url_status=PATTERN, archive='file', save_as='index.html',
+          url='https://262.ecma-international.org/17.0/index.html', url_status=READ, archive='file',
+          save_as='index.html',
           publisher_page='https://262.ecma-international.org/17.0/',
-          licence_name="Ecma International's alternative copyright notice (Ecma text copyright policy)",
+          licence_name="Ecma International's alternative copyright notice and copyright license (the edition's annex)",
           licence_url='https://ecma-international.org/policies/by-ipr/ecma-text-copyright-policy/',
-          read_whole=(('https://ecma-international.org/policies/by-ipr/ecma-text-copyright-policy/', READ),),
+          read_whole=(('https://ecma-international.org/policies/by-ipr/ecma-text-copyright-policy/', READ),
+                      ('https://ecma-international.org/policies/by-ipr/ecma-trademark-matters/', READ)),
           copyright=('html-id', 'index.html', 'sec-copyright-and-software-license'),
-          notes=('OWNER: confirm the 17th edition (ECMAScript 2026) is published and its address; 16.0 is ES2025 '
-                 "at the same pattern. Confirm the edition's own copyright annex carries the alternative notice (the "
-                 'policy needs General Assembly approval for it), and that the page is whole without its scripts.',
+          credit=('This copy includes material copied from or derived from ECMAScript® 2026 Language Specification '
+                  '(ECMA-262, 17th edition, June 2026), https://262.ecma-international.org/17.0/index.html.',
+                  'ECMAScript® is a registered trademark of Ecma International.'),
+          notes=('The 17th edition, June 2026, is current: ecma-international.org/publications-and-standards/'
+                 'standards/ecma-262/ names https://262.ecma-international.org/17.0/index.html the normative HTML copy '
+                 '(read 2026-11-22). The annex (sec-copyright-and-software-license) carries the ALTERNATIVE notice, '
+                 'read on the tc39.es 2026 snapshot of the same edition: confirm the notice the run shows says so.',
+                 'Only index.html is kept: its stylesheet, script and images are not, and pages come from its text. '
                  'The shelf is titled ECMAScript: "JavaScript" is a mark of Oracle\'s.')),
     Entry('go', 'spec', '1.27', 'The Go Programming Language Specification', 'The Go Authors (Google)', 'standard',
           'html', 'open',
-          url='https://go.dev/dl/go1.27.4.src.tar.gz', url_status=PATTERN,
+          url='https://go.dev/dl/go1.27.4.src.tar.gz', url_status=READ,
+          sha256='73cfb8571aec0c01177687db87163d46aa20e9779672772891aa17654d9a6099',
           members=('doc/go_spec.html', 'LICENSE', 'PATENTS'),
           publisher_page='https://go.dev/ref/spec',
           licence_name='Creative Commons Attribution 4.0 International (go.dev/copyright: the site\'s contents)',
           licence_url='https://creativecommons.org/licenses/by/4.0/',
           read_whole=(('https://go.dev/copyright', READ),
-                      ('https://creativecommons.org/licenses/by/4.0/legalcode', PATTERN),
-                      ('https://go.dev/brand', PATTERN)),
+                      ('https://creativecommons.org/licenses/by/4.0/legalcode.en', READ),
+                      ('https://go.dev/brand', READ)),
           licence_files=('LICENSE', 'PATENTS'),
           copyright=('paragraphs', 'LICENSE', 'Copyright'),
-          notes=('OWNER: go1.27.4 is the release found on this Mac on 2026-11-13; take the latest 1.27 patch from '
-                 'https://go.dev/dl/ and pass its sha256 with --sha256 (the page lists one per file).',
-                 'OWNER: confirm which licence governs doc/go_spec.html: go.dev/copyright says the site\'s contents '
-                 'are CC BY 4.0, and the repository\'s LICENSE (kept whole in NOTICE) is BSD-style.')),
-    Entry('rust', 'reference', '1.97', 'The Rust Reference', 'The Rust Project', 'text', 'markdown', 'open',
-          url='https://github.com/rust-lang/reference/archive/<COMMIT>.tar.gz', url_status=SUPPLY, pages='src/',
-          publisher_page='https://doc.rust-lang.org/1.97.0/reference/',
-          licence_name='MIT or Apache License 2.0, at your option',
-          licence_url='https://github.com/rust-lang/reference',
-          read_whole=(('https://www.rust-lang.org/policies/licenses', PATTERN),
-                      ('https://rustfoundation.org/policy/rust-trademark-policy/', PATTERN)),
-          licence_files=('LICENSE-APACHE', 'LICENSE-MIT'),
-          copyright=('paragraphs', 'LICENSE-MIT', 'Copyright'),
-          notes=('OWNER: pass --url with the commit of rust-lang/reference that rust-lang/rust pins at '
-                 'src/doc/reference for the 1.97 release (1.97.1 was on this Mac on 2026-11-13); look at '
-                 'https://github.com/rust-lang/rust/tree/1.97.1/src/doc.',
-                 'OWNER: confirm publisher_page (doc.rust-lang.org/<version>/reference/) and that LICENSE-MIT '
-                 'carries a copyright line; if not, the run asks you to type the notice.')),
-    Entry('rust', 'fls', '1.97', 'The FLS (Rust language specification, formerly the Ferrocene Language Specification)',
-          'The Rust Project', 'text', 'rst', 'open',
-          url='https://github.com/rust-lang/fls/archive/<TAG-OR-COMMIT>.tar.gz', url_status=SUPPLY, pages='src/',
-          publisher_page='https://rust-lang.github.io/fls/',
-          licence_name='MIT or Apache License 2.0, at your option',
-          licence_url='https://github.com/rust-lang/fls',
-          read_whole=(('https://github.com/rust-lang/fls', READ),
-                      ('https://rustfoundation.org/policy/rust-trademark-policy/', PATTERN)),
-          licence_files=('LICENSE-APACHE', 'LICENSE-MIT'),
-          copyright=('paragraphs', 'LICENSE-MIT', 'Copyright'),
-          notes=('OWNER: pass --url with the tag or commit of rust-lang/fls that covers Rust 1.97, and confirm '
-                 'the repository has both licence files at its root and its source under src/.',)),
+          credit=('The Go Programming Language Specification (language version go1.27, May 26, 2026), by The Go '
+                  'Authors, https://go.dev/ref/spec, under the Creative Commons Attribution 4.0 International licence, '
+                  'https://creativecommons.org/licenses/by/4.0/. Its pages here are made from a text extraction.',),
+          notes=('go1.27.4 is the newest stable release on https://go.dev/dl/ (read 2026-11-22): go1.27.4.src.tar.gz, '
+                 '34 MB, with the sha256 above. Only doc/go_spec.html, LICENSE and PATENTS are kept.',
+                 'OWNER: go_spec.html carries no notice of its own. go.dev/copyright puts the site\'s contents under '
+                 'CC BY 4.0 and its code under the BSD licence; the repository\'s LICENSE (BSD 3-clause naming '
+                 'Google LLC) is kept whole beside it. The entry names CC BY 4.0.')),
+    rust_reference('1.100', '1.100.0', 'e24eecf97b0c9a6dbac67191098204dc8a190aaa',
+                   'Rust 1.100.0 (2026-11-12) is the current release (blog.rust-lang.org/releases/latest).'),
+    rust_reference('1.97', '1.97.1', 'ad35aca481751a06afeb23820a672b0f3b11a476',
+                   'The release the 0.8 cshorts were built on (rustc 1.97.1 on this Mac, 2026-11-13).'),
+    rust_fls('1.99', '946eacae5a4a33a89af7832178504692439e7478',
+             'The newest tag on 2026-11-22: there is no 1.100 tag yet (version.rst: spec_version 1.99.0).'),
+    rust_fls('1.97', '4ab04b009042e6ab56e07cbe187b0b52988da308',
+             'The release the 0.8 cshorts were built on (rustc 1.97.1).'),
     Entry('json', 'rfc', '8259', 'RFC 8259, The JavaScript Object Notation (JSON) Data Interchange Format',
           'IETF (RFC Editor)', 'standard', 'unchanged', 'bound',
-          url='https://www.rfc-editor.org/rfc/rfc8259.txt', url_status=PATTERN, archive='file', save_as='rfc8259.txt',
+          url='https://www.rfc-editor.org/rfc/rfc8259.txt', url_status=READ, archive='file', save_as='rfc8259.txt',
           publisher_page='https://www.rfc-editor.org/rfc/rfc8259',
           licence_name='IETF Trust Legal Provisions relating to IETF Documents (BCP 78)',
           licence_url='https://trustee.ietf.org/documents/trust-legal-provisions/tlp-5/',
@@ -181,18 +214,23 @@ ENTRIES: list[Entry] = [
                       ('https://www.rfc-editor.org/rfc/rfc8259', READ)),
           copyright=('section', 'rfc8259.txt', 'Copyright Notice'),
           notes=('Kept whole and served only as the publisher\'s own file (TLP 3.c.i: in full and without '
-                 'modification); never rendered as a page.',)),
-    Entry('unicode', 'ucd', '15.1.0', 'The Unicode Character Database', 'Unicode, Inc.', 'data', 'data', 'open',
-          url='https://www.unicode.org/Public/15.1.0/ucd/UCD.zip', url_status=PATTERN, archive='zip',
+                 'modification); never rendered as a page. Its "Copyright Notice" heading is at the margin and its '
+                 'body indented, as the section rule reads it (read 2026-11-22).',)),
+    Entry('unicode', 'ucd', '15.1.0', 'The Unicode® Character Database', 'Unicode, Inc.', 'data', 'data', 'open',
+          url='https://www.unicode.org/Public/15.1.0/ucd/UCD.zip', url_status=READ, archive='zip',
           publisher_page='https://www.unicode.org/Public/15.1.0/ucd/',
           licence_name='Unicode License v3', licence_url='https://www.unicode.org/license.txt',
-          read_whole=(('https://www.unicode.org/license.txt', PATTERN),
-                      ('https://www.unicode.org/copyright.html', READ)),
+          read_whole=(('https://www.unicode.org/license.txt', READ),
+                      ('https://www.unicode.org/copyright.html', READ),
+                      ('https://www.unicode.org/policies/logo_policy.html', READ)),
           licence_files=('license.txt',),
-          extras=(('https://www.unicode.org/license.txt', 'license.txt', PATTERN),),
+          extras=(('https://www.unicode.org/license.txt', 'license.txt', READ),),
           copyright=('paragraphs', 'license.txt', 'Copyright'),
-          notes=("The version pinned: Python 3.13's unicodedata.unidata_version is 15.1.0 (3.14's is 16.0.0). A "
-                 'version a transcoding names enters beside it.',
+          credit=('Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and '
+                  'other countries.',),
+          notes=("Python 3.13's unicodedata names UCD 15.1.0 (docs.python.org/3.13/library/unicodedata.html). "
+                 'www.unicode.org/Public/15.1.0/ucd/ lists UCD.zip, 7.9M, dated 2023-08-28 (read 2026-11-22).',
+                 'license.txt is today\'s (Copyright © 1991-2026), fetched beside the zip, which holds none.',
                  'The core specification is pinned, not kept (copyright.html 3.4: personal or internal use only).')),
 ]
 
@@ -227,6 +265,8 @@ def plan(e: Entry, url: str, library: Path) -> list[str]:
         lines.append(f'  must find     files/{f} (written whole into NOTICE)')
     for u, name, st in e.extras:
         lines.append(f'  also fetches  {u} -> files/{name}' + ('' if st == READ else f'   [{st}]'))
+    for c in e.credit:
+        lines.append(f'  carries       {c}')
     if e.copyright:
         lines.append(f'  notice from   {e.copyright[1]} by rule {e.copyright[0]} ({e.copyright[2]}); you confirm it')
     else:
@@ -268,45 +308,51 @@ def safe_name(name: str) -> str | None:
 
 def unpack(e: Entry, archive: Path, into: Path) -> list[str]:
     """Unpack into `into` (files/), keeping regular files only; returns lines for FETCHED (what was stripped and what
-    was left out)."""
-    found: list[tuple[str, bytes]] = []
+    was left out). Names are settled first (the strip, then `members`), and only the files kept are read, so a large
+    source archive of which one file is kept is never held whole in memory."""
+    names: list[tuple[str, object]] = []          # (the path kept under files/, the member to read it from)
     left_out: list[str] = []
-    if e.archive == 'file':
-        found.append((e.save_as, archive.read_bytes()))
-    elif e.archive == 'zip':
-        with zipfile.ZipFile(archive) as z:
-            for info in z.infolist():
-                if info.is_dir():
-                    continue
-                name = safe_name(info.filename)
-                if name is None or (info.external_attr >> 16) & 0o170000 == 0o120000:
-                    left_out.append(info.filename)
-                    continue
-                found.append((name, z.read(info)))
-    else:
-        with tarfile.open(archive, 'r:*') as t:
-            for m in t.getmembers():
-                if m.isdir():
-                    continue
-                name = safe_name(m.name)
-                if name is None or not m.isfile():
-                    left_out.append(m.name)
-                    continue
-                found.append((name, t.extractfile(m).read()))
     notes = []
-    tops = {n.split('/', 1)[0] for n, _ in found}
-    if e.strip and e.archive != 'file' and len(tops) == 1 and all('/' in n for n, _ in found):
-        top = tops.pop()
-        found = [(n[len(top) + 1:], b) for n, b in found]
-        notes.append(f'stripped: {top}/')
-    if e.members:
-        keep = [(n, b) for n, b in found if any(fnmatch.fnmatchcase(n, g) for g in e.members)]
-        notes.append(f'kept: {", ".join(e.members)} ({len(keep)} of {len(found)} files)')
-        found = keep
-    for n, b in found:
-        dest = into / n
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_bytes(b)
+    if e.archive == 'file':
+        (into / e.save_as).parent.mkdir(parents=True, exist_ok=True)
+        (into / e.save_as).write_bytes(archive.read_bytes())
+        return notes
+    if e.archive == 'zip':
+        opened = zipfile.ZipFile(archive)
+        for info in opened.infolist():
+            if info.is_dir():
+                continue
+            name = safe_name(info.filename)
+            if name is None or (info.external_attr >> 16) & 0o170000 == 0o120000:
+                left_out.append(info.filename)
+                continue
+            names.append((name, info))
+        read = opened.read
+    else:
+        opened = tarfile.open(archive, 'r:*')
+        for m in opened.getmembers():
+            if m.isdir():
+                continue
+            name = safe_name(m.name)
+            if name is None or not m.isfile():
+                left_out.append(m.name)
+                continue
+            names.append((name, m))
+        read = lambda m: opened.extractfile(m).read()  # noqa: E731
+    with opened:
+        tops = {n.split('/', 1)[0] for n, _ in names}
+        if e.strip and len(tops) == 1 and all('/' in n for n, _ in names):
+            top = tops.pop()
+            names = [(n[len(top) + 1:], m) for n, m in names]
+            notes.append(f'stripped: {top}/')
+        if e.members:
+            keep = [(n, m) for n, m in names if any(fnmatch.fnmatchcase(n, g) for g in e.members)]
+            notes.append(f'kept: {", ".join(e.members)} ({len(keep)} of {len(names)} files)')
+            names = keep
+        for n, m in names:
+            dest = into / n
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(read(m))
     if left_out:
         notes.append('left out (links, devices or paths outside the folder): ' + ', '.join(sorted(left_out)))
     return notes
@@ -319,6 +365,19 @@ def find_copyright(e: Entry, files: Path) -> str | None:
     if not e.copyright:
         return None
     rule, name, arg = e.copyright
+    if rule == 'spdx':                            # every distinct `<arg>: <holder>` line in the files under name/
+        seen: list[str] = []
+        for path in sorted(p for p in (files / name).rglob('*') if p.is_file()):
+            for line in path.read_bytes().decode('utf-8', 'replace').splitlines():
+                at = line.find(arg + ':')
+                if at < 0:
+                    continue
+                held = f'{arg}: {line[at + len(arg) + 1:].strip()}'
+                if held.endswith(('-->', '*/')):
+                    held = held[:-3].rstrip()
+                if held != f'{arg}:' and held not in seen:
+                    seen.append(held)
+        return '\n'.join(seen) or None
     path = files / name
     if not path.is_file():
         return None
@@ -364,6 +423,23 @@ def find_copyright(e: Entry, files: Path) -> str | None:
     raise ValueError(f'unknown rule {rule}')
 
 
+def licence_paths(e: Entry, files: Path) -> list[str]:
+    """The licence files under files/, in the entry's order: a plain path must be there; a glob (`LICENSES/*`) must
+    match at least one file, and adds every file it matches. Each path once."""
+    out: list[str] = []
+    for f in e.licence_files:
+        if any(c in f for c in '*?['):
+            hits = sorted(p.relative_to(files).as_posix() for p in files.glob(f) if p.is_file())
+            if not hits:
+                raise Stop(f'refused: no file matches files/{f}; the licence must come with the text')
+        else:
+            if not (files / f).is_file():
+                raise Stop(f'refused: files/{f} is not in what was fetched; the licence must come with the text')
+            hits = [f]
+        out += [h for h in hits if h not in out]
+    return out
+
+
 def notice_text(e: Entry, url: str, copyright_notice: str, licence_texts: list[tuple[str, str]], when: str) -> str:
     title = f'{e.name} {e.version}, as kept in the cosmoes.org library'
     head = [title, '=' * len(title), '',
@@ -376,6 +452,8 @@ def notice_text(e: Entry, url: str, copyright_notice: str, licence_texts: list[t
             'Licence', '-------', f'{e.licence_name}', f'{e.licence_url}', '',
             'Copyright notice, as the publisher states it', '--------------------------------------------',
             copyright_notice.rstrip('\n'), '']
+    if e.credit:
+        head += ['What the terms ask every copy to carry', '--------------------------------------', *e.credit, '']
     for name, text in licence_texts:
         h = f'files/{name}, whole'
         head += [h, '-' * len(h), text.rstrip('\n'), '']
@@ -437,11 +515,8 @@ def fetch(e: Entry, library: Path, *, url: str | None = None, sha: str | None = 
         if not any(files.rglob('*')):
             raise Stop('refused: the archive held no file to keep')
         licence_texts = []
-        for f in e.licence_files:
-            p = files / f
-            if not p.is_file():
-                raise Stop(f'refused: files/{f} is not in what was fetched; the licence must come with the text')
-            licence_texts.append((f, p.read_text(encoding='utf-8', errors='replace')))
+        for f in licence_paths(e, files):
+            licence_texts.append((f, (files / f).read_text(encoding='utf-8', errors='replace')))
         for f, text in licence_texts:
             say(f'---- files/{f}, whole ----')
             say(text.rstrip('\n'))
@@ -498,6 +573,8 @@ def registry_entry(e: Entry, folder: Path, url: str, notice: str, when: str) -> 
              'address': L.address({'shelf': e.shelf, 'text': e.text, 'version': e.version})}
     if e.pages:
         entry['pages'] = e.pages
+    if e.credit:
+        entry['credit'] = '\n'.join(e.credit)
     return entry
 
 

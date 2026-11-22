@@ -27,6 +27,12 @@
       "about": "The Rust Reference and the FLS for each release; neither claims to be complete."
     },
     {
+      "slug": "lean",
+      "title": "Lean",
+      "kind": "language",
+      "about": "Lean 4 and Mathlib, which the fabulam reads as text and leans on by name: pinned by release and commit, never kept."
+    },
+    {
       "slug": "json",
       "title": "JSON",
       "kind": "standard",
@@ -143,6 +149,44 @@
       "swhid": null,
       "digest": null,
       "note": "1.97.1 was on this Mac on 2026-11-13. Digest and swhid are filled when a transcoding names it; never copied."
+    },
+    {
+      "shelf": "lean",
+      "text": "lean4",
+      "version": "4.37.0-rc1",
+      "name": "Lean 4 (the toolchain)",
+      "publisher": "The Lean developers (leanprover)",
+      "what": "implementation",
+      "lane": "open",
+      "aboard": false,
+      "licence": {
+        "name": "Apache License 2.0",
+        "url": "https://github.com/leanprover/lean4/blob/master/LICENSE"
+      },
+      "from": "https://github.com/leanprover/lean4",
+      "release": "v4.37.0-rc1",
+      "swhid": null,
+      "digest": null,
+      "note": "The toolchain the owner's Mathlib clone names (fabulac-test-repos/mathlib4/lean-toolchain: leanprover/lean4:v4.37.0-rc1, a prerelease tagged 2026-11-18). Read as text by the fabulam's reader; enough installs, builds and runs none of it. Never copied."
+    },
+    {
+      "shelf": "lean",
+      "text": "mathlib",
+      "version": "6ebcce37",
+      "name": "Mathlib (mathlib4)",
+      "publisher": "The Mathlib community (leanprover-community)",
+      "what": "text",
+      "lane": "open",
+      "aboard": false,
+      "licence": {
+        "name": "Apache License 2.0",
+        "url": "https://github.com/leanprover-community/mathlib4/blob/master/LICENSE"
+      },
+      "from": "https://github.com/leanprover-community/mathlib4",
+      "release": "6ebcce37335bcb6bca64596e5d57bb3035648030",
+      "swhid": null,
+      "digest": null,
+      "note": "The commit of the owner's clone at fabulac-test-repos/mathlib4 (2026-11-22; its LICENSE is the Apache License 2.0, each file's header names its own copyright holders). A fabulam leans on its declarations by name and lines; it is read as text, never built, never copied."
     },
     {
       "shelf": "unicode",

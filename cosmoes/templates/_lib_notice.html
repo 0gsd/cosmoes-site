@@ -4,5 +4,6 @@
   <p>Licence: <a href="{{ t.entry.licence.url }}">{{ t.entry.licence.name }}</a>.</p>
   <pre class="lib-copyright">{{ t.entry.copyright }}</pre>
   <p>Changed in form: {{ t.changed }}</p>
+  {% if t.entry.credit %}{% for line in t.entry.credit.split('\n') %}<p class="lib-credit">{{ line }}</p>{% endfor %}{% endif %}
   <p class="lib-files"><a href="{{ t.url }}NOTICE">NOTICE</a> (the licence and notice whole) · <a href="{{ t.url }}FETCHED">FETCHED</a> · <a href="{{ t.url }}SHA256SUMS">SHA256SUMS</a>{% if raw %} · <a href="{{ raw }}">the publisher's file, unchanged</a>{% endif %}</p>
 </aside>
