@@ -41,6 +41,8 @@ def notice_on(html: str, e: dict) -> None:
     assert f'<a href="{escape(e["licence"]["url"])}">{escape(e["licence"]["name"])}</a>' in html
     assert f'<pre class="lib-copyright">{escape(e["copyright"])}</pre>' in html
     assert f'Changed in form: {escape(L.FORMS[e["form"]]["changed"])}' in html
+    for line in (e.get('credit') or '').split('\n') if e.get('credit') else ():   # what the terms ask a copy to carry
+        assert f'<p class="lib-credit">{escape(line)}</p>' in html
     assert f'<a href="{e["publisher_page"]}">' in html
     assert f'<a href="{url(e, "NOTICE")}">NOTICE</a>' in html
 
@@ -249,4 +251,9 @@ def test_the_sitemap_lists_the_library(site):
 def test_the_real_shelf_loads_with_nothing_refused():
     lib = library_mod.Library().load()
     assert lib.problems == [] and lib.refused == {}
-    assert {s['slug'] for s in lib.shelves} >= {'python', 'ecmascript', 'go', 'rust', 'json', 'unicode', 'ieee-754'}
+    assert {s['slug'] for s in lib.shelves} >= {'python', 'ecmascript', 'go', 'rust', 'lean', 'json', 'unicode',
+                                                'ieee-754'}
+
+
+def test_the_fixture_has_a_text_that_carries_a_credit():
+    assert any(e.get('credit') for e in KEPT)

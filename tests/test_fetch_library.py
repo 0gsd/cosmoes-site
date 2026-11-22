@@ -86,8 +86,9 @@ def test_every_entry_names_its_address_its_licence_and_how_sure_it_is():
     shelves = {s['slug'] for s in L.load_registry(ROOT / 'library')['shelves']}
     keys = [e.key for e in F.ENTRIES]
     assert len(keys) == len(set(keys))
-    assert set(keys) >= {'python/docs/3.13', 'ecmascript/ecma-262/17.0', 'go/spec/1.27', 'rust/reference/1.97',
-                         'rust/fls/1.97', 'json/rfc/8259', 'unicode/ucd/15.1.0'}
+    assert set(keys) >= {'python/docs/3.13', 'python/docs/3.15', 'ecmascript/ecma-262/17.0', 'go/spec/1.27',
+                         'rust/reference/1.100', 'rust/reference/1.97', 'rust/fls/1.99', 'rust/fls/1.97',
+                         'json/rfc/8259', 'unicode/ucd/15.1.0'}
     assert any(k.startswith('python/docs/') and k != 'python/docs/3.13' for k in keys)   # and the current release
     for e in F.ENTRIES:
         assert e.shelf in shelves and e.form in L.FORMS and e.lane in L.LANES and e.what in L.WHAT, e.key
@@ -100,21 +101,43 @@ def test_every_entry_names_its_address_its_licence_and_how_sure_it_is():
             assert '<' in e.url, e.key
         assert e.licence_files or e.copyright, e.key
     assert F.BY_KEY['json/rfc/8259'].form == 'unchanged' and F.BY_KEY['json/rfc/8259'].lane == 'bound'
+    assert len(F.BY_KEY['go/spec/1.27'].sha256) == 64                        # the publisher lists it; the run checks it
+    for k in ('rust/reference/1.100', 'rust/reference/1.97', 'rust/fls/1.99', 'rust/fls/1.97'):
+        assert '<' not in F.BY_KEY[k].url and F.BY_KEY[k].url.endswith('.tar.gz'), k   # a commit, no placeholder
+    assert F.BY_KEY['rust/fls/1.99'].copyright[0] == 'spdx'                 # LICENSES/MIT.txt is the blank template
+    assert any('*' in f for f in F.BY_KEY['rust/fls/1.99'].licence_files)
+    assert F.BY_KEY['ecmascript/ecma-262/17.0'].credit and F.BY_KEY['unicode/ucd/15.1.0'].credit
+
+
+def test_the_lean_shelf_is_pins_only():
+    reg = L.load_registry(ROOT / 'library')
+    assert any(s['slug'] == 'lean' and s['kind'] == 'language' for s in reg['shelves'])
+    lean = [t for t in reg['texts'] if t['shelf'] == 'lean']
+    assert {t['text'] for t in lean} == {'lean4', 'mathlib'}
+    for t in lean:
+        assert t['aboard'] is False and t['licence']['name'] == 'Apache License 2.0' and t['release'], t['text']
+    assert not any(e.shelf == 'lean' for e in F.ENTRIES)                      # nothing of it is ever fetched
 
 
 def test_the_dry_run_fetches_and_writes_nothing(library, capsys):
     before = sorted(p.as_posix() for p in library.rglob('*'))
     assert F.main(['fetch', 'go/spec/1.27', '--dry-run', '--library', str(library)]) == 0
     out = capsys.readouterr().out
-    assert 'https://go.dev/dl/go1.27.4.src.tar.gz' in out and '[pattern' in out and 'dry run' in out
+    assert 'https://go.dev/dl/go1.27.4.src.tar.gz' in out and 'dry run' in out and '[pattern' not in out
+    assert 'expects       sha256 73cfb857' in out and 'carries       The Go Programming Language Specification' in out
     assert 'must find     files/LICENSE' in out and 'read whole    https://go.dev/copyright' in out
     assert sorted(p.as_posix() for p in library.rglob('*')) == before
     assert F.main(['list']) == 0
+    assert F.main(['fetch', 'rust/fls/1.99', '--dry-run', '--library', str(library)]) == 0
+    out = capsys.readouterr().out
+    assert '[pattern' in out and 'must find     files/LICENSES/*' in out and 'by rule spdx' in out
+    assert sorted(p.as_posix() for p in library.rglob('*')) == before
 
 
 def test_a_placeholder_address_needs_the_owners_url(library):
+    e = entry(url='https://example.invalid/archive/<COMMIT>.tar.gz', url_status=F.SUPPLY)
     with pytest.raises(F.Stop, match='pass --url'):
-        F.fetch(F.BY_KEY['rust/reference/1.97'], library, ask=Owner(), say=lambda *a: None)
+        F.fetch(e, library, ask=Owner(), say=lambda *a: None)
 
 
 # ----------------------------------------------------------------------------- a run
@@ -227,3 +250,87 @@ def test_the_fixture_shelf_is_what_the_script_writes():
             assert L.verify(d, e) == []
             assert (d / 'NOTICE').read_text().startswith(f"{e['name']} {e['version']}, as kept in the cosmoes.org library")
             assert 'by: the owner, with scripts/fetch_library.py' in (d / 'FETCHED').read_text()
+
+
+# ----------------------------------------------------------------------------- the 0.9 shelf's shapes
+
+def zip_archive(tmp_path: Path, files: dict, top: str = '') -> Path:
+    import zipfile
+    p = tmp_path / 'made.zip'
+    with zipfile.ZipFile(p, 'w') as z:
+        for name, text in files.items():
+            z.writestr(top + name, text)
+    return p
+
+
+def test_a_zip_with_no_top_folder_and_a_licence_fetched_beside_it(library, tmp_path, monkeypatch):
+    """The UCD's shape: a zip whose files sit at its root, and the licence as a second file from the publisher."""
+    got = []
+    e = entry(form='data', what='data', archive='zip', licence_files=('license.txt',),
+              extras=(('https://example.invalid/license.txt', 'license.txt', F.READ),),
+              copyright=('paragraphs', 'license.txt', 'Copyright'),
+              credit=('Made-up is a registered mark of Made-up, Inc.',))
+    files = {'UnicodeData.txt': '0041;LATIN CAPITAL LETTER A;Lu\n', 'extracted/Derived.txt': '# d\n'}
+    with pytest.raises(F.Stop, match='run without --from-archive'):
+        F.fetch(e, library, from_archive=zip_archive(tmp_path, files), ask=Owner(), say=lambda *x: None, now=NOW)
+    def fake_both(url, dest):
+        got.append(url)
+        if url.endswith('.zip'):
+            dest.write_bytes(zip_archive(tmp_path, files).read_bytes())
+        else:
+            dest.write_text('Copyright © 1991-2026 Made-up, Inc.\n\nPermission is granted.\n')
+    monkeypatch.setattr(F, 'download', fake_both)
+    target = F.fetch(e, library, url='https://example.invalid/made.zip', ask=Owner(), say=lambda *x: None, now=NOW)
+    assert got == ['https://example.invalid/made.zip', 'https://example.invalid/license.txt']
+    kept = sorted(p.relative_to(target / 'files').as_posix() for p in (target / 'files').rglob('*') if p.is_file())
+    assert kept == ['UnicodeData.txt', 'extracted/Derived.txt', 'license.txt']       # nothing stripped
+    assert 'stripped' not in (target / 'FETCHED').read_text()
+    assert 'extra: files/license.txt from https://example.invalid/license.txt' in (target / 'FETCHED').read_text()
+    notice = (target / 'NOTICE').read_text()
+    assert 'What the terms ask every copy to carry' in notice and 'Made-up is a registered mark' in notice
+    (reg_e,) = L.load_registry(library)['texts']
+    assert reg_e['copyright'] == 'Copyright © 1991-2026 Made-up, Inc.'
+    assert reg_e['credit'] == 'Made-up is a registered mark of Made-up, Inc.'
+    assert L.verify(target, reg_e) == []
+
+
+def test_licences_in_a_folder_and_a_notice_from_spdx_lines(library, tmp_path):
+    """The FLS's shape: its licences in LICENSES/ (MIT.txt the blank template), its holders in SPDX headers."""
+    files = {
+        'LICENSES/MIT.txt': 'MIT License\n\nCopyright (c) <year> <copyright holders>\n',
+        'LICENSES/Apache-2.0.txt': 'Apache License\nVersion 2.0\n',
+        'LICENSES/CC-BY-4.0.txt': 'Attribution 4.0 International\n',
+        'src/index.rst': '.. SPDX-License-Identifier: MIT OR Apache-2.0\n   SPDX-FileCopyrightText: The Made-up '
+                         'Developers\n   SPDX-FileCopyrightText: The Made-up Project Contributors\n\nMade\n====\n',
+        'src/two.rst': '.. SPDX-FileCopyrightText: The Made-up Developers\n\nTwo\n===\n',
+        'version.rst': '.. SPDX-FileCopyrightText: The Made-up Project Developers\n',
+    }
+    e = entry(form='rst', pages='src/', licence_files=('LICENSES/Apache-2.0.txt', 'LICENSES/MIT.txt', 'LICENSES/*'),
+              copyright=('spdx', 'src', 'SPDX-FileCopyrightText'))
+    owner = Owner()
+    target = F.fetch(e, library, from_archive=archive(tmp_path, files), ask=owner, say=lambda *x: None, now=NOW)
+    asked = [q for q in owner.asked if 'the licence you read' in q]
+    assert asked == ['Is files/LICENSES/Apache-2.0.txt the licence you read? Type yes to go on: ',
+                     'Is files/LICENSES/MIT.txt the licence you read? Type yes to go on: ',
+                     'Is files/LICENSES/CC-BY-4.0.txt the licence you read? Type yes to go on: ']   # each once
+    (reg_e,) = L.load_registry(library)['texts']
+    assert reg_e['copyright'] == ('SPDX-FileCopyrightText: The Made-up Developers\n'
+                                  'SPDX-FileCopyrightText: The Made-up Project Contributors')   # src/ only, each once
+    assert L.page_files(target, reg_e) == {'index': 'files/src/index.rst', 'two': 'files/src/two.rst'}
+    with pytest.raises(F.Stop, match='no file matches files/COPYING'):
+        F.fetch(entry(version='2', licence_files=('COPYING*',)), library, from_archive=archive(tmp_path, FILES),
+                ask=Owner(), say=lambda *x: None, now=NOW)
+
+
+def test_members_are_chosen_before_anything_is_read(library, tmp_path, monkeypatch):
+    """The Go shape: a large source archive of which three files are kept; the others are never read."""
+    files = dict(FILES, **{'src/huge.go': 'package main\n' * 1000, 'doc/go_spec.html': '<h1 id="s">Spec</h1>'})
+    read = []
+    real = tarfile.TarFile.extractfile
+    def spy(self, member):
+        read.append(member.name if hasattr(member, 'name') else member)
+        return real(self, member)
+    monkeypatch.setattr(tarfile.TarFile, 'extractfile', spy)
+    F.fetch(entry(form='html', members=('doc/go_spec.html', 'license.txt', 'copyright.txt')), library,
+            from_archive=archive(tmp_path, files), ask=Owner(), say=lambda *x: None, now=NOW)
+    assert not any('huge.go' in r for r in read) and any('go_spec.html' in r for r in read)
