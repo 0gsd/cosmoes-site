@@ -1828,8 +1828,8 @@ The catalog's keys, in this order:
 | `program` | fabulac | what kind of program the fabulac specifies, and how it is started: `{kind, start, serve}` (section 18.4.7); absent, not said |
 | `head` | fabulac, fabulam | for a part, the URI of its head fabulac (section 18.4.7) or its head fabulam (section 18.4.10) |
 | `parts` | fabulac, fabulam | for a head, its parts: a list of `{uri, path, sha256}` (sections 18.4.7 and 18.4.10) |
-| `atem` | all | the whole input's atem: `{line, focus, push, pull}` (section 18.3.5). Every fabula has one, a fabulac too. A fabulam's also carries `of`, *ref* the `C:statement` its line restates |
-| `telling` | fabulam | the ids of the argument's stages, in the order a teacher would tell them (section 18.4.10) |
+| `atem` | all | the whole input's atem: `{line, focus, push, pull}` (section 18.3.5). Every fabula has one, a fabulac too. A fabulam's also carries `of`, *ref* the `C:statement` its line restates, or, in a part that holds no statement, one of the part's own declaration items |
+| `teaching` | fabulam | the teaching order: the ids of the argument's stages, in the order a teacher would tell them (section 18.4.10) |
 | `audit` | fabulam | the comment table: one row for each comment of the source (section 18.4.10) |
 | `shorts` | all | the shorts compiled from the fabula, one entry per compile, appended (section 18.4.4); absent until the first |
 | `catems` | fabulac | the catems compiled from the fabulac, one entry per compile, appended (section 18.4.7); absent until the first |
@@ -2101,7 +2101,7 @@ literal; *integer*, *bool*, *date*; a list in square brackets is closed. A bold 
 | `P:fit` | **`of`** *ref* `C:statement`; **`against`** *ref*, the wording, `E:work/wording`; **`how`** [`same` `stronger` `weaker` `a-particular-reading` `different`]; `form-differences`, a list of *text*, differences of form only; **`differences`**, a list of *text*, differences of mathematical content, one plain sentence each, with no word of judgement; **`confidence`** [`high` `medium` `low`] |
 | `C:part`, in a fabulam | `division: stage`; `number`, its place in the logic, from 1 with no gap; `stage` [`reduction` `main` `tool` `side` `close`]; `says`, `plain`, `plain-if` and `obvious` *text*; `steps` *refs*, the lemmas, steps and statements that make it up, in the argument's order; `regime` (section 18.4.10) |
 | `C:file`, in a fabulam | `opens`, the namespaces the file opens; `limits`, a list of *text*, what the reader could not read |
-| `C:component`, in a head fabulam | `told-in`, the part's URI; `does`, the part's atem line; `offers` *refs*, the head's items told in the part; `stages`, the names of the part's stages, in the order of its `telling`; `counts` `{declarations, reached, spine}`; `completeness`, the part's own (section 18.4.10) |
+| `C:component`, in a head fabulam | `told-in`, the part's URI; `does`, the part's atem line; `offers` *refs*, the head's items told in the part; `stages`, the names of the part's stages, in its teaching order; `counts` `{declarations, reached, spine}`; `completeness`, the part's own (section 18.4.10) |
 | `C:dependency`, in a fabulam | one for each library the file imports from, Lean's own modules counting as one; `version`, the library's commit or the Lean version the source names; `scope: standard` |
 | `C:reliance`, in a fabulam | **`lean`**, a list of *text*, the names as the file writes them; `on: dependency` with `of` *ref* `C:dependency` for a library's result, or `on: part` for a result of another part, with `stated-in` *text*, the URI of the head's item, and `digest`, that item's; `gives`, what the result says, in words; `known-as` *text*, the name the result is known by; `field` *text*, the part of mathematics it belongs to; `case` *text*, which case or form of a known theorem is used |
 | `P:claim`, in a fabulam | `about`, *ref* the item the claim is about, or a few words when no item holds it; `checked` [`yes` `partial` `contradicted` `not-checkable`]; `by`, the item or items whose statements bear it out; `short-of` *text*; `mismatch` [`formula` `hypothesis` `name` `numbering` `inference`]; `false-as-written` [`yes` `no`] (section 18.4.10) |
@@ -3643,11 +3643,11 @@ class, while each field of a class the head states has the head's type and plain
 | `cases-entailed` | error | after an authored fabulac is entailed, every runnable case is a test in `tests/test_cases.py`, and every other case is either a test marked as written by a model or named in `ENTAILED.md` with the reason it was not entailed |
 | `requirement-cased` | warning | in an authored fabulac, every `N:requirement` of `force: must` names at least one `P:case` in `checked-by` |
 | `declared-once` | error | in a fabulam, every `C:statement`, `C:definition` and `C:lemma` carries `lean` and a span; no two items carry the same `lean`; a `C:constant` carries none |
-| `statement-whole` | error | a fabulam that is not a head holds at least one `C:statement`; each names a `source.target`, and every target has one; each has `says` and `quantifiers`; `atem.of` names one; `relates` stands only between two |
+| `statement-whole` | error | a fabulam that names no head, and is not one, holds at least one `C:statement`; each statement names a `source.target`, and every target that is a declaration of the fabulam's own file has one; each has `says` and `quantifiers`; `atem.of` names a statement, or, in a part that holds none, one of the part's own declaration items; `relates` stands only between two |
 | `yield-stated` | error | every statement has exactly one `P:yield`: its `beyond` a quoted word, `as-statement` exactly when `yes`, `needs` and `chooses` lists, each entry of `chooses` whole, and `trivial` with an entry or `no-trivial` with a sentence |
 | `fit-stated` | error | when `source.wording` is set, every statement has exactly one `P:fit` and `E:work/wording` exists; when it is not, there is no `P:fit` |
 | `spine-told` | error | every lemma with `reached: yes` has a `role`, and no other lemma has one; every spine lemma has `why` and is in the `steps` of a stage; following `uses` from the statements reaches every spine lemma |
-| `stages-whole` | error | the stages' `number`s run 1, 2, 3 with no gap; exactly one stage is the `reduction`, and it has `obvious`; each stage has `plain` and `plain-if`; `telling` lists every stage once, the reduction first, then by `stage` in the order of section 18.4.10 |
+| `stages-whole` | error | the stages' `number`s run 1, 2, 3 with no gap; exactly one stage is the `reduction`, and it has `obvious`; each stage has `plain` and `plain-if`; `teaching` lists every stage once, the reduction first, then by `stage` in the order of section 18.4.10 |
 | `grounds-given` | error | every `P:yield`, every `P:reading` and every `slack` entry has grounds with lines; every `C:step` has `inside` and a span inside it |
 | `audit-whole` | error | every row of `audit` has `lines`, `kind` and a `verdict` of the closed list; a row says `claim` exactly when it names a `P:claim`; every `P:claim` whose source is a comment is named by one row; every claim's `checked` is one of the four words, with the fields that word asks for |
 | `stance-fits` | error | each item's stance is one that its kind's row in section 18.4.10 allows; a `hearsay` item names its source in `provenance.sources`; `assumed` stands only on a reliance without `stated-in`, a term or a concept |
@@ -3862,6 +3862,8 @@ each item tied to the declarations it was read from, by name and by lines.
 A **pshort** is a fabulam's short: a markdown text that guides one of three readers, an expert, a student or
 everyone, through the proof, each run of its sentences citing the items of the fabulam it rests on.
 
+In the two words, the *m* is for mathematics and the *p* is for proof.
+
 A fabulam is one file, `<name>.fabulam.cosm`, and its id is `fabula/<name>`. The name is the person's choice; where
 they give none, a builder makes it from the name of the file or of the folder, as a slug (section 18.3.3). The
 fabulam sits beside the root folder of the proof's source, the folder that holds the file naming its Lean version, as a
@@ -3940,7 +3942,7 @@ true, `compares: below` says so outright.
 | `role` | The lemma |
 |---|---|
 | `spine` | is one that a mathematician telling the proof at a blackboard would state: without it the argument has a hole. A step that changes what must be proved is spine, however short its proof: a reformulation, a reduction of one condition to another, a bound that makes a later count possible. The length of a proof is no guide |
-| `support` | is a real mathematical step that the telling at the blackboard would only mention |
+| `support` | is a real mathematical step that the same mathematician would only mention |
 | `bookkeeping` | is needed by the proof's system and not by a reader: casts, rearrangements, bounds that are plain on paper |
 
 A spine lemma carries `why`: what the argument would lack without it, and what it makes easier for the step after it.
@@ -3966,7 +3968,7 @@ A model then judges, and only within what the rule found: `spine`, `support` or 
 `reached: yes`, shown its `depth` and its `carries`. Where the model and the rule part ways, `spine-rule-differs`
 warns, and a question is raised for a person (section 18.4.8).
 
-**Stages and the telling.** The argument is told in stages. A stage is a `C:part` of division `stage`:
+**Stages and the teaching order.** The argument is told in stages. A stage is a `C:part` of division `stage`:
 
 | Field of a stage | Holds |
 |---|---|
@@ -3980,9 +3982,10 @@ warns, and a question is raised for a person (section 18.4.8).
 | `regime` | when the stage speaks of size (below) |
 
 Exactly one stage is the `reduction`: what has to be shown, or made large, and why. When the proof is direct, the
-reduction says so, and its `steps` name the statement. The catalog's `telling` lists every stage's id once, in the order
-a teacher would tell them: the reduction first, then the `main` stages, then `tool`, then `side`, then `close`. Among
-stages of one word the order is the model's. `number` keeps the order of the logic, which may be another.
+reduction says so, and its `steps` name the statement. The catalog's `teaching` is the teaching order. It lists every
+stage's id once, in the order a teacher would tell them: the reduction first, then the `main` stages, then `tool`,
+then `side`, then `close`. Among stages of one word the order is the model's. `number` keeps the order of the logic,
+which may be another.
 
 Sizes name their regime. Any item that speaks of size, rate or order of magnitude carries `regime`: what grows or
 shrinks (`as`), what the statement is uniform in (`uniform-in`), what is held fixed (`fixed`) and what the worst case is
@@ -4076,7 +4079,7 @@ The first is by rule alone; each of the others asks a model one small thing:
 | read | yes | the file with its comments blanked, the outline, and the statements of its neighbours | each reached declaration's statement in words; each lemma's role, method and why; steps; reliances; terms and concepts |
 | audit | yes | the file with its comments, and the fabulam so far | each comment row's verdict, and the claims |
 | fit | yes; run only when a wording was given | the wording and the statements' items, never the source | `E:work/wording`, a `P:fit` for each statement, and the claims the wording makes |
-| fold | yes | for the yield, each target's proof and the last lemma it rests on, comments blanked; for the stages, the fabulam so far and no source | the yield, the worked example, slack and constants; then the stages, the telling, three to six readings, the decisions and the atem |
+| fold | yes | for the yield, each target's proof and the last lemma it rests on, comments blanked; for the stages, the fabulam so far and no source | the yield, the worked example, slack and constants; then the stages, the teaching order, three to six readings, the decisions and the atem |
 | question | yes | the fabulam | the gaps, each a `D:question` to an expert (section 18.6) |
 
 The survey also finds the targets. A person may name them. When they name none, the targets are found by rule: every
@@ -4102,7 +4105,7 @@ The head states once whatever a part needs of another, so that each part reads a
 | The head states | As |
 |---|---|
 | the targets, the Lean version, the licence, the wording, and what is said about checking | its `source`, `E:work/wording`, `P:claim/checking` and `R:licence`; each part repeats `toolchain`, `target` and `checking`, by rule |
-| every declaration that crosses: one that a reached declaration of another part names | an item of its own of the same id, a `C:statement`, `C:lemma` or `C:definition`, with `lean`, `says` and `digest` copied from the part by rule, `told-in`, the URI of the part's item, `depth`, `carries`, and `role-there`, its role in its own part |
+| every declaration that crosses: one that a reached declaration of another part names | an item of its own of the same id, a `C:statement`, `C:lemma` or `C:definition`, with `lean`, `says` and `digest` copied from the part by rule, `told-in`, the URI of the part's item, its `depth` and its `carries` over the whole archive, and `role-there`, its role in its own part |
 | the members of a structure or a class that crosses | `fields` on the head's `C:definition`, copied from the part |
 | what each part is | one `C:component` for each part: `told-in`, `does`, `offers`, `stages`, `counts` and `completeness` (section 18.4.2) |
 | the yield of each target | the `P:yield` of the part that holds the target, copied by rule, with `told-in` |
@@ -4110,6 +4113,13 @@ The head states once whatever a part needs of another, so that each part reads a
 A part that uses a declaration from another part holds a `C:reliance` for it: `on: part`, `stated-in` naming the head's
 item, with the head's `lean` and `digest`, and `gives` copied from the head's `says`. The check `statements-agree`
 holds the two to one statement. Nothing in a part needs another part's file to be read.
+
+A fabulam that names no head holds at least one statement. A part need not. Each target that is a declaration of the
+part's own file has one statement there, and the other targets need none in that part. A part that holds no statement
+has its atem's `of` naming one of its own declaration items, and what is asked of each statement, its yield, its fit
+and its worked example, is asked of the statements there are. A part's `reached` and `depth` are the archive's,
+counted from the archive's targets across its files. Its `carries` counts within its own file, and the head's crossing
+items hold the archive's `carries`.
 
 The files are read in an order that puts each file after every file it imports, so that when a file is read each
 neighbour's statement is already in the head. A file that no target reaches is surveyed by rule and left as an
@@ -4119,7 +4129,7 @@ outline: no model reads it, and its component in the head says `completeness: ou
    `counts`, and a target's yield.
 2. When every reached part has landed, the head is folded: a model is asked once. It sees the components and the
    crossing items, never the source, and writes the head's own stages, whose `steps` are the head's crossing items,
-   with their `plain` and `plain-if`, its `telling`, its readings and its atem.
+   with their `plain` and `plain-if`, its teaching order, its readings and its atem.
 3. A head that is itself a part hands the same summary to the head above it.
 
 A pshort entailed from a head tells the archive at the head's grain. A pshort entailed from a part tells one file.
@@ -4133,7 +4143,7 @@ the densities of section 18.1, among which every pshort is a short.
 | | `expert` | `student` | `everyone` |
 |---|---|---|---|
 | The reader | a mathematician in the field | someone with a first course in the subject | no mathematics assumed |
-| The order | the logic, by `number` | the logic | the `telling`, the reduction first |
+| The order | the logic, by `number` | the logic | the teaching order, the reduction first |
 | It must hold | the statement in full; the fit; the yield, with `as-statement`, `needs`, `chooses` and slack; every spine lemma by its name in the source, with its `why`; each reliance by the name it is known by, and its case; the comments the source contradicts; the questions | each term defined where it is first used; each stage's `says` and its key lemma; one reading for each stage; the worked example | each stage's `plain` with its `plain-if`; exactly one worked example, the `P:case`, with its numbers and no others; every symbol tied to its words where it is first used, or no symbols; why the result matters, only from the `N:aim`, `E:work` and `K:concept` items; what is open, last |
 | Words | 500 to 900 | 500 to 800 | 350 to 600 |
 
@@ -4166,7 +4176,7 @@ lemmas, by rule, then the `method` of the support lemmas, and the pshort says so
 line is the day of the run, in UTC, as in a cshort's footer.
 
 The checks that hold a pshort to its fabulam are Thym's (its section 7.3): `cites-resolve`, `every-sentence-cited`,
-`yield-cited`, `telling-followed`, `no-up-to`, `example-worked`, `nothing-added`, `checking-told`, `confidence-told`,
+`yield-cited`, `teaching-followed`, `no-up-to`, `example-worked`, `nothing-added`, `checking-told`, `confidence-told`,
 `symbols-worded`, `apart`, `length`, `footer` and `provenance`. They hold a pshort to what its fabulam says. Whether
 the teaching is good is a person's judgement, and no check decides it.
 
@@ -4178,9 +4188,10 @@ told level by level. That rule is fixed here so that nothing is renamed later, a
 level. Other proof languages, deeper trees, and a reading that asks the proof's own system are reserved for a later
 edition.
 
-**An example.** One file of Mathlib, the library of mathematics written in Lean, read as text at one commit of the
-library, under its Apache-2.0 licence: 75 lines that prove that for every k that is not 0 there are infinitely many
-primes that leave remainder 1 when divided by k. The catalog of its fabulam and five of its items follow, cut down:
+**An example.** One file of Mathlib, the library of mathematics written in Lean:
+`Mathlib/NumberTheory/PrimesCongruentOne.lean`, read as text at one commit of the library, under its Apache-2.0
+licence. Its 75 lines prove that for every k that is not 0 there are infinitely many primes that leave remainder 1
+when divided by k. The catalog of its fabulam and five of its items follow, cut down:
 the envelope's `name`, `summary` and `provenance` are left out for room, and so are the other items and some
 fields of these. The conformance
 corpus carries a fabulam whole (section 20.3).
@@ -4209,7 +4220,7 @@ source:
 atem:
   of: C:statement/Nat.infinite_setOfPred_prime_modEq_one
   line: For every whole number k that is not zero, infinitely many primes leave remainder 1 when divided by k.
-telling: [C:part/what-must-be-found, C:part/a-number-built-to-have-the-right-factor, C:part/from-one-to-many]
+teaching: [C:part/what-must-be-found, C:part/a-number-built-to-have-the-right-factor, C:part/from-one-to-many]
 audit:
   - {lines: "1-5", kind: header, on: "", verdict: nothing}
   - {lines: "10-15", kind: module-note, on: "", verdict: agrees}
@@ -5347,7 +5358,7 @@ disagreed and one was corrected, the entry says which.
 
 1. **The fabulam** (sections 18.1, 18.4, 18.4.1, 18.4.2 and 18.4.10, a new term). A fourth flavour of the fabula, for
    a formal proof: one file of the proof's source, Lean 4 in this edition, read as text and enumerated as the argument
-   it holds, every declaration an item with its name and its lines. The catalog gains `telling` and `audit`, `source` a
+   it holds, every declaration an item with its name and its lines. The catalog gains `teaching` and `audit`, `source` a
    fourth form, and a fabulam's `atem` an `of`. New kinds `C:statement`, `C:definition`, `C:lemma`, `C:constant`,
    `C:step`, `P:yield` and `P:fit`; `C:part`, `C:file`, `C:component`, `C:dependency`, `C:reliance`, `P:claim`,
    `P:reading`, `P:case` and `P:assumption` take a fabulam's fields, and the closed lists of `division`, `on` and `from`
@@ -5356,9 +5367,9 @@ disagreed and one was corrected, the entry says which.
    `P:yield` is written as a function of what the proof chooses and set against the trivial cases, in the words "at
    least", "at most", "exactly" and "between", never "up to". Slack is recorded, and every statement has one worked
    example in numbers.
-3. **The spine, the stages and the telling** (section 18.4.10). What a final theorem reaches, and how much each
+3. **The spine, the stages and the teaching order** (section 18.4.10). What a final theorem reaches, and how much each
    declaration carries, is found by rule; a model judges spine, support or bookkeeping within what the rule found. The
-   argument is told in stages, each with a `plain` sentence and its `plain-if`, and the telling starts with the
+   argument is told in stages, each with a `plain` sentence and its `plain-if`, and the teaching order starts with the
    reduction.
 4. **Comments are hearsay, and checking is said once** (section 18.4.10). Every comment is a row of the comment table,
    and a claim's `checked` is one of four words; the proof is read with its comments blanked. `source.checking` and the

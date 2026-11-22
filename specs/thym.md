@@ -719,8 +719,8 @@ The moves `thym 1` adds or extends. Every move in this table carries `since: 1` 
 
 | move | signature | asks | contract | scaffold |
 |---|---|---|---|---|
-| `derive` | text \| folder → fabula; `as` prose \| verse \| code \| proof; `with` fabula | yes | a text as prose or verse: as above, with `fabula-checks` · a text as verse with a fabulap: the same, with `nothing-lost` · a text as code: `code-span` `outline-cited` `coverage` `terms-grounded` `stance-closed` `fabula-checks` `provenance` · a text as proof: `its-own-file` `lines-resolve` `nothing-invented` `nothing-carried` `stance-closed` `fabula-checks` `provenance` · a folder: `fold-grounded` `atem-shape` `licence-recorded` `fabula-checks` `provenance` · a folder with its head fabulam: `fold-grounded` `atem-shape` `fabula-checks` `provenance` | a text: the rules twin · as code: `file-outline` · as proof: none · a folder: none |
-| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview`, `manual`, `cases`, `layout`, or a pshort's density, `expert`, `student` or `everyone`; `by` order; `in` a language (a string), with `as layout` or `as code`; `with` morph, or, for `as code in` a language, a layout (a short); in that order; `as code` gives a folder, `as cases` a text | yes; `as cases` no | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `cases-entailed` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` · as cases: `cases-whole` `provenance` · as layout in a language: `target-confirmed` `surface-answered` `no-invention` `footer` `provenance` · as code in a language: `target-confirmed` `files-present` `surface-answered` `apart` `footer` `provenance` · as expert, student or everyone: `cites-resolve` `every-sentence-cited` `yield-cited` `telling-followed` `no-up-to` `example-worked` `nothing-added` `checking-told` `confidence-told` `symbols-worded` `apart` `length` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` · cases: the call itself, by rules · layout: none · a pshort: none |
+| `derive` | text \| folder → fabula; `as` prose \| verse \| code \| proof; `with` fabula | yes | a text as prose or verse: as above, with `fabula-checks` · a text as verse with a fabulap: the same, with `nothing-lost` · a text as code: `code-span` `outline-cited` `coverage` `terms-grounded` `stance-closed` `fabula-checks` `provenance` · a text as proof: `lines-resolve` `nothing-invented` `nothing-carried` `stance-closed` `fabula-checks` `provenance` · a folder: `fold-grounded` `atem-shape` `licence-recorded` `fabula-checks` `provenance` · a folder with its head fabulam: `fold-grounded` `atem-shape` `fabula-checks` `provenance` | a text: the rules twin · as code: `file-outline` · as proof: none · a folder: none |
+| `entail` | fabula \| item \| volume → short; `as` an order, `code`, `line`, `overview`, `manual`, `cases`, `layout`, or a pshort's density, `expert`, `student` or `everyone`; `by` order; `in` a language (a string), with `as layout` or `as code`; `with` morph, or, for `as code in` a language, a layout (a short); in that order; `as code` gives a folder, `as cases` a text | yes; `as cases` no | as an order: as above · as code: `parses` `interfaces-present` `files-present` `footer` `cases-entailed` `provenance` · as line, overview or manual: `coverage` `no-invention` `quotes-held` `uses-told` `footer` `provenance` · as cases: `cases-whole` `provenance` · as layout in a language: `target-confirmed` `surface-answered` `no-invention` `footer` `provenance` · as code in a language: `target-confirmed` `files-present` `surface-answered` `apart` `footer` `provenance` · as expert, student or everyone: `cites-resolve` `every-sentence-cited` `yield-cited` `teaching-followed` `no-up-to` `example-worked` `nothing-added` `checking-told` `confidence-told` `symbols-worded` `apart` `length` `footer` `provenance` | an order: the outline · code: none · a catem: `uses-outline` · cases: the call itself, by rules · layout: none · a pshort: none |
 | `survey` | folder \| text → fabula (an outline: a fabulac's, or, of Lean, a fabulam's); `with` fabula (a Lean text's head) | no | a folder: `files-found` `code-span` `licence-recorded` `fabula-checks` `provenance` · a Lean text: `declarations-found` `comments-covered` `reach-agrees` `code-span` `licence-recorded` `fabula-checks` `provenance` · a folder of Lean: `files-found` `parts-resolve` `licence-recorded` `fabula-checks` `provenance` | — |
 | `history` | folder → fabula; `with` fabula | no | `history-grounded` `fabula-checks` `provenance` | — |
 | `scan` | text → fabula (a fabulap); `as` rhyme \| sound \| recurrence \| form; `with` fabula | no | with no `as`: `lines-found` `scansion-grounded` `span-resolves` `fabula-checks` `provenance` · as rhyme, sound or recurrence: `sound-grounded` `nothing-lost` `fabula-checks` `provenance` · as form: `form-grounded` `nothing-lost` `fabula-checks` `provenance` | — |
@@ -913,12 +913,11 @@ The checks the moves of `thym 1` add:
 | `reach-agrees` | every item's `reached`, `depth` and `carries` are those the rule gives from the reader's graph and `source.target` (MacroCOSM OES, its section 18.4.10) | Thym's own; the host's syntax engine |
 | `comments-covered` | every comment the reader lists has exactly one row of `audit`, with its lines, and no row names lines that hold no comment | Thym's own; the host's syntax engine |
 | `nothing-carried` | of a fabulam: no field but `lean` holds a run of more than 80 code points of the file's own text | MacroCOSM OES, which holds a fabulac kept for transconception to 200 (its section 18.4.9) |
-| `its-own-file` | a file's reading points into that file and no other: every span of the reading names the file read. It is the contract block of section 20.6, as a named check | Thym's own |
 | `parts-resolve` | in a head, every part its catalog names is a fabula the host knows, at its path, that names this head, and every `told-in` names one of them; in a part, every `stated-in` names an item of its head | MacroCOSM OES, its section 18.4.8 |
 | `cites-resolve` | every id a pshort cites, in square brackets, names an item of its fabulam | Thym's own; the pshort is MacroCOSM OES's, its section 18.4.10 |
 | `every-sentence-cited` | a group of citations covers the sentence it closes and the sentences before it in the paragraph, back to the group before; every sentence of a pshort's body is covered, so every paragraph ends in a group. Sentences are read by the one rule of section 12.6 | Thym's own |
 | `yield-cited` | a pshort cites every `P:yield`, every `P:fit` and `P:claim/checking` | Thym's own |
-| `telling-followed` | at `everyone`: every stage is cited, and the stages are first cited in the order of the fabulam's `telling`. At the other two densities it is reported as a note and refuses nothing | Thym's own |
+| `teaching-followed` | at `everyone`: every stage is cited, and the stages are first cited in the fabulam's teaching order, its `teaching`. At the other two densities it is reported as a note and refuses nothing | Thym's own |
 | `no-up-to` | no sentence of a pshort that a citation of a `P:yield` covers holds "up to" | Thym's own; MacroCOSM OES holds the fabulam to the same (its section 18.4.8) |
 | `example-worked` | at `everyone`: the pshort cites a worked `P:case`; at the other two it holds with nothing to check | Thym's own |
 | `checking-told` | "machine-checked", "verified", "certified" and "proved correct" stand in a pshort only in a sentence that a citation of `P:claim/checking` covers; and its heading, the two lines under it and its last line are the lines MacroCOSM OES gives (its section 18.4.10) | Thym's own |
@@ -2872,14 +2871,14 @@ one small thing at a time:
 
 | call | asks | what it gives, and what its contract holds |
 |---|---|---|
-| `survey t`, and `survey t with h` for a file under a head `h`; rules only | no | the fabulam's outline: every declaration an item with its lines, the `C:file`, a `C:dependency` for each library, the makers and the licence, the rows of `audit` with no verdict, `P:claim/checking`, `P:assumption/read-as-text`, and the reach. `declarations-found`, `comments-covered`, `reach-agrees`, `code-span`, `licence-recorded` |
+| `survey t`, and `survey t with h`, `h` the file's head, or a fabulam that is a catalog alone, which the host wrote by rule; rules only | no | the fabulam's outline: every declaration an item with its lines, the `C:file`, a `C:dependency` for each library, the makers and the licence, the rows of `audit` with no verdict, `P:claim/checking`, `P:assumption/read-as-text`, and the reach. `declarations-found`, `comments-covered`, `reach-agrees`, `code-span`, `licence-recorded` |
 | `survey repo`, of a folder of Lean; rules only | no | a head's outline: its `parts`, a `C:component` for each, the items that cross between parts, and the order the files are read in. `files-found`, `parts-resolve`, `licence-recorded` |
-| `derive t as proof with f` | yes, once for each chunk of the file | the reading: the statement, in words, of every declaration that is reached; each lemma's `role`, `method` and `why`; the `C:step`, `C:reliance`, `L:term` and `K:concept` items. `its-own-file`, `lines-resolve`, `nothing-invented`, `nothing-carried`, `stance-closed` |
+| `derive t as proof with f` | yes, once for each chunk of the file | the reading: the statement, in words, of every declaration that is reached; each lemma's `role`, `method` and `why`; the `C:step`, `C:reliance`, `L:term` and `K:concept` items. `lines-resolve`, `nothing-invented`, `nothing-carried`, `stance-closed` |
 | `construe t as comments with f` | yes | the verdict of every row of `audit`, and the claims; the E items and the `N:aim` that a comment names. `comments-covered`, `lines-resolve`, `nothing-lost` |
 | `construe w as fit with f`, `w` the public wording | yes | `E:work/wording`, a `P:fit` for each statement, and the claims the wording makes. `nothing-lost` |
 | `construe t as yield with f` | yes, once for each statement | the `P:yield`, the worked `P:case`, the `C:constant` items and `slack`. `lines-resolve`, `nothing-invented`, `nothing-lost` |
-| `construe t as stages with f` | yes | the stages, the `telling`, three to six `P:reading` items, the `N:decision` items and the atem. `lines-resolve`, `atem-shape`, `nothing-lost` |
-| `derive repo with h`, `h` a head | yes | the head's stages, its `telling`, its readings and its atem, from its parts' summaries. `fold-grounded`, `atem-shape` |
+| `construe t as stages with f` | yes | the stages, the teaching order (`teaching`), three to six `P:reading` items, the `N:decision` items and the atem. `lines-resolve`, `atem-shape`, `nothing-lost` |
+| `derive repo with h`, `h` a head | yes | the head's stages, its teaching order, its readings and its atem, from its parts' summaries. `fold-grounded`, `atem-shape` |
 | `entail f as expert`, `as student` or `as everyone` | yes | a short: the pshort for that reader, under the checks of a pshort (below) |
 | `question f`, landed with `gather` | yes | the gaps, as the dialectic's questions to an expert (section 22) |
 
@@ -2907,7 +2906,7 @@ each landing the fabulam so far, as it runs a fabulac's (section 20.6):
 | program | asks | sees | its calls |
 |---|---|---|---|
 | `survey-the-proof` | no | the file | `survey t` |
-| `read-the-proof` | yes | the file with its comments blanked, the outline, and the statements of its neighbours | `derive t as proof with f` |
+| `read-the-proof` | yes | the file with its comments blanked, the outline, and the statements of its neighbours | `derive t as proof with f`; it keeps the contract block `its-own-file` against the file, as a fabulac's reading does (section 20.6) |
 | `audit-the-comments` | yes | the file with its comments, and the fabulam so far | `construe t as comments with f` |
 | `fit-the-wording` | yes | the wording and the statements' items, never the Lean; it is run only when the person gave a wording | `construe w as fit with f` |
 | `fold-the-argument` | yes | for the yield, each target's proof and the last lemma it rests on, comments blanked; for the stages, the fabulam so far and no Lean | `construe t as yield with f`, then `construe t as stages with f` |
@@ -2932,7 +2931,7 @@ a request over them before it is sent.
 reader, and the same fabulam is entailed at any of the three. The entailment is apart from the source: the host takes
 every `span`, every `lines` and the source's path out of the fabulam before a request is made, the Lean is never read,
 and `apart` holds that no request carried them. The contract is the checks of a pshort: `cites-resolve`,
-`every-sentence-cited`, `yield-cited`, `telling-followed`, `no-up-to`, `example-worked`, `nothing-added` (every name,
+`every-sentence-cited`, `yield-cited`, `teaching-followed`, `no-up-to`, `example-worked`, `nothing-added` (every name,
 number and word outside FEED in the pshort is in the fabulam), `checking-told`, `confidence-told`, `symbols-worded`,
 `apart`, `length`, `footer` and `provenance` (section 7.3). The host saves a pshort beside its fabulam as
 `<name>.pshort-<density>-<YYYY-MM-DD-HHMM>.md`. `entail` at a pshort's density has no scaffold, so `--rules` refuses it
@@ -2951,7 +2950,7 @@ program entail-the-pshorts
 
   give expert: entail f as expert                  -- the logic in full, by the names in the source
   give student: entail f as student                -- each term defined, one reading for each stage
-  give everyone: entail f as everyone              -- the telling, the reduction first, one worked example
+  give everyone: entail f as everyone              -- the teaching order, the reduction first, one worked example
 end
 ```
 
@@ -3362,8 +3361,8 @@ section it touched.
 2. **Entailing a pshort** (sections 6.3 and 20.13). `entail` takes `as expert`, `as student` and `as everyone`, each
    giving a short, the pshort for that reader, entailed apart from the source.
 3. **New checks** (section 7.3). Against the source: `declarations-found`, `lines-resolve`, `nothing-invented`,
-   `reach-agrees`, `comments-covered`, `nothing-carried` and `its-own-file`. Of a pshort: `cites-resolve`,
-   `every-sentence-cited`, `yield-cited`, `telling-followed`, `no-up-to`, `example-worked`, `checking-told`,
+   `reach-agrees`, `comments-covered` and `nothing-carried`. Of a pshort: `cites-resolve`,
+   `every-sentence-cited`, `yield-cited`, `teaching-followed`, `no-up-to`, `example-worked`, `checking-told`,
    `confidence-told` and `symbols-worded`. `parts-resolve` has a row, since a contract now names it. `flavour`,
    `length`, `footer`, `apart`, `code-span`, `licence-recorded`, `fold-grounded` and `fabula-checks` read a fabulam or
    a pshort too.
