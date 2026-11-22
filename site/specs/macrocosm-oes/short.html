@@ -6097,7 +6097,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>fit-stated</code></td>
 <td>error</td>
-<td>when <code>source.wording</code> is set, every statement has exactly one <code>P:fit</code> and <code>E:work/wording</code> exists; when it is not, there is no <code>P:fit</code></td>
+<td>when the source names a public wording, in <code>source.wording</code>, every statement has exactly one <code>P:fit</code>, and the wording's own item exists, <code>E:work/wording</code>; when it names none, there is no <code>P:fit</code></td>
 </tr>
 <tr>
 <td><code>spine-told</code></td>
@@ -6127,7 +6127,7 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 <tr>
 <td><code>checking-said</code></td>
 <td>error</td>
-<td><code>P:claim/checking</code> exists; <code>source.checking.built-here</code> is <code>no</code>; the item's <code>says</code> holds <code>said</code> only with <code>said-by</code>; without them it holds none of &quot;machine-checked&quot;, &quot;verified&quot;, &quot;certified&quot; and &quot;proved correct&quot;</td>
+<td>what is said about checking is said once, and by rule: <code>source.checking.built-here</code> is <code>no</code>; the fixed item exists, <code>P:claim/checking</code>; its <code>says</code> holds <code>said</code> only with <code>said-by</code>; without them it holds none of &quot;machine-checked&quot;, &quot;verified&quot;, &quot;certified&quot; and &quot;proved correct&quot;</td>
 </tr>
 <tr>
 <td><code>example-worked</code></td>
@@ -6168,8 +6168,10 @@ them passing with no error; its old name, <code>emf-checks</code>, is read where
 </table>
 </div>
 <p>A fabulac whose <code>purpose</code> is <code>transconception</code> runs the checks of <a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a> as well. The rows from
-<code>declared-once</code> on are a fabulam's, and hold over the fabulam alone. A fabulam is built in stages, and each stage
-lands a fabulam that passes these checks, so an outline is a valid fabulam. A check that asks for what a later stage
+<code>declared-once</code> on are a fabulam's, and hold over the fabulam alone. A fabulam is built in stages, and a host runs
+these checks each time a stage lands: a landing that fails one is refused, and nothing is written. Thym's
+<code>fabula-checks</code>, which every stage's contract keeps, holds the generic checks (Thym, its section 20.13). So an
+outline passes them, and is a valid fabulam. A check that asks for what a later stage
 writes, every statement's yield, the stages and the teaching order, the worked example, the comments' verdicts, a
 reached lemma's role, the fit, holds it only once the fabulam says it is whole, <code>derived.completeness: full</code>, or once
 that layer has begun: one yield, one stage, one verdict, one role or one fit is there. What is there is always held to
@@ -6614,8 +6616,8 @@ The check <code>stance-fits</code> holds each kind to its row:</p>
 <table>
 <thead>
 <tr>
-<th>Stance</th>
-<th>In a fabulam</th>
+<th>A stance, in a fabulam</th>
+<th>Is used for</th>
 <th>Kinds that may carry it</th>
 </tr>
 </thead>
@@ -6862,7 +6864,7 @@ words, and its <code>checked</code> says how it stands against the source:</p>
 <table>
 <thead>
 <tr>
-<th><code>checked</code></th>
+<th>A claim's <code>checked</code></th>
 <th>Means</th>
 <th>Also carries</th>
 </tr>
@@ -7060,16 +7062,18 @@ The first is by rule alone; each of the others asks a model one small thing:</p>
 theorem or lemma of the file that is not private, is not deprecated, and that no other declaration of the file names,
 an alias of it aside. A file of a library can give many. When the rule gives more than three, a builder asks the person
 to choose, and builds nothing until they do.</p>
-<p>After each stage the fabulam, with what the stage found, is written, and a build that stops is taken up again after the
-last stage that landed, as long as the file's sha256 is still the one recorded. Each run joins <code>derived.runs</code>. The
-survey writes <code>derived.completeness: outline</code>, and only the last stage writes <code>full</code>: until then the checks ask of a
-fabulam only what its stages so far have written (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>). A build with no model runs the survey and stops at
-the outline: every declaration with its lines and its reach, and nothing read for meaning. The moves are Thym's (Thym,
-its section 20.13).</p>
+<p>After each stage the fabulam, with what the stage found, is held to its checks and written, or refused whole with
+nothing written (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>), and a build that stops is taken up again after the last stage that landed, as long as
+the file's sha256 is still the one recorded. Each run joins <code>derived.runs</code>. The survey writes
+<code>derived.completeness: outline</code>, and only the last stage writes <code>full</code>: until then the checks ask of a fabulam only
+what its stages so far have written (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>). A build with no model runs the survey and stops at the outline: every declaration with
+its lines and its reach, and nothing read for meaning. The moves are Thym's (Thym, its section 20.13).</p>
 <p><strong>A head fabulam and its parts.</strong> A proof of several files is told one file at a time: each file has a fabulam of its
 own, a part, and a <strong>head fabulam</strong> names the parts, as a <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> does (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>). The head's catalog lists
-them in <code>parts</code>, each <code>{uri, path, sha256}</code>, and each part names its head in <code>head</code>. The head's <code>source</code> is the folder.
-The files one head covers are its archive: a name that leads outside the archive is a library's name.</p>
+them in <code>parts</code>, each <code>{uri, path, sha256}</code>, and each part names its head in <code>head</code>. A head's survey names no part yet:
+a part's entry in <code>parts</code>, and its component's <code>told-in</code>, are written when a landed part is tied in. The head's
+<code>source</code> is the folder. The files one head covers are its archive: a name that leads outside the archive is a library's
+name.</p>
 <p>The parts are kept in a folder beside the head, <code>&lt;name&gt;.fabulam.parts/</code>, which mirrors the folders of the source, each
 part named for its file, <code>&lt;File&gt;.fabulam.cosm</code>. A part's id is <code>fabula/&lt;name&gt;--&lt;module&gt;</code>, the <a class="docs-term" href="#docs-item-t-term-module" data-term="T:term/module" title="a group of kinds: a group of tables">module</a>'s name with a
 hyphen for each dot and its capitals kept.</p>
@@ -7089,7 +7093,7 @@ hyphen for each dot and its capitals kept.</p>
 </tr>
 <tr>
 <td>every declaration that crosses: one that a reached declaration of another part names</td>
-<td>an item of its own of the same id, a <code>C:statement</code>, <code>C:lemma</code> or <code>C:definition</code>, with <code>lean</code>, <code>says</code> and <code>digest</code> copied from the part by rule, <code>told-in</code>, the URI of the part's item, its <code>depth</code> and its <code>carries</code> over the whole archive, and <code>role-there</code>, its role in its own part</td>
+<td>an item of its own of the same id, a <code>C:statement</code>, <code>C:lemma</code> or <code>C:definition</code>, with <code>lean</code>, <code>says</code> and <code>digest</code> copied from the part by rule, <code>told-in</code>, the URI of the part's item, its <code>depth</code> and its <code>carries</code> over the whole archive, <code>uses</code>, by rule, among the head's own items, and <code>role-there</code>, its role in its own part</td>
 </tr>
 <tr>
 <td>the members of a structure or a class that crosses</td>
@@ -8910,7 +8914,8 @@ rule, entailed apart from the source. A pshort is never called a proof.</li>
 <code>example-worked</code>, <code>no-up-to</code>, <code>statements-agree</code>, <code>regime-named</code>, <code>no-judgement</code>, <code>plain-words</code> and
 <code>spine-rule-differs</code>. <code>flavour</code> takes four values, and <code>code-span</code>, <code>licence-recorded</code> and <code>parts-resolve</code> read a
 fabulam as they read a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. A check that asks for what a later stage writes holds only once the fabulam is whole
-or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
+or that layer has begun, so an outline is a valid fabulam. A host runs them each time a stage lands, and refuses a
+landing that fails one. The checks against the source, and those of a pshort,
 are Thym's (its section 7.3).</li>
 <li><strong>Four smaller things.</strong> <a class="docs-term" href="#docs-item-t-term-entailment" data-term="T:term/entailment" title="An entailment is the step that expands meaning by reducing data">Entailment</a>'s definition names a proof: a formal proof entails its fabulam, and a fabulam
 a pshort (<a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>). A kind may say <code>open</code>, the fields of its own that the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s shared closed lists do
