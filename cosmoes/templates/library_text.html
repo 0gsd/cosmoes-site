@@ -1,8 +1,9 @@
 {% extends "library.html" %}
-{% block title %}{{ t.entry.name }} {{ t.entry.version }} · the library · {{ domain }}{% endblock %}
+{% from "_lib_marks.html" import marked %}
+{% block title %}{{ marked(t.entry.name, t.entry.shelf) }} {{ t.entry.version }} · the library · {{ domain }}{% endblock %}
 {% block library %}
 <section class="hero" aria-labelledby="h">
-  <h1 id="h">{{ t.entry.name }} {{ t.entry.version }}</h1>
+  <h1 id="h">{{ marked(t.entry.name, t.entry.shelf) }} {{ t.entry.version }}</h1>
 </section>
 {% include "_lib_notice.html" %}
 {% if t.pages %}

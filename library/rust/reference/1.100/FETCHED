@@ -1,0 +1,10 @@
+fetched: 2026-11-22T18:34:46Z
+from: https://github.com/rust-lang/reference/archive/e24eecf97b0c9a6dbac67191098204dc8a190aaa.tar.gz
+by: the owner, with scripts/fetch_library.py
+archive: e24eecf97b0c9a6dbac67191098204dc8a190aaa.tar.gz
+archive-bytes: 436753
+archive-sha256: aa2472f76ebea1f71cc83073d777a34c2735048fb62db6aa027b69b79a65d47e
+address-confirmed: by the owner at fetch time
+licence-read: https://www.rust-lang.org/policies/licenses, read whole by the owner before this run
+licence-read: https://rustfoundation.org/policy/rust-trademark-policy/, read whole by the owner before this run
+stripped: reference-e24eecf97b0c9a6dbac67191098204dc8a190aaa/

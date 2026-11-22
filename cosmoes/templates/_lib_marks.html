@@ -1,0 +1,8 @@
+{# The registered marks our own words carry, as the publishers' name policies ask: ® after the first prominent
+   mention of the word, the word used as an adjective. Only the names we render are marked (the shelf's title, a
+   text's title and heading); a publisher's file and its pages' own headings are never changed. Shelf titles carry
+   their mark in library.json; this marks a text's name on a shelf whose texts are named without it. #}
+{% macro marked(name, shelf) -%}
+{%- set word = {'python': 'Python'}.get(shelf) -%}
+{%- if word and (word ~ '®') not in name -%}{{ name|replace(word, word ~ '®', 1) }}{%- else -%}{{ name }}{%- endif -%}
+{%- endmacro %}

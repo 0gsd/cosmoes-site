@@ -1,5 +1,6 @@
 {% extends "library.html" %}
-{% block title %}{{ title }} · {{ t.entry.name }} {{ t.entry.version }} · {{ domain }}{% endblock %}
+{% from "_lib_marks.html" import marked %}
+{% block title %}{{ title }} · {{ marked(t.entry.name, t.entry.shelf) }} {{ t.entry.version }} · {{ domain }}{% endblock %}
 {% block library %}
 {% include "_lib_notice.html" %}
 <article class="lib-page" data-page="{{ path }}">

@@ -14,6 +14,9 @@ text that may only be passed on unchanged is served only as the publisher's own 
 Each licence is read whole by the owner before its text is first fetched and published. The names of languages,
 standards and publishers are their owners' marks, used here only to say which text a copy is; the copies are not
 endorsed by their publishers. "JavaScript" is a mark of Oracle's; the shelf for ECMA-262 is called ECMAScript.
+Python® is a registered trademark of the Python Software Foundation. Unicode and the Unicode Logo are registered
+trademarks of Unicode, Inc. in the United States and other countries. ECMAScript® is a registered trademark of Ecma
+International.
 
 `library.json` and these two files are written for this repository and are under its Apache License 2.0. A text that
 is pinned (`aboard: false`) is named, never copied.

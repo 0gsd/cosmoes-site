@@ -1,0 +1,9 @@
+fetched: 2026-11-22T18:33:45Z
+from: https://docs.python.org/3.15/archives/python-3.15-docs-text.tar.bz2
+by: the owner, with scripts/fetch_library.py
+archive: python-3.15-docs-text.tar.bz2
+archive-bytes: 3505491
+archive-sha256: 5b2d847afedb4b14b715485b84d30fe4993f80562e3a7f7508680afa5fec8a00
+licence-read: https://docs.python.org/3.15/license.html, read whole by the owner before this run
+licence-read: https://www.python.org/psf/trademarks/, read whole by the owner before this run
+stripped: python-3.15-docs-text/
