@@ -1,0 +1,10 @@
+fetched: 2026-11-22T18:36:16Z
+from: https://www.unicode.org/Public/15.1.0/ucd/UCD.zip
+by: the owner, with scripts/fetch_library.py
+archive: UCD.zip
+archive-bytes: 8248819
+archive-sha256: cb1c663d053926500cd501229736045752713a066bd75802098598b7a7056177
+licence-read: https://www.unicode.org/license.txt, read whole by the owner before this run
+licence-read: https://www.unicode.org/copyright.html, read whole by the owner before this run
+licence-read: https://www.unicode.org/policies/logo_policy.html, read whole by the owner before this run
+extra: files/license.txt from https://www.unicode.org/license.txt, sha256 e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96

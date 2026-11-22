@@ -1,0 +1,11 @@
+fetched: 2026-11-22T18:34:26Z
+from: https://go.dev/dl/go1.27.4.src.tar.gz
+by: the owner, with scripts/fetch_library.py
+archive: go1.27.4.src.tar.gz
+archive-bytes: 35153471
+archive-sha256: 73cfb8571aec0c01177687db87163d46aa20e9779672772891aa17654d9a6099
+licence-read: https://go.dev/copyright, read whole by the owner before this run
+licence-read: https://creativecommons.org/licenses/by/4.0/legalcode.en, read whole by the owner before this run
+licence-read: https://go.dev/brand, read whole by the owner before this run
+stripped: go/
+kept: doc/go_spec.html, LICENSE, PATENTS (3 of 15638 files)

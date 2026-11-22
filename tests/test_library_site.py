@@ -257,3 +257,63 @@ def test_the_real_shelf_loads_with_nothing_refused():
 
 def test_the_fixture_has_a_text_that_carries_a_credit():
     assert any(e.get('credit') for e in KEPT)
+
+
+REAL = Path(__file__).resolve().parents[1] / 'library'
+
+
+def title_of(html: str) -> str:
+    return re.search(r'<title>(.*?)</title>', html, re.S).group(1)
+
+
+def h1_of(html: str) -> str:
+    return re.sub(r'<[^>]+>', '', re.search(r'<h1[^>]*>(.*?)</h1>', html, re.S).group(1))
+
+
+@pytest.mark.parametrize('path, title, h1', [
+    ('/library/python/', 'Python® documentation · the library · cosmoes.org', 'Python® documentation'),
+    ('/library/python/docs/3.13/', 'The Python® documentation 3.13 · the library · cosmoes.org',
+     'The Python® documentation 3.13'),
+    ('/library/python/docs/3.15/', 'The Python® documentation 3.15 · the library · cosmoes.org',
+     'The Python® documentation 3.15'),
+    ('/library/unicode/', 'Unicode® data files · the library · cosmoes.org', 'Unicode® data files'),
+    ('/library/unicode/ucd/15.1.0/', 'The Unicode® Character Database 15.1.0 · the library · cosmoes.org',
+     'The Unicode® Character Database 15.1.0'),
+    ('/library/ecmascript/', 'ECMAScript · the library · cosmoes.org', 'ECMAScript'),
+    ('/library/go/', 'Go · the library · cosmoes.org', 'Go'),
+])
+def test_the_real_shelf_carries_the_marks_at_the_first_prominent_mention(export, path, title, h1):
+    """The owner's ruling (2026-11-22): Python® at its first prominent mention, Python as an adjective; Unicode® as
+    an adjective, the shelf retitled to fit. Only our own words are marked; slugs and addresses do not change."""
+    html = page_ok(Site(export, library=REAL).get(APEX, path))
+    assert title_of(html) == title and h1_of(html) == h1
+
+
+def test_a_page_of_the_python_docs_names_the_text_with_its_mark(export):
+    html = page_ok(Site(export, library=REAL).get(APEX, '/library/python/docs/3.15/about'))
+    assert title_of(html) == 'About this documentation · The Python® documentation 3.15 · cosmoes.org'
+    kicker = re.sub(r'<[^>]+>', '', re.search(r'<p class="kicker">(.*?)</p>', html, re.S).group(1))
+    assert kicker.startswith('The library · Python® documentation')     # the first mention, marked
+
+
+def test_the_shelves_list_the_marked_titles(export):
+    html = page_ok(Site(export, library=REAL).get(APEX, '/library/'))
+    tiles = re.findall(r'<h2><a href="/library/[^"]+/">(.*?)</a></h2>', html)
+    assert 'Python® documentation' in tiles and 'Unicode® data files' in tiles and 'Python' not in tiles
+
+
+@pytest.mark.parametrize('path', ['/library/unicode/', '/library/unicode/ucd/15.1.0/',
+                                  '/library/unicode/ucd/15.1.0/ArabicShaping'])
+def test_the_unicode_pages_carry_its_legend(export, path):
+    legend = ('Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and '
+              'other countries.')
+    html = page_ok(Site(export, library=REAL).get(APEX, path))
+    assert html.count(f'<p class="lib-credit">{legend}</p>') >= 1
+
+
+def test_a_shelf_page_carries_only_the_trademark_legends_once(export):
+    html = page_ok(Site(export, library=REAL).get(APEX, '/library/ecmascript/'))
+    credits = re.findall(r'<p class="lib-credit">(.*?)</p>', html)
+    assert credits == ['ECMAScript® is a registered trademark of Ecma International.']
+    go = page_ok(Site(export, library=REAL).get(APEX, '/library/go/'))   # the CC BY attribution is a page's, not a shelf's
+    assert '<p class="lib-credit">' not in go

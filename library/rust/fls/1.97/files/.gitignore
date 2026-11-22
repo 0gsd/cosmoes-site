@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# SPDX-FileCopyrightText: The Ferrocene Developers
+
+# Sphinx ignored files
+/build
+/.venv
+
+# Python ignored files
+__pycache__
+*.py[co]
+
+# Linkchecker ignored files
+/.linkchecker
+
+# Mac OS ignored files
+.DS_Store

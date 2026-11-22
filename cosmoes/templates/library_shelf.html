@@ -30,3 +30,11 @@
 </table>
 {% endif %}
 {% endblock %}
+{% block foot %}
+{{ super() }}
+{#- The trademark legends the kept texts' credits carry (Unicode's asks for its legend in a footer). #}
+{%- set seen = namespace(lines=[]) %}
+{%- for t in kept if t.entry.credit %}{% for line in t.entry.credit.split('\n') if 'trademark' in line and line not in seen.lines %}{% set seen.lines = seen.lines + [line] %}
+  <p class="lib-credit">{{ line }}</p>
+{%- endfor %}{% endfor %}
+{% endblock %}

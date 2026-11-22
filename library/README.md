@@ -10,6 +10,13 @@ A shelf is a language or a standard; both are the same kind of thing, so a new l
 changes no structure. The JavaScript shelf is titled **ECMAScript**: "JavaScript" is a mark of Oracle's, and the text
 on it is ECMA-262.
 
+Two shelves carry their publishers' registered marks in our own words, as the owner ruled on 2026-11-22. The Python
+shelf is titled "Python® documentation", and a Python text's title and heading read "The Python® documentation": the
+PSF's policy asks for ® at the first prominent mention and "Python" as an adjective. The Unicode shelf is titled
+"Unicode® data files": Unicode's policy asks for "Unicode" as an adjective with ®, and its legend rides on the shelf's
+page and every page of the text. The marks are in the shelves' `title` and `about` and in
+`cosmoes/templates/_lib_marks.html`; no publisher's file, version folder or address changes.
+
 ## The folder
 
 ```text
@@ -28,17 +35,21 @@ Nothing in a version folder is edited after it is added; a new version sits besi
 files do not match its SHA256SUMS, whose registry digest is not the sha256 of its SHA256SUMS, or whose NOTICE holds a
 gap marked `[OWNER:` is not served (the site logs why and serves the rest).
 
-## The first shelf (ruled 2026-11-06; versions read on the publishers' pages 2026-11-22)
+## The first shelf (ruled 2026-11-06; fetched by the owner 2026-11-22)
 
-| shelf | text | version | kept as | licence |
-|---|---|---|---|---|
-| python | docs | 3.13 (tally's; build 3.13.18, aboard) and 3.15 (the current release, 3.15.2) | the publisher's plain-text build, pages by the plain-text rule | PSF License v2; examples also 0BSD |
-| ecmascript | ecma-262 | 17.0 (ES2026, June 2026) | the publisher's `index.html` whole; pages from a text extraction | Ecma's alternative copyright notice (the edition's annex) |
-| go | spec | 1.27 (go1.27.4) | `doc/go_spec.html`, `LICENSE`, `PATENTS` from the release's source archive; pages from a text extraction | CC BY 4.0 (go.dev/copyright); the repository's BSD-style LICENSE beside it |
-| rust | reference | 1.100 (current) and 1.97 (the 0.8 cshorts') | the repository at the commit the release pins, pages from `src/*.md` | MIT or Apache-2.0 |
-| rust | fls | 1.99 (the newest tag) and 1.97 | the repository at the tag's commit, pages from `src/*.rst` | MIT or Apache-2.0 (licences in `LICENSES/`) |
-| json | rfc | 8259 | `rfc8259.txt` whole, served only as the publisher's file, never as a page | IETF Trust Legal Provisions (BCP 78) |
-| unicode | ucd | 15.1.0 (Python 3.13's) | the data files whole, each shown as preformatted text | Unicode License v3 |
+Every text below is aboard: its version folder is here, and `client/library_index.py verify` says ok. Together they
+are about 83 MB.
+
+| shelf | text | version aboard | kept as | files | licence |
+|---|---|---|---|---|---|
+| python | docs | 3.13 (tally's; the 3.13.18 build, fetched 2026-11-19) | the publisher's plain-text build, pages by the plain-text rule | 514 | PSF License v2; examples also 0BSD |
+| python | docs | 3.15 (the current release, the 3.15.2 build) | as 3.13 | 553 | PSF License v2; examples also 0BSD |
+| ecmascript | ecma-262 | 17.0 (ES2026, June 2026) | the publisher's `index.html` whole; pages from a text extraction | 1 | Ecma's alternative copyright notice (the edition's annex) |
+| go | spec | 1.27 (from go1.27.4) | `doc/go_spec.html`, `LICENSE`, `PATENTS` from the release's source archive; pages from a text extraction | 3 | CC BY 4.0 (go.dev/copyright); the repository's BSD-style LICENSE beside it |
+| rust | reference | 1.100 (current; commit e24eecf) and 1.97 (the 0.8 cshorts'; commit ad35aca) | the repository at the commit the release pins, pages from `src/*.md` | 213 and 190 | MIT or Apache-2.0 |
+| rust | fls | 1.99 (the newest tag; 946eaca) and 1.97 (4ab04b0) | the repository at the tag's commit, pages from `src/*.rst` | 107 each | MIT or Apache-2.0 (licences in `LICENSES/`, with OFL 1.1 and CC BY 4.0 for the theme's fonts and icons) |
+| json | rfc | 8259 | `rfc8259.txt` whole, served only as the publisher's file, never as a page | 1 | IETF Trust Legal Provisions (BCP 78) |
+| unicode | ucd | 15.1.0 (Python 3.13's) | the data files whole, each shown as preformatted text, with `license.txt` fetched beside them | 70 | Unicode License v3 |
 
 Pinned only, in `library.json` with `aboard: false`: the Unicode Standard's core text (personal or internal use only),
 IEEE 754-2019 (sold), test262 (ECMA-262's conformance tests), the implementations (CPython 3.13, the Go toolchain

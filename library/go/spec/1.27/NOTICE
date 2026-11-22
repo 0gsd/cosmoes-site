@@ -1,0 +1,80 @@
+The Go Programming Language Specification 1.27, as kept in the cosmoes.org library
+==================================================================================
+
+This folder is a copy of The Go Programming Language Specification 1.27, kept at
+https://cosmoes.org/library/go/spec/1.27/, not the publisher's own page.
+The publisher is The Go Authors (Google); its own page for this text is https://go.dev/ref/spec
+The files under files/ are the publisher's files as they came from https://go.dev/dl/go1.27.4.src.tar.gz
+on 2026-11-22T18:34:26Z (FETCHED, SHA256SUMS). Nothing in them is changed.
+
+Changed in form
+---------------
+Rendered as HTML from a text extraction of the publisher's HTML, by rule: headings, paragraphs, list items, table cells and preformatted blocks kept in order with their ids; scripts, styles, images, navigation and all other markup dropped. The publisher's file is kept unchanged beside the page.
+
+Licence
+-------
+Creative Commons Attribution 4.0 International (go.dev/copyright: the site's contents)
+https://creativecommons.org/licenses/by/4.0/
+
+Copyright notice, as the publisher states it
+--------------------------------------------
+Copyright 2009 The Go Authors.
+
+What the terms ask every copy to carry
+--------------------------------------
+The Go Programming Language Specification (language version go1.27, May 26, 2026), by The Go Authors, https://go.dev/ref/spec, under the Creative Commons Attribution 4.0 International licence, https://creativecommons.org/licenses/by/4.0/. Its pages here are made from a text extraction.
+
+files/LICENSE, whole
+--------------------
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+files/PATENTS, whole
+--------------------
+Additional IP Rights Grant (Patents)
+
+"This implementation" means the copyrightable works distributed by
+Google as part of the Go project.
+
+Google hereby grants to You a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable (except as stated in this section)
+patent license to make, have made, use, offer to sell, sell, import,
+transfer and otherwise run, modify and propagate the contents of this
+implementation of Go, where such license applies only to those patent
+claims, both currently owned or controlled by Google and acquired in
+the future, licensable by Google that are necessarily infringed by this
+implementation of Go.  This grant does not include claims that would be
+infringed only as a consequence of further modification of this
+implementation.  If you or your agent or exclusive licensee institute or
+order or agree to the institution of patent litigation against any
+entity (including a cross-claim or counterclaim in a lawsuit) alleging
+that this implementation of Go or any code incorporated within this
+implementation of Go constitutes direct or contributory patent
+infringement, or inducement of patent infringement, then any patent
+rights granted to you under this License for this implementation of Go
+shall terminate as of the date such litigation is filed.

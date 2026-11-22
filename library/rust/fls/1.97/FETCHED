@@ -1,0 +1,10 @@
+fetched: 2026-11-22T18:35:38Z
+from: https://github.com/rust-lang/fls/archive/4ab04b009042e6ab56e07cbe187b0b52988da308.tar.gz
+by: the owner, with scripts/fetch_library.py
+archive: 4ab04b009042e6ab56e07cbe187b0b52988da308.tar.gz
+archive-bytes: 1291267
+archive-sha256: 20840ec187b43290ffa61b204cfbf2ac014f011690715960450649780c538b3f
+address-confirmed: by the owner at fetch time
+licence-read: https://github.com/rust-lang/fls, read whole by the owner before this run
+licence-read: https://rustfoundation.org/policy/rust-trademark-policy/, read whole by the owner before this run
+stripped: fls-4ab04b009042e6ab56e07cbe187b0b52988da308/
