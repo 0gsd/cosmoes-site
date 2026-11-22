@@ -22,7 +22,8 @@ promise is the author's.
 the same terms as the texts.
 
 **The names.** Neither the licence nor the promise licenses the names: MacroCOSM, MiniCOSM, MicroCOSM, Canon, Thym,
-Ascribe, Comprise, DocOES, fabula, fabulan, fabulap, fabulac and atem, and the other names the texts introduce. EMF is
+Ascribe, Comprise, DocOES, fabula, fabulan, fabulap, fabulac, fabulam, pshort and atem, and the other names the texts
+introduce. EMF is
 an earlier name of the fabula and is named as such. The author holds the names for now, and means to move them, later,
 to a body that is not a company: a foundation or a fiscal host.
 

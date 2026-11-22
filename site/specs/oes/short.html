@@ -72,13 +72,13 @@ to it.</p>
 </section>
 <section class="docs-sec" data-key="S:section/3" data-scope="">
 <h2 id="docs-sec-3" data-toc="2">3. The model: decompile, fabula, compile, short, atem</h2>
-<p>Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code,
-and source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's
-folder) is <strong>decompiled</strong> to a <strong>fabula</strong>, which enumerates all the inspiration, meaning, intent, construction,
+<p>Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code, and
+source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's folder, a
+formal proof) is <strong>decompiled</strong> to a <strong>fabula</strong>, which enumerates all the inspiration, meaning, intent, construction,
 production and assertions that can be found in the input or derived from it. A fabula is <strong>compiled</strong> to a <strong>short</strong>,
-and a short is said most plainly as an <strong>atem</strong>. Each step is an <strong>entailment</strong>, which expands meaning by reducing data:
-the input entails its fabula, the fabula a short, and a short an atem. A Holotype entails its isotype too,
-by rule.</p>
+and a short is said most plainly as an <strong>atem</strong>. Each step is an <strong>entailment</strong>, which expands meaning by reducing
+data: the input entails its fabula, the fabula a short, and a short an atem. A Holotype entails its isotype too, by
+rule.</p>
 <div class="docs-table">
 <table>
 <thead>
@@ -86,6 +86,7 @@ by rule.</p>
 <th></th>
 <th>Prose</th>
 <th>Code</th>
+<th>Proof</th>
 </tr>
 </thead>
 <tbody>
@@ -93,21 +94,25 @@ by rule.</p>
 <td><strong>The input</strong></td>
 <td>a text</td>
 <td>a repository</td>
+<td>a file of a formal proof's source</td>
 </tr>
 <tr>
 <td><strong>The fabula</strong></td>
 <td>a fabulan, or for verse a fabulap</td>
 <td>a fabulac: the specification</td>
+<td>a fabulam: the proof taken apart, each item tied to the source by name and lines</td>
 </tr>
 <tr>
 <td><strong>The short</strong></td>
 <td>an entailment of the fabula</td>
 <td>a cshort: the source code rebuilt, read and never run; from a fabulac a person authored, the program itself, run only in a sandbox</td>
+<td>a pshort: a guide to the proof for an expert, a student or everyone, never called a proof</td>
 </tr>
 <tr>
 <td><strong>The atem</strong></td>
 <td>one line</td>
 <td>a catem: everything a user can do with the program</td>
+<td>one line, restating a statement of the proof</td>
 </tr>
 </tbody>
 </table>
@@ -242,7 +247,7 @@ Allograph Registry.</li>
 moment, and its public projection is the isotype.</li>
 </ul>
 <p>The core's <a class="docs-term" href="#docs-item-t-term-built-in" data-term="T:term/built-in" title="a kind of volume the core defines, declared by a manifest every reader ships with">built-ins</a> have no home of their own: <code>cosm</code> (a product tree), <code>canon</code> (Canon, the home file system), <code>fabula</code>
-(in three flavours), <code>doc</code> (documents) and <code>thym</code> (Thym's volumes, specified in Thym's own text). <code>doc</code> is DocOES
+(in four flavours), <code>doc</code> (documents) and <code>thym</code> (Thym's volumes, specified in Thym's own text). <code>doc</code> is DocOES
 (MacroCOSM OES, its section 18.5), the built-in these pages are made with, at three <a class="docs-term" href="#docs-item-t-term-densities" data-term="T:term/densities" title="one meaning at three densities: the fabula, a short it entails, and its atem">densities</a> (<a class="docs-term" href="#docs-item-t-term-the-atem" data-term="T:term/the-atem" title="The atem, one line">atem</a>, <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="an entailment of the fabula">short</a>, <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">fabula</a>).</p>
 <p>A shared vocabulary of public forms (&quot;chair&quot;, &quot;M4 screw&quot;, &quot;invoice&quot;: defined once, cited by every MiniCOSM that needs
 them) is reserved for a later <a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">edition</a>.</p>
@@ -300,12 +305,15 @@ never sold, and neither is the way out of it: no product and no account stands b
 <section class="docs-sec" data-key="S:section/changes" data-scope="">
 <h2 id="docs-changes" data-toc="2">Changes</h2>
 <ol>
-<li><strong><a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">Edition</a> 0.8.0 (2026-11-20): a program authored first.</strong> The model's table says that a fabulac a
+<li><strong><a class="docs-term" href="#docs-item-t-term-edition" data-term="T:term/edition" title="a published state of one of these texts">Edition</a> 0.9.0 (the day of its release): a proof.</strong> <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">The fabula</a> has four flavours (<a class="ref-xref" href="#docs-sec-7">section 7</a>), and the model's
+table gains a column for a formal proof: its file, read as text; its fabulam; the pshort, a guide that is never
+called a proof; and its <a class="docs-term" href="#docs-item-t-term-the-atem" data-term="T:term/the-atem" title="The atem, one line">atem</a> (<a class="ref-xref" href="#docs-sec-3">section 3</a>).</li>
+<li><strong>Edition 0.8.0 (2026-11-20): a program authored first.</strong> The model's table says that a fabulac a
 person authored entails the program itself, which may be run, and only in a sandbox, where a cshort is still read
 and never run (<a class="ref-xref" href="#docs-sec-3">section 3</a>); <a class="ref-xref" href="#docs-sec-10">section 10</a> says the same of enough.</li>
 <li><strong>Edition 0.7.0 (2026-11-13): entailment, the allograph and the licence.</strong> Each step of the model is an
 entailment, which expands meaning by reducing data, and a Holotype entails its isotype by rule (<a class="ref-xref" href="#docs-sec-3">section 3</a>); the
-model's table, the parts table and the picture call a <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="an entailment of the fabula">short</a> an entailment of its <a class="docs-term" href="#docs-item-t-term-the-fabula" data-term="T:term/the-fabula" title="a fabulan, or for verse a fabulap">fabula</a> (<a class="ref-xref" href="#docs-sec-3">sections 3</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-4">4</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-8">8</a>).
+model's table, the parts table and the picture call a <a class="docs-term" href="#docs-item-t-term-the-short" data-term="T:term/the-short" title="an entailment of the fabula">short</a> an entailment of its fabula (<a class="ref-xref" href="#docs-sec-3">sections 3</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-4">4</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-8">8</a>).
 Ascribe's entry names the allograph and the Allograph Registry (<a class="ref-xref" href="#docs-sec-7">section 7</a>), and the picture draws the allograph
 beside the isotype and the isograph. The colophon licenses the text under CC BY 4.0, makes the OWFa 1.0 promise and
 holds the names.</li>
