@@ -1376,13 +1376,14 @@ section 18.4.7. A proof's source is read as text, and nothing of it is installed
 <!-- term: entailment -->
 An **entailment** is the step that expands meaning by reducing data, and it is also what that step makes. The whole
 entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a codebase or an
-application entails its fabulac, and a fabulac a cshort or a catem; a Holotype entails its isotype and its paratype, and a
-holograph its isograph and its allograph. What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
-voice. An entailment made by rule, a projection (section 16), holds by construction. An entailment made by a model holds
-only because the contract's checks hold it: `no-invention` (it names nothing its whole lacks), `stance-kept` (it says
-no claim more strongly than its whole does) and `coverage` (each of its sentences traces to items of its whole), as
-Thym (https://thym.cosmoes.org/), its section 7.3, states them. Decompiling and compiling are both entailments; the
-move `entail` makes one by a model, and `project` makes one by rule.
+application entails its fabulac, and a fabulac a cshort or a catem; a formal proof entails its fabulam, and a fabulam a
+pshort; a Holotype entails its isotype and its paratype, and a holograph its isograph and its allograph. What is made
+says nothing its whole does not hold. It says it at a smaller size, or in another order or voice. An entailment made by
+rule, a projection (section 16), holds by construction. An entailment made by a model holds only because the contract's
+checks hold it: `no-invention` (it names nothing its whole lacks), `stance-kept` (it says no claim more strongly than
+its whole does) and `coverage` (each of its sentences traces to items of its whole), as Thym
+(https://thym.cosmoes.org/), its section 7.3, states them. Decompiling and compiling are both entailments; the move
+`entail` makes one by a model, and `project` makes one by rule.
 
 **The work is done by Thym's moves.** `derive` decompiles and `entail` compiles; a fabula of code is built in stages,
 each one atomic run, and a job may resume between them (section 18.4.7); the dialectic's moves `question`, `record` and
@@ -3962,7 +3963,8 @@ from the names one declaration uses of another:
 
 1. **Reach.** From the targets, the names are followed. A declaration that is met is `reached: yes`, and its `depth`
    is the least number of steps from a target. One that is not met, and that the proof's system could use without
-   naming it, is `perhaps`: in Lean, an instance, or a declaration that carries one of the attributes listed below.
+   naming it, is `perhaps`: in Lean, an instance, or a declaration that carries one of the attributes listed below,
+   when it stands in a target's own file or in a file that file imports.
    Every other is `no`: the final theorem never uses it, and no model reads it.
 2. **Carries.** A declaration's `carries` is the number of reached declarations that every chain of names from a
    target meets only through it. A lemma that carries much is one the proof passes through.
@@ -4069,8 +4071,8 @@ falls:
 | what the proof's system fills in: implicit arguments, coercions, what a name's type really is | reads the text as written | `source.read.elaborated: "no"`; a statement's `says` is what is written |
 | which of the variables declared around it a declaration really takes | lists every one in scope | `scope` on the lemma; the model is shown those lines |
 | instances and tagged lemmas that are used without being named | cannot see the use | `reached: perhaps` |
-| the lemmas a search tactic finds | lists the tactics | `automation` on the lemma: its `uses` may be short |
-| which declaration a short name means, under the namespaces a file opens | places the name only when exactly one declaration fits | a `C:reliance` keeps the name as written |
+| the lemmas a search tactic finds | lists the tactics, from a fixed list of their names | `automation` on the lemma: its `uses` may be short |
+| which declaration a short name means, under the namespaces a file opens | places the name where exactly one declaration fits; where two fit, links it to each, so that the reach takes in too much rather than too little | `uses` may be long; a `C:reliance` keeps a library's name as written |
 | declarations that an attribute or a command makes, and notation the file defines | lists what the text shows, and expands nothing | `limits` on the `C:file` |
 | whether the file builds, and the axioms it rests on through its imports | nothing | `P:claim/checking` |
 
@@ -5400,7 +5402,8 @@ disagreed and one was corrected, the entry says which.
    fabulam as they read a fabulac. A check that asks for what a later stage writes holds only once the fabulam is whole
    or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
    are Thym's (its section 7.3).
-8. **Three smaller things.** A kind may say `open`, the fields of its own that the manifest's shared closed lists do
+8. **Four smaller things.** Entailment's definition names a proof: a formal proof entails its fabulam, and a fabulam
+   a pshort (section 18.1). A kind may say `open`, the fields of its own that the manifest's shared closed lists do
    not bind (sections 7.3 and 13.3); the fabula's `C:lemma` says it of `scope`. Section 18.3.5 names the rule a
    scaffold's sentences are read by (Thym, its section 12.6). The conformance corpus carries a fabulam with its three
    pshorts (section 20.3).

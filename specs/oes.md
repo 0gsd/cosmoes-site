@@ -56,20 +56,20 @@ to it.
 
 <!-- atem: input decompiled to fabula, compiled to short, said as atem -->
 
-Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code,
-and source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's
-folder) is **decompiled** to a **fabula**, which enumerates all the inspiration, meaning, intent, construction,
+Software is moving up a layer: a structured plain-English specification is the program, it compiles to source code, and
+source code compiles to an application. The same cycle serves prose. An input (an essay, a poem, a program's folder, a
+formal proof) is **decompiled** to a **fabula**, which enumerates all the inspiration, meaning, intent, construction,
 production and assertions that can be found in the input or derived from it. A fabula is **compiled** to a **short**,
-and a short is said most plainly as an **atem**. Each step is an **entailment**, which expands meaning by reducing data:
-the input entails its fabula, the fabula a short, and a short an atem. A Holotype entails its isotype too,
-by rule.
+and a short is said most plainly as an **atem**. Each step is an **entailment**, which expands meaning by reducing
+data: the input entails its fabula, the fabula a short, and a short an atem. A Holotype entails its isotype too, by
+rule.
 
-| | Prose | Code |
-|---|---|---|
-| **The input** | a text | a repository |
-| **The fabula** | a fabulan, or for verse a fabulap | a fabulac: the specification |
-| **The short** | an entailment of the fabula | a cshort: the source code rebuilt, read and never run; from a fabulac a person authored, the program itself, run only in a sandbox |
-| **The atem** | one line | a catem: everything a user can do with the program |
+| | Prose | Code | Proof |
+|---|---|---|---|
+| **The input** | a text | a repository | a file of a formal proof's source |
+| **The fabula** | a fabulan, or for verse a fabulap | a fabulac: the specification | a fabulam: the proof taken apart, each item tied to the source by name and lines |
+| **The short** | an entailment of the fabula | a cshort: the source code rebuilt, read and never run; from a fabulac a person authored, the program itself, run only in a sandbox | a pshort: a guide to the proof for an expert, a student or everyone, never called a proof |
+| **The atem** | one line | a catem: everything a user can do with the program | one line, restating a statement of the proof |
 
 The running application is outside these specifications. Decompiling a poem cannot be done well without its author or
 someone who knows their work, so the core has one **dialectic**: questions put to a person, and their answers recorded.
@@ -159,7 +159,7 @@ Four specifications are published at cosmoes.org, each at its own home.
   moment, and its public projection is the isotype.
 
 The core's built-ins have no home of their own: `cosm` (a product tree), `canon` (Canon, the home file system), `fabula`
-(in three flavours), `doc` (documents) and `thym` (Thym's volumes, specified in Thym's own text). `doc` is DocOES
+(in four flavours), `doc` (documents) and `thym` (Thym's volumes, specified in Thym's own text). `doc` is DocOES
 (MacroCOSM OES, its section 18.5), the built-in these pages are made with, at three densities (atem, short, fabula).
 
 A shared vocabulary of public forms ("chair", "M4 screw", "invoice": defined once, cited by every MiniCOSM that needs
@@ -228,27 +228,30 @@ never sold, and neither is the way out of it: no product and no account stands b
 
 <!-- atem: what each edition changed, newest first -->
 
-1. **Edition 0.8.0 (2026-11-20): a program authored first.** The model's table says that a fabulac a
+1. **Edition 0.9.0 (the day of its release): a proof.** The fabula has four flavours (section 7), and the model's
+   table gains a column for a formal proof: its file, read as text; its fabulam; the pshort, a guide that is never
+   called a proof; and its atem (section 3).
+2. **Edition 0.8.0 (2026-11-20): a program authored first.** The model's table says that a fabulac a
    person authored entails the program itself, which may be run, and only in a sandbox, where a cshort is still read
    and never run (section 3); section 10 says the same of enough.
-2. **Edition 0.7.0 (2026-11-13): entailment, the allograph and the licence.** Each step of the model is an
+3. **Edition 0.7.0 (2026-11-13): entailment, the allograph and the licence.** Each step of the model is an
    entailment, which expands meaning by reducing data, and a Holotype entails its isotype by rule (section 3); the
    model's table, the parts table and the picture call a short an entailment of its fabula (sections 3, 4 and 8).
    Ascribe's entry names the allograph and the Allograph Registry (section 7), and the picture draws the allograph
    beside the isotype and the isograph. The colophon licenses the text under CC BY 4.0, makes the OWFa 1.0 promise and
    holds the names.
-3. **Edition 0.6.0 (2026-11-06): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
+4. **Edition 0.6.0 (2026-11-06): the model and the core.** MacroCOSM is an OES with a core of built-ins; there are two
    MiniCOSMs, Comprise OES and Ascribe; Thym connects OESes. Section 2 is "Scales"; section 3, the model, is added, and
    sections 3 to 10 become 4 to 11; the parts table gains the densities and the dialectic; the fabula replaces EMF; the picture is redrawn; the colophon names the
    steward.
-4. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
+5. **Edition 0.5.4 (2026-11-03): the canonical edition at cosmoes.org.** The paradigm map becomes the text of
    cosmoes.org itself, named *The OES specifications*; the edition is a field in the status line. Section 6 is rewritten
    for the four specifications and the registered MiniCOSMs; the first form's sections 7 (connections to a wider
    ecosystem), 9 (a status table) and 10 (a repository listing) are removed, what survives of 7 folded into section 6,
    and the picture (section 8 in the first form) becomes section 7 and is redrawn; sections 8, 9 and 10 (editions,
    implementations, open formats) are added; *volume* replaces *database* for one instance of a MiniCOSM, as MacroCOSM
    OES uses it; repository paths, plans and what was built at a date are removed.
-5. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
+6. **2026-10-20: the paradigm map.** First written beside Comprise OES as the map of the OES family, in ten sections:
    sections 1 to 6 and the picture in their first form, a section on connections to a wider ecosystem, a status table
    of what was built and a listing of the folder it was written in. Comprise OES was the only MiniCOSM specified and
    MacroCOSM was drawn from it in outline.
