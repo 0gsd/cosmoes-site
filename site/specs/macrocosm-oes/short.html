@@ -2391,13 +2391,14 @@ is the entailment of a fabulac a person authored, which an implementation may ru
 <a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>. A proof's source is read as text, and nothing of it is installed, built or run (<a class="ref-xref" href="#docs-sec-18-4-10">section 18.4.10</a>).</p>
 <p>An <strong>entailment</strong> is the step that expands meaning by reducing data, and it is also what that step makes. The whole
 entails what is made from it: an input entails its fabula, a fabula a short, and a short an atem; a codebase or an
-application entails its fabulac, and a fabulac a cshort or a <a class="docs-term" href="#docs-item-t-term-catem" data-term="T:term/catem" title="A catem is a fabulac's atem at depth">catem</a>; a Holotype entails its <a class="docs-term" href="#docs-item-t-term-isotype" data-term="T:term/isotype" title="a small public projection of the Holotype">isotype</a> and its paratype, and a
-holograph its isograph and its allograph. What is made says nothing its whole does not hold. It says it at a smaller size, or in another order or
-voice. An entailment made by rule, a projection (<a class="ref-xref" href="#docs-sec-16">section 16</a>), holds by construction. An entailment made by a model holds
-only because the contract's checks hold it: <code>no-invention</code> (it names nothing its whole lacks), <code>stance-kept</code> (it says
-no claim more strongly than its whole does) and <code>coverage</code> (each of its sentences traces to items of its whole), as
-Thym (https://thym.cosmoes.org/), its section 7.3, states them. Decompiling and compiling are both entailments; the
-move <code>entail</code> makes one by a model, and <code>project</code> makes one by rule.</p>
+application entails its fabulac, and a fabulac a cshort or a <a class="docs-term" href="#docs-item-t-term-catem" data-term="T:term/catem" title="A catem is a fabulac's atem at depth">catem</a>; a formal proof entails its fabulam, and a fabulam a
+<a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a>; a Holotype entails its <a class="docs-term" href="#docs-item-t-term-isotype" data-term="T:term/isotype" title="a small public projection of the Holotype">isotype</a> and its paratype, and a holograph its isograph and its allograph. What is made
+says nothing its whole does not hold. It says it at a smaller size, or in another order or voice. An entailment made by
+rule, a projection (<a class="ref-xref" href="#docs-sec-16">section 16</a>), holds by construction. An entailment made by a model holds only because the contract's
+checks hold it: <code>no-invention</code> (it names nothing its whole lacks), <code>stance-kept</code> (it says no claim more strongly than
+its whole does) and <code>coverage</code> (each of its sentences traces to items of its whole), as Thym
+(https://thym.cosmoes.org/), its section 7.3, states them. Decompiling and compiling are both entailments; the move
+<code>entail</code> makes one by a model, and <code>project</code> makes one by rule.</p>
 <p><strong>The work is done by Thym's moves.</strong> <code>derive</code> decompiles and <code>entail</code> compiles; a fabula of code is built in stages,
 each one atomic run, and a job may resume between them (<a class="ref-xref" href="#docs-sec-18-4-7">section 18.4.7</a>); the dialectic's moves <code>question</code>, <code>record</code> and
 <code>settle</code> ask a person and fold the answers in (<a class="ref-xref" href="#docs-sec-18-6">section 18.6</a>). The moves are declared in the manifests (<a class="ref-xref" href="#docs-sec-13-4">section 13.4</a>)
@@ -6753,7 +6754,8 @@ from the names one declaration uses of another:</p>
 <ol>
 <li><strong>Reach.</strong> From the targets, the names are followed. A declaration that is met is <code>reached: yes</code>, and its <code>depth</code>
 is the least number of steps from a target. One that is not met, and that the proof's system could use without
-naming it, is <code>perhaps</code>: in Lean, an instance, or a declaration that carries one of the attributes listed below.
+naming it, is <code>perhaps</code>: in Lean, an instance, or a declaration that carries one of the attributes listed below,
+when it stands in a target's own file or in a file that file imports.
 Every other is <code>no</code>: the final theorem never uses it, and no model reads it.</li>
 <li><strong>Carries.</strong> A declaration's <code>carries</code> is the number of reached declarations that every chain of names from a
 target meets only through it. A lemma that carries much is one the proof passes through.</li>
@@ -6977,13 +6979,13 @@ falls:</p>
 </tr>
 <tr>
 <td>the lemmas a search tactic finds</td>
-<td>lists the tactics</td>
+<td>lists the tactics, from a fixed list of their names</td>
 <td><code>automation</code> on the lemma: its <code>uses</code> may be short</td>
 </tr>
 <tr>
 <td>which declaration a short name means, under the namespaces a file opens</td>
-<td>places the name only when exactly one declaration fits</td>
-<td>a <code>C:reliance</code> keeps the name as written</td>
+<td>places the name where exactly one declaration fits; where two fit, links it to each, so that the reach takes in too much rather than too little</td>
+<td><code>uses</code> may be long; a <code>C:reliance</code> keeps a library's name as written</td>
 </tr>
 <tr>
 <td>declarations that an attribute or a command makes, and notation the file defines</td>
@@ -8910,7 +8912,8 @@ rule, entailed apart from the source. A pshort is never called a proof.</li>
 fabulam as they read a <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a>. A check that asks for what a later stage writes holds only once the fabulam is whole
 or that layer has begun, so an outline is a valid fabulam. The checks against the source, and those of a pshort,
 are Thym's (its section 7.3).</li>
-<li><strong>Three smaller things.</strong> A kind may say <code>open</code>, the fields of its own that the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s shared closed lists do
+<li><strong>Four smaller things.</strong> <a class="docs-term" href="#docs-item-t-term-entailment" data-term="T:term/entailment" title="An entailment is the step that expands meaning by reducing data">Entailment</a>'s definition names a proof: a formal proof entails its fabulam, and a fabulam
+a pshort (<a class="ref-xref" href="#docs-sec-18-1">section 18.1</a>). A kind may say <code>open</code>, the fields of its own that the <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a>'s shared closed lists do
 not bind (<a class="ref-xref" href="#docs-sec-7-3">sections 7.3</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-13-3">13.3</a>); the fabula's <code>C:lemma</code> says it of <code>scope</code>. <a class="ref-xref" href="#docs-sec-18-3-5">Section 18.3.5</a> names the rule a
 scaffold's sentences are read by (Thym, its section 12.6). The conformance corpus carries a fabulam with its three
 pshorts (<a class="ref-xref" href="#docs-sec-20-3">section 20.3</a>).</li>
@@ -8920,7 +8923,7 @@ language through its fabulac.</p>
 <ol>
 <li><strong>The <a class="docs-term" href="#docs-item-t-term-authored-fabulac" data-term="T:term/authored-fabulac" title="An authored fabulac is a fabulac a person wrote before the program">authored fabulac</a></strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4">18.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a>, a new term). A fabulac may come before the
 program: a person authors it through a brief and an interview, and its <code>source</code> takes a third form, <code>{kind: authored, language, licence, by, at, brief}</code>. An authored fabulac is its own source and never stale; the folder beside it of
-the same name is its <a class="docs-term" href="#docs-item-t-term-entailment" data-term="T:term/entailment" title="An entailment is the step that expands meaning by reducing data">entailment</a>, and is never decompiled.</li>
+the same name is its entailment, and is never decompiled.</li>
 <li><strong>Entailing a program meant to run, and running it</strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a>). An authored fabulac entails a folder
 a person can start, with its tests, its packaging, <code>ENTAILED.md</code> and <code>RUNNING.md</code>, and the catalog's <code>program</code> says
 whether it is a tool, a library or a service. An implementation may run that folder's tests and the program in a

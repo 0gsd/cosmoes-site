@@ -2882,18 +2882,21 @@ runs and every other call of the table is refused at plan time, as `construe` of
 and stops, and the fabulam is its outline (MacroCOSM OES, its section 18.4.10).
 
 **The reader.** `survey` reads Lean through the host's syntax engine, as it reads Python, and the engine answers three
-things. A file's outline: its declarations, its comments, its imports, and the names each declaration uses, with their
-lines. The graph of a set of outlines: which declaration names which, in its own file and across files. The reach of a
-graph from its targets: each declaration's `reached`, `depth` and `carries`, and the rule's candidates (MacroCOSM OES,
-its section 18.4.10). Each answer is recorded as an engine call (section 12.4), so a replay, and a runtime in another
-language, needs no reader of Lean.
+things. A file's outline: its declarations, its comments, its imports, and the names each declaration uses, each name
+once, with the line it first stands on. The graph of a set of outlines: which declaration names which, in its own file
+and across files. The reach of a graph from its targets: each declaration's `reached`, `depth` and `carries`, and the
+rule's candidates (MacroCOSM OES, its section 18.4.10). Each answer is recorded as an engine call (section 12.4), so a
+replay, and a runtime in another language, needs no reader of Lean.
 
 The reader matches a name to a declaration by spelling, in a fixed order: the full name of a declaration of the file;
 then the name joined to a namespace that is open at that line, the innermost first; then the name joined to a namespace
-that an `open` holds at that line, when exactly one declaration fits; then, for a name that follows a term and a dot,
-the one declaration of the file whose name ends in it. A name that fits none of these is an outside name, a library's,
-and stays as written. A name that fits two declarations is linked to neither, and the reader says so. A file the reader
-cannot split into tokens, for a comment or a string left open, is refused with the line.
+that an `open` holds at that line, when exactly one declaration fits; then, for a name that follows a dot, the one
+declaration of the file whose name ends in it. A name that a declaration makes, a structure's field or an alias's half,
+is placed on the declaration that makes it. A name that fits none of these is an outside name, a library's, and stays
+as written. A name that fits two declarations is linked to each of them, so that the reach takes in too much rather
+than too little, and the reader says that it could not choose. With no targets given for a set of files, the rule that
+finds them (MacroCOSM OES, its section 18.4.10) runs over the files that no other file of the set imports. A file the
+reader cannot split into tokens, for a comment or a string left open, is refused with the line.
 
 **The programs.** Six programs build one file's fabulam. The host runs them in the order they are written, as one job,
 each landing the fabulam so far, as it runs a fabulac's (section 20.6):
