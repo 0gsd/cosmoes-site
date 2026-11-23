@@ -317,3 +317,21 @@ def test_a_shelf_page_carries_only_the_trademark_legends_once(export):
     assert credits == ['ECMAScript® is a registered trademark of Ecma International.']
     go = page_ok(Site(export, library=REAL).get(APEX, '/library/go/'))   # the CC BY attribution is a page's, not a shelf's
     assert '<p class="lib-credit">' not in go
+
+
+def test_the_deploy_upload_keeps_every_file_of_the_shelf():
+    """The image is built from what `gcloud builds submit` uploads. Without .gcloudignore, gcloud leaves out every file
+    named .gitignore at any depth, and a kept text may list its publisher's own (the Rust texts do): the site would then
+    refuse it (0.9.0). So .gcloudignore leaves out only the root's .gitignore, and no pattern in the root's .gitignore,
+    which it includes, matches a file the shelf keeps."""
+    root = Path(__file__).resolve().parent.parent
+    lines = [ln.strip() for ln in (root / '.gcloudignore').read_text(encoding='utf-8').splitlines()]
+    rules = [ln for ln in lines if ln and (not ln.startswith('#') or ln.startswith('#!include:'))]
+    assert '/.gitignore' in rules and '#!include:.gitignore' in rules
+    assert not [r for r in rules if r.lstrip('!').rstrip('/') in ('.gitignore', '**/.gitignore')]
+    if not (root / '.git').exists() or shutil.which('git') is None:
+        pytest.skip('not a git checkout')
+    import subprocess
+    hit = subprocess.run(['git', 'ls-files', '--cached', '--ignored', '--exclude-from=.gitignore', '--', 'library'],
+                         cwd=root, capture_output=True, text=True, check=True).stdout.split()
+    assert hit == [], hit

@@ -1,0 +1,8 @@
+# What `gcloud builds submit` leaves out of the upload the image is built from. Without this file gcloud ignores
+# every file named .gitignore at any depth; a text in the language library keeps its publisher's own among its files
+# (the Rust texts do), and a text whose files are not all there fails its SHA256SUMS and is refused by the site (0.9.0).
+# So only the root's .gitignore is left out, and its patterns apply as they are.
+/.gcloudignore
+/.git
+/.gitignore
+#!include:.gitignore
