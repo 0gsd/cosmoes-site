@@ -3,8 +3,8 @@
 <div class="docoes-body">
 <section class="docs-sec" data-key="S:section/root" data-scope="">
 <h1 id="docs-macrocosm-oes">MacroCOSM OES</h1>
-<p><em>Edition 0.8.0 · revised 2026-11-20 · cosmoes.org home: https://macro.cosmoes.org/</em></p>
-<p><em>This edition describes grammar version 0.8.0; files written under 0.7.0, 0.6.0, 0.5.4, 0.0.2 and 0.0.1 are read unchanged.</em></p>
+<p><em>Edition 0.9.0 · revised 2026-11-22 · cosmoes.org home: https://macro.cosmoes.org/</em></p>
+<p><em>This edition describes grammar version 0.9.0; files written under 0.8.0, 0.7.0, 0.6.0, 0.5.4, 0.0.2 and 0.0.1 are read unchanged.</em></p>
 <p><a class="docs-term" href="#docs-item-t-term-macrocosm" data-term="T:term/macrocosm" title="an OES: the shared grammar, and the core built into it">MacroCOSM</a> <a class="docs-term" href="#docs-item-t-term-oes" data-term="T:term/oes" title="stands for organizational enumeration system">OES</a> is an OES: a shared grammar and the <a class="docs-term" href="#docs-item-t-term-core" data-term="T:term/core" title="The core is what MacroCOSM holds built in">core</a> built into it. The grammar says how a domain is enumerated as
 plain-text <code>.cosm</code> files that are at once a file system and a relational database, made to be rendered: how a file is
 read, how a <a class="docs-term" href="#docs-item-t-term-volume" data-term="T:term/volume" title="one database of a format">volume</a> names the <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> it is written in, what an <a class="docs-term" href="#docs-item-t-term-item" data-term="T:term/item" title="a row: a mapping with a string id and a type">item</a> is and which columns every item carries, how one
@@ -183,6 +183,12 @@ one learned.</p>
 <td>2026-11-20</td>
 <td>the <a class="docs-term" href="#docs-item-t-term-fabulac" data-term="T:term/fabulac" title="A fabulac is the fabula of code">fabulac</a> authored first, its entailment a program a person can start, judged by its cases and run only in a sandbox (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-7">18.4.7</a>); the <a class="docs-term" href="#docs-item-t-term-head-fabulac" data-term="T:term/head-fabulac" title="A head fabulac is a fabulac that names the parts of one program">head fabulac</a> over <a class="docs-term" href="#docs-item-t-term-part" data-term="T:term/part" title="a top-level division of a volume (Comprise: concern, atom)">parts</a> and their interfaces (<a class="ref-xref" href="#docs-sec-18-4-8">section 18.4.8</a>); <a class="docs-term" href="#docs-item-t-term-transconception" data-term="T:term/transconception" title="A transconception is a transconceptualization of a program, carried through its fabulac, in Transconception">transconception</a>, a program carried into another language through its fabulac, with its ground cited to the language library (<a class="ref-xref" href="#docs-sec-18-4-9">section 18.4.9</a>); in the grammar, the kinds <code>N:target</code>, <code>C:reliance</code> and <code>P:assumption</code>, the field <code>ruling</code>, the <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a>'s <code>purpose</code>, <code>written-for</code>, <code>ruled-by</code>, <code>cases</code>, <code>entailed</code>, <code>parts</code> and <code>head</code>, and the <code>authored</code> source; files written under 0.7.0, 0.6.0, 0.5.4, 0.0.2 and 0.0.1 read unchanged</td>
 <td><code>macrocosm: 0.8.0</code> (reserved), <code>N:target</code>, <code>C:reliance</code>, <code>P:assumption</code></td>
+</tr>
+<tr>
+<td>MacroCOSM OES 0.9.0</td>
+<td>2026-11-22</td>
+<td>the <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>, a fourth flavour of the fabula for a formal proof, read as text and never built or run, and the <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a> it entails for an expert, a student or everyone, a guide that is never called a proof (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>); in the grammar, the kinds <code>C:statement</code>, <code>C:definition</code>, <code>C:lemma</code>, <code>C:constant</code>, <code>C:step</code>, <code>P:yield</code> and <code>P:fit</code>, the catalog's <code>teaching</code> and <code>audit</code>, a fourth form of <code>source</code>, and a kind's <code>open</code>; files written under 0.8.0, 0.7.0, 0.6.0, 0.5.4, 0.0.2 and 0.0.1 read unchanged</td>
+<td><code>macrocosm: 0.9.0</code> (reserved), <code>C:statement</code>, <code>C:lemma</code>, <code>P:yield</code>, <code>P:fit</code></td>
 </tr>
 </tbody>
 </table>
@@ -747,9 +753,9 @@ and a new twin is written in its place (<a class="ref-xref" href="#docs-sec-18-4
 </section>
 <section class="docs-sec" data-key="S:section/5.6" data-scope="">
 <h3 id="docs-sec-5-6" data-toc="3">5.6 The reserved key <code>macrocosm:</code></h3>
-<p>A <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> or a <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a> may carry <code>macrocosm: 0.8.0</code> (or an earlier <code>0.7.0</code>, <code>0.6.0</code>, <code>0.5.4</code>, <code>0.0.2</code> or <code>0.0.1</code>), after its
-declaration. Readers keep the key and ignore it. It is reserved for the day the grammar itself needs a version test;
-until then no reader refuses a file for what it says, and no writer is required to write it.</p>
+<p>A <a class="docs-term" href="#docs-item-t-term-catalog" data-term="T:term/catalog" title="the file at the root of a volume that declares the format and says what…">catalog</a> or a <a class="docs-term" href="#docs-item-t-term-manifest" data-term="T:term/manifest" title="the machine-readable declaration of a format, a built-in or a MiniCOSM">manifest</a> may carry <code>macrocosm: 0.9.0</code> (or an earlier <code>0.8.0</code>, <code>0.7.0</code>, <code>0.6.0</code>, <code>0.5.4</code>, <code>0.0.2</code> or
+<code>0.0.1</code>), after its declaration. Readers keep the key and ignore it. It is reserved for the day the grammar itself
+needs a version test; until then no reader refuses a file for what it says, and no writer is required to write it.</p>
 <hr />
 </section>
 <section class="docs-sec" data-key="S:section/6" data-scope="">
@@ -2197,7 +2203,7 @@ holders of the roles that govern the volume.</li>
 <p>Saving and signing are Comprise's; the generic reader does neither, and treats a <a class="docs-term" href="#docs-item-t-term-holotype" data-term="T:term/holotype" title="the complete, private description of one subject, kept by the subject, on the subject's machine">Holotype</a>'s <code>snapshots/</code> folder as
 outside the model.</p>
 <p>Three other things carry versions, and none of them is a saved version: a <a class="docs-term" href="#docs-item-t-term-format" data-term="T:term/format" title="A format is what a declaration names: a built-in or a MiniCOSM (section 5)">format</a> carries its major in the
-declaration (<code>comprise/1</code>, <a class="ref-xref" href="#docs-sec-5">section 5</a>); the manifest format is <code>minicosm/0</code> (<a class="ref-xref" href="#docs-sec-13-2">section 13.2</a>); the grammar is 0.8.0, in the
+declaration (<code>comprise/1</code>, <a class="ref-xref" href="#docs-sec-5">section 5</a>); the manifest format is <code>minicosm/0</code> (<a class="ref-xref" href="#docs-sec-13-2">section 13.2</a>); the grammar is 0.9.0, in the
 reserved <code>macrocosm:</code> key (<a class="ref-xref" href="#docs-sec-5-6">section 5.6</a>). A path and a URI carry no version (<a class="ref-xref" href="#docs-sec-11-3">section 11.3</a>).</p>
 <hr />
 </section>
@@ -8882,7 +8888,7 @@ disagreement stands as a rule of its own.</p>
 <h2 id="docs-sec-21" data-toc="2">21. Changes</h2>
 <p>Each entry records what changed in the text or the grammar, newest first. Where an implementation and this text
 disagreed and one was corrected, the entry says which.</p>
-<p><strong>Edition 0.9.0.</strong> A formal proof can be taken apart into a <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>, and told again as a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a>.</p>
+<p><strong>Edition 0.9.0 · 2026-11-22.</strong> A formal proof can be taken apart into a <a class="docs-term" href="#docs-item-t-term-fabulam" data-term="T:term/fabulam" title="A fabulam is the fabula of a formal proof">fabulam</a>, and told again as a <a class="docs-term" href="#docs-item-t-term-pshort" data-term="T:term/pshort" title="A pshort is a fabulam's short">pshort</a>.</p>
 <ol>
 <li><strong>The fabulam</strong> (<a class="ref-xref" href="#docs-sec-18-1">sections 18.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4">18.4</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-1">18.4.1</a>, <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-2">18.4.2</a> and <a class="ref-xref ref-xref-num" href="#docs-sec-18-4-10">18.4.10</a>, a new term). A fourth <a class="docs-term" href="#docs-item-t-term-flavour" data-term="T:term/flavour" title="A fabula's flavour is the kind of input it is the fabula of">flavour</a> of the <a class="docs-term" href="#docs-item-t-term-fabula" data-term="T:term/fabula" title="A fabula enumerates all the inspiration, meaning, intent, construction">fabula</a>, for
 a formal proof: one file of the proof's source, Lean 4 in this edition, read as text and enumerated as the argument

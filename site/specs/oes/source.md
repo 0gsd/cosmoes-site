@@ -1,6 +1,6 @@
 # The OES specifications
 
-*Edition 0.8.0 · revised 2026-11-20 · cosmoes.org home: https://cosmoes.org/*
+*Edition 0.9.0 · revised 2026-11-22 · cosmoes.org home: https://cosmoes.org/*
 
 An OES, an organizational enumeration system, describes a domain by enumerating everything in it. It is written as
 plain-text files that are at once a file system and a relational database, made to be rendered. This page says what
@@ -196,7 +196,7 @@ them) is reserved for a later edition.
 
 <!-- atem: editions, revisions, format versions and the canonical pages -->
 
-An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.8.0; the
+An **edition** is a published state of one of these texts. Every text here, this page included, is at edition 0.9.0; the
 status line says so. An edition is the text's, not the format's: a format's version (`thym/1`, `ascribe/1`,
 `comprise/1`, the grammar version MacroCOSM OES names) is a line in the files a program reads, and each text's status
 line names the one it describes. The canonical edition of each text is the page at its home; a copy an application ships
@@ -228,7 +228,7 @@ never sold, and neither is the way out of it: no product and no account stands b
 
 <!-- atem: what each edition changed, newest first -->
 
-1. **Edition 0.9.0 (the day of its release): a proof.** The fabula has four flavours (section 7), and the model's
+1. **Edition 0.9.0 (2026-11-22): a proof.** The fabula has four flavours (section 7), and the model's
    table gains a column for a formal proof: its file, read as text; its fabulam; the pshort, a guide that is never
    called a proof; and its atem (section 3).
 2. **Edition 0.8.0 (2026-11-20): a program authored first.** The model's table says that a fabulac a
